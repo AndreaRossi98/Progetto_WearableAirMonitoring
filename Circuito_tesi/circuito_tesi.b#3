@@ -1368,6 +1368,16 @@ design rules under a new name.</description>
 <attribute name="POPULARITY" value="10" x="-87.63" y="-69.85" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-88.9" y="-72.771" size="1.27" layer="27" ratio="10"/>
 </element>
+<element name="R3" library="SparkFun-Resistors" package="AXIAL-0.3" value="10k" x="-93.98" y="-76.2" smashed="yes">
+<attribute name="NAME" x="-93.98" y="-75.184" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
+<attribute name="PROD_ID" value="RES-08375" x="-93.98" y="-76.2" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-93.98" y="-77.216" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
+</element>
+<element name="R4" library="SparkFun-Resistors" package="AXIAL-0.3" value="10k" x="-93.98" y="-80.01" smashed="yes">
+<attribute name="NAME" x="-93.98" y="-78.994" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
+<attribute name="PROD_ID" value="RES-08375" x="-93.98" y="-80.01" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-93.98" y="-81.026" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
+</element>
 </elements>
 <signals>
 <signal name="VCC-ISO">
@@ -1383,7 +1393,7 @@ design rules under a new name.</description>
 <wire x1="-41.91" y1="-8.89" x2="-58.42" y2="-8.89" width="0" layer="19" extent="1-1"/>
 <wire x1="-25.4" y1="-8.89" x2="-41.91" y2="-8.89" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="GND">
+<signal name="3.3">
 <contactref element="IC2" pad="1"/>
 <contactref element="IC3" pad="1"/>
 <contactref element="IC1" pad="1"/>
@@ -1400,21 +1410,51 @@ design rules under a new name.</description>
 <contactref element="SCD41" pad="3"/>
 <contactref element="BOSCH688" pad="5"/>
 <contactref element="BOSCH688" pad="3"/>
-<wire x1="-86.36" y1="-62.23" x2="-91.44" y2="-62.23" width="0" layer="19" extent="1-1"/>
+<contactref element="R4" pad="P$2"/>
+<contactref element="ULPSM" pad="6"/>
+<contactref element="SCD41" pad="2"/>
+<contactref element="BOSCH688" pad="1"/>
+<contactref element="BOSCH688" pad="7"/>
+<contactref element="ULPSM" pad="8"/>
+<contactref element="R3" pad="P$1"/>
+<contactref element="IC2" pad="2"/>
+<contactref element="C2" pad="1"/>
+<contactref element="U1" pad="48"/>
+<contactref element="U1" pad="13"/>
+<contactref element="U1" pad="36"/>
+<contactref element="B1" pad="LV"/>
+<contactref element="R1" pad="P$2"/>
+<contactref element="R2" pad="P$2"/>
+<wire x1="-90.17" y1="-80.01" x2="-97.79" y2="-76.2" width="0" layer="19" extent="1-1"/>
+<wire x1="-83.82" y1="-69.85" x2="-90.17" y2="-80.01" width="0" layer="19" extent="1-1"/>
+<wire x1="-78.74" y1="-69.85" x2="-83.82" y2="-69.85" width="0" layer="19" extent="1-1"/>
+<wire x1="-86.36" y1="-62.23" x2="-83.82" y2="-69.85" width="0" layer="19" extent="1-1"/>
+<wire x1="-91.44" y1="-62.23" x2="-86.36" y2="-62.23" width="0" layer="19" extent="1-1"/>
+<wire x1="-96.52" y1="-62.23" x2="-91.44" y2="-62.23" width="0" layer="19" extent="1-1"/>
+<wire x1="-81.28" y1="-62.23" x2="-86.36" y2="-62.23" width="0" layer="19" extent="1-1"/>
 <wire x1="-91.44" y1="-54.61" x2="-91.44" y2="-62.23" width="0" layer="19" extent="1-1"/>
-<wire x1="-88.9" y1="-38.1" x2="-91.44" y2="-54.61" width="0" layer="19" extent="1-1"/>
+<wire x1="-93.98" y1="-54.61" x2="-91.44" y2="-54.61" width="0" layer="19" extent="1-1"/>
+<wire x1="-90.17" y1="-48.26" x2="-91.44" y2="-54.61" width="0" layer="19" extent="1-1"/>
+<wire x1="-90.17" y1="-44.45" x2="-90.17" y2="-48.26" width="0" layer="19" extent="1-1"/>
+<wire x1="-88.9" y1="-38.1" x2="-90.17" y2="-44.45" width="0" layer="19" extent="1-1"/>
 <wire x1="-86.36" y1="-38.1" x2="-88.9" y2="-38.1" width="0" layer="19" extent="1-1"/>
 <wire x1="-95.67" y1="-33.02" x2="-88.9" y2="-38.1" width="0" layer="19" extent="1-1"/>
 <wire x1="-95.62" y1="-29.21" x2="-95.67" y2="-33.02" width="0" layer="19" extent="1-1"/>
 <wire x1="-95.62" y1="-25.4" x2="-95.62" y2="-29.21" width="0" layer="19" extent="1-1"/>
 <wire x1="-95.67" y1="-21.59" x2="-95.62" y2="-25.4" width="0" layer="19" extent="1-1"/>
 <wire x1="-95.62" y1="-17.78" x2="-95.67" y2="-21.59" width="0" layer="19" extent="1-1"/>
+<wire x1="-97.42" y1="-17.78" x2="-95.62" y2="-17.78" width="0" layer="19" extent="1-1"/>
 <wire x1="-95.62" y1="-13.97" x2="-95.62" y2="-17.78" width="0" layer="19" extent="1-1"/>
 <wire x1="-81.28" y1="-3.81" x2="-95.62" y2="-13.97" width="0" layer="19" extent="1-1"/>
+<wire x1="-81.28" y1="-1.27" x2="-81.28" y2="-3.81" width="0" layer="19" extent="1-1"/>
 <wire x1="-71.12" y1="-3.81" x2="-81.28" y2="-3.81" width="0" layer="19" extent="1-1"/>
 <wire x1="-63.5" y1="-8.89" x2="-71.12" y2="-3.81" width="0" layer="19" extent="1-1"/>
 <wire x1="-46.99" y1="-8.89" x2="-63.5" y2="-8.89" width="0" layer="19" extent="1-1"/>
-<wire x1="-30.48" y1="-8.89" x2="-46.99" y2="-8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="-44.45" y1="-8.89" x2="-46.99" y2="-8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="-30.48" y1="-8.89" x2="-44.45" y2="-8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="-18.71" y1="-10.48" x2="-30.48" y2="-8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="-18.71" y1="-4.76" x2="-18.71" y2="-10.48" width="0" layer="19" extent="1-1"/>
+<wire x1="-13.65" y1="-5.42" x2="-18.71" y2="-4.76" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="5V">
 <contactref element="IC1" pad="2"/>
@@ -1462,28 +1502,21 @@ design rules under a new name.</description>
 <wire x1="-81.28" y1="-8.89" x2="-97.79" y2="-48.26" width="0" layer="19" extent="1-1"/>
 <wire x1="-15.11" y1="-10.48" x2="-81.28" y2="-8.89" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="3.3V">
-<contactref element="IC2" pad="2"/>
-<contactref element="C2" pad="1"/>
-<contactref element="U1" pad="48"/>
-<contactref element="U1" pad="13"/>
-<contactref element="U1" pad="36"/>
-<contactref element="B1" pad="LV"/>
-<contactref element="R1" pad="P$2"/>
-<contactref element="R2" pad="P$2"/>
-<contactref element="SCD41" pad="2"/>
-<contactref element="BOSCH688" pad="1"/>
-<contactref element="BOSCH688" pad="7"/>
-<wire x1="-93.98" y1="-54.61" x2="-96.52" y2="-62.23" width="0" layer="19" extent="1-1"/>
-<wire x1="-90.17" y1="-48.26" x2="-93.98" y2="-54.61" width="0" layer="19" extent="1-1"/>
-<wire x1="-90.17" y1="-44.45" x2="-90.17" y2="-48.26" width="0" layer="19" extent="1-1"/>
-<wire x1="-81.28" y1="-62.23" x2="-93.98" y2="-54.61" width="0" layer="19" extent="1-1"/>
-<wire x1="-97.42" y1="-17.78" x2="-90.17" y2="-44.45" width="0" layer="19" extent="1-1"/>
-<wire x1="-81.28" y1="-1.27" x2="-97.42" y2="-17.78" width="0" layer="19" extent="1-1"/>
-<wire x1="-44.45" y1="-8.89" x2="-81.28" y2="-1.27" width="0" layer="19" extent="1-1"/>
-<wire x1="-18.71" y1="-10.48" x2="-44.45" y2="-8.89" width="0" layer="19" extent="1-1"/>
-<wire x1="-18.71" y1="-4.76" x2="-18.71" y2="-10.48" width="0" layer="19" extent="1-1"/>
-<wire x1="-13.65" y1="-5.42" x2="-18.71" y2="-4.76" width="0" layer="19" extent="1-1"/>
+<signal name="N$6">
+<contactref element="R3" pad="P$2"/>
+<contactref element="ULPSM" pad="2"/>
+<contactref element="R4" pad="P$1"/>
+<wire x1="-90.17" y1="-76.2" x2="-97.79" y2="-80.01" width="0" layer="19" extent="1-1"/>
+<wire x1="-93.98" y1="-69.85" x2="-90.17" y2="-76.2" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$10">
+<contactref element="ULPSM" pad="1"/>
+</signal>
+<signal name="N$8">
+<contactref element="U1" pad="7"/>
+</signal>
+<signal name="N$7">
+<contactref element="U1" pad="6"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

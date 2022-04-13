@@ -65,23 +65,23 @@ void saadc_init(void)
 {
     ret_code_t err_code;
     // Create a config struct and assign it default values along with the Pin number for ADC Input.
-    //nrf_saadc_channel_config_t channel0_config = NRFX_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN1);
+    nrf_saadc_channel_config_t channel0_config = NRFX_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN1);
     nrf_saadc_channel_config_t channel1_config = NRFX_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN2);
     nrf_saadc_channel_config_t channel2_config = NRFX_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN3);
     channel2_config.gain = 1;
     channel1_config.gain = 1;
-    //channel0_config.gain = 1;
+    channel0_config.gain = 1;
 
     // Initialize the saadc 
     err_code = nrf_drv_saadc_init(NULL, saadc_callback_handler);
     APP_ERROR_CHECK(err_code);
 
     // Initialize the Channel which will be connected to that specific pin.
-    //err_code = nrfx_saadc_channel_init(0, &channel0_config);
-    //APP_ERROR_CHECK(err_code);
-    err_code = nrfx_saadc_channel_init(1, &channel1_config);
+    err_code = nrfx_saadc_channel_init(0, &channel0_config);    //A1
     APP_ERROR_CHECK(err_code);
-    err_code = nrfx_saadc_channel_init(2, &channel2_config);
+    err_code = nrfx_saadc_channel_init(1, &channel1_config);    //A2
+    APP_ERROR_CHECK(err_code);
+    err_code = nrfx_saadc_channel_init(2, &channel2_config);    //A3
     APP_ERROR_CHECK(err_code);
 }
 
@@ -170,9 +170,17 @@ int16_t decimale;
                 printf("Temperature: %d m°C\n", temperature);
                 printf("Humidity: %d mRH\n\n", humidity);
             }
-            //nrfx_saadc_sample_convert(1, &adc_val);
-            //Vref = ADC_TO_VOLTS(adc_val);
-            //printf("%d\n", adc_val);
+
+            float value;
+            nrfx_saadc_sample_convert(0, &adc_val); //A1
+            value = ADC_TO_VOLTS(adc_val);
+            printf("NO2: %d\n", adc_val);
+            nrfx_saadc_sample_convert(1, &adc_val); //A2
+            value = ADC_TO_VOLTS(adc_val);
+            printf("NH3%d\n", adc_val);
+            nrfx_saadc_sample_convert(2, &adc_val); //A3
+            value = ADC_TO_VOLTS(adc_val);
+            printf("CO%d\n", adc_val);
             //NRF_LOG_INFO("%d) Vref [V]: " NRF_LOG_FLOAT_MARKER ";\r",i, NRF_LOG_FLOAT(Vref));
             break;
 
@@ -211,7 +219,7 @@ int main(void)
     nrf_gpio_cfg_output(LED1); // Initialize the pin
     nrf_gpio_pin_set(LED1); // Turn off the LED
     log_init();
-    //saadc_init(); 
+    saadc_init(); 
     
     twi_init();
 

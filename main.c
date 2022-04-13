@@ -112,12 +112,64 @@ const nrfx_timer_t TIMER_LED = NRFX_TIMER_INSTANCE(0); // Timer 0 Enabled
 
 void timer0_handler(nrf_timer_event_t event_type, void* p_context)
 {
+int16_t error = 0;
+int16_t ret;
+uint16_t status;
+struct sps30_measurement measurement;
+int16_t intero;
+int16_t decimale;
     switch(event_type)
     {
         case NRF_TIMER_EVENT_COMPARE0:
             count++;
             nrf_gpio_pin_toggle(LED1);
             printf("%d\n\r", count);
+
+            ret = sps30_read_measurement(&measurement);
+            if(ret < 0)
+            {
+                printf("read measurement failed\n\r");
+            }
+            else
+            {
+                intero = measurement.mc_2p5;
+                decimale = (measurement.mc_2p5 - intero)*100;
+                printf("PM 2.5: %d.%d [µg/m³]\n\r", intero, decimale);
+            }
+
+            bool data_ready_flag = false;
+            nrf_delay_ms(5000);
+            error = scd4x_get_data_ready_flag(&data_ready_flag);
+            if (error) 
+            {
+                printf("Error executing scd4x_get_data_ready_flag(): %i\n", error);
+                //continue;
+            }
+            if (!data_ready_flag) 
+            {
+                //nrf_delay_ms(500);
+                printf("sono qua  \n");
+                //continue;
+            }
+        
+            uint16_t co2;
+            int32_t temperature;
+            int32_t humidity;
+            error = scd4x_read_measurement(&co2, &temperature, &humidity);
+            if (error) 
+            {
+                printf("Error executing scd4x_read_measurement(): %i\n", error);
+            } 
+            else if (co2 == 0) 
+            {
+                printf("Invalid sample detected, skipping.\n");
+            } 
+            else 
+            {
+                printf("CO2: %u ppm\n", co2);
+                printf("Temperature: %d m°C\n", temperature);
+                printf("Humidity: %d mRH\n\n", humidity);
+            }
             //nrfx_saadc_sample_convert(1, &adc_val);
             //Vref = ADC_TO_VOLTS(adc_val);
             //printf("%d\n", adc_val);
@@ -134,7 +186,7 @@ void timer0_handler(nrf_timer_event_t event_type, void* p_context)
 void timer_init(void)
 {
     uint32_t err_code = NRF_SUCCESS;
-    uint32_t time_ms = 1000;        //DEFINISCE OGNI QUANTO SCATTA INTERRUPT DEL TIMER
+    uint32_t time_ms = 10000;        //DEFINISCE OGNI QUANTO SCATTA INTERRUPT DEL TIMER
     uint32_t time_ticks;  
     nrfx_timer_config_t timer_cfg = NRFX_TIMER_DEFAULT_CONFIG; // Configure the timer instance to default settings
 
@@ -163,10 +215,7 @@ int main(void)
     
     twi_init();
 
-    NRF_LOG_INFO("Starting the program");
-    nrf_delay_ms(3000);
-
-    
+    NRF_LOG_INFO("Starting the program");    
 
 //////////////////////////////////////
 ///SCANNING OF CONNECTED SENSORS//////
@@ -188,15 +237,63 @@ int main(void)
         NRF_LOG_FLUSH();
     }
     
+    
+
+///////////////////////////////
+///SENSORS'S INITIALIZATION////
+///////////////////////////////
+    //lettura_scd41(3);
+    //lettura_sps30(1);
+
+    int16_t error = 0;
+    uint16_t status;
+    uint16_t target_co2_concentration;
+    uint16_t* frc_correction;
+
+    target_co2_concentration = 400;
+
+    scd4x_wake_up();
+    scd4x_stop_periodic_measurement();
+    //nrf_delay_ms(500);  //dopo stop aspettare almeno 500 ms
+    scd4x_reinit();       //sembra non servire, non ho ancora modificato alcun parametro
+    nrf_delay_ms(1000);
+    
+    error = scd4x_start_periodic_measurement();
+    //error = scd4x_start_low_power_periodic_measurement();
+    //nrf_delay_ms(1000);
+
+    if(error != 0)  printf("errore\n");
+    else    printf("Periodic scd41 measurement started\n\n");
+
+
+
+    struct sps30_measurement measurement;
+    int16_t ret;
+    uint8_t data[10][4];
+    #define SPS_CMD_READ_MEASUREMENT 0x0300
+    
+    sps30_stop_measurement(); //provato ad aggiungere per vedere se risolve problema del probe failed ripetuto
+    
+    //check if the sensor is ready to start and initialize it
+/*    while (sps30_probe() != 0) 
+    {
+        printf("probe failed\n\r");
+        nrf_delay_ms(1000);
+    }
+    printf("probe succeeded\n\r");
+*/
+    //start measurement and wait for 10s to ensure the sensor has a
+    //stable flow and possible remaining particles are cleaned out
+    if (sps30_start_measurement() != 0) 
+    {
+        printf("error starting measurement\n\r");
+    }
+    printf("Periodic sps30 measurement started\n\n");
+    nrf_delay_ms(5000);
+    printf("\n");
+
     timer_init();       //INIZIALIZZAZIONE DEL TIMER
     nrfx_timer_enable(&TIMER_LED);
-
-//////////////////////////////
-///SENSORS' INITIALIZATION////
-//////////////////////////////
-    lettura_scd41(3);
-    lettura_sps30(1);
-
 
     while (1)
     {

@@ -60,13 +60,13 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="153" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="137" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="9" y="131" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/main.c" useBinaryEdit="0" left="0" path="../../../sensor/reading_sps30.c" selected="0" top="11" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="37" y="88" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/main.c" useBinaryEdit="0" left="0" path="../../../sensor/reading_scd41.c" selected="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="210" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="189" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="29" y="68" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/main.c" useBinaryEdit="0" left="0" path="../../../sensor/reading_sps30.c" selected="0" top="43" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="20" y="25" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/main.c" useBinaryEdit="0" left="0" path="../../../sensor/reading_scd41.c" selected="0" top="51" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="20" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/sensor/reading_sps30.c" useBinaryEdit="0" left="0" path="../../../sensor/reading_sps30.h" selected="0" top="6" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="30" y="35" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../sensor/sps30.c" selected="0" top="7" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="22" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/sensor/reading_scd41.c" useBinaryEdit="0" left="0" path="../../../sensor/reading_scd41.h" selected="0" top="0" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="4" y="49" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/main.c" useBinaryEdit="0" left="0" path="../../../sensor/scd4x_i2c.c" selected="0" top="34" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="timer_pca10040" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/prova/main.c&#xa;" fileDialogInitialDirectory="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/sensor" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="timer_pca10040" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/prova/main.c&#xa;" fileDialogInitialDirectory="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/sensor" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

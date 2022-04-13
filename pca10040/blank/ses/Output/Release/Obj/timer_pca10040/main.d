@@ -1,5 +1,5 @@
 Output/Release/Obj/timer_pca10040/main.o: \
- C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\My\ Projects\TWI_SAADC_TIMER\main.c \
+ C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\My\ Projects\Progetto_WearableAirMonitoring\main.c \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/stdbool.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/stdint.h \
  ../../../../../../modules/nrfx/mdk/nrf.h \

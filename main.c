@@ -68,9 +68,9 @@ void saadc_init(void)
     nrf_saadc_channel_config_t channel0_config = NRFX_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN1);
     nrf_saadc_channel_config_t channel1_config = NRFX_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN2);
     nrf_saadc_channel_config_t channel2_config = NRFX_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN3);
-    channel2_config.gain = 1;
-    channel1_config.gain = 1;
-    channel0_config.gain = 1;
+    //channel2_config.gain = 1;
+    //channel1_config.gain = 1;
+    //channel0_config.gain = 1;
 
     // Initialize the saadc 
     err_code = nrf_drv_saadc_init(NULL, saadc_callback_handler);
@@ -168,20 +168,30 @@ int16_t decimale;
             {
                 printf("CO2: %u ppm\n", co2);
                 printf("Temperature: %d m°C\n", temperature);
-                printf("Humidity: %d mRH\n\n", humidity);
+                printf("Humidity: %d mRH\n", humidity);
             }
 
-            float value;
+            float value = 0;
             nrfx_saadc_sample_convert(0, &adc_val); //A1
-            value = ADC_TO_VOLTS(adc_val);
-            printf("NO2: %d\n", adc_val);
+            //value = (5 - ADC_TO_VOLTS(adc_val))/ADC_TO_VOLTS(adc_val);      //Rs/Rl
+            //intero = value;
+            value = ((10000-50)/1023)*(adc_val+5) + 50;     //formule che non mi convincono
+            intero = value;
+            printf("NO2: %d [ppb]\n", intero);
             nrfx_saadc_sample_convert(1, &adc_val); //A2
-            value = ADC_TO_VOLTS(adc_val);
-            printf("NH3%d\n", adc_val);
+            //value = (5 - ADC_TO_VOLTS(adc_val))/ADC_TO_VOLTS(adc_val);      //Rs/Rl
+            //intero = value;
+            value = ((500-1)/1023)*(adc_val+5) + 1;
+            intero = value;
+            printf("NH3: %d [ppm]\n", intero);
             nrfx_saadc_sample_convert(2, &adc_val); //A3
-            value = ADC_TO_VOLTS(adc_val);
-            printf("CO%d\n", adc_val);
+            //value = (5 - ADC_TO_VOLTS(adc_val))/ADC_TO_VOLTS(adc_val);      //Rs/Rl
+            //intero = value;
+            value = ((1000-1)/1023)*(adc_val+5) + 1;
+            intero = value;
+            printf("CO:  %d [ppm]\n", intero);
             //NRF_LOG_INFO("%d) Vref [V]: " NRF_LOG_FLOAT_MARKER ";\r",i, NRF_LOG_FLOAT(Vref));
+            printf("\n");
             break;
 
         default:
@@ -250,6 +260,18 @@ int main(void)
 ///////////////////////////////
 ///SENSORS'S INITIALIZATION////
 ///////////////////////////////
+//funzione di ricalibrazione dell'offset
+/*
+static bool                    m_saadc_calibrate = false;
+if(m_saadc_calibrate == true)
+{
+nrf_drv_saadc_abort();                                  // Abort all ongoing conversions. Calibration cannot be run if SAADC is busy
+NRF_LOG_INFO("SAADC calibration starting...");    //Print on UART
+
+while(nrf_drv_saadc_calibrate_offset() != NRF_SUCCESS); //Trigger calibration task
+m_saadc_calibrate = false;
+}
+*/
     //lettura_scd41(3);
     //lettura_sps30(1);
 
@@ -279,11 +301,11 @@ int main(void)
     int16_t ret;
     uint8_t data[10][4];
     #define SPS_CMD_READ_MEASUREMENT 0x0300
-    
-    sps30_stop_measurement(); //provato ad aggiungere per vedere se risolve problema del probe failed ripetuto
-    
+  
+    //sps30_stop_measurement(); //provato ad aggiungere per vedere se risolve problema del probe failed ripetuto
+/*    
     //check if the sensor is ready to start and initialize it
-/*    while (sps30_probe() != 0) 
+    while (sps30_probe() != 0) 
     {
         printf("probe failed\n\r");
         nrf_delay_ms(1000);

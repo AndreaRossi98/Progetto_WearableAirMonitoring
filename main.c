@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdint.h>
+#include <math.h>
 #include "nrf.h"
 #include "nrf_drv_timer.h"
 #include "bsp.h"
@@ -89,9 +90,7 @@ nrf_saadc_value_t adc_val;      //variable to hold the value read by the ADC
 
 float ADC_TO_VOLTS (int adc)
 {
-    float volts;
-    //volts = (0.00363385)*adc + 0.14411395;
-    volts = (0.000884)*adc + 0.14776;
+    float volts = (adc + 5) * 3.6 / 1023;
     return volts;
 }
 
@@ -173,24 +172,22 @@ int16_t decimale;
 
             float value = 0;
             nrfx_saadc_sample_convert(0, &adc_val); //A1
-            //value = (5 - ADC_TO_VOLTS(adc_val))/ADC_TO_VOLTS(adc_val);      //Rs/Rl
-            //intero = value;
-            value = ((10000-50)/1023)*(adc_val+5) + 50;     //formule che non mi convincono
-            intero = value;
-            printf("NO2: %d [ppb]\n", intero);
+            value = (5 - ADC_TO_VOLTS(adc_val))/ADC_TO_VOLTS(adc_val);      //Rs/Rl
+            value = pow(10, (log10(value)-0.804)/1.026)*1000;
+            intero = value;      
+            printf("NO2: %d [ppb]\n", adc_val);
+
             nrfx_saadc_sample_convert(1, &adc_val); //A2
-            //value = (5 - ADC_TO_VOLTS(adc_val))/ADC_TO_VOLTS(adc_val);      //Rs/Rl
-            //intero = value;
-            value = ((500-1)/1023)*(adc_val+5) + 1;
+            value = (5 - ADC_TO_VOLTS(adc_val))/ADC_TO_VOLTS(adc_val);      //Rs/Rl
+            value = pow(10, (log10(value)+0.104)/(-0.538));
             intero = value;
             printf("NH3: %d [ppm]\n", intero);
+
             nrfx_saadc_sample_convert(2, &adc_val); //A3
-            //value = (5 - ADC_TO_VOLTS(adc_val))/ADC_TO_VOLTS(adc_val);      //Rs/Rl
-            //intero = value;
-            value = ((1000-1)/1023)*(adc_val+5) + 1;
+            value = (5 - ADC_TO_VOLTS(adc_val))/ADC_TO_VOLTS(adc_val);      //Rs/Rl
+            value = pow(10, (log10(value)-0.55)/-0.85)*1000;
             intero = value;
             printf("CO:  %d [ppm]\n", intero);
-            //NRF_LOG_INFO("%d) Vref [V]: " NRF_LOG_FLOAT_MARKER ";\r",i, NRF_LOG_FLOAT(Vref));
             printf("\n");
             break;
 

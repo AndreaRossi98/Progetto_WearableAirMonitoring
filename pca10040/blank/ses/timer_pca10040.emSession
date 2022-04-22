@@ -61,7 +61,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="91" y="177" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="174" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="225" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="174" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="46" y="122" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../sensor/reading_sps30.c" selected="0" top="104" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="20" y="25" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/main.c" useBinaryEdit="0" left="0" path="../../../sensor/reading_scd41.c" selected="0" top="51" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="20" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/sensor/reading_sps30.c" useBinaryEdit="0" left="0" path="../../../sensor/reading_sps30.h" selected="0" top="6" codecName="Default"/>

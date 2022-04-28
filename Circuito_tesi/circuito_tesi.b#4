@@ -3,7 +3,7 @@
 <eagle version="9.6.2">
 <drawing>
 <settings>
-<setting alwaysvectorfont="no"/>
+<setting alwaysvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="50" unitdist="mil" unit="mm" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mm"/>
@@ -148,6 +148,9 @@
 <wire x1="100" y1="0" x2="100" y2="80" width="0" layer="20"/>
 <wire x1="100" y1="80" x2="0" y2="80" width="0" layer="20"/>
 <wire x1="0" y1="80" x2="0" y2="0" width="0" layer="20"/>
+<wire x1="2.54" y1="2.54" x2="97.79" y2="2.54" width="0.1524" layer="20"/>
+<dimension x1="97.79" y1="-2.54" x2="2.54" y2="-2.54" x3="50.165" y3="-3.81" textsize="1.778" layer="51"/>
+<dimension x1="-2.54" y1="2.54" x2="-2.54" y2="77.47" x3="-3.81" y3="40.005" textsize="1.778" layer="51"/>
 </plain>
 <libraries>
 <library name="1614992-1">
@@ -320,43 +323,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <rectangle x1="-0.1999" y1="-0.3" x2="0.1999" y2="0.3" layer="35"/>
 </package>
 </packages>
-</library>
-<library name="capacitor-wima" urn="urn:adsk.eagle:library:116">
-<description>&lt;b&gt;WIMA Capacitors&lt;/b&gt;&lt;p&gt;
-&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
-<packages>
-<package name="C2.5-3" urn="urn:adsk.eagle:footprint:5390/1" library_version="2">
-<description>&lt;B&gt;MKS2&lt;/B&gt;, 5 x 3 mm, grid 2.54 mm</description>
-<wire x1="-2.159" y1="1.524" x2="2.159" y2="1.524" width="0.1524" layer="21"/>
-<wire x1="2.159" y1="-1.524" x2="-2.159" y2="-1.524" width="0.1524" layer="21"/>
-<wire x1="2.413" y1="1.27" x2="2.413" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="-2.413" y1="1.27" x2="-2.413" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="2.159" y1="1.524" x2="2.413" y2="1.27" width="0.1524" layer="21" curve="-90"/>
-<wire x1="-2.413" y1="1.27" x2="-2.159" y2="1.524" width="0.1524" layer="21" curve="-90"/>
-<wire x1="2.159" y1="-1.524" x2="2.413" y2="-1.27" width="0.1524" layer="21" curve="90"/>
-<wire x1="-2.413" y1="-1.27" x2="-2.159" y2="-1.524" width="0.1524" layer="21" curve="90"/>
-<wire x1="1.27" y1="0" x2="0.381" y2="0" width="0.1524" layer="51"/>
-<wire x1="0.381" y1="0" x2="0.254" y2="0" width="0.1524" layer="21"/>
-<wire x1="0.254" y1="0" x2="0.254" y2="0.762" width="0.254" layer="21"/>
-<wire x1="0.254" y1="0" x2="0.254" y2="-0.762" width="0.254" layer="21"/>
-<wire x1="-0.254" y1="0.762" x2="-0.254" y2="0" width="0.254" layer="21"/>
-<wire x1="-0.254" y1="0" x2="-0.254" y2="-0.762" width="0.254" layer="21"/>
-<wire x1="-0.254" y1="0" x2="-0.381" y2="0" width="0.1524" layer="21"/>
-<wire x1="-0.381" y1="0" x2="-1.27" y2="0" width="0.1524" layer="51"/>
-<pad name="1" x="-1.27" y="0" drill="0.8128" diameter="1.6002" shape="octagon"/>
-<pad name="2" x="1.27" y="0" drill="0.8128" diameter="1.6002" shape="octagon"/>
-<text x="-1.651" y="1.778" size="1.27" layer="25" ratio="10">&gt;NAME</text>
-<text x="-1.651" y="-3.048" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
-</package>
-</packages>
-<packages3d>
-<package3d name="C2.5-3" urn="urn:adsk.eagle:package:5436/1" type="box" library_version="2">
-<description>MKS2, 5 x 3 mm, grid 2.54 mm</description>
-<packageinstances>
-<packageinstance name="C2.5-3"/>
-</packageinstances>
-</package3d>
-</packages3d>
 </library>
 <library name="linear" urn="urn:adsk.eagle:library:262">
 <description>&lt;b&gt;Linear Devices&lt;/b&gt;&lt;p&gt;
@@ -1177,6 +1143,88 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </package>
 </packages>
 </library>
+<library name="OPA2277PA">
+<packages>
+<package name="DIP794W45P254L959H508Q8">
+<circle x="-5.035" y="3.81" radius="0.1" width="0.2" layer="21"/>
+<circle x="-5.035" y="3.81" radius="0.1" width="0.2" layer="51"/>
+<wire x1="-3.175" y1="4.795" x2="3.175" y2="4.795" width="0.127" layer="51"/>
+<wire x1="-3.175" y1="-4.795" x2="3.175" y2="-4.795" width="0.127" layer="51"/>
+<wire x1="-3.175" y1="4.795" x2="3.175" y2="4.795" width="0.127" layer="21"/>
+<wire x1="-3.175" y1="-4.795" x2="3.175" y2="-4.795" width="0.127" layer="21"/>
+<wire x1="-3.175" y1="4.795" x2="-3.175" y2="-4.795" width="0.127" layer="51"/>
+<wire x1="3.175" y1="4.795" x2="3.175" y2="-4.795" width="0.127" layer="51"/>
+<wire x1="4.785" y1="5.045" x2="-4.785" y2="5.045" width="0.05" layer="39"/>
+<wire x1="4.785" y1="-5.045" x2="-4.785" y2="-5.045" width="0.05" layer="39"/>
+<wire x1="4.785" y1="5.045" x2="4.785" y2="-5.045" width="0.05" layer="39"/>
+<wire x1="-4.785" y1="5.045" x2="-4.785" y2="-5.045" width="0.05" layer="39"/>
+<text x="-3.74" y="-4.972" size="1.27" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-3.74" y="4.972" size="1.27" layer="25">&gt;NAME</text>
+<pad name="1" x="-3.97" y="3.81" drill="0.78" diameter="1.13" shape="square"/>
+<pad name="2" x="-3.97" y="1.27" drill="0.78" diameter="1.13"/>
+<pad name="3" x="-3.97" y="-1.27" drill="0.78" diameter="1.13"/>
+<pad name="4" x="-3.97" y="-3.81" drill="0.78" diameter="1.13"/>
+<pad name="5" x="3.97" y="-3.81" drill="0.78" diameter="1.13"/>
+<pad name="6" x="3.97" y="-1.27" drill="0.78" diameter="1.13"/>
+<pad name="7" x="3.97" y="1.27" drill="0.78" diameter="1.13"/>
+<pad name="8" x="3.97" y="3.81" drill="0.78" diameter="1.13"/>
+</package>
+</packages>
+</library>
+<library name="Res_5.1MOHM">
+<packages>
+<package name="RESC1508X55N">
+<text x="-1.46" y="-0.82" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-1.46" y="0.82" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.85" y1="-0.48" x2="-0.85" y2="-0.48" width="0.127" layer="51"/>
+<wire x1="0.85" y1="0.48" x2="-0.85" y2="0.48" width="0.127" layer="51"/>
+<wire x1="0.85" y1="-0.48" x2="0.85" y2="0.48" width="0.127" layer="51"/>
+<wire x1="-0.85" y1="-0.48" x2="-0.85" y2="0.48" width="0.127" layer="51"/>
+<wire x1="-1.46" y1="-0.735" x2="1.46" y2="-0.735" width="0.05" layer="39"/>
+<wire x1="-1.46" y1="0.735" x2="1.46" y2="0.735" width="0.05" layer="39"/>
+<wire x1="-1.46" y1="-0.735" x2="-1.46" y2="0.735" width="0.05" layer="39"/>
+<wire x1="1.46" y1="-0.735" x2="1.46" y2="0.735" width="0.05" layer="39"/>
+<smd name="1" x="-0.76" y="0" dx="0.9" dy="0.97" layer="1"/>
+<smd name="2" x="0.76" y="0" dx="0.9" dy="0.97" layer="1"/>
+</package>
+</packages>
+</library>
+<library name="Res_10MOHM_2">
+<packages>
+<package name="RESC1508X55N">
+<text x="-1.46" y="-0.82" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-1.46" y="0.82" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.85" y1="-0.48" x2="-0.85" y2="-0.48" width="0.127" layer="51"/>
+<wire x1="0.85" y1="0.48" x2="-0.85" y2="0.48" width="0.127" layer="51"/>
+<wire x1="0.85" y1="-0.48" x2="0.85" y2="0.48" width="0.127" layer="51"/>
+<wire x1="-0.85" y1="-0.48" x2="-0.85" y2="0.48" width="0.127" layer="51"/>
+<wire x1="-1.46" y1="-0.735" x2="1.46" y2="-0.735" width="0.05" layer="39"/>
+<wire x1="-1.46" y1="0.735" x2="1.46" y2="0.735" width="0.05" layer="39"/>
+<wire x1="-1.46" y1="-0.735" x2="-1.46" y2="0.735" width="0.05" layer="39"/>
+<wire x1="1.46" y1="-0.735" x2="1.46" y2="0.735" width="0.05" layer="39"/>
+<smd name="1" x="-0.76" y="0" dx="0.9" dy="0.97" layer="1"/>
+<smd name="2" x="0.76" y="0" dx="0.9" dy="0.97" layer="1"/>
+</package>
+</packages>
+</library>
+<library name="Condens_10nF">
+<packages>
+<package name="CAPC0603X33N">
+<text x="-0.72" y="-0.51" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-0.72" y="0.51" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.32" y1="-0.16" x2="-0.32" y2="-0.16" width="0.127" layer="51"/>
+<wire x1="0.32" y1="0.16" x2="-0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="0.32" y1="-0.16" x2="0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="-0.32" y1="-0.16" x2="-0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="-0.718" y1="-0.448" x2="0.718" y2="-0.448" width="0.05" layer="39"/>
+<wire x1="-0.718" y1="0.448" x2="0.718" y2="0.448" width="0.05" layer="39"/>
+<wire x1="-0.718" y1="-0.448" x2="-0.718" y2="0.448" width="0.05" layer="39"/>
+<wire x1="0.718" y1="-0.448" x2="0.718" y2="0.448" width="0.05" layer="39"/>
+<smd name="1" x="-0.281" y="0" dx="0.38" dy="0.4" layer="1"/>
+<smd name="2" x="0.281" y="0" dx="0.38" dy="0.4" layer="1"/>
+</package>
+</packages>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -1370,289 +1418,310 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="10_MOHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="-49.53" y="93.98" smashed="yes">
-<attribute name="AVAILABILITY" value="In Stock" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="COMMENT" value="1614992-1" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="TE Connectivity" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="1614992-1" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-49.53" y="96.52818125" size="1.274090625" layer="25" align="bottom-center"/>
-<attribute name="PACKAGE" value="0204" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="PRICE" value="None" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-49.53" y="91.43716875" size="1.271409375" layer="27" align="top-center"/>
+<element name="130OHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="20.32" y="63.5" smashed="yes" rot="R270">
+<attribute name="AVAILABILITY" value="In Stock" x="-73.66" y="-16.51" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="COMMENT" value="1614992-1" x="-73.66" y="-16.51" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="-73.66" y="-16.51" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="-73.66" y="-16.51" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="TE Connectivity" x="-73.66" y="-16.51" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="1614992-1" x="-73.66" y="-16.51" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="22.86818125" y="63.5" size="1.274090625" layer="25" rot="R270" align="bottom-center"/>
+<attribute name="PACKAGE" value="0204" x="-73.66" y="-16.51" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PRICE" value="None" x="-73.66" y="-16.51" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="17.77716875" y="63.5" size="1.271409375" layer="27" rot="R270" align="top-center"/>
 </element>
-<element name="10_MOHM1" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="-100.33" y="73.66" smashed="yes">
-<attribute name="AVAILABILITY" value="In Stock" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="COMMENT" value="1614992-1" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="TE Connectivity" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="1614992-1" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-100.33" y="76.20818125" size="1.274090625" layer="25" align="bottom-center"/>
-<attribute name="PACKAGE" value="0204" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="PRICE" value="None" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-100.33" y="71.11716875" size="1.271409375" layer="27" align="top-center"/>
+<element name="27OHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="23.495" y="54.61" smashed="yes" rot="R180">
+<attribute name="AVAILABILITY" value="In Stock" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="COMMENT" value="1614992-1" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="TE Connectivity" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="1614992-1" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="23.495" y="52.06181875" size="1.274090625" layer="25" rot="R180" align="bottom-center"/>
+<attribute name="PACKAGE" value="0204" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="PRICE" value="None" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="23.495" y="57.15283125" size="1.271409375" layer="27" rot="R180" align="top-center"/>
 </element>
-<element name="10_MOHM2" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="-19.05" y="93.98" smashed="yes">
-<attribute name="AVAILABILITY" value="In Stock" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="COMMENT" value="1614992-1" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="TE Connectivity" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="1614992-1" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-19.05" y="96.52818125" size="1.274090625" layer="25" align="bottom-center"/>
-<attribute name="PACKAGE" value="0204" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="PRICE" value="None" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-19.05" y="91.43716875" size="1.271409375" layer="27" align="top-center"/>
+<element name="300_OHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="73.66" y="45.72" smashed="yes" rot="R180">
+<attribute name="AVAILABILITY" value="In Stock" x="-16.51" y="139.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="COMMENT" value="1614992-1" x="-16.51" y="139.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="-16.51" y="139.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="-16.51" y="139.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="TE Connectivity" x="-16.51" y="139.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="1614992-1" x="-16.51" y="139.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="73.66" y="43.17181875" size="1.274090625" layer="25" rot="R180" align="bottom-center"/>
+<attribute name="PACKAGE" value="0204" x="-16.51" y="139.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="PRICE" value="None" x="-16.51" y="139.7" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="73.66" y="48.26283125" size="1.271409375" layer="27" rot="R180" align="top-center"/>
 </element>
-<element name="130OHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="95.25" y="64.77" smashed="yes" rot="R90">
-<attribute name="AVAILABILITY" value="In Stock" x="189.23" y="144.78" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="COMMENT" value="1614992-1" x="189.23" y="144.78" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="189.23" y="144.78" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="189.23" y="144.78" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="TE Connectivity" x="189.23" y="144.78" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MP" value="1614992-1" x="189.23" y="144.78" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="92.70181875" y="64.77" size="1.274090625" layer="25" rot="R90" align="bottom-center"/>
-<attribute name="PACKAGE" value="0204" x="189.23" y="144.78" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="PRICE" value="None" x="189.23" y="144.78" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="97.79283125" y="64.77" size="1.271409375" layer="27" rot="R90" align="top-center"/>
+<element name="820OHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="33.909" y="57.277" smashed="yes" rot="R270">
+<attribute name="AVAILABILITY" value="In Stock" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="COMMENT" value="1614992-1" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="TE Connectivity" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="1614992-1" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="36.45718125" y="57.277" size="1.274090625" layer="25" rot="R270" align="bottom-center"/>
+<attribute name="PACKAGE" value="0204" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PRICE" value="None" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="31.36616875" y="57.277" size="1.271409375" layer="27" rot="R270" align="top-center"/>
 </element>
-<element name="27OHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="91.44" y="63.5" smashed="yes" rot="R90">
-<attribute name="AVAILABILITY" value="In Stock" x="185.42" y="133.35" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="COMMENT" value="1614992-1" x="185.42" y="133.35" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="185.42" y="133.35" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="185.42" y="133.35" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="TE Connectivity" x="185.42" y="133.35" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MP" value="1614992-1" x="185.42" y="133.35" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="88.89181875" y="63.5" size="1.274090625" layer="25" rot="R90" align="bottom-center"/>
-<attribute name="PACKAGE" value="0204" x="185.42" y="133.35" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="PRICE" value="None" x="185.42" y="133.35" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="93.98283125" y="63.5" size="1.271409375" layer="27" rot="R90" align="top-center"/>
+<element name="B1" library="SparkFun-Boards" package="SPARKFUN_LOGIC_LEVEL_CONVERTER" value="SPARKFUN_LOGIC_LEVEL_CONVERTER" x="36.83" y="21.59" smashed="yes" rot="R180">
+<attribute name="NAME" x="36.83" y="13.716" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
+<attribute name="VALUE" x="36.83" y="29.464" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="top-center"/>
 </element>
-<element name="300_OHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="41.91" y="33.02" smashed="yes" rot="R180">
-<attribute name="AVAILABILITY" value="In Stock" x="-48.26" y="127" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="COMMENT" value="1614992-1" x="-48.26" y="127" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="-48.26" y="127" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="-48.26" y="127" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="TE Connectivity" x="-48.26" y="127" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MP" value="1614992-1" x="-48.26" y="127" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="41.91" y="30.47181875" size="1.274090625" layer="25" rot="R180" align="bottom-center"/>
-<attribute name="PACKAGE" value="0204" x="-48.26" y="127" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="PRICE" value="None" x="-48.26" y="127" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="41.91" y="35.56283125" size="1.271409375" layer="27" rot="R180" align="top-center"/>
+<element name="BT1" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="68.326" y="26.416" smashed="yes" rot="MR0">
+<attribute name="DESCRIPTION" value=" " x="35.306" y="8.636" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="" x="35.306" y="8.636" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MF" value="MPD (Memory Protection Devices)" x="35.306" y="8.636" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MP" value="BHX1-2450-SM" x="35.306" y="8.636" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="NAME" x="88.326" y="40.956" size="1.27" layer="26" rot="MR0"/>
+<attribute name="PACKAGE" value="None" x="35.306" y="8.636" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="35.306" y="8.636" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="VALUE" x="88.326" y="9.416" size="1.27" layer="28" rot="MR0"/>
 </element>
-<element name="5_MOHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="-59.69" y="93.98" smashed="yes">
-<attribute name="AVAILABILITY" value="In Stock" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="COMMENT" value="1614992-1" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="TE Connectivity" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="1614992-1" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-59.69" y="96.52818125" size="1.274090625" layer="25" align="bottom-center"/>
-<attribute name="PACKAGE" value="0204" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="PRICE" value="None" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-59.69" y="91.43716875" size="1.271409375" layer="27" align="top-center"/>
+<element name="BT2" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="27.94" y="26.543" smashed="yes" rot="MR0">
+<attribute name="DESCRIPTION" value=" " x="-45.72" y="8.763" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="" x="-45.72" y="8.763" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MF" value="MPD (Memory Protection Devices)" x="-45.72" y="8.763" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MP" value="BHX1-2450-SM" x="-45.72" y="8.763" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="NAME" x="47.94" y="41.083" size="1.27" layer="26" rot="MR0"/>
+<attribute name="PACKAGE" value="None" x="-45.72" y="8.763" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="-45.72" y="8.763" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="VALUE" x="47.94" y="9.543" size="1.27" layer="28" rot="MR0"/>
 </element>
-<element name="5_MOHM1" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="-29.21" y="93.98" smashed="yes">
-<attribute name="AVAILABILITY" value="In Stock" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="COMMENT" value="1614992-1" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="TE Connectivity" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="1614992-1" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-29.21" y="96.52818125" size="1.274090625" layer="25" align="bottom-center"/>
-<attribute name="PACKAGE" value="0204" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="PRICE" value="None" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-29.21" y="91.43716875" size="1.271409375" layer="27" align="top-center"/>
+<element name="BT3" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="27.94" y="55.88" smashed="yes" rot="MR0">
+<attribute name="DESCRIPTION" value=" " x="-5.08" y="3.81" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="" x="-5.08" y="3.81" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MF" value="MPD (Memory Protection Devices)" x="-5.08" y="3.81" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MP" value="BHX1-2450-SM" x="-5.08" y="3.81" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="NAME" x="47.94" y="70.42" size="1.27" layer="26" rot="MR0"/>
+<attribute name="PACKAGE" value="None" x="-5.08" y="3.81" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="-5.08" y="3.81" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="VALUE" x="47.94" y="38.88" size="1.27" layer="28" rot="MR0"/>
 </element>
-<element name="5_MOHM2" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="-39.37" y="93.98" smashed="yes">
-<attribute name="AVAILABILITY" value="In Stock" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="COMMENT" value="1614992-1" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="TE Connectivity" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="1614992-1" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-39.37" y="96.52818125" size="1.274090625" layer="25" align="bottom-center"/>
-<attribute name="PACKAGE" value="0204" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="PRICE" value="None" x="0" y="0" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-39.37" y="91.43716875" size="1.271409375" layer="27" align="top-center"/>
+<element name="BT4" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="68.58" y="55.88" smashed="yes" rot="MR0">
+<attribute name="DESCRIPTION" value=" " x="-5.08" y="3.81" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="" x="-5.08" y="3.81" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MF" value="MPD (Memory Protection Devices)" x="-5.08" y="3.81" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="MP" value="BHX1-2450-SM" x="-5.08" y="3.81" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="NAME" x="88.58" y="70.42" size="1.27" layer="26" rot="MR0"/>
+<attribute name="PACKAGE" value="None" x="-5.08" y="3.81" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="-5.08" y="3.81" size="1.778" layer="28" rot="MR0" display="off"/>
+<attribute name="VALUE" x="88.58" y="38.88" size="1.27" layer="28" rot="MR0"/>
 </element>
-<element name="820OHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="85.979" y="63.627" smashed="yes" rot="R90">
-<attribute name="AVAILABILITY" value="In Stock" x="179.959" y="163.957" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="COMMENT" value="1614992-1" x="179.959" y="163.957" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="179.959" y="163.957" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="179.959" y="163.957" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="TE Connectivity" x="179.959" y="163.957" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MP" value="1614992-1" x="179.959" y="163.957" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="83.43081875" y="63.627" size="1.274090625" layer="25" rot="R90" align="bottom-center"/>
-<attribute name="PACKAGE" value="0204" x="179.959" y="163.957" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="PRICE" value="None" x="179.959" y="163.957" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="88.52183125" y="63.627" size="1.271409375" layer="27" rot="R90" align="top-center"/>
+<element name="C1" library="SparkFun-Capacitors" package="0805" value="10uF" x="15.24" y="8.89" smashed="yes" rot="R180">
+<attribute name="NAME" x="15.24" y="8.001" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
+<attribute name="PROD_ID" value="CAP-11330" x="-81.28" y="109.22" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="15.24" y="9.779" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
 </element>
-<element name="B1" library="SparkFun-Boards" package="SPARKFUN_LOGIC_LEVEL_CONVERTER" value="SPARKFUN_LOGIC_LEVEL_CONVERTER" x="59.69" y="39.37" smashed="yes" rot="R90">
-<attribute name="NAME" x="51.816" y="39.37" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center"/>
-<attribute name="VALUE" x="67.564" y="39.37" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="top-center"/>
+<element name="C2" library="SparkFun-Capacitors" package="0805" value="10uF" x="11.43" y="8.89" smashed="yes" rot="R180">
+<attribute name="NAME" x="11.43" y="8.001" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
+<attribute name="PROD_ID" value="CAP-11330" x="-88.9" y="109.22" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="11.43" y="9.779" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
 </element>
-<element name="BT1" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="63.5" y="15.24" smashed="yes">
-<attribute name="DESCRIPTION" value=" " x="96.52" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="" x="96.52" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="MPD (Memory Protection Devices)" x="96.52" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="BHX1-2450-SM" x="96.52" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="43.5" y="29.78" size="1.27" layer="25"/>
-<attribute name="PACKAGE" value="None" x="96.52" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="96.52" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="43.5" y="-1.76" size="1.27" layer="27"/>
+<element name="C3" library="SparkFun-Capacitors" package="0805" value="0.33µF" x="16.51" y="49.53" smashed="yes">
+<attribute name="NAME" x="16.51" y="50.419" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
+<attribute name="PROD_ID" value="CAP-08469" x="109.22" y="-50.8" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="16.51" y="48.641" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
-<element name="BT2" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="21.59" y="15.24" smashed="yes">
-<attribute name="DESCRIPTION" value=" " x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="MPD (Memory Protection Devices)" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="BHX1-2450-SM" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="1.59" y="29.78" size="1.27" layer="25"/>
-<attribute name="PACKAGE" value="None" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="1.59" y="-1.76" size="1.27" layer="27"/>
+<element name="C4" library="SparkFun-Capacitors" package="0603" value="0.1uF" x="11.43" y="46.99" smashed="yes" rot="R180">
+<attribute name="NAME" x="11.43" y="46.228" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
+<attribute name="PROD_ID" value="CAP-08604" x="-3.81" y="156.21" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="11.43" y="47.752" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
 </element>
-<element name="BT3" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="21.59" y="66.04" smashed="yes">
-<attribute name="DESCRIPTION" value=" " x="54.61" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="" x="54.61" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="MPD (Memory Protection Devices)" x="54.61" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="BHX1-2450-SM" x="54.61" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="1.59" y="80.58" size="1.27" layer="25"/>
-<attribute name="PACKAGE" value="None" x="54.61" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="54.61" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="1.59" y="49.04" size="1.27" layer="27"/>
+<element name="IC3.3" library="linear" library_urn="urn:adsk.eagle:library:262" package="TO220H" package3d_urn="urn:adsk.eagle:package:16414/1" value="317T" x="12.7" y="22.86" smashed="yes">
+<attribute name="NAME" x="7.239" y="11.938" size="1.778" layer="25" ratio="10" rot="R90"/>
+<attribute name="POPULARITY" value="7" x="34.29" y="-58.42" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="20.066" y="11.811" size="1.778" layer="27" ratio="10" rot="R90"/>
 </element>
-<element name="BT4" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="63.5" y="66.04" smashed="yes">
-<attribute name="DESCRIPTION" value=" " x="137.16" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="" x="137.16" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="MPD (Memory Protection Devices)" x="137.16" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="BHX1-2450-SM" x="137.16" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="43.5" y="80.58" size="1.27" layer="25"/>
-<attribute name="PACKAGE" value="None" x="137.16" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="137.16" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="43.5" y="49.04" size="1.27" layer="27"/>
+<element name="IC5" library="linear" library_urn="urn:adsk.eagle:library:262" package="TO220H" package3d_urn="urn:adsk.eagle:package:16414/1" value="317T" x="12.7" y="62.23" smashed="yes">
+<attribute name="NAME" x="7.239" y="51.308" size="1.778" layer="25" ratio="10" rot="R90"/>
+<attribute name="POPULARITY" value="7" x="50.8" y="-19.05" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="20.066" y="51.181" size="1.778" layer="27" ratio="10" rot="R90"/>
 </element>
-<element name="C1" library="SparkFun-Capacitors" package="0805" value="10uF" x="96.52" y="24.13" smashed="yes" rot="R180">
-<attribute name="NAME" x="96.52" y="23.241" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
-<attribute name="PROD_ID" value="CAP-11330" x="0" y="124.46" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="96.52" y="25.019" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
+<element name="LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="P47F-BOTTOM" package3d_urn="urn:adsk.eagle:package:15878/1" value="LAP4-BOTTOM" x="71.12" y="39.37" smashed="yes">
+<attribute name="NAME" x="67.31" y="41.275" size="1.27" layer="25"/>
+<attribute name="POPULARITY" value="1" x="101.6" y="-63.5" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="67.31" y="36.195" size="1.27" layer="27"/>
 </element>
-<element name="C2" library="SparkFun-Capacitors" package="0805" value="10uF" x="91.44" y="24.13" smashed="yes" rot="R180">
-<attribute name="NAME" x="91.44" y="23.241" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
-<attribute name="PROD_ID" value="CAP-11330" x="-8.89" y="124.46" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="91.44" y="25.019" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
+<element name="R1" library="SparkFun-Resistors" package="AXIAL-0.3" value="10k" x="62.23" y="29.21" smashed="yes">
+<attribute name="NAME" x="62.23" y="30.226" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
+<attribute name="PROD_ID" value="RES-08375" x="137.16" y="-71.12" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="62.23" y="28.194" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
-<element name="C3" library="capacitor-wima" library_urn="urn:adsk.eagle:library:116" package="C2.5-3" package3d_urn="urn:adsk.eagle:package:5436/1" value="" x="73.66" y="48.26" smashed="yes">
-<attribute name="NAME" x="72.009" y="50.038" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="38" x="130.81" y="-52.07" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="72.009" y="45.212" size="1.27" layer="27" ratio="10"/>
+<element name="R2" library="SparkFun-Resistors" package="AXIAL-0.3" value="10k" x="63.5" y="31.75" smashed="yes">
+<attribute name="NAME" x="63.5" y="32.766" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
+<attribute name="PROD_ID" value="RES-08375" x="148.59" y="-68.58" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="63.5" y="30.734" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
-<element name="C4" library="capacitor-wima" library_urn="urn:adsk.eagle:library:116" package="C2.5-3" package3d_urn="urn:adsk.eagle:package:5436/1" value="" x="82.55" y="48.26" smashed="yes">
-<attribute name="NAME" x="80.899" y="50.038" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="38" x="144.78" y="-52.07" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="80.899" y="45.212" size="1.27" layer="27" ratio="10"/>
+<element name="S1" library="GF-123-0054" package="SW_GF-123-0054" value="GF-123-0054" x="12.7" y="40.64" smashed="yes" rot="R90">
+<attribute name="DESCRIPTION" value=" Slide Switch SPST Through Hole " x="90.17" y="111.76" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="CWI333-ND" x="90.17" y="111.76" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="CW Industries" x="90.17" y="111.76" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="GF-123-0054" x="90.17" y="111.76" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="6.35" y="33.02" size="1.27" layer="25" rot="R90"/>
+<attribute name="PACKAGE" value="None" x="90.17" y="111.76" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/GF-123-0054/?ref=eda" x="90.17" y="111.76" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="20.32" y="33.02" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="C5" library="SparkFun-Capacitors" package="0805" value="0.33µF" x="96.52" y="74.93" smashed="yes">
-<attribute name="NAME" x="96.52" y="75.819" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
-<attribute name="PROD_ID" value="CAP-08469" x="189.23" y="-25.4" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="96.52" y="74.041" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
+<element name="SCD4X" library="SCD41-D-R1" package="SCD4X_SCD4X" value="SCD4XSCD4X_SCD4X_SCD4X" x="48.26" y="27.94" smashed="yes" rot="R270"/>
+<element name="SPS30" library="con-lstb" library_urn="urn:adsk.eagle:library:162" package="MA05-1" package3d_urn="urn:adsk.eagle:package:8332/1" value="" x="25.4" y="24.13" smashed="yes" rot="R90">
+<attribute name="MF" value="" x="128.27" y="66.04" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MPN" value="" x="128.27" y="66.04" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="23.749" y="17.78" size="1.27" layer="25" ratio="10" rot="R90"/>
+<attribute name="OC_FARNELL" value="unknown" x="128.27" y="66.04" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="OC_NEWARK" value="unknown" x="128.27" y="66.04" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="POPULARITY" value="29" x="128.27" y="66.04" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="28.321" y="21.59" size="1.27" layer="27" ratio="10" rot="R90"/>
 </element>
-<element name="C6" library="SparkFun-Capacitors" package="0603" value="0.1uF" x="88.9" y="71.12" smashed="yes" rot="R180">
-<attribute name="NAME" x="88.9" y="70.358" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
-<attribute name="PROD_ID" value="CAP-08604" x="73.66" y="180.34" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="88.9" y="71.882" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
+<element name="U1" library="SparkFun-RF" package="QFN48-6X6MM" value="NRF52832" x="63.5" y="45.72" smashed="yes" rot="R270">
+<attribute name="NAME" x="66.8" y="45.72" size="0.6096" layer="25" font="vector" ratio="20" rot="R270" align="bottom-center"/>
+<attribute name="PROD_ID" value="IC-13460" x="-39.37" y="29.21" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="60.2" y="45.72" size="0.6096" layer="27" font="vector" ratio="20" rot="R270" align="top-center"/>
 </element>
-<element name="C7" library="capacitor-wima" library_urn="urn:adsk.eagle:library:116" package="C2.5-3" package3d_urn="urn:adsk.eagle:package:5436/1" value="" x="93.98" y="45.72" smashed="yes">
-<attribute name="NAME" x="92.329" y="47.498" size="1.27" layer="25" ratio="10"/>
-<attribute name="POPULARITY" value="38" x="161.29" y="-54.61" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="92.329" y="42.672" size="1.27" layer="27" ratio="10"/>
+<element name="U2" library="BME688" package="IC_BME688" value="BME688" x="53.34" y="30.48" smashed="yes" rot="R90">
+<attribute name="AVAILABILITY" value="In Stock" x="154.94" y="82.55" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DESCRIPTION" value=" Gas sensor measuring relative humidity, barometric pressure, ambient temperature and gas (VOC) " x="154.94" y="82.55" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Bosch Sensortec" x="154.94" y="82.55" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="BME688" x="154.94" y="82.55" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="51.34" y="28.68" size="0.8" layer="25" ratio="11" rot="R90"/>
+<attribute name="PACKAGE" value="None" x="154.94" y="82.55" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PRICE" value="None" x="154.94" y="82.55" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BME688/?ref=eda" x="154.94" y="82.55" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="56.04" y="28.58" size="0.8" layer="27" ratio="11" rot="R90"/>
 </element>
-<element name="IC3.3" library="linear" library_urn="urn:adsk.eagle:library:262" package="TO220H" package3d_urn="urn:adsk.eagle:package:16414/1" value="317T" x="92.71" y="13.97" smashed="yes">
-<attribute name="NAME" x="87.249" y="3.048" size="1.778" layer="25" ratio="10" rot="R90"/>
-<attribute name="POPULARITY" value="7" x="114.3" y="-67.31" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="100.076" y="2.921" size="1.778" layer="27" ratio="10" rot="R90"/>
+<element name="U3" library="MICS-6814" package="SENSOR_MICS-6814" value="MICS-6814" x="27.94" y="63.5" smashed="yes">
+<attribute name="AVAILABILITY" value="Not in stock" x="118.11" y="-12.7" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" MiCS-6814 Air Quality Sensor mikroBUS™ Click™ Platform Evaluation Expansion Board " x="118.11" y="-12.7" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="MikroElektronika" x="118.11" y="-12.7" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="MICS-6814" x="118.11" y="-12.7" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="24.13" y="68.58" size="1.778" layer="25"/>
+<attribute name="PACKAGE" value="None" x="118.11" y="-12.7" size="1.778" layer="27" display="off"/>
+<attribute name="PRICE" value="None" x="118.11" y="-12.7" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="24.13" y="57.15" size="1.778" layer="27"/>
 </element>
-<element name="IC5" library="linear" library_urn="urn:adsk.eagle:library:262" package="TO220H" package3d_urn="urn:adsk.eagle:package:16414/1" value="317T" x="90.17" y="85.09" smashed="yes">
-<attribute name="NAME" x="84.709" y="74.168" size="1.778" layer="25" ratio="10" rot="R90"/>
-<attribute name="POPULARITY" value="7" x="128.27" y="3.81" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="97.536" y="74.041" size="1.778" layer="27" ratio="10" rot="R90"/>
+<element name="U4" library="OPA2277PA" package="DIP794W45P254L959H508Q8" value="OPA2277PA" x="40.64" y="63.5" smashed="yes">
+<attribute name="DESCRIPTION" value=" 10µV, 0.1µV/˚C, High-Precision, Low-Power Operational Amplifier " x="40.64" y="63.5" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="OPA2277PA-ND" x="40.64" y="63.5" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Texas Instruments" x="40.64" y="63.5" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="OPA2277PA" x="40.64" y="63.5" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="36.9" y="68.472" size="1.27" layer="25"/>
+<attribute name="PACKAGE" value="PDIP-8 Texas" x="40.64" y="63.5" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/OPA2277PA/?ref=eda" x="40.64" y="63.5" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="36.9" y="58.528" size="1.27" layer="27" align="top-left"/>
 </element>
-<element name="LED1" library="led" library_urn="urn:adsk.eagle:library:259" package="P47F-BOTTOM" package3d_urn="urn:adsk.eagle:package:15878/1" value="LAP4-BOTTOM" x="25.4" y="34.29" smashed="yes">
-<attribute name="NAME" x="21.59" y="36.195" size="1.27" layer="25"/>
-<attribute name="POPULARITY" value="1" x="55.88" y="-68.58" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="21.59" y="31.115" size="1.27" layer="27"/>
+<element name="U5" library="OPA2277PA" package="DIP794W45P254L959H508Q8" value="OPA2277PA" x="27.94" y="44.45" smashed="yes" rot="R180">
+<attribute name="DESCRIPTION" value=" 10µV, 0.1µV/˚C, High-Precision, Low-Power Operational Amplifier " x="27.94" y="44.45" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="OPA2277PA-ND" x="27.94" y="44.45" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MF" value="Texas Instruments" x="27.94" y="44.45" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="MP" value="OPA2277PA" x="27.94" y="44.45" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="NAME" x="31.68" y="39.478" size="1.27" layer="25" rot="R180"/>
+<attribute name="PACKAGE" value="PDIP-8 Texas" x="27.94" y="44.45" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/OPA2277PA/?ref=eda" x="27.94" y="44.45" size="1.778" layer="27" rot="R180" display="off"/>
+<attribute name="VALUE" x="31.68" y="49.422" size="1.27" layer="27" rot="R180" align="top-left"/>
 </element>
-<element name="R1" library="SparkFun-Resistors" package="AXIAL-0.3" value="10k" x="85.09" y="25.4" smashed="yes">
-<attribute name="NAME" x="85.09" y="26.416" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
-<attribute name="PROD_ID" value="RES-08375" x="160.02" y="-74.93" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="85.09" y="24.384" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
+<element name="R6" library="Res_5.1MOHM" package="RESC1508X55N" value="RMCF0603FT5M10" x="49.53" y="63.5" smashed="yes" rot="R90">
+<attribute name="DESCRIPTION" value=" 5.1 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="49.53" y="63.5" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT5M10TR-ND" x="49.53" y="63.5" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="49.53" y="63.5" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="RMCF0603FT5M10" x="49.53" y="63.5" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="48.71" y="62.04" size="0.5" layer="25" rot="R90"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="49.53" y="63.5" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT5M10/?ref=eda" x="49.53" y="63.5" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="50.35" y="62.04" size="0.5" layer="27" rot="R90" align="top-left"/>
 </element>
-<element name="R2" library="SparkFun-Resistors" package="AXIAL-0.3" value="10k" x="95.25" y="30.48" smashed="yes" rot="R270">
-<attribute name="NAME" x="96.266" y="30.48" size="0.6096" layer="25" font="vector" ratio="20" rot="R270" align="bottom-center"/>
-<attribute name="PROD_ID" value="RES-08375" x="-5.08" y="-54.61" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="94.234" y="30.48" size="0.6096" layer="27" font="vector" ratio="20" rot="R270" align="top-center"/>
+<element name="R7" library="Res_5.1MOHM" package="RESC1508X55N" value="RMCF0603FT5M10" x="39.37" y="52.07" smashed="yes" rot="R90">
+<attribute name="DESCRIPTION" value=" 5.1 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="39.37" y="52.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT5M10TR-ND" x="39.37" y="52.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="39.37" y="52.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="RMCF0603FT5M10" x="39.37" y="52.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="38.55" y="50.61" size="0.5" layer="25" rot="R90"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="39.37" y="52.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT5M10/?ref=eda" x="39.37" y="52.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="40.19" y="50.61" size="0.5" layer="27" rot="R90" align="top-left"/>
 </element>
-<element name="S1" library="GF-123-0054" package="SW_GF-123-0054" value="GF-123-0054" x="11.43" y="40.64" smashed="yes">
-<attribute name="DESCRIPTION" value=" Slide Switch SPST Through Hole " x="82.55" y="-36.83" size="1.778" layer="27" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="CWI333-ND" x="82.55" y="-36.83" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="CW Industries" x="82.55" y="-36.83" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="GF-123-0054" x="82.55" y="-36.83" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="3.81" y="46.99" size="1.27" layer="25"/>
-<attribute name="PACKAGE" value="None" x="82.55" y="-36.83" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/GF-123-0054/?ref=eda" x="82.55" y="-36.83" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="3.81" y="33.02" size="1.27" layer="27"/>
+<element name="R8" library="Res_5.1MOHM" package="RESC1508X55N" value="RMCF0603FT5M10" x="34.29" y="34.29" smashed="yes" rot="R90">
+<attribute name="DESCRIPTION" value=" 5.1 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="34.29" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT5M10TR-ND" x="34.29" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="34.29" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="RMCF0603FT5M10" x="34.29" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="33.47" y="32.83" size="0.5" layer="25" rot="R90"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="34.29" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT5M10/?ref=eda" x="34.29" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="35.11" y="32.83" size="0.5" layer="27" rot="R90" align="top-left"/>
 </element>
-<element name="SCD4X" library="SCD41-D-R1" package="SCD4X_SCD4X" value="SCD4XSCD4X_SCD4X_SCD4X" x="92.71" y="34.29" smashed="yes" rot="R270"/>
-<element name="SPS30" library="con-lstb" library_urn="urn:adsk.eagle:library:162" package="MA05-1" package3d_urn="urn:adsk.eagle:package:8332/1" value="" x="60.96" y="48.26" smashed="yes">
-<attribute name="MF" value="" x="102.87" y="-54.61" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="" x="102.87" y="-54.61" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="54.61" y="49.911" size="1.27" layer="25" ratio="10"/>
-<attribute name="OC_FARNELL" value="unknown" x="102.87" y="-54.61" size="1.778" layer="27" display="off"/>
-<attribute name="OC_NEWARK" value="unknown" x="102.87" y="-54.61" size="1.778" layer="27" display="off"/>
-<attribute name="POPULARITY" value="29" x="102.87" y="-54.61" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="58.42" y="45.339" size="1.27" layer="27" ratio="10"/>
+<element name="R3" library="Res_10MOHM_2" package="RESC1508X55N" value="RMCF0603FT10M0" x="52.07" y="63.5" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value=" 10 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="52.07" y="63.5" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT10M0TR-ND" x="52.07" y="63.5" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="52.07" y="63.5" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="RMCF0603FT10M0" x="52.07" y="63.5" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="52.89" y="64.96" size="0.5" layer="25" rot="R270"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="52.07" y="63.5" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT10M0/?ref=eda" x="52.07" y="63.5" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="51.25" y="64.96" size="0.5" layer="27" rot="R270" align="top-left"/>
 </element>
-<element name="U1" library="SparkFun-RF" package="QFN48-6X6MM" value="NRF52832" x="34.29" y="40.64" smashed="yes" rot="R180">
-<attribute name="NAME" x="34.29" y="37.34" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
-<attribute name="PROD_ID" value="IC-13460" x="17.78" y="143.51" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="34.29" y="43.94" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
+<element name="R4" library="Res_10MOHM_2" package="RESC1508X55N" value="RMCF0603FT10M0" x="39.37" y="46.99" smashed="yes">
+<attribute name="DESCRIPTION" value=" 10 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="39.37" y="46.99" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT10M0TR-ND" x="39.37" y="46.99" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="39.37" y="46.99" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="RMCF0603FT10M0" x="39.37" y="46.99" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="37.91" y="47.81" size="0.5" layer="25"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="39.37" y="46.99" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT10M0/?ref=eda" x="39.37" y="46.99" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="37.91" y="46.17" size="0.5" layer="27" align="top-left"/>
 </element>
-<element name="U2" library="BME688" package="IC_BME688" value="BME688" x="87.63" y="30.48" smashed="yes">
-<attribute name="AVAILABILITY" value="In Stock" x="139.7" y="-71.12" size="1.778" layer="27" display="off"/>
-<attribute name="DESCRIPTION" value=" Gas sensor measuring relative humidity, barometric pressure, ambient temperature and gas (VOC) " x="139.7" y="-71.12" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="Bosch Sensortec" x="139.7" y="-71.12" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="BME688" x="139.7" y="-71.12" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="85.83" y="32.48" size="0.8" layer="25" ratio="11"/>
-<attribute name="PACKAGE" value="None" x="139.7" y="-71.12" size="1.778" layer="27" display="off"/>
-<attribute name="PRICE" value="None" x="139.7" y="-71.12" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BME688/?ref=eda" x="139.7" y="-71.12" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="85.73" y="27.78" size="0.8" layer="27" ratio="11"/>
+<element name="R5" library="Res_10MOHM_2" package="RESC1508X55N" value="RMCF0603FT10M0" x="38.1" y="34.29" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value=" 10 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="38.1" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT10M0TR-ND" x="38.1" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="38.1" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="RMCF0603FT10M0" x="38.1" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="38.92" y="35.75" size="0.5" layer="25" rot="R270"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="38.1" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT10M0/?ref=eda" x="38.1" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="37.28" y="35.75" size="0.5" layer="27" rot="R270" align="top-left"/>
 </element>
-<element name="U3" library="MICS-6814" package="SENSOR_MICS-6814" value="MICS-6814" x="92.71" y="53.34" smashed="yes" rot="R270">
-<attribute name="AVAILABILITY" value="Not in stock" x="16.51" y="-36.83" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="DESCRIPTION" value=" MiCS-6814 Air Quality Sensor mikroBUS™ Click™ Platform Evaluation Expansion Board " x="16.51" y="-36.83" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MF" value="MikroElektronika" x="16.51" y="-36.83" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MP" value="MICS-6814" x="16.51" y="-36.83" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="97.79" y="57.15" size="1.778" layer="25" rot="R270"/>
-<attribute name="PACKAGE" value="None" x="16.51" y="-36.83" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="PRICE" value="None" x="16.51" y="-36.83" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="86.36" y="57.15" size="1.778" layer="27" rot="R270"/>
+<element name="C5" library="Condens_10nF" package="CAPC0603X33N" value="GRM033R60J103KA01D" x="53.848" y="62.865" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value=" SMD capacitor X5R(EIA) with capacitance 10000pF Tol.10%. Rated voltage 6.3Vdc 85C " x="53.848" y="62.865" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="490-5403-2-ND" x="53.848" y="62.865" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="Murata" x="53.848" y="62.865" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="GRM033R60J103KA01D" x="53.848" y="62.865" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="54.358" y="63.585" size="0.5" layer="25" rot="R270"/>
+<attribute name="PACKAGE" value="0603 Taiyo Yuden" x="53.848" y="62.865" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/GRM033R60J103KA01D/?ref=eda" x="53.848" y="62.865" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="53.338" y="63.585" size="0.5" layer="27" rot="R270" align="top-left"/>
+</element>
+<element name="C6" library="Condens_10nF" package="CAPC0603X33N" value="GRM033R60J103KA01D" x="42.291" y="46.736" smashed="yes" rot="R90">
+<attribute name="DESCRIPTION" value=" SMD capacitor X5R(EIA) with capacitance 10000pF Tol.10%. Rated voltage 6.3Vdc 85C " x="42.291" y="46.736" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="490-5403-2-ND" x="42.291" y="46.736" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Murata" x="42.291" y="46.736" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="GRM033R60J103KA01D" x="42.291" y="46.736" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="41.781" y="46.016" size="0.5" layer="25" rot="R90"/>
+<attribute name="PACKAGE" value="0603 Taiyo Yuden" x="42.291" y="46.736" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/GRM033R60J103KA01D/?ref=eda" x="42.291" y="46.736" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="42.801" y="46.016" size="0.5" layer="27" rot="R90" align="top-left"/>
+</element>
+<element name="C7" library="Condens_10nF" package="CAPC0603X33N" value="GRM033R60J103KA01D" x="42.545" y="33.782" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value=" SMD capacitor X5R(EIA) with capacitance 10000pF Tol.10%. Rated voltage 6.3Vdc 85C " x="42.545" y="33.782" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="490-5403-2-ND" x="42.545" y="33.782" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="Murata" x="42.545" y="33.782" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="GRM033R60J103KA01D" x="42.545" y="33.782" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="43.055" y="34.502" size="0.5" layer="25" rot="R270"/>
+<attribute name="PACKAGE" value="0603 Taiyo Yuden" x="42.545" y="33.782" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/GRM033R60J103KA01D/?ref=eda" x="42.545" y="33.782" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="42.035" y="34.502" size="0.5" layer="27" rot="R270" align="top-left"/>
 </element>
 </elements>
 <signals>
 <signal name="VSS">
 <contactref element="SCD4X" pad="6"/>
 <contactref element="SCD4X" pad="20"/>
-<wire x1="92.71" y1="33.02" x2="92.71" y2="34.29" width="0" layer="19" extent="1-1"/>
+<wire x1="48.26" y1="26.67" x2="48.26" y2="27.94" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VDDH">
 <contactref element="SCD4X" pad="19"/>
 </signal>
 <signal name="3.3">
-<contactref element="B1" pad="GND1"/>
-<contactref element="B1" pad="GND2"/>
 <contactref element="U2" pad="6"/>
 <contactref element="U2" pad="8"/>
 <contactref element="U2" pad="2"/>
@@ -1665,71 +1734,71 @@ design rules under a new name.</description>
 <contactref element="U1" pad="48"/>
 <contactref element="R1" pad="P$2"/>
 <contactref element="R2" pad="P$2"/>
-<wire x1="89.9668" y1="19.932275" x2="89.9668" y2="17.659725" width="0.1524" layer="1"/>
-<wire x1="92.71" y1="14.916525" x2="92.71" y2="3.81" width="0.1524" layer="1"/>
-<wire x1="89.9668" y1="17.659725" x2="92.71" y2="14.916525" width="0.1524" layer="1"/>
-<wire x1="92.34" y1="24.13" x2="92.34" y2="22.305475" width="0.1524" layer="1"/>
-<wire x1="92.34" y1="22.305475" x2="89.9668" y2="19.932275" width="0.1524" layer="1"/>
-<wire x1="92.71" y1="26.67" x2="92.34" y2="26.3" width="0.1524" layer="1"/>
-<wire x1="92.34" y1="26.3" x2="92.34" y2="24.13" width="0.1524" layer="1"/>
-<wire x1="95.25" y1="26.67" x2="92.71" y2="26.67" width="0.1524" layer="1"/>
-<wire x1="92.71" y1="26.67" x2="90.17" y2="26.67" width="0.1524" layer="1"/>
-<wire x1="90.17" y1="26.67" x2="88.9" y2="25.4" width="0.1524" layer="1"/>
-<wire x1="86.43" y1="30.08" x2="87.23" y2="30.88" width="0.1524" layer="1"/>
-<wire x1="86.43" y1="31.68" x2="87.23" y2="30.88" width="0.1524" layer="1"/>
-<wire x1="87.23" y1="30.88" x2="88.83" y2="30.88" width="0.1524" layer="1"/>
-<wire x1="86.43" y1="30.08" x2="85.09" y2="28.74" width="0.1524" layer="1"/>
-<wire x1="85.09" y1="28.74" x2="85.09" y2="27.94" width="0.1524" layer="1"/>
-<wire x1="85.09" y1="27.94" x2="86.36" y2="26.67" width="0.1524" layer="1"/>
-<wire x1="86.36" y1="26.67" x2="87.63" y2="26.67" width="0.1524" layer="1"/>
-<wire x1="87.63" y1="26.67" x2="88.9" y2="25.4" width="0.1524" layer="1"/>
-<wire x1="60.96" y1="34.29" x2="60.96" y2="44.45" width="0" layer="19" extent="1-1"/>
-<wire x1="58.42" y1="34.29" x2="60.96" y2="34.29" width="0" layer="19" extent="1-1"/>
-<wire x1="36.49" y1="37.78" x2="58.42" y2="34.29" width="0" layer="19" extent="1-1"/>
-<wire x1="31.43" y1="38.44" x2="36.49" y2="37.78" width="0" layer="19" extent="1-1"/>
-<wire x1="36.49" y1="43.5" x2="36.49" y2="37.78" width="0" layer="19" extent="1-1"/>
-<wire x1="86.43" y1="31.68" x2="60.96" y2="34.29" width="0" layer="19" extent="1-1"/>
+<wire x1="12.7" y1="12.7" x2="12.7" y2="9.26" width="0.1524" layer="1"/>
+<wire x1="12.7" y1="9.26" x2="12.33" y2="8.89" width="0.1524" layer="1"/>
+<wire x1="12.33" y1="8.89" x2="14.87" y2="6.35" width="0.1524" layer="1"/>
+<wire x1="27.94" y1="6.35" x2="41.91" y2="20.32" width="0.1524" layer="1"/>
+<wire x1="14.87" y1="6.35" x2="27.94" y2="6.35" width="0.1524" layer="1"/>
+<wire x1="41.91" y1="20.32" x2="48.26" y2="20.32" width="0.1524" layer="1"/>
+<wire x1="48.26" y1="20.32" x2="52.14" y2="24.2" width="0.1524" layer="1"/>
+<wire x1="52.14" y1="24.2" x2="52.14" y2="25.4" width="0.1524" layer="1"/>
+<wire x1="52.14" y1="25.4" x2="52.14" y2="29.28" width="0.1524" layer="1"/>
+<wire x1="52.14" y1="29.28" x2="52.14" y2="30.88" width="0.1524" layer="1"/>
+<wire x1="52.14" y1="30.88" x2="52.94" y2="31.68" width="0.1524" layer="1"/>
+<wire x1="52.94" y1="31.68" x2="53.74" y2="30.88" width="0.1524" layer="1"/>
+<wire x1="53.74" y1="30.88" x2="53.74" y2="29.28" width="0.1524" layer="1"/>
+<wire x1="67.31" y1="31.75" x2="67.31" y2="30.48" width="0.1524" layer="1"/>
+<wire x1="67.31" y1="30.48" x2="66.04" y2="29.21" width="0.1524" layer="1"/>
+<wire x1="66.04" y1="29.21" x2="62.23" y2="25.4" width="0.1524" layer="1"/>
+<wire x1="62.23" y1="25.4" x2="52.14" y2="25.4" width="0.1524" layer="1"/>
+<wire x1="67.31" y1="31.75" x2="65.7" y2="33.36" width="0.1524" layer="1"/>
+<wire x1="65.7" y1="33.36" x2="65.7" y2="42.86" width="0.1524" layer="1"/>
+<wire x1="65.7" y1="42.86" x2="66.36" y2="47.92" width="0" layer="19" extent="1-1"/>
+<wire x1="60.64" y1="47.92" x2="66.36" y2="47.92" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="5V">
 <contactref element="IC5" pad="2"/>
-<contactref element="C6" pad="1"/>
+<contactref element="C4" pad="1"/>
 <contactref element="SPS30" pad="1"/>
 <contactref element="B1" pad="HV"/>
 <contactref element="130OHM" pad="2"/>
 <contactref element="27OHM" pad="2"/>
 <contactref element="820OHM" pad="2"/>
-<wire x1="90.17" y1="74.93" x2="90.17" y2="71.54" width="0.1524" layer="1"/>
-<wire x1="90.17" y1="71.54" x2="89.75" y2="71.12" width="0.1524" layer="1"/>
-<wire x1="89.75" y1="71.12" x2="91.44" y2="69.43" width="0.1524" layer="1"/>
-<wire x1="91.44" y1="69.43" x2="91.44" y2="66.7" width="0.1524" layer="1"/>
-<wire x1="89.75" y1="71.12" x2="92.9" y2="67.97" width="0.1524" layer="1"/>
-<wire x1="92.9" y1="67.97" x2="95.25" y2="67.97" width="0.1524" layer="1"/>
-<wire x1="89.75" y1="71.12" x2="85.979" y2="67.349" width="0.1524" layer="1"/>
-<wire x1="85.979" y1="67.349" x2="85.979" y2="66.827" width="0.1524" layer="1"/>
-<wire x1="85.979" y1="66.827" x2="83.82" y2="64.668" width="0.1524" layer="1"/>
-<wire x1="83.82" y1="64.668" x2="83.82" y2="58.42" width="0.1524" layer="1"/>
-<wire x1="83.82" y1="58.42" x2="81.28" y2="55.88" width="0.1524" layer="1"/>
-<wire x1="81.28" y1="55.88" x2="59.69" y2="55.88" width="0.1524" layer="1"/>
-<wire x1="59.69" y1="55.88" x2="55.88" y2="52.07" width="0.1524" layer="1"/>
-<wire x1="55.88" y1="52.07" x2="55.88" y2="48.26" width="0.1524" layer="1"/>
-<wire x1="55.88" y1="48.26" x2="58.42" y2="45.72" width="0.1524" layer="1"/>
-<wire x1="58.42" y1="45.72" x2="58.42" y2="44.45" width="0.1524" layer="1"/>
+<contactref element="U4" pad="8"/>
+<contactref element="U5" pad="8"/>
+<wire x1="12.7" y1="52.07" x2="12.7" y2="47.41" width="0.1524" layer="1"/>
+<wire x1="12.7" y1="47.41" x2="12.28" y2="46.99" width="0.1524" layer="1"/>
+<wire x1="12.28" y1="46.99" x2="19.05" y2="46.99" width="0.1524" layer="1"/>
+<wire x1="20.32" y1="48.26" x2="19.05" y2="46.99" width="0.1524" layer="1"/>
+<wire x1="20.32" y1="48.26" x2="20.32" y2="52.07" width="0.1524" layer="1"/>
+<wire x1="20.32" y1="52.07" x2="20.32" y2="60.3" width="0.1524" layer="1"/>
+<wire x1="33.909" y1="54.077" x2="31.902" y2="52.07" width="0.1524" layer="1"/>
+<wire x1="31.902" y1="52.07" x2="20.32" y2="52.07" width="0.1524" layer="1"/>
+<wire x1="20.32" y1="60.3" x2="19.05" y2="61.57" width="0.1524" layer="1"/>
+<wire x1="19.05" y1="61.57" x2="19.05" y2="67.31" width="0.1524" layer="1"/>
+<wire x1="19.05" y1="67.31" x2="20.32" y2="68.58" width="0.1524" layer="1"/>
+<wire x1="43.34" y1="68.58" x2="44.61" y2="67.31" width="0.1524" layer="1"/>
+<wire x1="20.32" y1="68.58" x2="43.34" y2="68.58" width="0.1524" layer="1"/>
+<wire x1="19.05" y1="46.99" x2="19.05" y2="45.56" width="0.1524" layer="1"/>
+<wire x1="19.05" y1="45.56" x2="23.97" y2="40.64" width="0.1524" layer="1"/>
+<wire x1="19.05" y1="45.56" x2="19.05" y2="22.86" width="0.1524" layer="1"/>
+<wire x1="19.05" y1="22.86" x2="22.86" y2="19.05" width="0.1524" layer="1"/>
+<wire x1="22.86" y1="19.05" x2="25.4" y2="19.05" width="0.1524" layer="1"/>
+<wire x1="25.4" y1="19.05" x2="26.67" y2="20.32" width="0.1524" layer="1"/>
+<wire x1="26.67" y1="20.32" x2="31.75" y2="20.32" width="0.1524" layer="1"/>
+<wire x1="20.32" y1="60.3" x2="20.295" y2="54.61" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$1">
 <contactref element="SPS30" pad="2"/>
 <contactref element="B1" pad="HV3"/>
-<wire x1="58.42" y1="48.26" x2="61.0616" y2="45.6184" width="0.1524" layer="1"/>
-<wire x1="61.0616" y1="45.6184" x2="61.44396875" y2="45.6184" width="0.1524" layer="1"/>
-<wire x1="62.61236875" y1="44.45" x2="63.5" y2="44.45" width="0.1524" layer="1"/>
-<wire x1="61.44396875" y1="45.6184" x2="62.61236875" y2="44.45" width="0.1524" layer="1"/>
+<wire x1="25.4" y1="21.59" x2="29.21" y2="25.4" width="0.1524" layer="1"/>
+<wire x1="29.21" y1="25.4" x2="31.75" y2="25.4" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$3">
 <contactref element="SPS30" pad="3"/>
 <contactref element="B1" pad="HV4"/>
-<wire x1="60.96" y1="48.26" x2="63.6016" y2="45.6184" width="0.1524" layer="1"/>
-<wire x1="63.6016" y1="45.6184" x2="63.98396875" y2="45.6184" width="0.1524" layer="1"/>
-<wire x1="65.15236875" y1="44.45" x2="66.04" y2="44.45" width="0.1524" layer="1"/>
-<wire x1="63.98396875" y1="45.6184" x2="65.15236875" y2="44.45" width="0.1524" layer="1"/>
+<wire x1="25.4" y1="24.13" x2="29.21" y2="27.94" width="0.1524" layer="1"/>
+<wire x1="29.21" y1="27.94" x2="31.75" y2="27.94" width="0.1524" layer="1"/>
 </signal>
 <signal name="SDA">
 <contactref element="U1" pad="21"/>
@@ -1737,22 +1806,23 @@ design rules under a new name.</description>
 <contactref element="R1" pad="P$1"/>
 <contactref element="U2" pad="3"/>
 <contactref element="SCD4X" pad="10"/>
-<wire x1="33.8617125" y1="44.45" x2="33.29" y2="43.8782875" width="0.1524" layer="1"/>
-<wire x1="33.29" y1="43.5" x2="33.29" y2="43.8782875" width="0.1524" layer="1"/>
-<wire x1="33.8617125" y1="44.45" x2="49.53" y2="44.45" width="0.1524" layer="1"/>
-<wire x1="49.53" y1="44.45" x2="52.07" y2="41.91" width="0.1524" layer="1"/>
-<wire x1="52.07" y1="41.91" x2="55.88" y2="41.91" width="0.1524" layer="1"/>
-<wire x1="55.88" y1="41.91" x2="63.5" y2="34.29" width="0.1524" layer="1"/>
-<wire x1="92.71" y1="30.48" x2="89.23" y2="30.48" width="0.1524" layer="1"/>
-<wire x1="89.23" y1="30.48" x2="88.83" y2="30.08" width="0.1524" layer="1"/>
-<wire x1="68.58" y1="33.02" x2="81.28" y2="33.02" width="0.1524" layer="1"/>
-<wire x1="81.28" y1="33.02" x2="91.44" y2="33.02" width="0.1524" layer="1"/>
-<wire x1="68.58" y1="33.02" x2="67.31" y2="31.75" width="0.1524" layer="1"/>
-<wire x1="67.31" y1="31.75" x2="66.04" y2="31.75" width="0.1524" layer="1"/>
-<wire x1="66.04" y1="31.75" x2="63.5" y2="34.29" width="0.1524" layer="1"/>
-<wire x1="91.44" y1="33.02" x2="91.44" y2="31.75" width="0.1524" layer="1"/>
-<wire x1="91.44" y1="31.75" x2="92.71" y2="30.48" width="0.1524" layer="1"/>
-<wire x1="81.28" y1="33.02" x2="81.28" y2="25.4" width="0.1524" layer="1"/>
+<wire x1="41.91" y1="25.4" x2="46.99" y2="25.4" width="0.1524" layer="1"/>
+<wire x1="46.99" y1="25.4" x2="48.26" y2="24.13" width="0.1524" layer="1"/>
+<wire x1="48.26" y1="24.13" x2="49.53" y2="25.4" width="0.1524" layer="1"/>
+<wire x1="49.53" y1="25.4" x2="49.53" y2="31.75" width="0.1524" layer="1"/>
+<wire x1="49.53" y1="31.75" x2="50.8" y2="33.02" width="0.1524" layer="1"/>
+<wire x1="50.8" y1="33.02" x2="52.4" y2="33.02" width="0.1524" layer="1"/>
+<wire x1="52.4" y1="33.02" x2="53.74" y2="31.68" width="0.1524" layer="1"/>
+<wire x1="53.74" y1="31.68" x2="56.045" y2="29.375" width="0.1524" layer="1"/>
+<wire x1="56.21" y1="29.21" x2="56.045" y2="29.375" width="0.1524" layer="1"/>
+<wire x1="56.21" y1="29.21" x2="58.42" y2="29.21" width="0.1524" layer="1"/>
+<wire x1="56.045" y1="29.375" x2="57.15" y2="30.48" width="0.1524" layer="1"/>
+<via x="57.15" y="30.48" extent="1-16" drill="0.35"/>
+<wire x1="57.15" y1="30.48" x2="57.15" y2="33.02" width="0.1524" layer="16"/>
+<via x="57.15" y="33.02" extent="1-16" drill="0.35"/>
+<wire x1="57.15" y1="33.02" x2="57.15" y2="43.18" width="0.1524" layer="1"/>
+<wire x1="57.15" y1="43.18" x2="58.69" y2="44.72" width="0.1524" layer="1"/>
+<wire x1="58.69" y1="44.72" x2="60.64" y2="44.72" width="0.1524" layer="1"/>
 </signal>
 <signal name="SCL">
 <contactref element="B1" pad="LV4"/>
@@ -1760,30 +1830,53 @@ design rules under a new name.</description>
 <contactref element="R2" pad="P$1"/>
 <contactref element="U2" pad="4"/>
 <contactref element="SCD4X" pad="9"/>
-<wire x1="66.04" y1="34.29" x2="65.15236875" y2="34.29" width="0.1524" layer="1"/>
-<wire x1="52.1716" y1="43.0784" x2="49.53" y2="45.72" width="0.1524" layer="1"/>
-<wire x1="65.15236875" y1="34.29" x2="56.36396875" y2="43.0784" width="0.1524" layer="1"/>
-<wire x1="56.36396875" y1="43.0784" x2="52.1716" y2="43.0784" width="0.1524" layer="1"/>
-<wire x1="33.43065625" y1="45.72" x2="32.89" y2="45.17934375" width="0.1524" layer="1"/>
-<wire x1="32.89" y1="43.5" x2="32.89" y2="45.17934375" width="0.1524" layer="1"/>
-<wire x1="49.53" y1="45.72" x2="33.43065625" y2="45.72" width="0.1524" layer="1"/>
-<wire x1="92.71" y1="29.21" x2="92.64" y2="29.28" width="0.1524" layer="1"/>
-<wire x1="88.83" y1="29.28" x2="92.64" y2="29.28" width="0.1524" layer="1"/>
-<wire x1="92.71" y1="29.21" x2="93.98" y2="30.48" width="0.1524" layer="1"/>
-<wire x1="93.98" y1="30.48" x2="93.98" y2="34.29" width="0.1524" layer="1"/>
-<wire x1="93.98" y1="34.29" x2="93.98" y2="35.56" width="0.1524" layer="1"/>
-<wire x1="67.31" y1="35.56" x2="66.04" y2="34.29" width="0.1524" layer="1"/>
-<wire x1="93.98" y1="35.56" x2="67.31" y2="35.56" width="0.1524" layer="1"/>
-<wire x1="95.25" y1="34.29" x2="93.98" y2="34.29" width="0.1524" layer="1"/>
+<wire x1="54.54" y1="31.68" x2="54.4632875" y2="31.68" width="0.1524" layer="1"/>
+<wire x1="54.4632875" y1="31.68" x2="52.8184875" y2="33.3248" width="0.1524" layer="1"/>
+<wire x1="52.8184875" y1="33.3248" x2="47.2948" y2="33.3248" width="0.1524" layer="1"/>
+<wire x1="47.2948" y1="33.3248" x2="41.91" y2="27.94" width="0.1524" layer="1"/>
+<wire x1="46.99" y1="22.86" x2="48.26" y2="22.86" width="0.1524" layer="1"/>
+<wire x1="40.7416" y1="25.88396875" x2="40.7416" y2="24.91603125" width="0.1524" layer="1"/>
+<wire x1="40.7416" y1="24.91603125" x2="41.42603125" y2="24.2316" width="0.1524" layer="1"/>
+<wire x1="45.6184" y1="24.2316" x2="46.99" y2="22.86" width="0.1524" layer="1"/>
+<wire x1="41.42603125" y1="24.2316" x2="45.6184" y2="24.2316" width="0.1524" layer="1"/>
+<wire x1="41.91" y1="27.94" x2="41.91" y2="27.05236875" width="0.1524" layer="1"/>
+<wire x1="41.91" y1="27.05236875" x2="40.7416" y2="25.88396875" width="0.1524" layer="1"/>
+<wire x1="54.54" y1="31.68" x2="59.62" y2="31.68" width="0.1524" layer="1"/>
+<wire x1="59.62" y1="31.68" x2="59.69" y2="31.75" width="0.1524" layer="1"/>
+<wire x1="60.2053125" y1="44.2636" x2="60.5836" y2="44.2636" width="0.1524" layer="1"/>
+<wire x1="60.5836" y1="44.2636" x2="60.64" y2="44.32" width="0.1524" layer="1"/>
+<wire x1="59.69" y1="31.75" x2="59.69" y2="43.7482875" width="0.1524" layer="1"/>
+<wire x1="59.69" y1="43.7482875" x2="60.2053125" y2="44.2636" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$6">
 <contactref element="U3" pad="A"/>
+<contactref element="U4" pad="5"/>
+<wire x1="25.69" y1="64.75" x2="27.92" y2="64.75" width="0.1524" layer="1"/>
+<wire x1="27.92" y1="64.75" x2="28.9414" y2="65.7714" width="0.1524" layer="1"/>
+<wire x1="34.3046" y1="65.7714" x2="34.29" y2="65.7714" width="0.1524" layer="1"/>
+<wire x1="34.29" y1="65.7714" x2="28.9414" y2="65.7714" width="0.1524" layer="1"/>
+<wire x1="34.29" y1="65.7714" x2="36.5614" y2="63.5" width="0.1524" layer="1"/>
+<wire x1="40.8" y1="63.5" x2="44.61" y2="59.69" width="0.1524" layer="1"/>
+<wire x1="36.5614" y1="63.5" x2="40.8" y2="63.5" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$10">
 <contactref element="U3" pad="H"/>
+<contactref element="U4" pad="3"/>
+<wire x1="30.19" y1="64.75" x2="34.15" y2="64.75" width="0.1524" layer="1"/>
+<wire x1="34.15" y1="64.75" x2="36.67" y2="62.23" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$7">
-<contactref element="5_MOHM1" pad="2"/>
+<contactref element="U4" pad="7"/>
+<contactref element="U4" pad="6"/>
+<wire x1="44.61" y1="64.77" x2="44.61" y2="62.23" width="0.1524" layer="1"/>
+<wire x1="44.61" y1="62.23" x2="44.61" y2="60.92404375" width="0.1524" layer="1"/>
+<wire x1="44.61" y1="60.92404375" x2="45.4826" y2="60.05144375" width="0.1524" layer="1"/>
+<wire x1="45.4826" y1="60.05144375" x2="45.4826" y2="58.1826" width="0.1524" layer="1"/>
+<wire x1="45.4826" y1="58.1826" x2="43.18" y2="55.88" width="0.1524" layer="1"/>
+<wire x1="39.395" y1="55.88" x2="43.18" y2="55.88" width="0.1524" layer="1"/>
+<contactref element="R7" pad="2"/>
+<wire x1="39.37" y1="52.83" x2="39.37" y2="55.855" width="0.1524" layer="1"/>
+<wire x1="39.37" y1="55.855" x2="39.395" y2="55.88" width="0.1524" layer="1"/>
 </signal>
 <signal name="GND">
 <contactref element="U2" pad="1"/>
@@ -1796,185 +1889,244 @@ design rules under a new name.</description>
 <contactref element="U3" pad="B"/>
 <contactref element="U3" pad="J"/>
 <contactref element="U3" pad="F"/>
-<contactref element="10_MOHM2" pad="1"/>
-<contactref element="C3" pad="2"/>
-<contactref element="10_MOHM1" pad="1"/>
-<contactref element="C4" pad="2"/>
-<contactref element="10_MOHM" pad="1"/>
-<contactref element="C7" pad="2"/>
 <contactref element="300_OHM" pad="1"/>
-<contactref element="C5" pad="2"/>
-<contactref element="C6" pad="2"/>
+<contactref element="C3" pad="2"/>
+<contactref element="C4" pad="2"/>
 <contactref element="C1" pad="2"/>
 <contactref element="C2" pad="2"/>
 <contactref element="IC5" pad="1"/>
 <contactref element="IC3.3" pad="1"/>
-<wire x1="87.63" y1="74.93" x2="87.63" y2="71.54" width="0.1524" layer="1"/>
-<wire x1="87.63" y1="71.54" x2="88.05" y2="71.12" width="0.1524" layer="1"/>
-<wire x1="90.54" y1="24.13" x2="88.9" y2="22.49" width="0.1524" layer="1"/>
-<wire x1="88.9" y1="22.49" x2="88.9" y2="5.08" width="0.1524" layer="1"/>
-<wire x1="88.9" y1="5.08" x2="90.17" y2="3.81" width="0.1524" layer="1"/>
-<wire x1="87.63" y1="74.93" x2="97.42" y2="74.93" width="0" layer="19" extent="1-1"/>
-<wire x1="92.71" y1="55.59" x2="88.05" y2="71.12" width="0" layer="19" extent="1-1"/>
-<wire x1="91.46" y1="51.09" x2="92.71" y2="55.59" width="0" layer="19" extent="1-1"/>
-<wire x1="95.96" y1="52.07" x2="91.46" y2="51.09" width="0" layer="19" extent="1-1"/>
-<wire x1="95.25" y1="45.72" x2="95.96" y2="52.07" width="0" layer="19" extent="1-1"/>
-<wire x1="83.82" y1="48.26" x2="91.46" y2="51.09" width="0" layer="19" extent="1-1"/>
-<wire x1="88.83" y1="31.68" x2="83.82" y2="48.26" width="0" layer="19" extent="1-1"/>
-<wire x1="86.43" y1="30.88" x2="88.83" y2="31.68" width="0" layer="19" extent="1-1"/>
-<wire x1="86.43" y1="29.28" x2="86.43" y2="30.88" width="0" layer="19" extent="1-1"/>
-<wire x1="74.93" y1="48.26" x2="86.43" y2="30.88" width="0" layer="19" extent="1-1"/>
-<wire x1="66.04" y1="48.26" x2="74.93" y2="48.26" width="0" layer="19" extent="1-1"/>
-<wire x1="63.5" y1="48.26" x2="66.04" y2="48.26" width="0" layer="19" extent="1-1"/>
-<wire x1="92.71" y1="27.94" x2="86.43" y2="29.28" width="0" layer="19" extent="1-1"/>
-<wire x1="90.54" y1="24.13" x2="92.71" y2="27.94" width="0" layer="19" extent="1-1"/>
-<wire x1="95.62" y1="24.13" x2="90.54" y2="24.13" width="0" layer="19" extent="1-1"/>
-<wire x1="63.5" y1="66.04" x2="63.5" y2="48.26" width="0" layer="19" extent="1-1"/>
-<wire x1="45.11" y1="33.02" x2="63.5" y2="48.26" width="0" layer="19" extent="1-1"/>
-<wire x1="-22.25" y1="93.98" x2="63.5" y2="66.04" width="0" layer="19" extent="1-1"/>
-<wire x1="-52.73" y1="93.98" x2="-22.25" y2="93.98" width="0" layer="19" extent="1-1"/>
-<wire x1="-103.53" y1="73.66" x2="-52.73" y2="93.98" width="0" layer="19" extent="1-1"/>
+<contactref element="U4" pad="4"/>
+<contactref element="U5" pad="4"/>
+<contactref element="B1" pad="GND2"/>
+<contactref element="B1" pad="GND1"/>
+<contactref element="R3" pad="1"/>
+<contactref element="R4" pad="1"/>
+<contactref element="R5" pad="1"/>
+<contactref element="C5" pad="1"/>
+<contactref element="C6" pad="1"/>
+<contactref element="C7" pad="1"/>
+<wire x1="76.86" y1="45.72" x2="68.58" y2="55.88" width="0" layer="19" extent="16-16"/>
+<wire x1="52.07" y1="64.26" x2="68.58" y2="55.88" width="0" layer="19" extent="1-16"/>
+<wire x1="36.67" y1="59.69" x2="52.07" y2="64.26" width="0" layer="19" extent="1-1"/>
+<wire x1="30.19" y1="62.25" x2="36.67" y2="59.69" width="0" layer="19" extent="1-1"/>
+<wire x1="29.21" y1="66.75" x2="30.19" y2="62.25" width="0" layer="19" extent="1-1"/>
+<wire x1="25.69" y1="63.5" x2="30.19" y2="62.25" width="0" layer="19" extent="1-1"/>
+<wire x1="31.91" y1="48.26" x2="36.67" y2="59.69" width="0" layer="19" extent="1-1"/>
+<wire x1="38.61" y1="46.99" x2="31.91" y2="48.26" width="0" layer="19" extent="1-1"/>
+<wire x1="38.1" y1="35.05" x2="38.61" y2="46.99" width="0" layer="19" extent="1-1"/>
+<wire x1="41.91" y1="22.86" x2="38.1" y2="35.05" width="0" layer="19" extent="1-1"/>
+<wire x1="48.26" y1="21.59" x2="41.91" y2="22.86" width="0" layer="19" extent="1-1"/>
+<wire x1="52.94" y1="29.28" x2="48.26" y2="21.59" width="0" layer="19" extent="1-1"/>
+<wire x1="54.54" y1="29.28" x2="52.94" y2="29.28" width="0" layer="19" extent="1-1"/>
+<wire x1="52.14" y1="31.68" x2="52.94" y2="29.28" width="0" layer="19" extent="1-1"/>
+<wire x1="31.75" y1="22.86" x2="41.91" y2="22.86" width="0" layer="19" extent="1-1"/>
+<wire x1="25.4" y1="26.67" x2="31.75" y2="22.86" width="0" layer="19" extent="1-1"/>
+<wire x1="25.4" y1="29.21" x2="25.4" y2="26.67" width="0" layer="19" extent="1-1"/>
+<wire x1="17.41" y1="49.53" x2="31.91" y2="48.26" width="0" layer="19" extent="1-1"/>
+<wire x1="10.58" y1="46.99" x2="17.41" y2="49.53" width="0" layer="19" extent="1-1"/>
+<wire x1="10.16" y1="52.07" x2="10.58" y2="46.99" width="0" layer="19" extent="1-1"/>
+<wire x1="10.16" y1="12.7" x2="25.4" y2="26.67" width="0" layer="19" extent="1-1"/>
+<wire x1="10.53" y1="8.89" x2="10.16" y2="12.7" width="0" layer="19" extent="1-1"/>
+<wire x1="14.34" y1="8.89" x2="10.53" y2="8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="53.848" y1="63.146" x2="10.53" y2="8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="42.291" y1="46.455" x2="53.848" y2="63.146" width="0" layer="19" extent="1-1"/>
+<wire x1="42.545" y1="34.063" x2="42.291" y2="46.455" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="BT1" pad="2"/>
 <contactref element="BT2" pad="1"/>
 <contactref element="BT2" pad="1_1"/>
-<wire x1="4.86" y1="15.24" x2="9.94" y2="10.16" width="0.1524" layer="1"/>
-<wire x1="33.24" y1="10.16" x2="38.32" y2="15.24" width="0.1524" layer="1"/>
-<wire x1="9.94" y1="10.16" x2="33.24" y2="10.16" width="0.1524" layer="1"/>
-<wire x1="38.32" y1="15.24" x2="43.4" y2="10.16" width="0.1524" layer="1"/>
-<wire x1="43.4" y1="10.16" x2="60.96" y2="10.16" width="0.1524" layer="1"/>
-<wire x1="60.96" y1="10.16" x2="63.5" y2="12.7" width="0.1524" layer="1"/>
-<wire x1="63.5" y1="12.7" x2="63.5" y2="15.24" width="0.1524" layer="1"/>
-</signal>
-<signal name="N$4">
-<contactref element="BT2" pad="2"/>
-<contactref element="BT3" pad="1"/>
-<contactref element="BT3" pad="1_1"/>
-<wire x1="4.86" y1="66.04" x2="4.86" y2="31.97" width="0.1524" layer="1"/>
-<wire x1="4.86" y1="31.97" x2="21.59" y2="15.24" width="0.1524" layer="1"/>
-<wire x1="4.86" y1="66.04" x2="9.94" y2="60.96" width="0.1524" layer="1"/>
-<wire x1="9.94" y1="60.96" x2="34.29" y2="60.96" width="0.1524" layer="1"/>
-<wire x1="34.29" y1="60.96" x2="38.32" y2="64.99" width="0.1524" layer="1"/>
-<wire x1="38.32" y1="64.99" x2="38.32" y2="66.04" width="0.1524" layer="1"/>
+<wire x1="11.21" y1="26.543" x2="20.447" y2="26.543" width="0.1524" layer="16"/>
+<wire x1="20.447" y1="26.543" x2="25.4" y2="21.59" width="0.1524" layer="16"/>
+<wire x1="25.4" y1="21.59" x2="30.48" y2="21.59" width="0.1524" layer="16"/>
+<wire x1="30.48" y1="21.59" x2="35.56" y2="26.67" width="0.1524" layer="16"/>
+<wire x1="35.56" y1="26.67" x2="44.543" y2="26.67" width="0.1524" layer="16"/>
+<wire x1="44.543" y1="26.67" x2="44.67" y2="26.543" width="0.1524" layer="16"/>
+<wire x1="63.754" y1="26.416" x2="68.326" y2="26.416" width="0.1524" layer="16"/>
+<wire x1="44.67" y1="26.543" x2="52.417" y2="34.29" width="0.1524" layer="16"/>
+<wire x1="52.417" y1="34.29" x2="59.69" y2="34.29" width="0.1524" layer="16"/>
+<wire x1="59.69" y1="34.29" x2="63.754" y2="30.226" width="0.1524" layer="16"/>
+<wire x1="63.754" y1="30.226" x2="63.754" y2="26.416" width="0.1524" layer="16"/>
 </signal>
 <signal name="N$5">
 <contactref element="BT3" pad="2"/>
 <contactref element="BT4" pad="1"/>
 <contactref element="BT4" pad="1_1"/>
-<wire x1="21.59" y1="66.04" x2="25.4" y2="69.85" width="0.1524" layer="1"/>
-<wire x1="25.4" y1="69.85" x2="44.45" y2="69.85" width="0.1524" layer="1"/>
-<wire x1="44.45" y1="69.85" x2="46.77" y2="67.53" width="0.1524" layer="1"/>
-<wire x1="46.77" y1="67.53" x2="46.77" y2="66.04" width="0.1524" layer="1"/>
-<wire x1="46.77" y1="66.04" x2="50.58" y2="69.85" width="0.1524" layer="1"/>
-<wire x1="50.58" y1="69.85" x2="77.47" y2="69.85" width="0.1524" layer="1"/>
-<wire x1="77.47" y1="69.85" x2="81.28" y2="66.04" width="0.1524" layer="1"/>
-<wire x1="81.28" y1="66.04" x2="80.23" y2="66.04" width="0" layer="19" extent="1-1"/>
+<wire x1="60.96" y1="55.88" x2="66.04" y2="60.96" width="0.1524" layer="16"/>
+<wire x1="66.04" y1="60.96" x2="71.12" y2="60.96" width="0.1524" layer="16"/>
+<wire x1="71.12" y1="60.96" x2="76.2" y2="55.88" width="0.1524" layer="16"/>
+<wire x1="76.2" y1="55.88" x2="83.82" y2="55.88" width="0.1524" layer="16"/>
+<wire x1="27.94" y1="55.88" x2="33.02" y2="55.88" width="0.1524" layer="16"/>
+<wire x1="51.85" y1="55.88" x2="52.07" y2="55.88" width="0.1524" layer="16"/>
+<wire x1="50.8" y1="55.88" x2="51.85" y2="55.88" width="0.1524" layer="16"/>
+<wire x1="52.07" y1="55.88" x2="60.96" y2="55.88" width="0.1524" layer="16"/>
+<wire x1="33.02" y1="55.88" x2="38.1" y2="60.96" width="0.1524" layer="16"/>
+<wire x1="38.1" y1="60.96" x2="45.72" y2="60.96" width="0.1524" layer="16"/>
+<wire x1="45.72" y1="60.96" x2="50.8" y2="55.88" width="0.1524" layer="16"/>
+<wire x1="83.82" y1="55.88" x2="85.31" y2="55.88" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="VDD">
 <contactref element="IC3.3" pad="3"/>
 <contactref element="C1" pad="1"/>
 <contactref element="IC5" pad="3"/>
-<contactref element="C5" pad="1"/>
+<contactref element="C3" pad="1"/>
 <contactref element="S1" pad="2"/>
-<wire x1="95.62" y1="74.93" x2="92.71" y2="74.93" width="0.1524" layer="1"/>
-<wire x1="97.42" y1="24.13" x2="95.62" y2="4.18" width="0.1524" layer="1"/>
-<wire x1="95.62" y1="4.18" x2="95.25" y2="3.81" width="0.1524" layer="1"/>
-<wire x1="11.43" y1="41.73" x2="13.97" y2="39.19" width="0.1524" layer="1"/>
-<wire x1="13.97" y1="39.19" x2="13.97" y2="33.02" width="0.1524" layer="1"/>
-<wire x1="13.97" y1="33.02" x2="15.24" y2="31.75" width="0.1524" layer="1"/>
-<wire x1="75.58105625" y1="20.32" x2="83.82" y2="20.32" width="0.1524" layer="1"/>
-<wire x1="75.27625625" y1="20.6248" x2="75.58105625" y2="20.32" width="0.1524" layer="1"/>
-<wire x1="47.9552" y1="20.6248" x2="75.27625625" y2="20.6248" width="0.1524" layer="1"/>
-<wire x1="83.82" y1="20.32" x2="85.09" y2="19.05" width="0.1524" layer="1"/>
-<wire x1="85.09" y1="19.05" x2="85.09" y2="1.27" width="0.1524" layer="1"/>
-<wire x1="85.09" y1="1.27" x2="92.71" y2="1.27" width="0.1524" layer="1"/>
-<wire x1="92.71" y1="1.27" x2="95.25" y2="3.81" width="0.1524" layer="1"/>
-<wire x1="15.24" y1="31.75" x2="36.83" y2="31.75" width="0.1524" layer="1"/>
-<wire x1="36.83" y1="31.75" x2="47.9552" y2="20.6248" width="0.1524" layer="1"/>
-<wire x1="98.69" y1="71.86" x2="98.69" y2="25.4" width="0.1524" layer="1"/>
-<wire x1="97.42" y1="24.13" x2="98.69" y2="25.4" width="0.1524" layer="1"/>
-<wire x1="98.69" y1="71.86" x2="95.62" y2="74.93" width="0.1524" layer="1"/>
+<wire x1="15.24" y1="12.7" x2="16.14" y2="11.8" width="0.1524" layer="1"/>
+<wire x1="16.14" y1="11.8" x2="16.14" y2="8.89" width="0.1524" layer="1"/>
+<wire x1="11.61" y1="40.64" x2="8.89" y2="37.92" width="0.1524" layer="1"/>
+<wire x1="8.89" y1="37.92" x2="8.89" y2="19.05" width="0.1524" layer="1"/>
+<wire x1="8.89" y1="19.05" x2="15.24" y2="12.7" width="0.1524" layer="1"/>
+<wire x1="11.61" y1="40.64" x2="8.89" y2="43.36" width="0.1524" layer="1"/>
+<wire x1="8.89" y1="43.36" x2="8.89" y2="55.88" width="0.1524" layer="1"/>
+<wire x1="8.89" y1="55.88" x2="10.16" y2="57.15" width="0.1524" layer="1"/>
+<wire x1="10.16" y1="57.15" x2="13.97" y2="57.15" width="0.1524" layer="1"/>
+<wire x1="13.97" y1="57.15" x2="15.24" y2="55.88" width="0.1524" layer="1"/>
+<wire x1="15.24" y1="55.88" x2="15.24" y2="52.07" width="0.1524" layer="1"/>
+<wire x1="15.24" y1="52.07" x2="15.61" y2="51.7" width="0.1524" layer="1"/>
+<wire x1="15.61" y1="51.7" x2="15.61" y2="49.53" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$11">
 <contactref element="U3" pad="E"/>
 <contactref element="U3" pad="G"/>
 <contactref element="820OHM" pad="1"/>
-<wire x1="85.979" y1="60.427" x2="85.979" y2="55.551" width="0.1524" layer="1"/>
-<wire x1="85.979" y1="55.551" x2="89.46" y2="52.07" width="0.1524" layer="1"/>
-<wire x1="89.46" y1="52.07" x2="92.71" y2="51.09" width="0" layer="19" extent="1-1"/>
+<wire x1="29.21" y1="60.25" x2="33.682" y2="60.25" width="0.1524" layer="1"/>
+<wire x1="33.682" y1="60.25" x2="33.909" y2="60.477" width="0.1524" layer="1"/>
+<wire x1="29.21" y1="60.25" x2="30.19" y2="63.5" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$12">
 <contactref element="U3" pad="C"/>
 <contactref element="27OHM" pad="1"/>
-<wire x1="91.44" y1="55.61" x2="91.46" y2="55.59" width="0.1524" layer="1"/>
-<wire x1="91.44" y1="60.3" x2="91.44" y2="55.61" width="0.1524" layer="1"/>
+<wire x1="26.695" y1="54.61" x2="25.69" y2="55.615" width="0.1524" layer="1"/>
+<wire x1="25.69" y1="55.615" x2="25.69" y2="62.25" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$13">
 <contactref element="U3" pad="K"/>
 <contactref element="130OHM" pad="1"/>
-<wire x1="95.25" y1="61.57" x2="95.96" y2="60.86" width="0.1524" layer="1"/>
-<wire x1="95.96" y1="60.86" x2="95.96" y2="54.61" width="0.1524" layer="1"/>
-</signal>
-<signal name="N$15">
-<contactref element="5_MOHM" pad="2"/>
+<wire x1="20.32" y1="66.7" x2="26.62" y2="66.7" width="0.1524" layer="1"/>
+<wire x1="26.62" y1="66.7" x2="26.67" y2="66.75" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$8">
-<contactref element="5_MOHM2" pad="2"/>
+<contactref element="U5" pad="2"/>
+<contactref element="U5" pad="1"/>
+<wire x1="31.91" y1="43.18" x2="31.91" y2="40.64" width="0.1524" layer="1"/>
+<contactref element="R8" pad="2"/>
+<wire x1="34.29" y1="35.05" x2="31.91" y2="37.43" width="0.1524" layer="1"/>
+<wire x1="31.91" y1="37.43" x2="31.91" y2="40.64" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$14">
 <contactref element="U3" pad="D"/>
+<contactref element="U5" pad="3"/>
+<wire x1="31.45541875" y1="62.23" x2="34.29" y2="62.23" width="0.1524" layer="1"/>
+<wire x1="30.94681875" y1="61.7214" x2="31.45541875" y2="62.23" width="0.1524" layer="1"/>
+<wire x1="26.67" y1="60.25" x2="28.1414" y2="61.7214" width="0.1524" layer="1"/>
+<wire x1="28.1414" y1="61.7214" x2="30.94681875" y2="61.7214" width="0.1524" layer="1"/>
+<wire x1="34.29" y1="62.23" x2="35.56" y2="60.96" width="0.1524" layer="1"/>
+<wire x1="35.56" y1="60.96" x2="35.56" y2="49.37" width="0.1524" layer="1"/>
+<wire x1="35.56" y1="49.37" x2="31.91" y2="45.72" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$16">
 <contactref element="U1" pad="6"/>
-<contactref element="10_MOHM2" pad="2"/>
-<contactref element="C3" pad="1"/>
-<contactref element="5_MOHM2" pad="1"/>
-<wire x1="37.15" y1="40.44" x2="72.39" y2="48.26" width="0" layer="19" extent="1-1"/>
-<wire x1="-15.85" y1="93.98" x2="37.15" y2="40.44" width="0" layer="19" extent="1-1"/>
-<wire x1="-42.57" y1="93.98" x2="-15.85" y2="93.98" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$18">
-<contactref element="U1" pad="5"/>
-<contactref element="5_MOHM1" pad="1"/>
-<contactref element="10_MOHM1" pad="2"/>
-<contactref element="C4" pad="1"/>
-<wire x1="37.15" y1="40.04" x2="81.28" y2="48.26" width="0" layer="19" extent="1-1"/>
-<wire x1="-32.41" y1="93.98" x2="37.15" y2="40.04" width="0" layer="19" extent="1-1"/>
-<wire x1="-97.13" y1="73.66" x2="-32.41" y2="93.98" width="0" layer="19" extent="1-1"/>
+<via x="57.15" y="48.26" extent="1-16" drill="0.35"/>
+<wire x1="57.15" y1="48.26" x2="60.96" y2="52.07" width="0.1524" layer="16"/>
+<wire x1="60.96" y1="52.07" x2="63.5" y2="52.07" width="0.1524" layer="16"/>
+<via x="63.5" y="52.07" extent="1-16" drill="0.35"/>
+<wire x1="63.5" y1="52.07" x2="63.7" y2="51.87" width="0.1524" layer="1"/>
+<wire x1="63.7" y1="51.87" x2="63.7" y2="48.58" width="0.1524" layer="1"/>
+<contactref element="R8" pad="1"/>
+<contactref element="R5" pad="2"/>
+<wire x1="34.29" y1="33.53" x2="38.1" y2="33.53" width="0.1524" layer="1"/>
+<contactref element="C7" pad="2"/>
+<wire x1="38.1" y1="33.53" x2="38.129" y2="33.501" width="0.1524" layer="1"/>
+<wire x1="38.129" y1="33.501" x2="42.545" y2="33.501" width="0.1524" layer="1"/>
+<wire x1="42.545" y1="33.501" x2="42.6884" y2="33.6444" width="0.1524" layer="1"/>
+<wire x1="42.6884" y1="33.6444" x2="42.8396875" y2="33.6444" width="0.1524" layer="1"/>
+<wire x1="42.8396875" y1="33.6444" x2="57.15" y2="47.9547125" width="0.1524" layer="1"/>
+<wire x1="57.15" y1="47.9547125" x2="57.15" y2="48.26" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$17">
-<contactref element="10_MOHM" pad="2"/>
-<contactref element="C7" pad="1"/>
-<contactref element="5_MOHM" pad="1"/>
 <contactref element="U1" pad="7"/>
-<wire x1="37.15" y1="40.84" x2="92.71" y2="45.72" width="0" layer="19" extent="1-1"/>
-<wire x1="-46.33" y1="93.98" x2="37.15" y2="40.84" width="0" layer="19" extent="1-1"/>
-<wire x1="-62.89" y1="93.98" x2="-46.33" y2="93.98" width="0" layer="19" extent="1-1"/>
+<wire x1="63.3" y1="50.492" x2="63.3" y2="48.58" width="0.1524" layer="1"/>
+<contactref element="R6" pad="1"/>
+<contactref element="R3" pad="2"/>
+<contactref element="C5" pad="2"/>
+<wire x1="49.53" y1="62.74" x2="52.07" y2="62.74" width="0.1524" layer="1"/>
+<wire x1="52.07" y1="62.74" x2="52.226" y2="62.584" width="0.1524" layer="1"/>
+<wire x1="52.226" y1="62.584" x2="53.848" y2="62.584" width="0.1524" layer="1"/>
+<wire x1="53.848" y1="62.584" x2="62.23" y2="54.202" width="0.1524" layer="1"/>
+<wire x1="62.23" y1="54.202" x2="62.23" y2="50.8" width="0.1524" layer="1"/>
+<wire x1="62.23" y1="50.8" x2="62.538" y2="50.492" width="0.1524" layer="1"/>
+<wire x1="62.538" y1="50.492" x2="63.3" y2="50.492" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$19">
 <contactref element="BT1" pad="1"/>
 <contactref element="BT1" pad="1_1"/>
 <contactref element="S1" pad="1"/>
-<wire x1="46.77" y1="15.24" x2="51.85" y2="20.32" width="0.1524" layer="1"/>
-<wire x1="80.23" y1="15.24" x2="75.15" y2="20.32" width="0.1524" layer="1"/>
-<wire x1="75.15" y1="20.32" x2="51.85" y2="20.32" width="0.1524" layer="1"/>
-<wire x1="46.77" y1="15.24" x2="31.53" y2="30.48" width="0.1524" layer="1"/>
-<wire x1="31.53" y1="30.48" x2="11.43" y2="30.48" width="0.1524" layer="1"/>
-<wire x1="11.43" y1="30.48" x2="6.83" y2="35.08" width="0.1524" layer="1"/>
-<wire x1="6.83" y1="35.08" x2="6.83" y2="41.73" width="0.1524" layer="1"/>
+<wire x1="61.214" y1="26.416" x2="66.04" y2="21.59" width="0.1524" layer="16"/>
+<wire x1="66.04" y1="21.59" x2="71.12" y2="21.59" width="0.1524" layer="16"/>
+<wire x1="71.12" y1="21.59" x2="76.2" y2="26.67" width="0.1524" layer="16"/>
+<wire x1="76.2" y1="26.67" x2="84.802" y2="26.67" width="0.1524" layer="16"/>
+<wire x1="84.802" y1="26.67" x2="85.056" y2="26.416" width="0.1524" layer="16"/>
+<wire x1="51.596" y1="26.416" x2="61.214" y2="26.416" width="0.1524" layer="16"/>
+<wire x1="51.596" y1="26.416" x2="51.596" y2="26.196" width="0.1524" layer="16"/>
+<wire x1="51.596" y1="26.196" x2="44.45" y2="19.05" width="0.1524" layer="16"/>
+<wire x1="44.45" y1="19.05" x2="7.62" y2="19.05" width="0.1524" layer="16"/>
+<wire x1="7.62" y1="19.05" x2="7.62" y2="33.02" width="0.1524" layer="16"/>
+<wire x1="7.62" y1="33.02" x2="10.64" y2="36.04" width="0.1524" layer="16"/>
+<wire x1="10.64" y1="36.04" x2="11.61" y2="36.04" width="0.1524" layer="16"/>
 </signal>
 <signal name="N$9">
 <contactref element="300_OHM" pad="2"/>
 <contactref element="LED1" pad="C"/>
-<wire x1="37.44" y1="34.29" x2="38.71" y2="33.02" width="0.1524" layer="1"/>
-<wire x1="37.44" y1="34.29" x2="27.85" y2="34.29" width="0.1524" layer="1"/>
+<wire x1="70.46" y1="45.72" x2="73.57" y2="39.37" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$21">
 <contactref element="LED1" pad="A"/>
 <contactref element="U1" pad="28"/>
-<wire x1="31.43" y1="41.64" x2="30.3" y2="41.64" width="0.1524" layer="1"/>
-<wire x1="30.3" y1="41.64" x2="22.95" y2="34.29" width="0.1524" layer="1"/>
+<wire x1="62.5" y1="42.86" x2="68.67" y2="39.37" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$22">
+<contactref element="U4" pad="1"/>
+<contactref element="U4" pad="2"/>
+<wire x1="36.67" y1="67.31" x2="36.67" y2="64.77" width="0.1524" layer="1"/>
+<wire x1="36.67" y1="67.31" x2="41.91" y2="67.31" width="0.1524" layer="1"/>
+<wire x1="41.91" y1="67.31" x2="43.18" y2="66.04" width="0.1524" layer="1"/>
+<wire x1="43.18" y1="66.04" x2="46.99" y2="66.04" width="0.1524" layer="1"/>
+<contactref element="R6" pad="2"/>
+<wire x1="49.53" y1="64.26" x2="47.75" y2="66.04" width="0.1524" layer="1"/>
+<wire x1="47.75" y1="66.04" x2="46.99" y2="66.04" width="0.1524" layer="1"/>
+</signal>
+<signal name="N$4">
+<contactref element="BT2" pad="2"/>
+<contactref element="BT3" pad="1"/>
+<contactref element="BT3" pad="1_1"/>
+<wire x1="11.21" y1="55.88" x2="20.32" y2="55.88" width="0.1524" layer="16"/>
+<wire x1="20.32" y1="55.88" x2="25.4" y2="50.8" width="0.1524" layer="16"/>
+<wire x1="25.4" y1="50.8" x2="30.48" y2="50.8" width="0.1524" layer="16"/>
+<wire x1="30.48" y1="50.8" x2="35.56" y2="55.88" width="0.1524" layer="16"/>
+<wire x1="35.56" y1="55.88" x2="44.67" y2="55.88" width="0.1524" layer="16"/>
+<wire x1="27.94" y1="26.543" x2="44.67" y2="55.88" width="0" layer="19" extent="16-16"/>
+</signal>
+<signal name="N$15">
+<contactref element="U1" pad="5"/>
+<wire x1="45.72" y1="49.53" x2="62.23" y2="49.53" width="0.1524" layer="1"/>
+<via x="62.23" y="49.53" extent="1-16" drill="0.35"/>
+<wire x1="62.23" y1="49.53" x2="64.77" y2="49.53" width="0.1524" layer="16"/>
+<via x="64.77" y="49.53" extent="1-16" drill="0.35"/>
+<wire x1="64.2903125" y1="49.1486" x2="64.1564" y2="49.0146875" width="0.1524" layer="1"/>
+<wire x1="64.1564" y1="49.0146875" x2="64.1564" y2="48.6364" width="0.1524" layer="1"/>
+<wire x1="64.1564" y1="48.6364" x2="64.1" y2="48.58" width="0.1524" layer="1"/>
+<wire x1="64.77" y1="49.53" x2="64.3886" y2="49.1486" width="0.1524" layer="1"/>
+<wire x1="64.3886" y1="49.1486" x2="64.2903125" y2="49.1486" width="0.1524" layer="1"/>
+<contactref element="R7" pad="1"/>
+<contactref element="R4" pad="2"/>
+<wire x1="39.37" y1="51.31" x2="40.13" y2="50.55" width="0.1524" layer="1"/>
+<wire x1="40.13" y1="50.55" x2="40.13" y2="46.99" width="0.1524" layer="1"/>
+<contactref element="C6" pad="2"/>
+<wire x1="40.13" y1="46.99" x2="40.157" y2="47.017" width="0.1524" layer="1"/>
+<wire x1="40.157" y1="47.017" x2="42.291" y2="47.017" width="0.1524" layer="1"/>
+<wire x1="42.291" y1="47.017" x2="43.207" y2="47.017" width="0.1524" layer="1"/>
+<wire x1="43.207" y1="47.017" x2="45.72" y2="49.53" width="0.1524" layer="1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

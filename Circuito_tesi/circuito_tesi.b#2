@@ -1177,6 +1177,34 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </package>
 </packages>
 </library>
+<library name="OPA2277PA">
+<packages>
+<package name="DIP794W45P254L959H508Q8">
+<circle x="-5.035" y="3.81" radius="0.1" width="0.2" layer="21"/>
+<circle x="-5.035" y="3.81" radius="0.1" width="0.2" layer="51"/>
+<wire x1="-3.175" y1="4.795" x2="3.175" y2="4.795" width="0.127" layer="51"/>
+<wire x1="-3.175" y1="-4.795" x2="3.175" y2="-4.795" width="0.127" layer="51"/>
+<wire x1="-3.175" y1="4.795" x2="3.175" y2="4.795" width="0.127" layer="21"/>
+<wire x1="-3.175" y1="-4.795" x2="3.175" y2="-4.795" width="0.127" layer="21"/>
+<wire x1="-3.175" y1="4.795" x2="-3.175" y2="-4.795" width="0.127" layer="51"/>
+<wire x1="3.175" y1="4.795" x2="3.175" y2="-4.795" width="0.127" layer="51"/>
+<wire x1="4.785" y1="5.045" x2="-4.785" y2="5.045" width="0.05" layer="39"/>
+<wire x1="4.785" y1="-5.045" x2="-4.785" y2="-5.045" width="0.05" layer="39"/>
+<wire x1="4.785" y1="5.045" x2="4.785" y2="-5.045" width="0.05" layer="39"/>
+<wire x1="-4.785" y1="5.045" x2="-4.785" y2="-5.045" width="0.05" layer="39"/>
+<text x="-3.74" y="-4.972" size="1.27" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-3.74" y="4.972" size="1.27" layer="25">&gt;NAME</text>
+<pad name="1" x="-3.97" y="3.81" drill="0.78" diameter="1.13" shape="square"/>
+<pad name="2" x="-3.97" y="1.27" drill="0.78" diameter="1.13"/>
+<pad name="3" x="-3.97" y="-1.27" drill="0.78" diameter="1.13"/>
+<pad name="4" x="-3.97" y="-3.81" drill="0.78" diameter="1.13"/>
+<pad name="5" x="3.97" y="-3.81" drill="0.78" diameter="1.13"/>
+<pad name="6" x="3.97" y="-1.27" drill="0.78" diameter="1.13"/>
+<pad name="7" x="3.97" y="1.27" drill="0.78" diameter="1.13"/>
+<pad name="8" x="3.97" y="3.81" drill="0.78" diameter="1.13"/>
+</package>
+</packages>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -1494,25 +1522,25 @@ design rules under a new name.</description>
 <attribute name="NAME" x="51.816" y="39.37" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="bottom-center"/>
 <attribute name="VALUE" x="67.564" y="39.37" size="0.6096" layer="25" font="vector" ratio="20" rot="R90" align="top-center"/>
 </element>
-<element name="BT1" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="63.5" y="15.24" smashed="yes">
-<attribute name="DESCRIPTION" value=" " x="96.52" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="" x="96.52" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="MPD (Memory Protection Devices)" x="96.52" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="BHX1-2450-SM" x="96.52" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="43.5" y="29.78" size="1.27" layer="25"/>
-<attribute name="PACKAGE" value="None" x="96.52" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="96.52" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="43.5" y="-1.76" size="1.27" layer="27"/>
+<element name="BT1" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="60.706" y="14.986" smashed="yes">
+<attribute name="DESCRIPTION" value=" " x="93.726" y="-2.794" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="" x="93.726" y="-2.794" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="MPD (Memory Protection Devices)" x="93.726" y="-2.794" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="BHX1-2450-SM" x="93.726" y="-2.794" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="40.706" y="29.526" size="1.27" layer="25"/>
+<attribute name="PACKAGE" value="None" x="93.726" y="-2.794" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="93.726" y="-2.794" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="40.706" y="-2.014" size="1.27" layer="27"/>
 </element>
-<element name="BT2" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="21.59" y="15.24" smashed="yes">
-<attribute name="DESCRIPTION" value=" " x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="MPD (Memory Protection Devices)" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="BHX1-2450-SM" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="1.59" y="29.78" size="1.27" layer="25"/>
-<attribute name="PACKAGE" value="None" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="95.25" y="-2.54" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="1.59" y="-1.76" size="1.27" layer="27"/>
+<element name="BT2" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="20.447" y="14.859" smashed="yes">
+<attribute name="DESCRIPTION" value=" " x="94.107" y="-2.921" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="" x="94.107" y="-2.921" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="MPD (Memory Protection Devices)" x="94.107" y="-2.921" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="BHX1-2450-SM" x="94.107" y="-2.921" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="0.447" y="29.399" size="1.27" layer="25"/>
+<attribute name="PACKAGE" value="None" x="94.107" y="-2.921" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="94.107" y="-2.921" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="0.447" y="-2.141" size="1.27" layer="27"/>
 </element>
 <element name="BT3" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="21.59" y="66.04" smashed="yes">
 <attribute name="DESCRIPTION" value=" " x="54.61" y="13.97" size="1.778" layer="27" display="off"/>
@@ -1524,15 +1552,15 @@ design rules under a new name.</description>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="54.61" y="13.97" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="1.59" y="49.04" size="1.27" layer="27"/>
 </element>
-<element name="BT4" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="63.5" y="66.04" smashed="yes">
-<attribute name="DESCRIPTION" value=" " x="137.16" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="" x="137.16" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="MPD (Memory Protection Devices)" x="137.16" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="BHX1-2450-SM" x="137.16" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="43.5" y="80.58" size="1.27" layer="25"/>
-<attribute name="PACKAGE" value="None" x="137.16" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="137.16" y="13.97" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="43.5" y="49.04" size="1.27" layer="27"/>
+<element name="BT4" library="BHX1-2450-SM" package="BAT_BHX1-2450-SM" value="BHX1-2450-SM" x="62.23" y="66.04" smashed="yes">
+<attribute name="DESCRIPTION" value=" " x="135.89" y="13.97" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="" x="135.89" y="13.97" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="MPD (Memory Protection Devices)" x="135.89" y="13.97" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="BHX1-2450-SM" x="135.89" y="13.97" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="42.23" y="80.58" size="1.27" layer="25"/>
+<attribute name="PACKAGE" value="None" x="135.89" y="13.97" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda" x="135.89" y="13.97" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="42.23" y="49.04" size="1.27" layer="27"/>
 </element>
 <element name="C1" library="SparkFun-Capacitors" package="0805" value="10uF" x="96.52" y="24.13" smashed="yes" rot="R180">
 <attribute name="NAME" x="96.52" y="23.241" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
@@ -1640,6 +1668,26 @@ design rules under a new name.</description>
 <attribute name="PRICE" value="None" x="16.51" y="-36.83" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="86.36" y="57.15" size="1.778" layer="27" rot="R270"/>
 </element>
+<element name="U4" library="OPA2277PA" package="DIP794W45P254L959H508Q8" value="OPA2277PA" x="-110.49" y="5.08" smashed="yes">
+<attribute name="DESCRIPTION" value=" 10µV, 0.1µV/˚C, High-Precision, Low-Power Operational Amplifier " x="-110.49" y="5.08" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="OPA2277PA-ND" x="-110.49" y="5.08" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Texas Instruments" x="-110.49" y="5.08" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="OPA2277PA" x="-110.49" y="5.08" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-114.23" y="10.052" size="1.27" layer="25"/>
+<attribute name="PACKAGE" value="PDIP-8 Texas" x="-110.49" y="5.08" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/OPA2277PA/?ref=eda" x="-110.49" y="5.08" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-114.23" y="0.108" size="1.27" layer="27" align="top-left"/>
+</element>
+<element name="U5" library="OPA2277PA" package="DIP794W45P254L959H508Q8" value="OPA2277PA" x="-120.65" y="5.08" smashed="yes">
+<attribute name="DESCRIPTION" value=" 10µV, 0.1µV/˚C, High-Precision, Low-Power Operational Amplifier " x="-120.65" y="5.08" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="OPA2277PA-ND" x="-120.65" y="5.08" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Texas Instruments" x="-120.65" y="5.08" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="OPA2277PA" x="-120.65" y="5.08" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-124.39" y="10.052" size="1.27" layer="25"/>
+<attribute name="PACKAGE" value="PDIP-8 Texas" x="-120.65" y="5.08" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/OPA2277PA/?ref=eda" x="-120.65" y="5.08" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-124.39" y="0.108" size="1.27" layer="27" align="top-left"/>
+</element>
 </elements>
 <signals>
 <signal name="VSS">
@@ -1714,6 +1762,10 @@ design rules under a new name.</description>
 <wire x1="55.88" y1="52.07" x2="55.88" y2="48.26" width="0.1524" layer="1"/>
 <wire x1="55.88" y1="48.26" x2="58.42" y2="45.72" width="0.1524" layer="1"/>
 <wire x1="58.42" y1="45.72" x2="58.42" y2="44.45" width="0.1524" layer="1"/>
+<contactref element="U4" pad="8"/>
+<contactref element="U5" pad="8"/>
+<wire x1="-106.52" y1="8.89" x2="-116.68" y2="8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="55.88" y1="48.26" x2="-106.52" y2="8.89" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$1">
 <contactref element="SPS30" pad="2"/>
@@ -1778,12 +1830,20 @@ design rules under a new name.</description>
 </signal>
 <signal name="N$6">
 <contactref element="U3" pad="A"/>
+<contactref element="U4" pad="5"/>
+<wire x1="-106.52" y1="1.27" x2="93.96" y2="55.59" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$10">
 <contactref element="U3" pad="H"/>
+<contactref element="U4" pad="3"/>
+<wire x1="-114.46" y1="3.81" x2="93.96" y2="51.09" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$7">
 <contactref element="5_MOHM1" pad="2"/>
+<contactref element="U4" pad="7"/>
+<contactref element="U4" pad="6"/>
+<wire x1="-106.52" y1="6.35" x2="-106.52" y2="3.81" width="0" layer="19" extent="1-1"/>
+<wire x1="-26.01" y1="93.98" x2="-106.52" y2="6.35" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="GND">
 <contactref element="U2" pad="1"/>
@@ -1814,45 +1874,49 @@ design rules under a new name.</description>
 <wire x1="90.54" y1="24.13" x2="88.9" y2="22.49" width="0.1524" layer="1"/>
 <wire x1="88.9" y1="22.49" x2="88.9" y2="5.08" width="0.1524" layer="1"/>
 <wire x1="88.9" y1="5.08" x2="90.17" y2="3.81" width="0.1524" layer="1"/>
+<contactref element="U4" pad="4"/>
+<contactref element="U5" pad="4"/>
 <wire x1="87.63" y1="74.93" x2="97.42" y2="74.93" width="0" layer="19" extent="1-1"/>
 <wire x1="92.71" y1="55.59" x2="88.05" y2="71.12" width="0" layer="19" extent="1-1"/>
 <wire x1="91.46" y1="51.09" x2="92.71" y2="55.59" width="0" layer="19" extent="1-1"/>
 <wire x1="95.96" y1="52.07" x2="91.46" y2="51.09" width="0" layer="19" extent="1-1"/>
 <wire x1="95.25" y1="45.72" x2="95.96" y2="52.07" width="0" layer="19" extent="1-1"/>
 <wire x1="83.82" y1="48.26" x2="91.46" y2="51.09" width="0" layer="19" extent="1-1"/>
-<wire x1="88.83" y1="31.68" x2="83.82" y2="48.26" width="0" layer="19" extent="1-1"/>
-<wire x1="86.43" y1="30.88" x2="88.83" y2="31.68" width="0" layer="19" extent="1-1"/>
-<wire x1="86.43" y1="29.28" x2="86.43" y2="30.88" width="0" layer="19" extent="1-1"/>
-<wire x1="74.93" y1="48.26" x2="86.43" y2="30.88" width="0" layer="19" extent="1-1"/>
+<wire x1="74.93" y1="48.26" x2="83.82" y2="48.26" width="0" layer="19" extent="1-1"/>
 <wire x1="66.04" y1="48.26" x2="74.93" y2="48.26" width="0" layer="19" extent="1-1"/>
 <wire x1="63.5" y1="48.26" x2="66.04" y2="48.26" width="0" layer="19" extent="1-1"/>
-<wire x1="92.71" y1="27.94" x2="86.43" y2="29.28" width="0" layer="19" extent="1-1"/>
+<wire x1="88.83" y1="31.68" x2="95.25" y2="45.72" width="0" layer="19" extent="1-1"/>
+<wire x1="86.43" y1="30.88" x2="88.83" y2="31.68" width="0" layer="19" extent="1-1"/>
+<wire x1="86.43" y1="29.28" x2="86.43" y2="30.88" width="0" layer="19" extent="1-1"/>
+<wire x1="92.71" y1="27.94" x2="88.83" y2="31.68" width="0" layer="19" extent="1-1"/>
 <wire x1="90.54" y1="24.13" x2="92.71" y2="27.94" width="0" layer="19" extent="1-1"/>
-<wire x1="95.62" y1="24.13" x2="90.54" y2="24.13" width="0" layer="19" extent="1-1"/>
-<wire x1="63.5" y1="66.04" x2="63.5" y2="48.26" width="0" layer="19" extent="1-1"/>
+<wire x1="95.62" y1="24.13" x2="92.71" y2="27.94" width="0" layer="19" extent="1-1"/>
+<wire x1="62.23" y1="66.04" x2="63.5" y2="48.26" width="0" layer="19" extent="1-1"/>
 <wire x1="45.11" y1="33.02" x2="63.5" y2="48.26" width="0" layer="19" extent="1-1"/>
-<wire x1="-22.25" y1="93.98" x2="63.5" y2="66.04" width="0" layer="19" extent="1-1"/>
+<wire x1="-22.25" y1="93.98" x2="62.23" y2="66.04" width="0" layer="19" extent="1-1"/>
 <wire x1="-52.73" y1="93.98" x2="-22.25" y2="93.98" width="0" layer="19" extent="1-1"/>
 <wire x1="-103.53" y1="73.66" x2="-52.73" y2="93.98" width="0" layer="19" extent="1-1"/>
+<wire x1="-114.46" y1="1.27" x2="-103.53" y2="73.66" width="0" layer="19" extent="1-1"/>
+<wire x1="-124.62" y1="1.27" x2="-114.46" y2="1.27" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="BT1" pad="2"/>
 <contactref element="BT2" pad="1"/>
 <contactref element="BT2" pad="1_1"/>
-<wire x1="4.86" y1="15.24" x2="9.94" y2="10.16" width="0.1524" layer="1"/>
-<wire x1="33.24" y1="10.16" x2="38.32" y2="15.24" width="0.1524" layer="1"/>
-<wire x1="9.94" y1="10.16" x2="33.24" y2="10.16" width="0.1524" layer="1"/>
-<wire x1="38.32" y1="15.24" x2="43.4" y2="10.16" width="0.1524" layer="1"/>
-<wire x1="43.4" y1="10.16" x2="60.96" y2="10.16" width="0.1524" layer="1"/>
-<wire x1="60.96" y1="10.16" x2="63.5" y2="12.7" width="0.1524" layer="1"/>
-<wire x1="63.5" y1="12.7" x2="63.5" y2="15.24" width="0.1524" layer="1"/>
+<wire x1="3.717" y1="14.859" x2="8.416" y2="10.16" width="0.1524" layer="1"/>
+<wire x1="37.177" y1="14.859" x2="41.876" y2="10.16" width="0.1524" layer="1"/>
+<wire x1="41.876" y1="10.16" x2="55.88" y2="10.16" width="0.1524" layer="1"/>
+<wire x1="55.88" y1="10.16" x2="60.706" y2="14.986" width="0.1524" layer="1"/>
+<wire x1="8.416" y1="10.16" x2="32.478" y2="10.16" width="0.1524" layer="1"/>
+<wire x1="32.478" y1="10.16" x2="37.177" y2="14.859" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$4">
 <contactref element="BT2" pad="2"/>
 <contactref element="BT3" pad="1"/>
 <contactref element="BT3" pad="1_1"/>
 <wire x1="4.86" y1="66.04" x2="4.86" y2="31.97" width="0.1524" layer="1"/>
-<wire x1="4.86" y1="31.97" x2="21.59" y2="15.24" width="0.1524" layer="1"/>
+<wire x1="20.447" y1="16.383" x2="20.447" y2="14.859" width="0.1524" layer="1"/>
+<wire x1="20.447" y1="16.383" x2="4.86" y2="31.97" width="0.1524" layer="1"/>
 <wire x1="4.86" y1="66.04" x2="9.94" y2="60.96" width="0.1524" layer="1"/>
 <wire x1="9.94" y1="60.96" x2="34.29" y2="60.96" width="0.1524" layer="1"/>
 <wire x1="34.29" y1="60.96" x2="38.32" y2="64.99" width="0.1524" layer="1"/>
@@ -1864,12 +1928,12 @@ design rules under a new name.</description>
 <contactref element="BT4" pad="1_1"/>
 <wire x1="21.59" y1="66.04" x2="25.4" y2="69.85" width="0.1524" layer="1"/>
 <wire x1="25.4" y1="69.85" x2="44.45" y2="69.85" width="0.1524" layer="1"/>
-<wire x1="44.45" y1="69.85" x2="46.77" y2="67.53" width="0.1524" layer="1"/>
-<wire x1="46.77" y1="67.53" x2="46.77" y2="66.04" width="0.1524" layer="1"/>
-<wire x1="46.77" y1="66.04" x2="50.58" y2="69.85" width="0.1524" layer="1"/>
-<wire x1="50.58" y1="69.85" x2="77.47" y2="69.85" width="0.1524" layer="1"/>
+<wire x1="44.45" y1="69.85" x2="45.5" y2="68.8" width="0.1524" layer="1"/>
+<wire x1="45.5" y1="68.8" x2="45.5" y2="66.04" width="0.1524" layer="1"/>
+<wire x1="45.5" y1="66.04" x2="49.31" y2="69.85" width="0.1524" layer="1"/>
+<wire x1="49.31" y1="69.85" x2="77.47" y2="69.85" width="0.1524" layer="1"/>
 <wire x1="77.47" y1="69.85" x2="81.28" y2="66.04" width="0.1524" layer="1"/>
-<wire x1="81.28" y1="66.04" x2="80.23" y2="66.04" width="0" layer="19" extent="1-1"/>
+<wire x1="81.28" y1="66.04" x2="78.96" y2="66.04" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="VDD">
 <contactref element="IC3.3" pad="3"/>
@@ -1916,14 +1980,17 @@ design rules under a new name.</description>
 <wire x1="95.25" y1="61.57" x2="95.96" y2="60.86" width="0.1524" layer="1"/>
 <wire x1="95.96" y1="60.86" x2="95.96" y2="54.61" width="0.1524" layer="1"/>
 </signal>
-<signal name="N$15">
-<contactref element="5_MOHM" pad="2"/>
-</signal>
 <signal name="N$8">
 <contactref element="5_MOHM2" pad="2"/>
+<contactref element="U5" pad="2"/>
+<contactref element="U5" pad="1"/>
+<wire x1="-124.62" y1="8.89" x2="-124.62" y2="6.35" width="0" layer="19" extent="1-1"/>
+<wire x1="-36.17" y1="93.98" x2="-124.62" y2="8.89" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$14">
 <contactref element="U3" pad="D"/>
+<contactref element="U5" pad="3"/>
+<wire x1="-124.62" y1="3.81" x2="89.46" y2="54.61" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$16">
 <contactref element="U1" pad="6"/>
@@ -1956,13 +2023,15 @@ design rules under a new name.</description>
 <contactref element="BT1" pad="1"/>
 <contactref element="BT1" pad="1_1"/>
 <contactref element="S1" pad="1"/>
-<wire x1="46.77" y1="15.24" x2="51.85" y2="20.32" width="0.1524" layer="1"/>
-<wire x1="80.23" y1="15.24" x2="75.15" y2="20.32" width="0.1524" layer="1"/>
-<wire x1="75.15" y1="20.32" x2="51.85" y2="20.32" width="0.1524" layer="1"/>
-<wire x1="46.77" y1="15.24" x2="31.53" y2="30.48" width="0.1524" layer="1"/>
-<wire x1="31.53" y1="30.48" x2="11.43" y2="30.48" width="0.1524" layer="1"/>
+<wire x1="49.31" y1="20.32" x2="43.976" y2="14.986" width="0.1524" layer="1"/>
+<wire x1="77.436" y1="14.986" x2="72.102" y2="20.32" width="0.1524" layer="1"/>
+<wire x1="72.102" y1="20.32" x2="52.07" y2="20.32" width="0.1524" layer="1"/>
+<wire x1="52.07" y1="20.32" x2="51.85" y2="20.32" width="0.1524" layer="1"/>
+<wire x1="43.976" y1="14.986" x2="28.482" y2="30.48" width="0.1524" layer="1"/>
+<wire x1="28.482" y1="30.48" x2="11.43" y2="30.48" width="0.1524" layer="1"/>
 <wire x1="11.43" y1="30.48" x2="6.83" y2="35.08" width="0.1524" layer="1"/>
 <wire x1="6.83" y1="35.08" x2="6.83" y2="41.73" width="0.1524" layer="1"/>
+<wire x1="51.85" y1="20.32" x2="49.31" y2="20.32" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$9">
 <contactref element="300_OHM" pad="2"/>
@@ -1975,6 +2044,13 @@ design rules under a new name.</description>
 <contactref element="U1" pad="28"/>
 <wire x1="31.43" y1="41.64" x2="30.3" y2="41.64" width="0.1524" layer="1"/>
 <wire x1="30.3" y1="41.64" x2="22.95" y2="34.29" width="0.1524" layer="1"/>
+</signal>
+<signal name="N$22">
+<contactref element="5_MOHM" pad="2"/>
+<contactref element="U4" pad="1"/>
+<contactref element="U4" pad="2"/>
+<wire x1="-114.46" y1="8.89" x2="-114.46" y2="6.35" width="0" layer="19" extent="1-1"/>
+<wire x1="-56.49" y1="93.98" x2="-114.46" y2="8.89" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

@@ -4414,6 +4414,10 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <part name="LED1" library="led" library_urn="urn:adsk.eagle:library:259" deviceset="*P4" device="-BOTTOM" package3d_urn="urn:adsk.eagle:package:15878/1" technology="LA"/>
 <part name="300_OHM" library="1614992-1" deviceset="1614992-1" device=""/>
 <part name="GND18" library="supply" deviceset="GND" device=""/>
+<part name="GND19" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
+<part name="GND20" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
+<part name="GND21" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
+<part name="GND22" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4446,11 +4450,11 @@ valore scritto in numero</text>
 <attribute name="NAME" x="-73.66" y="264.795" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-73.66" y="262.255" size="1.778" layer="96"/>
 </instance>
-<instance part="GND1" gate="1" x="-66.04" y="248.92" smashed="yes">
-<attribute name="VALUE" x="-66.04" y="248.666" size="1.778" layer="96" align="top-center"/>
+<instance part="GND1" gate="1" x="-66.04" y="246.38" smashed="yes">
+<attribute name="VALUE" x="-66.04" y="246.126" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="GND3" gate="1" x="-147.32" y="248.92" smashed="yes">
-<attribute name="VALUE" x="-147.32" y="248.666" size="1.778" layer="96" align="top-center"/>
+<instance part="GND3" gate="1" x="-147.32" y="243.84" smashed="yes">
+<attribute name="VALUE" x="-147.32" y="243.586" size="1.778" layer="96" align="top-center"/>
 </instance>
 <instance part="B1" gate="G$1" x="-147.32" y="190.5" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-137.16" y="200.914" size="1.778" layer="95" font="vector" rot="MR0"/>
@@ -4623,6 +4627,18 @@ valore scritto in numero</text>
 <instance part="GND18" gate="1" x="-83.82" y="91.44" smashed="yes">
 <attribute name="VALUE" x="-86.36" y="88.9" size="1.778" layer="96"/>
 </instance>
+<instance part="GND19" gate="1" x="-162.56" y="243.84" smashed="yes">
+<attribute name="VALUE" x="-162.56" y="243.586" size="1.778" layer="96" align="top-center"/>
+</instance>
+<instance part="GND20" gate="1" x="-132.08" y="243.84" smashed="yes">
+<attribute name="VALUE" x="-132.08" y="243.586" size="1.778" layer="96" align="top-center"/>
+</instance>
+<instance part="GND21" gate="1" x="-78.74" y="246.38" smashed="yes">
+<attribute name="VALUE" x="-78.74" y="246.126" size="1.778" layer="96" align="top-center"/>
+</instance>
+<instance part="GND22" gate="1" x="-50.8" y="246.38" smashed="yes">
+<attribute name="VALUE" x="-50.8" y="246.126" size="1.778" layer="96" align="top-center"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -4631,20 +4647,12 @@ valore scritto in numero</text>
 <segment>
 <pinref part="IC3.3" gate="A1" pin="ADJ"/>
 <pinref part="GND1" gate="1" pin="GND"/>
-<pinref part="C1" gate="G$1" pin="2"/>
-<wire x1="-78.74" y1="251.46" x2="-66.04" y2="251.46" width="0.1524" layer="91"/>
-<junction x="-66.04" y="251.46"/>
-<pinref part="C2" gate="G$1" pin="2"/>
-<wire x1="-50.8" y1="251.46" x2="-66.04" y2="251.46" width="0.1524" layer="91"/>
+<wire x1="-66.04" y1="248.92" x2="-66.04" y2="251.46" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="IC5" gate="A1" pin="ADJ"/>
 <pinref part="GND3" gate="1" pin="GND"/>
-<pinref part="C6" gate="G$1" pin="2"/>
-<wire x1="-147.32" y1="251.46" x2="-132.08" y2="251.46" width="0.1524" layer="91"/>
-<junction x="-147.32" y="251.46"/>
-<pinref part="C5" gate="G$1" pin="2"/>
-<wire x1="-147.32" y1="251.46" x2="-162.56" y2="251.46" width="0.1524" layer="91"/>
+<wire x1="-147.32" y1="246.38" x2="-147.32" y2="251.46" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="B1" gate="G$1" pin="GND"/>
@@ -4927,6 +4935,26 @@ valore scritto in numero</text>
 <pinref part="GND18" gate="1" pin="GND"/>
 <pinref part="300_OHM" gate="G$1" pin="1"/>
 <wire x1="-83.82" y1="93.98" x2="-83.82" y2="96.52" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C5" gate="G$1" pin="2"/>
+<pinref part="GND19" gate="1" pin="GND"/>
+<wire x1="-162.56" y1="246.38" x2="-162.56" y2="251.46" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C6" gate="G$1" pin="2"/>
+<pinref part="GND20" gate="1" pin="GND"/>
+<wire x1="-132.08" y1="246.38" x2="-132.08" y2="251.46" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C1" gate="G$1" pin="2"/>
+<pinref part="GND21" gate="1" pin="GND"/>
+<wire x1="-78.74" y1="248.92" x2="-78.74" y2="251.46" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C2" gate="G$1" pin="2"/>
+<pinref part="GND22" gate="1" pin="GND"/>
+<wire x1="-50.8" y1="248.92" x2="-50.8" y2="251.46" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$2" class="0">

@@ -4628,20 +4628,6 @@ valore scritto in numero</text>
 <nets>
 <net name="3.3" class="0">
 <segment>
-<pinref part="B1" gate="G$1" pin="GND"/>
-<wire x1="-129.54" y1="190.5" x2="-109.22" y2="190.5" width="0.1524" layer="91"/>
-<wire x1="-109.22" y1="190.5" x2="-109.22" y2="195.58" width="0.1524" layer="91"/>
-<pinref part="GND5" gate="1" pin="GND"/>
-<wire x1="-109.22" y1="195.58" x2="-104.14" y2="195.58" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="B1" gate="G$1" pin="GND@2"/>
-<wire x1="-162.56" y1="190.5" x2="-180.34" y2="190.5" width="0.1524" layer="91"/>
-<wire x1="-180.34" y1="190.5" x2="-180.34" y2="195.58" width="0.1524" layer="91"/>
-<pinref part="GND6" gate="1" pin="GND"/>
-<wire x1="-180.34" y1="195.58" x2="-187.96" y2="195.58" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <wire x1="-228.6" y1="104.14" x2="-228.6" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="-228.6" y1="119.38" x2="-190.5" y2="119.38" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="VDDIO"/>
@@ -4718,7 +4704,6 @@ valore scritto in numero</text>
 <pinref part="130OHM" gate="G$1" pin="2"/>
 <pinref part="27OHM" gate="G$1" pin="2"/>
 <pinref part="820OHM" gate="G$1" pin="2"/>
-<pinref part="U4" gate="A" pin="V+"/>
 <pinref part="U4" gate="A" pin="V+"/>
 <junction x="93.98" y="195.58"/>
 <pinref part="U5" gate="A" pin="V+"/>
@@ -4937,19 +4922,26 @@ valore scritto in numero</text>
 <pinref part="GND14" gate="1" pin="GND"/>
 <wire x1="127" y1="104.14" x2="127" y2="101.6" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="B1" gate="G$1" pin="GND@2"/>
+<wire x1="-162.56" y1="190.5" x2="-180.34" y2="190.5" width="0.1524" layer="91"/>
+<wire x1="-180.34" y1="190.5" x2="-180.34" y2="195.58" width="0.1524" layer="91"/>
+<pinref part="GND6" gate="1" pin="GND"/>
+<wire x1="-180.34" y1="195.58" x2="-187.96" y2="195.58" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="B1" gate="G$1" pin="GND"/>
+<wire x1="-129.54" y1="190.5" x2="-109.22" y2="190.5" width="0.1524" layer="91"/>
+<wire x1="-109.22" y1="190.5" x2="-109.22" y2="195.58" width="0.1524" layer="91"/>
+<pinref part="GND5" gate="1" pin="GND"/>
+<wire x1="-109.22" y1="195.58" x2="-104.14" y2="195.58" width="0.1524" layer="91"/>
+</segment>
 </net>
 <net name="N$2" class="0">
 <segment>
 <pinref part="BT1" gate="G$1" pin="-"/>
 <pinref part="BT2" gate="G$1" pin="+"/>
 <wire x1="-109.22" y1="314.96" x2="-101.6" y2="314.96" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$4" class="0">
-<segment>
-<pinref part="BT2" gate="G$1" pin="-"/>
-<pinref part="BT3" gate="G$1" pin="+"/>
-<wire x1="-86.36" y1="314.96" x2="-81.28" y2="314.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$5" class="0">
@@ -5121,6 +5113,13 @@ valore scritto in numero</text>
 <wire x1="134.62" y1="157.48" x2="86.36" y2="157.48" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="157.48" x2="86.36" y2="190.5" width="0.1524" layer="91"/>
 <junction x="86.36" y="190.5"/>
+</segment>
+</net>
+<net name="N$4" class="0">
+<segment>
+<pinref part="BT2" gate="G$1" pin="-"/>
+<pinref part="BT3" gate="G$1" pin="+"/>
+<wire x1="-86.36" y1="314.96" x2="-81.28" y2="314.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

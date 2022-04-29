@@ -61,7 +61,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="39" y="43" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="29" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="108" y="68" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="57" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="46" y="122" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../sensor/reading_sps30.c" selected="0" top="104" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="20" y="25" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/main.c" useBinaryEdit="0" left="0" path="../../../sensor/reading_scd41.c" selected="0" top="51" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="20" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/sensor/reading_sps30.c" useBinaryEdit="0" left="0" path="../../../sensor/reading_sps30.h" selected="0" top="6" codecName="Default"/>
@@ -70,8 +70,11 @@
   <SessionOpenFile windowGroup="DockEditLeft" x="4" y="49" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/main.c" useBinaryEdit="0" left="0" path="../../../sensor/scd4x_i2c.c" selected="0" top="34" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="71" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/mdk/ses_startup_nrf52.s" selected="0" top="57" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="15" y="69" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/drivers/include/nrfx_saadc.h" selected="0" top="62" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="0" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="60" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../../../../integration/nrfx/legacy/nrf_drv_twi.h" selected="1" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1098" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="1" top="1087" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="2" y="113" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../../../../integration/nrfx/legacy/nrf_drv_twi.h" selected="0" top="98" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../integration/nrfx/legacy/nrf_drv_twi.c" selected="0" top="15" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="23" y="158" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/util/sdk_errors.h" selected="0" top="86" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/drivers/src/nrfx_saadc.c" selected="0" top="30" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="timer_pca10040" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/prova/main.c&#xa;" fileDialogInitialDirectory="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/TWI_SAADC_TIMER/sensor" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

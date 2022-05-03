@@ -97,6 +97,7 @@
       <file file_name="../../../sensor/sps30.c" />
       <file file_name="../../../sensor/bme68x.c" />
       <file file_name="../../../sensor/common.c" />
+      <file file_name="../../../sensor/bme280.c" />
     </folder>
   </project>
   <configuration

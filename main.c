@@ -17,6 +17,8 @@
 #include "reading_scd41.h"
 #include "sps30.h"
 #include "scd4x_i2c.h"
+#include "bme280.h"
+#include "bme280_defs.h"
 
 
 #define LED1 07
@@ -108,7 +110,7 @@ void log_init(void)
                         /////////////////////
 
 const nrfx_timer_t TIMER_LED = NRFX_TIMER_INSTANCE(0); // Timer 0 Enabled
-
+struct bme280_dev dev;
 void timer0_handler(nrf_timer_event_t event_type, void* p_context)
 {
 int16_t error = 0;
@@ -188,6 +190,22 @@ int16_t decimale;
             value = pow(10, (log10(value)-0.55)/-0.85)*1000;
             intero = value;
             printf("CO:  %d [ppm]\n", intero);
+
+struct bme280_data comp_data;
+error = bme280_get_sensor_data(BME280_ALL, &comp_data, &dev);
+    int intero;
+    int decimale;
+    intero = comp_data.temperature;
+    decimale = (comp_data.temperature - intero) * 100;
+    printf("T [°C] : %d.%d\n", intero, decimale);
+
+    intero = comp_data.humidity;
+    decimale = (comp_data.humidity - intero) * 100;
+    printf("RH [%%]: %d.%d\n",intero, decimale);
+
+    intero = comp_data.pressure;
+    decimale = (comp_data.pressure - intero) * 100;
+    printf("P [Pa]: %d.%d\n", intero, decimale);
             printf("\n");
             break;
 
@@ -318,6 +336,40 @@ m_saadc_calibrate = false;
     printf("Periodic sps30 measurement started\n\n");
     nrf_delay_ms(5000);
     printf("\n");
+
+
+int8_t rslt = BME280_OK;
+uint8_t dev_addr = BME280_I2C_ADDR_PRIM;
+
+dev.intf_ptr = &dev_addr;
+dev.intf = BME280_I2C_INTF;
+dev.read = bme280_i2c_read;
+dev.write = bme280_i2c_write;
+dev.delay_us = bme280_delay_us;
+nrf_delay_ms(1000);
+printf("Inizio\n");
+nrf_delay_ms(1000);
+rslt = bme280_init(&dev);
+printf("BME280 init: %d\n", rslt);
+
+uint8_t settings_sel;
+struct bme280_data comp_data;
+
+//Recommended mode of operation: Indoor navigation 
+dev.settings.osr_h = BME280_OVERSAMPLING_1X;
+dev.settings.osr_p = BME280_OVERSAMPLING_16X;
+dev.settings.osr_t = BME280_OVERSAMPLING_2X;
+dev.settings.filter = BME280_FILTER_COEFF_16;
+dev.settings.standby_time = BME280_STANDBY_TIME_62_5_MS;
+settings_sel = BME280_OSR_PRESS_SEL;
+settings_sel |= BME280_OSR_TEMP_SEL;
+settings_sel |= BME280_OSR_HUM_SEL;
+settings_sel |= BME280_STANDBY_SEL;
+settings_sel |= BME280_FILTER_SEL;
+rslt = bme280_set_sensor_settings(settings_sel, &dev);
+printf("BME280 set sensor settings: %d\n", rslt);
+rslt = bme280_set_sensor_mode(BME280_NORMAL_MODE, &dev);
+printf("BME280 set sensor mode: %d\n", rslt);
 
     timer_init();       //INIZIALIZZAZIONE DEL TIMER
     nrfx_timer_enable(&TIMER_LED);

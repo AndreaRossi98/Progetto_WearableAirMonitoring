@@ -48,67 +48,64 @@
 /* To identify filter and standby settings selected by user */
 #define FILTER_STANDBY_SETTINGS  UINT8_C(0x18)
 
-////
 
-
-/////////////////////
-
-
+/* Library used to I2C communication*/
 #include "nrf_delay.h"
 #include "nrf_drv_twi.h"
 #include <string.h>
 
-static const nrf_drv_twi_t i2c_instance = NRF_DRV_TWI_INSTANCE(0);
+
 void bme280_delay_us(uint32_t period, void *intf_ptr)
 {
     nrf_delay_ms(period);
 }
 
+/* Instance for I2C communication*/
+static const nrf_drv_twi_t i2c_instance = NRF_DRV_TWI_INSTANCE(0);
+
 BME280_INTF_RET_TYPE bme280_i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len, void *intf_ptr)
 {
-uint8_t dev_addr = *(uint8_t*)intf_ptr;
-BME280_INTF_RET_TYPE ret;
-ret_code_t err_code;
+    uint8_t dev_addr = *(uint8_t*)intf_ptr;
+    BME280_INTF_RET_TYPE ret;
+    ret_code_t err_code;
 
-// Write register address
-err_code = nrf_drv_twi_tx(&i2c_instance, BME280_I2C_ADDR_PRIM, (uint8_t *)&reg_addr, (uint16_t)1, false);
+    // Write register address
+    err_code = nrf_drv_twi_tx(&i2c_instance, BME280_I2C_ADDR_PRIM, (uint8_t *)&reg_addr, (uint16_t)1, false);
+    // Read data
+    err_code = nrf_drv_twi_rx(&i2c_instance, BME280_I2C_ADDR_PRIM, reg_data, (uint16_t)len);
 
-// Read data
-err_code = nrf_drv_twi_rx(&i2c_instance, BME280_I2C_ADDR_PRIM, reg_data, (uint16_t)len);
+    ret = !(err_code == NRF_SUCCESS);
 
-ret = !(err_code == NRF_SUCCESS);
-
-return ret;
+    return ret;
 }
 
 BME280_INTF_RET_TYPE bme280_i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len, void *intf_ptr)
 {
-uint8_t dev_addr = *(uint8_t*)intf_ptr;
-BME280_INTF_RET_TYPE ret;
-ret_code_t err_code;
-uint8_t m_i2c_wr_buf[2];
+    uint8_t dev_addr = *(uint8_t*)intf_ptr;
+    BME280_INTF_RET_TYPE ret;
+    ret_code_t err_code;
+    uint8_t m_i2c_wr_buf[2];
 
-if (len > 200)
-{
-return !BME280_INTF_RET_SUCCESS;
-}
+    if (len > 200)
+    {
+        return !BME280_INTF_RET_SUCCESS;
+    }
 
-#if 0
-// Write register address
-err_code = nrf_drv_twi_tx(&m_twi, BME280_I2C_ADDR_PRIM, (uint8_t *)&reg_addr, (uint16_t)1, true);
+    #if 0
+        // Write register address
+        err_code = nrf_drv_twi_tx(&m_twi, BME280_I2C_ADDR_PRIM, (uint8_t *)&reg_addr, (uint16_t)1, true);
+        // Write data
+        err_code = nrf_drv_twi_tx(&m_twi, BME280_I2C_ADDR_PRIM, (uint8_t *)reg_data, (uint16_t)len, false);
+    #else
+        m_i2c_wr_buf[0] = reg_addr;
+        memcpy(&m_i2c_wr_buf[1], reg_data, len);
+        // Write data
+        err_code = nrf_drv_twi_tx(&i2c_instance, BME280_I2C_ADDR_PRIM, (uint8_t *)m_i2c_wr_buf, (uint16_t)len + 1, false);
+    #endif
 
-// Write data
-err_code = nrf_drv_twi_tx(&m_twi, BME280_I2C_ADDR_PRIM, (uint8_t *)reg_data, (uint16_t)len, false);
-#else
-m_i2c_wr_buf[0] = reg_addr;
-memcpy(&m_i2c_wr_buf[1], reg_data, len);
-// Write data
-err_code = nrf_drv_twi_tx(&i2c_instance, BME280_I2C_ADDR_PRIM, (uint8_t *)m_i2c_wr_buf, (uint16_t)len + 1, false);
-#endif
+    ret = !(err_code == NRF_SUCCESS);
 
-ret = !(err_code == NRF_SUCCESS);
-
-return ret;
+    return ret;
 }
 
 

@@ -1589,83 +1589,6 @@ W = angled&lt;p&gt;
 </deviceset>
 </devicesets>
 </library>
-<library name="BME688">
-<packages>
-<package name="IC_BME688">
-<wire x1="-1.5" y1="1.5" x2="-1.5" y2="-1.5" width="0.127" layer="51"/>
-<wire x1="-1.5" y1="-1.5" x2="1.5" y2="-1.5" width="0.127" layer="51"/>
-<wire x1="1.5" y1="-1.5" x2="1.5" y2="1.5" width="0.127" layer="51"/>
-<wire x1="1.5" y1="1.5" x2="-1.5" y2="1.5" width="0.127" layer="51"/>
-<text x="-1.8" y="2" size="0.8" layer="25" ratio="11">&gt;NAME</text>
-<text x="-1.9" y="-2.7" size="0.8" layer="27" ratio="11">&gt;VALUE</text>
-<wire x1="1.5" y1="1.72" x2="-1.5" y2="1.72" width="0.127" layer="21"/>
-<wire x1="-1.5" y1="-1.72" x2="1.5" y2="-1.72" width="0.127" layer="21"/>
-<wire x1="-1.75" y1="1.75" x2="1.75" y2="1.75" width="0.05" layer="39"/>
-<wire x1="1.75" y1="1.75" x2="1.75" y2="-1.75" width="0.05" layer="39"/>
-<wire x1="1.75" y1="-1.75" x2="-1.75" y2="-1.75" width="0.05" layer="39"/>
-<wire x1="-1.75" y1="-1.75" x2="-1.75" y2="1.75" width="0.05" layer="39"/>
-<circle x="2.045" y="1.2" radius="0.1" width="0.2" layer="21"/>
-<circle x="2.045" y="1.2" radius="0.1" width="0.2" layer="51"/>
-<smd name="1" x="1.2" y="1.2" dx="0.4" dy="0.4" layer="1"/>
-<smd name="2" x="1.2" y="0.4" dx="0.4" dy="0.4" layer="1"/>
-<smd name="3" x="1.2" y="-0.4" dx="0.4" dy="0.4" layer="1"/>
-<smd name="4" x="1.2" y="-1.2" dx="0.4" dy="0.4" layer="1"/>
-<smd name="5" x="-1.2" y="-1.2" dx="0.4" dy="0.4" layer="1"/>
-<smd name="6" x="-1.2" y="-0.4" dx="0.4" dy="0.4" layer="1"/>
-<smd name="7" x="-1.2" y="0.4" dx="0.4" dy="0.4" layer="1"/>
-<smd name="8" x="-1.2" y="1.2" dx="0.4" dy="0.4" layer="1"/>
-</package>
-</packages>
-<symbols>
-<symbol name="BME688">
-<wire x1="-10.16" y1="-10.16" x2="-10.16" y2="10.16" width="0.254" layer="94"/>
-<wire x1="-10.16" y1="10.16" x2="10.16" y2="10.16" width="0.254" layer="94"/>
-<wire x1="10.16" y1="10.16" x2="10.16" y2="-10.16" width="0.254" layer="94"/>
-<wire x1="10.16" y1="-10.16" x2="-10.16" y2="-10.16" width="0.254" layer="94"/>
-<text x="-10.16" y="10.668" size="1.778" layer="95">&gt;NAME</text>
-<text x="-10.16" y="-12.7" size="1.778" layer="96">&gt;VALUE</text>
-<pin name="CSB" x="-15.24" y="0" length="middle" direction="in"/>
-<pin name="SDI" x="15.24" y="0" length="middle" rot="R180"/>
-<pin name="SCK" x="-15.24" y="-2.54" length="middle" direction="in" function="clk"/>
-<pin name="SDO" x="15.24" y="-2.54" length="middle" rot="R180"/>
-<pin name="VDDIO" x="15.24" y="7.62" length="middle" direction="pwr" rot="R180"/>
-<pin name="GND" x="15.24" y="-7.62" length="middle" direction="pwr" rot="R180"/>
-<pin name="VDD" x="15.24" y="5.08" length="middle" direction="pwr" rot="R180"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="BME688" prefix="U">
-<description>Gas sensor measuring relative humidity, barometric pressure, ambient temperature and gas (VOC)  &lt;a href="https://pricing.snapeda.com/parts/BME688/Bosch%20Sensortec/view-part?ref=eda"&gt;Check availability&lt;/a&gt;</description>
-<gates>
-<gate name="G$1" symbol="BME688" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="IC_BME688">
-<connects>
-<connect gate="G$1" pin="CSB" pad="2"/>
-<connect gate="G$1" pin="GND" pad="1 7"/>
-<connect gate="G$1" pin="SCK" pad="4"/>
-<connect gate="G$1" pin="SDI" pad="3"/>
-<connect gate="G$1" pin="SDO" pad="5"/>
-<connect gate="G$1" pin="VDD" pad="8"/>
-<connect gate="G$1" pin="VDDIO" pad="6"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="AVAILABILITY" value="In Stock"/>
-<attribute name="DESCRIPTION" value=" Gas sensor measuring relative humidity, barometric pressure, ambient temperature and gas (VOC) "/>
-<attribute name="MF" value="Bosch Sensortec"/>
-<attribute name="MP" value="BME688"/>
-<attribute name="PACKAGE" value="None"/>
-<attribute name="PRICE" value="None"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BME688/?ref=eda"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="SCD41-D-R1">
 <description>Imported from Altium Designer&amp;reg; library: SCD41-D-R1.Schlib</description>
 <packages>
@@ -2827,6 +2750,240 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 </deviceset>
 </devicesets>
 </library>
+<library name="BME280">
+<packages>
+<package name="PSON65P250X250X100-8N">
+<description>2.5 mm x 2.5 mm x 0.93 mm metal lid LGA</description>
+<text x="-1.256709375" y="1.66246875" size="0.4085875" layer="25">&gt;NAME</text>
+<text x="-1.204140625" y="-2.010759375" size="0.4078" layer="27">&gt;VALUE</text>
+<wire x1="-1.3" y1="1.3" x2="-1.3" y2="-1.3" width="0.127" layer="51"/>
+<wire x1="-1.3" y1="-1.3" x2="1.3" y2="-1.3" width="0.127" layer="51"/>
+<wire x1="1.3" y1="-1.3" x2="1.3" y2="1.3" width="0.127" layer="51"/>
+<wire x1="1.3" y1="1.3" x2="-1.3" y2="1.3" width="0.127" layer="51"/>
+<wire x1="-1.3" y1="-1.385" x2="1.3" y2="-1.385" width="0.127" layer="21"/>
+<wire x1="-1.3" y1="1.385" x2="1.3" y2="1.385" width="0.127" layer="21"/>
+<circle x="1.6" y="1" radius="0.05" width="0.2" layer="21"/>
+<wire x1="-1.55" y1="1.55" x2="1.55" y2="1.55" width="0.05" layer="39"/>
+<wire x1="1.55" y1="1.55" x2="1.55" y2="-1.55" width="0.05" layer="39"/>
+<wire x1="1.55" y1="-1.55" x2="-1.55" y2="-1.55" width="0.05" layer="39"/>
+<wire x1="-1.55" y1="-1.55" x2="-1.55" y2="1.55" width="0.05" layer="39"/>
+<circle x="1" y="1" radius="0.05" width="0.2" layer="51"/>
+<smd name="3" x="0.97" y="-0.325" dx="0.49" dy="0.45" layer="1" roundness="25"/>
+<smd name="2" x="0.97" y="0.325" dx="0.49" dy="0.45" layer="1" roundness="25"/>
+<smd name="1" x="0.97" y="0.975" dx="0.49" dy="0.45" layer="1" roundness="25"/>
+<smd name="4" x="0.97" y="-0.975" dx="0.49" dy="0.45" layer="1" roundness="25"/>
+<smd name="6" x="-0.97" y="-0.325" dx="0.49" dy="0.45" layer="1" roundness="25"/>
+<smd name="7" x="-0.97" y="0.325" dx="0.49" dy="0.45" layer="1" roundness="25"/>
+<smd name="8" x="-0.97" y="0.975" dx="0.49" dy="0.45" layer="1" roundness="25"/>
+<smd name="5" x="-0.97" y="-0.975" dx="0.49" dy="0.45" layer="1" roundness="25"/>
+</package>
+</packages>
+<symbols>
+<symbol name="BME280">
+<wire x1="-10.16" y1="12.7" x2="10.16" y2="12.7" width="0.4064" layer="94"/>
+<wire x1="10.16" y1="12.7" x2="10.16" y2="-12.7" width="0.4064" layer="94"/>
+<wire x1="10.16" y1="-12.7" x2="-10.16" y2="-12.7" width="0.4064" layer="94"/>
+<wire x1="-10.16" y1="-12.7" x2="-10.16" y2="12.7" width="0.4064" layer="94"/>
+<text x="-10.1662" y="13.3431" size="1.786590625" layer="95">&gt;NAME</text>
+<text x="-10.1683" y="-15.2524" size="1.782940625" layer="96">&gt;VALUE</text>
+<pin name="VDD" x="15.24" y="7.62" length="middle" direction="pwr" rot="R180"/>
+<pin name="GND" x="15.24" y="-10.16" length="middle" direction="pwr" rot="R180"/>
+<pin name="VDDIO" x="15.24" y="10.16" length="middle" direction="pwr" rot="R180"/>
+<pin name="CSB" x="-15.24" y="2.54" length="middle" direction="in"/>
+<pin name="SDO" x="-15.24" y="-5.08" length="middle"/>
+<pin name="SDI" x="-15.24" y="-2.54" length="middle"/>
+<pin name="SCK" x="-15.24" y="0" length="middle" direction="in" function="clk"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="BME280" prefix="U">
+<description>DIGITAL HUMIDITY, PRESSURE AND TEMPERATURE SENSOR&lt;br&gt;* Digital interface I²C (up to 3.4 MHz) and SPI (3 and 4 wire, up to 10 MHz)* Supply voltage VDD main supply voltage range: 1.71 V to 3.6 V*VDDIO interface voltage range: 1.2 V to 3.6 V&lt;br&gt;
+Operating range -40…+85 °C, 0…100 % rel. humidity, 300…1100 hPa
+&lt;br&gt;&lt;br&gt;
+
+The library has been designed by&lt;a href="https://www.facebook.com/groups/eaglecadsoftUK"&gt; Richard Magdycz&lt;/a&gt; &lt;a href="https://pricing.snapeda.com/parts/BME280/Bosch/view-part?ref=eda"&gt;Check availability&lt;/a&gt;</description>
+<gates>
+<gate name="G$1" symbol="BME280" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="PSON65P250X250X100-8N">
+<connects>
+<connect gate="G$1" pin="CSB" pad="2"/>
+<connect gate="G$1" pin="GND" pad="1 7"/>
+<connect gate="G$1" pin="SCK" pad="4"/>
+<connect gate="G$1" pin="SDI" pad="3"/>
+<connect gate="G$1" pin="SDO" pad="5"/>
+<connect gate="G$1" pin="VDD" pad="8"/>
+<connect gate="G$1" pin="VDDIO" pad="6"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="AVAILABILITY" value="In Stock"/>
+<attribute name="DESCRIPTION" value=" Board Mount Humidity Sensors MEMS humidity, pressure and temperature sensor "/>
+<attribute name="MF" value="Bosch"/>
+<attribute name="MP" value="BME280"/>
+<attribute name="PACKAGE" value="LGA-8 Bosch"/>
+<attribute name="PRICE" value="None"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BME280/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="SGP30">
+<packages>
+<package name="SGP30">
+<rectangle x1="-1.525" y1="0.6" x2="-0.975" y2="1" layer="31"/>
+<rectangle x1="-1.525" y1="-0.2" x2="-0.975" y2="0.2" layer="31"/>
+<rectangle x1="-1.525" y1="-1" x2="-0.975" y2="-0.6" layer="31"/>
+<rectangle x1="0.975" y1="0.6" x2="1.525" y2="1" layer="31"/>
+<rectangle x1="0.975" y1="-0.2" x2="1.525" y2="0.2" layer="31"/>
+<rectangle x1="0.975" y1="-1" x2="1.525" y2="-0.6" layer="31"/>
+<polygon width="0.0001" layer="1">
+<vertex x="-0.625" y="-0.85"/>
+<vertex x="0.625" y="-0.85"/>
+<vertex x="0.625" y="0.85"/>
+<vertex x="-0.35" y="0.85"/>
+<vertex x="-0.625" y="0.575"/>
+</polygon>
+<polygon width="0.0001" layer="29">
+<vertex x="-0.725" y="-0.95"/>
+<vertex x="0.725" y="-0.95"/>
+<vertex x="0.725" y="0.95"/>
+<vertex x="-0.4" y="0.95"/>
+<vertex x="-0.725" y="0.625"/>
+</polygon>
+<wire x1="-1.225" y1="-1.225" x2="1.225" y2="-1.225" width="0.2032" layer="51"/>
+<wire x1="1.225" y1="-1.225" x2="1.225" y2="1.225" width="0.2032" layer="51"/>
+<wire x1="1.225" y1="1.225" x2="-1.225" y2="1.225" width="0.2032" layer="51"/>
+<wire x1="-1.225" y1="1.225" x2="-1.225" y2="-1.225" width="0.2032" layer="51"/>
+<wire x1="-0.225" y1="0.5" x2="-0.425" y2="0.7" width="0.2032" layer="51"/>
+<wire x1="-0.425" y1="0.7" x2="-0.7" y2="0.425" width="0.2032" layer="51"/>
+<wire x1="-0.7" y1="0.425" x2="-0.525" y2="0.25" width="0.2032" layer="51"/>
+<wire x1="-0.225" y1="0.5" x2="-0.5" y2="0.225" width="0.2032" layer="51" curve="-318.455"/>
+<wire x1="-1.225" y1="1.225" x2="1.225" y2="1.225" width="0.2032" layer="21"/>
+<wire x1="1.225" y1="-1.225" x2="-1.225" y2="-1.225" width="0.2032" layer="21"/>
+<circle x="-1.524" y="1.524" radius="0.127" width="0.2032" layer="21"/>
+<rectangle x1="-0.3" y1="-0.425" x2="0.3" y2="0.425" layer="31"/>
+<text x="-1.27" y="1.524" size="0.8128" layer="25">&gt;NAME</text>
+<text x="-1.27" y="-2.54" size="0.8128" layer="27">&gt;VALUE</text>
+<smd name="5" x="1.15" y="0" dx="0.55" dy="0.4" layer="1" cream="no"/>
+<smd name="6" x="1.15" y="0.8" dx="0.55" dy="0.4" layer="1" cream="no"/>
+<smd name="4" x="1.15" y="-0.8" dx="0.55" dy="0.4" layer="1" cream="no"/>
+<smd name="3" x="-1.15" y="-0.8" dx="0.55" dy="0.4" layer="1" cream="no"/>
+<smd name="2" x="-1.15" y="0" dx="0.55" dy="0.4" layer="1" cream="no"/>
+<smd name="1" x="-1.15" y="0.8" dx="0.55" dy="0.4" layer="1" cream="no"/>
+<smd name="DIEPAD" x="0" y="0" dx="0.6096" dy="0.3048" layer="1" rot="R90" stop="no" cream="no"/>
+</package>
+</packages>
+<symbols>
+<symbol name="SGP30">
+<wire x1="7.62" y1="-7.62" x2="7.62" y2="7.62" width="0.254" layer="94"/>
+<wire x1="7.62" y1="7.62" x2="-7.62" y2="7.62" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="7.62" x2="-7.62" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="-7.62" y1="-7.62" x2="7.62" y2="-7.62" width="0.254" layer="94"/>
+<text x="-7.62" y="8.128" size="1.778" layer="95">&gt;NAME</text>
+<text x="-7.62" y="-9.906" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="VDD" x="-10.16" y="5.08" visible="pin" length="short"/>
+<pin name="VDDH" x="-10.16" y="2.54" visible="pin" length="short"/>
+<pin name="VSS" x="-10.16" y="-2.54" visible="pin" length="short"/>
+<pin name="SDA" x="10.16" y="2.54" visible="pin" length="short" rot="R180"/>
+<pin name="SCL" x="10.16" y="-2.54" visible="pin" length="short" rot="R180"/>
+<pin name="R" x="-10.16" y="0" visible="pin" length="short"/>
+<pin name="DIEPAD" x="-10.16" y="-5.08" visible="pin" length="short"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="SGP30" prefix="U">
+<description>The SGP30 is a digital multi-pixel gas sensor designed for
+easy integration into air purifier, demand-controlled
+ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/parts/SGP30/Sensirion%20AG/view-part?ref=eda"&gt;Check availability&lt;/a&gt;</description>
+<gates>
+<gate name="G$1" symbol="SGP30" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SGP30">
+<connects>
+<connect gate="G$1" pin="DIEPAD" pad="DIEPAD"/>
+<connect gate="G$1" pin="R" pad="4"/>
+<connect gate="G$1" pin="SCL" pad="6"/>
+<connect gate="G$1" pin="SDA" pad="3"/>
+<connect gate="G$1" pin="VDD" pad="1"/>
+<connect gate="G$1" pin="VDDH" pad="5"/>
+<connect gate="G$1" pin="VSS" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="AVAILABILITY" value="In Stock"/>
+<attribute name="DESCRIPTION" value=" SGP30, SHTC1 Air Quality, Humidity, Temperature Sensor Arduino Platform Evaluation Expansion Board "/>
+<attribute name="MF" value="Sensirion AG"/>
+<attribute name="MP" value="SGP30"/>
+<attribute name="PACKAGE" value="None"/>
+<attribute name="PRICE" value="None"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SGP30/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="Condens_100nF">
+<packages>
+<package name="CAPC0603X33N">
+<text x="-0.72" y="-0.51" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-0.72" y="0.51" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.32" y1="-0.16" x2="-0.32" y2="-0.16" width="0.127" layer="51"/>
+<wire x1="0.32" y1="0.16" x2="-0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="0.32" y1="-0.16" x2="0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="-0.32" y1="-0.16" x2="-0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="-0.718" y1="-0.448" x2="0.718" y2="-0.448" width="0.05" layer="39"/>
+<wire x1="-0.718" y1="0.448" x2="0.718" y2="0.448" width="0.05" layer="39"/>
+<wire x1="-0.718" y1="-0.448" x2="-0.718" y2="0.448" width="0.05" layer="39"/>
+<wire x1="0.718" y1="-0.448" x2="0.718" y2="0.448" width="0.05" layer="39"/>
+<smd name="1" x="-0.281" y="0" dx="0.38" dy="0.4" layer="1"/>
+<smd name="2" x="0.281" y="0" dx="0.38" dy="0.4" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="GRM033C80J104KE15D">
+<text x="0" y="3.81093125" size="1.77843125" layer="95">&gt;NAME</text>
+<text x="0" y="-5.08848125" size="1.78096875" layer="96">&gt;VALUE</text>
+<rectangle x1="0" y1="-1.906859375" x2="0.635" y2="1.905" layer="94"/>
+<rectangle x1="1.90685" y1="-1.90685" x2="2.54" y2="1.905" layer="94"/>
+<pin name="2" x="5.08" y="0" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="1" x="-2.54" y="0" visible="pad" length="short" direction="pas"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="GRM033C80J104KE15D" prefix="C">
+<description>SMD Capacitor X6S(EIA) with Capacitance: 0.10uF Tol. 10%. Rated Voltage: 6.3Vdc </description>
+<gates>
+<gate name="G$1" symbol="GRM033C80J104KE15D" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CAPC0603X33N">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value=" SMD capacitor X6S(EIA) with capacitance 0.10uF Tol.10%. Rated voltage 6.3Vdc 105C "/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="490-10390-2-ND"/>
+<attribute name="MF" value="Murata Electronics"/>
+<attribute name="MP" value="GRM033C80J104KE15D"/>
+<attribute name="PACKAGE" value="0603 Taiyo Yuden"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/GRM033C80J104KE15D/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -2853,7 +3010,6 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <part name="GND6" library="supply" deviceset="GND" device=""/>
 <part name="GND7" library="supply" deviceset="GND" device=""/>
 <part name="GND10" library="supply" deviceset="GND" device=""/>
-<part name="U2" library="BME688" deviceset="BME688" device=""/>
 <part name="SCD4X" library="SCD41-D-R1" deviceset="SCD4X" device="SCD4X_SCD4X_SCD4X"/>
 <part name="GND11" library="supply" deviceset="GND" device=""/>
 <part name="U3" library="MICS-6814" deviceset="MICS-6814" device=""/>
@@ -2893,6 +3049,15 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <part name="R10" library="Res_270OHM" deviceset="RMCF0603FT270R" device=""/>
 <part name="R11" library="Res_130OHM" deviceset="RMCF0603FT130R" device=""/>
 <part name="R12" library="Res_300OHM" deviceset="RMCF0603FT300R" device=""/>
+<part name="U6" library="BME280" deviceset="BME280" device=""/>
+<part name="U2" library="SGP30" deviceset="SGP30" device=""/>
+<part name="GND9" library="supply" deviceset="GND" device=""/>
+<part name="B2" library="SparkFun-Boards" deviceset="SPARKFUN_LOGIC_LEVEL_CONVERTER" device=""/>
+<part name="GND23" library="supply" deviceset="GND" device=""/>
+<part name="GND24" library="supply" deviceset="GND" device=""/>
+<part name="IC1.8" library="linear" library_urn="urn:adsk.eagle:library:262" deviceset="*317" device="T" package3d_urn="urn:adsk.eagle:package:16414/1"/>
+<part name="GND25" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
+<part name="C8" library="Condens_100nF" deviceset="GRM033C80J104KE15D" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -2905,9 +3070,9 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <text x="-81.28" y="172.72" size="1.4224" layer="91">SDA</text>
 <text x="-218.44" y="124.46" size="5.08" layer="91">SCD41</text>
 <text x="-231.14" y="170.18" size="5.08" layer="91">SPS30</text>
-<text x="-132.08" y="104.14" size="1.4224" layer="91">SDA</text>
-<text x="-132.08" y="78.74" size="1.4224" layer="91">SCL</text>
-<text x="-220.98" y="86.36" size="5.08" layer="91">BME688</text>
+<text x="-132.08" y="99.06" size="1.4224" layer="91">SDA</text>
+<text x="-139.7" y="101.6" size="1.4224" layer="91">SCL</text>
+<text x="-221.488" y="80.772" size="5.08" layer="91">BME280</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="-60.96" y="172.72" smashed="yes" rot="MR0">
@@ -2928,9 +3093,9 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <instance part="GND3" gate="1" x="-147.32" y="243.84" smashed="yes">
 <attribute name="VALUE" x="-147.32" y="243.586" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="B1" gate="G$1" x="-147.32" y="190.5" smashed="yes" rot="MR0">
-<attribute name="NAME" x="-137.16" y="200.914" size="1.778" layer="95" font="vector" rot="MR0"/>
-<attribute name="VALUE" x="-142.24" y="182.626" size="1.778" layer="95" font="vector" rot="MR0" align="top-left"/>
+<instance part="B1" gate="G$1" x="-144.78" y="190.5" smashed="yes" rot="MR0">
+<attribute name="NAME" x="-134.62" y="200.914" size="1.778" layer="95" font="vector" rot="MR0"/>
+<attribute name="VALUE" x="-139.7" y="182.626" size="1.778" layer="95" font="vector" rot="MR0" align="top-left"/>
 </instance>
 <instance part="C1" gate="G$1" x="-78.74" y="254" smashed="yes">
 <attribute name="NAME" x="-77.216" y="256.921" size="1.778" layer="95" font="vector"/>
@@ -2961,15 +3126,11 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <instance part="GND6" gate="1" x="-187.96" y="193.04" smashed="yes">
 <attribute name="VALUE" x="-190.5" y="190.5" size="1.778" layer="96"/>
 </instance>
-<instance part="GND7" gate="1" x="-193.04" y="83.82" smashed="yes">
-<attribute name="VALUE" x="-195.58" y="81.28" size="1.778" layer="96"/>
+<instance part="GND7" gate="1" x="-208.28" y="66.04" smashed="yes">
+<attribute name="VALUE" x="-210.82" y="63.5" size="1.778" layer="96"/>
 </instance>
 <instance part="GND10" gate="1" x="93.98" y="170.18" smashed="yes">
 <attribute name="VALUE" x="91.44" y="167.64" size="1.778" layer="96"/>
-</instance>
-<instance part="U2" gate="G$1" x="-208.28" y="104.14" smashed="yes">
-<attribute name="NAME" x="-218.44" y="114.808" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-218.44" y="91.44" size="1.778" layer="96"/>
 </instance>
 <instance part="SCD4X" gate="A" x="-208.28" y="142.24" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-205.74" y="129.54" size="1.27" layer="95" rot="MR0"/>
@@ -3096,26 +3257,48 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <instance part="R12" gate="G$1" x="-83.82" y="96.52" smashed="yes" rot="R90">
 <attribute name="NAME" x="-86.36148125" y="88.895559375" size="2.54148125" layer="95" rot="R90"/>
 </instance>
+<instance part="U6" gate="G$1" x="-208.28" y="101.6" smashed="yes" rot="MR0">
+<attribute name="NAME" x="-198.1138" y="114.9431" size="1.786590625" layer="95" rot="MR0"/>
+<attribute name="VALUE" x="-198.1117" y="86.3476" size="1.782940625" layer="96" rot="MR0"/>
+</instance>
+<instance part="U2" gate="G$1" x="-210.82" y="43.18" smashed="yes">
+<attribute name="NAME" x="-218.44" y="51.308" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-218.44" y="33.274" size="1.778" layer="96"/>
+</instance>
+<instance part="GND9" gate="1" x="-228.6" y="33.02" smashed="yes">
+<attribute name="VALUE" x="-231.14" y="30.48" size="1.778" layer="96"/>
+</instance>
+<instance part="B2" gate="G$1" x="-142.24" y="43.18" smashed="yes">
+<attribute name="NAME" x="-152.4" y="53.594" size="1.778" layer="95" font="vector"/>
+<attribute name="VALUE" x="-147.32" y="35.306" size="1.778" layer="95" font="vector" align="top-left"/>
+</instance>
+<instance part="GND23" gate="1" x="-180.34" y="43.18" smashed="yes">
+<attribute name="VALUE" x="-182.88" y="40.64" size="1.778" layer="96"/>
+</instance>
+<instance part="GND24" gate="1" x="-116.84" y="43.18" smashed="yes">
+<attribute name="VALUE" x="-119.38" y="40.64" size="1.778" layer="96"/>
+</instance>
+<instance part="IC1.8" gate="A1" x="-220.98" y="261.62" smashed="yes">
+<attribute name="NAME" x="-228.6" y="269.875" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-228.6" y="267.335" size="1.778" layer="96"/>
+</instance>
+<instance part="GND25" gate="1" x="-220.98" y="251.46" smashed="yes">
+<attribute name="VALUE" x="-220.98" y="251.206" size="1.778" layer="96" align="top-center"/>
+</instance>
+<instance part="C8" gate="G$1" x="-223.52" y="55.88" smashed="yes" rot="R90">
+<attribute name="NAME" x="-227.33093125" y="55.88" size="1.77843125" layer="95" rot="R90"/>
+</instance>
 </instances>
 <busses>
 </busses>
 <nets>
 <net name="3.3" class="0">
 <segment>
-<wire x1="-228.6" y1="104.14" x2="-228.6" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="-228.6" y1="119.38" x2="-190.5" y2="119.38" width="0.1524" layer="91"/>
-<pinref part="U2" gate="G$1" pin="VDDIO"/>
-<wire x1="-190.5" y1="119.38" x2="-190.5" y2="111.76" width="0.1524" layer="91"/>
-<wire x1="-190.5" y1="111.76" x2="-193.04" y2="111.76" width="0.1524" layer="91"/>
-<pinref part="U2" gate="G$1" pin="VDD"/>
-<wire x1="-190.5" y1="111.76" x2="-190.5" y2="109.22" width="0.1524" layer="91"/>
-<wire x1="-190.5" y1="109.22" x2="-193.04" y2="109.22" width="0.1524" layer="91"/>
-<junction x="-190.5" y="111.76"/>
-<pinref part="U2" gate="G$1" pin="CSB"/>
-<wire x1="-223.52" y1="104.14" x2="-228.6" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="-228.6" y1="119.38" x2="-228.6" y2="149.86" width="0.1524" layer="91"/>
-<junction x="-228.6" y="119.38"/>
+<wire x1="-190.5" y1="119.38" x2="-190.5" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="-228.6" y1="119.38" x2="-228.6" y2="147.32" width="0.1524" layer="91"/>
 <pinref part="SCD4X" gate="A" pin="VDD"/>
+<wire x1="-228.6" y1="147.32" x2="-228.6" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="-228.6" y1="149.86" x2="-223.52" y2="149.86" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="LV"/>
 <pinref part="IC3.3" gate="A1" pin="VO"/>
@@ -3131,11 +3314,11 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <wire x1="-91.44" y1="228.6" x2="-99.06" y2="228.6" width="0.1524" layer="91"/>
 <wire x1="-99.06" y1="228.6" x2="-114.3" y2="228.6" width="0.1524" layer="91"/>
 <wire x1="-114.3" y1="228.6" x2="-114.3" y2="193.04" width="0.1524" layer="91"/>
-<wire x1="-114.3" y1="193.04" x2="-129.54" y2="193.04" width="0.1524" layer="91"/>
-<wire x1="-114.3" y1="228.6" x2="-251.46" y2="228.6" width="0.1524" layer="91"/>
+<wire x1="-114.3" y1="193.04" x2="-127" y2="193.04" width="0.1524" layer="91"/>
+<wire x1="-114.3" y1="228.6" x2="-233.68" y2="228.6" width="0.1524" layer="91"/>
 <junction x="-114.3" y="228.6"/>
-<wire x1="-251.46" y1="228.6" x2="-251.46" y2="149.86" width="0.1524" layer="91"/>
-<wire x1="-251.46" y1="149.86" x2="-228.6" y2="149.86" width="0.1524" layer="91"/>
+<wire x1="-233.68" y1="228.6" x2="-233.68" y2="149.86" width="0.1524" layer="91"/>
+<wire x1="-233.68" y1="149.86" x2="-228.6" y2="149.86" width="0.1524" layer="91"/>
 <junction x="-228.6" y="149.86"/>
 <pinref part="R1" gate="G$1" pin="2"/>
 <wire x1="-99.06" y1="228.6" x2="-99.06" y2="220.98" width="0.1524" layer="91"/>
@@ -3143,6 +3326,25 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <pinref part="R2" gate="G$1" pin="2"/>
 <wire x1="-91.44" y1="228.6" x2="-91.44" y2="220.98" width="0.1524" layer="91"/>
 <junction x="-91.44" y="228.6"/>
+<pinref part="U6" gate="G$1" pin="CSB"/>
+<wire x1="-193.04" y1="104.14" x2="-190.5" y2="104.14" width="0.1524" layer="91"/>
+<wire x1="-228.6" y1="119.38" x2="-228.6" y2="111.76" width="0.1524" layer="91"/>
+<junction x="-228.6" y="119.38"/>
+<pinref part="U6" gate="G$1" pin="VDDIO"/>
+<wire x1="-228.6" y1="111.76" x2="-223.52" y2="111.76" width="0.1524" layer="91"/>
+<pinref part="U6" gate="G$1" pin="VDD"/>
+<wire x1="-228.6" y1="111.76" x2="-228.6" y2="109.22" width="0.1524" layer="91"/>
+<wire x1="-228.6" y1="109.22" x2="-223.52" y2="109.22" width="0.1524" layer="91"/>
+<junction x="-228.6" y="111.76"/>
+<wire x1="-233.68" y1="149.86" x2="-233.68" y2="58.42" width="0.1524" layer="91"/>
+<wire x1="-233.68" y1="58.42" x2="-121.92" y2="58.42" width="0.1524" layer="91"/>
+<junction x="-233.68" y="149.86"/>
+<pinref part="B2" gate="G$1" pin="HV"/>
+<wire x1="-121.92" y1="58.42" x2="-121.92" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="-121.92" y1="45.72" x2="-127" y2="45.72" width="0.1524" layer="91"/>
+<pinref part="SCD4X" gate="A" pin="VDDH"/>
+<wire x1="-223.52" y1="147.32" x2="-228.6" y2="147.32" width="0.1524" layer="91"/>
+<junction x="-228.6" y="147.32"/>
 </segment>
 </net>
 <net name="5V" class="0">
@@ -3160,7 +3362,7 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <wire x1="-198.12" y1="220.98" x2="-198.12" y2="177.8" width="0.1524" layer="91"/>
 <wire x1="-175.26" y1="220.98" x2="-175.26" y2="193.04" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="HV"/>
-<wire x1="-175.26" y1="193.04" x2="-162.56" y2="193.04" width="0.1524" layer="91"/>
+<wire x1="-175.26" y1="193.04" x2="-160.02" y2="193.04" width="0.1524" layer="91"/>
 <wire x1="-119.38" y1="241.3" x2="93.98" y2="241.3" width="0.1524" layer="91"/>
 <wire x1="93.98" y1="241.3" x2="93.98" y2="195.58" width="0.1524" layer="91"/>
 <junction x="-119.38" y="241.3"/>
@@ -3191,7 +3393,7 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <wire x1="-198.12" y1="175.26" x2="-193.04" y2="175.26" width="0.1524" layer="91"/>
 <wire x1="-193.04" y1="175.26" x2="-193.04" y2="187.96" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="HV_RXI_2"/>
-<wire x1="-193.04" y1="187.96" x2="-162.56" y2="187.96" width="0.1524" layer="91"/>
+<wire x1="-193.04" y1="187.96" x2="-160.02" y2="187.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
@@ -3200,7 +3402,7 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <wire x1="-198.12" y1="172.72" x2="-190.5" y2="172.72" width="0.1524" layer="91"/>
 <wire x1="-190.5" y1="172.72" x2="-190.5" y2="185.42" width="0.1524" layer="91"/>
 <pinref part="B1" gate="G$1" pin="HV_TXO_2"/>
-<wire x1="-190.5" y1="185.42" x2="-162.56" y2="185.42" width="0.1524" layer="91"/>
+<wire x1="-190.5" y1="185.42" x2="-160.02" y2="185.42" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SDA" class="0">
@@ -3211,24 +3413,28 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <pinref part="B1" gate="G$1" pin="LV_RXO_2"/>
 <wire x1="-81.28" y1="187.96" x2="-99.06" y2="187.96" width="0.1524" layer="91"/>
 <wire x1="-99.06" y1="187.96" x2="-111.76" y2="187.96" width="0.1524" layer="91"/>
-<wire x1="-111.76" y1="187.96" x2="-129.54" y2="187.96" width="0.1524" layer="91"/>
+<wire x1="-111.76" y1="187.96" x2="-127" y2="187.96" width="0.1524" layer="91"/>
 <wire x1="-111.76" y1="144.78" x2="-111.76" y2="187.96" width="0.1524" layer="91"/>
 <junction x="-111.76" y="187.96"/>
-<wire x1="-193.04" y1="104.14" x2="-111.76" y2="104.14" width="0.1524" layer="91"/>
-<wire x1="-111.76" y1="104.14" x2="-111.76" y2="144.78" width="0.1524" layer="91"/>
+<wire x1="-111.76" y1="99.06" x2="-111.76" y2="144.78" width="0.1524" layer="91"/>
 <junction x="-111.76" y="144.78"/>
 <wire x1="-193.04" y1="144.78" x2="-111.76" y2="144.78" width="0.1524" layer="91"/>
-<pinref part="U2" gate="G$1" pin="SDI"/>
 <pinref part="SCD4X" gate="A" pin="SDA"/>
 <pinref part="R1" gate="G$1" pin="1"/>
 <wire x1="-99.06" y1="200.66" x2="-99.06" y2="187.96" width="0.1524" layer="91"/>
 <junction x="-99.06" y="187.96"/>
+<pinref part="U6" gate="G$1" pin="SDI"/>
+<wire x1="-193.04" y1="99.06" x2="-111.76" y2="99.06" width="0.1524" layer="91"/>
+<pinref part="B2" gate="G$1" pin="HV_RXI_2"/>
+<wire x1="-127" y1="40.64" x2="-111.76" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="-111.76" y1="40.64" x2="-111.76" y2="99.06" width="0.1524" layer="91"/>
+<junction x="-111.76" y="99.06"/>
 </segment>
 </net>
 <net name="SCL" class="0">
 <segment>
 <pinref part="B1" gate="G$1" pin="LV_TXI_2"/>
-<wire x1="-129.54" y1="185.42" x2="-99.06" y2="185.42" width="0.1524" layer="91"/>
+<wire x1="-127" y1="185.42" x2="-99.06" y2="185.42" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="P0.19"/>
 <wire x1="-99.06" y1="185.42" x2="-91.44" y2="185.42" width="0.1524" layer="91"/>
 <wire x1="-91.44" y1="185.42" x2="-83.82" y2="185.42" width="0.1524" layer="91"/>
@@ -3238,14 +3444,17 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <wire x1="-99.06" y1="149.86" x2="-99.06" y2="185.42" width="0.1524" layer="91"/>
 <junction x="-99.06" y="185.42"/>
 <junction x="-99.06" y="149.86"/>
-<pinref part="U2" gate="G$1" pin="SCK"/>
-<wire x1="-223.52" y1="101.6" x2="-223.52" y2="78.74" width="0.1524" layer="91"/>
-<wire x1="-223.52" y1="78.74" x2="-99.06" y2="78.74" width="0.1524" layer="91"/>
-<wire x1="-99.06" y1="78.74" x2="-99.06" y2="149.86" width="0.1524" layer="91"/>
 <pinref part="SCD4X" gate="A" pin="SCL"/>
 <pinref part="R2" gate="G$1" pin="1"/>
+<wire x1="-99.06" y1="101.6" x2="-99.06" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="-91.44" y1="200.66" x2="-91.44" y2="185.42" width="0.1524" layer="91"/>
 <junction x="-91.44" y="185.42"/>
+<pinref part="U6" gate="G$1" pin="SCK"/>
+<wire x1="-193.04" y1="101.6" x2="-99.06" y2="101.6" width="0.1524" layer="91"/>
+<pinref part="B2" gate="G$1" pin="HV_TXO_2"/>
+<wire x1="-127" y1="38.1" x2="-99.06" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="-99.06" y1="38.1" x2="-99.06" y2="101.6" width="0.1524" layer="91"/>
+<junction x="-99.06" y="101.6"/>
 </segment>
 </net>
 <net name="N$6" class="0">
@@ -3283,16 +3492,6 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 </segment>
 </net>
 <net name="GND" class="0">
-<segment>
-<pinref part="U2" gate="G$1" pin="GND"/>
-<wire x1="-193.04" y1="96.52" x2="-193.04" y2="86.36" width="0.1524" layer="91"/>
-<pinref part="GND7" gate="1" pin="GND"/>
-<pinref part="U2" gate="G$1" pin="SDO"/>
-<wire x1="-193.04" y1="101.6" x2="-190.5" y2="101.6" width="0.1524" layer="91"/>
-<wire x1="-190.5" y1="101.6" x2="-190.5" y2="86.36" width="0.1524" layer="91"/>
-<wire x1="-190.5" y1="86.36" x2="-193.04" y2="86.36" width="0.1524" layer="91"/>
-<junction x="-193.04" y="86.36"/>
-</segment>
 <segment>
 <pinref part="SCD4X" gate="A" pin="VSS@3"/>
 <pinref part="GND11" gate="1" pin="GND"/>
@@ -3386,14 +3585,14 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 </segment>
 <segment>
 <pinref part="B1" gate="G$1" pin="GND@2"/>
-<wire x1="-162.56" y1="190.5" x2="-180.34" y2="190.5" width="0.1524" layer="91"/>
+<wire x1="-160.02" y1="190.5" x2="-180.34" y2="190.5" width="0.1524" layer="91"/>
 <wire x1="-180.34" y1="190.5" x2="-180.34" y2="195.58" width="0.1524" layer="91"/>
 <pinref part="GND6" gate="1" pin="GND"/>
 <wire x1="-180.34" y1="195.58" x2="-187.96" y2="195.58" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="B1" gate="G$1" pin="GND"/>
-<wire x1="-129.54" y1="190.5" x2="-109.22" y2="190.5" width="0.1524" layer="91"/>
+<wire x1="-127" y1="190.5" x2="-109.22" y2="190.5" width="0.1524" layer="91"/>
 <wire x1="-109.22" y1="190.5" x2="-109.22" y2="195.58" width="0.1524" layer="91"/>
 <pinref part="GND5" gate="1" pin="GND"/>
 <wire x1="-109.22" y1="195.58" x2="-104.14" y2="195.58" width="0.1524" layer="91"/>
@@ -3411,6 +3610,52 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <pinref part="R12" gate="G$1" pin="1"/>
 <pinref part="GND18" gate="1" pin="GND"/>
 <wire x1="-83.82" y1="86.36" x2="-83.82" y2="83.82" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U6" gate="G$1" pin="GND"/>
+<wire x1="-223.52" y1="91.44" x2="-223.52" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="-223.52" y1="68.58" x2="-208.28" y2="68.58" width="0.1524" layer="91"/>
+<pinref part="U6" gate="G$1" pin="SDO"/>
+<wire x1="-208.28" y1="68.58" x2="-193.04" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="-193.04" y1="68.58" x2="-193.04" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="GND7" gate="1" pin="GND"/>
+<junction x="-208.28" y="68.58"/>
+<wire x1="-223.52" y1="68.58" x2="-223.52" y2="60.96" width="0.1524" layer="91"/>
+<junction x="-223.52" y="68.58"/>
+<pinref part="C8" gate="G$1" pin="2"/>
+</segment>
+<segment>
+<pinref part="U2" gate="G$1" pin="R"/>
+<pinref part="GND9" gate="1" pin="GND"/>
+<wire x1="-220.98" y1="43.18" x2="-228.6" y2="43.18" width="0.1524" layer="91"/>
+<wire x1="-228.6" y1="43.18" x2="-228.6" y2="40.64" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="VSS"/>
+<wire x1="-228.6" y1="40.64" x2="-228.6" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="-228.6" y1="38.1" x2="-228.6" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="-220.98" y1="40.64" x2="-228.6" y2="40.64" width="0.1524" layer="91"/>
+<junction x="-228.6" y="40.64"/>
+<pinref part="U2" gate="G$1" pin="DIEPAD"/>
+<wire x1="-220.98" y1="38.1" x2="-228.6" y2="38.1" width="0.1524" layer="91"/>
+<junction x="-228.6" y="38.1"/>
+</segment>
+<segment>
+<pinref part="B2" gate="G$1" pin="GND"/>
+<wire x1="-160.02" y1="43.18" x2="-175.26" y2="43.18" width="0.1524" layer="91"/>
+<pinref part="GND23" gate="1" pin="GND"/>
+<wire x1="-175.26" y1="43.18" x2="-175.26" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="-175.26" y1="45.72" x2="-180.34" y2="45.72" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="B2" gate="G$1" pin="GND@2"/>
+<wire x1="-127" y1="43.18" x2="-119.38" y2="43.18" width="0.1524" layer="91"/>
+<pinref part="GND24" gate="1" pin="GND"/>
+<wire x1="-119.38" y1="43.18" x2="-119.38" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="-119.38" y1="45.72" x2="-116.84" y2="45.72" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="IC1.8" gate="A1" pin="ADJ"/>
+<pinref part="GND25" gate="1" pin="GND"/>
+<wire x1="-220.98" y1="256.54" x2="-220.98" y2="254" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -3446,6 +3691,10 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <pinref part="S1" gate="G$1" pin="2"/>
 <wire x1="-144.78" y1="314.96" x2="-144.78" y2="287.02" width="0.1524" layer="91"/>
 <junction x="-144.78" y="287.02"/>
+<wire x1="-165.1" y1="287.02" x2="-231.14" y2="287.02" width="0.1524" layer="91"/>
+<junction x="-165.1" y="287.02"/>
+<pinref part="IC1.8" gate="A1" pin="VI"/>
+<wire x1="-231.14" y1="287.02" x2="-231.14" y2="264.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$11" class="0">
@@ -3600,6 +3849,49 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 <pinref part="R4" gate="G$1" pin="2"/>
 <junction x="40.64" y="137.16"/>
 <pinref part="C6" gate="G$1" pin="2"/>
+</segment>
+</net>
+<net name="1.8V" class="0">
+<segment>
+<pinref part="U2" gate="G$1" pin="VDDH"/>
+<wire x1="-220.98" y1="45.72" x2="-251.46" y2="45.72" width="0.1524" layer="91"/>
+<wire x1="-251.46" y1="45.72" x2="-251.46" y2="48.26" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="VDD"/>
+<wire x1="-220.98" y1="48.26" x2="-223.52" y2="48.26" width="0.1524" layer="91"/>
+<junction x="-251.46" y="48.26"/>
+<wire x1="-223.52" y1="48.26" x2="-251.46" y2="48.26" width="0.1524" layer="91"/>
+<wire x1="-223.52" y1="48.26" x2="-223.52" y2="53.34" width="0.1524" layer="91"/>
+<junction x="-223.52" y="48.26"/>
+<wire x1="-251.46" y1="48.26" x2="-251.46" y2="241.3" width="0.1524" layer="91"/>
+<wire x1="-220.98" y1="48.26" x2="-220.98" y2="53.34" width="0.1524" layer="91"/>
+<junction x="-220.98" y="48.26"/>
+<wire x1="-220.98" y1="53.34" x2="-170.18" y2="53.34" width="0.1524" layer="91"/>
+<wire x1="-170.18" y1="53.34" x2="-170.18" y2="45.72" width="0.1524" layer="91"/>
+<pinref part="B2" gate="G$1" pin="LV"/>
+<wire x1="-170.18" y1="45.72" x2="-160.02" y2="45.72" width="0.1524" layer="91"/>
+<pinref part="IC1.8" gate="A1" pin="VO"/>
+<wire x1="-210.82" y1="264.16" x2="-200.66" y2="264.16" width="0.1524" layer="91"/>
+<wire x1="-200.66" y1="264.16" x2="-200.66" y2="241.3" width="0.1524" layer="91"/>
+<wire x1="-200.66" y1="241.3" x2="-251.46" y2="241.3" width="0.1524" layer="91"/>
+<pinref part="C8" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="N$20" class="0">
+<segment>
+<pinref part="U2" gate="G$1" pin="SDA"/>
+<wire x1="-200.66" y1="45.72" x2="-187.96" y2="45.72" width="0.1524" layer="91"/>
+<pinref part="B2" gate="G$1" pin="LV_RXO_2"/>
+<wire x1="-187.96" y1="45.72" x2="-187.96" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="-187.96" y1="40.64" x2="-160.02" y2="40.64" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$23" class="0">
+<segment>
+<pinref part="B2" gate="G$1" pin="LV_TXI_2"/>
+<wire x1="-193.04" y1="38.1" x2="-160.02" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="U2" gate="G$1" pin="SCL"/>
+<wire x1="-200.66" y1="40.64" x2="-193.04" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="-193.04" y1="40.64" x2="-193.04" y2="38.1" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

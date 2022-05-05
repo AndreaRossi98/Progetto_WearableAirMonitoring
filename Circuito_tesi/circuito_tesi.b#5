@@ -324,43 +324,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </package>
 </packages>
 </library>
-<library name="capacitor-wima" urn="urn:adsk.eagle:library:116">
-<description>&lt;b&gt;WIMA Capacitors&lt;/b&gt;&lt;p&gt;
-&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
-<packages>
-<package name="C2.5-3" urn="urn:adsk.eagle:footprint:5390/1" library_version="2">
-<description>&lt;B&gt;MKS2&lt;/B&gt;, 5 x 3 mm, grid 2.54 mm</description>
-<wire x1="-2.159" y1="1.524" x2="2.159" y2="1.524" width="0.1524" layer="21"/>
-<wire x1="2.159" y1="-1.524" x2="-2.159" y2="-1.524" width="0.1524" layer="21"/>
-<wire x1="2.413" y1="1.27" x2="2.413" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="-2.413" y1="1.27" x2="-2.413" y2="-1.27" width="0.1524" layer="21"/>
-<wire x1="2.159" y1="1.524" x2="2.413" y2="1.27" width="0.1524" layer="21" curve="-90"/>
-<wire x1="-2.413" y1="1.27" x2="-2.159" y2="1.524" width="0.1524" layer="21" curve="-90"/>
-<wire x1="2.159" y1="-1.524" x2="2.413" y2="-1.27" width="0.1524" layer="21" curve="90"/>
-<wire x1="-2.413" y1="-1.27" x2="-2.159" y2="-1.524" width="0.1524" layer="21" curve="90"/>
-<wire x1="1.27" y1="0" x2="0.381" y2="0" width="0.1524" layer="51"/>
-<wire x1="0.381" y1="0" x2="0.254" y2="0" width="0.1524" layer="21"/>
-<wire x1="0.254" y1="0" x2="0.254" y2="0.762" width="0.254" layer="21"/>
-<wire x1="0.254" y1="0" x2="0.254" y2="-0.762" width="0.254" layer="21"/>
-<wire x1="-0.254" y1="0.762" x2="-0.254" y2="0" width="0.254" layer="21"/>
-<wire x1="-0.254" y1="0" x2="-0.254" y2="-0.762" width="0.254" layer="21"/>
-<wire x1="-0.254" y1="0" x2="-0.381" y2="0" width="0.1524" layer="21"/>
-<wire x1="-0.381" y1="0" x2="-1.27" y2="0" width="0.1524" layer="51"/>
-<pad name="1" x="-1.27" y="0" drill="0.8128" diameter="1.6002" shape="octagon"/>
-<pad name="2" x="1.27" y="0" drill="0.8128" diameter="1.6002" shape="octagon"/>
-<text x="-1.651" y="1.778" size="1.27" layer="25" ratio="10">&gt;NAME</text>
-<text x="-1.651" y="-3.048" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
-</package>
-</packages>
-<packages3d>
-<package3d name="C2.5-3" urn="urn:adsk.eagle:package:5436/1" type="box" library_version="2">
-<description>MKS2, 5 x 3 mm, grid 2.54 mm</description>
-<packageinstances>
-<packageinstance name="C2.5-3"/>
-</packageinstances>
-</package3d>
-</packages3d>
-</library>
 <library name="linear" urn="urn:adsk.eagle:library:262">
 <description>&lt;b&gt;Linear Devices&lt;/b&gt;&lt;p&gt;
 Operational amplifiers,  comparators, voltage regulators, ADCs, DACs, etc.&lt;p&gt;
@@ -485,39 +448,6 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 </packageinstances>
 </package3d>
 </packages3d>
-</library>
-<library name="SparkFun-Resistors">
-<description>&lt;h3&gt;SparkFun Resistors&lt;/h3&gt;
-This library contains resistors. Reference designator:R. 
-&lt;br&gt;
-&lt;br&gt;
-We've spent an enormous amount of time creating and checking these footprints and parts, but it is &lt;b&gt; the end user's responsibility&lt;/b&gt; to ensure correctness and suitablity for a given componet or application. 
-&lt;br&gt;
-&lt;br&gt;If you enjoy using this library, please buy one of our products at &lt;a href=" www.sparkfun.com"&gt;SparkFun.com&lt;/a&gt;.
-&lt;br&gt;
-&lt;br&gt;
-&lt;b&gt;Licensing:&lt;/b&gt; Creative Commons ShareAlike 4.0 International - https://creativecommons.org/licenses/by-sa/4.0/ 
-&lt;br&gt;
-&lt;br&gt;
-You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
-<packages>
-<package name="AXIAL-0.3">
-<description>&lt;h3&gt;AXIAL-0.3&lt;/h3&gt;
-&lt;p&gt;Commonly used for 1/4W through-hole resistors. 0.3" pitch between holes.&lt;/p&gt;</description>
-<wire x1="-2.54" y1="0.762" x2="2.54" y2="0.762" width="0.2032" layer="21"/>
-<wire x1="2.54" y1="0.762" x2="2.54" y2="0" width="0.2032" layer="21"/>
-<wire x1="2.54" y1="0" x2="2.54" y2="-0.762" width="0.2032" layer="21"/>
-<wire x1="2.54" y1="-0.762" x2="-2.54" y2="-0.762" width="0.2032" layer="21"/>
-<wire x1="-2.54" y1="-0.762" x2="-2.54" y2="0" width="0.2032" layer="21"/>
-<wire x1="-2.54" y1="0" x2="-2.54" y2="0.762" width="0.2032" layer="21"/>
-<wire x1="2.54" y1="0" x2="2.794" y2="0" width="0.2032" layer="21"/>
-<wire x1="-2.54" y1="0" x2="-2.794" y2="0" width="0.2032" layer="21"/>
-<pad name="P$1" x="-3.81" y="0" drill="0.9" diameter="1.8796"/>
-<pad name="P$2" x="3.81" y="0" drill="0.9" diameter="1.8796"/>
-<text x="0" y="1.016" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;Name</text>
-<text x="0" y="-1.016" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;Value</text>
-</package>
-</packages>
 </library>
 <library name="GF-123-0054">
 <packages>
@@ -1208,27 +1138,97 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </package>
 </packages>
 </library>
-<library name="Res_10MOHM">
+<library name="Res_5.1MOHM">
 <packages>
-<package name="RESC3015X65N">
-<text x="-2.19" y="-1.18" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
-<text x="-2.19" y="1.18" size="0.5" layer="25">&gt;NAME</text>
-<wire x1="1.57" y1="-0.83" x2="-1.57" y2="-0.83" width="0.127" layer="51"/>
-<wire x1="1.57" y1="0.83" x2="-1.57" y2="0.83" width="0.127" layer="51"/>
-<wire x1="1.57" y1="-0.83" x2="1.57" y2="0.83" width="0.127" layer="51"/>
-<wire x1="-1.57" y1="-0.83" x2="-1.57" y2="0.83" width="0.127" layer="51"/>
-<wire x1="-0.73" y1="0.83" x2="0.73" y2="0.83" width="0.127" layer="21"/>
-<wire x1="-0.73" y1="-0.83" x2="0.73" y2="-0.83" width="0.127" layer="21"/>
-<wire x1="-2.19" y1="-1.09" x2="2.19" y2="-1.09" width="0.05" layer="39"/>
-<wire x1="-2.19" y1="1.09" x2="2.19" y2="1.09" width="0.05" layer="39"/>
-<wire x1="-2.19" y1="-1.09" x2="-2.19" y2="1.09" width="0.05" layer="39"/>
-<wire x1="2.19" y1="-1.09" x2="2.19" y2="1.09" width="0.05" layer="39"/>
-<smd name="1" x="-1.495" y="0" dx="0.89" dy="1.68" layer="1"/>
-<smd name="2" x="1.495" y="0" dx="0.89" dy="1.68" layer="1"/>
+<package name="RESC1508X55N">
+<text x="-1.46" y="-0.82" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-1.46" y="0.82" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.85" y1="-0.48" x2="-0.85" y2="-0.48" width="0.127" layer="51"/>
+<wire x1="0.85" y1="0.48" x2="-0.85" y2="0.48" width="0.127" layer="51"/>
+<wire x1="0.85" y1="-0.48" x2="0.85" y2="0.48" width="0.127" layer="51"/>
+<wire x1="-0.85" y1="-0.48" x2="-0.85" y2="0.48" width="0.127" layer="51"/>
+<wire x1="-1.46" y1="-0.735" x2="1.46" y2="-0.735" width="0.05" layer="39"/>
+<wire x1="-1.46" y1="0.735" x2="1.46" y2="0.735" width="0.05" layer="39"/>
+<wire x1="-1.46" y1="-0.735" x2="-1.46" y2="0.735" width="0.05" layer="39"/>
+<wire x1="1.46" y1="-0.735" x2="1.46" y2="0.735" width="0.05" layer="39"/>
+<smd name="1" x="-0.76" y="0" dx="0.9" dy="0.97" layer="1"/>
+<smd name="2" x="0.76" y="0" dx="0.9" dy="0.97" layer="1"/>
 </package>
 </packages>
 </library>
-<library name="Res_5.1MOHM">
+<library name="Res_10MOHM_2">
+<packages>
+<package name="RESC1508X55N">
+<text x="-1.46" y="-0.82" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-1.46" y="0.82" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.85" y1="-0.48" x2="-0.85" y2="-0.48" width="0.127" layer="51"/>
+<wire x1="0.85" y1="0.48" x2="-0.85" y2="0.48" width="0.127" layer="51"/>
+<wire x1="0.85" y1="-0.48" x2="0.85" y2="0.48" width="0.127" layer="51"/>
+<wire x1="-0.85" y1="-0.48" x2="-0.85" y2="0.48" width="0.127" layer="51"/>
+<wire x1="-1.46" y1="-0.735" x2="1.46" y2="-0.735" width="0.05" layer="39"/>
+<wire x1="-1.46" y1="0.735" x2="1.46" y2="0.735" width="0.05" layer="39"/>
+<wire x1="-1.46" y1="-0.735" x2="-1.46" y2="0.735" width="0.05" layer="39"/>
+<wire x1="1.46" y1="-0.735" x2="1.46" y2="0.735" width="0.05" layer="39"/>
+<smd name="1" x="-0.76" y="0" dx="0.9" dy="0.97" layer="1"/>
+<smd name="2" x="0.76" y="0" dx="0.9" dy="0.97" layer="1"/>
+</package>
+</packages>
+</library>
+<library name="Condens_10nF">
+<packages>
+<package name="CAPC0603X33N">
+<text x="-0.72" y="-0.51" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-0.72" y="0.51" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.32" y1="-0.16" x2="-0.32" y2="-0.16" width="0.127" layer="51"/>
+<wire x1="0.32" y1="0.16" x2="-0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="0.32" y1="-0.16" x2="0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="-0.32" y1="-0.16" x2="-0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="-0.718" y1="-0.448" x2="0.718" y2="-0.448" width="0.05" layer="39"/>
+<wire x1="-0.718" y1="0.448" x2="0.718" y2="0.448" width="0.05" layer="39"/>
+<wire x1="-0.718" y1="-0.448" x2="-0.718" y2="0.448" width="0.05" layer="39"/>
+<wire x1="0.718" y1="-0.448" x2="0.718" y2="0.448" width="0.05" layer="39"/>
+<smd name="1" x="-0.281" y="0" dx="0.38" dy="0.4" layer="1"/>
+<smd name="2" x="0.281" y="0" dx="0.38" dy="0.4" layer="1"/>
+</package>
+</packages>
+</library>
+<library name="Res_10KOHM">
+<packages>
+<package name="RESC1508X55N">
+<text x="-1.44" y="-0.8" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-1.44" y="0.8" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.83" y1="-0.45" x2="-0.83" y2="-0.45" width="0.127" layer="51"/>
+<wire x1="0.83" y1="0.45" x2="-0.83" y2="0.45" width="0.127" layer="51"/>
+<wire x1="0.83" y1="-0.45" x2="0.83" y2="0.45" width="0.127" layer="51"/>
+<wire x1="-0.83" y1="-0.45" x2="-0.83" y2="0.45" width="0.127" layer="51"/>
+<wire x1="-1.44" y1="-0.715" x2="1.44" y2="-0.715" width="0.05" layer="39"/>
+<wire x1="-1.44" y1="0.715" x2="1.44" y2="0.715" width="0.05" layer="39"/>
+<wire x1="-1.44" y1="-0.715" x2="-1.44" y2="0.715" width="0.05" layer="39"/>
+<wire x1="1.44" y1="-0.715" x2="1.44" y2="0.715" width="0.05" layer="39"/>
+<smd name="1" x="-0.755" y="0" dx="0.87" dy="0.93" layer="1"/>
+<smd name="2" x="0.755" y="0" dx="0.87" dy="0.93" layer="1"/>
+</package>
+</packages>
+</library>
+<library name="Res_820OHM">
+<packages>
+<package name="RESC1508X55N">
+<text x="-1.44" y="-0.8" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-1.44" y="0.8" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.83" y1="-0.45" x2="-0.83" y2="-0.45" width="0.127" layer="51"/>
+<wire x1="0.83" y1="0.45" x2="-0.83" y2="0.45" width="0.127" layer="51"/>
+<wire x1="0.83" y1="-0.45" x2="0.83" y2="0.45" width="0.127" layer="51"/>
+<wire x1="-0.83" y1="-0.45" x2="-0.83" y2="0.45" width="0.127" layer="51"/>
+<wire x1="-1.44" y1="-0.715" x2="1.44" y2="-0.715" width="0.05" layer="39"/>
+<wire x1="-1.44" y1="0.715" x2="1.44" y2="0.715" width="0.05" layer="39"/>
+<wire x1="-1.44" y1="-0.715" x2="-1.44" y2="0.715" width="0.05" layer="39"/>
+<wire x1="1.44" y1="-0.715" x2="1.44" y2="0.715" width="0.05" layer="39"/>
+<smd name="1" x="-0.755" y="0" dx="0.87" dy="0.93" layer="1"/>
+<smd name="2" x="0.755" y="0" dx="0.87" dy="0.93" layer="1"/>
+</package>
+</packages>
+</library>
+<library name="Res_270OHM">
 <packages>
 <package name="RESC1508X55N">
 <text x="-1.46" y="-0.82" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
@@ -1451,18 +1451,6 @@ design rules under a new name.</description>
 <attribute name="PRICE" value="None" x="-73.66" y="-16.51" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="17.77716875" y="63.5" size="1.271409375" layer="27" rot="R270" align="top-center"/>
 </element>
-<element name="27OHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="23.495" y="54.61" smashed="yes" rot="R180">
-<attribute name="AVAILABILITY" value="In Stock" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="COMMENT" value="1614992-1" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MF" value="TE Connectivity" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="MP" value="1614992-1" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="23.495" y="52.06181875" size="1.274090625" layer="25" rot="R180" align="bottom-center"/>
-<attribute name="PACKAGE" value="0204" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="PRICE" value="None" x="-46.355" y="148.59" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="VALUE" x="23.495" y="57.15283125" size="1.271409375" layer="27" rot="R180" align="top-center"/>
-</element>
 <element name="300_OHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="73.66" y="45.72" smashed="yes" rot="R180">
 <attribute name="AVAILABILITY" value="In Stock" x="-16.51" y="139.7" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="COMMENT" value="1614992-1" x="-16.51" y="139.7" size="1.778" layer="27" rot="R180" display="off"/>
@@ -1474,18 +1462,6 @@ design rules under a new name.</description>
 <attribute name="PACKAGE" value="0204" x="-16.51" y="139.7" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="-16.51" y="139.7" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="73.66" y="48.26283125" size="1.271409375" layer="27" rot="R180" align="top-center"/>
-</element>
-<element name="820OHM" library="1614992-1" package="RESAD640W45L370D200" value="1614992-1" x="33.909" y="57.277" smashed="yes" rot="R270">
-<attribute name="AVAILABILITY" value="In Stock" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="COMMENT" value="1614992-1" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="DESCRIPTION" value=" RES 130 OHM 1/4W 1% AXIAL " x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="EU_ROHS_COMPLIANCE" value="Compliant" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MF" value="TE Connectivity" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MP" value="1614992-1" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="36.45718125" y="57.277" size="1.274090625" layer="25" rot="R270" align="bottom-center"/>
-<attribute name="PACKAGE" value="0204" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="PRICE" value="None" x="-60.071" y="-43.053" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="31.36616875" y="57.277" size="1.271409375" layer="27" rot="R270" align="top-center"/>
 </element>
 <element name="B1" library="SparkFun-Boards" package="SPARKFUN_LOGIC_LEVEL_CONVERTER" value="SPARKFUN_LOGIC_LEVEL_CONVERTER" x="36.83" y="21.59" smashed="yes" rot="R180">
 <attribute name="NAME" x="36.83" y="13.716" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
@@ -1541,30 +1517,15 @@ design rules under a new name.</description>
 <attribute name="PROD_ID" value="CAP-11330" x="-88.9" y="109.22" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="11.43" y="9.779" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
 </element>
-<element name="C3" library="capacitor-wima" library_urn="urn:adsk.eagle:library:116" package="C2.5-3" package3d_urn="urn:adsk.eagle:package:5436/1" value="" x="43.18" y="35.56" smashed="yes" rot="R90">
-<attribute name="NAME" x="41.402" y="33.909" size="1.27" layer="25" ratio="10" rot="R90"/>
-<attribute name="POPULARITY" value="38" x="143.51" y="92.71" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="46.228" y="33.909" size="1.27" layer="27" ratio="10" rot="R90"/>
-</element>
-<element name="C4" library="capacitor-wima" library_urn="urn:adsk.eagle:library:116" package="C2.5-3" package3d_urn="urn:adsk.eagle:package:5436/1" value="" x="43.18" y="45.72" smashed="yes" rot="R270">
-<attribute name="NAME" x="44.958" y="47.371" size="1.27" layer="25" ratio="10" rot="R270"/>
-<attribute name="POPULARITY" value="38" x="-57.15" y="-16.51" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="40.132" y="47.371" size="1.27" layer="27" ratio="10" rot="R270"/>
-</element>
-<element name="C5" library="SparkFun-Capacitors" package="0805" value="0.33µF" x="16.51" y="49.53" smashed="yes">
+<element name="C3" library="SparkFun-Capacitors" package="0805" value="0.33µF" x="16.51" y="49.53" smashed="yes">
 <attribute name="NAME" x="16.51" y="50.419" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
 <attribute name="PROD_ID" value="CAP-08469" x="109.22" y="-50.8" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="16.51" y="48.641" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
-<element name="C6" library="SparkFun-Capacitors" package="0603" value="0.1uF" x="11.43" y="46.99" smashed="yes" rot="R180">
+<element name="C4" library="SparkFun-Capacitors" package="0603" value="0.1uF" x="11.43" y="46.99" smashed="yes" rot="R180">
 <attribute name="NAME" x="11.43" y="46.228" size="0.6096" layer="25" font="vector" ratio="20" rot="R180" align="bottom-center"/>
 <attribute name="PROD_ID" value="CAP-08604" x="-3.81" y="156.21" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="11.43" y="47.752" size="0.6096" layer="27" font="vector" ratio="20" rot="R180" align="top-center"/>
-</element>
-<element name="C7" library="capacitor-wima" library_urn="urn:adsk.eagle:library:116" package="C2.5-3" package3d_urn="urn:adsk.eagle:package:5436/1" value="" x="56.007" y="56.515" smashed="yes" rot="R270">
-<attribute name="NAME" x="57.785" y="58.166" size="1.27" layer="25" ratio="10" rot="R270"/>
-<attribute name="POPULARITY" value="38" x="-44.323" y="-10.795" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="52.959" y="58.166" size="1.27" layer="27" ratio="10" rot="R270"/>
 </element>
 <element name="IC3.3" library="linear" library_urn="urn:adsk.eagle:library:262" package="TO220H" package3d_urn="urn:adsk.eagle:package:16414/1" value="317T" x="12.7" y="22.86" smashed="yes">
 <attribute name="NAME" x="7.239" y="11.938" size="1.778" layer="25" ratio="10" rot="R90"/>
@@ -1580,16 +1541,6 @@ design rules under a new name.</description>
 <attribute name="NAME" x="67.31" y="41.275" size="1.27" layer="25"/>
 <attribute name="POPULARITY" value="1" x="101.6" y="-63.5" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="67.31" y="36.195" size="1.27" layer="27"/>
-</element>
-<element name="R1" library="SparkFun-Resistors" package="AXIAL-0.3" value="10k" x="62.23" y="29.21" smashed="yes">
-<attribute name="NAME" x="62.23" y="30.226" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
-<attribute name="PROD_ID" value="RES-08375" x="137.16" y="-71.12" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="62.23" y="28.194" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
-</element>
-<element name="R2" library="SparkFun-Resistors" package="AXIAL-0.3" value="10k" x="63.5" y="31.75" smashed="yes">
-<attribute name="NAME" x="63.5" y="32.766" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
-<attribute name="PROD_ID" value="RES-08375" x="148.59" y="-68.58" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="63.5" y="30.734" size="0.6096" layer="27" font="vector" ratio="20" align="top-center"/>
 </element>
 <element name="S1" library="GF-123-0054" package="SW_GF-123-0054" value="GF-123-0054" x="12.7" y="40.64" smashed="yes" rot="R90">
 <attribute name="DESCRIPTION" value=" Slide Switch SPST Through Hole " x="90.17" y="111.76" size="1.778" layer="27" rot="R90" display="off"/>
@@ -1657,65 +1608,135 @@ design rules under a new name.</description>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/OPA2277PA/?ref=eda" x="27.94" y="44.45" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="31.68" y="49.422" size="1.27" layer="27" rot="R180" align="top-left"/>
 </element>
-<element name="R3" library="Res_10MOHM" package="RESC3015X65N" value="CRCW120610M0FKEAC" x="50.8" y="55.88" smashed="yes" rot="R90">
-<attribute name="DESCRIPTION" value=" 10 MOhms ±1% 0.25W, 1/4W Chip Resistor 1206 (3216 Metric) Thick Film " x="50.8" y="55.88" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="541-4186-2-ND" x="50.8" y="55.88" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="Vishay" x="50.8" y="55.88" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MP" value="CRCW120610M0FKEAC" x="50.8" y="55.88" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="49.62" y="53.69" size="0.5" layer="25" rot="R90"/>
-<attribute name="PACKAGE" value="3015 Vishay" x="50.8" y="55.88" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/CRCW120610M0FKEAC/?ref=eda" x="50.8" y="55.88" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="51.98" y="53.69" size="0.5" layer="27" rot="R90" align="top-left"/>
+<element name="R6" library="Res_5.1MOHM" package="RESC1508X55N" value="RMCF0603FT5M10" x="49.53" y="63.5" smashed="yes" rot="R90">
+<attribute name="DESCRIPTION" value=" 5.1 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="49.53" y="63.5" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT5M10TR-ND" x="49.53" y="63.5" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="49.53" y="63.5" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="RMCF0603FT5M10" x="49.53" y="63.5" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="48.71" y="62.04" size="0.5" layer="25" rot="R90"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="49.53" y="63.5" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT5M10/?ref=eda" x="49.53" y="63.5" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="50.35" y="62.04" size="0.5" layer="27" rot="R90" align="top-left"/>
 </element>
-<element name="R4" library="Res_10MOHM" package="RESC3015X65N" value="CRCW120610M0FKEAC" x="39.37" y="45.72" smashed="yes" rot="R90">
-<attribute name="DESCRIPTION" value=" 10 MOhms ±1% 0.25W, 1/4W Chip Resistor 1206 (3216 Metric) Thick Film " x="39.37" y="45.72" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="541-4186-2-ND" x="39.37" y="45.72" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="Vishay" x="39.37" y="45.72" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MP" value="CRCW120610M0FKEAC" x="39.37" y="45.72" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="38.19" y="43.53" size="0.5" layer="25" rot="R90"/>
-<attribute name="PACKAGE" value="3015 Vishay" x="39.37" y="45.72" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/CRCW120610M0FKEAC/?ref=eda" x="39.37" y="45.72" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="40.55" y="43.53" size="0.5" layer="27" rot="R90" align="top-left"/>
+<element name="R7" library="Res_5.1MOHM" package="RESC1508X55N" value="RMCF0603FT5M10" x="39.37" y="52.07" smashed="yes" rot="R90">
+<attribute name="DESCRIPTION" value=" 5.1 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="39.37" y="52.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT5M10TR-ND" x="39.37" y="52.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="39.37" y="52.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="RMCF0603FT5M10" x="39.37" y="52.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="38.55" y="50.61" size="0.5" layer="25" rot="R90"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="39.37" y="52.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT5M10/?ref=eda" x="39.37" y="52.07" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="40.19" y="50.61" size="0.5" layer="27" rot="R90" align="top-left"/>
 </element>
-<element name="R5" library="Res_10MOHM" package="RESC3015X65N" value="CRCW120610M0FKEAC" x="39.37" y="33.909" smashed="yes" rot="R270">
-<attribute name="DESCRIPTION" value=" 10 MOhms ±1% 0.25W, 1/4W Chip Resistor 1206 (3216 Metric) Thick Film " x="39.37" y="33.909" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="541-4186-2-ND" x="39.37" y="33.909" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MF" value="Vishay" x="39.37" y="33.909" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MP" value="CRCW120610M0FKEAC" x="39.37" y="33.909" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="40.55" y="36.099" size="0.5" layer="25" rot="R270"/>
-<attribute name="PACKAGE" value="3015 Vishay" x="39.37" y="33.909" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/CRCW120610M0FKEAC/?ref=eda" x="39.37" y="33.909" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="38.19" y="36.099" size="0.5" layer="27" rot="R270" align="top-left"/>
+<element name="R8" library="Res_5.1MOHM" package="RESC1508X55N" value="RMCF0603FT5M10" x="34.29" y="34.29" smashed="yes" rot="R90">
+<attribute name="DESCRIPTION" value=" 5.1 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="34.29" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT5M10TR-ND" x="34.29" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="34.29" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="RMCF0603FT5M10" x="34.29" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="33.47" y="32.83" size="0.5" layer="25" rot="R90"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="34.29" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT5M10/?ref=eda" x="34.29" y="34.29" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="35.11" y="32.83" size="0.5" layer="27" rot="R90" align="top-left"/>
 </element>
-<element name="R6" library="Res_5.1MOHM" package="RESC1508X55N" value="RMCF0603FT5M10" x="-3.81" y="-7.62" smashed="yes">
-<attribute name="DESCRIPTION" value=" 5.1 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="-3.81" y="-7.62" size="1.778" layer="27" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT5M10TR-ND" x="-3.81" y="-7.62" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="Stackpole Electronics Inc" x="-3.81" y="-7.62" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="RMCF0603FT5M10" x="-3.81" y="-7.62" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-5.27" y="-6.8" size="0.5" layer="25"/>
-<attribute name="PACKAGE" value="1508 Stackpole" x="-3.81" y="-7.62" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT5M10/?ref=eda" x="-3.81" y="-7.62" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-5.27" y="-8.44" size="0.5" layer="27" align="top-left"/>
+<element name="R3" library="Res_10MOHM_2" package="RESC1508X55N" value="RMCF0603FT10M0" x="52.07" y="63.5" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value=" 10 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="52.07" y="63.5" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT10M0TR-ND" x="52.07" y="63.5" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="52.07" y="63.5" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="RMCF0603FT10M0" x="52.07" y="63.5" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="52.89" y="64.96" size="0.5" layer="25" rot="R270"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="52.07" y="63.5" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT10M0/?ref=eda" x="52.07" y="63.5" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="51.25" y="64.96" size="0.5" layer="27" rot="R270" align="top-left"/>
 </element>
-<element name="R7" library="Res_5.1MOHM" package="RESC1508X55N" value="RMCF0603FT5M10" x="-3.81" y="-11.43" smashed="yes">
-<attribute name="DESCRIPTION" value=" 5.1 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="-3.81" y="-11.43" size="1.778" layer="27" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT5M10TR-ND" x="-3.81" y="-11.43" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="Stackpole Electronics Inc" x="-3.81" y="-11.43" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="RMCF0603FT5M10" x="-3.81" y="-11.43" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-5.27" y="-10.61" size="0.5" layer="25"/>
-<attribute name="PACKAGE" value="1508 Stackpole" x="-3.81" y="-11.43" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT5M10/?ref=eda" x="-3.81" y="-11.43" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-5.27" y="-12.25" size="0.5" layer="27" align="top-left"/>
+<element name="R4" library="Res_10MOHM_2" package="RESC1508X55N" value="RMCF0603FT10M0" x="39.37" y="46.99" smashed="yes">
+<attribute name="DESCRIPTION" value=" 10 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="39.37" y="46.99" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT10M0TR-ND" x="39.37" y="46.99" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="39.37" y="46.99" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="RMCF0603FT10M0" x="39.37" y="46.99" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="37.91" y="47.81" size="0.5" layer="25"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="39.37" y="46.99" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT10M0/?ref=eda" x="39.37" y="46.99" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="37.91" y="46.17" size="0.5" layer="27" align="top-left"/>
 </element>
-<element name="R8" library="Res_5.1MOHM" package="RESC1508X55N" value="RMCF0603FT5M10" x="-3.81" y="-15.24" smashed="yes">
-<attribute name="DESCRIPTION" value=" 5.1 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="-3.81" y="-15.24" size="1.778" layer="27" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT5M10TR-ND" x="-3.81" y="-15.24" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="Stackpole Electronics Inc" x="-3.81" y="-15.24" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="RMCF0603FT5M10" x="-3.81" y="-15.24" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-5.27" y="-14.42" size="0.5" layer="25"/>
-<attribute name="PACKAGE" value="1508 Stackpole" x="-3.81" y="-15.24" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT5M10/?ref=eda" x="-3.81" y="-15.24" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-5.27" y="-16.06" size="0.5" layer="27" align="top-left"/>
+<element name="R5" library="Res_10MOHM_2" package="RESC1508X55N" value="RMCF0603FT10M0" x="38.1" y="34.29" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value=" 10 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="38.1" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT10M0TR-ND" x="38.1" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="38.1" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="RMCF0603FT10M0" x="38.1" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="38.92" y="35.75" size="0.5" layer="25" rot="R270"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="38.1" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT10M0/?ref=eda" x="38.1" y="34.29" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="37.28" y="35.75" size="0.5" layer="27" rot="R270" align="top-left"/>
+</element>
+<element name="C5" library="Condens_10nF" package="CAPC0603X33N" value="GRM033R60J103KA01D" x="53.848" y="62.865" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value=" SMD capacitor X5R(EIA) with capacitance 10000pF Tol.10%. Rated voltage 6.3Vdc 85C " x="53.848" y="62.865" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="490-5403-2-ND" x="53.848" y="62.865" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="Murata" x="53.848" y="62.865" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="GRM033R60J103KA01D" x="53.848" y="62.865" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="54.358" y="63.585" size="0.5" layer="25" rot="R270"/>
+<attribute name="PACKAGE" value="0603 Taiyo Yuden" x="53.848" y="62.865" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/GRM033R60J103KA01D/?ref=eda" x="53.848" y="62.865" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="53.338" y="63.585" size="0.5" layer="27" rot="R270" align="top-left"/>
+</element>
+<element name="C6" library="Condens_10nF" package="CAPC0603X33N" value="GRM033R60J103KA01D" x="42.291" y="46.736" smashed="yes" rot="R90">
+<attribute name="DESCRIPTION" value=" SMD capacitor X5R(EIA) with capacitance 10000pF Tol.10%. Rated voltage 6.3Vdc 85C " x="42.291" y="46.736" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="490-5403-2-ND" x="42.291" y="46.736" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MF" value="Murata" x="42.291" y="46.736" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="MP" value="GRM033R60J103KA01D" x="42.291" y="46.736" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="NAME" x="41.781" y="46.016" size="0.5" layer="25" rot="R90"/>
+<attribute name="PACKAGE" value="0603 Taiyo Yuden" x="42.291" y="46.736" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/GRM033R60J103KA01D/?ref=eda" x="42.291" y="46.736" size="1.778" layer="27" rot="R90" display="off"/>
+<attribute name="VALUE" x="42.801" y="46.016" size="0.5" layer="27" rot="R90" align="top-left"/>
+</element>
+<element name="C7" library="Condens_10nF" package="CAPC0603X33N" value="GRM033R60J103KA01D" x="42.545" y="33.782" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value=" SMD capacitor X5R(EIA) with capacitance 10000pF Tol.10%. Rated voltage 6.3Vdc 85C " x="42.545" y="33.782" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="490-5403-2-ND" x="42.545" y="33.782" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="Murata" x="42.545" y="33.782" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="GRM033R60J103KA01D" x="42.545" y="33.782" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="43.055" y="34.502" size="0.5" layer="25" rot="R270"/>
+<attribute name="PACKAGE" value="0603 Taiyo Yuden" x="42.545" y="33.782" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/GRM033R60J103KA01D/?ref=eda" x="42.545" y="33.782" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="42.035" y="34.502" size="0.5" layer="27" rot="R270" align="top-left"/>
+</element>
+<element name="R1" library="Res_10KOHM" package="RESC1508X55N" value="RNCF0603BTE10K0" x="59.69" y="29.21" smashed="yes">
+<attribute name="DESCRIPTION" value=" 10 kOhms ±0.1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thin Film " x="59.69" y="29.21" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RNCF0603BTE10K0TR-ND" x="59.69" y="29.21" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="59.69" y="29.21" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="RNCF0603BTE10K0" x="59.69" y="29.21" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="58.25" y="30.01" size="0.5" layer="25"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="59.69" y="29.21" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RNCF0603BTE10K0/?ref=eda" x="59.69" y="29.21" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="58.25" y="28.41" size="0.5" layer="27" align="top-left"/>
+</element>
+<element name="R2" library="Res_10KOHM" package="RESC1508X55N" value="RNCF0603BTE10K0" x="60.452" y="35.687" smashed="yes">
+<attribute name="DESCRIPTION" value=" 10 kOhms ±0.1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thin Film " x="60.452" y="35.687" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RNCF0603BTE10K0TR-ND" x="60.452" y="35.687" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="60.452" y="35.687" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="RNCF0603BTE10K0" x="60.452" y="35.687" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="59.012" y="36.487" size="0.5" layer="25"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="60.452" y="35.687" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RNCF0603BTE10K0/?ref=eda" x="60.452" y="35.687" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="59.012" y="34.887" size="0.5" layer="27" align="top-left"/>
+</element>
+<element name="R9" library="Res_820OHM" package="RESC1508X55N" value="RNCF0603DTE820R" x="31.75" y="55.88" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value=" 820 ±0.5% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thin Film " x="31.75" y="55.88" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RNCF0603DTE820RTR-ND" x="31.75" y="55.88" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="31.75" y="55.88" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="RNCF0603DTE820R" x="31.75" y="55.88" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="32.55" y="57.32" size="0.5" layer="25" rot="R270"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="31.75" y="55.88" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RNCF0603DTE820R/?ref=eda" x="31.75" y="55.88" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="30.95" y="57.32" size="0.5" layer="27" rot="R270" align="top-left"/>
+</element>
+<element name="R10" library="Res_270OHM" package="RESC1508X55N" value="RMCF0603FT270R" x="24.13" y="54.61" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value=" 270 Ohms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="24.13" y="54.61" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT270RTR-ND" x="24.13" y="54.61" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="24.13" y="54.61" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="RMCF0603FT270R" x="24.13" y="54.61" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="24.95" y="56.07" size="0.5" layer="25" rot="R270"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="24.13" y="54.61" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT270R/?ref=eda" x="24.13" y="54.61" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="23.31" y="56.07" size="0.5" layer="27" rot="R270" align="top-left"/>
 </element>
 </elements>
 <signals>
@@ -1738,8 +1759,6 @@ design rules under a new name.</description>
 <contactref element="U1" pad="13"/>
 <contactref element="U1" pad="36"/>
 <contactref element="U1" pad="48"/>
-<contactref element="R1" pad="P$2"/>
-<contactref element="R2" pad="P$2"/>
 <wire x1="12.7" y1="12.7" x2="12.7" y2="9.26" width="0.1524" layer="1"/>
 <wire x1="12.7" y1="9.26" x2="12.33" y2="8.89" width="0.1524" layer="1"/>
 <wire x1="12.33" y1="8.89" x2="14.87" y2="6.35" width="0.1524" layer="1"/>
@@ -1753,23 +1772,26 @@ design rules under a new name.</description>
 <wire x1="52.14" y1="30.88" x2="52.94" y2="31.68" width="0.1524" layer="1"/>
 <wire x1="52.94" y1="31.68" x2="53.74" y2="30.88" width="0.1524" layer="1"/>
 <wire x1="53.74" y1="30.88" x2="53.74" y2="29.28" width="0.1524" layer="1"/>
-<wire x1="67.31" y1="31.75" x2="67.31" y2="30.48" width="0.1524" layer="1"/>
-<wire x1="67.31" y1="30.48" x2="66.04" y2="29.21" width="0.1524" layer="1"/>
-<wire x1="66.04" y1="29.21" x2="62.23" y2="25.4" width="0.1524" layer="1"/>
 <wire x1="62.23" y1="25.4" x2="52.14" y2="25.4" width="0.1524" layer="1"/>
-<wire x1="67.31" y1="31.75" x2="65.7" y2="33.36" width="0.1524" layer="1"/>
-<wire x1="65.7" y1="33.36" x2="65.7" y2="42.86" width="0.1524" layer="1"/>
+<contactref element="R1" pad="2"/>
+<contactref element="R2" pad="2"/>
+<wire x1="65.7" y1="28.87" x2="63.5" y2="26.67" width="0.1524" layer="1"/>
+<wire x1="63.5" y1="26.67" x2="62.23" y2="25.4" width="0.1524" layer="1"/>
+<wire x1="65.7" y1="42.86" x2="65.7" y2="35.56" width="0.1524" layer="1"/>
+<wire x1="65.7" y1="35.56" x2="65.7" y2="28.87" width="0.1524" layer="1"/>
+<wire x1="61.207" y1="35.687" x2="65.573" y2="35.687" width="0.1524" layer="1"/>
+<wire x1="65.573" y1="35.687" x2="65.7" y2="35.56" width="0.1524" layer="1"/>
+<wire x1="60.445" y1="29.21" x2="62.985" y2="26.67" width="0.1524" layer="1"/>
+<wire x1="62.985" y1="26.67" x2="63.5" y2="26.67" width="0.1524" layer="1"/>
 <wire x1="65.7" y1="42.86" x2="66.36" y2="47.92" width="0" layer="19" extent="1-1"/>
 <wire x1="60.64" y1="47.92" x2="66.36" y2="47.92" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="5V">
 <contactref element="IC5" pad="2"/>
-<contactref element="C6" pad="1"/>
+<contactref element="C4" pad="1"/>
 <contactref element="SPS30" pad="1"/>
 <contactref element="B1" pad="HV"/>
 <contactref element="130OHM" pad="2"/>
-<contactref element="27OHM" pad="2"/>
-<contactref element="820OHM" pad="2"/>
 <contactref element="U4" pad="8"/>
 <contactref element="U5" pad="8"/>
 <wire x1="12.7" y1="52.07" x2="12.7" y2="47.41" width="0.1524" layer="1"/>
@@ -1778,8 +1800,7 @@ design rules under a new name.</description>
 <wire x1="20.32" y1="48.26" x2="19.05" y2="46.99" width="0.1524" layer="1"/>
 <wire x1="20.32" y1="48.26" x2="20.32" y2="52.07" width="0.1524" layer="1"/>
 <wire x1="20.32" y1="52.07" x2="20.32" y2="60.3" width="0.1524" layer="1"/>
-<wire x1="33.909" y1="54.077" x2="31.902" y2="52.07" width="0.1524" layer="1"/>
-<wire x1="31.902" y1="52.07" x2="20.32" y2="52.07" width="0.1524" layer="1"/>
+<wire x1="30.48" y1="52.07" x2="22.35" y2="52.07" width="0.1524" layer="1"/>
 <wire x1="20.32" y1="60.3" x2="19.05" y2="61.57" width="0.1524" layer="1"/>
 <wire x1="19.05" y1="61.57" x2="19.05" y2="67.31" width="0.1524" layer="1"/>
 <wire x1="19.05" y1="67.31" x2="20.32" y2="68.58" width="0.1524" layer="1"/>
@@ -1792,7 +1813,12 @@ design rules under a new name.</description>
 <wire x1="22.86" y1="19.05" x2="25.4" y2="19.05" width="0.1524" layer="1"/>
 <wire x1="25.4" y1="19.05" x2="26.67" y2="20.32" width="0.1524" layer="1"/>
 <wire x1="26.67" y1="20.32" x2="31.75" y2="20.32" width="0.1524" layer="1"/>
-<wire x1="20.32" y1="60.3" x2="20.295" y2="54.61" width="0" layer="19" extent="1-1"/>
+<contactref element="R9" pad="2"/>
+<wire x1="31.75" y1="55.125" x2="31.75" y2="53.34" width="0.1524" layer="1"/>
+<wire x1="31.75" y1="53.34" x2="30.48" y2="52.07" width="0.1524" layer="1"/>
+<contactref element="R10" pad="2"/>
+<wire x1="24.13" y1="53.85" x2="22.35" y2="52.07" width="0.1524" layer="1"/>
+<wire x1="22.35" y1="52.07" x2="20.32" y2="52.07" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$1">
 <contactref element="SPS30" pad="2"/>
@@ -1809,7 +1835,6 @@ design rules under a new name.</description>
 <signal name="SDA">
 <contactref element="U1" pad="21"/>
 <contactref element="B1" pad="LV3"/>
-<contactref element="R1" pad="P$1"/>
 <contactref element="U2" pad="3"/>
 <contactref element="SCD4X" pad="10"/>
 <wire x1="41.91" y1="25.4" x2="46.99" y2="25.4" width="0.1524" layer="1"/>
@@ -1819,21 +1844,21 @@ design rules under a new name.</description>
 <wire x1="49.53" y1="31.75" x2="50.8" y2="33.02" width="0.1524" layer="1"/>
 <wire x1="50.8" y1="33.02" x2="52.4" y2="33.02" width="0.1524" layer="1"/>
 <wire x1="52.4" y1="33.02" x2="53.74" y2="31.68" width="0.1524" layer="1"/>
-<wire x1="53.74" y1="31.68" x2="56.045" y2="29.375" width="0.1524" layer="1"/>
-<wire x1="56.21" y1="29.21" x2="56.045" y2="29.375" width="0.1524" layer="1"/>
-<wire x1="56.21" y1="29.21" x2="58.42" y2="29.21" width="0.1524" layer="1"/>
-<wire x1="56.045" y1="29.375" x2="57.15" y2="30.48" width="0.1524" layer="1"/>
 <via x="57.15" y="30.48" extent="1-16" drill="0.35"/>
 <wire x1="57.15" y1="30.48" x2="57.15" y2="33.02" width="0.1524" layer="16"/>
 <via x="57.15" y="33.02" extent="1-16" drill="0.35"/>
 <wire x1="57.15" y1="33.02" x2="57.15" y2="43.18" width="0.1524" layer="1"/>
 <wire x1="57.15" y1="43.18" x2="58.69" y2="44.72" width="0.1524" layer="1"/>
 <wire x1="58.69" y1="44.72" x2="60.64" y2="44.72" width="0.1524" layer="1"/>
+<contactref element="R1" pad="1"/>
+<wire x1="53.74" y1="31.68" x2="54.94" y2="30.48" width="0.1524" layer="1"/>
+<wire x1="54.94" y1="30.48" x2="57.15" y2="30.48" width="0.1524" layer="1"/>
+<wire x1="58.935" y1="29.21" x2="56.21" y2="29.21" width="0.1524" layer="1"/>
+<wire x1="56.21" y1="29.21" x2="54.94" y2="30.48" width="0.1524" layer="1"/>
 </signal>
 <signal name="SCL">
 <contactref element="B1" pad="LV4"/>
 <contactref element="U1" pad="22"/>
-<contactref element="R2" pad="P$1"/>
 <contactref element="U2" pad="4"/>
 <contactref element="SCD4X" pad="9"/>
 <wire x1="54.54" y1="31.68" x2="54.4632875" y2="31.68" width="0.1524" layer="1"/>
@@ -1848,11 +1873,15 @@ design rules under a new name.</description>
 <wire x1="41.91" y1="27.94" x2="41.91" y2="27.05236875" width="0.1524" layer="1"/>
 <wire x1="41.91" y1="27.05236875" x2="40.7416" y2="25.88396875" width="0.1524" layer="1"/>
 <wire x1="54.54" y1="31.68" x2="59.62" y2="31.68" width="0.1524" layer="1"/>
-<wire x1="59.62" y1="31.68" x2="59.69" y2="31.75" width="0.1524" layer="1"/>
 <wire x1="60.2053125" y1="44.2636" x2="60.5836" y2="44.2636" width="0.1524" layer="1"/>
 <wire x1="60.5836" y1="44.2636" x2="60.64" y2="44.32" width="0.1524" layer="1"/>
-<wire x1="59.69" y1="31.75" x2="59.69" y2="43.7482875" width="0.1524" layer="1"/>
-<wire x1="59.69" y1="43.7482875" x2="60.2053125" y2="44.2636" width="0.1524" layer="1"/>
+<wire x1="60.2053125" y1="44.2636" x2="59.69" y2="43.7482875" width="0.1524" layer="1"/>
+<contactref element="R2" pad="1"/>
+<wire x1="59.62" y1="31.68" x2="59.697" y2="31.757" width="0.1524" layer="1"/>
+<wire x1="59.697" y1="31.757" x2="59.697" y2="35.56" width="0.1524" layer="1"/>
+<wire x1="59.697" y1="35.56" x2="59.697" y2="35.687" width="0.1524" layer="1"/>
+<wire x1="59.69" y1="43.7482875" x2="59.69" y2="35.567" width="0.1524" layer="1"/>
+<wire x1="59.69" y1="35.567" x2="59.697" y2="35.56" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$6">
 <contactref element="U3" pad="A"/>
@@ -1879,9 +1908,10 @@ design rules under a new name.</description>
 <wire x1="44.61" y1="60.92404375" x2="45.4826" y2="60.05144375" width="0.1524" layer="1"/>
 <wire x1="45.4826" y1="60.05144375" x2="45.4826" y2="58.1826" width="0.1524" layer="1"/>
 <wire x1="45.4826" y1="58.1826" x2="43.18" y2="55.88" width="0.1524" layer="1"/>
-<wire x1="43.18" y1="55.88" x2="39.395" y2="55.88" width="0.1524" layer="1"/>
+<wire x1="39.395" y1="55.88" x2="43.18" y2="55.88" width="0.1524" layer="1"/>
 <contactref element="R7" pad="2"/>
-<wire x1="-3.05" y1="-11.43" x2="39.395" y2="55.88" width="0" layer="19" extent="1-1"/>
+<wire x1="39.37" y1="52.83" x2="39.37" y2="55.855" width="0.1524" layer="1"/>
+<wire x1="39.37" y1="55.855" x2="39.395" y2="55.88" width="0.1524" layer="1"/>
 </signal>
 <signal name="GND">
 <contactref element="U2" pad="1"/>
@@ -1895,8 +1925,8 @@ design rules under a new name.</description>
 <contactref element="U3" pad="J"/>
 <contactref element="U3" pad="F"/>
 <contactref element="300_OHM" pad="1"/>
-<contactref element="C5" pad="2"/>
-<contactref element="C6" pad="2"/>
+<contactref element="C3" pad="2"/>
+<contactref element="C4" pad="2"/>
 <contactref element="C1" pad="2"/>
 <contactref element="C2" pad="2"/>
 <contactref element="IC5" pad="1"/>
@@ -1906,37 +1936,37 @@ design rules under a new name.</description>
 <contactref element="B1" pad="GND2"/>
 <contactref element="B1" pad="GND1"/>
 <contactref element="R3" pad="1"/>
-<contactref element="C7" pad="2"/>
 <contactref element="R4" pad="1"/>
-<contactref element="C4" pad="2"/>
 <contactref element="R5" pad="1"/>
-<contactref element="C3" pad="2"/>
-<wire x1="56.007" y1="55.245" x2="68.58" y2="55.88" width="0" layer="19" extent="16-16"/>
-<wire x1="50.8" y1="54.385" x2="56.007" y2="55.245" width="0" layer="19" extent="1-1"/>
-<wire x1="43.18" y1="44.45" x2="50.8" y2="54.385" width="0" layer="19" extent="1-1"/>
-<wire x1="39.37" y1="44.225" x2="43.18" y2="44.45" width="0" layer="19" extent="1-1"/>
-<wire x1="39.37" y1="35.404" x2="39.37" y2="44.225" width="0" layer="19" extent="1-1"/>
-<wire x1="43.18" y1="36.83" x2="39.37" y2="35.404" width="0" layer="19" extent="1-1"/>
-<wire x1="31.91" y1="48.26" x2="39.37" y2="44.225" width="0" layer="19" extent="1-1"/>
-<wire x1="52.14" y1="31.68" x2="43.18" y2="36.83" width="0" layer="19" extent="1-1"/>
-<wire x1="52.94" y1="29.28" x2="52.14" y2="31.68" width="0" layer="19" extent="1-1"/>
-<wire x1="54.54" y1="29.28" x2="52.94" y2="29.28" width="0" layer="19" extent="1-1"/>
-<wire x1="48.26" y1="21.59" x2="52.94" y2="29.28" width="0" layer="19" extent="1-1"/>
-<wire x1="41.91" y1="22.86" x2="48.26" y2="21.59" width="0" layer="19" extent="1-1"/>
-<wire x1="31.75" y1="22.86" x2="41.91" y2="22.86" width="0" layer="19" extent="1-1"/>
-<wire x1="25.4" y1="26.67" x2="31.75" y2="22.86" width="0" layer="19" extent="1-1"/>
-<wire x1="25.4" y1="29.21" x2="25.4" y2="26.67" width="0" layer="19" extent="1-1"/>
-<wire x1="36.67" y1="59.69" x2="31.91" y2="48.26" width="0" layer="19" extent="1-1"/>
+<contactref element="C5" pad="1"/>
+<contactref element="C6" pad="1"/>
+<contactref element="C7" pad="1"/>
+<wire x1="76.86" y1="45.72" x2="68.58" y2="55.88" width="0" layer="19" extent="16-16"/>
+<wire x1="52.07" y1="64.26" x2="68.58" y2="55.88" width="0" layer="19" extent="1-16"/>
+<wire x1="36.67" y1="59.69" x2="52.07" y2="64.26" width="0" layer="19" extent="1-1"/>
 <wire x1="30.19" y1="62.25" x2="36.67" y2="59.69" width="0" layer="19" extent="1-1"/>
 <wire x1="29.21" y1="66.75" x2="30.19" y2="62.25" width="0" layer="19" extent="1-1"/>
 <wire x1="25.69" y1="63.5" x2="30.19" y2="62.25" width="0" layer="19" extent="1-1"/>
-<wire x1="76.86" y1="45.72" x2="68.58" y2="55.88" width="0" layer="19" extent="16-16"/>
+<wire x1="31.91" y1="48.26" x2="36.67" y2="59.69" width="0" layer="19" extent="1-1"/>
+<wire x1="38.61" y1="46.99" x2="31.91" y2="48.26" width="0" layer="19" extent="1-1"/>
+<wire x1="38.1" y1="35.05" x2="38.61" y2="46.99" width="0" layer="19" extent="1-1"/>
+<wire x1="41.91" y1="22.86" x2="38.1" y2="35.05" width="0" layer="19" extent="1-1"/>
+<wire x1="48.26" y1="21.59" x2="41.91" y2="22.86" width="0" layer="19" extent="1-1"/>
+<wire x1="52.94" y1="29.28" x2="48.26" y2="21.59" width="0" layer="19" extent="1-1"/>
+<wire x1="54.54" y1="29.28" x2="52.94" y2="29.28" width="0" layer="19" extent="1-1"/>
+<wire x1="52.14" y1="31.68" x2="52.94" y2="29.28" width="0" layer="19" extent="1-1"/>
+<wire x1="31.75" y1="22.86" x2="41.91" y2="22.86" width="0" layer="19" extent="1-1"/>
+<wire x1="25.4" y1="26.67" x2="31.75" y2="22.86" width="0" layer="19" extent="1-1"/>
+<wire x1="25.4" y1="29.21" x2="25.4" y2="26.67" width="0" layer="19" extent="1-1"/>
 <wire x1="17.41" y1="49.53" x2="31.91" y2="48.26" width="0" layer="19" extent="1-1"/>
 <wire x1="10.58" y1="46.99" x2="17.41" y2="49.53" width="0" layer="19" extent="1-1"/>
 <wire x1="10.16" y1="52.07" x2="10.58" y2="46.99" width="0" layer="19" extent="1-1"/>
 <wire x1="10.16" y1="12.7" x2="25.4" y2="26.67" width="0" layer="19" extent="1-1"/>
 <wire x1="10.53" y1="8.89" x2="10.16" y2="12.7" width="0" layer="19" extent="1-1"/>
 <wire x1="14.34" y1="8.89" x2="10.53" y2="8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="53.848" y1="63.146" x2="10.53" y2="8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="42.291" y1="46.455" x2="53.848" y2="63.146" width="0" layer="19" extent="1-1"/>
+<wire x1="42.545" y1="34.063" x2="42.291" y2="46.455" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="BT1" pad="2"/>
@@ -1964,17 +1994,18 @@ design rules under a new name.</description>
 <wire x1="76.2" y1="55.88" x2="83.82" y2="55.88" width="0.1524" layer="16"/>
 <wire x1="27.94" y1="55.88" x2="33.02" y2="55.88" width="0.1524" layer="16"/>
 <wire x1="51.85" y1="55.88" x2="52.07" y2="55.88" width="0.1524" layer="16"/>
+<wire x1="50.8" y1="55.88" x2="51.85" y2="55.88" width="0.1524" layer="16"/>
 <wire x1="52.07" y1="55.88" x2="60.96" y2="55.88" width="0.1524" layer="16"/>
 <wire x1="33.02" y1="55.88" x2="38.1" y2="60.96" width="0.1524" layer="16"/>
-<wire x1="38.1" y1="60.96" x2="46.99" y2="60.96" width="0.1524" layer="16"/>
-<wire x1="46.99" y1="60.96" x2="52.07" y2="55.88" width="0.1524" layer="16"/>
+<wire x1="38.1" y1="60.96" x2="45.72" y2="60.96" width="0.1524" layer="16"/>
+<wire x1="45.72" y1="60.96" x2="50.8" y2="55.88" width="0.1524" layer="16"/>
 <wire x1="83.82" y1="55.88" x2="85.31" y2="55.88" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="VDD">
 <contactref element="IC3.3" pad="3"/>
 <contactref element="C1" pad="1"/>
 <contactref element="IC5" pad="3"/>
-<contactref element="C5" pad="1"/>
+<contactref element="C3" pad="1"/>
 <contactref element="S1" pad="2"/>
 <wire x1="15.24" y1="12.7" x2="16.14" y2="11.8" width="0.1524" layer="1"/>
 <wire x1="16.14" y1="11.8" x2="16.14" y2="8.89" width="0.1524" layer="1"/>
@@ -1993,16 +2024,16 @@ design rules under a new name.</description>
 <signal name="N$11">
 <contactref element="U3" pad="E"/>
 <contactref element="U3" pad="G"/>
-<contactref element="820OHM" pad="1"/>
-<wire x1="29.21" y1="60.25" x2="33.682" y2="60.25" width="0.1524" layer="1"/>
-<wire x1="33.682" y1="60.25" x2="33.909" y2="60.477" width="0.1524" layer="1"/>
+<contactref element="R9" pad="1"/>
+<wire x1="29.21" y1="60.25" x2="31.75" y2="57.71" width="0.1524" layer="1"/>
+<wire x1="31.75" y1="57.71" x2="31.75" y2="56.635" width="0.1524" layer="1"/>
 <wire x1="29.21" y1="60.25" x2="30.19" y2="63.5" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$12">
 <contactref element="U3" pad="C"/>
-<contactref element="27OHM" pad="1"/>
-<wire x1="26.695" y1="54.61" x2="25.69" y2="55.615" width="0.1524" layer="1"/>
-<wire x1="25.69" y1="55.615" x2="25.69" y2="62.25" width="0.1524" layer="1"/>
+<contactref element="R10" pad="1"/>
+<wire x1="25.69" y1="62.25" x2="24.13" y2="60.69" width="0.1524" layer="1"/>
+<wire x1="24.13" y1="60.69" x2="24.13" y2="55.37" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$13">
 <contactref element="U3" pad="K"/>
@@ -2014,9 +2045,9 @@ design rules under a new name.</description>
 <contactref element="U5" pad="2"/>
 <contactref element="U5" pad="1"/>
 <wire x1="31.91" y1="43.18" x2="31.91" y2="40.64" width="0.1524" layer="1"/>
-<wire x1="31.91" y1="40.64" x2="33.68" y2="40.64" width="0.1524" layer="1"/>
 <contactref element="R8" pad="2"/>
-<wire x1="-3.05" y1="-15.24" x2="31.91" y2="40.64" width="0" layer="19" extent="1-1"/>
+<wire x1="34.29" y1="35.05" x2="31.91" y2="37.43" width="0.1524" layer="1"/>
+<wire x1="31.91" y1="37.43" x2="31.91" y2="40.64" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$14">
 <contactref element="U3" pad="D"/>
@@ -2031,32 +2062,36 @@ design rules under a new name.</description>
 </signal>
 <signal name="N$16">
 <contactref element="U1" pad="6"/>
-<contactref element="C3" pad="1"/>
-<wire x1="41.25" y1="32.36" x2="43.18" y2="34.29" width="0.1524" layer="1"/>
-<wire x1="43.18" y1="34.29" x2="57.15" y2="48.26" width="0.1524" layer="1"/>
 <via x="57.15" y="48.26" extent="1-16" drill="0.35"/>
 <wire x1="57.15" y1="48.26" x2="60.96" y2="52.07" width="0.1524" layer="16"/>
 <wire x1="60.96" y1="52.07" x2="63.5" y2="52.07" width="0.1524" layer="16"/>
 <via x="63.5" y="52.07" extent="1-16" drill="0.35"/>
 <wire x1="63.5" y1="52.07" x2="63.7" y2="51.87" width="0.1524" layer="1"/>
 <wire x1="63.7" y1="51.87" x2="63.7" y2="48.58" width="0.1524" layer="1"/>
-<contactref element="R5" pad="2"/>
-<wire x1="35.614" y1="32.414" x2="39.37" y2="32.414" width="0.1524" layer="1"/>
-<wire x1="39.37" y1="32.414" x2="39.424" y2="32.36" width="0.1524" layer="1"/>
-<wire x1="39.424" y1="32.36" x2="41.25" y2="32.36" width="0.1524" layer="1"/>
 <contactref element="R8" pad="1"/>
-<wire x1="-4.57" y1="-15.24" x2="35.614" y2="32.414" width="0" layer="19" extent="1-1"/>
+<contactref element="R5" pad="2"/>
+<wire x1="34.29" y1="33.53" x2="38.1" y2="33.53" width="0.1524" layer="1"/>
+<contactref element="C7" pad="2"/>
+<wire x1="38.1" y1="33.53" x2="38.129" y2="33.501" width="0.1524" layer="1"/>
+<wire x1="38.129" y1="33.501" x2="42.545" y2="33.501" width="0.1524" layer="1"/>
+<wire x1="42.545" y1="33.501" x2="42.6884" y2="33.6444" width="0.1524" layer="1"/>
+<wire x1="42.6884" y1="33.6444" x2="42.8396875" y2="33.6444" width="0.1524" layer="1"/>
+<wire x1="42.8396875" y1="33.6444" x2="57.15" y2="47.9547125" width="0.1524" layer="1"/>
+<wire x1="57.15" y1="47.9547125" x2="57.15" y2="48.26" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$17">
-<contactref element="C7" pad="1"/>
 <contactref element="U1" pad="7"/>
-<wire x1="50.825" y1="57.785" x2="56.007" y2="57.785" width="0.1524" layer="1"/>
-<wire x1="56.007" y1="57.785" x2="63.3" y2="50.492" width="0.1524" layer="1"/>
 <wire x1="63.3" y1="50.492" x2="63.3" y2="48.58" width="0.1524" layer="1"/>
-<contactref element="R3" pad="2"/>
 <contactref element="R6" pad="1"/>
-<wire x1="50.8" y1="57.375" x2="50.825" y2="57.785" width="0" layer="19" extent="1-1"/>
-<wire x1="-4.57" y1="-7.62" x2="50.8" y2="57.375" width="0" layer="19" extent="1-1"/>
+<contactref element="R3" pad="2"/>
+<contactref element="C5" pad="2"/>
+<wire x1="49.53" y1="62.74" x2="52.07" y2="62.74" width="0.1524" layer="1"/>
+<wire x1="52.07" y1="62.74" x2="52.226" y2="62.584" width="0.1524" layer="1"/>
+<wire x1="52.226" y1="62.584" x2="53.848" y2="62.584" width="0.1524" layer="1"/>
+<wire x1="53.848" y1="62.584" x2="62.23" y2="54.202" width="0.1524" layer="1"/>
+<wire x1="62.23" y1="54.202" x2="62.23" y2="50.8" width="0.1524" layer="1"/>
+<wire x1="62.23" y1="50.8" x2="62.538" y2="50.492" width="0.1524" layer="1"/>
+<wire x1="62.538" y1="50.492" x2="63.3" y2="50.492" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$19">
 <contactref element="BT1" pad="1"/>
@@ -2091,9 +2126,10 @@ design rules under a new name.</description>
 <wire x1="36.67" y1="67.31" x2="36.67" y2="64.77" width="0.1524" layer="1"/>
 <wire x1="36.67" y1="67.31" x2="41.91" y2="67.31" width="0.1524" layer="1"/>
 <wire x1="41.91" y1="67.31" x2="43.18" y2="66.04" width="0.1524" layer="1"/>
-<wire x1="43.18" y1="66.04" x2="50.14" y2="66.04" width="0.1524" layer="1"/>
+<wire x1="43.18" y1="66.04" x2="46.99" y2="66.04" width="0.1524" layer="1"/>
 <contactref element="R6" pad="2"/>
-<wire x1="-3.05" y1="-7.62" x2="36.67" y2="64.77" width="0" layer="19" extent="1-1"/>
+<wire x1="49.53" y1="64.26" x2="47.75" y2="66.04" width="0.1524" layer="1"/>
+<wire x1="47.75" y1="66.04" x2="46.99" y2="66.04" width="0.1524" layer="1"/>
 </signal>
 <signal name="N$4">
 <contactref element="BT2" pad="2"/>
@@ -2107,9 +2143,7 @@ design rules under a new name.</description>
 <wire x1="27.94" y1="26.543" x2="44.67" y2="55.88" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="N$15">
-<contactref element="C4" pad="1"/>
 <contactref element="U1" pad="5"/>
-<contactref element="R4" pad="2"/>
 <wire x1="45.72" y1="49.53" x2="62.23" y2="49.53" width="0.1524" layer="1"/>
 <via x="62.23" y="49.53" extent="1-16" drill="0.35"/>
 <wire x1="62.23" y1="49.53" x2="64.77" y2="49.53" width="0.1524" layer="16"/>
@@ -2119,11 +2153,15 @@ design rules under a new name.</description>
 <wire x1="64.1564" y1="48.6364" x2="64.1" y2="48.58" width="0.1524" layer="1"/>
 <wire x1="64.77" y1="49.53" x2="64.3886" y2="49.1486" width="0.1524" layer="1"/>
 <wire x1="64.3886" y1="49.1486" x2="64.2903125" y2="49.1486" width="0.1524" layer="1"/>
-<wire x1="39.37" y1="47.215" x2="39.595" y2="46.99" width="0.1524" layer="1"/>
 <contactref element="R7" pad="1"/>
-<wire x1="43.18" y1="46.99" x2="45.72" y2="49.53" width="0" layer="19" extent="1-1"/>
-<wire x1="39.595" y1="46.99" x2="43.18" y2="46.99" width="0" layer="19" extent="1-1"/>
-<wire x1="-4.57" y1="-11.43" x2="39.595" y2="46.99" width="0" layer="19" extent="1-1"/>
+<contactref element="R4" pad="2"/>
+<wire x1="39.37" y1="51.31" x2="40.13" y2="50.55" width="0.1524" layer="1"/>
+<wire x1="40.13" y1="50.55" x2="40.13" y2="46.99" width="0.1524" layer="1"/>
+<contactref element="C6" pad="2"/>
+<wire x1="40.13" y1="46.99" x2="40.157" y2="47.017" width="0.1524" layer="1"/>
+<wire x1="40.157" y1="47.017" x2="42.291" y2="47.017" width="0.1524" layer="1"/>
+<wire x1="42.291" y1="47.017" x2="43.207" y2="47.017" width="0.1524" layer="1"/>
+<wire x1="43.207" y1="47.017" x2="45.72" y2="49.53" width="0.1524" layer="1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

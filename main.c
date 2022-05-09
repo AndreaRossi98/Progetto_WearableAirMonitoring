@@ -19,6 +19,7 @@
 #include "scd4x_i2c.h"
 #include "bme280.h"
 #include "bme280_defs.h"
+#include "lis3dh_acc_driver.h"
 
 
 #define LED1 07
@@ -373,6 +374,55 @@ printf("BME280 set sensor mode: %d\n", rslt);
 
     timer_init();       //INIZIALIZZAZIONE DEL TIMER
     nrfx_timer_enable(&TIMER_LED);
+
+
+    static int16_t AccValue[3];
+    float AccValueF[3];
+    detected_device = false;
+    NRF_LOG_INFO("Accelerometer scanner started.");
+    NRF_LOG_FLUSH();
+
+    nrf_delay_ms(1000); // give some delay
+    lis3dh_verify_product_id();
+    int16_t *reg;
+
+    while(lis3dh_init() == false) // wait until lis3dh sensor is successfully initialized
+    {
+        NRF_LOG_INFO("LIS3DH initialization failed!!!"); // if it failed to initialize then print a message
+        nrf_delay_ms(1000);
+    }
+    
+    NRF_LOG_INFO("LIS3DH Init Successfully!!!"); 
+
+    NRF_LOG_INFO("Reading Values from ACC"); // display a message to let the user know that the device is starting to read the values
+    nrf_delay_ms(2000);
+    while (true)
+    {
+
+        if(lis3dh_ReadAcc(&AccValue[0], &AccValue[1], &AccValue[2]) == true) // Read acc value from mpu6050 internal registers and save them in the array
+        {
+AccValue[0] = AccValue[0]/256;
+AccValue[1] = AccValue[1]/256;
+AccValue[2] = AccValue[2]/256;
+            NRF_LOG_INFO("\nACC Values:  x = %d  y = %d  z = %d", AccValue[0], AccValue[1], AccValue[2]); // display the read values
+AccValueF[0] = AccValue[0]/1.024;
+AccValueF[1] = AccValue[1]/1.024;
+AccValueF[2] = AccValue[2]/1.024;
+NRF_LOG_INFO("ACC Values:  x[mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(AccValueF[0]));
+//NRF_LOG_INFO("ACC Values:  x =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(AccValue[0]/2048*2));
+NRF_LOG_INFO("ACC Values:  y[mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(AccValueF[1]));
+NRF_LOG_INFO("ACC Values:  z[mg] =" NRF_LOG_FLOAT_MARKER"\r\n" ,NRF_LOG_FLOAT(AccValueF[2]));
+
+        }
+        else
+        {
+          NRF_LOG_INFO("Reading ACC values Failed!!!"); // if reading was unsuccessful then let the user know about it
+        }
+
+        nrf_delay_ms(1000); // give some delay 
+}
+
+
 
     while (1)
     {

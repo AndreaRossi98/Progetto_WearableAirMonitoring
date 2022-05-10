@@ -1,4 +1,4 @@
-#include <stdbool.h>
+#include <stdbool.h>        //PROGETTO_WEARABLE
 #include <stdint.h>
 #include <math.h>
 #include "nrf.h"
@@ -290,7 +290,7 @@ m_saadc_calibrate = false;
 */
     //lettura_scd41(3);
     //lettura_sps30(1);
-
+/*
     int16_t error = 0;
     uint16_t status;
     uint16_t target_co2_concentration;
@@ -330,7 +330,7 @@ m_saadc_calibrate = false;
 */
     //start measurement and wait for 10s to ensure the sensor has a
     //stable flow and possible remaining particles are cleaned out
-    if (sps30_start_measurement() != 0) 
+/*    if (sps30_start_measurement() != 0) 
     {
         printf("error starting measurement\n\r");
     }
@@ -374,8 +374,9 @@ printf("BME280 set sensor mode: %d\n", rslt);
 
     timer_init();       //INIZIALIZZAZIONE DEL TIMER
     nrfx_timer_enable(&TIMER_LED);
+*/
 
-
+    // create arrays which will hold x,y & z co-ordinates values of acc and gyro
     static int16_t AccValue[3];
     float AccValueF[3];
     detected_device = false;
@@ -385,7 +386,6 @@ printf("BME280 set sensor mode: %d\n", rslt);
     nrf_delay_ms(1000); // give some delay
     lis3dh_verify_product_id();
     int16_t *reg;
-
     while(lis3dh_init() == false) // wait until lis3dh sensor is successfully initialized
     {
         NRF_LOG_INFO("LIS3DH initialization failed!!!"); // if it failed to initialize then print a message
@@ -398,20 +398,27 @@ printf("BME280 set sensor mode: %d\n", rslt);
     nrf_delay_ms(2000);
     while (true)
     {
+        err_code = nrf_drv_twi_rx(&m_twi, LIS3DH_ADDRESS, &sample_data, sizeof(sample_data));
+        if (err_code == NRF_SUCCESS)
+        {
+            detected_device = true;
+            //NRF_LOG_INFO("TWI device detected at address 0x%x.", LIS3DH_ADDRESS);
+        }
+        NRF_LOG_FLUSH();
 
         if(lis3dh_ReadAcc(&AccValue[0], &AccValue[1], &AccValue[2]) == true) // Read acc value from mpu6050 internal registers and save them in the array
         {
 AccValue[0] = AccValue[0]/256;
 AccValue[1] = AccValue[1]/256;
 AccValue[2] = AccValue[2]/256;
-            NRF_LOG_INFO("\nACC Values:  x = %d  y = %d  z = %d", AccValue[0], AccValue[1], AccValue[2]); // display the read values
-AccValueF[0] = AccValue[0]/1.024;
-AccValueF[1] = AccValue[1]/1.024;
-AccValueF[2] = AccValue[2]/1.024;
-NRF_LOG_INFO("ACC Values:  x[mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(AccValueF[0]));
+            NRF_LOG_INFO("ACC Values:  x = %d  y = %d  z = %d", AccValue[0], AccValue[1], AccValue[2]); // display the read values
+AccValueF[0] = AccValue[0]*16;
+AccValueF[1] = AccValue[1]*16;
+AccValueF[2] = AccValue[2]*16;
+NRF_LOG_INFO("ACC Values:  x[g] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(AccValueF[0]/1000));
 //NRF_LOG_INFO("ACC Values:  x =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(AccValue[0]/2048*2));
-NRF_LOG_INFO("ACC Values:  y[mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(AccValueF[1]));
-NRF_LOG_INFO("ACC Values:  z[mg] =" NRF_LOG_FLOAT_MARKER"\r\n" ,NRF_LOG_FLOAT(AccValueF[2]));
+NRF_LOG_INFO("ACC Values:  y[g] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(AccValueF[1]/1000));
+NRF_LOG_INFO("ACC Values:  z[g] =" NRF_LOG_FLOAT_MARKER"\r\n\n" ,NRF_LOG_FLOAT(AccValueF[2]/1000));
 
         }
         else
@@ -420,8 +427,8 @@ NRF_LOG_INFO("ACC Values:  z[mg] =" NRF_LOG_FLOAT_MARKER"\r\n" ,NRF_LOG_FLOAT(Ac
         }
 
         nrf_delay_ms(1000); // give some delay 
-}
 
+    }
 
 
     while (1)

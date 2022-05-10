@@ -18,9 +18,9 @@
 #include <stdint.h>
 
 //Initializing TWI0 instance
-#define TWI_INSTANCE_ID     0
+//#define TWI_INSTANCE_ID     0
 // Create a Handle for the twi communication
-static const nrf_drv_twi_t m_twi1 = NRF_DRV_TWI_INSTANCE(TWI_INSTANCE_ID);
+//static const nrf_drv_twi_t m_twi = NRF_DRV_TWI_INSTANCE(TWI_INSTANCE_ID);
 void twi_init (void);
 bool lis3dh_register_write(uint8_t register_address, uint8_t value);
 bool lis3dh_register_read(uint8_t register_address, uint8_t * destination, uint8_t number_of_bytes);

@@ -12,6 +12,8 @@
 //Initializing TWI0 instance
 #define TWI_INSTANCE_ID     0
 
+static const nrf_drv_twi_t m_twi = NRF_DRV_TWI_INSTANCE(TWI_INSTANCE_ID);
+
 // A flag to indicate the transfer state
 static volatile bool m_xfer_done = false;
 
@@ -57,10 +59,10 @@ void twi_init1 (void)
        .clear_bus_init     = false
     };
 
-    err_code = nrf_drv_twi_init(&m_twi1, &twi_config, twi_handler1, NULL);
+    err_code = nrf_drv_twi_init(&m_twi, &twi_config, twi_handler1, NULL);
     APP_ERROR_CHECK(err_code);
 
-    nrf_drv_twi_enable(&m_twi1);
+    nrf_drv_twi_enable(&m_twi);
 }
 
 
@@ -86,7 +88,7 @@ bool lis3dh_register_write(uint8_t register_address, uint8_t value)
     //m_xfer_done = false;
     
     //Transmit the data over TWI Bus
-    err_code = nrf_drv_twi_tx(&m_twi1, LIS3DH_ADDRESS, tx_buf, LIS3DH_ADDRESS_LEN+1, false);
+    err_code = nrf_drv_twi_tx(&m_twi, LIS3DH_ADDRESS, tx_buf, LIS3DH_ADDRESS_LEN+1, false);
     
     //Wait until the transmission of the data is finished
     //while (m_xfer_done == false)
@@ -118,10 +120,10 @@ bool lis3dh_register_read(uint8_t register_address, uint8_t * destination, uint8
     ret_code_t err_code;
 
     //Set the flag to false to show the receiving is not yet completed
-    //m_xfer_done = false;
+    m_xfer_done = false;
     
     // Send the Register address where we want to write the data
-    err_code = nrf_drv_twi_tx(&m_twi1, LIS3DH_ADDRESS, &register_address, 1, false);
+    err_code = nrf_drv_twi_tx(&m_twi, LIS3DH_ADDRESS, &register_address, 1, false);
 	  
     //Wait for the transmission to get completed
     //while (m_xfer_done == false){}
@@ -136,7 +138,7 @@ bool lis3dh_register_read(uint8_t register_address, uint8_t * destination, uint8
     m_xfer_done = false;
 	  
     // Receive the data from the LIS3DH
-    err_code = nrf_drv_twi_rx(&m_twi1, LIS3DH_ADDRESS, destination, number_of_bytes);
+    err_code = nrf_drv_twi_rx(&m_twi, LIS3DH_ADDRESS, destination, number_of_bytes);
 		
     //wait until the transmission is completed
     //while (m_xfer_done == false){}
@@ -199,9 +201,11 @@ bool lis3dh_init(void)
       }
 
   // Set the registers with the required values, see the datasheet to get a good idea of these values
-  (void)lis3dh_register_write(LIS3DH_CTRL_REG1 , CTRL1); 
-  (void)lis3dh_register_write(LIS3DH_CTRL_REG2 , CTRL2); 
-  //(void)lis3dh_register_write(LIS3DH_CTRL_REG3 , CTRL3); 						
+  (void)lis3dh_register_write(LIS3DH_CTRL_REG1 , CTRL1);  
+  //(void)lis3dh_register_write(LIS3DH_CTRL_REG2 , CTRL2); 
+    (void)lis3dh_register_write(LIS3DH_CTRL_REG2 , 0x00);
+  //(void)lis3dh_register_write(LIS3DH_CTRL_REG3 , CTRL3);
+  (void)lis3dh_register_write(LIS3DH_CTRL_REG3 , 0x00); 						
   (void)lis3dh_register_write(LIS3DH_CTRL_REG4 , CTRL4); 
   //(void)lis3dh_register_write(LIS3DH_CTRL_REG5 , CTRL5); 
   //(void)lis3dh_register_write(LIS3DH_CTRL_REG6 , CTRL6);   

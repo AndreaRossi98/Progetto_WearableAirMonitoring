@@ -61,10 +61,10 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="239" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="470" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="239" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="293" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="33" y="1658" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../sensor/bme280.c" selected="0" top="1651" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="50" y="399" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/sensor/bme280.c" useBinaryEdit="0" left="0" path="../../../sensor/bme280.h" selected="0" top="380" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="84" y="129" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../sensor/lis3dh_acc_driver.c" selected="0" top="138" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="209" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../sensor/lis3dh_acc_driver.c" selected="0" top="187" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="75" y="22" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/sensor/lis3dh_acc_driver.c" useBinaryEdit="0" left="0" path="../../../sensor/lis3dh_acc_driver.h" selected="0" top="15" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="36" y="119" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../../../../integration/nrfx/legacy/nrf_drv_twi.h" selected="0" top="90" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="142" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../../TWI_SAADC_TIMER/sensor/sps30.h" selected="0" top="129" codecName="Default"/>

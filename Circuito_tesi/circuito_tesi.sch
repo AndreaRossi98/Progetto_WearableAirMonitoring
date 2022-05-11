@@ -1822,75 +1822,6 @@ W = angled&lt;p&gt;
 </deviceset>
 </devicesets>
 </library>
-<library name="BHX1-2450-SM">
-<packages>
-<package name="BAT_BHX1-2450-SM">
-<wire x1="-15.1" y1="13.4" x2="-15.1" y2="2.97" width="0.127" layer="21"/>
-<wire x1="-15.1" y1="-14.24" x2="15.1" y2="-14.24" width="0.127" layer="51"/>
-<wire x1="15.1" y1="2.97" x2="15.1" y2="13.4" width="0.127" layer="21"/>
-<wire x1="15.1" y1="13.4" x2="-15.1" y2="13.4" width="0.127" layer="21"/>
-<circle x="-20.5" y="0" radius="0.1" width="0.2" layer="21"/>
-<circle x="-20.5" y="0" radius="0.1" width="0.2" layer="51"/>
-<wire x1="-15.1" y1="13.4" x2="-15.1" y2="-14.24" width="0.127" layer="51"/>
-<wire x1="15.1" y1="-14.24" x2="15.1" y2="13.4" width="0.127" layer="51"/>
-<wire x1="15.1" y1="13.4" x2="-15.1" y2="13.4" width="0.127" layer="51"/>
-<wire x1="15.1" y1="-14.24" x2="15.1" y2="-2.97" width="0.127" layer="21"/>
-<wire x1="-15.1" y1="-2.97" x2="-15.1" y2="-14.24" width="0.127" layer="21"/>
-<wire x1="-15.1" y1="-14.24" x2="15.1" y2="-14.24" width="0.127" layer="21"/>
-<wire x1="-19.63" y1="13.65" x2="19.63" y2="13.65" width="0.05" layer="39"/>
-<wire x1="19.63" y1="13.65" x2="19.63" y2="-14.49" width="0.05" layer="39"/>
-<wire x1="19.63" y1="-14.49" x2="-19.63" y2="-14.49" width="0.05" layer="39"/>
-<wire x1="-19.63" y1="-14.49" x2="-19.63" y2="13.65" width="0.05" layer="39"/>
-<text x="-20" y="14.54" size="1.27" layer="25">&gt;NAME</text>
-<text x="-20" y="-17" size="1.27" layer="27">&gt;VALUE</text>
-<smd name="2" x="0" y="0" dx="5" dy="5" layer="1"/>
-<smd name="1" x="-16.73" y="0" dx="5.3" dy="5.3" layer="1"/>
-<smd name="1_1" x="16.73" y="0" dx="5.3" dy="5.3" layer="1"/>
-</package>
-</packages>
-<symbols>
-<symbol name="BHX1-2450-SM">
-<wire x1="-1.27" y1="2.54" x2="-1.27" y2="0" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="0" x2="-1.27" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="1.27" y1="1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
-<wire x1="1.27" y1="0" x2="1.27" y2="-1.27" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="0" x2="-2.54" y2="0" width="0.254" layer="94"/>
-<wire x1="1.27" y1="0" x2="2.54" y2="0" width="0.254" layer="94"/>
-<wire x1="-3.175" y1="2.54" x2="-3.175" y2="1.27" width="0.254" layer="94"/>
-<wire x1="-3.81" y1="1.905" x2="-2.54" y2="1.905" width="0.254" layer="94"/>
-<text x="-3.81" y="3.81" size="1.778" layer="95">&gt;NAME</text>
-<text x="-3.81" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
-<pin name="+" x="-7.62" y="0" visible="pad" length="middle" direction="pas"/>
-<pin name="-" x="7.62" y="0" visible="pad" length="middle" direction="pas" rot="R180"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="BHX1-2450-SM" prefix="BT">
-<description>CR2450 surface mount battery retainer with insulator </description>
-<gates>
-<gate name="G$1" symbol="BHX1-2450-SM" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="BAT_BHX1-2450-SM">
-<connects>
-<connect gate="G$1" pin="+" pad="1 1_1"/>
-<connect gate="G$1" pin="-" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="DESCRIPTION" value=" "/>
-<attribute name="DIGI-KEY_PART_NUMBER" value=""/>
-<attribute name="MF" value="MPD (Memory Protection Devices)"/>
-<attribute name="MP" value="BHX1-2450-SM"/>
-<attribute name="PACKAGE" value="None"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BHX1-2450-SM/?ref=eda"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="GF-123-0054">
 <packages>
 <package name="SW_GF-123-0054">
@@ -2450,246 +2381,6 @@ Source: http://catalog.osram-os.com .. LA_LR_LS_LY_P47F_Pb_free.pdf</description
 </deviceset>
 </devicesets>
 </library>
-<library name="Res_10KOHM">
-<packages>
-<package name="RESC1508X55N">
-<text x="-1.44" y="-0.8" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
-<text x="-1.44" y="0.8" size="0.5" layer="25">&gt;NAME</text>
-<wire x1="0.83" y1="-0.45" x2="-0.83" y2="-0.45" width="0.127" layer="51"/>
-<wire x1="0.83" y1="0.45" x2="-0.83" y2="0.45" width="0.127" layer="51"/>
-<wire x1="0.83" y1="-0.45" x2="0.83" y2="0.45" width="0.127" layer="51"/>
-<wire x1="-0.83" y1="-0.45" x2="-0.83" y2="0.45" width="0.127" layer="51"/>
-<wire x1="-1.44" y1="-0.715" x2="1.44" y2="-0.715" width="0.05" layer="39"/>
-<wire x1="-1.44" y1="0.715" x2="1.44" y2="0.715" width="0.05" layer="39"/>
-<wire x1="-1.44" y1="-0.715" x2="-1.44" y2="0.715" width="0.05" layer="39"/>
-<wire x1="1.44" y1="-0.715" x2="1.44" y2="0.715" width="0.05" layer="39"/>
-<smd name="1" x="-0.755" y="0" dx="0.87" dy="0.93" layer="1"/>
-<smd name="2" x="0.755" y="0" dx="0.87" dy="0.93" layer="1"/>
-</package>
-</packages>
-<symbols>
-<symbol name="RNCF0603BTE10K0">
-<wire x1="-5.08" y1="0" x2="-4.445" y2="1.905" width="0.254" layer="94"/>
-<wire x1="-4.445" y1="1.905" x2="-3.175" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="-3.175" y1="-1.905" x2="-1.905" y2="1.905" width="0.254" layer="94"/>
-<wire x1="-1.905" y1="1.905" x2="-0.635" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="-0.635" y1="-1.905" x2="0.635" y2="1.905" width="0.254" layer="94"/>
-<wire x1="0.635" y1="1.905" x2="1.905" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="1.905" y1="-1.905" x2="3.175" y2="1.905" width="0.254" layer="94"/>
-<wire x1="3.175" y1="1.905" x2="4.445" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="4.445" y1="-1.905" x2="5.08" y2="0" width="0.254" layer="94"/>
-<text x="-7.624440625" y="2.54148125" size="2.54148125" layer="95">&gt;NAME</text>
-<text x="-7.62996875" y="-5.086640625" size="2.54331875" layer="96">&gt;VALUE</text>
-<pin name="1" x="-10.16" y="0" visible="off" length="middle" direction="pas"/>
-<pin name="2" x="10.16" y="0" visible="off" length="middle" direction="pas" rot="R180"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="RNCF0603BTE10K0" prefix="R">
-<gates>
-<gate name="G$1" symbol="RNCF0603BTE10K0" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="RESC1508X55N">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="DESCRIPTION" value=" 10 kOhms ±0.1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thin Film "/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="RNCF0603BTE10K0TR-ND"/>
-<attribute name="MF" value="Stackpole Electronics Inc"/>
-<attribute name="MP" value="RNCF0603BTE10K0"/>
-<attribute name="PACKAGE" value="1508 Stackpole"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RNCF0603BTE10K0/?ref=eda"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
-<library name="Res_820OHM">
-<packages>
-<package name="RESC1508X55N">
-<text x="-1.44" y="-0.8" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
-<text x="-1.44" y="0.8" size="0.5" layer="25">&gt;NAME</text>
-<wire x1="0.83" y1="-0.45" x2="-0.83" y2="-0.45" width="0.127" layer="51"/>
-<wire x1="0.83" y1="0.45" x2="-0.83" y2="0.45" width="0.127" layer="51"/>
-<wire x1="0.83" y1="-0.45" x2="0.83" y2="0.45" width="0.127" layer="51"/>
-<wire x1="-0.83" y1="-0.45" x2="-0.83" y2="0.45" width="0.127" layer="51"/>
-<wire x1="-1.44" y1="-0.715" x2="1.44" y2="-0.715" width="0.05" layer="39"/>
-<wire x1="-1.44" y1="0.715" x2="1.44" y2="0.715" width="0.05" layer="39"/>
-<wire x1="-1.44" y1="-0.715" x2="-1.44" y2="0.715" width="0.05" layer="39"/>
-<wire x1="1.44" y1="-0.715" x2="1.44" y2="0.715" width="0.05" layer="39"/>
-<smd name="1" x="-0.755" y="0" dx="0.87" dy="0.93" layer="1"/>
-<smd name="2" x="0.755" y="0" dx="0.87" dy="0.93" layer="1"/>
-</package>
-</packages>
-<symbols>
-<symbol name="RNCF0603DTE820R">
-<wire x1="-5.08" y1="0" x2="-4.445" y2="1.905" width="0.254" layer="94"/>
-<wire x1="-4.445" y1="1.905" x2="-3.175" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="-3.175" y1="-1.905" x2="-1.905" y2="1.905" width="0.254" layer="94"/>
-<wire x1="-1.905" y1="1.905" x2="-0.635" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="-0.635" y1="-1.905" x2="0.635" y2="1.905" width="0.254" layer="94"/>
-<wire x1="0.635" y1="1.905" x2="1.905" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="1.905" y1="-1.905" x2="3.175" y2="1.905" width="0.254" layer="94"/>
-<wire x1="3.175" y1="1.905" x2="4.445" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="4.445" y1="-1.905" x2="5.08" y2="0" width="0.254" layer="94"/>
-<text x="-7.624440625" y="2.54148125" size="2.54148125" layer="95">&gt;NAME</text>
-<text x="-7.62996875" y="-5.086640625" size="2.54331875" layer="96">&gt;VALUE</text>
-<pin name="1" x="-10.16" y="0" visible="off" length="middle" direction="pas"/>
-<pin name="2" x="10.16" y="0" visible="off" length="middle" direction="pas" rot="R180"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="RNCF0603DTE820R" prefix="R">
-<gates>
-<gate name="G$1" symbol="RNCF0603DTE820R" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="RESC1508X55N">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="DESCRIPTION" value=" 820 ±0.5% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thin Film "/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="RNCF0603DTE820RTR-ND"/>
-<attribute name="MF" value="Stackpole Electronics Inc"/>
-<attribute name="MP" value="RNCF0603DTE820R"/>
-<attribute name="PACKAGE" value="1508 Stackpole"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RNCF0603DTE820R/?ref=eda"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
-<library name="Res_130OHM">
-<packages>
-<package name="RESC1508X55N">
-<text x="-1.46" y="-0.82" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
-<text x="-1.46" y="0.82" size="0.5" layer="25">&gt;NAME</text>
-<wire x1="0.85" y1="-0.48" x2="-0.85" y2="-0.48" width="0.127" layer="51"/>
-<wire x1="0.85" y1="0.48" x2="-0.85" y2="0.48" width="0.127" layer="51"/>
-<wire x1="0.85" y1="-0.48" x2="0.85" y2="0.48" width="0.127" layer="51"/>
-<wire x1="-0.85" y1="-0.48" x2="-0.85" y2="0.48" width="0.127" layer="51"/>
-<wire x1="-1.46" y1="-0.735" x2="1.46" y2="-0.735" width="0.05" layer="39"/>
-<wire x1="-1.46" y1="0.735" x2="1.46" y2="0.735" width="0.05" layer="39"/>
-<wire x1="-1.46" y1="-0.735" x2="-1.46" y2="0.735" width="0.05" layer="39"/>
-<wire x1="1.46" y1="-0.735" x2="1.46" y2="0.735" width="0.05" layer="39"/>
-<smd name="1" x="-0.76" y="0" dx="0.9" dy="0.97" layer="1"/>
-<smd name="2" x="0.76" y="0" dx="0.9" dy="0.97" layer="1"/>
-</package>
-</packages>
-<symbols>
-<symbol name="RMCF0603FT130R">
-<wire x1="-5.08" y1="0" x2="-4.445" y2="1.905" width="0.254" layer="94"/>
-<wire x1="-4.445" y1="1.905" x2="-3.175" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="-3.175" y1="-1.905" x2="-1.905" y2="1.905" width="0.254" layer="94"/>
-<wire x1="-1.905" y1="1.905" x2="-0.635" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="-0.635" y1="-1.905" x2="0.635" y2="1.905" width="0.254" layer="94"/>
-<wire x1="0.635" y1="1.905" x2="1.905" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="1.905" y1="-1.905" x2="3.175" y2="1.905" width="0.254" layer="94"/>
-<wire x1="3.175" y1="1.905" x2="4.445" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="4.445" y1="-1.905" x2="5.08" y2="0" width="0.254" layer="94"/>
-<text x="-7.624440625" y="2.54148125" size="2.54148125" layer="95">&gt;NAME</text>
-<text x="-7.62996875" y="-5.086640625" size="2.54331875" layer="96">&gt;VALUE</text>
-<pin name="1" x="-10.16" y="0" visible="off" length="middle" direction="pas"/>
-<pin name="2" x="10.16" y="0" visible="off" length="middle" direction="pas" rot="R180"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="RMCF0603FT130R" prefix="R">
-<gates>
-<gate name="G$1" symbol="RMCF0603FT130R" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="RESC1508X55N">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="DESCRIPTION" value=" 130 Ohms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film "/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT130RTR-ND"/>
-<attribute name="MF" value="Stackpole Electronics Inc"/>
-<attribute name="MP" value="RMCF0603FT130R"/>
-<attribute name="PACKAGE" value="1508 Stackpole"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT130R/?ref=eda"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
-<library name="Res_300OHM">
-<packages>
-<package name="RESC1508X55N">
-<text x="-1.46" y="-0.82" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
-<text x="-1.46" y="0.82" size="0.5" layer="25">&gt;NAME</text>
-<wire x1="0.85" y1="-0.48" x2="-0.85" y2="-0.48" width="0.127" layer="51"/>
-<wire x1="0.85" y1="0.48" x2="-0.85" y2="0.48" width="0.127" layer="51"/>
-<wire x1="0.85" y1="-0.48" x2="0.85" y2="0.48" width="0.127" layer="51"/>
-<wire x1="-0.85" y1="-0.48" x2="-0.85" y2="0.48" width="0.127" layer="51"/>
-<wire x1="-1.46" y1="-0.735" x2="1.46" y2="-0.735" width="0.05" layer="39"/>
-<wire x1="-1.46" y1="0.735" x2="1.46" y2="0.735" width="0.05" layer="39"/>
-<wire x1="-1.46" y1="-0.735" x2="-1.46" y2="0.735" width="0.05" layer="39"/>
-<wire x1="1.46" y1="-0.735" x2="1.46" y2="0.735" width="0.05" layer="39"/>
-<smd name="1" x="-0.76" y="0" dx="0.9" dy="0.97" layer="1"/>
-<smd name="2" x="0.76" y="0" dx="0.9" dy="0.97" layer="1"/>
-</package>
-</packages>
-<symbols>
-<symbol name="RMCF0603FT300R">
-<wire x1="-5.08" y1="0" x2="-4.445" y2="1.905" width="0.254" layer="94"/>
-<wire x1="-4.445" y1="1.905" x2="-3.175" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="-3.175" y1="-1.905" x2="-1.905" y2="1.905" width="0.254" layer="94"/>
-<wire x1="-1.905" y1="1.905" x2="-0.635" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="-0.635" y1="-1.905" x2="0.635" y2="1.905" width="0.254" layer="94"/>
-<wire x1="0.635" y1="1.905" x2="1.905" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="1.905" y1="-1.905" x2="3.175" y2="1.905" width="0.254" layer="94"/>
-<wire x1="3.175" y1="1.905" x2="4.445" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="4.445" y1="-1.905" x2="5.08" y2="0" width="0.254" layer="94"/>
-<text x="-7.624440625" y="2.54148125" size="2.54148125" layer="95">&gt;NAME</text>
-<text x="-7.62996875" y="-5.086640625" size="2.54331875" layer="96">&gt;VALUE</text>
-<pin name="1" x="-10.16" y="0" visible="off" length="middle" direction="pas"/>
-<pin name="2" x="10.16" y="0" visible="off" length="middle" direction="pas" rot="R180"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="RMCF0603FT300R" prefix="R">
-<gates>
-<gate name="G$1" symbol="RMCF0603FT300R" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="RESC1508X55N">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="DESCRIPTION" value=" 300 Ohms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film "/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT300RTR-ND"/>
-<attribute name="MF" value="Stackpole Electronics Inc"/>
-<attribute name="MP" value="RMCF0603FT300R"/>
-<attribute name="PACKAGE" value="1508 Stackpole"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT300R/?ref=eda"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="BME280">
 <packages>
 <package name="PSON65P250X250X100-8N">
@@ -3027,90 +2718,324 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 </deviceset>
 </devicesets>
 </library>
-<library name="BSS138">
+<library name="Battery_holder">
 <packages>
-<package name="SOT95P240X111-3N">
-<wire x1="-0.65" y1="-1.45" x2="-0.65" y2="1.45" width="0.127" layer="51"/>
-<wire x1="-0.65" y1="1.45" x2="0.65" y2="1.45" width="0.127" layer="51"/>
-<wire x1="0.65" y1="1.45" x2="0.65" y2="-1.45" width="0.127" layer="51"/>
-<wire x1="0.65" y1="-1.45" x2="-0.65" y2="-1.45" width="0.127" layer="51"/>
-<wire x1="-0.65" y1="1.57" x2="0.65" y2="1.57" width="0.127" layer="21"/>
-<wire x1="-0.65" y1="-1.57" x2="0.65" y2="-1.57" width="0.127" layer="21"/>
-<wire x1="-1.925" y1="1.7" x2="1.925" y2="1.7" width="0.05" layer="39"/>
-<wire x1="1.925" y1="-1.7" x2="-1.925" y2="-1.7" width="0.05" layer="39"/>
-<wire x1="-1.925" y1="-1.7" x2="-1.925" y2="1.7" width="0.05" layer="39"/>
-<wire x1="1.925" y1="-1.7" x2="1.925" y2="1.7" width="0.05" layer="39"/>
-<circle x="-2.25" y="1.3" radius="0.1" width="0.2" layer="21"/>
-<circle x="-2.25" y="1.3" radius="0.1" width="0.2" layer="51"/>
-<text x="-2" y="2" size="0.8128" layer="25">&gt;NAME</text>
-<text x="-2" y="-2" size="0.8128" layer="27" align="top-left">&gt;VALUE</text>
-<wire x1="0.65" y1="1.57" x2="0.65" y2="0.62" width="0.127" layer="21"/>
-<wire x1="0.65" y1="-1.57" x2="0.65" y2="-0.62" width="0.127" layer="21"/>
-<smd name="1" x="-1.06" y="0.95" dx="1.23" dy="0.6" layer="1" roundness="25"/>
-<smd name="3" x="1.06" y="0" dx="1.23" dy="0.6" layer="1" roundness="25"/>
-<smd name="2" x="-1.06" y="-0.95" dx="1.23" dy="0.6" layer="1" roundness="25"/>
+<package name="BAT_2996TR">
+<text x="-6.6" y="5.7" size="1.27" layer="25">&gt;NAME</text>
+<text x="-6.6" y="-8.8" size="1.27" layer="27">&gt;VALUE</text>
+<wire x1="-6.605" y1="5.345" x2="6.605" y2="5.345" width="0.127" layer="51"/>
+<wire x1="6.605" y1="5.345" x2="6.605" y2="-3.57" width="0.127" layer="51"/>
+<wire x1="6.605" y1="-3.57" x2="3.57" y2="-6.725" width="0.127" layer="51"/>
+<wire x1="3.57" y1="-6.725" x2="-3.57" y2="-6.725" width="0.127" layer="51"/>
+<wire x1="-3.57" y1="-6.725" x2="-6.605" y2="-3.57" width="0.127" layer="51"/>
+<wire x1="-6.605" y1="-3.57" x2="-6.605" y2="5.345" width="0.127" layer="51"/>
+<wire x1="-6.605" y1="1.91" x2="-6.605" y2="5.345" width="0.127" layer="21"/>
+<wire x1="-6.605" y1="5.345" x2="6.605" y2="5.345" width="0.127" layer="21"/>
+<wire x1="6.605" y1="5.345" x2="6.605" y2="1.91" width="0.127" layer="21"/>
+<wire x1="-6.605" y1="-1.91" x2="-6.605" y2="-3.57" width="0.127" layer="21"/>
+<wire x1="-6.605" y1="-3.57" x2="-3.57" y2="-6.725" width="0.127" layer="21"/>
+<wire x1="-3.57" y1="-6.725" x2="3.57" y2="-6.725" width="0.127" layer="21"/>
+<wire x1="3.57" y1="-6.725" x2="6.605" y2="-3.57" width="0.127" layer="21"/>
+<wire x1="6.605" y1="-3.57" x2="6.605" y2="-1.91" width="0.127" layer="21"/>
+<wire x1="-6.855" y1="1.84" x2="-9.14" y2="1.84" width="0.05" layer="39"/>
+<wire x1="-9.14" y1="1.84" x2="-9.14" y2="-1.84" width="0.05" layer="39"/>
+<wire x1="-9.14" y1="-1.84" x2="-6.855" y2="-1.84" width="0.05" layer="39"/>
+<wire x1="-6.855" y1="-1.84" x2="-6.855" y2="-6.975" width="0.05" layer="39"/>
+<wire x1="-6.855" y1="-6.975" x2="6.855" y2="-6.975" width="0.05" layer="39"/>
+<wire x1="6.855" y1="-6.975" x2="6.855" y2="-1.84" width="0.05" layer="39"/>
+<wire x1="6.855" y1="-1.84" x2="9.14" y2="-1.84" width="0.05" layer="39"/>
+<wire x1="9.14" y1="-1.84" x2="9.14" y2="1.84" width="0.05" layer="39"/>
+<wire x1="9.14" y1="1.84" x2="6.855" y2="1.84" width="0.05" layer="39"/>
+<wire x1="6.855" y1="1.84" x2="6.855" y2="5.595" width="0.05" layer="39"/>
+<wire x1="6.855" y1="5.595" x2="-6.855" y2="5.595" width="0.05" layer="39"/>
+<wire x1="-6.855" y1="5.595" x2="-6.855" y2="1.84" width="0.05" layer="39"/>
+<smd name="S+1" x="-7.3" y="0" dx="3.18" dy="3.18" layer="1"/>
+<smd name="S+2" x="7.3" y="0" dx="3.18" dy="3.18" layer="1"/>
+<smd name="-" x="0" y="0" dx="3.96" dy="3.96" layer="1" cream="no"/>
 </package>
 </packages>
 <symbols>
-<symbol name="BSS138">
-<wire x1="0.762" y1="0.762" x2="0.762" y2="0" width="0.254" layer="94"/>
-<wire x1="0.762" y1="0" x2="0.762" y2="-0.762" width="0.254" layer="94"/>
-<wire x1="0.762" y1="3.175" x2="0.762" y2="2.54" width="0.254" layer="94"/>
-<wire x1="0.762" y1="2.54" x2="0.762" y2="1.905" width="0.254" layer="94"/>
-<wire x1="0.762" y1="0" x2="2.54" y2="0" width="0.1524" layer="94"/>
-<wire x1="2.54" y1="0" x2="2.54" y2="-2.54" width="0.1524" layer="94"/>
-<wire x1="0.762" y1="-1.905" x2="0.762" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="0.762" y1="-2.54" x2="0.762" y2="-3.175" width="0.254" layer="94"/>
-<wire x1="0" y1="2.54" x2="0" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="2.54" y1="-2.54" x2="0.762" y2="-2.54" width="0.1524" layer="94"/>
-<wire x1="3.81" y1="2.54" x2="3.81" y2="0.508" width="0.1524" layer="94"/>
-<wire x1="3.81" y1="0.508" x2="3.81" y2="-2.54" width="0.1524" layer="94"/>
-<wire x1="2.54" y1="-2.54" x2="3.81" y2="-2.54" width="0.1524" layer="94"/>
-<wire x1="0.762" y1="2.54" x2="3.81" y2="2.54" width="0.1524" layer="94"/>
-<wire x1="4.572" y1="0.762" x2="4.318" y2="0.508" width="0.1524" layer="94"/>
-<wire x1="4.318" y1="0.508" x2="3.81" y2="0.508" width="0.1524" layer="94"/>
-<wire x1="3.81" y1="0.508" x2="3.302" y2="0.508" width="0.1524" layer="94"/>
-<wire x1="3.302" y1="0.508" x2="3.048" y2="0.254" width="0.1524" layer="94"/>
-<circle x="2.54" y="-2.54" radius="0.3592" width="0" layer="94"/>
-<circle x="2.54" y="2.54" radius="0.3592" width="0" layer="94"/>
-<text x="-8.89" y="-7.62" size="1.778" layer="96">&gt;VALUE</text>
-<text x="-8.89" y="2.54" size="1.778" layer="95">&gt;NAME</text>
-<polygon width="0.1524" layer="94">
-<vertex x="3.81" y="0.508"/>
-<vertex x="3.302" y="-0.254"/>
-<vertex x="4.318" y="-0.254"/>
-</polygon>
-<polygon width="0.1524" layer="94">
-<vertex x="1.016" y="0"/>
-<vertex x="2.032" y="0.762"/>
-<vertex x="2.032" y="-0.762"/>
-</polygon>
-<pin name="S" x="2.54" y="-5.08" visible="off" length="short" direction="pas" rot="R90"/>
-<pin name="G" x="-2.54" y="-2.54" visible="off" length="short" direction="pas"/>
-<pin name="D" x="2.54" y="5.08" visible="off" length="short" direction="pas" rot="R270"/>
+<symbol name="2996TR">
+<wire x1="-1.27" y1="2.54" x2="-1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="0" x2="-1.27" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="1.27" y1="1.27" x2="1.27" y2="0" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="1.27" y2="-1.27" width="0.254" layer="94"/>
+<wire x1="-1.27" y1="0" x2="-2.54" y2="0" width="0.254" layer="94"/>
+<wire x1="1.27" y1="0" x2="2.54" y2="0" width="0.254" layer="94"/>
+<wire x1="-3.175" y1="2.54" x2="-3.175" y2="1.27" width="0.254" layer="94"/>
+<wire x1="-3.81" y1="1.905" x2="-2.54" y2="1.905" width="0.254" layer="94"/>
+<text x="-3.81" y="3.81" size="1.778" layer="95">&gt;NAME</text>
+<text x="-3.81" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="+" x="-7.62" y="0" visible="pad" length="middle" direction="pas"/>
+<pin name="-" x="7.62" y="0" visible="pad" length="middle" direction="pas" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="BSS138" prefix="Q">
-<description>N-Channel 50V 220mA (Ta) 360mW (Ta) Surface Mount SOT-23-3  </description>
+<deviceset name="2996TR" prefix="BT">
+<description>Battery Retainer Coin, 11.6mm 1 Cell SMD (SMT) Tab </description>
 <gates>
-<gate name="G$1" symbol="BSS138" x="0" y="0"/>
+<gate name="G$1" symbol="2996TR" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="SOT95P240X111-3N">
+<device name="" package="BAT_2996TR">
 <connects>
-<connect gate="G$1" pin="D" pad="3"/>
-<connect gate="G$1" pin="G" pad="1"/>
-<connect gate="G$1" pin="S" pad="2"/>
+<connect gate="G$1" pin="+" pad="S+1 S+2"/>
+<connect gate="G$1" pin="-" pad="-"/>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="DESCRIPTION" value=" N-Channel 50 V 200mA (Ta) 225mW (Ta) Surface Mount SOT-23-3 (TO-236) "/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="BSS138TR-ND"/>
-<attribute name="MF" value="ON Semiconductor"/>
-<attribute name="MP" value="BSS138"/>
-<attribute name="PACKAGE" value="SOT-23 ON"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BSS138/?ref=eda"/>
+<attribute name="DESCRIPTION" value=" SMT Holder for 11.6mm Cell-Tin Nickel Plated on T&amp;R "/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="36-2996TR-ND"/>
+<attribute name="MF" value="Keystone Electronics"/>
+<attribute name="MP" value="2996TR"/>
+<attribute name="PACKAGE" value="None"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/2996TR/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="Res_10K_0p25W">
+<packages>
+<package name="RESC2012X60N">
+<text x="-1.69" y="-1.05" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-1.69" y="1.05" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="1.07" y1="-0.7" x2="-1.07" y2="-0.7" width="0.127" layer="51"/>
+<wire x1="1.07" y1="0.7" x2="-1.07" y2="0.7" width="0.127" layer="51"/>
+<wire x1="1.07" y1="-0.7" x2="1.07" y2="0.7" width="0.127" layer="51"/>
+<wire x1="-1.07" y1="-0.7" x2="-1.07" y2="0.7" width="0.127" layer="51"/>
+<wire x1="-1.685" y1="-0.96" x2="1.685" y2="-0.96" width="0.05" layer="39"/>
+<wire x1="-1.685" y1="0.96" x2="1.685" y2="0.96" width="0.05" layer="39"/>
+<wire x1="-1.685" y1="-0.96" x2="-1.685" y2="0.96" width="0.05" layer="39"/>
+<wire x1="1.685" y1="-0.96" x2="1.685" y2="0.96" width="0.05" layer="39"/>
+<smd name="1" x="-0.835" y="0" dx="1.2" dy="1.42" layer="1"/>
+<smd name="2" x="0.835" y="0" dx="1.2" dy="1.42" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="RNCP0805FTD10K0">
+<wire x1="-5.08" y1="0" x2="-4.445" y2="1.905" width="0.254" layer="94"/>
+<wire x1="-4.445" y1="1.905" x2="-3.175" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="-3.175" y1="-1.905" x2="-1.905" y2="1.905" width="0.254" layer="94"/>
+<wire x1="-1.905" y1="1.905" x2="-0.635" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="-0.635" y1="-1.905" x2="0.635" y2="1.905" width="0.254" layer="94"/>
+<wire x1="0.635" y1="1.905" x2="1.905" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="1.905" y1="-1.905" x2="3.175" y2="1.905" width="0.254" layer="94"/>
+<wire x1="3.175" y1="1.905" x2="4.445" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="4.445" y1="-1.905" x2="5.08" y2="0" width="0.254" layer="94"/>
+<text x="-7.624440625" y="2.54148125" size="2.54148125" layer="95">&gt;NAME</text>
+<text x="-7.62996875" y="-5.086640625" size="2.54331875" layer="96">&gt;VALUE</text>
+<pin name="1" x="-10.16" y="0" visible="off" length="middle" direction="pas"/>
+<pin name="2" x="10.16" y="0" visible="off" length="middle" direction="pas" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="RNCP0805FTD10K0" prefix="R">
+<gates>
+<gate name="G$1" symbol="RNCP0805FTD10K0" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="RESC2012X60N">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value=" 10 kOhms ±1% 0.25W, 1/4W Chip Resistor 0805 (2012 Metric) Anti-Sulfur, Moisture Resistant Thin Film "/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RNCP0805FTD10K0TR-ND"/>
+<attribute name="MF" value="Stackpole Electronics Inc"/>
+<attribute name="MP" value="RNCP0805FTD10K0"/>
+<attribute name="PACKAGE" value="2012 Stackpole"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RNCP0805FTD10K0/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="Res_820_0p25W">
+<packages>
+<package name="RES_ERA6VEB8200V">
+<wire x1="-1" y1="0.625" x2="-1" y2="-0.625" width="0.127" layer="51"/>
+<wire x1="1" y1="0.625" x2="1" y2="-0.625" width="0.127" layer="51"/>
+<wire x1="-1" y1="0.625" x2="1" y2="0.625" width="0.127" layer="51"/>
+<wire x1="-1" y1="-0.625" x2="1" y2="-0.625" width="0.127" layer="51"/>
+<wire x1="-2" y1="0.875" x2="-2" y2="-0.875" width="0.05" layer="39"/>
+<wire x1="-2" y1="-0.875" x2="2" y2="-0.875" width="0.05" layer="39"/>
+<wire x1="2" y1="-0.875" x2="2" y2="0.875" width="0.05" layer="39"/>
+<wire x1="2" y1="0.875" x2="-2" y2="0.875" width="0.05" layer="39"/>
+<wire x1="-0.28" y1="0.625" x2="0.28" y2="0.625" width="0.127" layer="21"/>
+<wire x1="-0.28" y1="-0.625" x2="0.28" y2="-0.625" width="0.127" layer="21"/>
+<text x="-2" y="1.125" size="0.8128" layer="25">&gt;NAME</text>
+<text x="-2" y="-1.125" size="0.8128" layer="27" align="top-left">&gt;VALUE</text>
+<smd name="1" x="-1.175" y="0" dx="1.15" dy="1.15" layer="1"/>
+<smd name="2" x="1.175" y="0" dx="1.15" dy="1.15" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="ERA6VEB8200V">
+<text x="-7.624" y="2.541" size="1.778" layer="95">&gt;NAME</text>
+<text x="-7.624" y="-5.087" size="1.778" layer="96" align="top-left">&gt;VALUE</text>
+<wire x1="-5.08" y1="0" x2="-4.445" y2="1.905" width="0.254" layer="94"/>
+<wire x1="-4.445" y1="1.905" x2="-3.175" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="-3.175" y1="-1.905" x2="-1.905" y2="1.905" width="0.254" layer="94"/>
+<wire x1="-1.905" y1="1.905" x2="-0.635" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="-0.635" y1="-1.905" x2="0.635" y2="1.905" width="0.254" layer="94"/>
+<wire x1="0.635" y1="1.905" x2="1.905" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="1.905" y1="-1.905" x2="3.175" y2="1.905" width="0.254" layer="94"/>
+<wire x1="3.175" y1="1.905" x2="4.445" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="4.445" y1="-1.905" x2="5.08" y2="0" width="0.254" layer="94"/>
+<pin name="1" x="-10.16" y="0" visible="off" length="middle" direction="pas"/>
+<pin name="2" x="10.16" y="0" visible="off" length="middle" direction="pas" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="ERA6VEB8200V" prefix="R">
+<gates>
+<gate name="G$1" symbol="ERA6VEB8200V" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="RES_ERA6VEB8200V">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value=" Thin Film Chip Resistors, High Stability and Reliability Type, ERA6V Series, 0.82K Ohm +/-0.1% , 0.25W , 0805 size , chip resistor (2 x 1.25 x 0.55mm) "/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="10-ERA-6VEB8200VTR-ND"/>
+<attribute name="MF" value="Panasonic"/>
+<attribute name="MP" value="ERA6VEB8200V"/>
+<attribute name="PACKAGE" value="2012-2 Panasonic"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERA6VEB8200V/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="Res_130_0p25">
+<packages>
+<package name="RESC2012X65N">
+<description>&lt;b&gt;RESISTOR&lt;/b&gt;</description>
+<wire x1="-1.69" y1="0.96" x2="1.69" y2="0.96" width="0.05" layer="39"/>
+<wire x1="1.69" y1="0.96" x2="1.69" y2="-0.96" width="0.05" layer="39"/>
+<wire x1="1.69" y1="-0.96" x2="-1.69" y2="-0.96" width="0.05" layer="39"/>
+<wire x1="-1.69" y1="-0.96" x2="-1.69" y2="0.96" width="0.05" layer="39"/>
+<wire x1="-1.08" y1="0.7" x2="1.08" y2="0.7" width="0.127" layer="51"/>
+<wire x1="-1.08" y1="-0.7" x2="1.08" y2="-0.7" width="0.127" layer="51"/>
+<text x="-1.78401875" y="1.5657" size="0.665021875" layer="25">&gt;NAME</text>
+<text x="-1.796809375" y="-2.146890625" size="0.66856875" layer="27">&gt;VALUE</text>
+<wire x1="1.08" y1="0.7" x2="1.08" y2="-0.7" width="0.127" layer="51"/>
+<wire x1="-1.08" y1="0.7" x2="-1.08" y2="-0.7" width="0.127" layer="51"/>
+<wire x1="-1" y1="0.89" x2="1" y2="0.89" width="0.127" layer="21"/>
+<wire x1="-1" y1="-0.89" x2="1" y2="-0.89" width="0.127" layer="21"/>
+<smd name="1" x="-0.935" y="0" dx="1" dy="1.42" layer="1" roundness="25"/>
+<smd name="2" x="0.935" y="0" dx="1" dy="1.42" layer="1" roundness="25"/>
+</package>
+</packages>
+<symbols>
+<symbol name="RP73PF2A130RBTDF">
+<wire x1="-2.54" y1="0" x2="-2.159" y2="1.016" width="0.2032" layer="94"/>
+<wire x1="-2.159" y1="1.016" x2="-1.524" y2="-1.016" width="0.2032" layer="94"/>
+<wire x1="-1.524" y1="-1.016" x2="-0.889" y2="1.016" width="0.2032" layer="94"/>
+<wire x1="-0.889" y1="1.016" x2="-0.254" y2="-1.016" width="0.2032" layer="94"/>
+<wire x1="-0.254" y1="-1.016" x2="0.381" y2="1.016" width="0.2032" layer="94"/>
+<wire x1="0.381" y1="1.016" x2="1.016" y2="-1.016" width="0.2032" layer="94"/>
+<wire x1="1.016" y1="-1.016" x2="1.651" y2="1.016" width="0.2032" layer="94"/>
+<wire x1="1.651" y1="1.016" x2="2.286" y2="-1.016" width="0.2032" layer="94"/>
+<wire x1="2.286" y1="-1.016" x2="2.54" y2="0" width="0.2032" layer="94"/>
+<text x="-3.81" y="1.4986" size="1.778" layer="95">&gt;NAME</text>
+<text x="-3.81" y="-3.302" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="2" x="5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1" rot="R180"/>
+<pin name="1" x="-5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="RP73PF2A130RBTDF" prefix="R">
+<description>RES, THIN FILM, 130R, 0.1%, 0.25W, 0805 </description>
+<gates>
+<gate name="G$1" symbol="RP73PF2A130RBTDF" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="RESC2012X65N">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value=" Surface Mount Thin Film Resistor, RP73 Series, 130 ohm, 250 mW, - 0.1%, 150 V "/>
+<attribute name="DIGI-KEY_PART_NUMBER" value=""/>
+<attribute name="MF" value="TE Connectivity"/>
+<attribute name="MP" value="RP73PF2A130RBTDF"/>
+<attribute name="PACKAGE" value="0805 TE Connectivity"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RP73PF2A130RBTDF/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="Res_820OHM">
+<packages>
+<package name="RESC1508X55N">
+<text x="-1.44" y="-0.8" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-1.44" y="0.8" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.83" y1="-0.45" x2="-0.83" y2="-0.45" width="0.127" layer="51"/>
+<wire x1="0.83" y1="0.45" x2="-0.83" y2="0.45" width="0.127" layer="51"/>
+<wire x1="0.83" y1="-0.45" x2="0.83" y2="0.45" width="0.127" layer="51"/>
+<wire x1="-0.83" y1="-0.45" x2="-0.83" y2="0.45" width="0.127" layer="51"/>
+<wire x1="-1.44" y1="-0.715" x2="1.44" y2="-0.715" width="0.05" layer="39"/>
+<wire x1="-1.44" y1="0.715" x2="1.44" y2="0.715" width="0.05" layer="39"/>
+<wire x1="-1.44" y1="-0.715" x2="-1.44" y2="0.715" width="0.05" layer="39"/>
+<wire x1="1.44" y1="-0.715" x2="1.44" y2="0.715" width="0.05" layer="39"/>
+<smd name="1" x="-0.755" y="0" dx="0.87" dy="0.93" layer="1"/>
+<smd name="2" x="0.755" y="0" dx="0.87" dy="0.93" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="RNCF0603DTE820R">
+<wire x1="-5.08" y1="0" x2="-4.445" y2="1.905" width="0.254" layer="94"/>
+<wire x1="-4.445" y1="1.905" x2="-3.175" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="-3.175" y1="-1.905" x2="-1.905" y2="1.905" width="0.254" layer="94"/>
+<wire x1="-1.905" y1="1.905" x2="-0.635" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="-0.635" y1="-1.905" x2="0.635" y2="1.905" width="0.254" layer="94"/>
+<wire x1="0.635" y1="1.905" x2="1.905" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="1.905" y1="-1.905" x2="3.175" y2="1.905" width="0.254" layer="94"/>
+<wire x1="3.175" y1="1.905" x2="4.445" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="4.445" y1="-1.905" x2="5.08" y2="0" width="0.254" layer="94"/>
+<text x="-7.624440625" y="2.54148125" size="2.54148125" layer="95">&gt;NAME</text>
+<text x="-7.62996875" y="-5.086640625" size="2.54331875" layer="96">&gt;VALUE</text>
+<pin name="1" x="-10.16" y="0" visible="off" length="middle" direction="pas"/>
+<pin name="2" x="10.16" y="0" visible="off" length="middle" direction="pas" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="RNCF0603DTE820R" prefix="R">
+<gates>
+<gate name="G$1" symbol="RNCF0603DTE820R" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="RESC1508X55N">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value=" 820 ±0.5% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thin Film "/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RNCF0603DTE820RTR-ND"/>
+<attribute name="MF" value="Stackpole Electronics Inc"/>
+<attribute name="MP" value="RNCF0603DTE820R"/>
+<attribute name="PACKAGE" value="1508 Stackpole"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RNCF0603DTE820R/?ref=eda"/>
 </technology>
 </technologies>
 </device>
@@ -3147,10 +3072,6 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <part name="SCD4X" library="SCD41-D-R1" deviceset="SCD4X" device="SCD4X_SCD4X_SCD4X"/>
 <part name="GND11" library="supply" deviceset="GND" device=""/>
 <part name="U3" library="MICS-6814" deviceset="MICS-6814" device=""/>
-<part name="BT1" library="BHX1-2450-SM" deviceset="BHX1-2450-SM" device=""/>
-<part name="BT2" library="BHX1-2450-SM" deviceset="BHX1-2450-SM" device=""/>
-<part name="BT3" library="BHX1-2450-SM" deviceset="BHX1-2450-SM" device=""/>
-<part name="BT4" library="BHX1-2450-SM" deviceset="BHX1-2450-SM" device=""/>
 <part name="GND2" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="GND8" library="supply" deviceset="GND" device=""/>
 <part name="GND12" library="supply" deviceset="GND" device=""/>
@@ -3170,11 +3091,6 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <part name="R4" library="Res_10MOHM_2" deviceset="RMCF0603FT10M0" device=""/>
 <part name="C5" library="Condens_10nF" deviceset="GRM033R60J103KA01D" device=""/>
 <part name="C6" library="Condens_10nF" deviceset="GRM033R60J103KA01D" device=""/>
-<part name="R1" library="Res_10KOHM" deviceset="RNCF0603BTE10K0" device=""/>
-<part name="R2" library="Res_10KOHM" deviceset="RNCF0603BTE10K0" device=""/>
-<part name="R9" library="Res_820OHM" deviceset="RNCF0603DTE820R" device=""/>
-<part name="R11" library="Res_130OHM" deviceset="RMCF0603FT130R" device=""/>
-<part name="R12" library="Res_300OHM" deviceset="RMCF0603FT300R" device=""/>
 <part name="U6" library="BME280" deviceset="BME280" device=""/>
 <part name="U2" library="SGP30" deviceset="SGP30" device=""/>
 <part name="GND9" library="supply" deviceset="GND" device=""/>
@@ -3186,8 +3102,15 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <part name="C8" library="Condens_100nF" deviceset="GRM033C80J104KE15D" device=""/>
 <part name="U7" library="LIS3DH" deviceset="LIS3DH" device=""/>
 <part name="GND26" library="supply" deviceset="GND" device=""/>
-<part name="Q1" library="BSS138" deviceset="BSS138" device=""/>
-<part name="R5" library="Res_10KOHM" deviceset="RNCF0603BTE10K0" device=""/>
+<part name="BT1" library="Battery_holder" deviceset="2996TR" device=""/>
+<part name="BT2" library="Battery_holder" deviceset="2996TR" device=""/>
+<part name="BT3" library="Battery_holder" deviceset="2996TR" device=""/>
+<part name="BT4" library="Battery_holder" deviceset="2996TR" device=""/>
+<part name="R1" library="Res_10K_0p25W" deviceset="RNCP0805FTD10K0" device=""/>
+<part name="R2" library="Res_10K_0p25W" deviceset="RNCP0805FTD10K0" device=""/>
+<part name="R8" library="Res_820_0p25W" deviceset="ERA6VEB8200V" device=""/>
+<part name="R5" library="Res_130_0p25" deviceset="RP73PF2A130RBTDF" device=""/>
+<part name="R9" library="Res_820OHM" deviceset="RNCF0603DTE820R" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3274,22 +3197,6 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <attribute name="NAME" x="114.3" y="226.822" size="1.778" layer="95"/>
 <attribute name="VALUE" x="81.28" y="226.06" size="1.778" layer="96"/>
 </instance>
-<instance part="BT1" gate="G$1" x="-116.84" y="314.96" smashed="yes">
-<attribute name="NAME" x="-120.65" y="318.77" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-120.65" y="309.88" size="1.778" layer="96"/>
-</instance>
-<instance part="BT2" gate="G$1" x="-93.98" y="314.96" smashed="yes">
-<attribute name="NAME" x="-97.79" y="318.77" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-97.79" y="309.88" size="1.778" layer="96"/>
-</instance>
-<instance part="BT3" gate="G$1" x="-73.66" y="314.96" smashed="yes">
-<attribute name="NAME" x="-77.47" y="318.77" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-77.47" y="309.88" size="1.778" layer="96"/>
-</instance>
-<instance part="BT4" gate="G$1" x="-48.26" y="314.96" smashed="yes">
-<attribute name="NAME" x="-52.07" y="318.77" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-52.07" y="309.88" size="1.778" layer="96"/>
-</instance>
 <instance part="GND2" gate="1" x="-25.4" y="307.34" smashed="yes">
 <attribute name="VALUE" x="-25.4" y="307.086" size="1.778" layer="96" align="top-center"/>
 </instance>
@@ -3349,21 +3256,6 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <instance part="C6" gate="G$1" x="-7.62" y="165.1" smashed="yes" rot="R90">
 <attribute name="NAME" x="-11.43093125" y="165.1" size="1.77843125" layer="95" rot="R90"/>
 </instance>
-<instance part="R1" gate="G$1" x="-99.06" y="210.82" smashed="yes" rot="R90">
-<attribute name="NAME" x="-101.60148125" y="203.195559375" size="2.54148125" layer="95" rot="R90"/>
-</instance>
-<instance part="R2" gate="G$1" x="-91.44" y="210.82" smashed="yes" rot="R90">
-<attribute name="NAME" x="-93.98148125" y="203.195559375" size="2.54148125" layer="95" rot="R90"/>
-</instance>
-<instance part="R9" gate="G$1" x="71.12" y="231.14" smashed="yes" rot="R90">
-<attribute name="NAME" x="68.57851875" y="223.515559375" size="2.54148125" layer="95" rot="R90"/>
-</instance>
-<instance part="R11" gate="G$1" x="137.16" y="187.96" smashed="yes">
-<attribute name="NAME" x="129.535559375" y="190.50148125" size="2.54148125" layer="95"/>
-</instance>
-<instance part="R12" gate="G$1" x="-83.82" y="96.52" smashed="yes" rot="R90">
-<attribute name="NAME" x="-86.36148125" y="88.895559375" size="2.54148125" layer="95" rot="R90"/>
-</instance>
 <instance part="U6" gate="G$1" x="-208.28" y="101.6" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-198.1138" y="114.9431" size="1.786590625" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="-209.2877" y="114.7956" size="1.782940625" layer="96" rot="MR0"/>
@@ -3402,12 +3294,36 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <instance part="GND26" gate="1" x="-236.22" y="-17.78" smashed="yes">
 <attribute name="VALUE" x="-238.76" y="-20.32" size="1.778" layer="96"/>
 </instance>
-<instance part="Q1" gate="G$1" x="-137.16" y="-5.08" smashed="yes" rot="R270">
-<attribute name="VALUE" x="-144.78" y="3.81" size="1.778" layer="96" rot="R270"/>
-<attribute name="NAME" x="-134.62" y="3.81" size="1.778" layer="95" rot="R270"/>
+<instance part="BT1" gate="G$1" x="-116.84" y="314.96" smashed="yes">
+<attribute name="NAME" x="-120.65" y="318.77" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-120.65" y="309.88" size="1.778" layer="96"/>
 </instance>
-<instance part="R5" gate="G$1" x="-149.86" y="7.62" smashed="yes" rot="R90">
-<attribute name="NAME" x="-152.40148125" y="-0.004440625" size="2.54148125" layer="95" rot="R90"/>
+<instance part="BT2" gate="G$1" x="-93.98" y="314.96" smashed="yes">
+<attribute name="NAME" x="-97.79" y="318.77" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-97.79" y="309.88" size="1.778" layer="96"/>
+</instance>
+<instance part="BT3" gate="G$1" x="-73.66" y="314.96" smashed="yes">
+<attribute name="NAME" x="-77.47" y="318.77" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-77.47" y="309.88" size="1.778" layer="96"/>
+</instance>
+<instance part="BT4" gate="G$1" x="-48.26" y="314.96" smashed="yes">
+<attribute name="NAME" x="-52.07" y="318.77" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-52.07" y="309.88" size="1.778" layer="96"/>
+</instance>
+<instance part="R1" gate="G$1" x="-99.06" y="210.82" smashed="yes" rot="R90">
+<attribute name="NAME" x="-99.56948125" y="216.149559375" size="2.54148125" layer="95" rot="R90"/>
+</instance>
+<instance part="R2" gate="G$1" x="-91.44" y="210.82" smashed="yes" rot="R90">
+<attribute name="NAME" x="-92.20348125" y="216.149559375" size="2.54148125" layer="95" rot="R90"/>
+</instance>
+<instance part="R8" gate="G$1" x="71.12" y="231.14" smashed="yes" rot="R90">
+<attribute name="NAME" x="68.579" y="223.516" size="1.778" layer="95" rot="R90"/>
+</instance>
+<instance part="R5" gate="G$1" x="134.62" y="187.96" smashed="yes">
+<attribute name="NAME" x="130.81" y="189.4586" size="1.778" layer="95"/>
+</instance>
+<instance part="R9" gate="G$1" x="-83.82" y="96.52" smashed="yes" rot="R90">
+<attribute name="NAME" x="-86.36148125" y="88.895559375" size="2.54148125" layer="95" rot="R90"/>
 </instance>
 </instances>
 <busses>
@@ -3441,10 +3357,8 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <wire x1="-233.68" y1="228.6" x2="-233.68" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="-233.68" y1="149.86" x2="-228.6" y2="149.86" width="0.1524" layer="91"/>
 <junction x="-228.6" y="149.86"/>
-<pinref part="R1" gate="G$1" pin="2"/>
 <wire x1="-99.06" y1="228.6" x2="-99.06" y2="220.98" width="0.1524" layer="91"/>
 <junction x="-99.06" y="228.6"/>
-<pinref part="R2" gate="G$1" pin="2"/>
 <wire x1="-91.44" y1="228.6" x2="-91.44" y2="220.98" width="0.1524" layer="91"/>
 <junction x="-91.44" y="228.6"/>
 <pinref part="U6" gate="G$1" pin="CSB"/>
@@ -3466,6 +3380,8 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <pinref part="SCD4X" gate="A" pin="VDDH"/>
 <wire x1="-223.52" y1="147.32" x2="-228.6" y2="147.32" width="0.1524" layer="91"/>
 <junction x="-228.6" y="147.32"/>
+<pinref part="R1" gate="G$1" pin="2"/>
+<pinref part="R2" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="5V" class="0">
@@ -3488,14 +3404,15 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <wire x1="30.48" y1="241.3" x2="30.48" y2="195.58" width="0.1524" layer="91"/>
 <junction x="-119.38" y="241.3"/>
 <wire x1="30.48" y1="241.3" x2="71.12" y2="241.3" width="0.1524" layer="91"/>
-<wire x1="71.12" y1="241.3" x2="147.32" y2="241.3" width="0.1524" layer="91"/>
 <junction x="30.48" y="241.3"/>
+<wire x1="71.12" y1="241.3" x2="147.32" y2="241.3" width="0.1524" layer="91"/>
 <wire x1="147.32" y1="241.3" x2="147.32" y2="187.96" width="0.1524" layer="91"/>
 <pinref part="U4" gate="A" pin="V+"/>
 <junction x="30.48" y="195.58"/>
-<pinref part="R9" gate="G$1" pin="2"/>
+<pinref part="R8" gate="G$1" pin="2"/>
 <junction x="71.12" y="241.3"/>
-<pinref part="R11" gate="G$1" pin="2"/>
+<pinref part="R5" gate="G$1" pin="2"/>
+<wire x1="139.7" y1="187.96" x2="147.32" y2="187.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -3531,7 +3448,6 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <junction x="-111.76" y="144.78"/>
 <wire x1="-193.04" y1="144.78" x2="-111.76" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="SCD4X" gate="A" pin="SDA"/>
-<pinref part="R1" gate="G$1" pin="1"/>
 <wire x1="-99.06" y1="200.66" x2="-99.06" y2="187.96" width="0.1524" layer="91"/>
 <junction x="-99.06" y="187.96"/>
 <pinref part="U6" gate="G$1" pin="SDI"/>
@@ -3540,6 +3456,7 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <wire x1="-127" y1="40.64" x2="-111.76" y2="40.64" width="0.1524" layer="91"/>
 <wire x1="-111.76" y1="40.64" x2="-111.76" y2="99.06" width="0.1524" layer="91"/>
 <junction x="-111.76" y="99.06"/>
+<pinref part="R1" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="SCL" class="0">
@@ -3556,7 +3473,6 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <junction x="-99.06" y="185.42"/>
 <junction x="-99.06" y="149.86"/>
 <pinref part="SCD4X" gate="A" pin="SCL"/>
-<pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="-99.06" y1="101.6" x2="-99.06" y2="149.86" width="0.1524" layer="91"/>
 <wire x1="-91.44" y1="200.66" x2="-91.44" y2="185.42" width="0.1524" layer="91"/>
 <junction x="-91.44" y="185.42"/>
@@ -3566,6 +3482,7 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <wire x1="-127" y1="38.1" x2="-99.06" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="-99.06" y1="38.1" x2="-99.06" y2="101.6" width="0.1524" layer="91"/>
 <junction x="-99.06" y="101.6"/>
+<pinref part="R2" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$6" class="0">
@@ -3618,10 +3535,10 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <wire x1="-190.5" y1="170.18" x2="-190.5" y2="167.64" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="BT4" gate="G$1" pin="-"/>
 <wire x1="-40.64" y1="314.96" x2="-25.4" y2="314.96" width="0.1524" layer="91"/>
 <pinref part="GND2" gate="1" pin="GND"/>
 <wire x1="-25.4" y1="314.96" x2="-25.4" y2="309.88" width="0.1524" layer="91"/>
+<pinref part="BT4" gate="G$1" pin="-"/>
 </segment>
 <segment>
 <pinref part="U3" gate="G$1" pin="RH1/RS1_RED"/>
@@ -3699,9 +3616,9 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <wire x1="-109.22" y1="195.58" x2="-104.14" y2="195.58" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="R12" gate="G$1" pin="1"/>
 <pinref part="GND18" gate="1" pin="GND"/>
 <wire x1="-83.82" y1="86.36" x2="-83.82" y2="83.82" width="0.1524" layer="91"/>
+<pinref part="R9" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="U6" gate="G$1" pin="GND"/>
@@ -3770,16 +3687,16 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 </net>
 <net name="N$2" class="0">
 <segment>
+<wire x1="-109.22" y1="314.96" x2="-101.6" y2="314.96" width="0.1524" layer="91"/>
 <pinref part="BT1" gate="G$1" pin="-"/>
 <pinref part="BT2" gate="G$1" pin="+"/>
-<wire x1="-109.22" y1="314.96" x2="-101.6" y2="314.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$5" class="0">
 <segment>
+<wire x1="-66.04" y1="314.96" x2="-55.88" y2="314.96" width="0.1524" layer="91"/>
 <pinref part="BT3" gate="G$1" pin="-"/>
 <pinref part="BT4" gate="G$1" pin="+"/>
-<wire x1="-66.04" y1="314.96" x2="-55.88" y2="314.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VDD" class="0">
@@ -3812,14 +3729,14 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <wire x1="71.12" y1="220.98" x2="71.12" y2="203.2" width="0.1524" layer="91"/>
 <pinref part="U3" gate="G$1" pin="RH2_RED"/>
 <wire x1="71.12" y1="203.2" x2="76.2" y2="203.2" width="0.1524" layer="91"/>
-<pinref part="R9" gate="G$1" pin="1"/>
+<pinref part="R8" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$13" class="0">
 <segment>
 <pinref part="U3" gate="G$1" pin="RH2_OX"/>
-<wire x1="121.92" y1="187.96" x2="127" y2="187.96" width="0.1524" layer="91"/>
-<pinref part="R11" gate="G$1" pin="1"/>
+<wire x1="121.92" y1="187.96" x2="129.54" y2="187.96" width="0.1524" layer="91"/>
+<pinref part="R5" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$17" class="0">
@@ -3844,16 +3761,16 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 </net>
 <net name="N$19" class="0">
 <segment>
-<pinref part="BT1" gate="G$1" pin="+"/>
 <pinref part="S1" gate="G$1" pin="1"/>
 <wire x1="-124.46" y1="314.96" x2="-129.54" y2="314.96" width="0.1524" layer="91"/>
+<pinref part="BT1" gate="G$1" pin="+"/>
 </segment>
 </net>
 <net name="N$9" class="0">
 <segment>
 <pinref part="LED1" gate="G$1" pin="C"/>
 <wire x1="-83.82" y1="106.68" x2="-83.82" y2="114.3" width="0.1524" layer="91"/>
-<pinref part="R12" gate="G$1" pin="2"/>
+<pinref part="R9" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="N$21" class="0">
@@ -3881,9 +3798,9 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 </net>
 <net name="N$4" class="0">
 <segment>
+<wire x1="-86.36" y1="314.96" x2="-81.28" y2="314.96" width="0.1524" layer="91"/>
 <pinref part="BT2" gate="G$1" pin="-"/>
 <pinref part="BT3" gate="G$1" pin="+"/>
-<wire x1="-86.36" y1="314.96" x2="-81.28" y2="314.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$15" class="0">
@@ -3972,12 +3889,6 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 <wire x1="-193.04" y1="10.16" x2="-180.34" y2="10.16" width="0.1524" layer="91"/>
 <wire x1="-180.34" y1="10.16" x2="-180.34" y2="38.1" width="0.1524" layer="91"/>
 <junction x="-180.34" y="38.1"/>
-</segment>
-</net>
-<net name="N$8" class="0">
-<segment>
-<pinref part="R5" gate="G$1" pin="2"/>
-<wire x1="-149.86" y1="17.78" x2="-137.16" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

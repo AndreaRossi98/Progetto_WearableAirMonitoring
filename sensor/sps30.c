@@ -35,6 +35,7 @@
 #include "sensirion_i2c.h"
 #include "sensirion_i2c_hal.h"
 #include "sps_git_version.h"
+#include "nrf_delay.h"
 
 #define SPS_CMD_START_MEASUREMENT 0x0010
 #define SPS_CMD_START_MEASUREMENT_ARG 0x0300
@@ -266,5 +267,19 @@ int16_t sps30_read_device_status_register(uint32_t* device_status_flags) {
         return ret;
 
     *device_status_flags = (((uint32_t)word_buf[0]) << 16) | word_buf[1];
+    return 0;
+}
+
+int16_t sps30_init(void){
+    while (sps30_probe() != 0) 
+    {
+        printf("probe failed\n\r"); //poi si toglie questo
+        nrf_delay_ms(1000);
+    }
+    printf("probe succeeded\n\r");    
+    //start measurement and wait for 10s to ensure the sensor has a
+    //stable flow and possible remaining particles are cleaned out
+    //Meglio farlo?
+    sps30_sleep();
     return 0;
 }

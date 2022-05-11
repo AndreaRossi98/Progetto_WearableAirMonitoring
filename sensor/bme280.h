@@ -387,6 +387,19 @@ int8_t bme280_compensate_data(uint8_t sensor_comp,
  */
 uint32_t bme280_cal_meas_delay(const struct bme280_settings *settings);
 
+/*!
+ * @brief This API is used to initialize and set the registers with the desired values
+ *
+ * @param[in,out] dev : Structure instance of bme280_dev.
+ *
+ * @return Result of API execution status.
+ *
+ * @retval   0 -> Success.
+ *
+ */
+uint32_t bme280_init_set (struct bme280_dev *dev);
+
+
 #ifdef __cplusplus
 }
 #endif /* End of CPP guard */

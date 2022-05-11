@@ -83,18 +83,10 @@ bool lis3dh_register_write(uint8_t register_address, uint8_t value)
     //Write the register address and data into transmit buffer
     tx_buf[0] = register_address;
     tx_buf[1] = value;
-
-    //Set the flag to false to show the transmission is not yet completed
-    //m_xfer_done = false;
     
     //Transmit the data over TWI Bus
     err_code = nrf_drv_twi_tx(&m_twi, LIS3DH_ADDRESS, tx_buf, LIS3DH_ADDRESS_LEN+1, false);
     
-    //Wait until the transmission of the data is finished
-    //while (m_xfer_done == false)
-    //{
-      //}
-
     // if there is no error then return true else return false
     if (NRF_SUCCESS != err_code)
     {
@@ -124,9 +116,6 @@ bool lis3dh_register_read(uint8_t register_address, uint8_t * destination, uint8
     
     // Send the Register address where we want to write the data
     err_code = nrf_drv_twi_tx(&m_twi, LIS3DH_ADDRESS, &register_address, 1, false);
-	  
-    //Wait for the transmission to get completed
-    //while (m_xfer_done == false){}
     
     // If transmission was not successful, exit the function with false as return value
     if (NRF_SUCCESS != err_code)
@@ -139,9 +128,6 @@ bool lis3dh_register_read(uint8_t register_address, uint8_t * destination, uint8
 	  
     // Receive the data from the LIS3DH
     err_code = nrf_drv_twi_rx(&m_twi, LIS3DH_ADDRESS, destination, number_of_bytes);
-		
-    //wait until the transmission is completed
-    //while (m_xfer_done == false){}
 	
     // if data was successfully read, return true else return false
     if (NRF_SUCCESS != err_code)

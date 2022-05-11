@@ -290,43 +290,96 @@ m_saadc_calibrate = false;
 */
     //lettura_scd41(3);
     //lettura_sps30(1);
-/*
-    int16_t error = 0;
+
+/*    int16_t error = 0;
     uint16_t status;
     uint16_t target_co2_concentration;
     uint16_t* frc_correction;
 
-    target_co2_concentration = 400;
 
-    scd4x_wake_up();
-    scd4x_stop_periodic_measurement();
+    //scd4x_wake_up();
+    //scd4x_stop_periodic_measurement();
     //nrf_delay_ms(500);  //dopo stop aspettare almeno 500 ms
-    scd4x_reinit();       //sembra non servire, non ho ancora modificato alcun parametro
+    //scd4x_reinit();       //sembra non servire, non ho ancora modificato alcun parametro
     nrf_delay_ms(1000);
     
-    error = scd4x_start_periodic_measurement();
-    //error = scd4x_start_low_power_periodic_measurement();
-    //nrf_delay_ms(1000);
+    for (int i = 0; i < 10; i++) 
+    {
+        scd4x_wake_up();
+        error = scd4x_measure_single_shot();
+        if(error != 0)  printf("errore\n");
+        else    printf("single scd41 measurement started\n\n");
+        // Read Measurement
+        sensirion_i2c_hal_sleep_usec(50000);
+        bool data_ready_flag = false;
+        nrf_delay_ms(5000);
+        error = scd4x_get_data_ready_flag(&data_ready_flag);
 
-    if(error != 0)  printf("errore\n");
-    else    printf("Periodic scd41 measurement started\n\n");
+        if (error) 
+        {
+            printf("Error executing scd4x_get_data_ready_flag(): %i\n", error);
+            continue;
+        }
+        if (!data_ready_flag) 
+        {
+            //nrf_delay_ms(500);
+            printf("sono qua  \n");
+            continue;
+        }
+        
+        uint16_t co2;
+        int32_t temperature;
+        int32_t humidity;
+        error = scd4x_read_measurement(&co2, &temperature, &humidity);
+        if (error) 
+        {
+            printf("Error executing scd4x_read_measurement(): %i\n", error);
+        } 
+        else if (co2 == 0) 
+        {
+            printf("Invalid sample detected, skipping.\n");
+        } 
+        else 
+        {
+            printf("Measurement n° %d:\n",i+1);
+            printf("CO2: %u ppm\n", co2);
+            //printf("Temperature: %d m°C\n", temperature);
+            //printf("Humidity: %d mRH\n\n\n", humidity);
+        }
+        error = scd4x_power_down();
+        nrf_delay_ms(10000);
+
+    }
+    printf("FINE MISURAZIONI\n\n\n");
+*/
 
 
 
+
+/*
     struct sps30_measurement measurement;
     int16_t ret;
     uint8_t data[10][4];
     #define SPS_CMD_READ_MEASUREMENT 0x0300
+    int intero;
+    int decimale;
   
     //sps30_stop_measurement(); //provato ad aggiungere per vedere se risolve problema del probe failed ripetuto
-/*    
+    
     //check if the sensor is ready to start and initialize it
-    while (sps30_probe() != 0) 
-    {
-        printf("probe failed\n\r");
-        nrf_delay_ms(1000);
-    }
-    printf("probe succeeded\n\r");
+    int16_t sps30_init();
+    for( int i = 0; i < 10; i++){
+    nrf_delay_ms(10000);
+    sps30_wake_up();
+    sps30_start_measurement();
+    nrf_delay_ms(1000);
+    sps30_read_measurement(&measurement);
+    sps30_stop_measurement();
+    sps30_sleep();
+    intero = measurement.mc_2p5;
+    decimale = (measurement.mc_2p5 - intero)*100;
+    printf("PM 2.5: %d.%d [ï¿½g/mï¿½]\n\r", intero, decimale);
+}
 */
     //start measurement and wait for 10s to ensure the sensor has a
     //stable flow and possible remaining particles are cleaned out
@@ -337,44 +390,39 @@ m_saadc_calibrate = false;
     printf("Periodic sps30 measurement started\n\n");
     nrf_delay_ms(5000);
     printf("\n");
+*/
+/*
+int8_t rslt;
 
+rslt = bme280_init_set(&dev);
 
-int8_t rslt = BME280_OK;
-uint8_t dev_addr = BME280_I2C_ADDR_PRIM;
-
-dev.intf_ptr = &dev_addr;
-dev.intf = BME280_I2C_INTF;
-dev.read = bme280_i2c_read;
-dev.write = bme280_i2c_write;
-dev.delay_us = bme280_delay_us;
-nrf_delay_ms(1000);
-printf("Inizio\n");
-nrf_delay_ms(1000);
-rslt = bme280_init(&dev);
-printf("BME280 init: %d\n", rslt);
-
-uint8_t settings_sel;
 struct bme280_data comp_data;
 
-//Recommended mode of operation: Indoor navigation 
-dev.settings.osr_h = BME280_OVERSAMPLING_1X;
-dev.settings.osr_p = BME280_OVERSAMPLING_16X;
-dev.settings.osr_t = BME280_OVERSAMPLING_2X;
-dev.settings.filter = BME280_FILTER_COEFF_16;
-dev.settings.standby_time = BME280_STANDBY_TIME_62_5_MS;
-settings_sel = BME280_OSR_PRESS_SEL;
-settings_sel |= BME280_OSR_TEMP_SEL;
-settings_sel |= BME280_OSR_HUM_SEL;
-settings_sel |= BME280_STANDBY_SEL;
-settings_sel |= BME280_FILTER_SEL;
-rslt = bme280_set_sensor_settings(settings_sel, &dev);
-printf("BME280 set sensor settings: %d\n", rslt);
-rslt = bme280_set_sensor_mode(BME280_NORMAL_MODE, &dev);
-printf("BME280 set sensor mode: %d\n", rslt);
+for (int i = 0; i<10;i++)
+{
+    rslt = bme280_set_sensor_mode(BME280_FORCED_MODE, &dev);
+    printf("BME280 set sensor mode: %d\n", rslt);
+    rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, &dev);
+    int intero;
+    int decimale;
+    intero = comp_data.temperature;
+    decimale = (comp_data.temperature - intero) * 100;
+    printf("T [°C] : %d.%d\n", intero, decimale);
 
-    timer_init();       //INIZIALIZZAZIONE DEL TIMER
-    nrfx_timer_enable(&TIMER_LED);
+    intero = comp_data.humidity;
+    decimale = (comp_data.humidity - intero) * 100;
+    printf("RH [%%]: %d.%d\n",intero, decimale);
+
+    intero = comp_data.pressure;
+    decimale = (comp_data.pressure - intero) * 100;
+    printf("P [Pa]: %d.%d\n", intero, decimale);
+    printf("\n");
+    nrf_delay_ms(10000);
+}
 */
+    //timer_init();       //INIZIALIZZAZIONE DEL TIMER
+    //nrfx_timer_enable(&TIMER_LED);
+
 
     // create arrays which will hold x,y & z co-ordinates values of acc and gyro
     static int16_t AccValue[3];
@@ -398,7 +446,7 @@ printf("BME280 set sensor mode: %d\n", rslt);
     nrf_delay_ms(2000);
     while (true)
     {
-        err_code = nrf_drv_twi_rx(&m_twi, LIS3DH_ADDRESS, &sample_data, sizeof(sample_data));
+        //err_code = nrf_drv_twi_rx(&m_twi, LIS3DH_ADDRESS, &sample_data, sizeof(sample_data));
         if (err_code == NRF_SUCCESS)
         {
             detected_device = true;

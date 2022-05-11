@@ -269,6 +269,16 @@ int16_t sps30_wake_up(void);
  */
 int16_t sps30_read_device_status_register(uint32_t* device_status_flags);
 
+
+
+/**
+ * sps30_init() - Initialize sps30 and put to sleep
+ *
+ * Initialize the sensor and put it to sleep mode
+ *
+ * Return:          0 on success
+ */
+int16_t sps30_init (void);
 #ifdef __cplusplus
 }
 #endif

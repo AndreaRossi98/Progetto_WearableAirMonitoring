@@ -1652,3 +1652,32 @@ static int8_t null_ptr_check(const struct bme280_dev *dev)
     return rslt;
 }
 
+uint32_t bme280_init_set (struct bme280_dev *dev)
+{
+    int8_t rslt;
+    uint8_t settings_sel;
+    struct bme280_data comp_data;
+    uint8_t dev_addr = BME280_I2C_ADDR_PRIM;
+
+    dev->intf_ptr = &dev_addr;
+    dev->intf = BME280_I2C_INTF;
+    dev->read = bme280_i2c_read;
+    dev->write = bme280_i2c_write;
+    dev->delay_us = bme280_delay_us;
+    rslt = bme280_init(dev);
+
+    //Recommended mode of operation: Indoor navigation 
+    dev->settings.osr_h = BME280_OVERSAMPLING_1X;
+    dev->settings.osr_p = BME280_OVERSAMPLING_16X;
+    dev->settings.osr_t = BME280_OVERSAMPLING_2X;
+    dev->settings.filter = BME280_FILTER_COEFF_16;
+    dev->settings.standby_time = BME280_STANDBY_TIME_62_5_MS;
+    settings_sel = BME280_OSR_PRESS_SEL;
+    settings_sel |= BME280_OSR_TEMP_SEL;
+    settings_sel |= BME280_OSR_HUM_SEL;
+    settings_sel |= BME280_STANDBY_SEL;
+    settings_sel |= BME280_FILTER_SEL;
+    rslt = bme280_set_sensor_settings(settings_sel, dev);
+
+    return rslt;
+}

@@ -1243,6 +1243,71 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </package>
 </packages>
 </library>
+<library name="SGP30">
+<packages>
+<package name="SGP30">
+<rectangle x1="-1.525" y1="0.6" x2="-0.975" y2="1" layer="31"/>
+<rectangle x1="-1.525" y1="-0.2" x2="-0.975" y2="0.2" layer="31"/>
+<rectangle x1="-1.525" y1="-1" x2="-0.975" y2="-0.6" layer="31"/>
+<rectangle x1="0.975" y1="0.6" x2="1.525" y2="1" layer="31"/>
+<rectangle x1="0.975" y1="-0.2" x2="1.525" y2="0.2" layer="31"/>
+<rectangle x1="0.975" y1="-1" x2="1.525" y2="-0.6" layer="31"/>
+<polygon width="0.0001" layer="1">
+<vertex x="-0.625" y="-0.85"/>
+<vertex x="0.625" y="-0.85"/>
+<vertex x="0.625" y="0.85"/>
+<vertex x="-0.35" y="0.85"/>
+<vertex x="-0.625" y="0.575"/>
+</polygon>
+<polygon width="0.0001" layer="29">
+<vertex x="-0.725" y="-0.95"/>
+<vertex x="0.725" y="-0.95"/>
+<vertex x="0.725" y="0.95"/>
+<vertex x="-0.4" y="0.95"/>
+<vertex x="-0.725" y="0.625"/>
+</polygon>
+<wire x1="-1.225" y1="-1.225" x2="1.225" y2="-1.225" width="0.2032" layer="51"/>
+<wire x1="1.225" y1="-1.225" x2="1.225" y2="1.225" width="0.2032" layer="51"/>
+<wire x1="1.225" y1="1.225" x2="-1.225" y2="1.225" width="0.2032" layer="51"/>
+<wire x1="-1.225" y1="1.225" x2="-1.225" y2="-1.225" width="0.2032" layer="51"/>
+<wire x1="-0.225" y1="0.5" x2="-0.425" y2="0.7" width="0.2032" layer="51"/>
+<wire x1="-0.425" y1="0.7" x2="-0.7" y2="0.425" width="0.2032" layer="51"/>
+<wire x1="-0.7" y1="0.425" x2="-0.525" y2="0.25" width="0.2032" layer="51"/>
+<wire x1="-0.225" y1="0.5" x2="-0.5" y2="0.225" width="0.2032" layer="51" curve="-318.455"/>
+<wire x1="-1.225" y1="1.225" x2="1.225" y2="1.225" width="0.2032" layer="21"/>
+<wire x1="1.225" y1="-1.225" x2="-1.225" y2="-1.225" width="0.2032" layer="21"/>
+<circle x="-1.524" y="1.524" radius="0.127" width="0.2032" layer="21"/>
+<rectangle x1="-0.3" y1="-0.425" x2="0.3" y2="0.425" layer="31"/>
+<text x="-1.27" y="1.524" size="0.8128" layer="25">&gt;NAME</text>
+<text x="-1.27" y="-2.54" size="0.8128" layer="27">&gt;VALUE</text>
+<smd name="5" x="1.15" y="0" dx="0.55" dy="0.4" layer="1" cream="no"/>
+<smd name="6" x="1.15" y="0.8" dx="0.55" dy="0.4" layer="1" cream="no"/>
+<smd name="4" x="1.15" y="-0.8" dx="0.55" dy="0.4" layer="1" cream="no"/>
+<smd name="3" x="-1.15" y="-0.8" dx="0.55" dy="0.4" layer="1" cream="no"/>
+<smd name="2" x="-1.15" y="0" dx="0.55" dy="0.4" layer="1" cream="no"/>
+<smd name="1" x="-1.15" y="0.8" dx="0.55" dy="0.4" layer="1" cream="no"/>
+<smd name="DIEPAD" x="0" y="0" dx="0.6096" dy="0.3048" layer="1" rot="R90" stop="no" cream="no"/>
+</package>
+</packages>
+</library>
+<library name="Condens_100nF">
+<packages>
+<package name="CAPC0603X33N">
+<text x="-0.72" y="-0.51" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-0.72" y="0.51" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.32" y1="-0.16" x2="-0.32" y2="-0.16" width="0.127" layer="51"/>
+<wire x1="0.32" y1="0.16" x2="-0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="0.32" y1="-0.16" x2="0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="-0.32" y1="-0.16" x2="-0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="-0.718" y1="-0.448" x2="0.718" y2="-0.448" width="0.05" layer="39"/>
+<wire x1="-0.718" y1="0.448" x2="0.718" y2="0.448" width="0.05" layer="39"/>
+<wire x1="-0.718" y1="-0.448" x2="-0.718" y2="0.448" width="0.05" layer="39"/>
+<wire x1="0.718" y1="-0.448" x2="0.718" y2="0.448" width="0.05" layer="39"/>
+<smd name="1" x="-0.281" y="0" dx="0.38" dy="0.4" layer="1"/>
+<smd name="2" x="0.281" y="0" dx="0.38" dy="0.4" layer="1"/>
+</package>
+</packages>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -1731,15 +1796,42 @@ design rules under a new name.</description>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BME280/?ref=eda" x="52.07" y="33.02" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="VALUE" x="53.274140625" y="35.030759375" size="0.4078" layer="27" rot="R180"/>
 </element>
+<element name="U2" library="SGP30" package="SGP30" value="SGP30" x="-11.43" y="-2.54" smashed="yes">
+<attribute name="AVAILABILITY" value="In Stock" x="-11.43" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="DESCRIPTION" value=" SGP30, SHTC1 Air Quality, Humidity, Temperature Sensor Arduino Platform Evaluation Expansion Board " x="-11.43" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Sensirion AG" x="-11.43" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="SGP30" x="-11.43" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-12.7" y="-1.016" size="0.8128" layer="25"/>
+<attribute name="PACKAGE" value="None" x="-11.43" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="PRICE" value="None" x="-11.43" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SGP30/?ref=eda" x="-11.43" y="-2.54" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-12.7" y="-5.08" size="0.8128" layer="27"/>
+</element>
+<element name="B2" library="SparkFun-Boards" package="SPARKFUN_LOGIC_LEVEL_CONVERTER" value="SPARKFUN_LOGIC_LEVEL_CONVERTER" x="-20.32" y="3.81" smashed="yes">
+<attribute name="NAME" x="-20.32" y="11.684" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
+<attribute name="VALUE" x="-20.32" y="-4.064" size="0.6096" layer="25" font="vector" ratio="20" align="top-center"/>
+</element>
+<element name="IC1.8" library="linear" library_urn="urn:adsk.eagle:library:262" package="TO220H" package3d_urn="urn:adsk.eagle:package:16414/1" value="317T" x="-36.83" y="6.35" smashed="yes">
+<attribute name="NAME" x="-42.291" y="-4.572" size="1.778" layer="25" ratio="10" rot="R90"/>
+<attribute name="POPULARITY" value="7" x="-36.83" y="6.35" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-29.464" y="-4.699" size="1.778" layer="27" ratio="10" rot="R90"/>
+</element>
+<element name="C8" library="Condens_100nF" package="CAPC0603X33N" value="GRM033C80J104KE15D" x="-43.18" y="-7.62" smashed="yes">
+<attribute name="DESCRIPTION" value=" SMD capacitor X6S(EIA) with capacitance 0.10uF Tol.10%. Rated voltage 6.3Vdc 105C " x="-43.18" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="490-10390-2-ND" x="-43.18" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Murata Electronics" x="-43.18" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="GRM033C80J104KE15D" x="-43.18" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-43.9" y="-7.11" size="0.5" layer="25"/>
+<attribute name="PACKAGE" value="0603 Taiyo Yuden" x="-43.18" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/GRM033C80J104KE15D/?ref=eda" x="-43.18" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-43.9" y="-8.13" size="0.5" layer="27" align="top-left"/>
+</element>
 </elements>
 <signals>
 <signal name="VSS">
 <contactref element="SCD4X" pad="6"/>
 <contactref element="SCD4X" pad="20"/>
 <wire x1="48.26" y1="26.67" x2="48.26" y2="27.94" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="VDDH">
-<contactref element="SCD4X" pad="19"/>
 </signal>
 <signal name="3.3">
 <contactref element="SCD4X" pad="7"/>
@@ -1785,8 +1877,12 @@ design rules under a new name.</description>
 <wire x1="52.7332625" y1="33.1486" x2="52.2796625" y2="32.695" width="0.1524" layer="1"/>
 <wire x1="53.04" y1="32.045" x2="53.04" y2="25.7" width="0.1524" layer="1"/>
 <wire x1="53.04" y1="25.7" x2="53.34" y2="25.4" width="0.1524" layer="1"/>
+<contactref element="B2" pad="HV"/>
+<contactref element="SCD4X" pad="19"/>
 <wire x1="65.7" y1="42.86" x2="66.36" y2="47.92" width="0" layer="19" extent="1-1"/>
+<wire x1="48.26" y1="25.4" x2="48.26" y2="20.32" width="0" layer="19" extent="1-1"/>
 <wire x1="60.64" y1="47.92" x2="66.36" y2="47.92" width="0" layer="19" extent="1-1"/>
+<wire x1="-15.24" y1="5.08" x2="12.33" y2="8.89" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="5V">
 <contactref element="IC5" pad="2"/>
@@ -1862,6 +1958,8 @@ design rules under a new name.</description>
 <wire x1="55.88" y1="30.48" x2="57.15" y2="30.48" width="0.1524" layer="1"/>
 <wire x1="57.15" y1="30.48" x2="58.42" y2="29.21" width="0.1524" layer="1"/>
 <wire x1="58.42" y1="29.21" x2="58.935" y2="29.21" width="0.1524" layer="1"/>
+<contactref element="B2" pad="HV3"/>
+<wire x1="-15.24" y1="0" x2="41.91" y2="25.4" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SCL">
 <contactref element="B1" pad="LV4"/>
@@ -1890,6 +1988,8 @@ design rules under a new name.</description>
 <wire x1="51.1" y1="33.995" x2="52.665" y2="35.56" width="0.1524" layer="1"/>
 <wire x1="52.665" y1="35.56" x2="53.34" y2="35.56" width="0.1524" layer="1"/>
 <wire x1="53.34" y1="35.56" x2="57.15" y2="31.75" width="0.1524" layer="1"/>
+<contactref element="B2" pad="HV4"/>
+<wire x1="-15.24" y1="-2.54" x2="41.91" y2="27.94" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$6">
 <contactref element="U3" pad="A"/>
@@ -1949,6 +2049,13 @@ design rules under a new name.</description>
 <contactref element="U6" pad="7"/>
 <contactref element="U6" pad="1"/>
 <contactref element="U6" pad="5"/>
+<contactref element="U2" pad="4"/>
+<contactref element="U2" pad="2"/>
+<contactref element="U2" pad="DIEPAD"/>
+<contactref element="B2" pad="GND1"/>
+<contactref element="B2" pad="GND2"/>
+<contactref element="IC1.8" pad="1"/>
+<contactref element="C8" pad="2"/>
 <wire x1="53.848" y1="63.146" x2="68.58" y2="55.88" width="0" layer="19" extent="1-16"/>
 <wire x1="52.07" y1="64.26" x2="53.848" y2="63.146" width="0" layer="19" extent="1-1"/>
 <wire x1="36.67" y1="59.69" x2="52.07" y2="64.26" width="0" layer="19" extent="1-1"/>
@@ -1975,6 +2082,13 @@ design rules under a new name.</description>
 <wire x1="10.16" y1="12.7" x2="25.4" y2="26.67" width="0" layer="19" extent="1-1"/>
 <wire x1="10.53" y1="8.89" x2="10.16" y2="12.7" width="0" layer="19" extent="1-1"/>
 <wire x1="14.34" y1="8.89" x2="10.53" y2="8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="-10.28" y1="-3.34" x2="10.53" y2="8.89" width="0" layer="19" extent="1-1"/>
+<wire x1="-11.43" y1="-2.54" x2="-10.28" y2="-3.34" width="0" layer="19" extent="1-1"/>
+<wire x1="-12.58" y1="-2.54" x2="-11.43" y2="-2.54" width="0" layer="19" extent="1-1"/>
+<wire x1="-15.24" y1="2.54" x2="-12.58" y2="-2.54" width="0" layer="19" extent="1-1"/>
+<wire x1="-25.4" y1="2.54" x2="-15.24" y2="2.54" width="0" layer="19" extent="1-1"/>
+<wire x1="-39.37" y1="-3.81" x2="-25.4" y2="2.54" width="0" layer="19" extent="1-1"/>
+<wire x1="-42.899" y1="-7.62" x2="-39.37" y2="-3.81" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="BT1" pad="2"/>
@@ -2028,6 +2142,8 @@ design rules under a new name.</description>
 <wire x1="15.24" y1="55.88" x2="15.24" y2="52.07" width="0.1524" layer="1"/>
 <wire x1="15.24" y1="52.07" x2="15.61" y2="51.7" width="0.1524" layer="1"/>
 <wire x1="15.61" y1="51.7" x2="15.61" y2="49.53" width="0.1524" layer="1"/>
+<contactref element="IC1.8" pad="3"/>
+<wire x1="16.14" y1="8.89" x2="-34.29" y2="-3.81" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$11">
 <contactref element="U3" pad="E"/>
@@ -2177,6 +2293,27 @@ design rules under a new name.</description>
 <wire x1="40.157" y1="47.017" x2="42.291" y2="47.017" width="0.1524" layer="1"/>
 <wire x1="42.291" y1="47.017" x2="43.207" y2="47.017" width="0.1524" layer="1"/>
 <wire x1="43.207" y1="47.017" x2="45.72" y2="49.53" width="0.1524" layer="1"/>
+</signal>
+<signal name="1.8V">
+<contactref element="U2" pad="5"/>
+<contactref element="U2" pad="1"/>
+<contactref element="B2" pad="LV"/>
+<contactref element="IC1.8" pad="2"/>
+<contactref element="C8" pad="1"/>
+<wire x1="-36.83" y1="-3.81" x2="-43.461" y2="-7.62" width="0" layer="19" extent="1-1"/>
+<wire x1="-25.4" y1="5.08" x2="-36.83" y2="-3.81" width="0" layer="19" extent="1-1"/>
+<wire x1="-12.58" y1="-1.74" x2="-25.4" y2="5.08" width="0" layer="19" extent="1-1"/>
+<wire x1="-10.28" y1="-2.54" x2="-12.58" y2="-1.74" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$20">
+<contactref element="U2" pad="3"/>
+<contactref element="B2" pad="LV3"/>
+<wire x1="-12.58" y1="-3.34" x2="-25.4" y2="0" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$23">
+<contactref element="B2" pad="LV4"/>
+<contactref element="U2" pad="6"/>
+<wire x1="-10.28" y1="-1.74" x2="-25.4" y2="-2.54" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

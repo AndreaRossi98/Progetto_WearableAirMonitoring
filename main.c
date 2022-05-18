@@ -208,11 +208,13 @@ void timer0_handler(nrf_timer_event_t event_type, void* p_context)
             {   
             nrf_gpio_pin_toggle(LED);
                 //qua avrei invio valori con ant
-                NRF_LOG_INFO("Invio valori con ANT");               
+                //NRF_LOG_INFO("Invio valori con ANT"); 
+                printf("\nInvio valori con ANT %d", rtc_count);    
+                //rischio che si stiano ancora aggiornando i valori quando invio, è un problema o fa niente?          
             }
 
             //20 sec
-            if ((rtc_count % _20_SEC) == 0)
+            if ((rtc_count % (_20_SEC/2)) == 0) //dimezzato solo per fare prove
             {
                 //campiono tutti i valori, flag e si fa nel main, confronto con umidità
                 //rtc_count = 0 se non mi serve intervallo più grande
@@ -248,6 +250,18 @@ void timer_init(void)
 
 //=============================================================================================================================================================================
 
+void stampa_decimale(float valore)
+{
+    int intero;
+    int decimale;
+    intero = valore;
+    if (valore > 0)
+        decimale = (valore - intero) * 100;
+    else
+        decimale = (intero - valore) * 100;
+    printf("%d.%d\n", intero, decimale);
+}
+
 int main(void)
 {
     nrf_gpio_cfg_output(LED);
@@ -259,9 +273,11 @@ int main(void)
     log_init();
     saadc_init(); 
     twi_init();
-printf("Inizio");
-    NRF_LOG_INFO("Starting the program");    
+    printf("Starting the program\n");
+    //NRF_LOG_INFO("Starting the program");  
+      
     uint8_t sample_data;
+    
     bool detected_device = false;
 
     //Scanning connected sensor
@@ -271,26 +287,30 @@ printf("Inizio");
         if (err_code == NRF_SUCCESS)
         {
             detected_device = true;
-            NRF_LOG_INFO("TWI device detected at address 0x%x.", address);
+            //NRF_LOG_INFO("TWI device detected at address 0x%x.", address);
+            printf("\nTWI device detected at address 0x%x.", address);
         }
         //NRF_LOG_FLUSH();
     }
 
     if (!detected_device)
     {
-        NRF_LOG_INFO("No device was found.");
-        NRF_LOG_FLUSH();
+        //NRF_LOG_INFO("No device was found.");
+        //NRF_LOG_FLUSH();
     }
 
     //Inizializzazione dei sensori
 
     sps30_init();
-    NRF_LOG_INFO("SPS30 inizializzato");
+    //NRF_LOG_INFO("SPS30 inizializzato");
+    printf("\nSPS30 inizializzato\n");
     //scd41 non serve init
     bme280_init_set(&dev_bme280);
-    NRF_LOG_INFO("BME280 inizializzato");
+    //NRF_LOG_INFO("BME280 inizializzato");
+    printf("\nBME280 inizializzato\n");
     lis3dh_init();
-    NRF_LOG_INFO("Sensori inizializzati");
+    printf("\nLIS3DH inizializzato\n\n");
+    //NRF_LOG_INFO("Sensori inizializzati");
 
     //Inizializzazione del timer
     timer_init();
@@ -301,6 +321,7 @@ printf("Inizio");
         if(flag_misurazioni == 1)   //esegui tutte le misurazioni tranne VOC
         {
             float partial_calc = 0;        //variable to maintein partial calculation
+            bool data_ready = false;
             //ha senso guardare se restituiscono o meno errore queste funzioni?
             
             //unire sps e scd per fare un unico delay, o separarli per consumo di corrente massimo disponibile
@@ -316,6 +337,10 @@ printf("Inizio");
             //SCD41
             scd4x_wake_up();
             scd4x_measure_single_shot();
+            while (data_ready)
+            {
+                scd4x_get_data_ready_flag(&data_ready);
+            }
             nrf_delay_ms(100);
             scd4x_read_measurement(&measure_scd4x.CO2, &measure_scd4x.Temperature, &measure_scd4x.Humidity);
             scd4x_power_down();
@@ -330,36 +355,67 @@ printf("Inizio");
             
             //BME280
             bme280_set_sensor_mode(BME280_FORCED_MODE, &dev_bme280);
+            nrf_delay_us(100);
             bme280_get_sensor_data(BME280_ALL, &measure_bme280, &dev_bme280);
     
             //LIS3DH    //scegliere ogni quanto campionare
             if(lis3dh_ReadAcc(&measure_lis3dh.AccX, &measure_lis3dh.AccY, &measure_lis3dh.AccZ) == true) 
             {
-                measure_lis3dh.AccX = measure_lis3dh.AccX/256*16;
-                measure_lis3dh.AccY = measure_lis3dh.AccY/256*16;
-                measure_lis3dh.AccZ = measure_lis3dh.AccZ/256*16;
+                measure_lis3dh.AccX = measure_lis3dh.AccX/16;       //equivale a /256*16
+                measure_lis3dh.AccY = measure_lis3dh.AccY/16;
+                measure_lis3dh.AccZ = measure_lis3dh.AccZ/16;
             }
             
             //SOLO IN QUESTA VERSIONE, STAMPO I RISULTATI OTTENUTI
-            NRF_LOG_INFO("Misurazione %d° ", misurazione_numero);
+            //NRF_LOG_INFO("Misurazione %d° ", misurazione_numero);
+            printf("\n\nMisurazione %d°\n", misurazione_numero);
+            printf("\n");
             //BME280
-            NRF_LOG_INFO("Temperatura [°C] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.temperature));
-            NRF_LOG_INFO("Umidità [%%] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.humidity));
-            NRF_LOG_INFO("Pressione [Pa] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.pressure));
+            //NRF_LOG_INFO("Temperatura [°C] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.temperature));
+            printf("Temperatura [°C] = "); 
+            stampa_decimale(measure_bme280.temperature);
+            //NRF_LOG_INFO("Umidità [%%] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.humidity));
+            printf("Umidità [%%] = ");
+            stampa_decimale(measure_bme280.humidity);
+            //NRF_LOG_INFO("Pressione [Pa] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.pressure));
+
+            //Problema nello stampare la pressione
+            printf("Pressione [Pa] = ");
+            stampa_decimale(measure_bme280.pressure);
+
             //SCD41
-            NRF_LOG_INFO("CO2 [] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_scd4x.CO2));
+            //NRF_LOG_INFO("CO2 [] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_scd4x.CO2));
+            printf("CO2 [] = %d\n", measure_scd4x.CO2);
             //SPS30
-            NRF_LOG_INFO("PM 2.5 [µg/m³] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_sps30.mc_2p5));
-            NRF_LOG_INFO("PM 1.0 [µg/m³] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_sps30.mc_1p0));
+            //NRF_LOG_INFO("PM 2.5 [µg/m³] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_sps30.mc_2p5));
+            printf("PM 2.5 [µg/m³] = ");
+            stampa_decimale(measure_sps30.mc_2p5);
+            //NRF_LOG_INFO("PM 1.0 [µg/m³] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_sps30.mc_1p0));
+            printf("PM 1.0 [µg/m³] = ");
+            stampa_decimale(measure_sps30.mc_1p0);
             //MICS6814
-            NRF_LOG_INFO("NO2 [ppb] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_mics6814.NO2));
-            NRF_LOG_INFO("CO [ppm] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_mics6814.CO));
+
+            //valori stampati strani 
+
+            //NRF_LOG_INFO("NO2 [ppb] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_mics6814.NO2));
+            printf("NO2 [ppb] = ");
+            stampa_decimale(measure_mics6814.NO2);
+            //NRF_LOG_INFO("CO [ppm] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_mics6814.CO));
+            printf("CO [ppm] = ");
+            stampa_decimale(measure_mics6814.CO);
             //SGP30
-            NRF_LOG_INFO("VOC [ppb] = non presente");
+            //NRF_LOG_INFO("VOC [ppb] = non presente");
+            printf("VOC non presente\n");
             //LIS3DH
-            NRF_LOG_INFO("ACC x [mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_lis3dh.AccX));
-            NRF_LOG_INFO("ACC y [mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_lis3dh.AccY));
-            NRF_LOG_INFO("ACC z [mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_lis3dh.AccZ));
+
+            //Valori stampati non corretti
+
+            //NRF_LOG_INFO("ACC x [mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_lis3dh.AccX));
+            printf("\nACC x [mg] = %d\n",measure_lis3dh.AccX);
+            //NRF_LOG_INFO("ACC y [mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_lis3dh.AccY));
+            printf("ACC y [mg] = %d\n",measure_lis3dh.AccY);
+            //NRF_LOG_INFO("ACC z [mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_lis3dh.AccZ));
+            printf("ACC z [mg] = %d\n", measure_lis3dh.AccZ);
 
             flag_misurazioni = 0;         
         }

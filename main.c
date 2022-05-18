@@ -11,6 +11,7 @@
 #include "nrf_log_default_backends.h"
 #include "nrf_drv_twi.h"
 #include "nrf_delay.h"
+#include "nrf_nvmc.h"
 
 //librerie per i sensori
 #include "reading_sps30.h"
@@ -21,12 +22,85 @@
 #include "bme280_defs.h"
 #include "lis3dh_acc_driver.h"
 
+//=============================================================================================================================================================================
+/*
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%% CONSTANT DEFINITION %%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+#define TWI_ADDRESSES   127         //Number of possible TWI addresses.
+#define SAADC_BATTERY   0           //Canale tensione della batteria
+#define TIMEOUT_VALUE   25   //1000       // 25 mseconds timer time-out value. Interrupt a 40Hz
+#define START_ADDR  0x00011200      //indirizzo di partenza per salvataggio dati in memoria non volatile
+#define LED             07
 
-#define LED1 07
-uint32_t count = 0;
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        //////TWI PART/////
-                        ///////////////////
+#define NO2_CHANNEL     0           //NO2 channel for ADC
+#define CO_CHANNEL      2           //CO channel for ADC
+
+#define _2_SEC          2       //interval of 2 seconds
+#define _20_SEC         20      //interval of 20 seconds
+
+
+//=============================================================================================================================================================================
+
+struct data{
+    uint8_t giorno;
+    uint8_t mese;
+    uint8_t anno;
+};
+
+struct val_campionati{
+    float Temp;
+    float Hum;
+    float Pres;
+    float PM1p0;    //controlla che sia corretto, scegliere quali valori guardare di PM
+    float PM2p5;
+    float CO2;
+    float CO;
+    float NO2;
+    float VOC;
+};
+
+struct mics6814_data{
+    uint16_t NO2;
+    uint16_t CO;
+};
+
+struct scd4x_data{
+    uint16_t CO2;
+    int32_t Temperature;
+    int32_t Humidity;
+};
+//=============================================================================================================================================================================
+/*
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%% GLOBAL VARIABLE DEFINITION %%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+
+int rtc_count = 0;
+uint8_t flag_misurazioni = 0;
+uint8_t misurazione_numero = 0;
+float partial_calc = 0;        //variable to maintein partial calculation
+
+nrf_saadc_value_t adc_val;  //variabile per campionamento 
+ret_code_t err_code;        //variabile per valore di ritorno
+
+//VARIABILI DEI SENSORI
+struct bme280_dev           dev_bme280;         //struct for BME280
+struct bme280_data          measure_bme280;     //struct for measured values by BME280
+struct sps30_measurement    measure_sps30;      //struct for measured values by SPS30
+struct lis3dh_data          measure_lis3dh;     //struct for measured values by LIS3DH
+struct mics6814_data        measure_mics6814;   //struct for measured values by MICS6814
+struct scd4x_data           measure_scd4x;     //struct for measured values by SCD41
+//=============================================================================================================================================================================
+
+//=============================================================================================================================================================================
+/*
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%% TWI COMMUNICATION %%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
 //TWI instance ID.
 #if TWI0_ENABLED
 #define TWI_INSTANCE_ID     0
@@ -54,160 +128,99 @@ void twi_init (void)
 
     nrf_drv_twi_enable(&m_twi);
 }
+//=============================================================================================================================================================================
 
-//Number of possible TWI addresses.
-#define TWI_ADDRESSES      127
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        //////SAADC PART/////
-                        /////////////////////
-
-void saadc_callback_handler(nrf_drv_saadc_evt_t const * p_event)
+//=============================================================================================================================================================================
+/*
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%% SAADC %%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
+void saadc_callback(nrf_drv_saadc_evt_t const * p_event)  //non serve
 {
 }
 
-void saadc_init(void)
+void saadc_init(void)   //prova a mettere low power mode
 {
     ret_code_t err_code;
-    // Create a config struct and assign it default values along with the Pin number for ADC Input.
-    nrf_saadc_channel_config_t channel0_config = NRFX_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN1);
-    nrf_saadc_channel_config_t channel1_config = NRFX_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN2);
-    nrf_saadc_channel_config_t channel2_config = NRFX_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN3);
-    //channel2_config.gain = 1;
-    //channel1_config.gain = 1;
-    //channel0_config.gain = 1;
+    nrf_saadc_channel_config_t channel1_config = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN1);
+    nrf_saadc_channel_config_t channel3_config = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN3);
 
-    // Initialize the saadc 
-    err_code = nrf_drv_saadc_init(NULL, saadc_callback_handler);
+    err_code = nrf_drv_saadc_init(NULL, saadc_callback);
     APP_ERROR_CHECK(err_code);
 
-    // Initialize the Channel which will be connected to that specific pin.
-    err_code = nrfx_saadc_channel_init(0, &channel0_config);    //A1
+    err_code = nrf_drv_saadc_channel_init(NO2_CHANNEL, &channel1_config);
     APP_ERROR_CHECK(err_code);
-    err_code = nrfx_saadc_channel_init(1, &channel1_config);    //A2
-    APP_ERROR_CHECK(err_code);
-    err_code = nrfx_saadc_channel_init(2, &channel2_config);    //A3
-    APP_ERROR_CHECK(err_code);
+	
+    err_code = nrf_drv_saadc_channel_init(CO_CHANNEL, &channel3_config);
+    APP_ERROR_CHECK(err_code); 
 }
-
-nrf_saadc_value_t adc_val;      //variable to hold the value read by the ADC
-
-float ADC_TO_VOLTS (int adc)
+//Transform the ADC value in bit in voltage value
+float adc_to_volts (int adc)
 {
     float volts = (adc + 5) * 3.6 / 1023;
     return volts;
 }
+//=============================================================================================================================================================================
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        //////LOG PART/////
-                        ///////////////////
+//=============================================================================================================================================================================
+/*
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%% LOG %%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
 void log_init(void)
 {
     APP_ERROR_CHECK(NRF_LOG_INIT(NULL));  // check if any error occurred during its initialization
     NRF_LOG_DEFAULT_BACKENDS_INIT();  // Initialize the log backends module
 }
+//=============================================================================================================================================================================
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        //////TIMER PART/////
-                        /////////////////////
+/*
+*   Si può aggiungere funzione per lettura e scrittura
+*   in memoria non volatile nrf_nvmc
+*/
 
+//=============================================================================================================================================================================
+/*
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%% TIMER HANDLER %%%%%%%%%%%%%%%
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+*/
 const nrfx_timer_t TIMER_LED = NRFX_TIMER_INSTANCE(0); // Timer 0 Enabled
-struct bme280_dev dev;
+
 void timer0_handler(nrf_timer_event_t event_type, void* p_context)
 {
-int16_t error = 0;
-int16_t ret;
-uint16_t status;
-struct sps30_measurement measurement;
-int16_t intero;
-int16_t decimale;
+
     switch(event_type)
     {
         case NRF_TIMER_EVENT_COMPARE0:
-            count++;
-            nrf_gpio_pin_toggle(LED1);
-            printf("%d\n\r", count);
+            rtc_count ++;
+            //controllo della batteria, ogni quanto? come il campionamento, e come fare controllo? voltage divider?
+            //err_code = nrf_drv_saadc_sample_convert(SAADC_BATTERY, &sample);   //lettura ADC
+            //APP_ERROR_CHECK(err_code);
 
-            ret = sps30_read_measurement(&measurement);
-            if(ret < 0)
-            {
-                printf("read measurement failed\n\r");
-            }
-            else
-            {
-                intero = measurement.mc_2p5;
-                decimale = (measurement.mc_2p5 - intero)*100;
-                printf("PM 2.5: %d.%d [µg/m³]\n\r", intero, decimale);
-            }
+            //1 sec
+            //Lettura dati VOC
 
-            bool data_ready_flag = false;
-            nrf_delay_ms(5000);
-            error = scd4x_get_data_ready_flag(&data_ready_flag);
-            if (error) 
-            {
-                printf("Error executing scd4x_get_data_ready_flag(): %i\n", error);
-                //continue;
-            }
-            if (!data_ready_flag) 
-            {
-                //nrf_delay_ms(500);
-                printf("sono qua  \n");
-                //continue;
-            }
-        
-            uint16_t co2;
-            int32_t temperature;
-            int32_t humidity;
-            error = scd4x_read_measurement(&co2, &temperature, &humidity);
-            if (error) 
-            {
-                printf("Error executing scd4x_read_measurement(): %i\n", error);
-            } 
-            else if (co2 == 0) 
-            {
-                printf("Invalid sample detected, skipping.\n");
-            } 
-            else 
-            {
-                printf("CO2: %u ppm\n", co2);
-                printf("Temperature: %d m°C\n", temperature);
-                printf("Humidity: %d mRH\n", humidity);
+            //2 sec
+            if ((rtc_count % _2_SEC) == 0)
+            {   
+            nrf_gpio_pin_toggle(LED);
+                //qua avrei invio valori con ant
+                NRF_LOG_INFO("Invio valori con ANT");               
             }
 
-            float value = 0;
-            nrfx_saadc_sample_convert(0, &adc_val); //A1
-            value = (5 - ADC_TO_VOLTS(adc_val))/ADC_TO_VOLTS(adc_val);      //Rs/Rl
-            value = pow(10, (log10(value)-0.804)/1.026)*1000;
-            intero = value;      
-            printf("NO2: %d [ppb]\n", adc_val);
-
-            nrfx_saadc_sample_convert(1, &adc_val); //A2
-            value = (5 - ADC_TO_VOLTS(adc_val))/ADC_TO_VOLTS(adc_val);      //Rs/Rl
-            value = pow(10, (log10(value)+0.104)/(-0.538));
-            intero = value;
-            printf("NH3: %d [ppm]\n", intero);
-
-            nrfx_saadc_sample_convert(2, &adc_val); //A3
-            value = (5 - ADC_TO_VOLTS(adc_val))/ADC_TO_VOLTS(adc_val);      //Rs/Rl
-            value = pow(10, (log10(value)-0.55)/-0.85)*1000;
-            intero = value;
-            printf("CO:  %d [ppm]\n", intero);
-
-struct bme280_data comp_data;
-error = bme280_get_sensor_data(BME280_ALL, &comp_data, &dev);
-    int intero;
-    int decimale;
-    intero = comp_data.temperature;
-    decimale = (comp_data.temperature - intero) * 100;
-    printf("T [°C] : %d.%d\n", intero, decimale);
-
-    intero = comp_data.humidity;
-    decimale = (comp_data.humidity - intero) * 100;
-    printf("RH [%%]: %d.%d\n",intero, decimale);
-
-    intero = comp_data.pressure;
-    decimale = (comp_data.pressure - intero) * 100;
-    printf("P [Pa]: %d.%d\n", intero, decimale);
-            printf("\n");
+            //20 sec
+            if ((rtc_count % _20_SEC) == 0)
+            {
+                //campiono tutti i valori, flag e si fa nel main, confronto con umidità
+                //rtc_count = 0 se non mi serve intervallo più grande
+                flag_misurazioni = 1; //eseguire misurazioni ogni 20 sec nel main
+                misurazione_numero ++;
+            }
+    
+            //1 ora per sgp30 baseline iaq (capire se serve) 
             break;
 
         default:
@@ -220,7 +233,7 @@ error = bme280_get_sensor_data(BME280_ALL, &comp_data, &dev);
 void timer_init(void)
 {
     uint32_t err_code = NRF_SUCCESS;
-    uint32_t time_ms = 10000;        //DEFINISCE OGNI QUANTO SCATTA INTERRUPT DEL TIMER
+    uint32_t time_ms = 1000;        //DEFINISCE OGNI QUANTO SCATTA INTERRUPT DEL TIMER
     uint32_t time_ticks;  
     nrfx_timer_config_t timer_cfg = NRFX_TIMER_DEFAULT_CONFIG; // Configure the timer instance to default settings
 
@@ -232,29 +245,27 @@ void timer_init(void)
     // Assign a channel, pass the number of ticks & enable interrupt
     nrfx_timer_extended_compare(&TIMER_LED, NRF_TIMER_CC_CHANNEL0, time_ticks, NRF_TIMER_SHORT_COMPARE0_CLEAR_MASK, true);
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+//=============================================================================================================================================================================
 
 int main(void)
 {
-    ret_code_t err_code;
-    uint8_t address;
-    uint8_t sample_data;
-    bool detected_device = false;
-    nrf_gpio_cfg_output(LED1); // Initialize the pin
-    nrf_gpio_pin_set(LED1); // Turn off the LED
+    nrf_gpio_cfg_output(LED);
+    nrf_gpio_pin_set(LED);
+    
+    //Inizializzazione di tutte le componenti
+    nrf_gpio_cfg_output(LED); // Initialize the pin
+    nrf_gpio_pin_set(LED); // Turn off the LED
     log_init();
     saadc_init(); 
-    
     twi_init();
-
+printf("Inizio");
     NRF_LOG_INFO("Starting the program");    
+    uint8_t sample_data;
+    bool detected_device = false;
 
-//////////////////////////////////////
-///SCANNING OF CONNECTED SENSORS//////
-//////////////////////////////////////   
-    for (address = 1; address <= TWI_ADDRESSES; address++)
+    //Scanning connected sensor
+    for (uint8_t address = 1; address <= TWI_ADDRESSES; address++)
     {
         err_code = nrf_drv_twi_rx(&m_twi, address, &sample_data, sizeof(sample_data));
         if (err_code == NRF_SUCCESS)
@@ -262,7 +273,7 @@ int main(void)
             detected_device = true;
             NRF_LOG_INFO("TWI device detected at address 0x%x.", address);
         }
-        NRF_LOG_FLUSH();
+        //NRF_LOG_FLUSH();
     }
 
     if (!detected_device)
@@ -270,219 +281,94 @@ int main(void)
         NRF_LOG_INFO("No device was found.");
         NRF_LOG_FLUSH();
     }
-    
-    
 
-///////////////////////////////
-///SENSORS'S INITIALIZATION////
-///////////////////////////////
-//funzione di ricalibrazione dell'offset
-/*
-static bool                    m_saadc_calibrate = false;
-if(m_saadc_calibrate == true)
-{
-nrf_drv_saadc_abort();                                  // Abort all ongoing conversions. Calibration cannot be run if SAADC is busy
-NRF_LOG_INFO("SAADC calibration starting...");    //Print on UART
+    //Inizializzazione dei sensori
 
-while(nrf_drv_saadc_calibrate_offset() != NRF_SUCCESS); //Trigger calibration task
-m_saadc_calibrate = false;
-}
-*/
-    //lettura_scd41(3);
-    //lettura_sps30(1);
+    sps30_init();
+    NRF_LOG_INFO("SPS30 inizializzato");
+    //scd41 non serve init
+    bme280_init_set(&dev_bme280);
+    NRF_LOG_INFO("BME280 inizializzato");
+    lis3dh_init();
+    NRF_LOG_INFO("Sensori inizializzati");
 
-/*    int16_t error = 0;
-    uint16_t status;
-    uint16_t target_co2_concentration;
-    uint16_t* frc_correction;
-
-
-    //scd4x_wake_up();
-    //scd4x_stop_periodic_measurement();
-    //nrf_delay_ms(500);  //dopo stop aspettare almeno 500 ms
-    //scd4x_reinit();       //sembra non servire, non ho ancora modificato alcun parametro
-    nrf_delay_ms(1000);
-    
-    for (int i = 0; i < 10; i++) 
-    {
-        scd4x_wake_up();
-        error = scd4x_measure_single_shot();
-        if(error != 0)  printf("errore\n");
-        else    printf("single scd41 measurement started\n\n");
-        // Read Measurement
-        sensirion_i2c_hal_sleep_usec(50000);
-        bool data_ready_flag = false;
-        nrf_delay_ms(5000);
-        error = scd4x_get_data_ready_flag(&data_ready_flag);
-
-        if (error) 
-        {
-            printf("Error executing scd4x_get_data_ready_flag(): %i\n", error);
-            continue;
-        }
-        if (!data_ready_flag) 
-        {
-            //nrf_delay_ms(500);
-            printf("sono qua  \n");
-            continue;
-        }
-        
-        uint16_t co2;
-        int32_t temperature;
-        int32_t humidity;
-        error = scd4x_read_measurement(&co2, &temperature, &humidity);
-        if (error) 
-        {
-            printf("Error executing scd4x_read_measurement(): %i\n", error);
-        } 
-        else if (co2 == 0) 
-        {
-            printf("Invalid sample detected, skipping.\n");
-        } 
-        else 
-        {
-            printf("Measurement n° %d:\n",i+1);
-            printf("CO2: %u ppm\n", co2);
-            //printf("Temperature: %d m°C\n", temperature);
-            //printf("Humidity: %d mRH\n\n\n", humidity);
-        }
-        error = scd4x_power_down();
-        nrf_delay_ms(10000);
-
-    }
-    printf("FINE MISURAZIONI\n\n\n");
-*/
-
-
-
-
-/*
-    struct sps30_measurement measurement;
-    int16_t ret;
-    uint8_t data[10][4];
-    #define SPS_CMD_READ_MEASUREMENT 0x0300
-    int intero;
-    int decimale;
-  
-    //sps30_stop_measurement(); //provato ad aggiungere per vedere se risolve problema del probe failed ripetuto
-    
-    //check if the sensor is ready to start and initialize it
-    int16_t sps30_init();
-    for( int i = 0; i < 10; i++){
-    nrf_delay_ms(10000);
-    sps30_wake_up();
-    sps30_start_measurement();
-    nrf_delay_ms(1000);
-    sps30_read_measurement(&measurement);
-    sps30_stop_measurement();
-    sps30_sleep();
-    intero = measurement.mc_2p5;
-    decimale = (measurement.mc_2p5 - intero)*100;
-    printf("PM 2.5: %d.%d [ï¿½g/mï¿½]\n\r", intero, decimale);
-}
-*/
-    //start measurement and wait for 10s to ensure the sensor has a
-    //stable flow and possible remaining particles are cleaned out
-/*    if (sps30_start_measurement() != 0) 
-    {
-        printf("error starting measurement\n\r");
-    }
-    printf("Periodic sps30 measurement started\n\n");
-    nrf_delay_ms(5000);
-    printf("\n");
-*/
-/*
-int8_t rslt;
-
-rslt = bme280_init_set(&dev);
-
-struct bme280_data comp_data;
-
-for (int i = 0; i<10;i++)
-{
-    rslt = bme280_set_sensor_mode(BME280_FORCED_MODE, &dev);
-    printf("BME280 set sensor mode: %d\n", rslt);
-    rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, &dev);
-    int intero;
-    int decimale;
-    intero = comp_data.temperature;
-    decimale = (comp_data.temperature - intero) * 100;
-    printf("T [°C] : %d.%d\n", intero, decimale);
-
-    intero = comp_data.humidity;
-    decimale = (comp_data.humidity - intero) * 100;
-    printf("RH [%%]: %d.%d\n",intero, decimale);
-
-    intero = comp_data.pressure;
-    decimale = (comp_data.pressure - intero) * 100;
-    printf("P [Pa]: %d.%d\n", intero, decimale);
-    printf("\n");
-    nrf_delay_ms(10000);
-}
-*/
-    //timer_init();       //INIZIALIZZAZIONE DEL TIMER
-    //nrfx_timer_enable(&TIMER_LED);
-
-
-    // create arrays which will hold x,y & z co-ordinates values of acc and gyro
-    static int16_t AccValue[3];
-    float AccValueF[3];
-    detected_device = false;
-    NRF_LOG_INFO("Accelerometer scanner started.");
-    NRF_LOG_FLUSH();
-
-    nrf_delay_ms(1000); // give some delay
-    lis3dh_verify_product_id();
-    int16_t *reg;
-    while(lis3dh_init() == false) // wait until lis3dh sensor is successfully initialized
-    {
-        NRF_LOG_INFO("LIS3DH initialization failed!!!"); // if it failed to initialize then print a message
-        nrf_delay_ms(1000);
-    }
-    
-    NRF_LOG_INFO("LIS3DH Init Successfully!!!"); 
-
-    NRF_LOG_INFO("Reading Values from ACC"); // display a message to let the user know that the device is starting to read the values
-    nrf_delay_ms(2000);
-    while (true)
-    {
-        //err_code = nrf_drv_twi_rx(&m_twi, LIS3DH_ADDRESS, &sample_data, sizeof(sample_data));
-        if (err_code == NRF_SUCCESS)
-        {
-            detected_device = true;
-            //NRF_LOG_INFO("TWI device detected at address 0x%x.", LIS3DH_ADDRESS);
-        }
-        NRF_LOG_FLUSH();
-
-        if(lis3dh_ReadAcc(&AccValue[0], &AccValue[1], &AccValue[2]) == true) // Read acc value from mpu6050 internal registers and save them in the array
-        {
-AccValue[0] = AccValue[0]/256;
-AccValue[1] = AccValue[1]/256;
-AccValue[2] = AccValue[2]/256;
-            NRF_LOG_INFO("ACC Values:  x = %d  y = %d  z = %d", AccValue[0], AccValue[1], AccValue[2]); // display the read values
-AccValueF[0] = AccValue[0]*16;
-AccValueF[1] = AccValue[1]*16;
-AccValueF[2] = AccValue[2]*16;
-NRF_LOG_INFO("ACC Values:  x[g] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(AccValueF[0]/1000));
-//NRF_LOG_INFO("ACC Values:  x =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(AccValue[0]/2048*2));
-NRF_LOG_INFO("ACC Values:  y[g] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(AccValueF[1]/1000));
-NRF_LOG_INFO("ACC Values:  z[g] =" NRF_LOG_FLOAT_MARKER"\r\n\n" ,NRF_LOG_FLOAT(AccValueF[2]/1000));
-
-        }
-        else
-        {
-          NRF_LOG_INFO("Reading ACC values Failed!!!"); // if reading was unsuccessful then let the user know about it
-        }
-
-        nrf_delay_ms(1000); // give some delay 
-
-    }
-
+    //Inizializzazione del timer
+    timer_init();
+    nrfx_timer_enable(&TIMER_LED);
 
     while (1)
     {
-         __WFI();//GO INTO LOW POWER MODE
+        if(flag_misurazioni == 1)   //esegui tutte le misurazioni tranne VOC
+        {
+            float partial_calc = 0;        //variable to maintein partial calculation
+            //ha senso guardare se restituiscono o meno errore queste funzioni?
+            
+            //unire sps e scd per fare un unico delay, o separarli per consumo di corrente massimo disponibile
+            
+            //SPS30 
+            sps30_wake_up();
+            sps30_start_measurement();
+            nrf_delay_ms(1000);
+            sps30_read_measurement(&measure_sps30);
+            sps30_stop_measurement();
+            sps30_sleep();
+
+            //SCD41
+            scd4x_wake_up();
+            scd4x_measure_single_shot();
+            nrf_delay_ms(100);
+            scd4x_read_measurement(&measure_scd4x.CO2, &measure_scd4x.Temperature, &measure_scd4x.Humidity);
+            scd4x_power_down();
+
+            //MICS6814
+            nrfx_saadc_sample_convert(NO2_CHANNEL, &adc_val); //A1
+            partial_calc = (5 - adc_to_volts(adc_val))/adc_to_volts(adc_val);
+            measure_mics6814.NO2 = pow(10, (log10(partial_calc) -0.804)/(1.026))*1000;
+            nrfx_saadc_sample_convert(CO_CHANNEL, &adc_val); //A3
+            partial_calc = (5 - adc_to_volts(adc_val))/adc_to_volts(adc_val);
+            measure_mics6814.CO = pow(10, (log10(partial_calc)-0.55)/(-0.85))*1000;      //controlla questa formula
+            
+            //BME280
+            bme280_set_sensor_mode(BME280_FORCED_MODE, &dev_bme280);
+            bme280_get_sensor_data(BME280_ALL, &measure_bme280, &dev_bme280);
+    
+            //LIS3DH    //scegliere ogni quanto campionare
+            if(lis3dh_ReadAcc(&measure_lis3dh.AccX, &measure_lis3dh.AccY, &measure_lis3dh.AccZ) == true) 
+            {
+                measure_lis3dh.AccX = measure_lis3dh.AccX/256*16;
+                measure_lis3dh.AccY = measure_lis3dh.AccY/256*16;
+                measure_lis3dh.AccZ = measure_lis3dh.AccZ/256*16;
+            }
+            
+            //SOLO IN QUESTA VERSIONE, STAMPO I RISULTATI OTTENUTI
+            NRF_LOG_INFO("Misurazione %d° ", misurazione_numero);
+            //BME280
+            NRF_LOG_INFO("Temperatura [°C] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.temperature));
+            NRF_LOG_INFO("Umidità [%%] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.humidity));
+            NRF_LOG_INFO("Pressione [Pa] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.pressure));
+            //SCD41
+            NRF_LOG_INFO("CO2 [] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_scd4x.CO2));
+            //SPS30
+            NRF_LOG_INFO("PM 2.5 [µg/m³] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_sps30.mc_2p5));
+            NRF_LOG_INFO("PM 1.0 [µg/m³] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_sps30.mc_1p0));
+            //MICS6814
+            NRF_LOG_INFO("NO2 [ppb] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_mics6814.NO2));
+            NRF_LOG_INFO("CO [ppm] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_mics6814.CO));
+            //SGP30
+            NRF_LOG_INFO("VOC [ppb] = non presente");
+            //LIS3DH
+            NRF_LOG_INFO("ACC x [mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_lis3dh.AccX));
+            NRF_LOG_INFO("ACC y [mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_lis3dh.AccY));
+            NRF_LOG_INFO("ACC z [mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_lis3dh.AccZ));
+
+            flag_misurazioni = 0;         
+        }
+
+        //NRF_LOG_FLUSH();
+        //nrf_pwr_mgmt_run();
+        //__WFI();//GO INTO LOW POWER MODE
     }
 }
+
 
 /** @} */

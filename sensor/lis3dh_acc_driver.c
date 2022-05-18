@@ -159,7 +159,7 @@ bool lis3dh_verify_product_id(void)
         }
         else
         {
-            NRF_LOG_INFO("REgister read who am I is working");
+            //NRF_LOG_INFO("REgister read who am I is working");
             return true;
         }
     }

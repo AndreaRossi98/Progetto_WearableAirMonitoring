@@ -80,17 +80,18 @@ Output/Debug/Obj/timer_pca10040/main.o: \
  ../../../../../../modules/nrfx/drivers/include/nrfx_twi.h \
  ../../../../../../modules/nrfx/hal/nrf_twi.h \
  C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/components/libraries/delay/nrf_delay.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/reading_sps30.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/sensirion_common.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/sensirion_config.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/sensirion_i2c.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/sensirion_i2c_hal.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/scd4x_i2c.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/sps30.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/reading_scd41.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/sps30.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/scd4x_i2c.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/bme280.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/bme280_defs.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/TWI_SAADC_TIMER/sensor/bme280_defs.h \
+ ../../../../../../modules/nrfx/hal/nrf_nvmc.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/reading_sps30.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/sensirion_common.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/sensirion_config.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/sensirion_i2c.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/sensirion_i2c_hal.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/scd4x_i2c.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/sps30.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/reading_scd41.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/sps30.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/scd4x_i2c.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/bme280.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/bme280_defs.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/bme280_defs.h \
  C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/lis3dh_acc_driver.h

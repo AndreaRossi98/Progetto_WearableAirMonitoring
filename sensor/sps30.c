@@ -273,10 +273,10 @@ int16_t sps30_read_device_status_register(uint32_t* device_status_flags) {
 int16_t sps30_init(void){
     while (sps30_probe() != 0) 
     {
-        printf("probe failed\n\r"); //poi si toglie questo
+        //printf("probe failed\n\r"); //poi si toglie questo
         nrf_delay_ms(1000);
     }
-    printf("probe succeeded\n\r");    
+    //printf("probe succeeded\n\r");    
     //start measurement and wait for 10s to ensure the sensor has a
     //stable flow and possible remaining particles are cleaned out
     //Meglio farlo?

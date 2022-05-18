@@ -337,7 +337,7 @@ int main(void)
             //SCD41
             scd4x_wake_up();
             scd4x_measure_single_shot();
-            while (data_ready)
+            while (data_ready)  //capire se serve questo passaggio
             {
                 scd4x_get_data_ready_flag(&data_ready);
             }
@@ -366,7 +366,7 @@ int main(void)
                 measure_lis3dh.AccZ = measure_lis3dh.AccZ/16;
             }
             
-            //SOLO IN QUESTA VERSIONE, STAMPO I RISULTATI OTTENUTI
+//SOLO IN QUESTA VERSIONE, STAMPO I RISULTATI OTTENUTI
             //NRF_LOG_INFO("Misurazione %d° ", misurazione_numero);
             printf("\n\nMisurazione %d°\n", misurazione_numero);
             printf("\n");
@@ -378,14 +378,14 @@ int main(void)
             printf("Umidità [%%] = ");
             stampa_decimale(measure_bme280.humidity);
             //NRF_LOG_INFO("Pressione [Pa] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.pressure));
-
-            //Problema nello stampare la pressione
+//Problema nello stampare la pressione
             printf("Pressione [Pa] = ");
             stampa_decimale(measure_bme280.pressure);
 
             //SCD41
             //NRF_LOG_INFO("CO2 [] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_scd4x.CO2));
             printf("CO2 [] = %d\n", measure_scd4x.CO2);
+            
             //SPS30
             //NRF_LOG_INFO("PM 2.5 [µg/m³] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_sps30.mc_2p5));
             printf("PM 2.5 [µg/m³] = ");
@@ -393,23 +393,22 @@ int main(void)
             //NRF_LOG_INFO("PM 1.0 [µg/m³] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_sps30.mc_1p0));
             printf("PM 1.0 [µg/m³] = ");
             stampa_decimale(measure_sps30.mc_1p0);
+            
             //MICS6814
-
-            //valori stampati strani 
-
+//ricontrollare le formule di conversione
+//valori stampati strani 
             //NRF_LOG_INFO("NO2 [ppb] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_mics6814.NO2));
             printf("NO2 [ppb] = ");
             stampa_decimale(measure_mics6814.NO2);
             //NRF_LOG_INFO("CO [ppm] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_mics6814.CO));
             printf("CO [ppm] = ");
             stampa_decimale(measure_mics6814.CO);
+            
             //SGP30
             //NRF_LOG_INFO("VOC [ppb] = non presente");
             printf("VOC non presente\n");
+
             //LIS3DH
-
-            //Valori stampati non corretti
-
             //NRF_LOG_INFO("ACC x [mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_lis3dh.AccX));
             printf("\nACC x [mg] = %d\n",measure_lis3dh.AccX);
             //NRF_LOG_INFO("ACC y [mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_lis3dh.AccY));

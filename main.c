@@ -206,7 +206,7 @@ void timer0_handler(nrf_timer_event_t event_type, void* p_context)
             //2 sec
             if ((rtc_count % _2_SEC) == 0)
             {   
-            nrf_gpio_pin_toggle(LED);
+                nrf_gpio_pin_toggle(LED);
                 //qua avrei invio valori con ant
                 //NRF_LOG_INFO("Invio valori con ANT"); 
                 printf("\nInvio valori con ANT %d", rtc_count);    
@@ -275,12 +275,11 @@ int main(void)
     twi_init();
     printf("Starting the program\n");
     //NRF_LOG_INFO("Starting the program");  
-      
+ 
+    //Scanning connected sensor  
     uint8_t sample_data;
-    
     bool detected_device = false;
 
-    //Scanning connected sensor
     for (uint8_t address = 1; address <= TWI_ADDRESSES; address++)
     {
         err_code = nrf_drv_twi_rx(&m_twi, address, &sample_data, sizeof(sample_data));
@@ -300,7 +299,6 @@ int main(void)
     }
 
     //Inizializzazione dei sensori
-
     sps30_init();
     //NRF_LOG_INFO("SPS30 inizializzato");
     printf("\nSPS30 inizializzato\n");
@@ -339,9 +337,9 @@ int main(void)
             scd4x_measure_single_shot();
             while (data_ready)  //capire se serve questo passaggio
             {
+                nrf_delay_ms(100);
                 scd4x_get_data_ready_flag(&data_ready);
             }
-            nrf_delay_ms(100);
             scd4x_read_measurement(&measure_scd4x.CO2, &measure_scd4x.Temperature, &measure_scd4x.Humidity);
             scd4x_power_down();
 
@@ -421,7 +419,8 @@ int main(void)
 
         //NRF_LOG_FLUSH();
         //nrf_pwr_mgmt_run();
-        //__WFI();//GO INTO LOW POWER MODE
+        __WFI();//GO INTO LOW POWER MODE
+        printf("dormo\n");
     }
 }
 

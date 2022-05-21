@@ -1290,6 +1290,24 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </package>
 </packages>
 </library>
+<library name="Condens_100nF">
+<packages>
+<package name="CAPC0603X33N">
+<text x="-0.72" y="-0.51" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-0.72" y="0.51" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.32" y1="-0.16" x2="-0.32" y2="-0.16" width="0.127" layer="51"/>
+<wire x1="0.32" y1="0.16" x2="-0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="0.32" y1="-0.16" x2="0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="-0.32" y1="-0.16" x2="-0.32" y2="0.16" width="0.127" layer="51"/>
+<wire x1="-0.718" y1="-0.448" x2="0.718" y2="-0.448" width="0.05" layer="39"/>
+<wire x1="-0.718" y1="0.448" x2="0.718" y2="0.448" width="0.05" layer="39"/>
+<wire x1="-0.718" y1="-0.448" x2="-0.718" y2="0.448" width="0.05" layer="39"/>
+<wire x1="0.718" y1="-0.448" x2="0.718" y2="0.448" width="0.05" layer="39"/>
+<smd name="1" x="-0.281" y="0" dx="0.38" dy="0.4" layer="1"/>
+<smd name="2" x="0.281" y="0" dx="0.38" dy="0.4" layer="1"/>
+</package>
+</packages>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -1793,6 +1811,21 @@ design rules under a new name.</description>
 <attribute name="NAME" x="-20.32" y="11.684" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center"/>
 <attribute name="VALUE" x="-20.32" y="-4.064" size="0.6096" layer="25" font="vector" ratio="20" align="top-center"/>
 </element>
+<element name="IC1.8" library="linear" library_urn="urn:adsk.eagle:library:262" package="TO220H" package3d_urn="urn:adsk.eagle:package:16414/1" value="317T" x="-36.83" y="6.35" smashed="yes">
+<attribute name="NAME" x="-42.291" y="-4.572" size="1.778" layer="25" ratio="10" rot="R90"/>
+<attribute name="POPULARITY" value="7" x="-36.83" y="6.35" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-29.464" y="-4.699" size="1.778" layer="27" ratio="10" rot="R90"/>
+</element>
+<element name="C8" library="Condens_100nF" package="CAPC0603X33N" value="GRM033C80J104KE15D" x="-43.18" y="-7.62" smashed="yes">
+<attribute name="DESCRIPTION" value=" SMD capacitor X6S(EIA) with capacitance 0.10uF Tol.10%. Rated voltage 6.3Vdc 105C " x="-43.18" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="490-10390-2-ND" x="-43.18" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Murata Electronics" x="-43.18" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="GRM033C80J104KE15D" x="-43.18" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-43.9" y="-7.11" size="0.5" layer="25"/>
+<attribute name="PACKAGE" value="0603 Taiyo Yuden" x="-43.18" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/GRM033C80J104KE15D/?ref=eda" x="-43.18" y="-7.62" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-43.9" y="-8.13" size="0.5" layer="27" align="top-left"/>
+</element>
 </elements>
 <signals>
 <signal name="VSS">
@@ -2021,6 +2054,8 @@ design rules under a new name.</description>
 <contactref element="U2" pad="DIEPAD"/>
 <contactref element="B2" pad="GND1"/>
 <contactref element="B2" pad="GND2"/>
+<contactref element="IC1.8" pad="1"/>
+<contactref element="C8" pad="2"/>
 <wire x1="53.848" y1="63.146" x2="68.58" y2="55.88" width="0" layer="19" extent="1-16"/>
 <wire x1="52.07" y1="64.26" x2="53.848" y2="63.146" width="0" layer="19" extent="1-1"/>
 <wire x1="36.67" y1="59.69" x2="52.07" y2="64.26" width="0" layer="19" extent="1-1"/>
@@ -2052,6 +2087,8 @@ design rules under a new name.</description>
 <wire x1="-12.58" y1="-2.54" x2="-11.43" y2="-2.54" width="0" layer="19" extent="1-1"/>
 <wire x1="-15.24" y1="2.54" x2="-12.58" y2="-2.54" width="0" layer="19" extent="1-1"/>
 <wire x1="-25.4" y1="2.54" x2="-15.24" y2="2.54" width="0" layer="19" extent="1-1"/>
+<wire x1="-39.37" y1="-3.81" x2="-25.4" y2="2.54" width="0" layer="19" extent="1-1"/>
+<wire x1="-42.899" y1="-7.62" x2="-39.37" y2="-3.81" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$2">
 <contactref element="BT1" pad="2"/>
@@ -2105,6 +2142,8 @@ design rules under a new name.</description>
 <wire x1="15.24" y1="55.88" x2="15.24" y2="52.07" width="0.1524" layer="1"/>
 <wire x1="15.24" y1="52.07" x2="15.61" y2="51.7" width="0.1524" layer="1"/>
 <wire x1="15.61" y1="51.7" x2="15.61" y2="49.53" width="0.1524" layer="1"/>
+<contactref element="IC1.8" pad="3"/>
+<wire x1="16.14" y1="8.89" x2="-34.29" y2="-3.81" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$11">
 <contactref element="U3" pad="E"/>
@@ -2255,10 +2294,14 @@ design rules under a new name.</description>
 <wire x1="42.291" y1="47.017" x2="43.207" y2="47.017" width="0.1524" layer="1"/>
 <wire x1="43.207" y1="47.017" x2="45.72" y2="49.53" width="0.1524" layer="1"/>
 </signal>
-<signal name="N$18">
+<signal name="1.8V">
 <contactref element="U2" pad="5"/>
 <contactref element="U2" pad="1"/>
 <contactref element="B2" pad="LV"/>
+<contactref element="IC1.8" pad="2"/>
+<contactref element="C8" pad="1"/>
+<wire x1="-36.83" y1="-3.81" x2="-43.461" y2="-7.62" width="0" layer="19" extent="1-1"/>
+<wire x1="-25.4" y1="5.08" x2="-36.83" y2="-3.81" width="0" layer="19" extent="1-1"/>
 <wire x1="-12.58" y1="-1.74" x2="-25.4" y2="5.08" width="0" layer="19" extent="1-1"/>
 <wire x1="-10.28" y1="-2.54" x2="-12.58" y2="-1.74" width="0" layer="19" extent="1-1"/>
 </signal>

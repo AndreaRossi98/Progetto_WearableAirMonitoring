@@ -299,14 +299,14 @@ int main(void)
     }
 
     //Inizializzazione dei sensori
-    sps30_init();
+    err_code = sps30_init();
     //NRF_LOG_INFO("SPS30 inizializzato");
     printf("\nSPS30 inizializzato\n");
     //scd41 non serve init
-    bme280_init_set(&dev_bme280);
+    err_code = bme280_init_set(&dev_bme280);
     //NRF_LOG_INFO("BME280 inizializzato");
     printf("\nBME280 inizializzato\n");
-    lis3dh_init();
+    err_code = lis3dh_init();
     printf("\nLIS3DH inizializzato\n\n");
     //NRF_LOG_INFO("Sensori inizializzati");
 
@@ -349,7 +349,7 @@ int main(void)
             measure_mics6814.NO2 = pow(10, (log10(partial_calc) -0.804)/(1.026))*1000;
             nrfx_saadc_sample_convert(CO_CHANNEL, &adc_val); //A3
             partial_calc = (5 - adc_to_volts(adc_val))/adc_to_volts(adc_val);
-            measure_mics6814.CO = pow(10, (log10(partial_calc)-0.55)/(-0.85))*1000;      //controlla questa formula
+            measure_mics6814.CO = pow(10, (log10(partial_calc)-0.55)/(-0.85));
             
             //BME280
             bme280_set_sensor_mode(BME280_FORCED_MODE, &dev_bme280);

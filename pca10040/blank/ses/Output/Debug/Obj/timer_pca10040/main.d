@@ -94,4 +94,6 @@ Output/Debug/Obj/timer_pca10040/main.o: \
  C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/bme280.h \
  C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/bme280_defs.h \
  C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/bme280_defs.h \
- C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/lis3dh_acc_driver.h
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/lis3dh_acc_driver.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/sgp30.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My\ Projects/Progetto_WearableAirMonitoring/sensor/sgp_git_version.h

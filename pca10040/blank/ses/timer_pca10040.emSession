@@ -61,7 +61,12 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="82" y="348" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="341" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="32" y="417" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="408" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="284" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../sensor/sps30.c" selected="0" top="257" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="40" y="160" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../sensor/sgp30.c" selected="0" top="149" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="24" y="322" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/sensor/sgp30.c" useBinaryEdit="0" left="18" path="../../../sensor/sgp30.h" selected="0" top="300" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="26" y="280" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/sensor/sps30.c" useBinaryEdit="0" left="0" path="../../../sensor/sps30.h" selected="0" top="258" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="126" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/sensor/sgp30.c" useBinaryEdit="0" left="0" path="../../../sensor/sensirion_i2c_hal.c" selected="0" top="112" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="timer_pca10040" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/prova/main.c&#xa;" fileDialogInitialDirectory="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/sensor" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="timer_pca10040" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Debug" sessionSettings="" debugSearchFileMap="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/prova/main.c&#xa;" fileDialogInitialDirectory="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/sensor" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

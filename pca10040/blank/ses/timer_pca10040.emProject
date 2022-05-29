@@ -99,6 +99,7 @@
       <file file_name="../../../sensor/common.c" />
       <file file_name="../../../sensor/bme280.c" />
       <file file_name="../../../sensor/lis3dh_acc_driver.c" />
+      <file file_name="../../../sensor/sgp30.c" />
     </folder>
   </project>
   <configuration

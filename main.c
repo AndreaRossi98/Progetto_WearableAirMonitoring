@@ -21,6 +21,7 @@
 #include "bme280.h"
 #include "bme280_defs.h"
 #include "lis3dh_acc_driver.h"
+#include "sgp30.h"
 
 //=============================================================================================================================================================================
 /*
@@ -71,6 +72,11 @@ struct scd4x_data{
     int32_t Temperature;
     int32_t Humidity;
 };
+
+struct sgp30_data{
+    uint16_t tVOC;
+    uint16_t CO2_eq;
+};
 //=============================================================================================================================================================================
 /*
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,7 +98,8 @@ struct bme280_data          measure_bme280;     //struct for measured values by 
 struct sps30_measurement    measure_sps30;      //struct for measured values by SPS30
 struct lis3dh_data          measure_lis3dh;     //struct for measured values by LIS3DH
 struct mics6814_data        measure_mics6814;   //struct for measured values by MICS6814
-struct scd4x_data           measure_scd4x;     //struct for measured values by SCD41
+struct scd4x_data           measure_scd4x;      //struct for measured values by SCD41
+struct sgp30_data           measure_sgp30;      //struct for measured values by SGP30
 //=============================================================================================================================================================================
 
 //=============================================================================================================================================================================
@@ -201,7 +208,9 @@ void timer0_handler(nrf_timer_event_t event_type, void* p_context)
             //APP_ERROR_CHECK(err_code);
 
             //1 sec
-            //Lettura dati VOC
+            //lettura dati SGP30
+            sgp30_measure_iaq_blocking_read(&measure_sgp30.tVOC, &measure_sgp30.CO2_eq);
+            printf("\ntVOC [ppb] = %d", measure_sgp30.tVOC);
 
             //2 sec
             if ((rtc_count % _2_SEC) == 0)
@@ -307,7 +316,10 @@ int main(void)
     //NRF_LOG_INFO("BME280 inizializzato");
     printf("\nBME280 inizializzato\n");
     err_code = lis3dh_init();
-    printf("\nLIS3DH inizializzato\n\n");
+    printf("\nLIS3DH inizializzato\n");
+    err_code = sgp30_init();
+    printf("\nSGP30 inizializzato\n\n");
+    sgp30_iaq_init();
     //NRF_LOG_INFO("Sensori inizializzati");
 
     //Inizializzazione del timer
@@ -403,8 +415,7 @@ int main(void)
             stampa_decimale(measure_mics6814.CO);
             
             //SGP30
-            //NRF_LOG_INFO("VOC [ppb] = non presente");
-            printf("VOC non presente\n");
+            //fatto in interrupt
 
             //LIS3DH
             //NRF_LOG_INFO("ACC x [mg] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_lis3dh.AccX));
@@ -420,7 +431,7 @@ int main(void)
         //NRF_LOG_FLUSH();
         //nrf_pwr_mgmt_run();
         __WFI();//GO INTO LOW POWER MODE
-        printf("dormo\n");
+
     }
 }
 

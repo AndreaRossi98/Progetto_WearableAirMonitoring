@@ -2584,6 +2584,170 @@ JS10 Series SPDT On-On 6 V 0.3 A Gull Wing SMT Slide Switch&amp;lt;/b&amp;gt;&lt
 </deviceset>
 </devicesets>
 </library>
+<library name="Condens_10uF">
+<packages>
+<package name="CAPC1005X55N">
+<wire x1="0.53" y1="0.28" x2="-0.53" y2="0.28" width="0.127" layer="51"/>
+<wire x1="-0.53" y1="0.28" x2="-0.53" y2="-0.28" width="0.127" layer="51"/>
+<wire x1="-0.53" y1="-0.28" x2="0.53" y2="-0.28" width="0.127" layer="51"/>
+<wire x1="0.53" y1="-0.28" x2="0.53" y2="0.28" width="0.127" layer="51"/>
+<wire x1="0.5" y1="0.48" x2="-0.5" y2="0.48" width="0.127" layer="21"/>
+<wire x1="-0.5" y1="-0.48" x2="0.5" y2="-0.48" width="0.127" layer="21"/>
+<wire x1="0.85" y1="0.54" x2="-0.85" y2="0.54" width="0.05" layer="39"/>
+<wire x1="-0.85" y1="0.54" x2="-0.85" y2="-0.54" width="0.05" layer="39"/>
+<wire x1="-0.85" y1="-0.54" x2="0.85" y2="-0.54" width="0.05" layer="39"/>
+<wire x1="0.85" y1="-0.54" x2="0.85" y2="0.54" width="0.05" layer="39"/>
+<text x="-0.8034375" y="0.602578125" size="0.30610625" layer="25">&gt;NAME</text>
+<text x="-0.803240625" y="-1.004059375" size="0.3060375" layer="27">&gt;VALUE</text>
+<smd name="1" x="-0.43" y="0" dx="0.6" dy="0.54" layer="1" roundness="53" rot="R90"/>
+<smd name="2" x="0.43" y="0" dx="0.6" dy="0.54" layer="1" roundness="53" rot="R90"/>
+</package>
+</packages>
+<symbols>
+<symbol name="CL05A106MP5NUNC">
+<text x="0" y="3.81" size="1.778" layer="95">&gt;NAME</text>
+<text x="0" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
+<rectangle x1="0" y1="-1.905" x2="0.635" y2="1.905" layer="94"/>
+<rectangle x1="1.905" y1="-1.905" x2="2.54" y2="1.905" layer="94"/>
+<pin name="1" x="5.08" y="0" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="2" x="-2.54" y="0" visible="pad" length="short" direction="pas"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="CL05A106MP5NUNC" prefix="C">
+<description>Cap Ceramic 10uF 10V X5R 20% SMD 0402 85C T/R </description>
+<gates>
+<gate name="G$1" symbol="CL05A106MP5NUNC" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CAPC1005X55N">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value=" 10 µF ±20% 10V Ceramic Capacitor X5R 0402 (1005 Metric) "/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="1276-1450-2-ND"/>
+<attribute name="MF" value="Samsung"/>
+<attribute name="MP" value="CL05A106MP5NUNC"/>
+<attribute name="PACKAGE" value="0402 Samsung"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/CL05A106MP5NUNC/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="Condens_2.2uF">
+<packages>
+<package name="CAPC0603X39N">
+<text x="-0.73" y="-0.54" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-0.73" y="0.54" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.34" y1="-0.2" x2="-0.34" y2="-0.2" width="0.127" layer="51"/>
+<wire x1="0.34" y1="0.2" x2="-0.34" y2="0.2" width="0.127" layer="51"/>
+<wire x1="0.34" y1="-0.2" x2="0.34" y2="0.2" width="0.127" layer="51"/>
+<wire x1="-0.34" y1="-0.2" x2="-0.34" y2="0.2" width="0.127" layer="51"/>
+<wire x1="-0.731" y1="-0.461" x2="0.731" y2="-0.461" width="0.05" layer="39"/>
+<wire x1="-0.731" y1="0.461" x2="0.731" y2="0.461" width="0.05" layer="39"/>
+<wire x1="-0.731" y1="-0.461" x2="-0.731" y2="0.461" width="0.05" layer="39"/>
+<wire x1="0.731" y1="-0.461" x2="0.731" y2="0.461" width="0.05" layer="39"/>
+<smd name="1" x="-0.278" y="0" dx="0.41" dy="0.42" layer="1"/>
+<smd name="2" x="0.278" y="0" dx="0.41" dy="0.42" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="GRM033R61A225KE47D">
+<text x="0" y="3.81093125" size="1.77843125" layer="95">&gt;NAME</text>
+<text x="0" y="-5.08848125" size="1.78096875" layer="96">&gt;VALUE</text>
+<rectangle x1="0" y1="-1.906859375" x2="0.635" y2="1.905" layer="94"/>
+<rectangle x1="1.90685" y1="-1.90685" x2="2.54" y2="1.905" layer="94"/>
+<pin name="2" x="5.08" y="0" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="1" x="-2.54" y="0" visible="pad" length="short" direction="pas"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="GRM033R61A225KE47D" prefix="C">
+<description>SMD Capacitor X5R(EIA) with Capacitance: 2.2uF Tol. 10%. Rated Voltage: 10Vdc </description>
+<gates>
+<gate name="G$1" symbol="GRM033R61A225KE47D" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CAPC0603X39N">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value=" 2.2 µF ±10% 10V Ceramic Capacitor X5R 0201 (0603 Metric) "/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="490-13227-2-ND"/>
+<attribute name="MF" value="Murata Electronics"/>
+<attribute name="MP" value="GRM033R61A225KE47D"/>
+<attribute name="PACKAGE" value="None"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/GRM033R61A225KE47D/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="Condens_22uF">
+<packages>
+<package name="CAPC1005X55N">
+<text x="-0.99" y="-0.65" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-0.99" y="0.65" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="0.57" y1="-0.3" x2="-0.57" y2="-0.3" width="0.127" layer="51"/>
+<wire x1="0.57" y1="0.3" x2="-0.57" y2="0.3" width="0.127" layer="51"/>
+<wire x1="0.57" y1="-0.3" x2="0.57" y2="0.3" width="0.127" layer="51"/>
+<wire x1="-0.57" y1="-0.3" x2="-0.57" y2="0.3" width="0.127" layer="51"/>
+<wire x1="-0.99" y1="-0.569" x2="0.99" y2="-0.569" width="0.05" layer="39"/>
+<wire x1="-0.99" y1="0.569" x2="0.99" y2="0.569" width="0.05" layer="39"/>
+<wire x1="-0.99" y1="-0.569" x2="-0.99" y2="0.569" width="0.05" layer="39"/>
+<wire x1="0.99" y1="-0.569" x2="0.99" y2="0.569" width="0.05" layer="39"/>
+<smd name="1" x="-0.465" y="0" dx="0.55" dy="0.64" layer="1"/>
+<smd name="2" x="0.465" y="0" dx="0.55" dy="0.64" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="CL05A226MQ5N6J8">
+<text x="0" y="3.81093125" size="1.77843125" layer="95">&gt;NAME</text>
+<text x="0" y="-5.08848125" size="1.78096875" layer="96">&gt;VALUE</text>
+<rectangle x1="0" y1="-1.906859375" x2="0.635" y2="1.905" layer="94"/>
+<rectangle x1="1.90685" y1="-1.90685" x2="2.54" y2="1.905" layer="94"/>
+<pin name="2" x="5.08" y="0" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="1" x="-2.54" y="0" visible="pad" length="short" direction="pas"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="CL05A226MQ5N6J8" prefix="C">
+<description>Cap Ceramic 22uF 6.3V X5R 20% Pad SMD 0402 85C T/R </description>
+<gates>
+<gate name="G$1" symbol="CL05A226MQ5N6J8" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CAPC1005X55N">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value=" 22 µF ±20% 6.3V Ceramic Capacitor X5R 0402 (1005 Metric) "/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="1276-7090-2-ND"/>
+<attribute name="MF" value="Samsung Electro-Mechanics"/>
+<attribute name="MP" value="CL05A226MQ5N6J8"/>
+<attribute name="PACKAGE" value="0402 Samsung Electro-Mechanics"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/CL05A226MQ5N6J8/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -2656,6 +2820,16 @@ JS10 Series SPDT On-On 6 V 0.3 A Gull Wing SMT Slide Switch&amp;lt;/b&amp;gt;&lt
 <part name="U1" library="Opamp_SMD" deviceset="TSV912IDT" device=""/>
 <part name="LED2" library="LED_SMD" deviceset="SML-LX1206SRC-TR" device="LED_3P2X1P5_LUM-L"/>
 <part name="S2" library="switch_JS102011SAQN" deviceset="JS102011SAQN" device=""/>
+<part name="C1" library="Condens_10uF" deviceset="CL05A106MP5NUNC" device=""/>
+<part name="C2" library="Condens_2.2uF" deviceset="GRM033R61A225KE47D" device=""/>
+<part name="C3" library="Condens_2.2uF" deviceset="GRM033R61A225KE47D" device=""/>
+<part name="C4" library="Condens_22uF" deviceset="CL05A226MQ5N6J8" device=""/>
+<part name="GND5" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
+<part name="C5" library="Condens_2.2uF" deviceset="GRM033R61A225KE47D" device=""/>
+<part name="C6" library="Condens_1uF" deviceset="GRM033R60J105MEA2D" device=""/>
+<part name="C12" library="Condens_10uF" deviceset="CL05A106MP5NUNC" device=""/>
+<part name="GND6" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
+<part name="R18" library="Res_820_0p25W" deviceset="ERA6VEB8200V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -2883,6 +3057,44 @@ JS10 Series SPDT On-On 6 V 0.3 A Gull Wing SMT Slide Switch&amp;lt;/b&amp;gt;&lt
 <attribute name="NAME" x="-144.782909375" y="340.361940625" size="1.270490625" layer="95"/>
 <attribute name="VALUE" x="-144.788559375" y="330.194290625" size="1.27143125" layer="96"/>
 </instance>
+<instance part="C1" gate="G$1" x="-124.46" y="281.94" smashed="yes" rot="R90">
+<attribute name="NAME" x="-128.27" y="281.94" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="-119.38" y="281.94" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="C2" gate="G$1" x="-109.22" y="285.496" smashed="yes" rot="R90">
+<attribute name="NAME" x="-113.03093125" y="285.496" size="1.77843125" layer="95" rot="R90"/>
+<attribute name="VALUE" x="-104.13151875" y="285.496" size="1.78096875" layer="96" rot="R90"/>
+</instance>
+<instance part="C3" gate="G$1" x="-67.564" y="285.496" smashed="yes" rot="R90">
+<attribute name="NAME" x="-71.37493125" y="285.496" size="1.77843125" layer="95" rot="R90"/>
+<attribute name="VALUE" x="-62.47551875" y="285.496" size="1.78096875" layer="96" rot="R90"/>
+</instance>
+<instance part="C4" gate="G$1" x="-45.72" y="287.02" smashed="yes" rot="R90">
+<attribute name="NAME" x="-49.53093125" y="287.02" size="1.77843125" layer="95" rot="R90"/>
+<attribute name="VALUE" x="-40.63151875" y="287.02" size="1.78096875" layer="96" rot="R90"/>
+</instance>
+<instance part="GND5" gate="1" x="-45.72" y="281.94" smashed="yes">
+<attribute name="VALUE" x="-45.72" y="281.686" size="1.778" layer="96" align="top-center"/>
+</instance>
+<instance part="C5" gate="G$1" x="-15.24" y="271.78" smashed="yes" rot="R90">
+<attribute name="NAME" x="-19.05093125" y="271.78" size="1.77843125" layer="95" rot="R90"/>
+<attribute name="VALUE" x="-10.15151875" y="271.78" size="1.78096875" layer="96" rot="R90"/>
+</instance>
+<instance part="C6" gate="G$1" x="-7.62" y="269.24" smashed="yes" rot="R90">
+<attribute name="NAME" x="-11.43093125" y="269.24" size="1.77843125" layer="95" rot="R90"/>
+<attribute name="VALUE" x="-2.53151875" y="269.24" size="1.78096875" layer="96" rot="R90"/>
+</instance>
+<instance part="C12" gate="G$1" x="30.48" y="279.4" smashed="yes" rot="R90">
+<attribute name="NAME" x="26.67" y="279.4" size="1.778" layer="95" rot="R90"/>
+<attribute name="VALUE" x="35.56" y="279.4" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="GND6" gate="1" x="-15.24" y="266.7" smashed="yes">
+<attribute name="VALUE" x="-15.24" y="266.446" size="1.778" layer="96" align="top-center"/>
+</instance>
+<instance part="R18" gate="G$1" x="-15.24" y="279.4" smashed="yes" rot="R180">
+<attribute name="NAME" x="-7.616" y="276.859" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="-7.616" y="284.487" size="1.778" layer="96" rot="R180" align="top-left"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -2956,19 +3168,28 @@ JS10 Series SPDT On-On 6 V 0.3 A Gull Wing SMT Slide Switch&amp;lt;/b&amp;gt;&lt
 <junction x="-175.26" y="228.6"/>
 <pinref part="U8" gate="G$1" pin="IN"/>
 <wire x1="-5.08" y1="284.48" x2="-15.24" y2="284.48" width="0.1524" layer="91"/>
-<wire x1="-15.24" y1="284.48" x2="-30.48" y2="284.48" width="0.1524" layer="91"/>
+<wire x1="-15.24" y1="284.48" x2="-25.4" y2="284.48" width="0.1524" layer="91"/>
 <pinref part="U8" gate="G$1" pin="!SKIP"/>
+<wire x1="-25.4" y1="284.48" x2="-30.48" y2="284.48" width="0.1524" layer="91"/>
 <wire x1="-15.24" y1="284.48" x2="-15.24" y2="276.86" width="0.1524" layer="91"/>
 <wire x1="-15.24" y1="276.86" x2="-5.08" y2="276.86" width="0.1524" layer="91"/>
 <junction x="-15.24" y="284.48"/>
 <pinref part="IC2" gate="G$1" pin="OUT_2"/>
-<wire x1="-71.12" y1="292.1" x2="-40.64" y2="292.1" width="0.1524" layer="91"/>
+<wire x1="-71.12" y1="292.1" x2="-45.72" y2="292.1" width="0.1524" layer="91"/>
+<wire x1="-45.72" y1="292.1" x2="-40.64" y2="292.1" width="0.1524" layer="91"/>
 <wire x1="-40.64" y1="292.1" x2="-30.48" y2="292.1" width="0.1524" layer="91"/>
 <wire x1="-30.48" y1="292.1" x2="-30.48" y2="284.48" width="0.1524" layer="91"/>
 <wire x1="-40.64" y1="208.28" x2="-15.24" y2="208.28" width="0.1524" layer="91"/>
 <wire x1="-15.24" y1="208.28" x2="-15.24" y2="200.66" width="0.1524" layer="91"/>
 <pinref part="U5" gate="G$1" pin="VCC"/>
 <wire x1="-15.24" y1="200.66" x2="-17.78" y2="200.66" width="0.1524" layer="91"/>
+<pinref part="C4" gate="G$1" pin="2"/>
+<junction x="-45.72" y="292.1"/>
+<pinref part="C5" gate="G$1" pin="2"/>
+<junction x="-15.24" y="276.86"/>
+<pinref part="R18" gate="G$1" pin="2"/>
+<wire x1="-25.4" y1="279.4" x2="-25.4" y2="284.48" width="0.1524" layer="91"/>
+<junction x="-25.4" y="284.48"/>
 </segment>
 </net>
 <net name="5V" class="0">
@@ -2990,7 +3211,8 @@ JS10 Series SPDT On-On 6 V 0.3 A Gull Wing SMT Slide Switch&amp;lt;/b&amp;gt;&lt
 <pinref part="R7" gate="G$1" pin="2"/>
 <wire x1="200.66" y1="187.96" x2="208.28" y2="187.96" width="0.1524" layer="91"/>
 <pinref part="U8" gate="G$1" pin="OUT"/>
-<wire x1="25.4" y1="284.48" x2="139.7" y2="284.48" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="284.48" x2="30.48" y2="284.48" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="284.48" x2="139.7" y2="284.48" width="0.1524" layer="91"/>
 <wire x1="139.7" y1="284.48" x2="139.7" y2="241.3" width="0.1524" layer="91"/>
 <label x="33.02" y="284.48" size="1.778" layer="95"/>
 <pinref part="R15" gate="G$1" pin="2"/>
@@ -3009,6 +3231,8 @@ JS10 Series SPDT On-On 6 V 0.3 A Gull Wing SMT Slide Switch&amp;lt;/b&amp;gt;&lt
 <pinref part="U1" gate="A" pin="VCC+"/>
 <wire x1="106.68" y1="200.66" x2="106.68" y2="241.3" width="0.1524" layer="91"/>
 <junction x="106.68" y="241.3"/>
+<pinref part="C12" gate="G$1" pin="1"/>
+<junction x="30.48" y="284.48"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -3283,6 +3507,8 @@ JS10 Series SPDT On-On 6 V 0.3 A Gull Wing SMT Slide Switch&amp;lt;/b&amp;gt;&lt
 <wire x1="-106.68" y1="281.94" x2="-114.3" y2="281.94" width="0.1524" layer="91"/>
 <wire x1="-114.3" y1="281.94" x2="-114.3" y2="279.4" width="0.1524" layer="91"/>
 <junction x="-114.3" y="279.4"/>
+<pinref part="C1" gate="G$1" pin="2"/>
+<wire x1="-124.46" y1="279.4" x2="-114.3" y2="279.4" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="IC2" gate="G$1" pin="PGND_3"/>
@@ -3299,6 +3525,14 @@ JS10 Series SPDT On-On 6 V 0.3 A Gull Wing SMT Slide Switch&amp;lt;/b&amp;gt;&lt
 <pinref part="GND10" gate="1" pin="GND"/>
 <wire x1="106.68" y1="182.88" x2="106.68" y2="175.26" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="C4" gate="G$1" pin="1"/>
+<pinref part="GND5" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="C5" gate="G$1" pin="1"/>
+<pinref part="GND6" gate="1" pin="GND"/>
+</segment>
 </net>
 <net name="VDD" class="0">
 <segment>
@@ -3314,13 +3548,14 @@ JS10 Series SPDT On-On 6 V 0.3 A Gull Wing SMT Slide Switch&amp;lt;/b&amp;gt;&lt
 <pinref part="C11" gate="G$1" pin="2"/>
 <junction x="-236.22" y="287.02"/>
 <pinref part="IC2" gate="G$1" pin="IN_1"/>
-<wire x1="-144.78" y1="287.02" x2="-121.92" y2="287.02" width="0.1524" layer="91"/>
+<wire x1="-144.78" y1="287.02" x2="-134.62" y2="287.02" width="0.1524" layer="91"/>
 <junction x="-144.78" y="287.02"/>
-<wire x1="-121.92" y1="287.02" x2="-111.76" y2="287.02" width="0.1524" layer="91"/>
+<wire x1="-134.62" y1="287.02" x2="-124.46" y2="287.02" width="0.1524" layer="91"/>
+<wire x1="-124.46" y1="287.02" x2="-111.76" y2="287.02" width="0.1524" layer="91"/>
 <wire x1="-111.76" y1="287.02" x2="-106.68" y2="287.02" width="0.1524" layer="91"/>
-<wire x1="-121.92" y1="287.02" x2="-121.92" y2="264.16" width="0.1524" layer="91"/>
-<wire x1="-121.92" y1="264.16" x2="-53.34" y2="264.16" width="0.1524" layer="91"/>
-<junction x="-121.92" y="287.02"/>
+<wire x1="-134.62" y1="287.02" x2="-134.62" y2="264.16" width="0.1524" layer="91"/>
+<wire x1="-134.62" y1="264.16" x2="-53.34" y2="264.16" width="0.1524" layer="91"/>
+<junction x="-134.62" y="287.02"/>
 <wire x1="-53.34" y1="264.16" x2="-53.34" y2="287.02" width="0.1524" layer="91"/>
 <pinref part="IC2" gate="G$1" pin="IN_2"/>
 <wire x1="-53.34" y1="287.02" x2="-71.12" y2="287.02" width="0.1524" layer="91"/>
@@ -3329,6 +3564,8 @@ JS10 Series SPDT On-On 6 V 0.3 A Gull Wing SMT Slide Switch&amp;lt;/b&amp;gt;&lt
 <wire x1="-111.76" y1="297.18" x2="-111.76" y2="287.02" width="0.1524" layer="91"/>
 <junction x="-111.76" y="287.02"/>
 <pinref part="S2" gate="G$1" pin="3"/>
+<pinref part="C1" gate="G$1" pin="1"/>
+<junction x="-124.46" y="287.02"/>
 </segment>
 </net>
 <net name="N$11" class="0">
@@ -3525,6 +3762,67 @@ JS10 Series SPDT On-On 6 V 0.3 A Gull Wing SMT Slide Switch&amp;lt;/b&amp;gt;&lt
 <wire x1="71.12" y1="200.66" x2="50.8" y2="200.66" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="200.66" x2="50.8" y2="210.82" width="0.1524" layer="91"/>
 <junction x="71.12" y="200.66"/>
+</segment>
+</net>
+<net name="N$7" class="0">
+<segment>
+<pinref part="IC2" gate="G$1" pin="C1+"/>
+<pinref part="C2" gate="G$1" pin="2"/>
+<wire x1="-106.68" y1="289.56" x2="-109.22" y2="289.56" width="0.1524" layer="91"/>
+<wire x1="-109.22" y1="289.56" x2="-109.22" y2="290.576" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$12" class="0">
+<segment>
+<pinref part="IC2" gate="G$1" pin="C1-"/>
+<pinref part="C2" gate="G$1" pin="1"/>
+<wire x1="-106.68" y1="284.48" x2="-109.22" y2="284.48" width="0.1524" layer="91"/>
+<wire x1="-109.22" y1="284.48" x2="-109.22" y2="282.956" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$14" class="0">
+<segment>
+<pinref part="IC2" gate="G$1" pin="C2+"/>
+<pinref part="C3" gate="G$1" pin="2"/>
+<wire x1="-71.12" y1="289.56" x2="-67.564" y2="289.56" width="0.1524" layer="91"/>
+<wire x1="-67.564" y1="289.56" x2="-67.564" y2="290.576" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$18" class="0">
+<segment>
+<pinref part="IC2" gate="G$1" pin="C2-"/>
+<pinref part="C3" gate="G$1" pin="1"/>
+<wire x1="-71.12" y1="284.48" x2="-67.564" y2="284.48" width="0.1524" layer="91"/>
+<wire x1="-67.564" y1="284.48" x2="-67.564" y2="282.956" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$19" class="0">
+<segment>
+<pinref part="IC2" gate="G$1" pin="FB"/>
+<pinref part="IC2" gate="G$1" pin="OUT_1"/>
+<wire x1="-106.68" y1="294.64" x2="-106.68" y2="292.1" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$20" class="0">
+<segment>
+<pinref part="C6" gate="G$1" pin="2"/>
+<wire x1="-7.62" y1="274.32" x2="-5.08" y2="274.32" width="0.1524" layer="91"/>
+<pinref part="U8" gate="G$1" pin="CXN"/>
+<wire x1="-5.08" y1="274.32" x2="-5.08" y2="271.78" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$22" class="0">
+<segment>
+<pinref part="U8" gate="G$1" pin="CXP"/>
+<pinref part="C6" gate="G$1" pin="1"/>
+<wire x1="-5.08" y1="269.24" x2="-5.08" y2="266.7" width="0.1524" layer="91"/>
+<wire x1="-5.08" y1="266.7" x2="-7.62" y2="266.7" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$24" class="0">
+<segment>
+<pinref part="U8" gate="G$1" pin="!SHDN"/>
+<pinref part="R18" gate="G$1" pin="1"/>
 </segment>
 </net>
 </nets>

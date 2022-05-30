@@ -2948,9 +2948,9 @@ ANCORA DA SCEGLIERE</text>
 <wire x1="-17.78" y1="215.9" x2="-17.78" y2="208.28" width="0.1524" layer="91"/>
 <wire x1="-17.78" y1="208.28" x2="-22.86" y2="208.28" width="0.1524" layer="91"/>
 <junction x="-22.86" y="208.28"/>
-<label x="-40.64" y="205.74" size="1.778" layer="95" rot="R180" xref="yes"/>
+<label x="-33.02" y="205.74" size="1.778" layer="95" rot="R180" xref="yes"/>
 <junction x="-22.86" y="205.74"/>
-<wire x1="-22.86" y1="205.74" x2="-40.64" y2="205.74" width="0.1524" layer="91"/>
+<wire x1="-22.86" y1="205.74" x2="-33.02" y2="205.74" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U5" gate="G$1" pin="P0.03/AIN1"/>
@@ -2976,9 +2976,9 @@ ANCORA DA SCEGLIERE</text>
 <wire x1="-7.62" y1="193.04" x2="-22.86" y2="193.04" width="0.1524" layer="91"/>
 <wire x1="-22.86" y1="193.04" x2="-22.86" y2="190.5" width="0.1524" layer="91"/>
 <junction x="-22.86" y="190.5"/>
-<label x="-40.64" y="193.04" size="1.778" layer="95" rot="R180" xref="yes"/>
+<label x="-33.02" y="193.04" size="1.778" layer="95" rot="R180" xref="yes"/>
 <junction x="-22.86" y="193.04"/>
-<wire x1="-22.86" y1="193.04" x2="-40.64" y2="193.04" width="0.1524" layer="91"/>
+<wire x1="-22.86" y1="193.04" x2="-33.02" y2="193.04" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="U5" gate="G$1" pin="P0.05/AIN3"/>

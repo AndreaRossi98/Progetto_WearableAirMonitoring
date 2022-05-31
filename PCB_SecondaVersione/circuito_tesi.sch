@@ -1168,66 +1168,6 @@ ventilation, and IoT applications.  &lt;a href="https://pricing.snapeda.com/part
 </deviceset>
 </devicesets>
 </library>
-<library name="Res_820OHM">
-<packages>
-<package name="RESC1508X55N">
-<text x="-1.44" y="-0.8" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
-<text x="-1.44" y="0.8" size="0.5" layer="25">&gt;NAME</text>
-<wire x1="0.83" y1="-0.45" x2="-0.83" y2="-0.45" width="0.127" layer="51"/>
-<wire x1="0.83" y1="0.45" x2="-0.83" y2="0.45" width="0.127" layer="51"/>
-<wire x1="0.83" y1="-0.45" x2="0.83" y2="0.45" width="0.127" layer="51"/>
-<wire x1="-0.83" y1="-0.45" x2="-0.83" y2="0.45" width="0.127" layer="51"/>
-<wire x1="-1.44" y1="-0.715" x2="1.44" y2="-0.715" width="0.05" layer="39"/>
-<wire x1="-1.44" y1="0.715" x2="1.44" y2="0.715" width="0.05" layer="39"/>
-<wire x1="-1.44" y1="-0.715" x2="-1.44" y2="0.715" width="0.05" layer="39"/>
-<wire x1="1.44" y1="-0.715" x2="1.44" y2="0.715" width="0.05" layer="39"/>
-<smd name="1" x="-0.755" y="0" dx="0.87" dy="0.93" layer="1"/>
-<smd name="2" x="0.755" y="0" dx="0.87" dy="0.93" layer="1"/>
-</package>
-</packages>
-<symbols>
-<symbol name="RNCF0603DTE820R">
-<wire x1="-5.08" y1="0" x2="-4.445" y2="1.905" width="0.254" layer="94"/>
-<wire x1="-4.445" y1="1.905" x2="-3.175" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="-3.175" y1="-1.905" x2="-1.905" y2="1.905" width="0.254" layer="94"/>
-<wire x1="-1.905" y1="1.905" x2="-0.635" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="-0.635" y1="-1.905" x2="0.635" y2="1.905" width="0.254" layer="94"/>
-<wire x1="0.635" y1="1.905" x2="1.905" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="1.905" y1="-1.905" x2="3.175" y2="1.905" width="0.254" layer="94"/>
-<wire x1="3.175" y1="1.905" x2="4.445" y2="-1.905" width="0.254" layer="94"/>
-<wire x1="4.445" y1="-1.905" x2="5.08" y2="0" width="0.254" layer="94"/>
-<text x="-7.624440625" y="2.54148125" size="2.54148125" layer="95">&gt;NAME</text>
-<text x="-7.62996875" y="-5.086640625" size="2.54331875" layer="96">&gt;VALUE</text>
-<pin name="1" x="-10.16" y="0" visible="off" length="middle" direction="pas"/>
-<pin name="2" x="10.16" y="0" visible="off" length="middle" direction="pas" rot="R180"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="RNCF0603DTE820R" prefix="R">
-<gates>
-<gate name="G$1" symbol="RNCF0603DTE820R" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="RESC1508X55N">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="DESCRIPTION" value=" 820 ±0.5% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thin Film "/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="RNCF0603DTE820RTR-ND"/>
-<attribute name="MF" value="Stackpole Electronics Inc"/>
-<attribute name="MP" value="RNCF0603DTE820R"/>
-<attribute name="PACKAGE" value="1508 Stackpole"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RNCF0603DTE820R/?ref=eda"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="SCD41-R2_unofficial">
 <description>&lt;Air Quality Sensor CO2 Sensor 2.5V/3.3V/5V 20-Pin SMD EP&lt;/b&gt;&lt;p&gt;
 &lt;author&gt;Created by SamacSys&lt;/author&gt;</description>
@@ -3171,6 +3111,68 @@ Source: &lt;a href="https://www.ablic.com/en/doc/datasheet/voltage_regulator/S13
 </deviceset>
 </devicesets>
 </library>
+<library name="Res_330_0805">
+<packages>
+<package name="RESC2012X70N">
+<text x="-1.71" y="-1.02" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-1.71" y="1.02" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="1.1" y1="-0.68" x2="-1.1" y2="-0.68" width="0.127" layer="51"/>
+<wire x1="1.1" y1="0.68" x2="-1.1" y2="0.68" width="0.127" layer="51"/>
+<wire x1="1.1" y1="-0.68" x2="1.1" y2="0.68" width="0.127" layer="51"/>
+<wire x1="-1.1" y1="-0.68" x2="-1.1" y2="0.68" width="0.127" layer="51"/>
+<wire x1="-0.1" y1="0.68" x2="0.1" y2="0.68" width="0.127" layer="21"/>
+<wire x1="-0.1" y1="-0.68" x2="0.1" y2="-0.68" width="0.127" layer="21"/>
+<wire x1="-1.708" y1="-0.94" x2="1.708" y2="-0.94" width="0.05" layer="39"/>
+<wire x1="-1.708" y1="0.94" x2="1.708" y2="0.94" width="0.05" layer="39"/>
+<wire x1="-1.708" y1="-0.94" x2="-1.708" y2="0.94" width="0.05" layer="39"/>
+<wire x1="1.708" y1="-0.94" x2="1.708" y2="0.94" width="0.05" layer="39"/>
+<smd name="1" x="-0.94" y="0" dx="1.04" dy="1.38" layer="1"/>
+<smd name="2" x="0.94" y="0" dx="1.04" dy="1.38" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="ERJ-PB6B3300V">
+<wire x1="-5.08" y1="0" x2="-4.445" y2="1.905" width="0.254" layer="94"/>
+<wire x1="-4.445" y1="1.905" x2="-3.175" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="-3.175" y1="-1.905" x2="-1.905" y2="1.905" width="0.254" layer="94"/>
+<wire x1="-1.905" y1="1.905" x2="-0.635" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="-0.635" y1="-1.905" x2="0.635" y2="1.905" width="0.254" layer="94"/>
+<wire x1="0.635" y1="1.905" x2="1.905" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="1.905" y1="-1.905" x2="3.175" y2="1.905" width="0.254" layer="94"/>
+<wire x1="3.175" y1="1.905" x2="4.445" y2="-1.905" width="0.254" layer="94"/>
+<wire x1="4.445" y1="-1.905" x2="5.08" y2="0" width="0.254" layer="94"/>
+<text x="-7.624440625" y="2.54148125" size="2.54148125" layer="95">&gt;NAME</text>
+<text x="-7.62996875" y="-5.086640625" size="2.54331875" layer="96">&gt;VALUE</text>
+<pin name="1" x="-10.16" y="0" visible="off" length="middle" direction="pas"/>
+<pin name="2" x="10.16" y="0" visible="off" length="middle" direction="pas" rot="R180"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="ERJ-PB6B3300V" prefix="R">
+<gates>
+<gate name="G$1" symbol="ERJ-PB6B3300V" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="RESC2012X70N">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value=" 330 Ohms ±0.1% 0.25W, 1/4W Chip Resistor 0805 (2012 Metric) Automotive AEC-Q200, Pulse Withstanding Thick Film "/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="P20537TR-ND"/>
+<attribute name="MF" value="Panasonic"/>
+<attribute name="MP" value="ERJ-PB6B3300V"/>
+<attribute name="PACKAGE" value="2012 Panasonic Electronic Components"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERJ-PB6B3300V/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -3192,7 +3194,7 @@ Source: &lt;a href="https://www.ablic.com/en/doc/datasheet/voltage_regulator/S13
 <part name="R15" library="Res_10MOHM_2" deviceset="RMCF0603FT10M0" device=""/>
 <part name="R16" library="Res_10MOHM_2" deviceset="RMCF0603FT10M0" device=""/>
 <part name="U6" library="BME280" deviceset="BME280" device=""/>
-<part name="U2" library="SGP30" deviceset="SGP30" device=""/>
+<part name="SGP30" library="SGP30" deviceset="SGP30" device=""/>
 <part name="U7" library="LIS3DH" deviceset="LIS3DH" device=""/>
 <part name="BT1" library="Battery_holder" deviceset="2996TR" device=""/>
 <part name="BT2" library="Battery_holder" deviceset="2996TR" device=""/>
@@ -3202,9 +3204,8 @@ Source: &lt;a href="https://www.ablic.com/en/doc/datasheet/voltage_regulator/S13
 <part name="R2" library="Res_10K_0p25W" deviceset="RNCP0805FTD10K0" device=""/>
 <part name="R12" library="Res_820_0p25W" deviceset="ERA6VEB8200V" device=""/>
 <part name="R11" library="Res_130_0p25" deviceset="RP73PF2A130RBTDF" device=""/>
-<part name="R29" library="Res_820OHM" deviceset="RNCF0603DTE820R" device=""/>
 <part name="IC1" library="SCD41-R2_unofficial" deviceset="SCD41-D-R2" device=""/>
-<part name="U5" library="Raytac_nRF52" deviceset="317030213" device=""/>
+<part name="MDBT42Q" library="Raytac_nRF52" deviceset="317030213" device=""/>
 <part name="Q1" library="BSS138" deviceset="BSS138" device=""/>
 <part name="Q2" library="BSS138" deviceset="BSS138" device=""/>
 <part name="R3" library="Res_10K_0p25W" deviceset="RNCP0805FTD10K0" device=""/>
@@ -3239,9 +3240,10 @@ Source: &lt;a href="https://www.ablic.com/en/doc/datasheet/voltage_regulator/S13
 <part name="C7_0.01" library="Cond_100nF_0805" deviceset="CL21B104KCFNNNE" device=""/>
 <part name="C9_0.1" library="Cond_100nF_0805" deviceset="CL21B104KCFNNNE" device=""/>
 <part name="C10_10" library="Cond_22uF_0805" deviceset="CL21A226MOQNNNE" device=""/>
-<part name="Q5" library="BJT_TO-236" deviceset="MMBT3904-215" device=""/>
+<part name="BJT" library="BJT_TO-236" deviceset="MMBT3904-215" device=""/>
 <part name="R17" library="Res_5.1K_0805" deviceset="ERJ-PB6D5101V" device=""/>
-<part name="D1" library="LED_0805" deviceset="LTST-C170TBKT" device=""/>
+<part name="LED1" library="LED_0805" deviceset="LTST-C170TBKT" device=""/>
+<part name="R18" library="Res_330_0805" deviceset="ERJ-PB6B3300V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3269,7 +3271,6 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <attribute name="NAME" x="-313.944" y="210.312" size="1.778" layer="95" rot="MR180"/>
 </instance>
 <instance part="U3" gate="G$1" x="124.46" y="203.2" smashed="yes">
-<attribute name="NAME" x="139.7" y="226.822" size="1.778" layer="95"/>
 <attribute name="VALUE" x="106.68" y="226.06" size="1.778" layer="96"/>
 </instance>
 <instance part="GND2" gate="1" x="154.94" y="101.6" smashed="yes">
@@ -3297,15 +3298,12 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <attribute name="NAME" x="-30.48148125" y="175.255559375" size="2.54148125" layer="95" rot="R90"/>
 </instance>
 <instance part="U6" gate="G$1" x="-312.42" y="129.54" smashed="yes" rot="MR0">
-<attribute name="NAME" x="-302.2538" y="142.8831" size="1.786590625" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="-313.4277" y="142.7356" size="1.782940625" layer="96" rot="MR0"/>
 </instance>
-<instance part="U2" gate="G$1" x="-307.34" y="40.64" smashed="yes">
-<attribute name="NAME" x="-302.26" y="48.768" size="1.778" layer="95"/>
+<instance part="SGP30" gate="G$1" x="-307.34" y="40.64" smashed="yes">
 <attribute name="VALUE" x="-314.96" y="48.514" size="1.778" layer="96"/>
 </instance>
 <instance part="U7" gate="G$1" x="-208.28" y="129.54" smashed="yes" rot="MR0">
-<attribute name="NAME" x="-193.0164" y="142.7685" size="1.27196875" layer="95" rot="MR0"/>
 <attribute name="VALUE" x="-217.3963" y="142.7203" size="1.272309375" layer="96" rot="MR0"/>
 </instance>
 <instance part="BT1" gate="G$1" x="73.66" y="106.68" smashed="yes">
@@ -3336,15 +3334,11 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <instance part="R11" gate="G$1" x="154.94" y="187.96" smashed="yes">
 <attribute name="NAME" x="151.13" y="189.4586" size="1.778" layer="95"/>
 </instance>
-<instance part="R29" gate="G$1" x="-104.14" y="-27.94" smashed="yes" rot="R90">
-<attribute name="NAME" x="-106.68148125" y="-35.564440625" size="2.54148125" layer="95" rot="R90"/>
-</instance>
 <instance part="IC1" gate="G$1" x="-210.82" y="215.9" smashed="yes" rot="MR270">
 <attribute name="VALUE" x="-226.06" y="186.69" size="1.778" layer="96" rot="MR180" align="center-left"/>
 </instance>
-<instance part="U5" gate="G$1" x="-175.26" y="43.18" smashed="yes">
+<instance part="MDBT42Q" gate="G$1" x="-175.26" y="43.18" smashed="yes">
 <attribute name="NAME" x="-195.834" y="76.962" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-195.58" y="7.62" size="1.778" layer="96"/>
 </instance>
 <instance part="Q1" gate="G$1" x="-281.94" y="33.02" smashed="yes" rot="MR90">
 <attribute name="VALUE" x="-286.004" y="39.624" size="1.778" layer="96" rot="MR180"/>
@@ -3422,10 +3416,10 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <attribute name="NAME" x="52.07" y="-7.62" size="1.778" layer="95" align="center-left"/>
 </instance>
 <instance part="C1_0.1" gate="G$1" x="48.26" y="66.04" smashed="yes" rot="R90">
-<attribute name="NAME" x="44.45" y="66.04" size="1.778" layer="95" rot="R90"/>
+<attribute name="NAME" x="44.45" y="60.96" size="1.778" layer="95" rot="R90"/>
 </instance>
 <instance part="C2_0.1" gate="G$1" x="83.82" y="63.5" smashed="yes" rot="R90">
-<attribute name="NAME" x="80.01" y="63.5" size="1.778" layer="95" rot="R90"/>
+<attribute name="NAME" x="87.63" y="58.42" size="1.778" layer="95" rot="R90"/>
 </instance>
 <instance part="C3_2.2" gate="G$1" x="38.1" y="20.32" smashed="yes" rot="R90">
 <attribute name="NAME" x="34.29" y="20.32" size="1.778" layer="95" rot="R90"/>
@@ -3451,17 +3445,21 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <instance part="C10_10" gate="G$1" x="-144.78" y="76.2" smashed="yes" rot="R90">
 <attribute name="NAME" x="-148.59" y="76.2" size="1.778" layer="95" rot="R90"/>
 </instance>
-<instance part="Q5" gate="G$1" x="132.08" y="154.94" smashed="yes">
-<attribute name="NAME" x="121.92" y="162.56" size="1.778" layer="95"/>
-<attribute name="VALUE" x="121.92" y="147.32" size="1.778" layer="96"/>
+<instance part="BJT" gate="G$1" x="132.08" y="154.94" smashed="yes">
+<attribute name="NAME" x="129.54" y="160.02" size="1.778" layer="95"/>
+<attribute name="VALUE" x="132.08" y="144.78" size="1.778" layer="96"/>
 </instance>
 <instance part="R17" gate="G$1" x="116.84" y="154.94" smashed="yes">
 <attribute name="NAME" x="109.215559375" y="157.48148125" size="2.54148125" layer="95"/>
-<attribute name="VALUE" x="109.21003125" y="149.853359375" size="2.54331875" layer="96"/>
+<attribute name="VALUE" x="101.59003125" y="149.853359375" size="2.54331875" layer="96"/>
 </instance>
-<instance part="D1" gate="G$1" x="-104.14" y="-10.16" smashed="yes" rot="R90">
+<instance part="LED1" gate="G$1" x="-104.14" y="-10.16" smashed="yes" rot="R90">
 <attribute name="NAME" x="-108.21078125" y="-12.19538125" size="1.780959375" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-98.4186" y="-12.19426875" size="1.779990625" layer="96" rot="R90"/>
+</instance>
+<instance part="R18" gate="G$1" x="-104.14" y="-27.94" smashed="yes" rot="R90">
+<attribute name="NAME" x="-106.68148125" y="-35.564440625" size="2.54148125" layer="95" rot="R90"/>
+<attribute name="VALUE" x="-99.053359375" y="-35.56996875" size="2.54331875" layer="96" rot="R90"/>
 </instance>
 </instances>
 <busses>
@@ -3519,7 +3517,7 @@ Caduta di tensione tra 3 e 3.5 V</text>
 </net>
 <net name="SDA" class="0">
 <segment>
-<pinref part="U5" gate="G$1" pin="P0.27"/>
+<pinref part="MDBT42Q" gate="G$1" pin="P0.27"/>
 <label x="-121.92" y="27.94" size="1.778" layer="95" xref="yes"/>
 <pinref part="R2" gate="G$1" pin="2"/>
 <wire x1="-149.86" y1="27.94" x2="-127" y2="27.94" width="0.1524" layer="91"/>
@@ -3588,7 +3586,7 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <label x="-276.86" y="198.12" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U5" gate="G$1" pin="P0.26"/>
+<pinref part="MDBT42Q" gate="G$1" pin="P0.26"/>
 <wire x1="-149.86" y1="30.48" x2="-137.16" y2="30.48" width="0.1524" layer="91"/>
 <pinref part="R1" gate="G$1" pin="2"/>
 <wire x1="-137.16" y1="30.48" x2="-129.54" y2="30.48" width="0.1524" layer="91"/>
@@ -3639,7 +3637,7 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <segment>
 <pinref part="GND18" gate="1" pin="GND"/>
 <wire x1="-104.14" y1="-38.1" x2="-104.14" y2="-40.64" width="0.1524" layer="91"/>
-<pinref part="R29" gate="G$1" pin="1"/>
+<pinref part="R18" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="BT4" gate="G$1" pin="-"/>
@@ -3707,13 +3705,13 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <label x="-231.14" y="208.28" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U2" gate="G$1" pin="R"/>
+<pinref part="SGP30" gate="G$1" pin="R"/>
 <wire x1="-317.5" y1="40.64" x2="-320.04" y2="40.64" width="0.1524" layer="91"/>
-<pinref part="U2" gate="G$1" pin="VSS"/>
+<pinref part="SGP30" gate="G$1" pin="VSS"/>
 <wire x1="-317.5" y1="38.1" x2="-320.04" y2="38.1" width="0.1524" layer="91"/>
 <junction x="-320.04" y="38.1"/>
 <wire x1="-320.04" y1="40.64" x2="-320.04" y2="38.1" width="0.1524" layer="91"/>
-<pinref part="U2" gate="G$1" pin="DIEPAD"/>
+<pinref part="SGP30" gate="G$1" pin="DIEPAD"/>
 <wire x1="-317.5" y1="35.56" x2="-320.04" y2="35.56" width="0.1524" layer="91"/>
 <junction x="-320.04" y="35.56"/>
 <wire x1="-320.04" y1="38.1" x2="-320.04" y2="35.56" width="0.1524" layer="91"/>
@@ -3737,7 +3735,7 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <label x="-302.26" y="193.04" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U5" gate="G$1" pin="GND"/>
+<pinref part="MDBT42Q" gate="G$1" pin="GND"/>
 <wire x1="-149.86" y1="12.7" x2="-147.32" y2="12.7" width="0.1524" layer="91"/>
 <wire x1="-147.32" y1="12.7" x2="-147.32" y2="10.16" width="0.1524" layer="91"/>
 <label x="-147.32" y="10.16" size="1.778" layer="95" rot="R270" xref="yes"/>
@@ -3833,16 +3831,16 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <pinref part="C7_0.01" gate="G$1" pin="2"/>
 </segment>
 <segment>
-<pinref part="U5" gate="G$1" pin="P0.03/AIN1"/>
+<pinref part="MDBT42Q" gate="G$1" pin="P0.03/AIN1"/>
 <wire x1="-200.66" y1="48.26" x2="-203.2" y2="48.26" width="0.1524" layer="91"/>
 <label x="-203.2" y="48.26" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$9" class="0">
 <segment>
-<pinref part="R29" gate="G$1" pin="2"/>
-<pinref part="D1" gate="G$1" pin="-"/>
+<pinref part="LED1" gate="G$1" pin="-"/>
 <wire x1="-104.14" y1="-12.7" x2="-104.14" y2="-17.78" width="0.1524" layer="91"/>
+<pinref part="R18" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="AIN3" class="0">
@@ -3861,7 +3859,7 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <pinref part="C8_0.02" gate="G$1" pin="1"/>
 </segment>
 <segment>
-<pinref part="U5" gate="G$1" pin="P0.05/AIN3"/>
+<pinref part="MDBT42Q" gate="G$1" pin="P0.05/AIN3"/>
 <wire x1="-200.66" y1="43.18" x2="-203.2" y2="43.18" width="0.1524" layer="91"/>
 <label x="-203.2" y="43.18" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -3886,12 +3884,12 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <label x="-287.02" y="12.7" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U2" gate="G$1" pin="VDDH"/>
+<pinref part="SGP30" gate="G$1" pin="VDDH"/>
 <wire x1="-317.5" y1="43.18" x2="-322.58" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="-322.58" y1="43.18" x2="-322.58" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="-322.58" y1="45.72" x2="-325.12" y2="45.72" width="0.1524" layer="91"/>
 <junction x="-322.58" y="45.72"/>
-<pinref part="U2" gate="G$1" pin="VDD"/>
+<pinref part="SGP30" gate="G$1" pin="VDD"/>
 <wire x1="-317.5" y1="45.72" x2="-320.04" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="-320.04" y1="45.72" x2="-322.58" y2="45.72" width="0.1524" layer="91"/>
 <junction x="-320.04" y="45.72"/>
@@ -3912,7 +3910,7 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <segment>
 <pinref part="Q2" gate="G$1" pin="S"/>
 <pinref part="R5" gate="G$1" pin="1"/>
-<pinref part="U2" gate="G$1" pin="SDA"/>
+<pinref part="SGP30" gate="G$1" pin="SDA"/>
 <wire x1="-297.18" y1="43.18" x2="-294.64" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="-294.64" y1="43.18" x2="-294.64" y2="45.72" width="0.1524" layer="91"/>
 <wire x1="-294.64" y1="45.72" x2="-287.02" y2="45.72" width="0.1524" layer="91"/>
@@ -3936,11 +3934,11 @@ Caduta di tensione tra 3 e 3.5 V</text>
 </net>
 <net name="N$21" class="0">
 <segment>
-<pinref part="U5" gate="G$1" pin="P0.25"/>
+<pinref part="MDBT42Q" gate="G$1" pin="P0.25"/>
 <wire x1="-149.86" y1="33.02" x2="-104.14" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="-104.14" y1="33.02" x2="-104.14" y2="-2.54" width="0.1524" layer="91"/>
 <wire x1="-104.14" y1="0" x2="-104.14" y2="-5.08" width="0.1524" layer="91"/>
-<pinref part="D1" gate="G$1" pin="+"/>
+<pinref part="LED1" gate="G$1" pin="+"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -4010,7 +4008,7 @@ Caduta di tensione tra 3 e 3.5 V</text>
 </net>
 <net name="3.3V" class="0">
 <segment>
-<pinref part="U5" gate="G$1" pin="VCC"/>
+<pinref part="MDBT42Q" gate="G$1" pin="VCC"/>
 <wire x1="-137.16" y1="73.66" x2="-144.78" y2="73.66" width="0.1524" layer="91"/>
 <label x="-137.16" y="73.66" size="1.778" layer="95" xref="yes"/>
 <pinref part="C10_10" gate="G$1" pin="2"/>
@@ -4114,7 +4112,7 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <segment>
 <pinref part="Q1" gate="G$1" pin="S"/>
 <pinref part="R3" gate="G$1" pin="2"/>
-<pinref part="U2" gate="G$1" pin="SCL"/>
+<pinref part="SGP30" gate="G$1" pin="SCL"/>
 <wire x1="-297.18" y1="38.1" x2="-294.64" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="-294.64" y1="38.1" x2="-294.64" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="-287.02" y1="35.56" x2="-294.64" y2="35.56" width="0.1524" layer="91"/>
@@ -4147,14 +4145,14 @@ Caduta di tensione tra 3 e 3.5 V</text>
 </net>
 <net name="SWDCLK" class="0">
 <segment>
-<pinref part="U5" gate="G$1" pin="SWDCLK"/>
+<pinref part="MDBT42Q" gate="G$1" pin="SWDCLK"/>
 <wire x1="-200.66" y1="63.5" x2="-215.9" y2="63.5" width="0.1524" layer="91"/>
 <label x="-215.9" y="63.5" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="SWDIO" class="0">
 <segment>
-<pinref part="U5" gate="G$1" pin="SWDIO"/>
+<pinref part="MDBT42Q" gate="G$1" pin="SWDIO"/>
 <wire x1="-200.66" y1="60.96" x2="-203.2" y2="60.96" width="0.1524" layer="91"/>
 <label x="-203.2" y="60.96" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -4168,7 +4166,7 @@ Caduta di tensione tra 3 e 3.5 V</text>
 </net>
 <net name="N$15" class="0">
 <segment>
-<pinref part="Q5" gate="G$1" pin="B"/>
+<pinref part="BJT" gate="G$1" pin="B"/>
 <pinref part="R17" gate="G$1" pin="2"/>
 <wire x1="129.54" y1="154.94" x2="127" y2="154.94" width="0.1524" layer="91"/>
 </segment>

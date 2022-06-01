@@ -1932,6 +1932,26 @@ design rules under a new name.</description>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/08055A120JAT2A/?ref=eda" x="-88" y="-82" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-89.71" y="-83.07" size="0.5" layer="27" align="top-left"/>
 </element>
+<element name="R19" library="Res_5.1MOHM" package="RESC1508X55N" value="RMCF0603FT5M10" x="-88" y="-86" smashed="yes">
+<attribute name="DESCRIPTION" value=" 5.1 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="-88" y="-86" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT5M10TR-ND" x="-88" y="-86" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="-88" y="-86" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="RMCF0603FT5M10" x="-88" y="-86" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-89.46" y="-85.18" size="0.5" layer="25"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="-88" y="-86" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT5M10/?ref=eda" x="-88" y="-86" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-89.46" y="-86.82" size="0.5" layer="27" align="top-left"/>
+</element>
+<element name="R20" library="Res_10MOHM_2" package="RESC1508X55N" value="RMCF0603FT10M0" x="-88" y="-90" smashed="yes">
+<attribute name="DESCRIPTION" value=" 10 MOhms ±1% 0.1W, 1/10W Chip Resistor 0603 (1608 Metric) Automotive AEC-Q200 Thick Film " x="-88" y="-90" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="RMCF0603FT10M0TR-ND" x="-88" y="-90" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Stackpole Electronics Inc" x="-88" y="-90" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="RMCF0603FT10M0" x="-88" y="-90" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="-89.46" y="-89.18" size="0.5" layer="25"/>
+<attribute name="PACKAGE" value="1508 Stackpole" x="-88" y="-90" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/RMCF0603FT10M0/?ref=eda" x="-88" y="-90" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="-89.46" y="-90.82" size="0.5" layer="27" align="top-left"/>
+</element>
 </elements>
 <signals>
 <signal name="DCC">
@@ -2055,6 +2075,8 @@ design rules under a new name.</description>
 <contactref element="C9_0.1" pad="1"/>
 <contactref element="C10_10" pad="1"/>
 <contactref element="R18" pad="1"/>
+<contactref element="R20" pad="1"/>
+<wire x1="-88.94" y1="-74" x2="-88.76" y2="-90" width="0" layer="19" extent="1-1"/>
 <wire x1="-80.863" y1="-66" x2="-88.94" y2="-74" width="0" layer="19" extent="1-1"/>
 <wire x1="-80.9" y1="-61" x2="-80.863" y2="-66" width="0" layer="19" extent="1-1"/>
 <wire x1="-80.9" y1="-55" x2="-80.9" y2="-61" width="0" layer="19" extent="1-1"/>
@@ -2205,13 +2227,15 @@ design rules under a new name.</description>
 <contactref element="V_R_1.8" pad="3"/>
 <contactref element="C1_0.1" pad="1"/>
 <contactref element="C5_1" pad="1"/>
-<wire x1="44.9" y1="45" x2="48.7" y2="48.9" width="0" layer="19" extent="16-16"/>
-<wire x1="41.25" y1="46.05" x2="44.9" y2="45" width="0" layer="19" extent="16-16"/>
-<wire x1="41.25" y1="47.95" x2="41.25" y2="46.05" width="0" layer="19" extent="16-16"/>
-<wire x1="30.178" y1="48.3251" x2="41.25" y2="47.95" width="0" layer="19" extent="16-16"/>
-<wire x1="30.178" y1="48.9754" x2="30.178" y2="48.3251" width="0" layer="19" extent="16-16"/>
-<wire x1="21.9" y1="50" x2="30.178" y2="48.9754" width="0" layer="19" extent="16-16"/>
-<wire x1="18.2763" y1="48" x2="21.9" y2="50" width="0" layer="19" extent="16-16"/>
+<contactref element="R19" pad="1"/>
+<wire x1="18.2763" y1="48" x2="-88.76" y2="-86" width="0" layer="19" extent="1-16"/>
+<wire x1="21.9" y1="50" x2="18.2763" y2="48" width="0" layer="19" extent="16-16"/>
+<wire x1="30.178" y1="48.9754" x2="21.9" y2="50" width="0" layer="19" extent="16-16"/>
+<wire x1="30.178" y1="48.3251" x2="30.178" y2="48.9754" width="0" layer="19" extent="16-16"/>
+<wire x1="41.25" y1="47.95" x2="30.178" y2="48.3251" width="0" layer="19" extent="16-16"/>
+<wire x1="41.25" y1="46.05" x2="41.25" y2="47.95" width="0" layer="19" extent="16-16"/>
+<wire x1="44.9" y1="45" x2="41.25" y2="46.05" width="0" layer="19" extent="16-16"/>
+<wire x1="48.7" y1="48.9" x2="44.9" y2="45" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="3.3V">
 <contactref element="MDBT42Q" pad="11"/>
@@ -2291,6 +2315,13 @@ design rules under a new name.</description>
 <contactref element="BJT" pad="1"/>
 <contactref element="R17" pad="2"/>
 <wire x1="-87.98" y1="-62.05" x2="-87.06" y2="-70" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="AIN4">
+<contactref element="R19" pad="2"/>
+<contactref element="R20" pad="2"/>
+<contactref element="MDBT42Q" pad="5"/>
+<wire x1="-87.24" y1="-86" x2="-87.24" y2="-90" width="0" layer="19" extent="1-1"/>
+<wire x1="40.13" y1="38.7" x2="-87.24" y2="-86" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 <mfgpreviewcolors>

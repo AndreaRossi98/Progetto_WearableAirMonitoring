@@ -1872,15 +1872,15 @@ design rules under a new name.</description>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/CL21A226MOQNNNE/?ref=eda" x="-80" y="-66" size="1.778" layer="27" display="off"/>
 <attribute name="VALUE" x="-81.66" y="-67.02" size="0.5" layer="27" align="top-left"/>
 </element>
-<element name="BJT" library="BJT_TO-236" package="SOT95P230X110-3N" value="MMBT3904-215" x="-87" y="-63" smashed="yes">
-<attribute name="DESCRIPTION" value=" Bipolar (BJT) Transistor NPN 40 V 200 mA 300MHz 250 mW Surface Mount TO-236AB " x="-87" y="-63" size="1.778" layer="27" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="1727-4044-2-ND" x="-87" y="-63" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="Nexperia USA" x="-87" y="-63" size="1.778" layer="27" display="off"/>
-<attribute name="MP" value="MMBT3904,215" x="-87" y="-63" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="-90.08" y="-60.7" size="1.27" layer="25"/>
-<attribute name="PACKAGE" value="SOT23-3 Nexperia USA Inc." x="-87" y="-63" size="1.778" layer="27" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MMBT3904,215/?ref=eda" x="-87" y="-63" size="1.778" layer="27" display="off"/>
-<attribute name="VALUE" x="-89.97" y="-66.54" size="1.27" layer="27"/>
+<element name="BJT" library="BJT_TO-236" package="SOT95P230X110-3N" value="MMBT3904-215" x="25" y="18" smashed="yes">
+<attribute name="DESCRIPTION" value=" Bipolar (BJT) Transistor NPN 40 V 200 mA 300MHz 250 mW Surface Mount TO-236AB " x="25" y="18" size="1.778" layer="27" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="1727-4044-2-ND" x="25" y="18" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="Nexperia USA" x="25" y="18" size="1.778" layer="27" display="off"/>
+<attribute name="MP" value="MMBT3904,215" x="25" y="18" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="21.92" y="20.3" size="1.27" layer="25"/>
+<attribute name="PACKAGE" value="SOT23-3 Nexperia USA Inc." x="25" y="18" size="1.778" layer="27" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MMBT3904,215/?ref=eda" x="25" y="18" size="1.778" layer="27" display="off"/>
+<attribute name="VALUE" x="22.03" y="14.46" size="1.27" layer="27"/>
 </element>
 <element name="R17" library="Res_5.1K_0805" package="RESC2012X70N" value="ERJ-PB6D5101V" x="-88" y="-70" smashed="yes">
 <attribute name="DESCRIPTION" value=" 5.1 kOhms ±0.5% 0.25W, 1/4W Chip Resistor 0805 (2012 Metric) Automotive AEC-Q200, Pulse Withstanding Thick Film " x="-88" y="-70" size="1.778" layer="27" display="off"/>
@@ -2314,7 +2314,7 @@ design rules under a new name.</description>
 <signal name="N$15">
 <contactref element="BJT" pad="1"/>
 <contactref element="R17" pad="2"/>
-<wire x1="-87.98" y1="-62.05" x2="-87.06" y2="-70" width="0" layer="19" extent="1-1"/>
+<wire x1="24.02" y1="18.95" x2="-87.06" y2="-70" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="AIN4">
 <contactref element="R19" pad="2"/>

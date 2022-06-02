@@ -3173,6 +3173,60 @@ Source: &lt;a href="https://www.ablic.com/en/doc/datasheet/voltage_regulator/S13
 </deviceset>
 </devicesets>
 </library>
+<library name="Cond_12pF_0805">
+<packages>
+<package name="CAPC2012X94N">
+<text x="-1.71" y="-1.07" size="0.5" layer="27" align="top-left">&gt;VALUE</text>
+<text x="-1.71" y="1.07" size="0.5" layer="25">&gt;NAME</text>
+<wire x1="1.1" y1="-0.72" x2="-1.1" y2="-0.72" width="0.127" layer="51"/>
+<wire x1="1.1" y1="0.72" x2="-1.1" y2="0.72" width="0.127" layer="51"/>
+<wire x1="1.1" y1="-0.72" x2="1.1" y2="0.72" width="0.127" layer="51"/>
+<wire x1="-1.1" y1="-0.72" x2="-1.1" y2="0.72" width="0.127" layer="51"/>
+<wire x1="-1.713" y1="-0.983" x2="1.713" y2="-0.983" width="0.05" layer="39"/>
+<wire x1="-1.713" y1="0.983" x2="1.713" y2="0.983" width="0.05" layer="39"/>
+<wire x1="-1.713" y1="-0.983" x2="-1.713" y2="0.983" width="0.05" layer="39"/>
+<wire x1="1.713" y1="-0.983" x2="1.713" y2="0.983" width="0.05" layer="39"/>
+<smd name="1" x="-0.88" y="0" dx="1.16" dy="1.47" layer="1"/>
+<smd name="2" x="0.88" y="0" dx="1.16" dy="1.47" layer="1"/>
+</package>
+</packages>
+<symbols>
+<symbol name="08055A120JAT2A">
+<text x="0" y="3.81093125" size="1.77843125" layer="95">&gt;NAME</text>
+<text x="0" y="-5.08848125" size="1.78096875" layer="96">&gt;VALUE</text>
+<rectangle x1="0" y1="-1.906859375" x2="0.635" y2="1.905" layer="94"/>
+<rectangle x1="1.90685" y1="-1.90685" x2="2.54" y2="1.905" layer="94"/>
+<pin name="2" x="5.08" y="0" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="1" x="-2.54" y="0" visible="pad" length="short" direction="pas"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="08055A120JAT2A" prefix="C">
+<description>12pF 50V 5% CAP 0805 NP0 </description>
+<gates>
+<gate name="G$1" symbol="08055A120JAT2A" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CAPC2012X94N">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value=" 12 pF ±5% 50V Ceramic Capacitor C0G, NP0 0805 (2012 Metric) "/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="478-1305-2-ND"/>
+<attribute name="MF" value="AVX"/>
+<attribute name="MP" value="08055A120JAT2A"/>
+<attribute name="PACKAGE" value="2012 AVX"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/08055A120JAT2A/?ref=eda"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -3244,6 +3298,8 @@ Source: &lt;a href="https://www.ablic.com/en/doc/datasheet/voltage_regulator/S13
 <part name="R17" library="Res_5.1K_0805" deviceset="ERJ-PB6D5101V" device=""/>
 <part name="LED1" library="LED_0805" deviceset="LTST-C170TBKT" device=""/>
 <part name="R18" library="Res_330_0805" deviceset="ERJ-PB6B3300V" device=""/>
+<part name="C11_12P" library="Cond_12pF_0805" deviceset="08055A120JAT2A" device=""/>
+<part name="C12_12P" library="Cond_12pF_0805" deviceset="08055A120JAT2A" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3460,6 +3516,14 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <instance part="R18" gate="G$1" x="-104.14" y="-27.94" smashed="yes" rot="R90">
 <attribute name="NAME" x="-106.68148125" y="-35.564440625" size="2.54148125" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-99.053359375" y="-35.56996875" size="2.54331875" layer="96" rot="R90"/>
+</instance>
+<instance part="C11_12P" gate="G$1" x="-203.2" y="0" smashed="yes">
+<attribute name="NAME" x="-203.2" y="3.81093125" size="1.77843125" layer="95"/>
+<attribute name="VALUE" x="-203.2" y="-5.08848125" size="1.78096875" layer="96"/>
+</instance>
+<instance part="C12_12P" gate="G$1" x="-203.2" y="-12.7" smashed="yes">
+<attribute name="NAME" x="-203.2" y="-8.88906875" size="1.77843125" layer="95"/>
+<attribute name="VALUE" x="-203.2" y="-17.78848125" size="1.78096875" layer="96"/>
 </instance>
 </instances>
 <busses>

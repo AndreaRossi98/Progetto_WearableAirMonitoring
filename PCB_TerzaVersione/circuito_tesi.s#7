@@ -2309,63 +2309,6 @@ Source: &lt;a href="https://www.ablic.com/en/doc/datasheet/voltage_regulator/S13
 </deviceset>
 </devicesets>
 </library>
-<library name="Cond_4.7uF_0805">
-<packages>
-<package name="CAPC2012X140N">
-<wire x1="0" y1="0.55" x2="0" y2="-0.55" width="0.2" layer="21"/>
-<wire x1="-1.75" y1="1" x2="1.75" y2="1" width="0.05" layer="39"/>
-<wire x1="1.75" y1="1" x2="1.75" y2="-1" width="0.05" layer="39"/>
-<wire x1="1.75" y1="-1" x2="-1.75" y2="-1" width="0.05" layer="39"/>
-<wire x1="-1.75" y1="-1" x2="-1.75" y2="1" width="0.05" layer="39"/>
-<text x="-1.8" y="1" size="1.27" layer="25">&gt;NAME</text>
-<text x="-1.8" y="-2.3" size="1.27" layer="27">&gt;VALUE</text>
-<wire x1="-1" y1="0.65" x2="1" y2="0.65" width="0.127" layer="51"/>
-<wire x1="1" y1="0.65" x2="1" y2="-0.65" width="0.127" layer="51"/>
-<wire x1="1" y1="-0.65" x2="-1" y2="-0.65" width="0.127" layer="51"/>
-<wire x1="-1" y1="-0.65" x2="-1" y2="0.65" width="0.127" layer="51"/>
-<rectangle x1="-1" y1="-0.65" x2="-0.5" y2="0.65" layer="51"/>
-<rectangle x1="0.5" y1="-0.65" x2="1" y2="0.65" layer="51"/>
-<smd name="1" x="-0.9" y="0" dx="1.15" dy="1.45" layer="1"/>
-<smd name="2" x="0.9" y="0" dx="1.15" dy="1.45" layer="1"/>
-</package>
-</packages>
-<symbols>
-<symbol name="CL21A475KAQNNNE">
-<text x="0" y="3.81" size="1.778" layer="95">&gt;NAME</text>
-<text x="0" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
-<rectangle x1="0" y1="-1.905" x2="0.635" y2="1.905" layer="94"/>
-<rectangle x1="1.905" y1="-1.905" x2="2.54" y2="1.905" layer="94"/>
-<pin name="1" x="5.08" y="0" visible="pad" length="short" direction="pas" rot="R180"/>
-<pin name="2" x="-2.54" y="0" visible="pad" length="short" direction="pas"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="CL21A475KAQNNNE" prefix="C">
-<description>CL21 Series 4.7 uF 25 V ±10 % Tolerance X5R SMT Multilayer Ceramic Capacitor </description>
-<gates>
-<gate name="G$1" symbol="CL21A475KAQNNNE" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="CAPC2012X140N">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="DESCRIPTION" value=" 4.7 µF ±10% 25V Ceramic Capacitor X5R 0805 (2012 Metric) "/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="1276-1244-2-ND"/>
-<attribute name="MF" value="Samsung Electro-Mechanics"/>
-<attribute name="MP" value="CL21A475KAQNNNE"/>
-<attribute name="PACKAGE" value="0805 Samsung"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/CL21A475KAQNNNE/?ref=eda"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="Cond_1uF_0805">
 <packages>
 <package name="CAPC2012X140N">
@@ -2951,6 +2894,62 @@ Source: &lt;a href="https://www.ablic.com/en/doc/datasheet/voltage_regulator/S13
 </deviceset>
 </devicesets>
 </library>
+<library name="Condensatore_case_0402">
+<packages>
+<package name="CAPC1005X55N">
+<wire x1="0.53" y1="0.28" x2="-0.53" y2="0.28" width="0.127" layer="51"/>
+<wire x1="-0.53" y1="0.28" x2="-0.53" y2="-0.28" width="0.127" layer="51"/>
+<wire x1="-0.53" y1="-0.28" x2="0.53" y2="-0.28" width="0.127" layer="51"/>
+<wire x1="0.53" y1="-0.28" x2="0.53" y2="0.28" width="0.127" layer="51"/>
+<wire x1="0.5" y1="0.48" x2="-0.5" y2="0.48" width="0.127" layer="21"/>
+<wire x1="-0.5" y1="-0.48" x2="0.5" y2="-0.48" width="0.127" layer="21"/>
+<wire x1="0.85" y1="0.54" x2="-0.85" y2="0.54" width="0.05" layer="39"/>
+<wire x1="-0.85" y1="0.54" x2="-0.85" y2="-0.54" width="0.05" layer="39"/>
+<wire x1="-0.85" y1="-0.54" x2="0.85" y2="-0.54" width="0.05" layer="39"/>
+<wire x1="0.85" y1="-0.54" x2="0.85" y2="0.54" width="0.05" layer="39"/>
+<text x="-0.80619375" y="0.60464375" size="0.30715625" layer="25">&gt;NAME</text>
+<text x="-0.80610625" y="-1.007640625" size="0.307128125" layer="27">&gt;VALUE</text>
+<smd name="1" x="-0.43" y="0" dx="0.6" dy="0.54" layer="1" roundness="53" rot="R90"/>
+<smd name="2" x="0.43" y="0" dx="0.6" dy="0.54" layer="1" roundness="53" rot="R90"/>
+</package>
+</packages>
+<symbols>
+<symbol name="C0402H102J5GACTU">
+<text x="0" y="3.81" size="1.778" layer="95">&gt;NAME</text>
+<text x="0" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
+<rectangle x1="0" y1="-1.905" x2="0.635" y2="1.905" layer="94"/>
+<rectangle x1="1.905" y1="-1.905" x2="2.54" y2="1.905" layer="94"/>
+<pin name="1" x="5.08" y="0" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="2" x="-2.54" y="0" visible="pad" length="short" direction="pas"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="C0402H102J5GACTU" prefix="C">
+<description>CAPACITOR, NP0, 0402, 50V, 1NF; Capacitance:1000pF; Capacitance Tolerance:± 5%; Dielectric Characteristic:C0G / NP0; Voltage Rating:50V; Capacitor Case Style:0402; Operating Temperature Range:-55°C to +200°C; SVHC:No SVHC (19-Dec-2011); Capacitor Mounting:SMD &lt;a href="https://pricing.snapeda.com/parts/C0402H102J5GACTU/KEMET/view-part?ref=eda"&gt;Check availability&lt;/a&gt;</description>
+<gates>
+<gate name="G$1" symbol="C0402H102J5GACTU" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="CAPC1005X55N">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="AVAILABILITY" value="Not in stock"/>
+<attribute name="DESCRIPTION" value=" CAPACITOR, NP0, 0402, 50V, 1NF; Capacitance:1000pF; Capacitance Tolerance:± 5%; Dielectric Characteristic:C0G / NP0; Voltage Rating:50V; Capacitor Case Style:0402; Operating Temperature Range:-55°C to +200°C; SVHC:No SVHC (19-Dec-2011); Capacitor Mounting:SMD "/>
+<attribute name="MF" value="KEMET"/>
+<attribute name="MP" value="C0402H102J5GACTU"/>
+<attribute name="PACKAGE" value="0402 KEMET"/>
+<attribute name="PRICE" value="None"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -2991,10 +2990,6 @@ Source: &lt;a href="https://www.ablic.com/en/doc/datasheet/voltage_regulator/S13
 <part name="GND8" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="GND9" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="V_R_1.8" library="VOLT_REG_1.8_SOT-23-5" deviceset="S-1318D18-M5T1U4" device=""/>
-<part name="C1_0.1" library="Cond_100nF_0805" deviceset="CL21B104KCFNNNE" device=""/>
-<part name="C2_0.1" library="Cond_100nF_0805" deviceset="CL21B104KCFNNNE" device=""/>
-<part name="C3_2.2" library="Cond_4.7uF_0805" deviceset="CL21A475KAQNNNE" device=""/>
-<part name="C4_470P" library="Cond_4.7uF_0805" deviceset="CL21A475KAQNNNE" device=""/>
 <part name="C5_1" library="Cond_1uF_0805" deviceset="CL21B105KAFNNNE" device=""/>
 <part name="C6_1" library="Cond_1uF_0805" deviceset="CL21B105KAFNNNE" device=""/>
 <part name="C8_0.02" library="Cond_100nF_0805" deviceset="CL21B104KCFNNNE" device=""/>
@@ -3031,6 +3026,10 @@ Source: &lt;a href="https://www.ablic.com/en/doc/datasheet/voltage_regulator/S13
 <part name="R18" library="Resistenza_case_0402" deviceset="8-1879333-9" device=""/>
 <part name="R19" library="Resistenza_case_0402" deviceset="8-1879333-9" device=""/>
 <part name="R20" library="Resistenza_case_0402" deviceset="8-1879333-9" device=""/>
+<part name="C1" library="Condensatore_case_0402" deviceset="C0402H102J5GACTU" device=""/>
+<part name="C2" library="Condensatore_case_0402" deviceset="C0402H102J5GACTU" device=""/>
+<part name="C3" library="Condensatore_case_0402" deviceset="C0402H102J5GACTU" device=""/>
+<part name="C4" library="Condensatore_case_0402" deviceset="C0402H102J5GACTU" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3148,18 +3147,6 @@ CONTROLLARE LE CONNESSIONI</text>
 <instance part="V_R_1.8" gate="G$1" x="45.72" y="-12.7" smashed="yes">
 <attribute name="NAME" x="52.07" y="-7.62" size="1.778" layer="95" align="center-left"/>
 </instance>
-<instance part="C1_0.1" gate="G$1" x="48.26" y="66.04" smashed="yes" rot="R90">
-<attribute name="NAME" x="44.45" y="60.96" size="1.778" layer="95" rot="R90"/>
-</instance>
-<instance part="C2_0.1" gate="G$1" x="83.82" y="63.5" smashed="yes" rot="R90">
-<attribute name="NAME" x="87.63" y="58.42" size="1.778" layer="95" rot="R90"/>
-</instance>
-<instance part="C3_2.2" gate="G$1" x="38.1" y="20.32" smashed="yes" rot="R90">
-<attribute name="NAME" x="34.29" y="20.32" size="1.778" layer="95" rot="R90"/>
-</instance>
-<instance part="C4_470P" gate="G$1" x="45.72" y="22.86" smashed="yes" rot="R90">
-<attribute name="NAME" x="49.53" y="17.78" size="1.778" layer="95" rot="R90"/>
-</instance>
 <instance part="C5_1" gate="G$1" x="38.1" y="-17.78" smashed="yes" rot="R90">
 <attribute name="NAME" x="34.29" y="-20.32" size="1.778" layer="95" rot="R90"/>
 </instance>
@@ -3275,6 +3262,18 @@ CONTROLLARE LE CONNESSIONI</text>
 <instance part="R20" gate="G$1" x="53.34" y="-76.2" smashed="yes" rot="R90">
 <attribute name="NAME" x="50.79851875" y="-83.824440625" size="2.54148125" layer="95" rot="R90"/>
 </instance>
+<instance part="C1" gate="G$1" x="48.26" y="66.04" smashed="yes" rot="R90">
+<attribute name="NAME" x="44.45" y="66.04" size="1.778" layer="95" rot="R90"/>
+</instance>
+<instance part="C2" gate="G$1" x="83.82" y="63.5" smashed="yes" rot="R90">
+<attribute name="NAME" x="80.01" y="63.5" size="1.778" layer="95" rot="R90"/>
+</instance>
+<instance part="C3" gate="G$1" x="38.1" y="20.32" smashed="yes" rot="R90">
+<attribute name="NAME" x="34.29" y="20.32" size="1.778" layer="95" rot="R90"/>
+</instance>
+<instance part="C4" gate="G$1" x="45.72" y="22.86" smashed="yes" rot="R90">
+<attribute name="NAME" x="41.91" y="22.86" size="1.778" layer="95" rot="R90"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -3314,7 +3313,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <pinref part="V_R_5" gate="A" pin="3"/>
 <wire x1="83.82" y1="68.58" x2="86.36" y2="68.58" width="0.1524" layer="91"/>
 <label x="86.36" y="68.58" size="1.778" layer="95" xref="yes"/>
-<pinref part="C2_0.1" gate="G$1" pin="1"/>
+<pinref part="C2" gate="G$1" pin="1"/>
 <junction x="83.82" y="68.58"/>
 </segment>
 </net>
@@ -3566,8 +3565,8 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="48.26" y1="60.96" x2="68.58" y2="60.96" width="0.1524" layer="91"/>
 <wire x1="83.82" y1="60.96" x2="68.58" y2="60.96" width="0.1524" layer="91"/>
 <junction x="68.58" y="60.96"/>
-<pinref part="C1_0.1" gate="G$1" pin="2"/>
-<pinref part="C2_0.1" gate="G$1" pin="2"/>
+<pinref part="C1" gate="G$1" pin="2"/>
+<pinref part="C2" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="GND6" gate="1" pin="GND"/>
@@ -3603,8 +3602,8 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="45.72" y1="20.32" x2="45.72" y2="17.78" width="0.1524" layer="91"/>
 <wire x1="45.72" y1="17.78" x2="43.18" y2="17.78" width="0.1524" layer="91"/>
 <junction x="43.18" y="17.78"/>
-<pinref part="C3_2.2" gate="G$1" pin="2"/>
-<pinref part="C4_470P" gate="G$1" pin="2"/>
+<pinref part="C3" gate="G$1" pin="2"/>
+<pinref part="C4" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="GND7" gate="1" pin="GND"/>
@@ -3814,7 +3813,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <pinref part="V_R_5" gate="A" pin="2"/>
 <wire x1="48.26" y1="71.12" x2="45.72" y2="71.12" width="0.1524" layer="91"/>
 <label x="45.72" y="71.12" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="C1_0.1" gate="G$1" pin="1"/>
+<pinref part="C1" gate="G$1" pin="1"/>
 <junction x="48.26" y="71.12"/>
 </segment>
 <segment>
@@ -3930,7 +3929,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="38.1" y1="30.48" x2="35.56" y2="30.48" width="0.1524" layer="91"/>
 <wire x1="38.1" y1="30.48" x2="38.1" y2="25.4" width="0.1524" layer="91"/>
 <junction x="38.1" y="30.48"/>
-<pinref part="C3_2.2" gate="G$1" pin="1"/>
+<pinref part="C3" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="PROGRAMMER" gate="G$1" pin="1"/>
@@ -4019,7 +4018,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <segment>
 <pinref part="V_R_3.3" gate="A" pin="BYP"/>
 <wire x1="48.26" y1="27.94" x2="45.72" y2="27.94" width="0.1524" layer="91"/>
-<pinref part="C4_470P" gate="G$1" pin="1"/>
+<pinref part="C4" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$15" class="0">

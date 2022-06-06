@@ -3321,8 +3321,6 @@ Source: &lt;a href="https://www.ablic.com/en/doc/datasheet/voltage_regulator/S13
 CONTROLLARE LE CONNESSIONI</text>
 <text x="2.54" y="259.08" size="5.08" layer="91">MICS6814</text>
 <text x="144.78" y="154.94" size="1.778" layer="91">collegare tra 5V e mics o tra mics e ground?</text>
-<text x="-91.44" y="-27.94" size="1.778" layer="91">Serve questa resistenza?
-Caduta di tensione tra 3 e 3.5 V</text>
 </plain>
 <instances>
 <instance part="SPS30" gate="G$1" x="-312.42" y="200.66" smashed="yes" rot="MR180">
@@ -3615,8 +3613,8 @@ Caduta di tensione tra 3 e 3.5 V</text>
 </segment>
 <segment>
 <pinref part="U6" gate="G$1" pin="SDI"/>
-<wire x1="-297.18" y1="127" x2="-287.02" y2="127" width="0.1524" layer="91"/>
-<label x="-287.02" y="127" size="1.778" layer="95" xref="yes"/>
+<wire x1="-297.18" y1="127" x2="-294.64" y2="127" width="0.1524" layer="91"/>
+<label x="-294.64" y="127" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="SDA"/>
@@ -3646,8 +3644,8 @@ Caduta di tensione tra 3 e 3.5 V</text>
 </segment>
 <segment>
 <pinref part="U6" gate="G$1" pin="SCK"/>
-<wire x1="-297.18" y1="129.54" x2="-279.4" y2="129.54" width="0.1524" layer="91"/>
-<label x="-279.4" y="129.54" size="1.778" layer="95" xref="yes"/>
+<wire x1="-297.18" y1="129.54" x2="-287.02" y2="129.54" width="0.1524" layer="91"/>
+<label x="-287.02" y="129.54" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="SCL"/>
@@ -3763,7 +3761,7 @@ Caduta di tensione tra 3 e 3.5 V</text>
 <segment>
 <pinref part="U6" gate="G$1" pin="SDO"/>
 <wire x1="-297.18" y1="124.46" x2="-295.91" y2="124.46" width="0.1524" layer="91"/>
-<label x="-295.91" y="124.46" size="1.778" layer="95" xref="yes"/>
+<label x="-295.91" y="124.46" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
 <pinref part="U6" gate="G$1" pin="GND"/>

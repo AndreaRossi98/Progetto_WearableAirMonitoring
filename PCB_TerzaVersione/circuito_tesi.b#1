@@ -2201,7 +2201,7 @@ design rules under a new name.</description>
 <wire x1="38.25" y1="42.45" x2="38.9" y2="41.8" width="0.254" layer="1"/>
 <wire x1="18.81" y1="30.9164" x2="18.81" y2="31.36" width="0.254" layer="1"/>
 <wire x1="24.355" y1="37.655" x2="24.355" y2="36.374" width="0.254" layer="1"/>
-<wire x1="25.4" y1="33.6" x2="26.4" y2="34.6" width="0.254" layer="1"/>
+<wire x1="25.5" y1="33.7" x2="26.4" y2="34.6" width="0.254" layer="1"/>
 <wire x1="26.4" y1="34.6" x2="31.5" y2="34.6" width="0.254" layer="1"/>
 <wire x1="31.5" y1="34.6" x2="32.257" y2="35.357" width="0.254" layer="1"/>
 <wire x1="32.257" y1="35.357" x2="32.257" y2="36.2" width="0.254" layer="1"/>
@@ -2273,8 +2273,9 @@ design rules under a new name.</description>
 <wire x1="19.7" y1="39.2" x2="20" y2="38.9" width="0.254" layer="1"/>
 <wire x1="20" y1="38.9" x2="23.2" y2="38.9" width="0.254" layer="1"/>
 <wire x1="17.5" y1="42.7" x2="19.7" y2="40.5" width="0.254" layer="1"/>
-<wire x1="15.56" y1="34.88" x2="16.84" y2="33.6" width="0.254" layer="1"/>
-<wire x1="16.84" y1="33.6" x2="25.4" y2="33.6" width="0.254" layer="1"/>
+<wire x1="15.56" y1="34.88" x2="16.74" y2="33.7" width="0.254" layer="1"/>
+<wire x1="16.74" y1="33.7" x2="16.84" y2="33.6" width="0.254" layer="1"/>
+<wire x1="16.74" y1="33.7" x2="25.5" y2="33.7" width="0.254" layer="1"/>
 <wire x1="18.3064" y1="30.2064" x2="17.1936" y2="30.2064" width="0.254" layer="1"/>
 <wire x1="16.84" y1="30.56" x2="16.84" y2="33.6" width="0.254" layer="1"/>
 <wire x1="17.1936" y1="30.2064" x2="16.84" y2="30.56" width="0.254" layer="1"/>
@@ -2362,8 +2363,9 @@ design rules under a new name.</description>
 <contactref element="U3" pad="K"/>
 <contactref element="R11" pad="2"/>
 <wire x1="14.5" y1="37.743" x2="14.4" y2="37.643" width="0.254" layer="1"/>
-<wire x1="14.5" y1="37.743" x2="14.5" y2="33.4" width="0.254" layer="1"/>
-<wire x1="14.5" y1="33.4" x2="15.56" y2="32.34" width="0.254" layer="1"/>
+<wire x1="14.5" y1="37.743" x2="14.3" y2="37.543" width="0.254" layer="1"/>
+<wire x1="14.3" y1="37.543" x2="14.3" y2="33.6" width="0.254" layer="1"/>
+<wire x1="14.3" y1="33.6" x2="15.56" y2="32.34" width="0.254" layer="1"/>
 </signal>
 <signal name="AIN1">
 <contactref element="MDBT42Q" pad="16"/>

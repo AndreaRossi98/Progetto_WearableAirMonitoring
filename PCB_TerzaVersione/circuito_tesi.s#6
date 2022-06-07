@@ -2827,7 +2827,7 @@ Source: &lt;a href="https://www.ablic.com/en/doc/datasheet/voltage_regulator/S13
 <text x="124.46" y="33.02" size="5.08" layer="91">VOLTAGE REGULATOR
 CONTROLLARE LE CONNESSIONI</text>
 <text x="2.54" y="259.08" size="5.08" layer="91">MICS6814</text>
-<text x="144.78" y="154.94" size="1.778" layer="91">collegare tra 5V e mics o tra mics e ground?</text>
+<text x="93.98" y="246.38" size="1.778" layer="91">collegare tra 5V e mics o tra mics e ground?</text>
 </plain>
 <instances>
 <instance part="U3" gate="G$1" x="124.46" y="203.2" smashed="yes">
@@ -2927,9 +2927,9 @@ CONTROLLARE LE CONNESSIONI</text>
 <instance part="V_R_1.8" gate="G$1" x="45.72" y="-12.7" smashed="yes">
 <attribute name="NAME" x="52.07" y="-7.62" size="1.778" layer="95" align="center-left"/>
 </instance>
-<instance part="BJT" gate="G$1" x="132.08" y="154.94" smashed="yes">
-<attribute name="NAME" x="129.54" y="160.02" size="1.778" layer="95"/>
-<attribute name="VALUE" x="132.08" y="144.78" size="1.778" layer="96"/>
+<instance part="BJT" gate="G$1" x="81.28" y="246.38" smashed="yes">
+<attribute name="NAME" x="78.74" y="251.46" size="1.778" layer="95"/>
+<attribute name="VALUE" x="86.36" y="251.46" size="1.778" layer="96"/>
 </instance>
 <instance part="LED1" gate="G$1" x="-104.14" y="-10.16" smashed="yes" rot="R90">
 <attribute name="NAME" x="-108.21078125" y="-12.19538125" size="1.780959375" layer="95" rot="R90"/>
@@ -3004,8 +3004,8 @@ CONTROLLARE LE CONNESSIONI</text>
 <instance part="R16" gate="G$1" x="-27.94" y="180.34" smashed="yes" rot="R90">
 <attribute name="NAME" x="-30.48148125" y="172.715559375" size="2.54148125" layer="95" rot="R90"/>
 </instance>
-<instance part="R17" gate="G$1" x="116.84" y="154.94" smashed="yes">
-<attribute name="NAME" x="109.215559375" y="157.48148125" size="2.54148125" layer="95"/>
+<instance part="R17" gate="G$1" x="66.04" y="246.38" smashed="yes">
+<attribute name="NAME" x="58.415559375" y="248.92148125" size="2.54148125" layer="95"/>
 </instance>
 <instance part="R18" gate="G$1" x="-104.14" y="-27.94" smashed="yes" rot="R90">
 <attribute name="NAME" x="-106.68148125" y="-35.564440625" size="2.54148125" layer="95" rot="R90"/>
@@ -3061,21 +3061,6 @@ CONTROLLARE LE CONNESSIONI</text>
 <nets>
 <net name="5V" class="0">
 <segment>
-<wire x1="96.52" y1="233.68" x2="96.52" y2="226.06" width="0.1524" layer="91"/>
-<label x="96.52" y="233.68" size="1.778" layer="95" xref="yes"/>
-<pinref part="R12" gate="G$1" pin="1"/>
-</segment>
-<segment>
-<pinref part="OPAMP" gate="A" pin="VCC+"/>
-<wire x1="71.12" y1="200.66" x2="73.66" y2="200.66" width="0.1524" layer="91"/>
-<label x="73.66" y="200.66" size="1.778" layer="95" xref="yes"/>
-</segment>
-<segment>
-<wire x1="170.18" y1="187.96" x2="175.26" y2="187.96" width="0.1524" layer="91"/>
-<label x="175.26" y="187.96" size="1.778" layer="95" xref="yes"/>
-<pinref part="R11" gate="G$1" pin="1"/>
-</segment>
-<segment>
 <wire x1="-289.56" y1="175.26" x2="-289.56" y2="177.8" width="0.1524" layer="91"/>
 <label x="-289.56" y="175.26" size="1.778" layer="95" rot="R270" xref="yes"/>
 <pinref part="R7" gate="G$1" pin="1"/>
@@ -3096,6 +3081,11 @@ CONTROLLARE LE CONNESSIONI</text>
 <label x="86.36" y="68.58" size="1.778" layer="95" xref="yes"/>
 <pinref part="C2" gate="G$1" pin="1"/>
 <junction x="83.82" y="68.58"/>
+</segment>
+<segment>
+<pinref part="BJT" gate="G$1" pin="C"/>
+<wire x1="83.82" y1="251.46" x2="83.82" y2="256.54" width="0.1524" layer="91"/>
+<label x="83.82" y="256.54" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
 <net name="SDA5" class="0">
@@ -3809,7 +3799,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <net name="N$15" class="0">
 <segment>
 <pinref part="BJT" gate="G$1" pin="B"/>
-<wire x1="129.54" y1="154.94" x2="127" y2="154.94" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="246.38" x2="76.2" y2="246.38" width="0.1524" layer="91"/>
 <pinref part="R17" gate="G$1" pin="2"/>
 </segment>
 </net>
@@ -3831,9 +3821,9 @@ CONTROLLARE LE CONNESSIONI</text>
 </segment>
 <segment>
 <pinref part="MDBT42Q" gate="G$1" pin="P0.28/AIN4"/>
-<wire x1="-149.86" y1="25.4" x2="-144.78" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="-144.78" y1="25.4" x2="-144.78" y2="0" width="0.1524" layer="91"/>
-<label x="-144.78" y="0" size="1.778" layer="95" rot="R270" xref="yes"/>
+<wire x1="-149.86" y1="25.4" x2="-142.24" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="-142.24" y1="25.4" x2="-142.24" y2="0" width="0.1524" layer="91"/>
+<label x="-142.24" y="0" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
 <net name="N$17" class="0">
@@ -3858,6 +3848,42 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="-241.3" y1="50.8" x2="-246.38" y2="50.8" width="0.1524" layer="91"/>
 <junction x="-241.3" y="50.8"/>
 <pinref part="C13" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="BJT" class="0">
+<segment>
+<pinref part="BJT" gate="G$1" pin="E"/>
+<wire x1="83.82" y1="241.3" x2="83.82" y2="238.76" width="0.1524" layer="91"/>
+<label x="83.82" y="238.76" size="1.778" layer="95" rot="R270" xref="yes"/>
+</segment>
+<segment>
+<pinref part="R12" gate="G$1" pin="1"/>
+<wire x1="96.52" y1="226.06" x2="96.52" y2="228.6" width="0.1524" layer="91"/>
+<label x="96.52" y="228.6" size="1.778" layer="95" rot="R90" xref="yes"/>
+</segment>
+<segment>
+<pinref part="R11" gate="G$1" pin="1"/>
+<wire x1="170.18" y1="187.96" x2="172.72" y2="187.96" width="0.1524" layer="91"/>
+<label x="172.72" y="187.96" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="OPAMP" gate="A" pin="VCC+"/>
+<wire x1="71.12" y1="200.66" x2="73.66" y2="200.66" width="0.1524" layer="91"/>
+<label x="73.66" y="200.66" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="P7" class="0">
+<segment>
+<pinref part="R17" gate="G$1" pin="1"/>
+<wire x1="55.88" y1="246.38" x2="48.26" y2="246.38" width="0.1524" layer="91"/>
+<label x="48.26" y="246.38" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="MDBT42Q" gate="G$1" pin="P0.30AIN6"/>
+<wire x1="-149.86" y1="20.32" x2="-144.78" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="-144.78" y1="20.32" x2="-144.78" y2="0" width="0.1524" layer="91"/>
+<wire x1="-144.78" y1="0" x2="-152.4" y2="0" width="0.1524" layer="91"/>
+<label x="-152.4" y="0" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>

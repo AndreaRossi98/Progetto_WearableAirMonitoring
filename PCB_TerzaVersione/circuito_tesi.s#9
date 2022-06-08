@@ -3838,13 +3838,6 @@ CONTROLLARE LE CONNESSIONI</text>
 <pinref part="R17" gate="G$1" pin="2"/>
 </segment>
 </net>
-<net name="AIN4" class="0">
-<segment>
-<pinref part="MDBT42Q" gate="G$1" pin="P0.28/AIN4"/>
-<wire x1="-149.86" y1="25.4" x2="-134.62" y2="25.4" width="0.1524" layer="91"/>
-<label x="-134.62" y="25.4" size="1.778" layer="95" xref="yes"/>
-</segment>
-</net>
 <net name="N$17" class="0">
 <segment>
 <pinref part="MDBT42Q" gate="G$1" pin="P0.00/XL1"/>
@@ -3905,6 +3898,11 @@ CONTROLLARE LE CONNESSIONI</text>
 <pinref part="R17" gate="G$1" pin="1"/>
 <wire x1="55.88" y1="246.38" x2="43.18" y2="246.38" width="0.1524" layer="91"/>
 <label x="43.18" y="246.38" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="MDBT42Q" gate="G$1" pin="P0.27"/>
+<wire x1="-149.86" y1="27.94" x2="-144.78" y2="27.94" width="0.1524" layer="91"/>
+<label x="-144.78" y="27.94" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="BATTERY" class="0">

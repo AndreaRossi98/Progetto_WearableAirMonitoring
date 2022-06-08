@@ -1506,14 +1506,14 @@ design rules under a new name.</description>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ECS-.327-9-16-TR/?ref=eda" x="30.7" y="43.9" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="29.53868125" y="44.9512" size="0.2542875" layer="27" rot="R270"/>
 </element>
-<element name="PROGRAMMER" library="Connet_6_BG306-04-A-1-0400-X-X_REVD" package="GCT_BG306-04-A-1-0400-X-X_REVD" value="BG306-04-A-1-0400-X-X_REVD" x="15" y="59" smashed="yes" rot="R270">
-<attribute name="DESCRIPTION" value=" 4 Position Receptacle Connector 0.100 (2.54mm) Surface Mount Gold " x="15" y="59" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="2073-BG306-04-A-1-0400-L-BTR-ND" x="15" y="59" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MF" value="Global Connector Technology" x="15" y="59" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MP" value="BG306-04-A-1-0400-L-B" x="15" y="59" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="18.134609375" y="64.61505" size="2.035640625" layer="25" ratio="13" rot="SR270"/>
-<attribute name="PACKAGE" value="None" x="15" y="59" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BG306-04-A-1-0400-L-B/?ref=eda" x="15" y="59" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="PROGRAMMER" library="Connet_6_BG306-04-A-1-0400-X-X_REVD" package="GCT_BG306-04-A-1-0400-X-X_REVD" value="BG306-04-A-1-0400-X-X_REVD" x="15.1" y="59.4" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value=" 4 Position Receptacle Connector 0.100 (2.54mm) Surface Mount Gold " x="15.1" y="59.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="2073-BG306-04-A-1-0400-L-BTR-ND" x="15.1" y="59.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="Global Connector Technology" x="15.1" y="59.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="BG306-04-A-1-0400-L-B" x="15.1" y="59.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="18.234609375" y="65.01505" size="2.035640625" layer="25" ratio="13" rot="SR270"/>
+<attribute name="PACKAGE" value="None" x="15.1" y="59.4" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BG306-04-A-1-0400-L-B/?ref=eda" x="15.1" y="59.4" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 <element name="R1" library="Resistenza_case_0402" package="RESC1005X35N" value="8-1879333-9" x="33.3" y="48.1" smashed="yes" rot="R90">
 <attribute name="AVAILABILITY" value="In Stock" x="33.3" y="48.1" size="1.778" layer="27" rot="R90" display="off"/>
@@ -1944,9 +1944,9 @@ design rules under a new name.</description>
 <wire x1="26.457" y1="57.543" x2="24.6" y2="59.4" width="0.254" layer="1"/>
 <wire x1="23.3" y1="59.7" x2="23.3" y2="63.14933125" width="0.254" layer="1"/>
 <wire x1="19" y1="61.3" x2="19.8" y2="60.5" width="0.254" layer="1"/>
-<wire x1="19.8" y1="60.5" x2="19.8" y2="59.2" width="0.254" layer="1"/>
-<wire x1="19.8" y1="59.2" x2="20.957" y2="58.043" width="0.254" layer="1"/>
-<wire x1="20.957" y1="58.043" x2="21.6" y2="58.043" width="0.254" layer="1"/>
+<wire x1="19.8" y1="60.5" x2="19.8" y2="59.6" width="0.254" layer="1"/>
+<wire x1="19.8" y1="59.6" x2="21.357" y2="58.043" width="0.254" layer="1"/>
+<wire x1="21.357" y1="58.043" x2="21.6" y2="58.043" width="0.254" layer="1"/>
 <contactref element="OPAMP" pad="8"/>
 <contactref element="R11" pad="1"/>
 <contactref element="R12" pad="1"/>
@@ -2265,12 +2265,12 @@ design rules under a new name.</description>
 <wire x1="26" y1="39.6" x2="26.7" y2="38.9" width="0.254" layer="16"/>
 <wire x1="26.7" y1="38.9" x2="29.2" y2="38.9" width="0.254" layer="16"/>
 <wire x1="28.97" y1="43.17" x2="26" y2="40.2" width="0.254" layer="16"/>
-<wire x1="13.35" y1="55.19" x2="11.6" y2="56.94" width="0.254" layer="1"/>
-<wire x1="11.6" y1="56.94" x2="11.6" y2="61.1" width="0.254" layer="1"/>
+<wire x1="13.45" y1="55.59" x2="11.6" y2="57.44" width="0.254" layer="1"/>
+<wire x1="11.6" y1="57.44" x2="11.6" y2="61.1" width="0.254" layer="1"/>
 <wire x1="11.6" y1="61.1" x2="12.2" y2="61.7" width="0.254" layer="1"/>
-<wire x1="12.2" y1="61.7" x2="14.8" y2="61.7" width="0.254" layer="1"/>
-<wire x1="14.8" y1="61.7" x2="21.6" y2="54.9" width="0.254" layer="1"/>
-<wire x1="21.6" y1="54.9" x2="21.6" y2="53.9" width="0.254" layer="1"/>
+<wire x1="12.2" y1="61.7" x2="15.3" y2="61.7" width="0.254" layer="1"/>
+<wire x1="15.3" y1="61.7" x2="21.6" y2="55.4" width="0.254" layer="1"/>
+<wire x1="21.6" y1="55.4" x2="21.6" y2="53.9" width="0.254" layer="1"/>
 <wire x1="21.6" y1="53.9" x2="22.1556" y2="53.3444" width="0.254" layer="1"/>
 <wire x1="26.17073125" y1="53.3444" x2="26.82" y2="52.69513125" width="0.254" layer="1"/>
 <wire x1="22.1556" y1="53.3444" x2="26.17073125" y2="53.3444" width="0.254" layer="1"/>
@@ -2302,8 +2302,8 @@ design rules under a new name.</description>
 <vertex x="18" y="46.7"/>
 <vertex x="18" y="51.2"/>
 <vertex x="15" y="51.2"/>
-<vertex x="15" y="54.7"/>
-<vertex x="10" y="54.7"/>
+<vertex x="15" y="55"/>
+<vertex x="10" y="55"/>
 </polygon>
 <wire x1="26.82" y1="52.69513125" x2="26.82" y2="51.45" width="0.254" layer="1"/>
 <wire x1="26.82" y1="51.45" x2="27.87" y2="52.5" width="0.254" layer="1"/>
@@ -2332,9 +2332,9 @@ design rules under a new name.</description>
 <wire x1="25.75" y1="43.05" x2="24.3" y2="44.5" width="0.254" layer="1"/>
 <wire x1="15.37" y1="42.6" x2="15.37" y2="41.86" width="0.254" layer="1"/>
 <wire x1="15.37" y1="41.86" x2="17.05" y2="40.18" width="0.254" layer="1"/>
-<wire x1="13.35" y1="55.19" x2="14.81" y2="55.19" width="0.254" layer="1"/>
+<wire x1="13.45" y1="55.59" x2="14.41" y2="55.59" width="0.254" layer="1"/>
 <wire x1="15.37" y1="54.63" x2="15.37" y2="51.9" width="0.254" layer="1"/>
-<wire x1="14.81" y1="55.19" x2="15.37" y2="54.63" width="0.254" layer="1"/>
+<wire x1="14.41" y1="55.59" x2="15.37" y2="54.63" width="0.254" layer="1"/>
 <wire x1="26" y1="37.8511" x2="25.0511" y2="37.8511" width="0.254" layer="1"/>
 <wire x1="24.555" y1="37.355" x2="24.555" y2="36.374" width="0.254" layer="1"/>
 <wire x1="25.0511" y1="37.8511" x2="24.555" y2="37.355" width="0.254" layer="1"/>
@@ -2612,10 +2612,10 @@ design rules under a new name.</description>
 <wire x1="30.343" y1="53.757" x2="32.843" y2="51.257" width="0.254" layer="1"/>
 <wire x1="32.843" y1="51.257" x2="33.3" y2="51.257" width="0.254" layer="1"/>
 <wire x1="23.29" y1="56.27" x2="23.02" y2="56" width="0.254" layer="1"/>
-<wire x1="23.02" y1="56" x2="21.6" y2="56" width="0.254" layer="1"/>
-<wire x1="21.6" y1="56" x2="16.7" y2="60.9" width="0.254" layer="1"/>
-<wire x1="16.7" y1="62.81" x2="16.65" y2="62.81" width="0.254" layer="1"/>
-<wire x1="16.7" y1="60.9" x2="16.7" y2="62.81" width="0.254" layer="1"/>
+<wire x1="23.02" y1="56" x2="22" y2="56" width="0.254" layer="1"/>
+<wire x1="22" y1="56" x2="16.7" y2="61.3" width="0.254" layer="1"/>
+<wire x1="16.7" y1="63.21" x2="16.75" y2="63.21" width="0.254" layer="1"/>
+<wire x1="16.7" y1="61.3" x2="16.7" y2="63.21" width="0.254" layer="1"/>
 <wire x1="35.5" y1="41.2" x2="29.2" y2="41.2" width="0.254" layer="16"/>
 <via x="28.7" y="40.3" extent="1-16" drill="0.35"/>
 <wire x1="29.2" y1="41.2" x2="28.7" y2="40.7" width="0.254" layer="16"/>
@@ -2640,10 +2640,10 @@ design rules under a new name.</description>
 <wire x1="45.2" y1="38.2" x2="44.7" y2="37.7" width="0.254" layer="1"/>
 <wire x1="44.7" y1="37.7" x2="44.7" y2="37" width="0.254" layer="1"/>
 <wire x1="45.743" y1="38.2" x2="45.2" y2="38.2" width="0.254" layer="1"/>
-<wire x1="16.65" y1="62.81" x2="19.21" y2="62.81" width="0.254" layer="1"/>
+<wire x1="16.75" y1="63.21" x2="19.61" y2="63.21" width="0.254" layer="1"/>
 <wire x1="37.79513125" y1="65.7" x2="39.4" y2="64.09513125" width="0.254" layer="1"/>
 <wire x1="39.4" y1="64.09513125" x2="39.4" y2="63.8" width="0.254" layer="1"/>
-<wire x1="19.21" y1="62.81" x2="20.4" y2="64" width="0.254" layer="1"/>
+<wire x1="19.61" y1="63.21" x2="20.4" y2="64" width="0.254" layer="1"/>
 <wire x1="20.4" y1="64" x2="30.4" y2="64" width="0.254" layer="1"/>
 <wire x1="30.4" y1="64" x2="32.1" y2="65.7" width="0.254" layer="1"/>
 <wire x1="32.1" y1="65.7" x2="37.79513125" y2="65.7" width="0.254" layer="1"/>
@@ -2708,15 +2708,15 @@ design rules under a new name.</description>
 <signal name="SWDCLK">
 <contactref element="MDBT42Q" pad="36"/>
 <contactref element="PROGRAMMER" pad="3"/>
-<wire x1="16.65" y1="57.73" x2="17.67" y2="56.71" width="0.254" layer="1"/>
-<wire x1="17.67" y1="56.71" x2="17.67" y2="51.9" width="0.254" layer="1"/>
+<wire x1="16.75" y1="58.13" x2="17.67" y2="57.21" width="0.254" layer="1"/>
+<wire x1="17.67" y1="57.21" x2="17.67" y2="51.9" width="0.254" layer="1"/>
 </signal>
 <signal name="SWDIO">
 <contactref element="MDBT42Q" pad="37"/>
 <contactref element="PROGRAMMER" pad="2"/>
-<wire x1="13.35" y1="60.27" x2="13.35" y2="59.05" width="0.254" layer="1"/>
+<wire x1="13.45" y1="60.67" x2="13.45" y2="58.95" width="0.254" layer="1"/>
 <wire x1="16.97" y1="55.43" x2="16.97" y2="51.9" width="0.254" layer="1"/>
-<wire x1="13.35" y1="59.05" x2="16.97" y2="55.43" width="0.254" layer="1"/>
+<wire x1="13.45" y1="58.95" x2="16.97" y2="55.43" width="0.254" layer="1"/>
 </signal>
 <signal name="N$14">
 <contactref element="V_R_3.3" pad="4"/>

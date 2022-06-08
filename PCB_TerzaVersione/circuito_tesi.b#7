@@ -861,21 +861,6 @@
 </package>
 </packages>
 </library>
-<library name="LED_0805">
-<packages>
-<package name="DIOC200X125X110">
-<wire x1="-1" y1="-0.625" x2="1" y2="-0.625" width="0.05" layer="51"/>
-<wire x1="1" y1="-0.625" x2="1" y2="0.625" width="0.05" layer="51"/>
-<wire x1="1" y1="0.625" x2="-1" y2="0.625" width="0.05" layer="51"/>
-<wire x1="-1" y1="0.625" x2="-1" y2="-0.625" width="0.05" layer="51"/>
-<rectangle x1="-1.00175" y1="-0.100175" x2="-0.8" y2="0.1" layer="51"/>
-<text x="-1.00156875" y="1.00156875" size="0.2544" layer="25">&gt;NAME</text>
-<text x="-1.00271875" y="-1.2534" size="0.254690625" layer="27">&gt;VALUE</text>
-<smd name="-" x="-1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
-<smd name="+" x="1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
-</package>
-</packages>
-</library>
 <library name="Crystal-ECS-.327-9-16-TR">
 <packages>
 <package name="XTAL_ECS-.327-9-16-TR">
@@ -1114,6 +1099,21 @@ Created by Upverter.com</description>
 <wire x1="-3.7691" y1="0" x2="-4.5311" y2="0" width="0.508" layer="22" curve="-180"/>
 <wire x1="-4.5311" y1="0" x2="-3.7691" y2="0" width="0.508" layer="22" curve="-180"/>
 <text x="-0.2712" y="-0.635" size="1.27" layer="27" ratio="6">&gt;Name</text>
+</package>
+</packages>
+</library>
+<library name="LED_R_LTST-C170KRKT">
+<packages>
+<package name="DIOC200X125X110">
+<wire x1="-1" y1="-0.625" x2="1" y2="-0.625" width="0.05" layer="51"/>
+<wire x1="1" y1="-0.625" x2="1" y2="0.625" width="0.05" layer="51"/>
+<wire x1="1" y1="0.625" x2="-1" y2="0.625" width="0.05" layer="51"/>
+<wire x1="-1" y1="0.625" x2="-1" y2="-0.625" width="0.05" layer="51"/>
+<rectangle x1="-1.00233125" y1="-0.100234375" x2="-0.8" y2="0.1" layer="51"/>
+<text x="-1.00165" y="1.00165" size="0.25441875" layer="25">&gt;NAME</text>
+<text x="-1.00285" y="-1.253559375" size="0.254725" layer="27">&gt;VALUE</text>
+<smd name="-" x="-1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
+<smd name="+" x="1.05" y="0" dx="1.2" dy="1.2" layer="1"/>
 </package>
 </packages>
 </library>
@@ -1495,16 +1495,6 @@ design rules under a new name.</description>
 <attribute name="NAME" x="20.3" y="42.28" size="1.27" layer="25" rot="R270"/>
 <attribute name="PACKAGE" value="SOT23-3 Nexperia USA Inc." x="18" y="39.2" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MMBT3904,215/?ref=eda" x="18" y="39.2" size="1.778" layer="27" rot="R270" display="off"/>
-</element>
-<element name="LED1" library="LED_0805" package="DIOC200X125X110" value="LTST-C170TBKT" x="48.8" y="55.8" smashed="yes" rot="R270">
-<attribute name="DESCRIPTION" value=" LED Low-Power Uni-Color Blue 468nm 2-Pin Chip LED T/R " x="48.8" y="55.8" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="" x="48.8" y="55.8" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MF" value="Lite-On Electronics" x="48.8" y="55.8" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MP" value="LTST-C170TBKT" x="48.8" y="55.8" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="49.80156875" y="56.80156875" size="0.2544" layer="25" rot="R270"/>
-<attribute name="PACKAGE" value="None" x="48.8" y="55.8" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/LTST-C170TBKT/?ref=eda" x="48.8" y="55.8" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="47.5466" y="56.80271875" size="0.254690625" layer="27" rot="R270"/>
 </element>
 <element name="Y1" library="Crystal-ECS-.327-9-16-TR" package="XTAL_ECS-.327-9-16-TR" value="ECS-.327-9-16-TR" x="30.7" y="43.9" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value=" 32.768 kHz ±20ppm Crystal 9pF 90 kOhms 2-SMD, No Lead " x="30.7" y="43.9" size="1.778" layer="27" rot="R270" display="off"/>
@@ -1903,6 +1893,16 @@ design rules under a new name.</description>
 <attribute name="MFR_NAME" value="JST" x="21" y="61.5" size="1.778" layer="27" display="off"/>
 <attribute name="NAME" x="20.7288" y="60.865" size="1.27" layer="27" ratio="6"/>
 <attribute name="VALUE" x="22.2712" y="60.865" size="1.27" layer="21" ratio="6"/>
+</element>
+<element name="LED" library="LED_R_LTST-C170KRKT" package="DIOC200X125X110" value="LTST-C170KRKT" x="48.8" y="55.9" smashed="yes" rot="R270">
+<attribute name="DESCRIPTION" value=" Red 631nm LED Indication - Discrete 2V 0805 (2012 Metric) " x="48.8" y="55.9" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="DIGI-KEY_PART_NUMBER" value="160-1415-2-ND" x="48.8" y="55.9" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MF" value="Lite-On Inc." x="48.8" y="55.9" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="MP" value="LTST-C170KRKT" x="48.8" y="55.9" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="NAME" x="49.80165" y="56.90165" size="0.25441875" layer="25" rot="R270"/>
+<attribute name="PACKAGE" value="None" x="48.8" y="55.9" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/LTST-C170KRKT/?ref=eda" x="48.8" y="55.9" size="1.778" layer="27" rot="R270" display="off"/>
+<attribute name="VALUE" x="47.546440625" y="56.90285" size="0.254725" layer="27" rot="R270"/>
 </element>
 </elements>
 <signals>
@@ -2375,10 +2375,10 @@ design rules under a new name.</description>
 <wire x1="34" y1="42.6" x2="31.37" y2="39.97" width="0.254" layer="1"/>
 </signal>
 <signal name="N$9">
-<contactref element="LED1" pad="-"/>
 <contactref element="R18" pad="2"/>
 <wire x1="48.8" y1="59.143" x2="48.9" y2="59.243" width="0.254" layer="1"/>
-<wire x1="48.8" y1="59.143" x2="48.8" y2="56.85" width="0.254" layer="1"/>
+<contactref element="LED" pad="-"/>
+<wire x1="48.8" y1="56.95" x2="48.8" y2="59.143" width="0.254" layer="1"/>
 </signal>
 <signal name="AIN3">
 <contactref element="MDBT42Q" pad="18"/>
@@ -2753,15 +2753,15 @@ design rules under a new name.</description>
 </signal>
 <signal name="LED">
 <contactref element="MDBT42Q" pad="23"/>
-<contactref element="LED1" pad="+"/>
 <wire x1="27.82" y1="50.85" x2="29.85" y2="50.85" width="0.254" layer="1"/>
 <wire x1="29.85" y1="50.85" x2="30" y2="51" width="0.254" layer="1"/>
 <via x="30" y="51" extent="1-16" drill="0.35"/>
 <wire x1="30" y1="51" x2="44" y2="51" width="0.254" layer="16"/>
 <wire x1="44" y1="51" x2="46.06499375" y2="53.06499375" width="0.254" layer="16"/>
 <via x="46.06499375" y="53.06499375" extent="1-16" drill="0.35"/>
-<wire x1="47.75" y1="54.75" x2="48.8" y2="54.75" width="0.254" layer="1"/>
-<wire x1="46.06499375" y1="53.06499375" x2="47.75" y2="54.75" width="0.254" layer="1"/>
+<contactref element="LED" pad="+"/>
+<wire x1="47.85" y1="54.85" x2="48.8" y2="54.85" width="0.254" layer="1"/>
+<wire x1="46.06499375" y1="53.06499375" x2="47.85" y2="54.85" width="0.254" layer="1"/>
 </signal>
 <signal name="P8">
 <contactref element="R17" pad="1"/>

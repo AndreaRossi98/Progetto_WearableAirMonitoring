@@ -2947,6 +2947,7 @@ Created by Upverter.com</description>
 <part name="C13" library="Condensatore_case_0402" deviceset="C0402H102J5GACTU" device=""/>
 <part name="U1" library="STMicroelectronics - LIS3DH" deviceset="STMICROELECTRONICS_LIS3DH" device="STMICROELECTRONICS_LIS3DH_0_0"/>
 <part name="J2" library="CONN_SMD_5PIN" deviceset="S5B-ZR-SM4A-TF_(LF)_(SN)" device="CONN_S5B-ZR-SM4A-TF_JST"/>
+<part name="GND11" library="supply" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -3189,6 +3190,9 @@ CONTROLLARE LE CONNESSIONI</text>
 <instance part="J2" gate="A" x="-304.8" y="205.74" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-308.9646" y="211.0486" size="2.083" layer="95" ratio="6" rot="MR0"/>
 </instance>
+<instance part="GND11" gate="1" x="83.82" y="236.22" smashed="yes">
+<attribute name="VALUE" x="81.28" y="233.68" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -3217,9 +3221,19 @@ CONTROLLARE LE CONNESSIONI</text>
 <junction x="83.82" y="68.58"/>
 </segment>
 <segment>
-<pinref part="BJT" gate="G$1" pin="C"/>
-<wire x1="83.82" y1="251.46" x2="83.82" y2="256.54" width="0.1524" layer="91"/>
-<label x="83.82" y="256.54" size="1.778" layer="95" rot="R90" xref="yes"/>
+<pinref part="OPAMP" gate="A" pin="VCC+"/>
+<wire x1="71.12" y1="200.66" x2="73.66" y2="200.66" width="0.1524" layer="91"/>
+<label x="73.66" y="200.66" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="R11" gate="G$1" pin="1"/>
+<wire x1="170.18" y1="187.96" x2="172.72" y2="187.96" width="0.1524" layer="91"/>
+<label x="172.72" y="187.96" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="R12" gate="G$1" pin="1"/>
+<wire x1="96.52" y1="226.06" x2="96.52" y2="228.6" width="0.1524" layer="91"/>
+<label x="96.52" y="228.6" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
 <net name="SDA5" class="0">
@@ -3368,16 +3382,6 @@ CONTROLLARE LE CONNESSIONI</text>
 <pinref part="OPAMP" gate="A" pin="VCC-"/>
 <wire x1="71.12" y1="182.88" x2="73.66" y2="182.88" width="0.1524" layer="91"/>
 <label x="73.66" y="182.88" size="1.778" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="U3" gate="G$1" pin="RH1/RS1_RED"/>
-<wire x1="147.32" y1="203.2" x2="149.86" y2="203.2" width="0.1524" layer="91"/>
-<label x="149.86" y="203.2" size="1.778" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="U3" gate="G$1" pin="RH1/RS1_OX"/>
-<wire x1="101.6" y1="187.96" x2="99.06" y2="187.96" width="0.1524" layer="91"/>
-<label x="99.06" y="187.96" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <wire x1="-383.54" y1="55.88" x2="-383.54" y2="58.42" width="0.1524" layer="91"/>
@@ -3540,6 +3544,11 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="-182.88" y1="119.38" x2="-180.34" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="-180.34" y1="119.38" x2="-180.34" y2="114.3" width="0.1524" layer="91"/>
 <junction x="-180.34" y="114.3"/>
+</segment>
+<segment>
+<pinref part="BJT" gate="G$1" pin="E"/>
+<wire x1="83.82" y1="241.3" x2="83.82" y2="238.76" width="0.1524" layer="91"/>
+<pinref part="GND11" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="N$11" class="0">
@@ -3717,14 +3726,6 @@ CONTROLLARE LE CONNESSIONI</text>
 <junction x="48.26" y="71.12"/>
 </segment>
 <segment>
-<label x="35.56" y="-12.7" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="V_R_1.8" gate="G$1" pin="VIN"/>
-<wire x1="45.72" y1="-12.7" x2="38.1" y2="-12.7" width="0.1524" layer="91"/>
-<pinref part="C5" gate="G$1" pin="1"/>
-<wire x1="38.1" y1="-12.7" x2="35.56" y2="-12.7" width="0.1524" layer="91"/>
-<junction x="38.1" y="-12.7"/>
-</segment>
-<segment>
 <pinref part="V_R_3.3" gate="A" pin="EN"/>
 <wire x1="48.26" y1="35.56" x2="45.72" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="V_R_3.3" gate="A" pin="IN"/>
@@ -3733,11 +3734,6 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="45.72" y1="33.02" x2="45.72" y2="35.56" width="0.1524" layer="91"/>
 <junction x="45.72" y="35.56"/>
 <label x="43.18" y="35.56" size="1.778" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
-<pinref part="V_R_1.8" gate="G$1" pin="ON_/_OFF"/>
-<wire x1="45.72" y1="-17.78" x2="45.72" y2="-20.32" width="0.1524" layer="91"/>
-<label x="45.72" y="-20.32" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
 <wire x1="25.4" y1="-60.96" x2="20.32" y2="-60.96" width="0.1524" layer="91"/>
@@ -3847,6 +3843,19 @@ CONTROLLARE LE CONNESSIONI</text>
 <pinref part="U1" gate="G$0" pin="VDD_IO"/>
 <wire x1="-220.98" y1="111.76" x2="-218.44" y2="111.76" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="V_R_1.8" gate="G$1" pin="VIN"/>
+<wire x1="45.72" y1="-12.7" x2="38.1" y2="-12.7" width="0.1524" layer="91"/>
+<pinref part="C5" gate="G$1" pin="1"/>
+<wire x1="38.1" y1="-12.7" x2="30.48" y2="-12.7" width="0.1524" layer="91"/>
+<junction x="38.1" y="-12.7"/>
+<label x="30.48" y="-12.7" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="V_R_1.8" gate="G$1" pin="ON_/_OFF"/>
+<wire x1="45.72" y1="-17.78" x2="45.72" y2="-22.86" width="0.1524" layer="91"/>
+<label x="45.72" y="-22.86" size="1.778" layer="95" rot="R270" xref="yes"/>
+</segment>
 </net>
 <net name="N$7" class="0">
 <segment>
@@ -3949,28 +3958,6 @@ CONTROLLARE LE CONNESSIONI</text>
 <pinref part="C13" gate="G$1" pin="1"/>
 </segment>
 </net>
-<net name="BJT" class="0">
-<segment>
-<pinref part="BJT" gate="G$1" pin="E"/>
-<wire x1="83.82" y1="241.3" x2="83.82" y2="238.76" width="0.1524" layer="91"/>
-<label x="83.82" y="238.76" size="1.778" layer="95" rot="R270" xref="yes"/>
-</segment>
-<segment>
-<pinref part="R12" gate="G$1" pin="1"/>
-<wire x1="96.52" y1="226.06" x2="96.52" y2="228.6" width="0.1524" layer="91"/>
-<label x="96.52" y="228.6" size="1.778" layer="95" rot="R90" xref="yes"/>
-</segment>
-<segment>
-<pinref part="R11" gate="G$1" pin="1"/>
-<wire x1="170.18" y1="187.96" x2="172.72" y2="187.96" width="0.1524" layer="91"/>
-<label x="172.72" y="187.96" size="1.778" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="OPAMP" gate="A" pin="VCC+"/>
-<wire x1="71.12" y1="200.66" x2="73.66" y2="200.66" width="0.1524" layer="91"/>
-<label x="73.66" y="200.66" size="1.778" layer="95" xref="yes"/>
-</segment>
-</net>
 <net name="LED" class="0">
 <segment>
 <wire x1="-205.74" y1="30.48" x2="-205.74" y2="7.62" width="0.1524" layer="91"/>
@@ -4012,6 +3999,23 @@ CONTROLLARE LE CONNESSIONI</text>
 <pinref part="R20" gate="G$1" pin="2"/>
 <wire x1="53.34" y1="-63.5" x2="53.34" y2="-66.04" width="0.1524" layer="91"/>
 <label x="66.04" y="-60.96" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="BJT" class="0">
+<segment>
+<pinref part="U3" gate="G$1" pin="RH1/RS1_RED"/>
+<wire x1="147.32" y1="203.2" x2="149.86" y2="203.2" width="0.1524" layer="91"/>
+<label x="149.86" y="203.2" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="U3" gate="G$1" pin="RH1/RS1_OX"/>
+<wire x1="101.6" y1="187.96" x2="99.06" y2="187.96" width="0.1524" layer="91"/>
+<label x="99.06" y="187.96" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="BJT" gate="G$1" pin="C"/>
+<wire x1="83.82" y1="251.46" x2="83.82" y2="254" width="0.1524" layer="91"/>
+<label x="83.82" y="254" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
 </nets>

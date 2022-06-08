@@ -3717,14 +3717,6 @@ CONTROLLARE LE CONNESSIONI</text>
 <junction x="48.26" y="71.12"/>
 </segment>
 <segment>
-<label x="35.56" y="-12.7" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="V_R_1.8" gate="G$1" pin="VIN"/>
-<wire x1="45.72" y1="-12.7" x2="38.1" y2="-12.7" width="0.1524" layer="91"/>
-<pinref part="C5" gate="G$1" pin="1"/>
-<wire x1="38.1" y1="-12.7" x2="35.56" y2="-12.7" width="0.1524" layer="91"/>
-<junction x="38.1" y="-12.7"/>
-</segment>
-<segment>
 <pinref part="V_R_3.3" gate="A" pin="EN"/>
 <wire x1="48.26" y1="35.56" x2="45.72" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="V_R_3.3" gate="A" pin="IN"/>
@@ -3733,11 +3725,6 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="45.72" y1="33.02" x2="45.72" y2="35.56" width="0.1524" layer="91"/>
 <junction x="45.72" y="35.56"/>
 <label x="43.18" y="35.56" size="1.778" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
-<pinref part="V_R_1.8" gate="G$1" pin="ON_/_OFF"/>
-<wire x1="45.72" y1="-17.78" x2="45.72" y2="-20.32" width="0.1524" layer="91"/>
-<label x="45.72" y="-20.32" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
 <wire x1="25.4" y1="-60.96" x2="20.32" y2="-60.96" width="0.1524" layer="91"/>
@@ -3846,6 +3833,19 @@ CONTROLLARE LE CONNESSIONI</text>
 <junction x="-220.98" y="111.76"/>
 <pinref part="U1" gate="G$0" pin="VDD_IO"/>
 <wire x1="-220.98" y1="111.76" x2="-218.44" y2="111.76" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="V_R_1.8" gate="G$1" pin="VIN"/>
+<wire x1="45.72" y1="-12.7" x2="38.1" y2="-12.7" width="0.1524" layer="91"/>
+<pinref part="C5" gate="G$1" pin="1"/>
+<wire x1="38.1" y1="-12.7" x2="30.48" y2="-12.7" width="0.1524" layer="91"/>
+<junction x="38.1" y="-12.7"/>
+<label x="30.48" y="-12.7" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="V_R_1.8" gate="G$1" pin="ON_/_OFF"/>
+<wire x1="45.72" y1="-17.78" x2="45.72" y2="-22.86" width="0.1524" layer="91"/>
+<label x="45.72" y="-22.86" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
 <net name="N$7" class="0">

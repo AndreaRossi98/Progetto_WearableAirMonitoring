@@ -8,7 +8,7 @@
 </settings>
 <grid distance="1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.1" altunitdist="mm" altunit="mm"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="no" active="yes"/>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
@@ -163,6 +163,8 @@
 <wire x1="30.7" y1="66.2" x2="32.5" y2="68" width="0.2032" layer="20"/>
 <wire x1="32.5" y1="68" x2="51" y2="68" width="0.2032" layer="20"/>
 <text x="35" y="43.2" size="1" layer="26" rot="MR0">C4</text>
+<text x="10.9" y="62.3" size="1" layer="25">D</text>
+<text x="17.8" y="60" size="1" layer="25">C</text>
 </plain>
 <libraries>
 <library name="Battery_holder">

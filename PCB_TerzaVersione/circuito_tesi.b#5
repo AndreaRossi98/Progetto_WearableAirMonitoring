@@ -1840,26 +1840,6 @@ design rules under a new name.</description>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/LTST-C170KRKT/?ref=eda" x="48.8" y="55.9" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="VALUE" x="47.546440625" y="56.90285" size="0.254725" layer="27" rot="R270"/>
 </element>
-<element name="R1" library="Res_10K_0402" package="RESC1005X37N" value="MCS0402MC1002FE000" x="34.2" y="48.1" smashed="yes" rot="R90">
-<attribute name="DESCRIPTION" value=" 10 kOhms ±1% 0.1W, 1/10W Chip Resistor 0402 (1005 Metric) Anti-Sulfur, Automotive AEC-Q200 Thin Film " x="34.2" y="48.1" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="MCS0402-10.0K-MFTR-ND" x="34.2" y="48.1" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MF" value="Vishay Beyschlag" x="34.2" y="48.1" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="MP" value="MCS0402MC1002FE000" x="34.2" y="48.1" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="33.57" y="47.15" size="0.5" layer="25" rot="R90"/>
-<attribute name="PACKAGE" value="1005 Vishay" x="34.2" y="48.1" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MCS0402MC1002FE000/?ref=eda" x="34.2" y="48.1" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="VALUE" x="34.83" y="47.15" size="0.5" layer="27" rot="R90" align="top-left"/>
-</element>
-<element name="R2" library="Res_10K_0402" package="RESC1005X37N" value="MCS0402MC1002FE000" x="32.9" y="50.8" smashed="yes" rot="R270">
-<attribute name="DESCRIPTION" value=" 10 kOhms ±1% 0.1W, 1/10W Chip Resistor 0402 (1005 Metric) Anti-Sulfur, Automotive AEC-Q200 Thin Film " x="32.9" y="50.8" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="DIGI-KEY_PART_NUMBER" value="MCS0402-10.0K-MFTR-ND" x="32.9" y="50.8" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MF" value="Vishay Beyschlag" x="32.9" y="50.8" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="MP" value="MCS0402MC1002FE000" x="32.9" y="50.8" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="33.53" y="51.75" size="0.5" layer="25" rot="R270"/>
-<attribute name="PACKAGE" value="1005 Vishay" x="32.9" y="50.8" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MCS0402MC1002FE000/?ref=eda" x="32.9" y="50.8" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="VALUE" x="32.27" y="51.75" size="0.5" layer="27" rot="R270" align="top-left"/>
-</element>
 <element name="R3" library="Res_10K_0402" package="RESC1005X37N" value="MCS0402MC1002FE000" x="39" y="34.7" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value=" 10 kOhms ±1% 0.1W, 1/10W Chip Resistor 0402 (1005 Metric) Anti-Sulfur, Automotive AEC-Q200 Thin Film " x="39" y="34.7" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DIGI-KEY_PART_NUMBER" value="MCS0402-10.0K-MFTR-ND" x="39" y="34.7" size="1.778" layer="27" rot="R270" display="off"/>
@@ -2259,8 +2239,6 @@ design rules under a new name.</description>
 <wire x1="25.19" y1="55.753" x2="25.19" y2="56.27" width="0.1524" layer="1"/>
 <wire x1="34.05" y1="49.35" x2="34.6" y2="49.9" width="0.1524" layer="1"/>
 <wire x1="29.3" y1="53.7" x2="31.2" y2="51.8" width="0.1524" layer="1"/>
-<contactref element="R2" pad="2"/>
-<wire x1="32.9" y1="50.343" x2="32.9" y2="49.95" width="0.1524" layer="1"/>
 <wire x1="32.9" y1="49.95" x2="32.3" y2="49.35" width="0.1524" layer="1"/>
 <contactref element="R6" pad="1"/>
 <wire x1="46.557" y1="38.1" x2="46.557" y2="36.087" width="0.1524" layer="1"/>
@@ -2301,9 +2279,6 @@ design rules under a new name.</description>
 <wire x1="41.9" y1="55.8" x2="41.9" y2="54.3" width="0.1524" layer="1"/>
 <wire x1="41.9" y1="54.3" x2="41.2" y2="53.6" width="0.1524" layer="1"/>
 <wire x1="36.957" y1="44.6" x2="36.557" y2="45" width="0.1524" layer="1"/>
-<contactref element="R1" pad="2"/>
-<wire x1="32.9" y1="48.557" x2="34.2" y2="48.557" width="0.1524" layer="1"/>
-<wire x1="34.2" y1="48.557" x2="34.7" y2="48.557" width="0.1524" layer="1"/>
 <contactref element="R4" pad="2"/>
 <wire x1="36.14" y1="35.65" x2="37.357" y2="36.867" width="0.1524" layer="1"/>
 <wire x1="37.357" y1="36.867" x2="37.357" y2="37.2" width="0.1524" layer="1"/>
@@ -2314,6 +2289,7 @@ design rules under a new name.</description>
 <wire x1="31.09" y1="54.467" x2="31.257" y2="54.3" width="0.1524" layer="1"/>
 <wire x1="31.257" y1="54.3" x2="31.957" y2="53.6" width="0.1524" layer="1"/>
 <wire x1="31.957" y1="53.6" x2="32" y2="53.6" width="0.1524" layer="1"/>
+<wire x1="34.7" y1="48.557" x2="32.9" y2="48.557" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$6">
 <contactref element="U3" pad="A"/>
@@ -2885,10 +2861,7 @@ design rules under a new name.</description>
 <wire x1="42" y1="47.7" x2="42" y2="46.6" width="0.254" layer="16"/>
 <wire x1="42" y1="46.6" x2="41.85" y2="46.45" width="0.254" layer="16"/>
 <wire x1="41.85" y1="46.45" x2="40.95" y2="46.45" width="0.254" layer="16"/>
-<contactref element="R1" pad="1"/>
-<contactref element="R2" pad="1"/>
 <wire x1="35.8" y1="46.043" x2="35.8" y2="41.5" width="0.254" layer="1"/>
-<wire x1="34.2" y1="47.643" x2="35.8" y2="46.043" width="0.254" layer="1"/>
 <contactref element="R4" pad="1"/>
 <wire x1="36.443" y1="37.2" x2="35.443" y2="38.2" width="0.254" layer="1"/>
 <wire x1="35.443" y1="41.143" x2="35.443" y2="38.2" width="0.254" layer="1"/>
@@ -2899,7 +2872,6 @@ design rules under a new name.</description>
 <wire x1="45.543" y1="38" x2="45" y2="38" width="0.254" layer="1"/>
 <wire x1="45" y1="38" x2="44.7" y2="37.7" width="0.254" layer="1"/>
 <contactref element="R8" pad="1"/>
-<wire x1="30.343" y1="53.814" x2="32.9" y2="51.257" width="0.254" layer="1"/>
 <wire x1="30.343" y1="54.3" x2="30.243" y2="54.3" width="0.254" layer="1"/>
 <contactref element="R10" pad="2"/>
 <wire x1="27.657" y1="54.6" x2="28.5" y2="54.6" width="0.254" layer="1"/>

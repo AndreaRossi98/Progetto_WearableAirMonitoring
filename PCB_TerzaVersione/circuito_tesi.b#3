@@ -8,17 +8,17 @@
 </settings>
 <grid distance="1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.1" altunitdist="mm" altunit="mm"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
@@ -44,7 +44,7 @@
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="yes"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
@@ -166,6 +166,11 @@
 <text x="10.9" y="62.3" size="1" layer="25">D</text>
 <text x="17.8" y="60" size="1" layer="25">C</text>
 <text x="32.1" y="60.7" size="1" layer="25" rot="R90">SPS30</text>
+<text x="14.3" y="47.5" size="1" layer="26" rot="MR90" align="center">ENVIRONMENTAL
+WEARABLE 
+MONITOR
+
+LARES 2022</text>
 </plain>
 <libraries>
 <library name="Battery_holder">
@@ -1664,7 +1669,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="BSS138TR-ND" x="98.1" y="82.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="98.1" y="82.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="BSS138" x="98.1" y="82.6" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="27.07" y="58.14" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="26.77" y="58.04" size="1" layer="25" rot="R180"/>
 <attribute name="PACKAGE" value="SOT-23 ON" x="98.1" y="82.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BSS138/?ref=eda" x="98.1" y="82.6" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
@@ -1789,37 +1794,37 @@ design rules under a new name.</description>
 <attribute name="PACKAGE" value="None" x="14.9" y="61.7" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BG306-04-A-1-0400-L-B/?ref=eda" x="14.9" y="61.7" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
-<element name="LIS3DH" library="STMicroelectronics - LIS3DH" package="STMICROELECTRONICS_LIS3DH_0" value="STMICROELECTRONICS_LIS3DHSTMICROELECTRONICS_LIS3DH_0_0" x="42.9" y="50" smashed="yes">
-<attribute name="BANDWIDTH" value="5 kHz" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="CIIVA_IDS" value="978556" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="COMPONENT_LINK_1_DESCRIPTION" value="Manufacturer URL" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="COMPONENT_LINK_1_URL" value="http://www.st.com/" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="COMPONENT_LINK_3_DESCRIPTION" value="Package Specification" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="COMPONENT_LINK_3_URL" value="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/CD00274221.pdf" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="CURRENT_CONSUMPTION_IN_POWER_DOWN_MODE" value="0.5 uA" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="DATASHEET" value="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/CD00274221.pdf" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="DATASHEET_VERSION" value="Rev. 1" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="FOOTPRINT_VARIANT_NAME_0" value="Manufacturer Recommended" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="IMPORTED" value="yes" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="IMPORTED_FROM" value="vault" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="IMPORT_TS" value="1521860055" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="INTERFACE" value="I2C, SPI" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="MF" value="STMicroelectronics" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="MOUNTING_TECHNOLOGY" value="Surface Mount" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="MPN" value="LIS3DH" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="40.85" y="51.875" size="1" layer="25"/>
-<attribute name="OPERATING_TEMPERATURE" value="-40 to 85 degC" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="OUTPUT_TYPE" value="Digital" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="PACKAGE" value="LGA-16" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="PACKAGE_DESCRIPTION" value="16-Pin Land Grid Array, Body 3 x 3 mm, Pitch 0.5 mm" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="PACKING" value="Tray" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="PIN_0_0_3_INSIDE_EDGE" value="clock" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="PREFIX" value="U" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="RELEASE_DATE" value="1506332602" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="ROHS" value="Yes" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="VAULT_GUID" value="35EBCE1D-2944-446E-95F1-4BAFD91B2D9D" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="VAULT_REVISION" value="2E44ACB8-410E-4D5A-8B6F-2E9483856AF3" x="42.9" y="50" size="1.778" layer="27" display="off"/>
-<attribute name="WIDE_SUPPLY_VOLTAGE" value="1.71 to 3.6 V" x="42.9" y="50" size="1.778" layer="27" display="off"/>
+<element name="LIS3DH" library="STMicroelectronics - LIS3DH" package="STMICROELECTRONICS_LIS3DH_0" value="STMICROELECTRONICS_LIS3DHSTMICROELECTRONICS_LIS3DH_0_0" x="43.3" y="49.9" smashed="yes">
+<attribute name="BANDWIDTH" value="5 kHz" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="CIIVA_IDS" value="978556" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="COMPONENT_LINK_1_DESCRIPTION" value="Manufacturer URL" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="COMPONENT_LINK_1_URL" value="http://www.st.com/" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="COMPONENT_LINK_3_DESCRIPTION" value="Package Specification" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="COMPONENT_LINK_3_URL" value="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/CD00274221.pdf" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="CURRENT_CONSUMPTION_IN_POWER_DOWN_MODE" value="0.5 uA" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="DATASHEET" value="http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/CD00274221.pdf" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="DATASHEET_VERSION" value="Rev. 1" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="FOOTPRINT_VARIANT_NAME_0" value="Manufacturer Recommended" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="IMPORTED" value="yes" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="IMPORTED_FROM" value="vault" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="IMPORT_TS" value="1521860055" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="INTERFACE" value="I2C, SPI" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="MF" value="STMicroelectronics" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="MOUNTING_TECHNOLOGY" value="Surface Mount" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="MPN" value="LIS3DH" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="NAME" x="41.25" y="51.775" size="1" layer="25"/>
+<attribute name="OPERATING_TEMPERATURE" value="-40 to 85 degC" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="OUTPUT_TYPE" value="Digital" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="PACKAGE" value="LGA-16" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="PACKAGE_DESCRIPTION" value="16-Pin Land Grid Array, Body 3 x 3 mm, Pitch 0.5 mm" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="PACKING" value="Tray" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="PIN_0_0_3_INSIDE_EDGE" value="clock" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="PREFIX" value="U" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="RELEASE_DATE" value="1506332602" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="ROHS" value="Yes" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="VAULT_GUID" value="35EBCE1D-2944-446E-95F1-4BAFD91B2D9D" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="VAULT_REVISION" value="2E44ACB8-410E-4D5A-8B6F-2E9483856AF3" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
+<attribute name="WIDE_SUPPLY_VOLTAGE" value="1.71 to 3.6 V" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
 </element>
 <element name="SPS30" library="CONN_SMD_5PIN" package="CONN_S5B-ZR-SM4A-TF_JST" value="S5B-ZR-SM4A-TF_(LF)_(SN)CONN_S5B-ZR-SM4A-TF_JST" x="22.2" y="59.8" smashed="yes">
 <attribute name="COPYRIGHT" value="Copyright (C) 2022 Ultra Librarian. All rights reserved." x="22.2" y="59.8" size="1.778" layer="27" display="off"/>
@@ -2161,9 +2166,9 @@ design rules under a new name.</description>
 <wire x1="30.065" y1="30.886" x2="30.065" y2="30.065" width="0.254" layer="1"/>
 <wire x1="30.065" y1="30.065" x2="29" y2="29" width="0.254" layer="1"/>
 <wire x1="22.2" y1="59.8" x2="22.2" y2="61.4" width="0.254" layer="1"/>
-<wire x1="22.2" y1="61.4" x2="22.7" y2="61.9" width="0.254" layer="1"/>
-<wire x1="23.965" y1="61.9" x2="24.465" y2="61.4" width="0.254" layer="1"/>
-<wire x1="22.7" y1="61.9" x2="23.965" y2="61.9" width="0.254" layer="1"/>
+<wire x1="22.2" y1="61.4" x2="22.6" y2="61.8" width="0.254" layer="1"/>
+<wire x1="24.065" y1="61.8" x2="24.465" y2="61.4" width="0.254" layer="1"/>
+<wire x1="22.6" y1="61.8" x2="24.065" y2="61.8" width="0.254" layer="1"/>
 <wire x1="21.4" y1="43.9" x2="20.4" y2="44.9" width="0.254" layer="16"/>
 <wire x1="20.4" y1="44.9" x2="20.4" y2="55.6" width="0.254" layer="16"/>
 <wire x1="20.4" y1="55.6" x2="18.2" y2="57.8" width="0.254" layer="16"/>
@@ -2220,10 +2225,10 @@ design rules under a new name.</description>
 <wire x1="28.8" y1="54.2" x2="31" y2="52" width="0.1524" layer="1"/>
 <wire x1="43.15" y1="55.3" x2="43.15" y2="53.75" width="0.1524" layer="1"/>
 <wire x1="43.15" y1="53.75" x2="42" y2="52.6" width="0.1524" layer="1"/>
-<wire x1="42.4" y1="47.7" x2="43.2" y2="46.9" width="0.1524" layer="1"/>
+<wire x1="42.8" y1="47.3" x2="43.2" y2="46.9" width="0.1524" layer="1"/>
 <wire x1="43.2" y1="46.9" x2="45.3" y2="46.9" width="0.1524" layer="1"/>
 <wire x1="45.3" y1="46.9" x2="46.1" y2="47.7" width="0.1524" layer="1"/>
-<wire x1="42.4" y1="48.775" x2="42.4" y2="47.7" width="0.1524" layer="1"/>
+<wire x1="42.8" y1="48.675" x2="42.8" y2="47.3" width="0.1524" layer="1"/>
 <wire x1="44.45" y1="44.465" x2="45.065" y2="44.465" width="0.1524" layer="1"/>
 <wire x1="45.065" y1="44.465" x2="45.3" y2="44.7" width="0.1524" layer="1"/>
 </signal>
@@ -2247,14 +2252,14 @@ design rules under a new name.</description>
 <wire x1="32.657" y1="55.023" x2="32.657" y2="53.3" width="0.1524" layer="1"/>
 <wire x1="41.9" y1="55.3" x2="41.9" y2="54.5" width="0.1524" layer="1"/>
 <wire x1="41.9" y1="54.5" x2="41" y2="53.6" width="0.1524" layer="1"/>
-<wire x1="41.675" y1="49.5" x2="40.057" y2="49.5" width="0.1524" layer="1"/>
+<wire x1="42.075" y1="49.4" x2="39.957" y2="49.4" width="0.1524" layer="1"/>
 <wire x1="44.45" y1="43.815" x2="44.45" y2="42.95" width="0.1524" layer="1"/>
 <wire x1="44.45" y1="42.95" x2="42.5" y2="41" width="0.1524" layer="1"/>
 <wire x1="37.157" y1="43" x2="37.157" y2="46.6" width="0.1524" layer="1"/>
 <wire x1="37.057" y1="46.5" x2="37.057" y2="47.2" width="0.1524" layer="1"/>
 <wire x1="36.307" y1="47.95" x2="37.057" y2="47.2" width="0.1524" layer="1"/>
 <wire x1="26.82" y1="47.95" x2="36.307" y2="47.95" width="0.1524" layer="1"/>
-<wire x1="40.057" y1="49.5" x2="37.157" y2="46.6" width="0.1524" layer="1"/>
+<wire x1="39.957" y1="49.4" x2="37.157" y2="46.6" width="0.1524" layer="1"/>
 <wire x1="37.157" y1="46.6" x2="37.057" y2="46.5" width="0.1524" layer="1"/>
 <wire x1="41" y1="39.157" x2="40.257" y2="39.9" width="0.1524" layer="1"/>
 <wire x1="41" y1="37.09" x2="41" y2="39.157" width="0.1524" layer="1"/>
@@ -2327,7 +2332,6 @@ design rules under a new name.</description>
 <wire x1="44.4" y1="39.4" x2="45.4" y2="39.4" width="0.254" layer="16"/>
 <wire x1="45.4" y1="39.4" x2="46.6" y2="40.6" width="0.254" layer="16"/>
 <wire x1="42.4" y1="33.66" x2="43.55" y2="33.66" width="0.254" layer="1"/>
-<wire x1="40.65" y1="60.8" x2="40.65" y2="59.3" width="0.254" layer="1"/>
 <wire x1="40.75" y1="59.3" x2="38.15" y2="61.9" width="0.254" layer="1"/>
 <wire x1="38.15" y1="61.9" x2="38.15" y2="63.3" width="0.254" layer="1"/>
 <wire x1="38.15" y1="55.3" x2="38.15" y2="56.8" width="0.254" layer="1"/>
@@ -2438,14 +2442,13 @@ design rules under a new name.</description>
 <wire x1="31.8" y1="42.2" x2="30.3" y2="42.2" width="0.254" layer="1"/>
 <wire x1="32.02" y1="42.42" x2="31.8" y2="42.2" width="0.254" layer="1"/>
 <wire x1="12" y1="63.97513125" x2="13.462434375" y2="65.437565625" width="0.254" layer="1"/>
-<wire x1="44.4" y1="50.5" x2="44.125" y2="50.5" width="0.254" layer="1"/>
 <wire x1="39.05" y1="42.85" x2="38.2" y2="43.7" width="0.254" layer="1"/>
 <wire x1="38.2" y1="46.3" x2="38.2" y2="43.7" width="0.254" layer="1"/>
-<wire x1="41.675" y1="49" x2="40.9" y2="49" width="0.254" layer="1"/>
-<wire x1="40.9" y1="49" x2="38.2" y2="46.3" width="0.254" layer="1"/>
+<wire x1="42.075" y1="48.9" x2="40.8" y2="48.9" width="0.254" layer="1"/>
+<wire x1="40.8" y1="48.9" x2="38.2" y2="46.3" width="0.254" layer="1"/>
 <wire x1="45" y1="47.5" x2="43.3" y2="47.5" width="0.254" layer="1"/>
 <wire x1="45.23500625" y1="47.73500625" x2="45.3" y2="47.8" width="0.254" layer="1"/>
-<wire x1="45.3" y1="49.6" x2="45.3" y2="47.8" width="0.254" layer="1"/>
+<wire x1="45.3" y1="49.9" x2="45.3" y2="47.8" width="0.254" layer="1"/>
 <wire x1="18.5936" y1="60.3064" x2="18.5936" y2="56.2316625" width="0.254" layer="1"/>
 <wire x1="13.462434375" y1="65.437565625" x2="18.5936" y2="60.3064" width="0.254" layer="1"/>
 <wire x1="18.5936" y1="56.2316625" x2="21.0496625" y2="53.7756" width="0.254" layer="1"/>
@@ -2454,10 +2457,9 @@ design rules under a new name.</description>
 <wire x1="35.7576" y1="55.3" x2="34.1576" y2="56.9" width="0.254" layer="1"/>
 <wire x1="33.8576" y1="56.9" x2="34.1576" y2="56.9" width="0.254" layer="1"/>
 <wire x1="26.3944" y1="53.7756" x2="27.77" y2="52.4" width="0.254" layer="1"/>
-<wire x1="44.125" y1="49.5" x2="44.4" y2="49.5" width="0.254" layer="1"/>
-<wire x1="44.4" y1="49.5" x2="44.9" y2="50" width="0.254" layer="1"/>
-<wire x1="44.9" y1="50" x2="44.4" y2="50.5" width="0.254" layer="1"/>
-<wire x1="44.9" y1="50" x2="45.3" y2="49.6" width="0.254" layer="1"/>
+<wire x1="44.525" y1="49.4" x2="44.8" y2="49.4" width="0.254" layer="1"/>
+<wire x1="44.525" y1="50.4" x2="44.9" y2="50.4" width="0.254" layer="1"/>
+<wire x1="45.3" y1="50" x2="44.9" y2="50.4" width="0.254" layer="1"/>
 <wire x1="45.23500625" y1="47.76499375" x2="45.23500625" y2="47.73500625" width="0.254" layer="1"/>
 <wire x1="45.23500625" y1="47.73500625" x2="45" y2="47.5" width="0.254" layer="1"/>
 <wire x1="40.4" y1="46.4" x2="40" y2="46" width="0.254" layer="1"/>
@@ -2490,8 +2492,6 @@ design rules under a new name.</description>
 <wire x1="18.6153" y1="65.4847" x2="45.0153" y2="65.4847" width="0.254" layer="1"/>
 <wire x1="26.255" y1="37.455" x2="26.255" y2="36.474" width="0.254" layer="1"/>
 <wire x1="25.75" y1="43.05" x2="26.82" y2="43.05" width="0.254" layer="1"/>
-<wire x1="42.896" y1="47.904" x2="43.3" y2="47.5" width="0.254" layer="1"/>
-<wire x1="42.9" y1="47.908" x2="42.896" y2="47.904" width="0.254" layer="1"/>
 <polygon width="0.2032" layer="1">
 <vertex x="51" y="68"/>
 <vertex x="51" y="27"/>
@@ -2517,16 +2517,15 @@ design rules under a new name.</description>
 <vertex x="19.8" y="66.2"/>
 <vertex x="18" y="68"/>
 <vertex x="11.4" y="68"/>
-<vertex x="11.4" y="57"/>
-<vertex x="14.8" y="57"/>
-<vertex x="15" y="56.8"/>
-<vertex x="15" y="51.3"/>
+<vertex x="11.4" y="57.3"/>
+<vertex x="15.2" y="57.3"/>
+<vertex x="15.2" y="51.3"/>
 <vertex x="18.2" y="51.3"/>
 <vertex x="18.2" y="46.4"/>
 <vertex x="18.1" y="46.3"/>
-<vertex x="15" y="46.3"/>
-<vertex x="15" y="37.3"/>
-<vertex x="12.3" y="37.3"/>
+<vertex x="15.1" y="46.3"/>
+<vertex x="15.1" y="37.1"/>
+<vertex x="12.3" y="37.1"/>
 </polygon>
 <wire x1="43.815" y1="46.4" x2="44.45" y2="45.765" width="0.254" layer="1"/>
 <wire x1="40.4" y1="46.4" x2="43.815" y2="46.4" width="0.254" layer="1"/>
@@ -2535,12 +2534,14 @@ design rules under a new name.</description>
 <wire x1="42.51" y1="43.815" x2="41.985" y2="43.815" width="0.254" layer="1"/>
 <wire x1="40.885" y1="44.915" x2="40.885" y2="45.115" width="0.254" layer="1"/>
 <wire x1="41.985" y1="43.815" x2="40.885" y2="44.915" width="0.254" layer="1"/>
-<wire x1="42.9" y1="48.775" x2="42.9" y2="47.908" width="0.254" layer="1"/>
+<wire x1="43.3" y1="48.675" x2="43.3" y2="47.5" width="0.254" layer="1"/>
 <wire x1="38.33" y1="45.1" x2="38.33" y2="43.57" width="0.254" layer="16"/>
 <wire x1="38.33" y1="43.57" x2="39.05" y2="42.85" width="0.254" layer="16"/>
 <wire x1="41.8" y1="41.798" x2="40.633" y2="42.965" width="0.254" layer="16"/>
 <wire x1="41.8" y1="41.23" x2="41.8" y2="41.798" width="0.254" layer="16"/>
 <wire x1="40.65" y1="59.3" x2="40.75" y2="59.3" width="0.254" layer="1"/>
+<wire x1="44.8" y1="49.4" x2="45.3" y2="49.9" width="0.254" layer="1"/>
+<wire x1="45.3" y1="49.9" x2="45.3" y2="50" width="0.254" layer="1"/>
 </signal>
 <signal name="N$11">
 <contactref element="MICS6814" pad="G"/>
@@ -2819,18 +2820,17 @@ design rules under a new name.</description>
 <wire x1="31.743" y1="54.037" x2="30.49" y2="55.29" width="0.254" layer="1"/>
 <wire x1="39.4" y1="55.3" x2="39.4" y2="54.7" width="0.254" layer="1"/>
 <wire x1="38.9" y1="54.2" x2="39.4" y2="54.7" width="0.254" layer="1"/>
-<wire x1="43.4" y1="51.225" x2="43.4" y2="49.5" width="0.254" layer="1"/>
-<wire x1="43.4" y1="49.5" x2="43.4" y2="48.775" width="0.246" layer="1"/>
+<wire x1="43.8" y1="51.125" x2="43.8" y2="49.4" width="0.254" layer="1"/>
+<wire x1="43.8" y1="49.4" x2="43.8" y2="49.1" width="0.254" layer="1"/>
+<wire x1="43.8" y1="49.1" x2="43.8" y2="48.675" width="0.246" layer="1"/>
 <wire x1="37.9" y1="41" x2="37.37" y2="41.53" width="0.254" layer="16"/>
 <wire x1="40.1" y1="41.8" x2="41.9" y2="41.8" width="0.254" layer="1"/>
 <wire x1="39.343" y1="39.9" x2="39" y2="39.9" width="0.254" layer="1"/>
 <wire x1="39" y1="39.9" x2="37.9" y2="41" width="0.254" layer="1"/>
-<wire x1="40.1" y1="51.6" x2="40.1" y2="51" width="0.254" layer="1"/>
-<wire x1="40.1" y1="51" x2="40.1" y2="50.7" width="0.254" layer="1"/>
+<wire x1="40.1" y1="51.6" x2="40.1" y2="50.9" width="0.254" layer="1"/>
+<wire x1="40.1" y1="50.9" x2="40.1" y2="50.7" width="0.254" layer="1"/>
 <wire x1="40.1" y1="50.7" x2="38" y2="48.6" width="0.254" layer="1"/>
-<wire x1="41.675" y1="51" x2="40.1" y2="51" width="0.254" layer="1"/>
-<wire x1="41.675" y1="51" x2="41.9" y2="51" width="0.254" layer="1"/>
-<wire x1="41.9" y1="51" x2="43.4" y2="49.5" width="0.254" layer="1"/>
+<wire x1="42.075" y1="50.9" x2="40.1" y2="50.9" width="0.254" layer="1"/>
 <wire x1="38.2" y1="31.9" x2="42.8" y2="31.9" width="0.254" layer="16"/>
 <wire x1="31.9064" y1="62.4064" x2="34.3" y2="64.8" width="0.254" layer="1"/>
 <wire x1="34.3" y1="64.8" x2="38.7" y2="64.8" width="0.254" layer="1"/>
@@ -2860,6 +2860,8 @@ design rules under a new name.</description>
 <wire x1="19.2" y1="60.6" x2="16.55" y2="63.25" width="0.254" layer="1"/>
 <wire x1="20" y1="62.4064" x2="16.8964" y2="65.51" width="0.254" layer="1"/>
 <wire x1="16.8964" y1="65.51" x2="16.55" y2="65.51" width="0.254" layer="1"/>
+<wire x1="42.075" y1="50.9" x2="42.3" y2="50.9" width="0.254" layer="1"/>
+<wire x1="42.3" y1="50.9" x2="43.8" y2="49.4" width="0.254" layer="1"/>
 </signal>
 <signal name="N$7">
 <contactref element="OPAMP" pad="6"/>
@@ -2997,4 +2999,10 @@ design rules under a new name.</description>
 </mfgpreviewcolors>
 </board>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>

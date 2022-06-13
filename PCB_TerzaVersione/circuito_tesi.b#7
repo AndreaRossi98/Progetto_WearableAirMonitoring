@@ -166,9 +166,10 @@
 <text x="10.9" y="62.3" size="1" layer="25">D</text>
 <text x="17.8" y="60" size="1" layer="25">C</text>
 <text x="32.1" y="60.7" size="1" layer="25" rot="R90">SPS30</text>
-<text x="13.9" y="47.4" size="1" layer="26" rot="MR90" align="center">ENVIRONMENTAL
+<text x="14.3" y="47.5" size="1" layer="26" rot="MR90" align="center">ENVIRONMENTAL
 WEARABLE 
 MONITOR
+
 LARES 2022</text>
 </plain>
 <libraries>

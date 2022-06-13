@@ -8,22 +8,22 @@
 </settings>
 <grid distance="1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.1" altunitdist="mm" altunit="mm"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
-<layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
-<layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
-<layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
-<layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="yes"/>
+<layer number="16" name="Bottom" color="1" fill="1" visible="no" active="yes"/>
+<layer number="17" name="Pads" color="2" fill="1" visible="no" active="yes"/>
+<layer number="18" name="Vias" color="2" fill="1" visible="no" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
+<layer number="20" name="Dimension" color="24" fill="1" visible="no" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="24" name="bOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
@@ -44,8 +44,8 @@
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="yes"/>
+<layer number="52" name="bDocu" color="7" fill="1" visible="no" active="yes"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
 <layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
@@ -162,11 +162,11 @@
 <wire x1="19.8" y1="66.2" x2="30.7" y2="66.2" width="0.2032" layer="20"/>
 <wire x1="30.7" y1="66.2" x2="32.5" y2="68" width="0.2032" layer="20"/>
 <wire x1="32.5" y1="68" x2="51" y2="68" width="0.2032" layer="20"/>
-<text x="35" y="43.2" size="1" layer="26" rot="MR0">C4</text>
-<text x="10.9" y="62.3" size="1" layer="25">D</text>
-<text x="17.8" y="60" size="1" layer="25">C</text>
-<text x="32.1" y="60.7" size="1" layer="25" rot="R90">SPS30</text>
-<text x="14.3" y="47.5" size="1" layer="26" rot="MR90" align="center">ENVIRONMENTAL
+<text x="35" y="43.1" size="1" layer="22" rot="MR0">C4</text>
+<text x="11" y="62.7" size="1" layer="21">D</text>
+<text x="17.8" y="60.4" size="1" layer="21">C</text>
+<text x="32.1" y="60.7" size="1" layer="21" rot="R90">SPS30</text>
+<text x="14.3" y="47.5" size="1" layer="22" rot="MR90" align="center">ENVIRONMENTAL
 WEARABLE 
 MONITOR
 
@@ -1604,7 +1604,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="36-2996TR-ND" x="63" y="66.4" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MF" value="Keystone Electronics" x="63" y="66.4" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MP" value="2996TR" x="63" y="66.4" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="44.54" y="28.95" size="1" layer="26" rot="MR180"/>
+<attribute name="NAME" x="44.54" y="28.95" size="1" layer="22" rot="MR180"/>
 <attribute name="PACKAGE" value="None" x="63" y="66.4" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/2996TR/?ref=eda" x="63" y="66.4" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
@@ -1613,7 +1613,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="36-2996TR-ND" x="63.6" y="66.4" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MF" value="Keystone Electronics" x="63.6" y="66.4" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MP" value="2996TR" x="63.6" y="66.4" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="15.09" y="28.95" size="1" layer="26" rot="MR180"/>
+<attribute name="NAME" x="15.09" y="28.95" size="1" layer="22" rot="MR180"/>
 <attribute name="PACKAGE" value="None" x="63.6" y="66.4" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/2996TR/?ref=eda" x="63.6" y="66.4" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
@@ -1622,7 +1622,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="36-2996TR-ND" x="-40.2" y="28.7" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MF" value="Keystone Electronics" x="-40.2" y="28.7" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MP" value="2996TR" x="-40.2" y="28.7" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="16.36" y="66.15" size="1" layer="26" rot="MR0"/>
+<attribute name="NAME" x="16.36" y="66.15" size="1" layer="22" rot="MR0"/>
 <attribute name="PACKAGE" value="None" x="-40.2" y="28.7" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/2996TR/?ref=eda" x="-40.2" y="28.7" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
@@ -1631,7 +1631,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="36-2996TR-ND" x="16.4" y="10.9" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MF" value="Keystone Electronics" x="16.4" y="10.9" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MP" value="2996TR" x="16.4" y="10.9" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="45.86" y="66.13" size="1" layer="26" rot="MR0"/>
+<attribute name="NAME" x="45.86" y="66.13" size="1" layer="22" rot="MR0"/>
 <attribute name="PACKAGE" value="None" x="16.4" y="10.9" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/2996TR/?ref=eda" x="16.4" y="10.9" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
@@ -1644,14 +1644,14 @@ design rules under a new name.</description>
 <attribute name="MANUFACTURER_PART_NUMBER" value="SCD41-D-R2" x="59.7" y="-4.2" size="1.778" layer="27" display="off"/>
 <attribute name="MOUSER_PART_NUMBER" value="403-SCD41-D-R2" x="59.7" y="-4.2" size="1.778" layer="27" display="off"/>
 <attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/Sensirion/SCD41-D-R2?qs=HBWAp0VN4Ri4o7ei4T3s0g%3D%3D" x="59.7" y="-4.2" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="47.5" y="59.15" size="1" layer="25" rot="R270" align="center"/>
+<attribute name="NAME" x="40.45" y="65.6" size="1" layer="21" align="center"/>
 </element>
 <element name="Q1" library="BSS138" package="SOT95P240X111-3N" value="BSS138" x="39.94" y="37.09" smashed="yes">
 <attribute name="DESCRIPTION" value=" N-Channel 50 V 200mA (Ta) 225mW (Ta) Surface Mount SOT-23-3 (TO-236) " x="56.45" y="-36.57" size="1.778" layer="27" display="off"/>
 <attribute name="DIGI-KEY_PART_NUMBER" value="BSS138TR-ND" x="56.45" y="-36.57" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="56.45" y="-36.57" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="BSS138" x="56.45" y="-36.57" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="40.64" y="35.89" size="1.016" layer="25"/>
+<attribute name="NAME" x="40.74" y="35.49" size="1.016" layer="21"/>
 <attribute name="PACKAGE" value="SOT-23 ON" x="56.45" y="-36.57" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BSS138/?ref=eda" x="56.45" y="-36.57" size="1.778" layer="27" display="off"/>
 </element>
@@ -1660,7 +1660,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="BSS138TR-ND" x="120.9" y="56.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="120.9" y="56.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="BSS138" x="120.9" y="56.6" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="49.19" y="36.84" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="49.59" y="37.04" size="1" layer="21" rot="R180"/>
 <attribute name="PACKAGE" value="SOT-23 ON" x="120.9" y="56.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BSS138/?ref=eda" x="120.9" y="56.6" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
@@ -1669,7 +1669,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="BSS138TR-ND" x="98.1" y="82.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="98.1" y="82.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="BSS138" x="98.1" y="82.6" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="26.77" y="58.04" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="26.77" y="58.04" size="1" layer="21" rot="R180"/>
 <attribute name="PACKAGE" value="SOT-23 ON" x="98.1" y="82.6" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BSS138/?ref=eda" x="98.1" y="82.6" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
@@ -1678,7 +1678,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="BSS138TR-ND" x="105.1" y="88.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="ON Semiconductor" x="105.1" y="88.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="BSS138" x="105.1" y="88.1" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="33.65" y="58.34" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="33.75" y="58.34" size="1" layer="21" rot="R180"/>
 <attribute name="PACKAGE" value="SOT-23 ON" x="105.1" y="88.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BSS138/?ref=eda" x="105.1" y="88.1" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
@@ -1687,7 +1687,7 @@ design rules under a new name.</description>
 <attribute name="DESCRIPTION" value=" General Purpose Amplifier 2 Circuit Rail-to-Rail 8-SOIC " x="-17.56" y="-39.98" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="STMicroelectronics" x="-17.56" y="-39.98" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="TSV912IDT" x="-17.56" y="-39.98" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="25.759109375" y="29.213359375" size="1" layer="25" ratio="10" rot="SR0"/>
+<attribute name="NAME" x="25.759109375" y="28.913359375" size="1" layer="21" ratio="10" rot="SR0"/>
 <attribute name="PACKAGE" value="SOIC-8 STMicroelectronics" x="-17.56" y="-39.98" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PRICE" value="None" x="-17.56" y="-39.98" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/TSV912IDT/?ref=eda" x="-17.56" y="-39.98" size="1.778" layer="27" rot="R270" display="off"/>
@@ -1697,7 +1697,7 @@ design rules under a new name.</description>
 <attribute name="DESCRIPTION" value=" SGP30, SHTC1 Air Quality, Humidity, Temperature Sensor Arduino Platform Evaluation Expansion Board " x="4.3" y="107.32" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="Sensirion AG" x="4.3" y="107.32" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="SGP30" x="4.3" y="107.32" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="48.27" y="32.936" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="48.47" y="32.836" size="1" layer="21" rot="R180"/>
 <attribute name="PACKAGE" value="None" x="4.3" y="107.32" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PRICE" value="None" x="4.3" y="107.32" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/SGP30/?ref=eda" x="4.3" y="107.32" size="1.778" layer="27" rot="R180" display="off"/>
@@ -1707,7 +1707,7 @@ design rules under a new name.</description>
 <attribute name="DESCRIPTION" value=" MiCS-6814 Air Quality Sensor mikroBUS™ Click™ Platform Evaluation Expansion Board " x="67.4" y="75.62" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="MikroElektronika" x="67.4" y="75.62" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="MICS-6814" x="67.4" y="75.62" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="23.7" y="30.53" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="23.7" y="30.53" size="1" layer="21" rot="R180"/>
 <attribute name="PACKAGE" value="None" x="67.4" y="75.62" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PRICE" value="None" x="67.4" y="75.62" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
@@ -1716,7 +1716,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="1597-1434-ND" x="30.6" y="66.3" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="Seeed Technology" x="30.6" y="66.3" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="317030213" x="30.6" y="66.3" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="17.82" y="41.616" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="17.02" y="41.516" size="1" layer="21" rot="R180"/>
 <attribute name="PACKAGE" value="SMD-41 Seeed Studio" x="30.6" y="66.3" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/317030213/?ref=eda" x="30.6" y="66.3" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
@@ -1725,7 +1725,7 @@ design rules under a new name.</description>
 <attribute name="DESCRIPTION" value=" Board Mount Humidity Sensors MEMS humidity, pressure and temperature sensor " x="101.9" y="-27.6" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Bosch" x="101.9" y="-27.6" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="BME280" x="101.9" y="-27.6" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="41.223290625" y="46.55246875" size="1" layer="25"/>
+<attribute name="NAME" x="41.223290625" y="46.55246875" size="1" layer="21"/>
 <attribute name="PACKAGE" value="LGA-8 Bosch" x="101.9" y="-27.6" size="1.778" layer="27" display="off"/>
 <attribute name="PRICE" value="None" x="101.9" y="-27.6" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BME280/?ref=eda" x="101.9" y="-27.6" size="1.778" layer="27" display="off"/>
@@ -1747,14 +1747,14 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER_5" value="MC78LC50NTRGOSTR-ND" x="24.7" y="46.9" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="MC78LC50NTRG" x="24.7" y="46.9" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="MFR_NAME" value="onsemi" x="24.7" y="46.9" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="22.9288" y="45.035" size="1" layer="26" ratio="6" rot="MR180"/>
+<attribute name="NAME" x="22.9288" y="45.035" size="1" layer="22" ratio="6" rot="MR180"/>
 </element>
 <element name="VR_3.3" library="Volt_Reg_3.3_8MSOP" package="MSOP-8LD-PL-1_MCH" value="MIC5219-3.3YMMMSOP-8LD-PL-1_MCH" x="33.8" y="47.2" smashed="yes" rot="MR0">
 <attribute name="COPYRIGHT" value="Copyright (C) 2022 Ultra Librarian. All rights reserved." x="33.8" y="47.2" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="DIGI-KEY_PART_NUMBER_1" value="576-1827-5-ND" x="33.8" y="47.2" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MANUFACTURER_PART_NUMBER" value="MIC5219-3.3YMM" x="33.8" y="47.2" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MFR_NAME" value="Microchip" x="33.8" y="47.2" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="36.0712" y="49.365" size="1" layer="26" ratio="6" rot="MR0"/>
+<attribute name="NAME" x="36.0712" y="49.365" size="1" layer="22" ratio="6" rot="MR0"/>
 </element>
 <element name="VR_1.8" library="VOLT_REG_1.8_SOT-23-5" package="SOT95P275X130-5N" value="S-1318D18-M5T1U4" x="42.2" y="47.4" smashed="yes" rot="MR180">
 <attribute name="ARROW_PART_NUMBER" value="" x="42.2" y="47.4" size="1.778" layer="28" rot="MR180" display="off"/>
@@ -1765,14 +1765,14 @@ design rules under a new name.</description>
 <attribute name="MANUFACTURER_PART_NUMBER" value="S-1318D18-M5T1U4" x="42.2" y="47.4" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MOUSER_PART_NUMBER" value="628-S-1318D18-M5T1U4" x="42.2" y="47.4" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/ABLIC/S-1318D18-M5T1U4/?qs=bZr6mbWTK5mVILZBDijY2w%3D%3D" x="42.2" y="47.4" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="42.1" y="50.2" size="1" layer="26" rot="MR180" align="center"/>
+<attribute name="NAME" x="42.1" y="50.2" size="1" layer="22" rot="MR180" align="center"/>
 </element>
 <element name="BJT" library="BJT_TO-236" package="SOT95P230X110-3N" value="MMBT3904-215" x="18.6" y="39.2" smashed="yes" rot="R270">
 <attribute name="DESCRIPTION" value=" Bipolar (BJT) Transistor NPN 40 V 200 mA 300MHz 250 mW Surface Mount TO-236AB " x="18.6" y="39.2" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="DIGI-KEY_PART_NUMBER" value="1727-4044-2-ND" x="18.6" y="39.2" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="Nexperia USA" x="18.6" y="39.2" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="MMBT3904,215" x="18.6" y="39.2" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="19.02" y="37.3" size="1" layer="25"/>
+<attribute name="NAME" x="19.02" y="37.3" size="1" layer="21"/>
 <attribute name="PACKAGE" value="SOT23-3 Nexperia USA Inc." x="18.6" y="39.2" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MMBT3904,215/?ref=eda" x="18.6" y="39.2" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -1781,7 +1781,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="XC2132TR-ND" x="29.5" y="44.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="ECS Inc." x="29.5" y="44.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="ECS-.327-9-16-TR" x="29.5" y="44.1" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="28.809859375" y="41.748790625" size="1" layer="25" rot="R90"/>
+<attribute name="NAME" x="28.809859375" y="41.748790625" size="1" layer="21" rot="R90"/>
 <attribute name="PACKAGE" value="SMD-2 ECS International" x="29.5" y="44.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ECS-.327-9-16-TR/?ref=eda" x="29.5" y="44.1" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -1790,7 +1790,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="2073-BG306-04-A-1-0400-L-BTR-ND" x="14.9" y="61.7" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="Global Connector Technology" x="14.9" y="61.7" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="BG306-04-A-1-0400-L-B" x="14.9" y="61.7" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="12.68495" y="54.834609375" size="1" layer="25" ratio="13" rot="SR0"/>
+<attribute name="NAME" x="12.68495" y="54.834609375" size="1" layer="21" ratio="13" rot="SR0"/>
 <attribute name="PACKAGE" value="None" x="14.9" y="61.7" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/BG306-04-A-1-0400-L-B/?ref=eda" x="14.9" y="61.7" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -1812,7 +1812,7 @@ design rules under a new name.</description>
 <attribute name="MF" value="STMicroelectronics" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
 <attribute name="MOUNTING_TECHNOLOGY" value="Surface Mount" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
 <attribute name="MPN" value="LIS3DH" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="41.25" y="51.775" size="1" layer="25"/>
+<attribute name="NAME" x="41.25" y="51.775" size="1" layer="21"/>
 <attribute name="OPERATING_TEMPERATURE" value="-40 to 85 degC" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
 <attribute name="OUTPUT_TYPE" value="Digital" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
 <attribute name="PACKAGE" value="LGA-16" x="43.3" y="49.9" size="1.778" layer="27" display="off"/>
@@ -1839,7 +1839,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="160-1415-2-ND" x="48.7" y="55.3" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="Lite-On Inc." x="48.7" y="55.3" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="LTST-C170KRKT" x="48.7" y="55.3" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="49.50165" y="56.60165" size="1.016" layer="25" rot="R270"/>
+<attribute name="NAME" x="49.50165" y="56.60165" size="1.016" layer="21" rot="R270"/>
 <attribute name="PACKAGE" value="None" x="48.7" y="55.3" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/LTST-C170KRKT/?ref=eda" x="48.7" y="55.3" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -1848,7 +1848,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="MCS0402-10.0K-MFTR-ND" x="39.8" y="33.2" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="Vishay Beyschlag" x="39.8" y="33.2" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="MCS0402MC1002FE000" x="39.8" y="33.2" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="38.95" y="31.53" size="1" layer="25"/>
+<attribute name="NAME" x="38.85" y="31.33" size="1" layer="21"/>
 <attribute name="PACKAGE" value="1005 Vishay" x="39.8" y="33.2" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MCS0402MC1002FE000/?ref=eda" x="39.8" y="33.2" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -1857,7 +1857,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="MCS0402-10.0K-MFTR-ND" x="39.8" y="39.9" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Vishay Beyschlag" x="39.8" y="39.9" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="MCS0402MC1002FE000" x="39.8" y="39.9" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="39.15" y="40.53" size="1" layer="25"/>
+<attribute name="NAME" x="39.15" y="40.53" size="1" layer="21"/>
 <attribute name="PACKAGE" value="1005 Vishay" x="39.8" y="39.9" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MCS0402MC1002FE000/?ref=eda" x="39.8" y="39.9" size="1.778" layer="27" display="off"/>
 </element>
@@ -1866,7 +1866,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="MCS0402-10.0K-MFTR-ND" x="44.8" y="34.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="Vishay Beyschlag" x="44.8" y="34.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="MCS0402MC1002FE000" x="44.8" y="34.1" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="43.85" y="35.33" size="1" layer="25"/>
+<attribute name="NAME" x="43.85" y="35.33" size="1" layer="21"/>
 <attribute name="PACKAGE" value="1005 Vishay" x="44.8" y="34.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MCS0402MC1002FE000/?ref=eda" x="44.8" y="34.1" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -1875,7 +1875,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="MCS0402-10.0K-MFTR-ND" x="46.1" y="38.1" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="Vishay Beyschlag" x="46.1" y="38.1" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="MCS0402MC1002FE000" x="46.1" y="38.1" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="46.95" y="39.77" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="46.95" y="39.77" size="1" layer="21" rot="R180"/>
 <attribute name="PACKAGE" value="1005 Vishay" x="46.1" y="38.1" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MCS0402MC1002FE000/?ref=eda" x="46.1" y="38.1" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
@@ -1884,7 +1884,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="MCS0402-10.0K-MFTR-ND" x="28.7" y="57.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="Vishay Beyschlag" x="28.7" y="57.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="MCS0402MC1002FE000" x="28.7" y="57.1" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="29.65" y="58.97" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="30.65" y="59.07" size="1" layer="21" rot="R180"/>
 <attribute name="PACKAGE" value="1005 Vishay" x="28.7" y="57.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MCS0402MC1002FE000/?ref=eda" x="28.7" y="57.1" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
@@ -1893,7 +1893,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="MCS0402-10.0K-MFTR-ND" x="32.2" y="53.3" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Vishay Beyschlag" x="32.2" y="53.3" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="MCS0402MC1002FE000" x="32.2" y="53.3" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="31.35" y="51.63" size="1" layer="25"/>
+<attribute name="NAME" x="31.35" y="51.63" size="1" layer="21"/>
 <attribute name="PACKAGE" value="1005 Vishay" x="32.2" y="53.3" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MCS0402MC1002FE000/?ref=eda" x="32.2" y="53.3" size="1.778" layer="27" display="off"/>
 </element>
@@ -1902,7 +1902,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="MCS0402-10.0K-MFTR-ND" x="21.6" y="56.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="Vishay Beyschlag" x="21.6" y="56.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="MCS0402MC1002FE000" x="21.6" y="56.1" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="20.75" y="57.13" size="1" layer="25"/>
+<attribute name="NAME" x="20.75" y="57.13" size="1" layer="21"/>
 <attribute name="PACKAGE" value="1005 Vishay" x="21.6" y="56.1" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MCS0402MC1002FE000/?ref=eda" x="21.6" y="56.1" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -1911,7 +1911,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="MCS0402-10.0K-MFTR-ND" x="28.8" y="54.7" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="Vishay Beyschlag" x="28.8" y="54.7" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="MCS0402MC1002FE000" x="28.8" y="54.7" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="30.15" y="53.97" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="30.25" y="53.77" size="1" layer="21" rot="R180"/>
 <attribute name="PACKAGE" value="1005 Vishay" x="28.8" y="54.7" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/MCS0402MC1002FE000/?ref=eda" x="28.8" y="54.7" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
@@ -1920,7 +1920,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="P124437TR-ND" x="16.1" y="38.2" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="Panasonic" x="16.1" y="38.2" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="ERJPA2F1300X" x="16.1" y="38.2" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="14.35" y="39.3" size="1" layer="25" rot="R270"/>
+<attribute name="NAME" x="14.35" y="39.3" size="1" layer="21" rot="R270"/>
 <attribute name="PACKAGE" value="1005-2 Panasonic" x="16.1" y="38.2" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERJPA2F1300X/?ref=eda" x="16.1" y="38.2" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
@@ -1929,7 +1929,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="P124598TR-ND" x="22.5" y="38.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MF" value="Panasonic" x="22.5" y="38.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="MP" value="ERJPA2J821X" x="22.5" y="38.1" size="1.778" layer="27" rot="R90" display="off"/>
-<attribute name="NAME" x="24.15" y="37" size="1" layer="25" rot="R90"/>
+<attribute name="NAME" x="24.15" y="37" size="1" layer="21" rot="R90"/>
 <attribute name="PACKAGE" value="1005-2 Panasonic" x="22.5" y="38.1" size="1.778" layer="27" rot="R90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERJPA2J821X/?ref=eda" x="22.5" y="38.1" size="1.778" layer="27" rot="R90" display="off"/>
 </element>
@@ -1938,7 +1938,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="P330DCTR-ND" x="48.7" y="60.4" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="Panasonic" x="48.7" y="60.4" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="ERA2AEB331X" x="48.7" y="60.4" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="49.45" y="61.4" size="1.016" layer="25" rot="R270"/>
+<attribute name="NAME" x="49.45" y="61.4" size="1.016" layer="21" rot="R270"/>
 <attribute name="PACKAGE" value="1005-2 Panasonic" x="48.7" y="60.4" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
 <element name="R17" library="Res_5,1K_0402" package="RES_ERJPA2F5101X" value="ERJPA2F5101X" x="21.4" y="40.3" smashed="yes" rot="R270">
@@ -1946,7 +1946,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="P124488TR-ND" x="21.4" y="40.3" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="Panasonic" x="21.4" y="40.3" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="ERJPA2F5101X" x="21.4" y="40.3" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="22.15" y="41.8" size="1" layer="25" rot="R270"/>
+<attribute name="NAME" x="21.95" y="41.7" size="1" layer="21" rot="R270"/>
 <attribute name="PACKAGE" value="1005-2 Panasonic" x="21.4" y="40.3" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERJPA2F5101X/?ref=eda" x="21.4" y="40.3" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -1955,7 +1955,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="P10MJTR-ND" x="34.5" y="36.6" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Panasonic Electronic" x="34.5" y="36.6" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="ERJ-2GEJ106X" x="34.5" y="36.6" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="33.15" y="35.13" size="1" layer="25"/>
+<attribute name="NAME" x="33.15" y="35.13" size="1" layer="21"/>
 <attribute name="PACKAGE" value="1005 Panasonic Electronic Components" x="34.5" y="36.6" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERJ-2GEJ106X/?ref=eda" x="34.5" y="36.6" size="1.778" layer="27" display="off"/>
 </element>
@@ -1964,7 +1964,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="P10MJTR-ND" x="34.4" y="31.6" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="Panasonic Electronic" x="34.4" y="31.6" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="ERJ-2GEJ106X" x="34.4" y="31.6" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="35.45" y="31.07" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="35.45" y="31.07" size="1" layer="21" rot="R180"/>
 <attribute name="PACKAGE" value="1005 Panasonic Electronic Components" x="34.4" y="31.6" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERJ-2GEJ106X/?ref=eda" x="34.4" y="31.6" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
@@ -1973,7 +1973,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="P5.1MJTR-ND" x="32.2" y="36.5" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="Panasonic" x="32.2" y="36.5" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="ERJ-2GEJ515X" x="32.2" y="36.5" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="30.95" y="37.43" size="1" layer="25"/>
+<attribute name="NAME" x="30.95" y="37.43" size="1" layer="21"/>
 <attribute name="PACKAGE" value="1005 Panasonic Electronic Components" x="32.2" y="36.5" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERJ-2GEJ515X/?ref=eda" x="32.2" y="36.5" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -1982,7 +1982,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="P5.1MJTR-ND" x="32.1" y="32.5" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MF" value="Panasonic" x="32.1" y="32.5" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="MP" value="ERJ-2GEJ515X" x="32.1" y="32.5" size="1.778" layer="27" rot="R270" display="off"/>
-<attribute name="NAME" x="31.05" y="33.43" size="1" layer="25"/>
+<attribute name="NAME" x="30.95" y="33.43" size="1" layer="21"/>
 <attribute name="PACKAGE" value="1005 Panasonic Electronic Components" x="32.1" y="32.5" size="1.778" layer="27" rot="R270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERJ-2GEJ515X/?ref=eda" x="32.1" y="32.5" size="1.778" layer="27" rot="R270" display="off"/>
 </element>
@@ -1991,7 +1991,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="P5.1MJTR-ND" x="29.9" y="46.2" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="MF" value="Panasonic" x="29.9" y="46.2" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="MP" value="ERJ-2GEJ515X" x="29.9" y="46.2" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="28.35" y="48.17" size="1" layer="26" rot="MR180"/>
+<attribute name="NAME" x="28.25" y="48.17" size="1" layer="22" rot="MR180"/>
 <attribute name="PACKAGE" value="1005 Panasonic Electronic Components" x="29.9" y="46.2" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERJ-2GEJ515X/?ref=eda" x="29.9" y="46.2" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
@@ -2000,7 +2000,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="P5.1MJTR-ND" x="31.2" y="43.6" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="MF" value="Panasonic" x="31.2" y="43.6" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="MP" value="ERJ-2GEJ515X" x="31.2" y="43.6" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="30.15" y="42.57" size="1" layer="26" rot="MR180"/>
+<attribute name="NAME" x="30.25" y="42.67" size="1" layer="22" rot="MR180"/>
 <attribute name="PACKAGE" value="1005 Panasonic Electronic Components" x="31.2" y="43.6" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERJ-2GEJ515X/?ref=eda" x="31.2" y="43.6" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
@@ -2009,7 +2009,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="399-19367-2-ND" x="24.6" y="49.6" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MF" value="KEMET" x="24.6" y="49.6" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="MP" value="C0402C104K9RACAUTO" x="24.6" y="49.6" size="1.778" layer="28" rot="MR0" display="off"/>
-<attribute name="NAME" x="25.40619375" y="50.40464375" size="1" layer="26" rot="MR0"/>
+<attribute name="NAME" x="25.40619375" y="50.40464375" size="1" layer="22" rot="MR0"/>
 <attribute name="PACKAGE" value="0402 KEMET" x="24.6" y="49.6" size="1.778" layer="28" rot="MR0" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/C0402C104K9RACAUTO/?ref=eda" x="24.6" y="49.6" size="1.778" layer="28" rot="MR0" display="off"/>
 </element>
@@ -2018,7 +2018,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="399-19367-2-ND" x="27.2" y="47.7" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="MF" value="KEMET" x="27.2" y="47.7" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="MP" value="C0402C104K9RACAUTO" x="27.2" y="47.7" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="26.59380625" y="46.59535625" size="1" layer="26" rot="MR180"/>
+<attribute name="NAME" x="26.59380625" y="46.59535625" size="1" layer="22" rot="MR180"/>
 <attribute name="PACKAGE" value="0402 KEMET" x="27.2" y="47.7" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/C0402C104K9RACAUTO/?ref=eda" x="27.2" y="47.7" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
@@ -2027,7 +2027,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="399-19367-2-ND" x="43.2" y="31.1" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="KEMET" x="43.2" y="31.1" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="C0402C104K9RACAUTO" x="43.2" y="31.1" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="41.99380625" y="29.60464375" size="1" layer="25"/>
+<attribute name="NAME" x="41.89380625" y="29.50464375" size="1" layer="21"/>
 <attribute name="PACKAGE" value="0402 KEMET" x="43.2" y="31.1" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/C0402C104K9RACAUTO/?ref=eda" x="43.2" y="31.1" size="1.778" layer="27" display="off"/>
 </element>
@@ -2036,7 +2036,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="1276-1469-2-ND" x="37.9" y="45.1" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MF" value="Samsung" x="37.9" y="45.1" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MP" value="CL05A225MQ5NNNC" x="37.9" y="45.1" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="37.19380625" y="44.29535625" size="1" layer="26" rot="MR180"/>
+<attribute name="NAME" x="37.19380625" y="44.29535625" size="1" layer="22" rot="MR180"/>
 <attribute name="PACKAGE" value="0402 Samsung" x="37.9" y="45.1" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/CL05A225MQ5NNNC/?ref=eda" x="37.9" y="45.1" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
@@ -2053,7 +2053,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="587-1231-2-ND" x="39.3" y="48" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="MF" value="Taiyo Yuden" x="39.3" y="48" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="MP" value="JMK105BJ105KV-F" x="39.3" y="48" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="39.85" y="45.93" size="1" layer="26" rot="MR0"/>
+<attribute name="NAME" x="39.85" y="45.93" size="1" layer="22" rot="MR0"/>
 <attribute name="PACKAGE" value="1005 Taiyo Yuden" x="39.3" y="48" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/JMK105BJ105KV-F/?ref=eda" x="39.3" y="48" size="1.778" layer="28" rot="MR90" display="off"/>
 </element>
@@ -2062,7 +2062,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="587-1231-2-ND" x="43" y="44.9" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MF" value="Taiyo Yuden" x="43" y="44.9" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="MP" value="JMK105BJ105KV-F" x="43" y="44.9" size="1.778" layer="28" rot="MR180" display="off"/>
-<attribute name="NAME" x="42.15" y="44.17" size="1" layer="26" rot="MR180"/>
+<attribute name="NAME" x="42.15" y="44.17" size="1" layer="22" rot="MR180"/>
 <attribute name="PACKAGE" value="1005 Taiyo Yuden" x="43" y="44.9" size="1.778" layer="28" rot="MR180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/JMK105BJ105KV-F/?ref=eda" x="43" y="44.9" size="1.778" layer="28" rot="MR180" display="off"/>
 </element>
@@ -2071,7 +2071,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="1276-1051-2-ND" x="34.4" y="38.5" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="Samsung Electro-Mechanics" x="34.4" y="38.5" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="CL05B103KO5NNNC" x="34.4" y="38.5" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="35.40619375" y="40.19535625" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="35.40619375" y="40.19535625" size="1" layer="21" rot="R180"/>
 <attribute name="PACKAGE" value="0402 Samsung" x="34.4" y="38.5" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/CL05B103KO5NNNC/?ref=eda" x="34.4" y="38.5" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
@@ -2080,7 +2080,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="1276-1051-2-ND" x="34.4" y="33.7" size="1.778" layer="27" display="off"/>
 <attribute name="MF" value="Samsung Electro-Mechanics" x="34.4" y="33.7" size="1.778" layer="27" display="off"/>
 <attribute name="MP" value="CL05B103KO5NNNC" x="34.4" y="33.7" size="1.778" layer="27" display="off"/>
-<attribute name="NAME" x="33.49380625" y="32.10464375" size="1" layer="25"/>
+<attribute name="NAME" x="33.49380625" y="32.10464375" size="1" layer="21"/>
 <attribute name="PACKAGE" value="0402 Samsung" x="34.4" y="33.7" size="1.778" layer="27" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/CL05B103KO5NNNC/?ref=eda" x="34.4" y="33.7" size="1.778" layer="27" display="off"/>
 </element>
@@ -2089,7 +2089,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="1276-1051-2-ND" x="29.4" y="43.6" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="MF" value="Samsung Electro-Mechanics" x="29.4" y="43.6" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="MP" value="CL05B103KO5NNNC" x="29.4" y="43.6" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="28.39380625" y="42.69535625" size="1" layer="26" rot="MR180"/>
+<attribute name="NAME" x="28.19380625" y="42.69535625" size="1" layer="22" rot="MR180"/>
 <attribute name="PACKAGE" value="0402 Samsung" x="29.4" y="43.6" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/CL05B103KO5NNNC/?ref=eda" x="29.4" y="43.6" size="1.778" layer="28" rot="MR270" display="off"/>
 </element>
@@ -2098,7 +2098,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="1276-1450-2-ND" x="26.6" y="40.4" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="Samsung" x="26.6" y="40.4" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="CL05A106MP5NUNC" x="26.6" y="40.4" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="25.4034375" y="38.802578125" size="1" layer="25"/>
+<attribute name="NAME" x="25.4034375" y="38.802578125" size="1" layer="21"/>
 <attribute name="PACKAGE" value="0402 Samsung" x="26.6" y="40.4" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/CL05A106MP5NUNC/?ref=eda" x="26.6" y="40.4" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
@@ -2107,7 +2107,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="478-10087-2-ND" x="31.6" y="43.3" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="AVX" x="31.6" y="43.3" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="04025A120FAT2A" x="31.6" y="43.3" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="32.96" y="42.85" size="1" layer="25" rot="R180"/>
+<attribute name="NAME" x="32.96" y="42.75" size="1" layer="21" rot="R180"/>
 <attribute name="PACKAGE" value="1005 AVX" x="31.6" y="43.3" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/04025A120FAT2A/?ref=eda" x="31.6" y="43.3" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
@@ -2116,7 +2116,7 @@ design rules under a new name.</description>
 <attribute name="DIGI-KEY_PART_NUMBER" value="478-10087-2-ND" x="31.6" y="44.8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MF" value="AVX" x="31.6" y="44.8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="MP" value="04025A120FAT2A" x="31.6" y="44.8" size="1.778" layer="27" rot="R180" display="off"/>
-<attribute name="NAME" x="30.34" y="45.35" size="1" layer="25"/>
+<attribute name="NAME" x="30.34" y="45.35" size="1" layer="21"/>
 <attribute name="PACKAGE" value="1005 AVX" x="31.6" y="44.8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/04025A120FAT2A/?ref=eda" x="31.6" y="44.8" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
@@ -2169,9 +2169,9 @@ design rules under a new name.</description>
 <wire x1="22.2" y1="61.4" x2="22.6" y2="61.8" width="0.254" layer="1"/>
 <wire x1="24.065" y1="61.8" x2="24.465" y2="61.4" width="0.254" layer="1"/>
 <wire x1="22.6" y1="61.8" x2="24.065" y2="61.8" width="0.254" layer="1"/>
-<wire x1="22.7" y1="43.9" x2="21.6" y2="45" width="0.254" layer="16"/>
-<wire x1="21.6" y1="45" x2="21.6" y2="54.4" width="0.254" layer="16"/>
-<wire x1="21.6" y1="54.4" x2="18.1" y2="57.9" width="0.254" layer="16"/>
+<wire x1="22.7" y1="43.9" x2="21.7" y2="44.9" width="0.254" layer="16"/>
+<wire x1="21.7" y1="44.9" x2="21.7" y2="54.3" width="0.254" layer="16"/>
+<wire x1="21.7" y1="54.3" x2="18.1" y2="57.9" width="0.254" layer="16"/>
 <wire x1="18.1" y1="62.7" x2="18.2" y2="62.8" width="0.254" layer="16"/>
 <wire x1="18.1" y1="62.7" x2="18.1" y2="57.9" width="0.254" layer="16"/>
 <wire x1="26.7" y1="43.9" x2="25.7" y2="43.9" width="0.254" layer="16"/>
@@ -2543,45 +2543,15 @@ design rules under a new name.</description>
 <wire x1="26.7" y1="53.5" x2="26.82" y2="53.38" width="0.254" layer="1"/>
 <wire x1="26.82" y1="53.38" x2="26.82" y2="51.45" width="0.254" layer="1"/>
 <via x="18.7" y="50.6" extent="1-16" drill="0.35" diameter="0.3"/>
-<via x="19.7" y="50.6" extent="1-16" drill="0.35" diameter="0.3"/>
 <via x="19.7" y="49.6" extent="1-16" drill="0.35" diameter="0.3"/>
-<via x="18.7" y="49.6" extent="1-16" drill="0.35" diameter="0.3"/>
 <via x="18.7" y="48.6" extent="1-16" drill="0.35" diameter="0.3"/>
-<via x="19.7" y="48.6" extent="1-16" drill="0.35" diameter="0.3"/>
 <via x="19.7" y="47.6" extent="1-16" drill="0.35" diameter="0.3"/>
-<via x="18.7" y="47.6" extent="1-16" drill="0.35" diameter="0.3"/>
-<via x="19.7" y="46.6" extent="1-16" drill="0.35" diameter="0.3"/>
 <via x="18.7" y="46.6" extent="1-16" drill="0.35" diameter="0.3"/>
 <via x="19.7" y="45.6" extent="1-16" drill="0.35" diameter="0.3"/>
-<via x="18.7" y="45.6" extent="1-16" drill="0.35" diameter="0.3"/>
-<via x="19.7" y="44.6" extent="1-16" drill="0.35" diameter="0.3"/>
 <via x="18.7" y="44.6" extent="1-16" drill="0.35" diameter="0.3"/>
-<via x="17.7" y="44.6" extent="1-16" drill="0.35" diameter="0.3"/>
 <via x="17.7" y="45.6" extent="1-16" drill="0.35" diameter="0.3"/>
-<via x="16.7" y="45.6" extent="1-16" drill="0.35" diameter="0.3"/>
 <via x="16.7" y="44.6" extent="1-16" drill="0.35" diameter="0.3"/>
 <via x="15.7" y="45.6" extent="1-16" drill="0.35" diameter="0.3"/>
-<via x="15.7" y="44.6" extent="1-16" drill="0.35" diameter="0.3"/>
-<wire x1="19.7" y1="50.6" x2="18.7" y2="50.6" width="0" layer="19" extent="1-1"/>
-<wire x1="19.7" y1="49.6" x2="19.7" y2="50.6" width="0" layer="19" extent="1-1"/>
-<wire x1="18.7" y1="49.6" x2="18.7" y2="50.6" width="0" layer="19" extent="1-1"/>
-<wire x1="18.7" y1="48.6" x2="18.7" y2="49.6" width="0" layer="19" extent="1-1"/>
-<wire x1="19.7" y1="48.6" x2="19.7" y2="49.6" width="0" layer="19" extent="1-1"/>
-<wire x1="19.7" y1="47.6" x2="19.7" y2="48.6" width="0" layer="19" extent="1-1"/>
-<wire x1="18.7" y1="47.6" x2="18.7" y2="48.6" width="0" layer="19" extent="1-1"/>
-<wire x1="19.7" y1="46.6" x2="19.7" y2="47.6" width="0" layer="19" extent="1-1"/>
-<wire x1="18.7" y1="46.6" x2="18.7" y2="47.6" width="0" layer="19" extent="1-1"/>
-<wire x1="19.7" y1="45.6" x2="19.7" y2="46.6" width="0" layer="19" extent="1-1"/>
-<wire x1="18.7" y1="45.6" x2="18.7" y2="46.6" width="0" layer="19" extent="1-1"/>
-<wire x1="19.7" y1="44.6" x2="19.7" y2="45.6" width="0" layer="19" extent="1-1"/>
-<wire x1="18.7" y1="44.6" x2="18.7" y2="45.6" width="0" layer="19" extent="1-1"/>
-<wire x1="17.7" y1="44.6" x2="18.7" y2="44.6" width="0" layer="19" extent="1-1"/>
-<wire x1="17.7" y1="45.6" x2="18.7" y2="45.6" width="0" layer="19" extent="1-1"/>
-<wire x1="16.7" y1="45.6" x2="17.7" y2="45.6" width="0" layer="19" extent="1-1"/>
-<wire x1="16.7" y1="44.6" x2="17.7" y2="44.6" width="0" layer="19" extent="1-1"/>
-<wire x1="15.7" y1="45.6" x2="16.7" y2="45.6" width="0" layer="19" extent="1-1"/>
-<wire x1="15.7" y1="44.6" x2="16.7" y2="44.6" width="0" layer="19" extent="1-1"/>
-<wire x1="15.37" y1="42.6" x2="15.7" y2="44.6" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$11">
 <contactref element="MICS6814" pad="G"/>

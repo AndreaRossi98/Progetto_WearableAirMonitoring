@@ -155,8 +155,8 @@
 <wire x1="51" y1="27" x2="51" y2="68" width="0.2032" layer="20"/>
 <dimension x1="10" y1="24" x2="51" y2="24" x3="30.5" y3="22" textsize="1.778" layer="51"/>
 <dimension x1="6" y1="68" x2="6" y2="27" x3="4" y3="47.5" textsize="1.778" layer="51"/>
-<hole x="12.5" y="29.5" drill="3"/>
-<hole x="48.5" y="65.5" drill="3"/>
+<hole x="12.5" y="29.5" drill="2.7"/>
+<hole x="48.5" y="65.5" drill="2.7"/>
 <wire x1="10" y1="68" x2="18" y2="68" width="0.2032" layer="20"/>
 <wire x1="18" y1="68" x2="19.8" y2="66.2" width="0.2032" layer="20"/>
 <wire x1="19.8" y1="66.2" x2="30.7" y2="66.2" width="0.2032" layer="20"/>

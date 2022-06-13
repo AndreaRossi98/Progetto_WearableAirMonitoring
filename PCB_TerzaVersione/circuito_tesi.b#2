@@ -2557,6 +2557,15 @@ design rules under a new name.</description>
 <wire x1="42.8" y1="31.13" x2="42.77" y2="31.1" width="0.254" layer="1"/>
 <wire x1="42.4" y1="33.66" x2="42.4" y2="36.7" width="0.254" layer="1"/>
 <wire x1="42.4" y1="36.7" x2="43.1" y2="37.4" width="0.254" layer="1"/>
+<via x="45.3" y="46.3" extent="1-16" drill="0.35" diameter="0.3"/>
+<via x="39.5" y="46.4" extent="1-16" drill="0.35" diameter="0.3"/>
+<via x="36.5" y="44.6" extent="1-16" drill="0.35" diameter="0.3"/>
+<via x="35.1" y="43.6" extent="1-16" drill="0.35" diameter="0.3"/>
+<via x="30.5" y="48.7" extent="1-16" drill="0.35" diameter="0.3"/>
+<via x="28.7" y="48.7" extent="1-16" drill="0.35" diameter="0.3"/>
+<via x="35.8" y="50.3" extent="1-16" drill="0.35" diameter="0.3"/>
+<via x="32.8" y="44.6" extent="1-16" drill="0.35" diameter="0.3"/>
+<via x="41" y="45.1" extent="1-16" drill="0.35" diameter="0.3"/>
 </signal>
 <signal name="N$11">
 <contactref element="MICS6814" pad="G"/>
@@ -2743,15 +2752,16 @@ design rules under a new name.</description>
 <wire x1="35.978" y1="47.5251" x2="35.978" y2="48.1754" width="0.254" layer="16"/>
 <wire x1="35.978" y1="48.1754" x2="35.978" y2="48.978" width="0.254" layer="16"/>
 <wire x1="35.978" y1="48.978" x2="36.7" y2="49.7" width="0.254" layer="16"/>
-<wire x1="31" y1="49.7" x2="36.7" y2="49.7" width="0.254" layer="16"/>
-<wire x1="29.9" y1="48.6" x2="31" y2="49.7" width="0.254" layer="16"/>
+<wire x1="29.1" y1="49.7" x2="36.7" y2="49.7" width="0.254" layer="16"/>
 <contactref element="R19" pad="1"/>
-<wire x1="29.9" y1="48.6" x2="29.9" y2="46.645" width="0.254" layer="16"/>
+<wire x1="29.9" y1="46.645" x2="29.9" y2="48.9" width="0.254" layer="16"/>
 <contactref element="C1" pad="1"/>
-<wire x1="31" y1="49.7" x2="25.13" y2="49.7" width="0.254" layer="16"/>
+<wire x1="28.7" y1="49.7" x2="25.13" y2="49.7" width="0.254" layer="16"/>
 <wire x1="25.13" y1="49.7" x2="25.03" y2="49.6" width="0.254" layer="16"/>
 <wire x1="25.03" y1="49.6" x2="25.03" y2="48.5063" width="0.254" layer="16"/>
 <wire x1="25.03" y1="48.5063" x2="24.7" y2="48.1763" width="0.254" layer="16"/>
+<wire x1="29.9" y1="48.9" x2="29.1" y2="49.7" width="0.254" layer="16"/>
+<wire x1="29.1" y1="49.7" x2="28.7" y2="49.7" width="0.254" layer="16"/>
 </signal>
 <signal name="3.3V">
 <contactref element="MDBT42Q" pad="11"/>

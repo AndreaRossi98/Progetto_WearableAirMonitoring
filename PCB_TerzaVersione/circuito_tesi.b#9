@@ -2171,8 +2171,9 @@ design rules under a new name.</description>
 <wire x1="22.6" y1="61.8" x2="24.065" y2="61.8" width="0.254" layer="1"/>
 <wire x1="21.4" y1="43.9" x2="20.4" y2="44.9" width="0.254" layer="16"/>
 <wire x1="20.4" y1="44.9" x2="20.4" y2="55.6" width="0.254" layer="16"/>
-<wire x1="20.4" y1="55.6" x2="18.2" y2="57.8" width="0.254" layer="16"/>
-<wire x1="18.2" y1="57.8" x2="18.2" y2="62.8" width="0.254" layer="16"/>
+<wire x1="20.4" y1="55.6" x2="18.1" y2="57.9" width="0.254" layer="16"/>
+<wire x1="18.1" y1="62.7" x2="18.2" y2="62.8" width="0.254" layer="16"/>
+<wire x1="18.1" y1="62.7" x2="18.1" y2="57.9" width="0.254" layer="16"/>
 <wire x1="25.3" y1="43.9" x2="21.4" y2="43.9" width="0.254" layer="16"/>
 <wire x1="18.2" y1="62.8" x2="20" y2="61" width="0.254" layer="1"/>
 <wire x1="20" y1="61" x2="21.2" y2="59.8" width="0.254" layer="1"/>
@@ -2663,9 +2664,9 @@ design rules under a new name.</description>
 <contactref element="BT2" pad="S+1"/>
 <contactref element="BT2" pad="S+2"/>
 <wire x1="14.39" y1="34.65" x2="17.14" y2="31.9" width="0.254" layer="16"/>
-<wire x1="17.14" y1="31.9" x2="23.9" y2="31.9" width="0.254" layer="16"/>
-<wire x1="23.9" y1="31.9" x2="26.65" y2="34.65" width="0.254" layer="16"/>
-<wire x1="26.65" y1="34.65" x2="28.99" y2="34.65" width="0.254" layer="16"/>
+<wire x1="17.14" y1="31.9" x2="26.2" y2="31.9" width="0.254" layer="16"/>
+<wire x1="26.2" y1="31.9" x2="28.95" y2="34.65" width="0.254" layer="16"/>
+<wire x1="28.95" y1="34.65" x2="28.99" y2="34.65" width="0.254" layer="16"/>
 <wire x1="28.99" y1="34.65" x2="33.24" y2="38.9" width="0.254" layer="16"/>
 <wire x1="33.24" y1="38.9" x2="38.1" y2="38.9" width="0.254" layer="16"/>
 <wire x1="38.1" y1="38.9" x2="40.14" y2="36.86" width="0.254" layer="16"/>
@@ -2704,10 +2705,10 @@ design rules under a new name.</description>
 <contactref element="BT1" pad="S+2"/>
 <contactref element="S1" pad="2"/>
 <wire x1="32.84" y1="34.65" x2="32.94" y2="34.65" width="0.254" layer="16"/>
-<wire x1="36.99" y1="30.6" x2="32.94" y2="34.65" width="0.254" layer="16"/>
-<wire x1="36.99" y1="30.6" x2="43.1" y2="30.6" width="0.254" layer="16"/>
-<wire x1="43.1" y1="30.6" x2="47.15" y2="34.65" width="0.254" layer="16"/>
-<wire x1="47.15" y1="34.65" x2="47.44" y2="34.65" width="0.254" layer="16"/>
+<wire x1="37.19" y1="30.4" x2="32.94" y2="34.65" width="0.254" layer="16"/>
+<wire x1="37.19" y1="30.4" x2="43.2" y2="30.4" width="0.254" layer="16"/>
+<wire x1="47.44" y1="34.65" x2="47.44" y2="34.64" width="0.254" layer="16"/>
+<wire x1="47.44" y1="34.64" x2="43.2" y2="30.4" width="0.254" layer="16"/>
 <wire x1="47.44" y1="34.65" x2="47.2" y2="34.89" width="0.254" layer="16"/>
 <wire x1="47.2" y1="45.4" x2="48.7" y2="46.9" width="0.254" layer="16"/>
 <wire x1="47.2" y1="34.89" x2="47.2" y2="45.4" width="0.254" layer="16"/>
@@ -2767,8 +2768,8 @@ design rules under a new name.</description>
 <contactref element="LIS3DH" pad="8"/>
 <contactref element="LIS3DH" pad="1"/>
 <via x="36.9" y="37.5" extent="1-16" drill="0.35"/>
-<wire x1="36.9" y1="33.2" x2="38.2" y2="31.9" width="0.254" layer="16"/>
-<wire x1="36.9" y1="37.5" x2="36.9" y2="33.2" width="0.254" layer="16"/>
+<wire x1="36.9" y1="33.1" x2="38.1" y2="31.9" width="0.254" layer="16"/>
+<wire x1="36.9" y1="37.5" x2="36.9" y2="33.1" width="0.254" layer="16"/>
 <wire x1="42.8" y1="31.9" x2="44.2" y2="33.3" width="0.254" layer="16"/>
 <wire x1="44.2" y1="36.5" x2="44.2" y2="33.3" width="0.254" layer="16"/>
 <wire x1="44.2" y1="36.5" x2="44.7" y2="37" width="0.254" layer="16"/>
@@ -2831,7 +2832,7 @@ design rules under a new name.</description>
 <wire x1="40.1" y1="50.9" x2="40.1" y2="50.7" width="0.254" layer="1"/>
 <wire x1="40.1" y1="50.7" x2="38" y2="48.6" width="0.254" layer="1"/>
 <wire x1="42.075" y1="50.9" x2="40.1" y2="50.9" width="0.254" layer="1"/>
-<wire x1="38.2" y1="31.9" x2="42.8" y2="31.9" width="0.254" layer="16"/>
+<wire x1="38.1" y1="31.9" x2="42.8" y2="31.9" width="0.254" layer="16"/>
 <wire x1="31.9064" y1="62.4064" x2="34.3" y2="64.8" width="0.254" layer="1"/>
 <wire x1="34.3" y1="64.8" x2="38.7" y2="64.8" width="0.254" layer="1"/>
 <wire x1="39.4" y1="63.3" x2="39.4" y2="64.1" width="0.254" layer="1"/>

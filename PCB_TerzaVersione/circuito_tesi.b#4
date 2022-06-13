@@ -166,11 +166,11 @@
 <text x="11" y="62.7" size="1" layer="21">D</text>
 <text x="17.8" y="60.4" size="1" layer="21">C</text>
 <text x="32.1" y="60.7" size="1" layer="21" rot="R90">SPS30</text>
-<text x="14.3" y="47.5" size="1" layer="22" rot="MR90" align="center">ENVIRONMENTAL
+<text x="14.5" y="47.5" size="1" layer="22" rot="MR90" align="center">ENVIRONMENTAL
 WEARABLE 
 MONITOR
-
-LARES 2022</text>
+</text>
+<text x="11.8" y="47.3" size="1" layer="22" rot="MR90" align="center">LARES 2022</text>
 </plain>
 <libraries>
 <library name="Battery_holder">

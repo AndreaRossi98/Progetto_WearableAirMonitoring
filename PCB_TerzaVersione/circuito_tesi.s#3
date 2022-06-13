@@ -3810,15 +3810,15 @@ Created by Upverter.com</description>
 <part name="OPAMP" library="Opamp_SMD" deviceset="TSV912IDT" device=""/>
 <part name="GND21" library="supply" deviceset="GND" device=""/>
 <part name="S1" library="switch_TH_HO" deviceset="EG1213" device=""/>
-<part name="V_R_5" library="VOLT_REG_5V_SOT-23-5" deviceset="MC78LC50NTRG" device="TSOT23-5_ONS"/>
+<part name="VR_5" library="VOLT_REG_5V_SOT-23-5" deviceset="MC78LC50NTRG" device="TSOT23-5_ONS"/>
 <part name="GND4" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="GND5" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="GND6" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="GND7" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
-<part name="V_R_3.3" library="Volt_Reg_3.3_8MSOP" deviceset="MIC5219-3.3YMM" device="MSOP-8LD-PL-1_MCH"/>
+<part name="VR_3.3" library="Volt_Reg_3.3_8MSOP" deviceset="MIC5219-3.3YMM" device="MSOP-8LD-PL-1_MCH"/>
 <part name="GND8" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="GND9" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
-<part name="V_R_1.8" library="VOLT_REG_1.8_SOT-23-5" deviceset="S-1318D18-M5T1U4" device=""/>
+<part name="VR_1.8" library="VOLT_REG_1.8_SOT-23-5" deviceset="S-1318D18-M5T1U4" device=""/>
 <part name="BJT" library="BJT_TO-236" deviceset="MMBT3904-215" device=""/>
 <part name="GND1" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="Y1" library="Crystal-ECS-.327-9-16-TR" deviceset="ECS-.327-9-16-TR" device=""/>
@@ -3945,7 +3945,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <attribute name="VALUE" x="-142.24" y="86.36" size="1.778" layer="96" rot="R180"/>
 </instance>
 <instance part="S1" gate="G$1" x="48.26" y="106.68" smashed="yes"/>
-<instance part="V_R_5" gate="A" x="45.72" y="73.66" smashed="yes">
+<instance part="VR_5" gate="A" x="45.72" y="73.66" smashed="yes">
 <attribute name="NAME" x="58.7746" y="80.2386" size="2.083" layer="95" ratio="6"/>
 </instance>
 <instance part="GND4" gate="1" x="45.72" y="76.2" smashed="yes" rot="R180">
@@ -3960,7 +3960,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <instance part="GND7" gate="1" x="91.44" y="-25.4" smashed="yes">
 <attribute name="VALUE" x="91.44" y="-25.654" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="V_R_3.3" gate="A" x="45.72" y="35.56" smashed="yes">
+<instance part="VR_3.3" gate="A" x="45.72" y="35.56" smashed="yes">
 <attribute name="NAME" x="56.2346" y="42.1386" size="2.083" layer="95" ratio="6"/>
 </instance>
 <instance part="GND8" gate="1" x="86.36" y="22.86" smashed="yes">
@@ -3969,7 +3969,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <instance part="GND9" gate="1" x="43.18" y="15.24" smashed="yes">
 <attribute name="VALUE" x="43.18" y="14.986" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="V_R_1.8" gate="G$1" x="45.72" y="-12.7" smashed="yes">
+<instance part="VR_1.8" gate="G$1" x="45.72" y="-12.7" smashed="yes">
 <attribute name="NAME" x="52.07" y="-7.62" size="1.778" layer="95" align="center-left"/>
 </instance>
 <instance part="BJT" gate="G$1" x="81.28" y="246.38" smashed="yes">
@@ -3985,7 +3985,6 @@ CONTROLLARE LE CONNESSIONI</text>
 </instance>
 <instance part="PROGRAMMER" gate="G$1" x="-358.14" y="-15.24" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-353.051440625" y="-7.0983" size="1.781" layer="95" rot="MR0"/>
-<attribute name="VALUE" x="-353.0528" y="-22.8708" size="1.78051875" layer="96" rot="MR0"/>
 </instance>
 <instance part="GND3" gate="1" x="-256.54" y="50.8" smashed="yes" rot="R270">
 <attribute name="VALUE" x="-259.08" y="53.34" size="1.778" layer="96" rot="R270"/>
@@ -4119,7 +4118,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <pinref part="R9" gate="G$1" pin="2"/>
 </segment>
 <segment>
-<pinref part="V_R_5" gate="A" pin="3"/>
+<pinref part="VR_5" gate="A" pin="3"/>
 <wire x1="83.82" y1="68.58" x2="86.36" y2="68.58" width="0.1524" layer="91"/>
 <label x="86.36" y="68.58" size="1.778" layer="95" xref="yes"/>
 <pinref part="C2" gate="G$1" pin="1"/>
@@ -4342,7 +4341,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <label x="-147.32" y="10.16" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
-<pinref part="V_R_5" gate="A" pin="1"/>
+<pinref part="VR_5" gate="A" pin="1"/>
 <pinref part="GND4" gate="1" pin="GND"/>
 <wire x1="48.26" y1="73.66" x2="45.72" y2="73.66" width="0.1524" layer="91"/>
 </segment>
@@ -4359,23 +4358,23 @@ CONTROLLARE LE CONNESSIONI</text>
 <pinref part="GND6" gate="1" pin="GND"/>
 <wire x1="40.64" y1="-20.32" x2="40.64" y2="-22.86" width="0.1524" layer="91"/>
 <wire x1="38.1" y1="-20.32" x2="40.64" y2="-20.32" width="0.1524" layer="91"/>
-<pinref part="V_R_1.8" gate="G$1" pin="VSS"/>
+<pinref part="VR_1.8" gate="G$1" pin="VSS"/>
 <wire x1="45.72" y1="-15.24" x2="40.64" y2="-15.24" width="0.1524" layer="91"/>
 <wire x1="40.64" y1="-15.24" x2="40.64" y2="-20.32" width="0.1524" layer="91"/>
 <junction x="40.64" y="-20.32"/>
 <pinref part="C5" gate="G$1" pin="1"/>
 </segment>
 <segment>
-<pinref part="V_R_3.3" gate="A" pin="GND"/>
+<pinref part="VR_3.3" gate="A" pin="GND"/>
 <wire x1="83.82" y1="35.56" x2="86.36" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="35.56" x2="86.36" y2="33.02" width="0.1524" layer="91"/>
-<pinref part="V_R_3.3" gate="A" pin="GND_4"/>
+<pinref part="VR_3.3" gate="A" pin="GND_4"/>
 <wire x1="86.36" y1="33.02" x2="83.82" y2="33.02" width="0.1524" layer="91"/>
-<pinref part="V_R_3.3" gate="A" pin="GND_3"/>
+<pinref part="VR_3.3" gate="A" pin="GND_3"/>
 <wire x1="83.82" y1="30.48" x2="86.36" y2="30.48" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="30.48" x2="86.36" y2="33.02" width="0.1524" layer="91"/>
 <junction x="86.36" y="33.02"/>
-<pinref part="V_R_3.3" gate="A" pin="GND_2"/>
+<pinref part="VR_3.3" gate="A" pin="GND_2"/>
 <wire x1="83.82" y1="27.94" x2="86.36" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="27.94" x2="86.36" y2="30.48" width="0.1524" layer="91"/>
 <junction x="86.36" y="30.48"/>
@@ -4548,7 +4547,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <segment>
 <wire x1="78.74" y1="-15.24" x2="91.44" y2="-15.24" width="0.1524" layer="91"/>
 <label x="93.98" y="-15.24" size="1.778" layer="95" xref="yes"/>
-<pinref part="V_R_1.8" gate="G$1" pin="VOUT"/>
+<pinref part="VR_1.8" gate="G$1" pin="VOUT"/>
 <pinref part="C6" gate="G$1" pin="2"/>
 <wire x1="91.44" y1="-15.24" x2="93.98" y2="-15.24" width="0.1524" layer="91"/>
 <junction x="91.44" y="-15.24"/>
@@ -4616,16 +4615,16 @@ CONTROLLARE LE CONNESSIONI</text>
 <pinref part="S1" gate="G$1" pin="1"/>
 </segment>
 <segment>
-<pinref part="V_R_5" gate="A" pin="2"/>
+<pinref part="VR_5" gate="A" pin="2"/>
 <wire x1="48.26" y1="71.12" x2="45.72" y2="71.12" width="0.1524" layer="91"/>
 <label x="45.72" y="71.12" size="1.778" layer="95" rot="R180" xref="yes"/>
 <pinref part="C1" gate="G$1" pin="1"/>
 <junction x="48.26" y="71.12"/>
 </segment>
 <segment>
-<pinref part="V_R_3.3" gate="A" pin="EN"/>
+<pinref part="VR_3.3" gate="A" pin="EN"/>
 <wire x1="48.26" y1="35.56" x2="45.72" y2="35.56" width="0.1524" layer="91"/>
-<pinref part="V_R_3.3" gate="A" pin="IN"/>
+<pinref part="VR_3.3" gate="A" pin="IN"/>
 <wire x1="45.72" y1="35.56" x2="43.18" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="48.26" y1="33.02" x2="45.72" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="45.72" y1="33.02" x2="45.72" y2="35.56" width="0.1524" layer="91"/>
@@ -4701,7 +4700,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <junction x="-279.4" y="177.8"/>
 </segment>
 <segment>
-<pinref part="V_R_3.3" gate="A" pin="OUT"/>
+<pinref part="VR_3.3" gate="A" pin="OUT"/>
 <wire x1="48.26" y1="30.48" x2="38.1" y2="30.48" width="0.1524" layer="91"/>
 <label x="35.56" y="30.48" size="1.778" layer="95" rot="R180" xref="yes"/>
 <wire x1="38.1" y1="30.48" x2="35.56" y2="30.48" width="0.1524" layer="91"/>
@@ -4730,7 +4729,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="-220.98" y1="111.76" x2="-218.44" y2="111.76" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="V_R_1.8" gate="G$1" pin="VIN"/>
+<pinref part="VR_1.8" gate="G$1" pin="VIN"/>
 <wire x1="45.72" y1="-12.7" x2="38.1" y2="-12.7" width="0.1524" layer="91"/>
 <label x="30.48" y="-12.7" size="1.778" layer="95" rot="R180" xref="yes"/>
 <pinref part="C5" gate="G$1" pin="2"/>
@@ -4738,7 +4737,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <junction x="38.1" y="-12.7"/>
 </segment>
 <segment>
-<pinref part="V_R_1.8" gate="G$1" pin="ON_/_OFF"/>
+<pinref part="VR_1.8" gate="G$1" pin="ON_/_OFF"/>
 <wire x1="45.72" y1="-17.78" x2="45.72" y2="-22.86" width="0.1524" layer="91"/>
 <label x="45.72" y="-22.86" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
@@ -4808,7 +4807,7 @@ CONTROLLARE LE CONNESSIONI</text>
 </net>
 <net name="N$14" class="0">
 <segment>
-<pinref part="V_R_3.3" gate="A" pin="BYP"/>
+<pinref part="VR_3.3" gate="A" pin="BYP"/>
 <wire x1="48.26" y1="27.94" x2="45.72" y2="27.94" width="0.1524" layer="91"/>
 <pinref part="C4" gate="A" pin="2"/>
 </segment>

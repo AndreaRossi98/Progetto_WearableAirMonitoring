@@ -3829,8 +3829,6 @@ Created by Upverter.com</description>
 <part name="J2" library="CONN_SMD_5PIN" deviceset="S5B-ZR-SM4A-TF_(LF)_(SN)" device="CONN_S5B-ZR-SM4A-TF_JST"/>
 <part name="GND11" library="supply" deviceset="GND" device=""/>
 <part name="LED" library="LED_R_LTST-C170KRKT" deviceset="LTST-C170KRKT" device=""/>
-<part name="R1" library="Res_10K_0402" deviceset="MCS0402MC1002FE000" device=""/>
-<part name="R2" library="Res_10K_0402" deviceset="MCS0402MC1002FE000" device=""/>
 <part name="R3" library="Res_10K_0402" deviceset="MCS0402MC1002FE000" device=""/>
 <part name="R4" library="Res_10K_0402" deviceset="MCS0402MC1002FE000" device=""/>
 <part name="R5" library="Res_10K_0402" deviceset="MCS0402MC1002FE000" device=""/>
@@ -4007,12 +4005,6 @@ CONTROLLARE LE CONNESSIONI</text>
 <instance part="LED" gate="G$1" x="-205.74" y="-2.54" smashed="yes" rot="R90">
 <attribute name="NAME" x="-209.8086" y="-4.5743" size="1.780009375" layer="95" rot="R90"/>
 </instance>
-<instance part="R1" gate="G$1" x="-228.6" y="22.86" smashed="yes" rot="R90">
-<attribute name="NAME" x="-231.14148125" y="15.235559375" size="2.54148125" layer="95" rot="R90"/>
-</instance>
-<instance part="R2" gate="G$1" x="-215.9" y="22.86" smashed="yes" rot="R90">
-<attribute name="NAME" x="-218.44148125" y="15.235559375" size="2.54148125" layer="95" rot="R90"/>
-</instance>
 <instance part="R3" gate="G$1" x="-350.52" y="25.4" smashed="yes" rot="R90">
 <attribute name="NAME" x="-353.06148125" y="17.775559375" size="2.54148125" layer="95" rot="R90"/>
 </instance>
@@ -4188,12 +4180,8 @@ CONTROLLARE LE CONNESSIONI</text>
 </segment>
 <segment>
 <pinref part="MDBT42Q" gate="G$1" pin="P0.08"/>
-<wire x1="-200.66" y1="35.56" x2="-215.9" y2="35.56" width="0.1524" layer="91"/>
-<wire x1="-215.9" y1="35.56" x2="-218.44" y2="35.56" width="0.1524" layer="91"/>
-<wire x1="-215.9" y1="33.02" x2="-215.9" y2="35.56" width="0.1524" layer="91"/>
-<junction x="-215.9" y="35.56"/>
+<wire x1="-200.66" y1="35.56" x2="-218.44" y2="35.56" width="0.1524" layer="91"/>
 <label x="-218.44" y="35.56" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="R2" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$0" pin="SDA/SDI/SDO"/>
@@ -4228,12 +4216,8 @@ CONTROLLARE LE CONNESSIONI</text>
 </segment>
 <segment>
 <pinref part="MDBT42Q" gate="G$1" pin="P0.06"/>
-<wire x1="-200.66" y1="40.64" x2="-228.6" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="-228.6" y1="40.64" x2="-233.68" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="-228.6" y1="33.02" x2="-228.6" y2="40.64" width="0.1524" layer="91"/>
-<junction x="-228.6" y="40.64"/>
+<wire x1="-200.66" y1="40.64" x2="-233.68" y2="40.64" width="0.1524" layer="91"/>
 <label x="-233.68" y="40.64" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="R1" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$0" pin="SCL/SPC"/>
@@ -4730,17 +4714,6 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="-350.52" y1="-10.16" x2="-347.98" y2="-10.16" width="0.1524" layer="91"/>
 <wire x1="-347.98" y1="-10.16" x2="-347.98" y2="-7.62" width="0.1524" layer="91"/>
 <label x="-347.98" y="-7.62" size="1.778" layer="95" rot="R90" xref="yes"/>
-</segment>
-<segment>
-<wire x1="-228.6" y1="12.7" x2="-228.6" y2="10.16" width="0.1524" layer="91"/>
-<wire x1="-228.6" y1="10.16" x2="-220.98" y2="10.16" width="0.1524" layer="91"/>
-<wire x1="-220.98" y1="10.16" x2="-215.9" y2="10.16" width="0.1524" layer="91"/>
-<wire x1="-215.9" y1="10.16" x2="-215.9" y2="12.7" width="0.1524" layer="91"/>
-<junction x="-220.98" y="10.16"/>
-<wire x1="-220.98" y1="7.62" x2="-220.98" y2="10.16" width="0.1524" layer="91"/>
-<label x="-220.98" y="7.62" size="1.778" layer="95" rot="R270" xref="yes"/>
-<pinref part="R1" gate="G$1" pin="1"/>
-<pinref part="R2" gate="G$1" pin="1"/>
 </segment>
 <segment>
 <pinref part="U1" gate="G$0" pin="VDD"/>

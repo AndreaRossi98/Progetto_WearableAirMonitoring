@@ -3801,7 +3801,7 @@ Created by Upverter.com</description>
 <part name="BT2" library="Battery_holder" deviceset="2996TR" device=""/>
 <part name="BT3" library="Battery_holder" deviceset="2996TR" device=""/>
 <part name="BT4" library="Battery_holder" deviceset="2996TR" device=""/>
-<part name="IC1" library="SCD41-R2_unofficial" deviceset="SCD41-D-R2" device=""/>
+<part name="SCD41" library="SCD41-R2_unofficial" deviceset="SCD41-D-R2" device=""/>
 <part name="MDBT42Q" library="Raytac_nRF52" deviceset="317030213" device=""/>
 <part name="Q1" library="BSS138" deviceset="BSS138" device=""/>
 <part name="Q2" library="BSS138" deviceset="BSS138" device=""/>
@@ -3821,12 +3821,12 @@ Created by Upverter.com</description>
 <part name="VR_1.8" library="VOLT_REG_1.8_SOT-23-5" deviceset="S-1318D18-M5T1U4" device=""/>
 <part name="BJT" library="BJT_TO-236" deviceset="MMBT3904-215" device=""/>
 <part name="GND1" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
-<part name="Y1" library="Crystal-ECS-.327-9-16-TR" deviceset="ECS-.327-9-16-TR" device=""/>
+<part name="CRYST" library="Crystal-ECS-.327-9-16-TR" deviceset="ECS-.327-9-16-TR" device=""/>
 <part name="PROG" library="Connet_6_BG306-04-A-1-0400-X-X_REVD" deviceset="BG306-04-A-1-0400-X-X_REVD" device=""/>
 <part name="GND3" library="supply" deviceset="GND" device=""/>
 <part name="GND10" library="supply" deviceset="GND" device=""/>
 <part name="LIS3DH" library="STMicroelectronics - LIS3DH" deviceset="STMICROELECTRONICS_LIS3DH" device="STMICROELECTRONICS_LIS3DH_0_0"/>
-<part name="J2" library="CONN_SMD_5PIN" deviceset="S5B-ZR-SM4A-TF_(LF)_(SN)" device="CONN_S5B-ZR-SM4A-TF_JST"/>
+<part name="SPS30" library="CONN_SMD_5PIN" deviceset="S5B-ZR-SM4A-TF_(LF)_(SN)" device="CONN_S5B-ZR-SM4A-TF_JST"/>
 <part name="GND11" library="supply" deviceset="GND" device=""/>
 <part name="LED" library="LED_R_LTST-C170KRKT" deviceset="LTST-C170KRKT" device=""/>
 <part name="R3" library="Res_10K_0402" deviceset="MCS0402MC1002FE000" device=""/>
@@ -3915,7 +3915,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <attribute name="NAME" x="133.35" y="110.49" size="1.778" layer="95"/>
 <attribute name="VALUE" x="133.35" y="101.6" size="1.778" layer="96"/>
 </instance>
-<instance part="IC1" gate="G$1" x="-210.82" y="215.9" smashed="yes" rot="MR270">
+<instance part="SCD41" gate="G$1" x="-210.82" y="215.9" smashed="yes" rot="MR270">
 <attribute name="VALUE" x="-226.06" y="186.69" size="1.778" layer="96" rot="MR180" align="center-left"/>
 </instance>
 <instance part="MDBT42Q" gate="G$1" x="-175.26" y="43.18" smashed="yes">
@@ -3979,7 +3979,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <instance part="GND1" gate="1" x="53.34" y="-91.44" smashed="yes">
 <attribute name="VALUE" x="53.34" y="-91.694" size="1.778" layer="96" align="top-center"/>
 </instance>
-<instance part="Y1" gate="G$1" x="-241.3" y="55.88" smashed="yes" rot="R90">
+<instance part="CRYST" gate="G$1" x="-241.3" y="55.88" smashed="yes" rot="R90">
 <attribute name="NAME" x="-245.116690625" y="50.79106875" size="1.78111875" layer="95" rot="R90"/>
 <attribute name="VALUE" x="-236.210609375" y="50.790609375" size="1.781290625" layer="96" rot="R90"/>
 </instance>
@@ -3995,7 +3995,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <instance part="LIS3DH" gate="G$0" x="-213.36" y="144.78" smashed="yes">
 <attribute name="NAME" x="-213.36" y="142.24" size="2.54" layer="95" align="top-left"/>
 </instance>
-<instance part="J2" gate="A" x="-304.8" y="205.74" smashed="yes" rot="MR0">
+<instance part="SPS30" gate="A" x="-304.8" y="205.74" smashed="yes" rot="MR0">
 <attribute name="NAME" x="-308.9646" y="211.0486" size="2.083" layer="95" ratio="6" rot="MR0"/>
 </instance>
 <instance part="GND11" gate="1" x="83.82" y="236.22" smashed="yes">
@@ -4110,7 +4110,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <segment>
 <label x="-302.26" y="205.74" size="1.778" layer="95" xref="yes"/>
 <wire x1="-304.8" y1="205.74" x2="-302.26" y2="205.74" width="0.1524" layer="91"/>
-<pinref part="J2" gate="A" pin="1"/>
+<pinref part="SPS30" gate="A" pin="1"/>
 </segment>
 <segment>
 <wire x1="-289.56" y1="226.06" x2="-289.56" y2="228.6" width="0.1524" layer="91"/>
@@ -4147,7 +4147,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="-294.64" y1="203.2" x2="-294.64" y2="205.74" width="0.1524" layer="91"/>
 <wire x1="-294.64" y1="205.74" x2="-289.56" y2="205.74" width="0.1524" layer="91"/>
 <label x="-297.18" y="203.2" size="1.778" layer="95"/>
-<pinref part="J2" gate="A" pin="2"/>
+<pinref part="SPS30" gate="A" pin="2"/>
 <pinref part="R9" gate="G$1" pin="1"/>
 <junction x="-289.56" y="205.74"/>
 </segment>
@@ -4166,7 +4166,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <label x="-294.64" y="127" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="SDA"/>
+<pinref part="SCD41" gate="G$1" pin="SDA"/>
 <wire x1="-182.88" y1="195.58" x2="-180.34" y2="195.58" width="0.1524" layer="91"/>
 <label x="-180.34" y="195.58" size="1.778" layer="95" xref="yes"/>
 </segment>
@@ -4202,7 +4202,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <label x="-287.02" y="129.54" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="SCL"/>
+<pinref part="SCD41" gate="G$1" pin="SCL"/>
 <wire x1="-172.72" y1="198.12" x2="-182.88" y2="198.12" width="0.1524" layer="91"/>
 <label x="-172.72" y="198.12" size="1.778" layer="95" xref="yes"/>
 </segment>
@@ -4295,11 +4295,11 @@ CONTROLLARE LE CONNESSIONI</text>
 <label x="-330.2" y="119.38" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="GND_2"/>
+<pinref part="SCD41" gate="G$1" pin="GND_2"/>
 <wire x1="-231.14" y1="208.28" x2="-231.14" y2="205.74" width="0.1524" layer="91"/>
 <wire x1="-231.14" y1="205.74" x2="-231.14" y2="203.2" width="0.1524" layer="91"/>
 <wire x1="-231.14" y1="203.2" x2="-228.6" y2="203.2" width="0.1524" layer="91"/>
-<pinref part="IC1" gate="G$1" pin="GND_3"/>
+<pinref part="SCD41" gate="G$1" pin="GND_3"/>
 <wire x1="-228.6" y1="205.74" x2="-231.14" y2="205.74" width="0.1524" layer="91"/>
 <junction x="-231.14" y="205.74"/>
 <label x="-231.14" y="208.28" size="1.778" layer="95" rot="R90" xref="yes"/>
@@ -4319,7 +4319,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <label x="-383.54" y="33.02" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="GND_1"/>
+<pinref part="SCD41" gate="G$1" pin="GND_1"/>
 <wire x1="-182.88" y1="205.74" x2="-180.34" y2="205.74" width="0.1524" layer="91"/>
 <wire x1="-180.34" y1="205.74" x2="-180.34" y2="208.28" width="0.1524" layer="91"/>
 <label x="-180.34" y="208.28" size="1.778" layer="95" rot="R90" xref="yes"/>
@@ -4331,8 +4331,8 @@ CONTROLLARE LE CONNESSIONI</text>
 <label x="-302.26" y="193.04" size="1.778" layer="95" rot="R270" xref="yes"/>
 <wire x1="-304.8" y1="198.12" x2="-302.26" y2="198.12" width="0.1524" layer="91"/>
 <wire x1="-304.8" y1="195.58" x2="-302.26" y2="195.58" width="0.1524" layer="91"/>
-<pinref part="J2" gate="A" pin="4"/>
-<pinref part="J2" gate="A" pin="5"/>
+<pinref part="SPS30" gate="A" pin="4"/>
+<pinref part="SPS30" gate="A" pin="5"/>
 </segment>
 <segment>
 <pinref part="MDBT42Q" gate="G$1" pin="GND"/>
@@ -4672,12 +4672,12 @@ CONTROLLARE LE CONNESSIONI</text>
 <label x="-330.2" y="142.24" size="1.778" layer="95" rot="R90" xref="yes"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="VDDH"/>
+<pinref part="SCD41" gate="G$1" pin="VDDH"/>
 <wire x1="-228.6" y1="200.66" x2="-231.14" y2="200.66" width="0.1524" layer="91"/>
 <label x="-231.14" y="200.66" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="VDD"/>
+<pinref part="SCD41" gate="G$1" pin="VDD"/>
 <wire x1="-180.34" y1="203.2" x2="-182.88" y2="203.2" width="0.1524" layer="91"/>
 <label x="-180.34" y="203.2" size="1.778" layer="95" xref="yes"/>
 </segment>
@@ -4776,7 +4776,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="-294.64" y1="198.12" x2="-289.56" y2="198.12" width="0.1524" layer="91"/>
 <pinref part="Q4" gate="G$1" pin="D"/>
 <label x="-297.18" y="200.66" size="1.778" layer="95"/>
-<pinref part="J2" gate="A" pin="3"/>
+<pinref part="SPS30" gate="A" pin="3"/>
 <pinref part="R7" gate="G$1" pin="2"/>
 <junction x="-289.56" y="198.12"/>
 </segment>
@@ -4825,7 +4825,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="-200.66" y1="55.88" x2="-233.68" y2="55.88" width="0.1524" layer="91"/>
 <wire x1="-233.68" y1="55.88" x2="-233.68" y2="60.96" width="0.1524" layer="91"/>
 <wire x1="-233.68" y1="60.96" x2="-241.3" y2="60.96" width="0.1524" layer="91"/>
-<pinref part="Y1" gate="G$1" pin="2"/>
+<pinref part="CRYST" gate="G$1" pin="2"/>
 <wire x1="-241.3" y1="60.96" x2="-246.38" y2="60.96" width="0.1524" layer="91"/>
 <junction x="-241.3" y="60.96"/>
 <pinref part="C12" gate="G$1" pin="2"/>
@@ -4837,7 +4837,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="-200.66" y1="53.34" x2="-233.68" y2="53.34" width="0.1524" layer="91"/>
 <wire x1="-233.68" y1="53.34" x2="-233.68" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="-233.68" y1="50.8" x2="-241.3" y2="50.8" width="0.1524" layer="91"/>
-<pinref part="Y1" gate="G$1" pin="1"/>
+<pinref part="CRYST" gate="G$1" pin="1"/>
 <wire x1="-241.3" y1="50.8" x2="-246.38" y2="50.8" width="0.1524" layer="91"/>
 <junction x="-241.3" y="50.8"/>
 <pinref part="C13" gate="G$1" pin="2"/>

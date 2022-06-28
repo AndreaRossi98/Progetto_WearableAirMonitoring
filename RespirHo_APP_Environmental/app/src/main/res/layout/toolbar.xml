@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:background="#FFFFFF"
+    android:backgroundTint="#DCE6F2"
+    android:clickable="false"
+    android:visibility="visible"
+    tools:context=".PatientsList">
+
+    <!-- HEADER -->
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- TITLE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="RespirHò"
+            android:textSize="24sp" />
+
+        <!-- HELP BUTTON  -->
+        <Button
+            android:id="@+id/helpbutton"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/helpbuttonstyle"
+            android:enabled="true"
+            android:text="@string/action_help"
+            android:textAlignment="center"
+            android:textColor="@android:color/white" />
+
+        <!-- HORIZONTAL VIEW -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="60dp"
+            android:background="#664C8CBF"
+            android:backgroundTint="#664C8CBF" />
+
+        <!-- VERTICAL VIEW -->
+        <View
+            android:layout_width="4dp"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="80dp"
+            android:background="#664C8CBF"
+            android:backgroundTint="#664C8CBF"
+            app:layout_constraintStart_toEndOf="@+id/idicon" />
+
+        <!-- ID BUTTON  -->
+        <ImageButton
+            android:id="@+id/idicon"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:background="#00FFFFFF"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:tint="#664C8CBF"
+            app:srcCompat="@drawable/ic_id_foreground" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

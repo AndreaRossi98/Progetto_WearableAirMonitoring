@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/drawable/ic_checkmark_icon.xml" value="0.124" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/drawable/ic_rounded_realtime.xml" value="0.1335" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/drawable/layout_realtime.xml" value="0.176" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/drawable/layoutroundedcorners.xml" value="0.1335" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/drawable/layoutroundedcornerssensor.xml" value="0.1335" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/drawable/layoutroundedcornerssensorfade.xml" value="0.1335" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/addpatient_dialog.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/calibration.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/demo_download.xml" value="0.176" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/display_data.xml" value="0.176" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/forgot_password.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/info.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/initialization.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/item_storage_files.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/items_cardview.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/login.xml" value="0.16700819672131148" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/logo.xml" value="0.136" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/main_activity.xml" value="0.12" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/main_drawer.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/manual_recording.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/patient_data.xml" value="0.128" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/patients_list.xml" value="0.1" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/register.xml" value="0.16944444444444445" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/saturation.xml" value="0.10400000000000001" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/select_recording.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/sensor_button.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/sensor_data.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/storagefiles_dialog.xml" value="0.16700819672131148" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/support.xml" value="0.16700819672131148" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/switch_on_pulse_ox.xml" value="0.16486486486486487" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/switch_on_sensors.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/telephone_storage.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/timer_recording.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/toolbar.xml" value="0.152" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/updateinfo_recording.xml" value="0.15915300546448088" />
+        <entry key="..\:/Users/teo8d/Desktop/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/mipmap-anydpi-v26/ic_mail.xml" value="0.2225" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/demo_download.xml" value="0.264" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/display_data.xml" value="0.1" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/imus.xml" value="0.1" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/imus_initialization.xml" value="0.1" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/imus_layout.xml" value="0.1" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/initialization.xml" value="0.12" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/initialization_imu.xml" value="0.1" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/initialization_imus.xml" value="0.16486486486486487" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/initialization_pulse_ox.xml" value="0.16486486486486487" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/manual_recording.xml" value="0.1" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/patient_data.xml" value="0.16799999999999998" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/saturation.xml" value="0.1" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/select_recording.xml" value="0.2" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/sensor_button.xml" value="0.1" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/sensor_data.xml" value="0.1" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/storagefiles_dialog.xml" value="0.128" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/switch_on_imus.xml" value="0.16486486486486487" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/switch_on_pulse_ox.xml" value="0.176" />
+        <entry key="..\:/Users/teo8d/Desktop/TESI MAGISTRALE/RespirHo_APP_DEVELOP_FIREBASE_pulseox/app/src/main/res/layout/switch_on_sensors.xml" value="0.12" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.18263888888888888" />
+      </ProjectState>
+    </option>
+  </component>
+</project>

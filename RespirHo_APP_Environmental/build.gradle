@@ -6,9 +6,9 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath 'com.android.tools.build:gradle:7.2.1'
         //DEFAULT: classpath 'com.android.tools.build:gradle:4.2.0'
-        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.gms:google-services:4.3.12'
         classpath "com.chaquo.python:gradle:9.1.0" //chaquopy
     }
 }

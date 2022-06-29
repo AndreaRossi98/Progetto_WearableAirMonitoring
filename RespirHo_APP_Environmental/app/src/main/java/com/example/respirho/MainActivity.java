@@ -788,5 +788,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Start activity
         activity.startActivity(intent);
     }
-
 }

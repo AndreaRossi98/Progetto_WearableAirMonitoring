@@ -713,7 +713,7 @@
                     android:layout_marginEnd="5dp"
                     android:layout_marginBottom="5dp"
                     android:gravity="center"
-                    android:text="N.A."
+                    android:text="AVAILABLE"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     android:textSize="15sp" />
@@ -756,8 +756,8 @@
                 android:background="#00FFFFFF"
                 android:clickable="true"
                 android:onClick="onClickError"
-                app:tint="#FF0000"
-                app:srcCompat="@drawable/ic_cancel_icon"
+                app:tint="#53FB5A"
+                app:srcCompat="@drawable/ic_checkmark_icon"
                 android:layout_centerInParent="true"/>
 
             <!--

@@ -88,6 +88,7 @@ public class Logo extends AppCompatActivity {
         PERMISSIONS = new String[] {
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.SEND_SMS,
+                Manifest.permission.ACCESS_FINE_LOCATION,
         };
 
         if (!hasPermissions(Logo.this,PERMISSIONS)) {

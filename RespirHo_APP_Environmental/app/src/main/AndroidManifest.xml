@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.WRITE_SMS"/>
@@ -22,7 +23,6 @@
         android:roundIcon="@mipmap/ic_applogo_foreground"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Imus_activity" android:screenOrientation="portrait"/>
         <activity android:name=".DemoDownload" android:screenOrientation="portrait"/>
         <activity android:name=".saturation" android:screenOrientation="portrait"/>
         <activity android:name=".ForgotPassword" android:screenOrientation="portrait"/>

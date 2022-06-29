@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "336828609186",
+    "firebase_url": "https://respirho-environmental-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "respirho-environmental",
+    "storage_bucket": "respirho-environmental.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336828609186:android:9c0d1d1ee64b1679b9ddfb",
+        "android_client_info": {
+          "package_name": "com.example.respirho"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "336828609186-6psgo7p113thejk28451a393in1se5qn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOK8hKCob7bri2XipvVW0DvSlMAONDxtI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "336828609186-6psgo7p113thejk28451a393in1se5qn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

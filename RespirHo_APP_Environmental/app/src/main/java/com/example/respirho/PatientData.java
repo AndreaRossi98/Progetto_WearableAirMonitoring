@@ -294,6 +294,24 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
 
 
 
+            if(view instanceof GridLayout && childnumber == 5 ){
+
+                //cast to gridlayout
+                final GridLayout sensor= (GridLayout) view;
+                sensor.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        onEnvironmentalpressed();
+
+                    }
+                });
+
+
+
+            }
+
+
             //if it's a switch
             if(view instanceof SwitchCompat){
 
@@ -933,7 +951,36 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
 
 
 
+    public void onEnvironmentalpressed() {
 
+        //initialize alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(PatientData.this);
+        //set title
+        builder.setTitle("Choose recording type");
+        //set message
+        builder.setMessage("Do you want to acquire data from IMUs and Environmental monitor together?\n\nIf NO, you will acquire data only from the Environmental monitor.");
+        //Positive yes button
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //stop the channel, so in case it saves fileInt on Firebase
+                redirectActivity(PatientData.this, DemoDownload.class);
+                dialog.dismiss();
+            }
+        });
+        //negative no button
+        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //dismiss dialog
+                redirectActivity(PatientData.this, saturation.class);
+                dialog.dismiss();
+            }
+        });
+        //show dialog
+        builder.show();
+
+    }
 }
 
 

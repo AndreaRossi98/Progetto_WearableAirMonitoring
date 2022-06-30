@@ -267,7 +267,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void onClick(View v) {
 
-                        onIMUpressed();
+                        //onIMUpressed();
 
                     }
                 });
@@ -283,7 +283,9 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void onClick(View v) {
 
-                        onpulseoxpressed();
+                        //onpulseoxpressed();
+                        toast.makeText(getApplicationContext(), "non cliccabile ", Toast.LENGTH_SHORT).show();
+
 
                     }
                 });
@@ -302,7 +304,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                     @Override
                     public void onClick(View v) {
 
-                        onEnvironmentalpressed();
+                        //onEnvironmentalpressed();
 
                     }
                 });
@@ -337,7 +339,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
 
 
                             //set clickable ON
-                            sensor.setClickable(true);
+                            sensor.setClickable(false);
                             //set background of the sensor ON
                             sensor.setBackgroundResource(R.drawable.layoutroundedcornerssensor);
                             //set the status icon of the selected sensor ON

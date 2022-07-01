@@ -104,10 +104,8 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
     private String userID;
 
     //TODO-- END drawer
-
-    int [] sensorsON = {1,1,1,1};       //aggiungere private or public?
-
-    int SensorsSelection = 15; //Tutti i sensori sono attivi
+    //Variable to choose the correct selected sensors to activate
+    int SensorsSelection = 15; //All sensors are selected
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -264,7 +262,8 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
 
  */
 
-
+//QUESTI IF SI POSSONO ELIMINARE GIUSTO? NON DEVO PIU' CLICCARGLI SOPRA
+// DEVO MODIFICARE ANCHE LA FUNZIONE CLICCABILE SU XML?
             if(view instanceof GridLayout && childnumber==0 ){
 
                 //cast to gridlayout
@@ -279,8 +278,6 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                     }
                 });
             }
-
-
 
             if(view instanceof GridLayout && childnumber == 1 ){
 
@@ -300,8 +297,6 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
 
 
             }
-
-
 
             if(view instanceof GridLayout && childnumber == 5 ){
 
@@ -344,7 +339,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                         if (on)
                         {
 
-
+//ANCHE QUESTO DA TOGLIERE PER IL SENSORE CLICKABLE?
                             //set clickable ON
                             sensor.setClickable(false);
                             //set background of the sensor ON
@@ -357,19 +352,16 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                                     //make them visible and clickable
                                     child.setVisibility(View.VISIBLE);
                                     child.setClickable(false);
-                                    //toast.makeText(getApplicationContext(), "is clickable ", Toast.LENGTH_SHORT).show();
                                 }
                             }
-                            //toast message that the relative sensor is ON
-                            //sensorsON [numberToast-1] = 1;
+
                             SensorsSelection = SensorsSelection + (int)Math.pow((double) 2,(double) (numberToast-1));
                             toast.makeText(getApplicationContext(), "Sensor " + numberToast + " is ON", Toast.LENGTH_SHORT).show();
-                            //toast.makeText(getApplicationContext(), "Sensor: " + sensorsON[0] + sensorsON[1] + sensorsON[2] + sensorsON[3], Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
 
-
+//ANCHE QUA ELIMINO
                             //set clickable OFF
                             sensor.setClickable(false);
                             //set background of the sensor OFF
@@ -382,14 +374,12 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                                     //make them NOT visible and NOT clickable (TODO drawable will change their color)
                                     child.setVisibility(View.INVISIBLE);
                                     child.setClickable(false);
-                                    //toast.makeText(getApplicationContext(), "is NOT clickable ", Toast.LENGTH_SHORT).show();
+
                                 }
                             }
-                            //toast message that the relative sensor is OFF
-                            //sensorsON [numberToast-1] = 0;
+
                             SensorsSelection = SensorsSelection - (int)Math.pow((double) 2,(double) (numberToast-1));
                             toast.makeText(getApplicationContext(), "Sensor " + numberToast + " is OFF", Toast.LENGTH_SHORT).show();
-                            //toast.makeText(getApplicationContext(), "Sensor: " + sensorsON[0] + sensorsON[1] + sensorsON[2] + sensorsON[3], Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -441,8 +431,6 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
-
             case R.id.idicon:
                 openDrawer(drawerLayout);
                 break;
@@ -494,71 +482,8 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case R.id.startbutton:
-
-                SensorsActivation(this);
-
-
-                //In base al valore di SensorsSelection definisco che combinazione attivare
-
-/*                switch (SensorsSelection){
-
-                    case 0:
-                        //Tutti OFF
-                        toast.makeText(getApplicationContext(), "TUTTO OFF", Toast.LENGTH_SHORT).show();
-                        break;
-
-                    case 1:
-                        //Solo IMUs
-                        redirectActivity(PatientData.this, Imus_activity.class);
-                        break;
-                    case 2:
-                        //Solo SPO2
-                        redirectActivity(PatientData.this, saturation.class);
-                        break;
-
-                }
-
-
-
+                SensorsActivation(this);    //In base al valore di SensorsSelection definisco che combinazione attivare
                 break;
-*/
-/*                //toast.makeText(getApplicationContext(), "Sensor: " + sensorsON[0] + sensorsON[1] + sensorsON[2] + sensorsON[3], Toast.LENGTH_SHORT).show();
-
-                //Inserire le diverse combinazioni possibili di scelta dei dispositivi da utilizzare
-                //forse conviene spostare da un'altra parte?
-                //sensorsON--->  0 IMUS, 1 SPO2, 3 ECG, 4 Environmental Monitor
-                // 0--> OFF, 1--> ON
-
-
-                if (sensorsON[0] == 1 )
-                    //Attivo IMUS
-                    redirectActivity(PatientData.this, saturation.class);
-                    //onIMUpressed(); provare per vedere se non si bloccava ma comunque non va
-                    break;
-                else if (sensorsON[0] == 0 && sensorsON[1] == 1 && sensorsON[2] == 0 && sensorsON[4] == 0)
-                    //Attivo SPO2
-                    redirectActivity(PatientData.this, saturation.class);
-
-                else if (sensorsON[0] == 0 && sensorsON[1] == 0 && sensorsON[2] == 1 && sensorsON[4] == 0)
-                    //Attivo ECG
-                    //da implementare
-                    toast.makeText(getApplicationContext(), "NOT READY", Toast.LENGTH_SHORT).show();
-
-                else if (sensorsON[0] == 0 && sensorsON[1] == 0 && sensorsON[2] == 0 && sensorsON[4] == 1)
-                    //Attivo Environmental Monitor
-                    //da implememtare
-                    toast.makeText(getApplicationContext(), "NOT READY", Toast.LENGTH_SHORT).show();
-
-                else if (sensorsON[0] == 1 && sensorsON[1] == 1 && sensorsON[2] == 0 && sensorsON[4] == 0)
-                //Attivo IMUS e SPO2
-                redirectActivity(PatientData.this, DemoDownload.class);
-
-                else if (sensorsON[0] == 1 && sensorsON[1] == 0 && sensorsON[2] == 1 && sensorsON[4] == 0)
-                    //Attivo IMUS e ECG
-                    //da implementare
-                    toast.makeText(getApplicationContext(), "NOT READY", Toast.LENGTH_SHORT).show();
-*/
-
         }
     }
 
@@ -566,7 +491,6 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
     private void SensorsActivation(Activity activity){
 
         switch (SensorsSelection){
-
             case 0: //Tutto spento
                 toast.makeText(getApplicationContext(), "TUTTO OFF", Toast.LENGTH_SHORT).show();
                 break;
@@ -635,8 +559,6 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                 break;
 
         }
-
-
     }
 
     //TODO-- drawer
@@ -1047,6 +969,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
     }
 
 
+//QUESTI NON SERVONO PIU'
     public void onIMUpressed() {
 
         //initialize alert dialog
@@ -1077,8 +1000,6 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
         builder.show();
     }
 
-
-
     public void onpulseoxpressed() {
 
         //initialize alert dialog
@@ -1108,8 +1029,6 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
         //show dialog
         builder.show();
     }
-
-
 
     public void onEnvironmentalpressed() {
 

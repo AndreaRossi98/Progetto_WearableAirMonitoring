@@ -10,225 +10,226 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:backgroundTint="#DCE6F2"
-    android:clickable="false"
-    android:visibility="visible"
-    tools:context=".PatientData">
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:backgroundTint="#DCE6F2"
+        android:clickable="false"
+        android:visibility="visible"
+        tools:context=".PatientData">
 
-    <!-- TOOLBAR -->
-    <include
-        layout="@layout/toolbar"
-        android:id="@+id/layout_toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </include>
-
-    <!-- ID PATIENT -->
-    <RelativeLayout
-        android:id="@+id/idpatient"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="15dp"
-        android:layout_below="@+id/layout_toolbar"
-        android:layout_above="@+id/infomaildownload"
-        android:background="@drawable/layoutroundedcorners"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_toolbar">
-
-        <TextView
-            android:id="@+id/card"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="20dp"
-            android:gravity="center_vertical"
-            android:textColor="@android:color/black"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <RelativeLayout
-            android:layout_width="170dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="30dp">
-
-            <ImageButton
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:adjustViewBounds="true"
-                android:background="#00FFFFFF"
-                android:scaleX="0.8"
-                android:scaleY="0.8"
-                app:tint="#FF0000"
-                android:clickable="true"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_cancel_foreground" />
-
-            <ImageButton
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerInParent="true"
-                android:adjustViewBounds="true"
-                android:background="#00FFFFFF"
-                android:scaleX="0.8"
-                android:scaleY="0.8"
-                app:tint="#FFEB3B"
-                android:clickable="true"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_exclamation_point_round_foreground" />
-
-            <ImageButton
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:adjustViewBounds="true"
-                android:background="#00FFFFFF"
-                android:scaleX="0.7"
-                android:scaleY="0.7"
-                app:tint="#53FB5A"
-                android:clickable="true"
-                android:visibility="gone"
-                app:srcCompat="@drawable/ic_checkmark_foreground" />
-        </RelativeLayout>
-
-        <ImageButton
-            android:id="@+id/showpopup"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:background="#00FFFFFF"
-            android:visibility="gone"
-            app:srcCompat="@drawable/ic_popup" />
-    </RelativeLayout>
-
-    <!-- INFO AND TELEPHONE DOWNLOAD-->
-    <GridLayout
-        android:id="@+id/infotelephonedownload"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_below="@+id/idpatient"
-        android:layout_above="@+id/layout_sensors_button_switch"
-        android:layout_margin="15dp"
-        android:columnCount="2"
-        android:rowCount="1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idpatient">
-
+        <!-- TOOLBAR -->
         <include
-            layout="@layout/info"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_marginRight="130dp"></include>
-
-        <include
-            layout="@layout/telephone_storage"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_row="0"
-            android:layout_rowWeight="1"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="end"></include>
-    </GridLayout>
-
-    <!-- SENSORS BUTTON -->
-    <GridLayout
-        android:id="@+id/layout_sensors_button_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:rowCount="4"
-        android:layout_margin="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/infotelephonedownload">
-
-        <!-- SENSOR 1 -->
-        <GridLayout
-            android:id="@+id/layout_sensor_1"
-            android:layout_width="120dp"
-            android:layout_height="140dp"
-            android:background="@drawable/layoutroundedcornerssensor"
-            android:layout_row="0"
-            android:layout_column="0"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:rowCount="4"
-            android:columnCount="1"
-            android:layout_margin="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/layout_toolbar"
+            layout="@layout/toolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+        </include>
 
-            <!-- SENSOR NAME-->
+        <!-- ID PATIENT -->
+        <RelativeLayout
+            android:id="@+id/idpatient"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_above="@+id/infomaildownload"
+            android:layout_below="@+id/layout_toolbar"
+            android:layout_margin="15dp"
+            android:background="@drawable/layoutroundedcorners"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_toolbar">
+
+            <TextView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
             <RelativeLayout
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="30dp">
+
+                <ImageButton
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:background="#00FFFFFF"
+                    android:clickable="true"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_cancel_foreground"
+                    app:tint="#FF0000" />
+
+                <ImageButton
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:background="#00FFFFFF"
+                    android:clickable="true"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_exclamation_point_round_foreground"
+                    app:tint="#FFEB3B" />
+
+                <ImageButton
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:background="#00FFFFFF"
+                    android:clickable="true"
+                    android:scaleX="0.7"
+                    android:scaleY="0.7"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/ic_checkmark_foreground"
+                    app:tint="#53FB5A" />
+            </RelativeLayout>
+
+            <ImageButton
+                android:id="@+id/showpopup"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:background="#00FFFFFF"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_popup" />
+        </RelativeLayout>
+
+        <!-- INFO AND TELEPHONE DOWNLOAD-->
+        <GridLayout
+            android:id="@+id/infotelephonedownload"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_above="@+id/layout_sensors_button_switch"
+            android:layout_below="@+id/idpatient"
+            android:layout_margin="15dp"
+            android:columnCount="2"
+            android:rowCount="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/idpatient">
+
+            <include
+                layout="@layout/info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_row="0"
-                android:layout_column="0"
                 android:layout_rowWeight="1"
-                android:layout_columnWeight="1">
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_marginRight="130dp"></include>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:autoSizeMaxTextSize="20dp"
-                    android:autoSizeMinTextSize="10dp"
-                    android:autoSizeStepGranularity="1dp"
-                    android:autoSizeTextType="uniform"
-                    android:gravity="center"
-                    android:paddingTop="5dp"
-                    android:text="Breathing\nand activity"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-            <!-- SENSOR VALUE-->
-            <RelativeLayout
+            <include
+                layout="@layout/telephone_storage"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="1"
-                android:layout_column="0"
+                android:layout_height="match_parent"
+                android:layout_row="0"
                 android:layout_rowWeight="1"
-                android:layout_columnWeight="1">
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="end"></include>
+        </GridLayout>
 
-                <TextView
+        <!-- SENSORS BUTTON -->
+        <GridLayout
+            android:id="@+id/layout_sensors_button_switch"
+            android:layout_width="335dp"
+            android:layout_height="468dp"
+            android:layout_margin="15dp"
+            android:columnCount="2"
+            android:rowCount="4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infotelephonedownload"
+            app:layout_constraintVertical_bias="0.294">
+
+            <!-- SENSOR 1 -->
+            <GridLayout
+                android:id="@+id/layout_sensor_1"
+                android:layout_width="120dp"
+                android:layout_height="140dp"
+                android:layout_row="0"
+                android:layout_rowWeight="1"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:background="@drawable/layoutroundedcornerssensor"
+                android:columnCount="1"
+                android:rowCount="4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- SENSOR NAME-->
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:text="AVAILABLE"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp" />
-            </RelativeLayout>
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1">
 
-            <!-- SENSOR INFO
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:autoSizeMaxTextSize="20dp"
+                        android:autoSizeMinTextSize="10dp"
+                        android:autoSizeStepGranularity="1dp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:text="Breathing\nand activity"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+                
+                <!-- SENSOR VALUE-->
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="AVAILABLE"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+                <!-- SENSOR INFO
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -252,8 +253,8 @@
             </RelativeLayout>
             -->
 
-            <!-- STATUS -->
-            <!--
+                <!-- STATUS -->
+                <!--
             <ImageButton
                 android:id="@+id/sensor1_error"
                 android:layout_width="wrap_content"
@@ -273,7 +274,7 @@
                 android:layout_centerInParent="true"/>
                 -->
 
-            <!--
+                <!--
             <ImageButton
                 android:id="@+id/sensor1_exclamation"
                 android:layout_width="wrap_content"
@@ -293,97 +294,97 @@
                 android:layout_centerInParent="true"/>
                 -->
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="3"
-                android:layout_column="0"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:adjustViewBounds="true"
-                android:layout_gravity="center"
-                android:background="#00FFFFFF"
-                android:clickable="true"
-                android:onClick="onClickCheckmark"
-                app:tint="#53FB5A"
-                app:srcCompat="@drawable/ic_checkmark_icon"
-                android:layout_centerInParent="true"/>
-        </GridLayout>
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="3"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:background="#00FFFFFF"
+                    android:clickable="true"
+                    android:onClick="onClickCheckmark"
+                    app:srcCompat="@drawable/ic_checkmark_icon"
+                    app:tint="#53FB5A" />
+            </GridLayout>
 
-        <!-- SENSOR 2 -->
-        <GridLayout
-            android:id="@+id/layout_sensor_2"
-            android:layout_width="120dp"
-            android:layout_height="140dp"
-            android:background="@drawable/layoutroundedcornerssensor"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:rowCount="4"
-            android:columnCount="1"
-            android:layout_margin="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-             <!-- SENSOR NAME -->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
+            <!-- SENSOR 2 -->
+            <GridLayout
+                android:id="@+id/layout_sensor_2"
+                android:layout_width="120dp"
+                android:layout_height="140dp"
                 android:layout_row="0"
                 android:layout_rowWeight="1"
-                android:layout_column="0"
-                android:layout_columnWeight="1">
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:background="@drawable/layoutroundedcornerssensor"
+                android:columnCount="1"
+                android:rowCount="4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
+                <!-- SENSOR NAME -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="57dp"
+                    android:layout_row="0"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:autoSizeMaxTextSize="20dp"
+                        android:autoSizeMinTextSize="15dp"
+                        android:autoSizeStepGranularity="1dp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:text="SpO2"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <!-- SENSOR VALUE -->
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:autoSizeMaxTextSize="20dp"
-                    android:autoSizeMinTextSize="15dp"
-                    android:autoSizeStepGranularity="1dp"
-                    android:autoSizeTextType="uniform"
-                    android:gravity="center"
-                    android:paddingTop="5dp"
-                    android:text="SpO2"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
-                    android:textStyle="bold"/>
-            </RelativeLayout>
+                    android:layout_row="1"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1">
 
-             <!-- SENSOR VALUE -->
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="1"
-                android:layout_column="0"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="AVAILABLE"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp" />
+                </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:text="AVAILABLE"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp" />
-            </RelativeLayout>
-
-             <!-- SENSOR INFO
+                <!-- SENSOR INFO
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -407,23 +408,23 @@
             </RelativeLayout>
             -->
 
-             <!-- STATUS -->
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="3"
-                android:layout_column="0"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:adjustViewBounds="true"
-                android:layout_gravity="center"
-                android:background="#00FFFFFF"
-                android:clickable="true"
-                app:tint="#53FB5A"
-                app:srcCompat="@drawable/ic_checkmark_icon"
-                android:layout_centerInParent="true"/>
+                <!-- STATUS -->
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="3"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:background="#00FFFFFF"
+                    android:clickable="true"
+                    app:srcCompat="@drawable/ic_checkmark_icon"
+                    app:tint="#53FB5A" />
 
-            <!--
+                <!--
             <ImageButton
                 android:id="@+id/sensor2_exclamation"
                 android:layout_width="wrap_content"
@@ -443,7 +444,7 @@
                 android:layout_centerInParent="true"/>
                 -->
 
-            <!--
+                <!--
             <ImageButton
                 android:id="@+id/sensor2_checkmark"
                 android:layout_width="wrap_content"
@@ -462,109 +463,109 @@
                 app:srcCompat="@drawable/ic_checkmark_icon"
                 android:layout_centerInParent="true"/>
                 -->
-        </GridLayout>
+            </GridLayout>
 
-        <!-- SWITCH 1 -->
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_rowWeight="0"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center"
-            android:checked="true"
-            android:thumb="@drawable/switch_thumb"
-            app:track="@drawable/switch_track" />
-
-        <!-- SWITCH 2 -->
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/switch_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_rowWeight="0"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center"
-            android:checked="true"
-            android:thumb="@drawable/switch_thumb"
-            app:track="@drawable/switch_track" />
-
-        <!-- SENSOR 3 -->
-        <GridLayout
-            android:layout_width="120dp"
-            android:layout_height="140dp"
-            android:background="@drawable/layoutroundedcornerssensor"
-            android:layout_row="2"
-            android:layout_column="0"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:rowCount="4"
-            android:columnCount="1"
-            android:layout_margin="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-             <!-- SENSOR NAME -->
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="0"
-                android:layout_column="0"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:autoSizeMaxTextSize="20dp"
-                    android:autoSizeMinTextSize="10dp"
-                    android:autoSizeStepGranularity="1dp"
-                    android:autoSizeTextType="uniform"
-                    android:gravity="center"
-                    android:paddingTop="5dp"
-                    android:text="ECG"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
-                    android:textStyle="bold"/>
-            </RelativeLayout>
-
-             <!-- SENSOR VALUE -->
-            <RelativeLayout
+            <!-- SWITCH 1 -->
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="1"
+                android:layout_rowWeight="0"
                 android:layout_column="0"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1">
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:checked="true"
+                android:thumb="@drawable/switch_thumb"
+                app:track="@drawable/switch_track" />
 
-                <TextView
+            <!-- SWITCH 2 -->
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_rowWeight="0"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:checked="true"
+                android:thumb="@drawable/switch_thumb"
+                app:track="@drawable/switch_track" />
+
+            <!-- SENSOR 3 -->
+            <GridLayout
+                android:layout_width="120dp"
+                android:layout_height="140dp"
+                android:layout_row="2"
+                android:layout_rowWeight="1"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:background="@drawable/layoutroundedcornerssensor"
+                android:columnCount="1"
+                android:rowCount="4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- SENSOR NAME -->
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:text="N.A."
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp" />
-            </RelativeLayout>
+                    android:layout_row="0"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1">
 
-             <!-- SENSOR INFO
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:autoSizeMaxTextSize="20dp"
+                        android:autoSizeMinTextSize="10dp"
+                        android:autoSizeStepGranularity="1dp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:text="ECG"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <!-- SENSOR VALUE -->
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="1"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="N.A."
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+                <!-- SENSOR INFO
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -589,24 +590,24 @@
             -->
 
 
-             <!-- STATUS -->
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="3"
-                android:layout_column="0"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:adjustViewBounds="true"
-                android:layout_gravity="center"
-                android:background="#00FFFFFF"
-                android:clickable="true"
-                android:onClick="onClickError"
-                app:tint="#FF0000"
-                app:srcCompat="@drawable/ic_cancel_icon"
-                android:layout_centerInParent="true"/>
+                <!-- STATUS -->
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="3"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:background="#00FFFFFF"
+                    android:clickable="true"
+                    android:onClick="onClickError"
+                    app:srcCompat="@drawable/ic_cancel_icon"
+                    app:tint="#FF0000" />
 
-            <!--
+                <!--
             <ImageButton
                 android:id="@+id/sensor3_exclamation"
                 android:layout_width="wrap_content"
@@ -626,7 +627,7 @@
                 android:layout_centerInParent="true"/>
             -->
 
-            <!--
+                <!--
             <ImageButton
                 android:id="@+id/sensor3_checkmark"
                 android:layout_width="wrap_content"
@@ -645,81 +646,81 @@
                 app:srcCompat="@drawable/ic_checkmark_icon"
                 android:layout_centerInParent="true"/>
                 -->
-        </GridLayout>
+            </GridLayout>
 
-        <!-- SENSOR 4 -->
-        <GridLayout
-            android:layout_width="120dp"
-            android:layout_height="140dp"
-            android:background="@drawable/layoutroundedcornerssensor"
-            android:layout_row="2"
-            android:layout_column="1"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
-            android:rowCount="4"
-            android:columnCount="1"
-            android:layout_margin="15dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-             <!-- SENSOR NAME -->
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="0"
-                android:layout_column="0"
+            <!-- SENSOR 4 -->
+            <GridLayout
+                android:layout_width="120dp"
+                android:layout_height="140dp"
+                android:layout_row="2"
                 android:layout_rowWeight="1"
-                android:layout_columnWeight="1">
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="15dp"
+                android:background="@drawable/layoutroundedcornerssensor"
+                android:columnCount="1"
+                android:rowCount="4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
+                <!-- SENSOR NAME -->
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:autoSizeMaxTextSize="20dp"
-                    android:autoSizeMinTextSize="10dp"
-                    android:autoSizeStepGranularity="1dp"
-                    android:autoSizeTextType="uniform"
-                    android:gravity="center"
-                    android:paddingTop="5dp"
-                    android:text="Enviromental\nmonitor"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp"
-                    android:textStyle="bold"/>
-            </RelativeLayout>
+                    android:layout_row="0"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1">
 
-             <!-- SENSOR VALUE -->
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="1"
-                android:layout_column="0"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:autoSizeMaxTextSize="20dp"
+                        android:autoSizeMinTextSize="10dp"
+                        android:autoSizeStepGranularity="1dp"
+                        android:autoSizeTextType="uniform"
+                        android:gravity="center"
+                        android:paddingTop="5dp"
+                        android:text="Enviromental\nmonitor"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
 
-                <TextView
+                <!-- SENSOR VALUE -->
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:text="AVAILABLE"
-                    android:textAlignment="center"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp" />
-            </RelativeLayout>
+                    android:layout_row="1"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1">
 
-             <!-- SENSOR INFO
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="AVAILABLE"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="15sp" />
+                </RelativeLayout>
+
+                <!-- SENSOR INFO
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -743,24 +744,24 @@
             </RelativeLayout>
             -->
 
-             <!-- STATUS -->
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="3"
-                android:layout_column="0"
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:adjustViewBounds="true"
-                android:layout_gravity="center"
-                android:background="#00FFFFFF"
-                android:clickable="true"
-                android:onClick="onClickError"
-                app:tint="#53FB5A"
-                app:srcCompat="@drawable/ic_checkmark_icon"
-                android:layout_centerInParent="true"/>
+                <!-- STATUS -->
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_row="3"
+                    android:layout_rowWeight="1"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:background="#00FFFFFF"
+                    android:clickable="true"
+                    android:onClick="onClickError"
+                    app:srcCompat="@drawable/ic_checkmark_icon"
+                    app:tint="#53FB5A" />
 
-            <!--
+                <!--
             <ImageButton
                 android:id="@+id/sensor4_exclamation"
                 android:layout_width="wrap_content"
@@ -780,7 +781,7 @@
                 android:layout_centerInParent="true"/>
                 -->
 
-            <!--
+                <!--
             <ImageButton
                 android:id="@+id/sensor4_checkmark"
                 android:layout_width="wrap_content"
@@ -799,38 +800,63 @@
                 app:srcCompat="@drawable/ic_checkmark_icon"
                 android:layout_centerInParent="true"/>
                 -->
+            </GridLayout>
+
+            <!-- SWITCH 3 -->
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_rowWeight="0"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:checked="true"
+                android:thumb="@drawable/switch_thumb"
+                app:track="@drawable/switch_track" />
+
+            <!-- SWITCH 4 -->
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_rowWeight="0"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:checked="true"
+                android:thumb="@drawable/switch_thumb"
+                app:track="@drawable/switch_track" />
+
         </GridLayout>
 
-        <!-- SWITCH 3 -->
-        <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="3"
-            android:layout_rowWeight="0"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_marginBottom="5dp"
-            android:layout_gravity="center"
-            android:checked="true"
-            android:thumb="@drawable/switch_thumb"
-            app:track="@drawable/switch_track" />
+        <Button
+            android:id="@+id/startbutton"
+            android:layout_width="175dp"
+            android:layout_height="46dp"
+            android:text="START"
+            tools:layout_editor_absoluteX="114dp"
+            tools:layout_editor_absoluteY="717dp"
+            android:autoSizeMaxTextSize="20dp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeStepGranularity="1dp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/layoutroundedcornerssensor"
+            android:onClick="SensorSelection"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_sensors_button_switch"
+            app:layout_constraintVertical_bias="0.294"/>
 
-        <!-- SWITCH 4 -->
-        <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="3"
-            android:layout_rowWeight="0"
-            android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_marginBottom="5dp"
-            android:layout_gravity="center"
-            android:checked="true"
-            android:thumb="@drawable/switch_thumb"
-            app:track="@drawable/switch_track" />
 
-    </GridLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- DRAWER -->
     <RelativeLayout

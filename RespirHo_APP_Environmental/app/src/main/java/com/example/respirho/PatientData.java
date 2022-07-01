@@ -53,6 +53,8 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.util.ArrayList;
 
+
+
 public class PatientData extends AppCompatActivity implements View.OnClickListener {
 
     public final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -84,7 +86,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
     private ImageButton telephone, storage,showpopup;
 
 
-    private Button helpbutton;
+    private Button helpbutton, startbutton;
 
 
     //file variables
@@ -102,6 +104,10 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
     private String userID;
 
     //TODO-- END drawer
+
+    int [] sensorsON = {1,1,1,1};       //aggiungere private or public?
+
+    int SensorsSelection = 15; //Tutti i sensori sono attivi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +142,9 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
 
         storage = (ImageButton) findViewById(R.id.storage);
         storage.setOnClickListener(this);
+
+        startbutton = (Button) findViewById(R.id.startbutton);
+        startbutton.setOnClickListener(this);
 
         showpopup=findViewById(R.id.showpopup);
 
@@ -216,8 +225,6 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
 
     }
 
-
-
     private void onClickSensors(GridLayout layout_sensors_button_switch) {
         //loop the sensors
 
@@ -284,7 +291,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                     public void onClick(View v) {
 
                         //onpulseoxpressed();
-                        toast.makeText(getApplicationContext(), "non cliccabile ", Toast.LENGTH_SHORT).show();
+
 
 
                     }
@@ -349,12 +356,15 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                                 if (child instanceof ImageButton) {
                                     //make them visible and clickable
                                     child.setVisibility(View.VISIBLE);
-                                    child.setClickable(true);
+                                    child.setClickable(false);
                                     //toast.makeText(getApplicationContext(), "is clickable ", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             //toast message that the relative sensor is ON
+                            //sensorsON [numberToast-1] = 1;
+                            SensorsSelection = SensorsSelection + (int)Math.pow((double) 2,(double) (numberToast-1));
                             toast.makeText(getApplicationContext(), "Sensor " + numberToast + " is ON", Toast.LENGTH_SHORT).show();
+                            //toast.makeText(getApplicationContext(), "Sensor: " + sensorsON[0] + sensorsON[1] + sensorsON[2] + sensorsON[3], Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -376,7 +386,11 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                                 }
                             }
                             //toast message that the relative sensor is OFF
+                            //sensorsON [numberToast-1] = 0;
+                            SensorsSelection = SensorsSelection - (int)Math.pow((double) 2,(double) (numberToast-1));
                             toast.makeText(getApplicationContext(), "Sensor " + numberToast + " is OFF", Toast.LENGTH_SHORT).show();
+                            //toast.makeText(getApplicationContext(), "Sensor: " + sensorsON[0] + sensorsON[1] + sensorsON[2] + sensorsON[3], Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });
@@ -478,7 +492,151 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
             case R.id.cancel_storage_files:
                 dialogDownloadStorage.dismiss();
                 break;
+
+            case R.id.startbutton:
+
+                SensorsActivation(this);
+
+
+                //In base al valore di SensorsSelection definisco che combinazione attivare
+
+/*                switch (SensorsSelection){
+
+                    case 0:
+                        //Tutti OFF
+                        toast.makeText(getApplicationContext(), "TUTTO OFF", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case 1:
+                        //Solo IMUs
+                        redirectActivity(PatientData.this, Imus_activity.class);
+                        break;
+                    case 2:
+                        //Solo SPO2
+                        redirectActivity(PatientData.this, saturation.class);
+                        break;
+
+                }
+
+
+
+                break;
+*/
+/*                //toast.makeText(getApplicationContext(), "Sensor: " + sensorsON[0] + sensorsON[1] + sensorsON[2] + sensorsON[3], Toast.LENGTH_SHORT).show();
+
+                //Inserire le diverse combinazioni possibili di scelta dei dispositivi da utilizzare
+                //forse conviene spostare da un'altra parte?
+                //sensorsON--->  0 IMUS, 1 SPO2, 3 ECG, 4 Environmental Monitor
+                // 0--> OFF, 1--> ON
+
+
+                if (sensorsON[0] == 1 )
+                    //Attivo IMUS
+                    redirectActivity(PatientData.this, saturation.class);
+                    //onIMUpressed(); provare per vedere se non si bloccava ma comunque non va
+                    break;
+                else if (sensorsON[0] == 0 && sensorsON[1] == 1 && sensorsON[2] == 0 && sensorsON[4] == 0)
+                    //Attivo SPO2
+                    redirectActivity(PatientData.this, saturation.class);
+
+                else if (sensorsON[0] == 0 && sensorsON[1] == 0 && sensorsON[2] == 1 && sensorsON[4] == 0)
+                    //Attivo ECG
+                    //da implementare
+                    toast.makeText(getApplicationContext(), "NOT READY", Toast.LENGTH_SHORT).show();
+
+                else if (sensorsON[0] == 0 && sensorsON[1] == 0 && sensorsON[2] == 0 && sensorsON[4] == 1)
+                    //Attivo Environmental Monitor
+                    //da implememtare
+                    toast.makeText(getApplicationContext(), "NOT READY", Toast.LENGTH_SHORT).show();
+
+                else if (sensorsON[0] == 1 && sensorsON[1] == 1 && sensorsON[2] == 0 && sensorsON[4] == 0)
+                //Attivo IMUS e SPO2
+                redirectActivity(PatientData.this, DemoDownload.class);
+
+                else if (sensorsON[0] == 1 && sensorsON[1] == 0 && sensorsON[2] == 1 && sensorsON[4] == 0)
+                    //Attivo IMUS e ECG
+                    //da implementare
+                    toast.makeText(getApplicationContext(), "NOT READY", Toast.LENGTH_SHORT).show();
+*/
+
         }
+    }
+
+
+    private void SensorsActivation(Activity activity){
+
+        switch (SensorsSelection){
+
+            case 0: //Tutto spento
+                toast.makeText(getApplicationContext(), "TUTTO OFF", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 1: //Solo IMUs
+                redirectActivity(PatientData.this, Imus_activity.class);
+                break;
+
+            case 2: //Solo SPO2
+                redirectActivity(PatientData.this, saturation.class);
+                break;
+
+            case 3: //IMus e SPO2
+                redirectActivity(PatientData.this, DemoDownload.class);
+                break;
+
+            case 4: //Solo ECG
+                toast.makeText(getApplicationContext(), "ECG non disponibile", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 5: //ECG e IMUs
+                toast.makeText(getApplicationContext(), "ECG e IMUs non disponibile", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 6://ECG e SPO2
+                toast.makeText(getApplicationContext(), "ECG e SPO2 non disponibile", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 7: //ECG e IMUs e SPO2
+                toast.makeText(getApplicationContext(), "ECG e IMUs e SPO2 non disponibile", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 8: //Environmental Monitor
+                toast.makeText(getApplicationContext(), "Calma, Environmental Monitor lo sto implementando", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 9: //Environmental Monitor e IMUs
+                toast.makeText(getApplicationContext(), "Calma per Environmental Monitor e IMUs", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 10: //Environmental Monitor e SPO2
+                toast.makeText(getApplicationContext(), "Calma per Environmental Monitor e SPO2", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 11: //Environmental Monitor e IMUs e SPO2
+                toast.makeText(getApplicationContext(), "Calma per Environmental Monitor e IMUs e SPO2", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 12: //Environmental Monitor e ECG
+                toast.makeText(getApplicationContext(), "Serve qualcun'altro", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 13: //Environmental Monitor e IMUs e ECG
+                toast.makeText(getApplicationContext(), "Serve qualcun'altro", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 14: //Environmental Monitor e SPO2 e ECG
+                toast.makeText(getApplicationContext(), "Serve qualcun'altro", Toast.LENGTH_SHORT).show();
+                break;
+
+            case 15: //Tutti i sensori
+                toast.makeText(getApplicationContext(), "Hai scelto tutti i sensori, con calmaa!", Toast.LENGTH_SHORT).show();
+                break;
+
+            default:
+                break;
+
+        }
+
+
     }
 
     //TODO-- drawer

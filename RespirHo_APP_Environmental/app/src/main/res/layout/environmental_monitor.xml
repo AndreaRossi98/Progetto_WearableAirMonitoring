@@ -202,10 +202,10 @@
 
                 <!-- SWITCH ON SENSORS -->
                 <ViewStub
-                    android:id="@+id/switchonpulseox_toinclude"
+                    android:id="@+id/switchonenvironmentalmonitor_toinclude"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inflatedId="@+id/switch_on_pulse" />
+                    android:inflatedId="@+id/switch_on_environmental" />
 
                 <!-- SELECT RECORDING -->
                 <ViewStub

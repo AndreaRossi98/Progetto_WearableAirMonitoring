@@ -257,7 +257,7 @@ public class saturation extends AppCompatActivity implements View.OnClickListene
     public boolean flag_reconnection = false;
     public boolean flag_sensors_disconnection = false;
     public boolean flag_sensors_disconnection_header = false;
-    public String sensors_disconnection_header="You have to go back initialize the sensors because in the last recording a problem occurred with the communication.\n\nSwitch OFF the sensors ad then press YES";
+    public String sensors_disconnection_header="You have to go back initialize the sensors because in the last recording a problem occurred with the communication.\n\nSwitch OFF the sensors and then press YES";
 
     private String sensorsDisconnectedText;
     private static String sensorDisconnected4="";

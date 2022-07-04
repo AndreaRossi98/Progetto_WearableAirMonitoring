@@ -91,7 +91,7 @@ public class ReadingAntSensors extends AppCompatActivity implements View.OnClick
     byte[] payLoad5 = {0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 1 during acquisition
     byte[] payLoad6 = {0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 2 during acquisition
     byte[] payLoad7 = {0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 3 during acquisition
-//    byte[] payLoad8 = {0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 3 during acquisition
+//    byte[] payLoad8 = {0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 4 during acquisition
 
     public String string0 = "[00][00][00][00][00][00][00][00]";
     public String string1 = "[01][01][01][01][01][01][01]"; //message from slave 1 for check

@@ -95,9 +95,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-
 public class EnvironmentalMonitor extends AppCompatActivity implements View.OnClickListener{
-
 //VEDERE COSA SERVE DI TUTTO QUESTO
     private Button timerrecordingbutton,manualrecordingbutton,initializationbutton_environmental_monitor,gotoswitchonenvironmentalmonitor,gotorecordingbutton_environmentale_monitor;
     private Button startrecording_manual,stoprecording_manual,downloadfile_manual,gotonewrecording_manual,goback_manual;
@@ -195,10 +193,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private String userID;
 
 
+    
     public final String LOG_TAG = EnvironmentalMonitor.class.getSimpleName();
-
-
-//PARAMETRI ANCORA DA SETTARE
+//PARAMETRI ANCORA DA SETTARE, SIA ANT CHE PAYLOAD
     // GESTIONE ANT
     private static final int USER_PERIOD_SATURATION = 32768; // 3277; 10 Hz
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
@@ -210,38 +207,29 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public AntMessage antMessage;
     public MessageFromAntType messagetype; //
     public boolean mIsOpen = false;
-//VEDERE SE C'E' QUALCOSA DA CAMBIARE
     public ChannelId channelId_smartphone = new ChannelId(2,2,2, true); //DEFAULT: 2,2,2, true
 
-
-    //TODO-- PAYLOAD da sistemare
-    // TODO-- END PAYLOAD
     byte[] payLoad;
 
     byte[] payLoad6 = {0x06, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06}; // payload to call Environmental Monitor unit for the first time
 
-    byte[] payLoad10 = {0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04}; // payload to call unit 1 for the first time
-
     byte[] payLoad4 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to synchronize the three units and to stop checking after calibration
 
-    byte[] payLoad5 = {0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 4 during acquisition
+    byte[] payLoad5 = {0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 6 during acquisition
 
 
     byte[] payLoad8 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0xFF}; // payload to calibrate and do movements, when sensors leds are OFF send payload 4 and go on
     byte[] payLoad9 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0x80}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
 
     public String string0 = "[00][00][00][00][00][00][00][00]";
-    public String string4 = "[04][04][04][04][04][04][04]";//message from slave 3 for check
+    public String string6 = "[04][04][04][04][04][04][04]";//message from slave 6 for check
 
-    public String dummy_unit4="[04],[00],[FF],[00],[00],[00],[00],[00],";
+    public String dummy_unit6 = "[04],[00],[FF],[00],[00],[00],[00],[00],";
 
-
-
-    public String startrec_time=null;
+    public String startrec_time = null;
 
     public int state;
     public boolean connected6 = false;
-
 
     //STATES
     private static final int INITIALIZATION = 0;
@@ -254,24 +242,22 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private static final int RECONNECTION = 11;
     private static final int CLOSE = 0; //close the channel
 
-
     //STATES FOR PREVENT TO QUIT WITH BACK BUTTON DURING RECORDING AND SHOW A DIALOG
     private static final int QUIT_RECORDING = 12; //quit recording
 
     BroadcastDataMessage broadcastDataMessage;
     public String current_default,current,day;
     //save the old message to see if there's data loss
-    public String old_messageContentString_unit=null;
-
+    public String old_messageContentString_unit = null;
 //PENSARE A COME GESTIRE INVIO DEI DATI E SE SERVE
     //watchdog timer to check if the sensors are receiving messages
-    public int [] watchdog_timer={0};
-    public int sumWt=0;
+    public int [] watchdog_timer = {0};
+    public int sumWt = 0;
     public boolean flag_watchdog_timer_overflow = true;
     public boolean flag_reconnection = false;
     public boolean flag_sensors_disconnection = false;
     public boolean flag_sensors_disconnection_header = false;
-    public String sensors_disconnection_header="You have to go back initialize the sensors because in the last recording a problem occurred with the communication.\n\nSwitch OFF the sensors and then press YES";
+    public String sensors_disconnection_header = "You have to go back initialize the sensors because in the last recording a problem occurred with the communication.\n\nSwitch OFF the sensors and then press YES";
 
     private String sensorsDisconnectedText;
     private static String sensorDisconnected6="";
@@ -301,7 +287,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
         //initialize the initialization view
         viewStub = (ViewStub) findViewById(R.id.initialization_toinclude_1);
-        viewStub.setLayoutResource(R.layout.initialization_pulse_ox);
+        viewStub.setLayoutResource(R.layout.initialization_environmental_monitor);
         inflated_initialization = viewStub.inflate();
 
 //Vedere se serve anche questo
@@ -323,7 +309,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         inflated_updateinfo.setVisibility(View.GONE);
 
 
-
         helpbutton = (Button) findViewById(R.id.helpbutton);
         helpbutton.setOnClickListener(this);
 
@@ -339,7 +324,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         info_patient=(TextView) findViewById(R.id.info);
         info_patient.setText("INFO PATIENT: \n" + GlobalVariables.string_infopatient);
 
-
         //WARNINGS
         lowbattery_idpatient =(ImageView) findViewById(R.id.lowbattery_idpatient);
         lowbattery_idpatient.setOnClickListener(this);
@@ -354,7 +338,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         checkmark_idpatient.setVisibility(View.GONE);
         progressbar_idpatient=(ProgressBar) findViewById(R.id.progressbar_idpatient);
         progressbar_idpatient.setVisibility(View.GONE);
-
 
         initializationbutton_environmental_monitor=(Button) findViewById(R.id.initializationbutton_environmental_monitor);
         initializationbutton_environmental_monitor.setOnClickListener(this);
@@ -373,6 +356,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         serviceIsBound = AntService.bindService(this, mAntRadioServiceConnection);
         Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
         Log.e(LOG_TAG, "Version name: "+ AntService.getVersionName(this));
+
+
 
         drawerLayout=findViewById(R.id.drawer_layout);
 
@@ -393,7 +378,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
         arrowback=findViewById(R.id.arrowback);
         arrowback.setOnClickListener(this);
-
 
         final TextView drawerMail=(TextView) findViewById(R.id.drawermail);
         final TextView drawerFullname=(TextView) findViewById(R.id.drawerfullname);
@@ -428,6 +412,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         }
 
     }
+
+
 
     public IAntChannelEventHandler eventCallBack = new IAntChannelEventHandler() {
 
@@ -502,13 +488,13 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
 
 
-                    }else { //if the three units are NOT connected, check each one in the "switch on sensors" layout
+                    }else { //if the unit is NOT connected, check each one in the "switch on sensors" layout
 
                         Log.e(LOG_TAG, "CHECK Rx: " + messageContentString); //hex
 
-                        if(messageContentString.contains(string4)){
+                        if(messageContentString.contains(string6)){
                             connected6 = true;
-                            //GlobalVariables.flag_connected4=true;
+                            //GlobalVariables.flag_connected6=true;
                             Log.e(LOG_TAG,"1 is:" + connected6);
                             state=CONNECT6;
 
@@ -517,7 +503,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                                 @Override
                                 public void run() {
-
                                     switchonenvironmentalmonitor_progressbar.setVisibility(View.GONE);
                                     switchonenvironmentalmonitor_checkmark.setVisibility(View.VISIBLE);
 
@@ -655,6 +640,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     };
 
 
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View v) {
@@ -763,7 +749,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 } catch (ChannelNotAvailableException | RemoteException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "Ant Channel IMUs: "+ antChannelEnvironmental);
+                Log.e(LOG_TAG, "Ant Channel Environmental Monitor: "+ antChannelEnvironmental);
 
                 try {
                     antChannelEnvironmental.setChannelEventHandler(eventCallBack);
@@ -844,27 +830,27 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
             case R.id.gotoswitchonenvironmentalmonitor:
 
                 inflated_initialization.setVisibility(View.GONE);
-//CREARE FILE LAYOUT SWITCH_ON_ENVIRONMENTAL_MONITOR E SOSTITUISCI TUTTO
-                viewStub = (ViewStub) findViewById(R.id.switchonpulseox_toinclude);
-                viewStub.setLayoutResource(R.layout.switch_on_pulse_ox);
+
+                viewStub = (ViewStub) findViewById(R.id.switchonenvironmentalmonitor_toinclude);
+                viewStub.setLayoutResource(R.layout.switch_on_environmental_monitor);
                 inflated_switch_on_sensors = viewStub.inflate();
 
                 progressbar_idpatient.setVisibility(View.VISIBLE);
 
-                switchonenvironmentalmonitor_checkmark=(ImageButton) findViewById(R.id.switchonpulseox_checkmark);
+                switchonenvironmentalmonitor_checkmark=(ImageButton) findViewById(R.id.switchonenvironmentalmonitor_checkmark);
 
-                switchonenvironmentalmonitor_progressbar=(ProgressBar) findViewById(R.id.switchonpulseox_progressbar);
-
-
-                switch_on_environmentalmonitor=(TextView) findViewById(R.id.switch_on_pulseox);
+                switchonenvironmentalmonitor_progressbar=(ProgressBar) findViewById(R.id.switchonenvironmentalmonitor_progressbar);
 
 
-                gotorecordingbutton_environmentale_monitor=(Button) findViewById(R.id.gotorecordingbutton_pulse_ox);
+                switch_on_environmentalmonitor=(TextView) findViewById(R.id.switch_on_environmentalmonitor);
+
+
+                gotorecordingbutton_environmentale_monitor=(Button) findViewById(R.id.gotorecordingbutton_environmental_monitor);
                 gotorecordingbutton_environmentale_monitor.setOnClickListener(this);
 
                 break;
-//ANCHE QUA TUTTO DA CAMBIARE
-            case R.id.gotorecordingbutton_pulse_ox:
+
+            case R.id.gotorecordingbutton_environmental_monitor:
 
                 inflated_switch_on_sensors.setVisibility(View.GONE);
 
@@ -1309,6 +1295,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         }
     }
 
+    
     private static void openDrawer(DrawerLayout drawerLayout) {
         //open drawer layout
         drawerLayout.openDrawer(GravityCompat.START);
@@ -1371,6 +1358,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         activity.startActivity(intent);
     }
 
+    @Override
     protected void onPause() {
         super.onPause();
         //close drawer
@@ -1407,6 +1395,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         //show dialog
         builder.show();
     }
+
 
     private void telephone(final Activity activity){
         //initialize alert dialog
@@ -1720,6 +1709,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         battery_value=battery_float * 1881/69280;
         return battery_value;
     }
+
+
 
     private void initializeNotification(String title) {
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
@@ -2123,11 +2114,11 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
     private void sensorsDisconnection(final Activity activity){
 
-        Log.e("sensorsDisconnection","sensorsDisconnection: " + watchdog_timer[4]);
+        Log.e("sensorsDisconnection","sensorsDisconnection: " + watchdog_timer[6]);
 
         //check which sensor is disconnected
         if(watchdog_timer[UNIT6]>=30){
-            sensorDisconnected6="4";
+            sensorDisconnected6="6";    //NON DOVREBBE CAMBIARE NIENTE METTERE 6 AL POSTO DI 4
         }
 
         sensorsDisconnectedText=sensorDisconnected6;

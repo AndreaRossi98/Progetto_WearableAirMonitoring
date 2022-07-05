@@ -222,11 +222,11 @@ public class saturation extends AppCompatActivity implements View.OnClickListene
     byte[] payLoad9 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0x80}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
 
     public String string0 = "[00][00][00][00][00][00][00][00]";
-    public String string4 = "[04][04][04][04][04][04][04]";//message from slave 3 for check
+    public String string4 = "[04][04][04][04][04][04][04]";//message from slave 4 for check
 
-    public String dummy_unit4="[04],[00],[FF],[00],[00],[00],[00],[00],";
+    public String dummy_unit4 = "[04],[00],[FF],[00],[00],[00],[00],[00],";
 
-    public String startrec_time=null;
+    public String startrec_time = null;
 
     public int state;
     public boolean connected4 = false;
@@ -248,16 +248,16 @@ public class saturation extends AppCompatActivity implements View.OnClickListene
     BroadcastDataMessage broadcastDataMessage;
     public String current_default,current,day;
     //save the old message to see if there's data loss
-    public String old_messageContentString_unit=null;
+    public String old_messageContentString_unit = null;
 
     //watchdog timer to check if the sensors are receiving messages
-    public int [] watchdog_timer={0};
-    public int sumWt=0;
+    public int [] watchdog_timer = {0};
+    public int sumWt = 0;
     public boolean flag_watchdog_timer_overflow = true;
     public boolean flag_reconnection = false;
     public boolean flag_sensors_disconnection = false;
     public boolean flag_sensors_disconnection_header = false;
-    public String sensors_disconnection_header="You have to go back initialize the sensors because in the last recording a problem occurred with the communication.\n\nSwitch OFF the sensors and then press YES";
+    public String sensors_disconnection_header = "You have to go back initialize the sensors because in the last recording a problem occurred with the communication.\n\nSwitch OFF the sensors and then press YES";
 
     private String sensorsDisconnectedText;
     private static String sensorDisconnected4="";
@@ -488,7 +488,7 @@ public class saturation extends AppCompatActivity implements View.OnClickListene
 
 
 
-                    }else { //if the three units are NOT connected, check each one in the "switch on sensors" layout
+                    }else { //if the unit is NOT connected, check each one in the "switch on sensors" layout
 
                         Log.e(LOG_TAG, "CHECK Rx: " + messageContentString); //hex
 

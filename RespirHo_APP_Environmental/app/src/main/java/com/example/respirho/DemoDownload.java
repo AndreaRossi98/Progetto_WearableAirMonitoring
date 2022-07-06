@@ -1624,7 +1624,7 @@ public class DemoDownload extends AppCompatActivity implements View.OnClickListe
 
             case R.id.downloadfile_manual:
                 //if the flag_filetoosmall is raised avoid downloading the file
-                if(flag_filetoosmall){
+                if(flag_filetoosmall){      //mettere == true
                     Toast.makeText(getApplicationContext(), "The file is too small and you can NOT downloading it", Toast.LENGTH_LONG).show();
                 }else{
                     //call download function

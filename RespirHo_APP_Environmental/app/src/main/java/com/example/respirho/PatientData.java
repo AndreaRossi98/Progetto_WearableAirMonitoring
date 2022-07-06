@@ -105,7 +105,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
 
     //TODO-- END drawer
     //Variable to choose the correct selected sensors to activate
-    int SensorsSelection = 15; //All sensors are selected
+    int DeviceSelection = 15; //All sensors are selected
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -355,8 +355,8 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                                 }
                             }
 
-                            SensorsSelection = SensorsSelection + (int)Math.pow((double) 2,(double) (numberToast-1));
-                            toast.makeText(getApplicationContext(), "Sensor " + numberToast + " is ON", Toast.LENGTH_SHORT).show();
+                            DeviceSelection = DeviceSelection + (int)Math.pow((double) 2,(double) (numberToast-1));
+                            toast.makeText(getApplicationContext(), "Device " + numberToast + " is ON", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -378,8 +378,8 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                                 }
                             }
 
-                            SensorsSelection = SensorsSelection - (int)Math.pow((double) 2,(double) (numberToast-1));
-                            toast.makeText(getApplicationContext(), "Sensor " + numberToast + " is OFF", Toast.LENGTH_SHORT).show();
+                            DeviceSelection = DeviceSelection - (int)Math.pow((double) 2,(double) (numberToast-1));
+                            toast.makeText(getApplicationContext(), "Device " + numberToast + " is OFF", Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -482,15 +482,15 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case R.id.startbutton:
-                SensorsActivation(this);    //In base al valore di SensorsSelection definisco che combinazione attivare
+                DeviceActivation(this);    //In base al valore di SensorsSelection definisco che combinazione attivare
                 break;
         }
     }
 
 
-    private void SensorsActivation(Activity activity){
+    private void DeviceActivation(Activity activity){
 
-        switch (SensorsSelection){
+        switch (DeviceSelection){
             case 0: //Tutto spento
                 toast.makeText(getApplicationContext(), "TUTTO OFF", Toast.LENGTH_SHORT).show();
                 break;
@@ -552,7 +552,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case 15: //Tutti i sensori
-                toast.makeText(getApplicationContext(), "Hai scelto tutti i sensori, con calmaa!", Toast.LENGTH_SHORT).show();
+                toast.makeText(getApplicationContext(), "Hai scelto tutti i sensori!", Toast.LENGTH_SHORT).show();
                 break;
 
             default:

@@ -96,7 +96,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class EnvironmentalMonitor extends AppCompatActivity implements View.OnClickListener{
-//VEDERE COSA SERVE DI TUTTO QUESTO
+
     private Button timerrecordingbutton,manualrecordingbutton,initializationbutton_environmental_monitor,gotoswitchonenvironmentalmonitor,gotorecordingbutton_environmentale_monitor;
     private Button startrecording_manual,stoprecording_manual,downloadfile_manual,gotonewrecording_manual,goback_manual;
     private Button startrecording_timer,stoprecording_timer,downloadfile_timer,gotonewrecording_timer,goback_timer;
@@ -166,8 +166,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private boolean flag_logout=false;
     private boolean flag_closeapp=false;
 
-
-
     //flag for download
     public boolean flag_filetoosmall = false;
 
@@ -205,8 +203,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public AntChannel antChannelEnvironmental;      //CAMBIATO
     public ChannelType antChannelEnvironmental_type;        //CAMBIATO
     public AntMessage antMessage;
-    public MessageFromAntType messagetype; //
+    public MessageFromAntType messagetype;
     public boolean mIsOpen = false;
+//QUESTO E' DA CAMBIARE
     public ChannelId channelId_smartphone = new ChannelId(2,2,2, true); //DEFAULT: 2,2,2, true
 
     byte[] payLoad;
@@ -237,7 +236,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private static final int SYNCHRONIZATION_RESUME = 4;
     private static final int START = 5;
     private static final int CALL6 = 6;
-    private static final int CALIBRATION = 9; //payload 8     o lo uso per impostare una calibrazione forzata? posso farlo ogni volta che lo accendo se no
+    private static final int CALIBRATION = 9; //payload 8
     private static final int STOP = 10; //stop and resume, payload 9
     private static final int RECONNECTION = 11;
     private static final int CLOSE = 0; //close the channel
@@ -538,12 +537,11 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     payLoad = payLoad6;
                                 }
 
-
-                                if(state==SYNCHRONIZATION_RESUME)
+/*                                if(state==SYNCHRONIZATION_RESUME)
                                 {
                                     payLoad = payLoad4;
                                 }
-
+*/
                                 if(state==RECONNECTION)
                                 {
                                     payLoad = payLoad4;
@@ -562,11 +560,11 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     payLoad = payLoad5;
                                 }
 
-
+/*
                                 if(state==CALIBRATION) {
                                     payLoad = payLoad8;
                                 }
-
+*/
                                 if(state==STOP) {
                                     //stop the channel sending the payload9
                                     payLoad = payLoad9;
@@ -811,7 +809,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     progressbar_initialization.setVisibility(View.GONE);
                     initializationbutton_environmental_monitor.setVisibility(View.GONE);
 
-                    //change text,add checkmark and show gotoswitchonpulseox
+                    //change text,add checkmark and show gotoswitchonenvironmentalmonitor
                     status_initialization.setText("Initialization successful!");
                     initialization_checkmark.setVisibility(View.VISIBLE);
                     bottom_initialization.setVisibility(View.VISIBLE);
@@ -1396,7 +1394,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         builder.show();
     }
 
-
     private void telephone(final Activity activity){
         //initialize alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -1709,8 +1706,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         battery_value=battery_float * 1881/69280;
         return battery_value;
     }
-
-
 
     private void initializeNotification(String title) {
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){

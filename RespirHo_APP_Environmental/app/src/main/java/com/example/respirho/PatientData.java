@@ -244,77 +244,55 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
 /*
             //if it's a sensor
             if(view instanceof GridLayout ){
-
                 //cast to gridlayout
                 final GridLayout sensor= (GridLayout) view;
-
-
                 sensor.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         //TODO--go to the storage demo page
                         redirectActivity(PatientData.this, DemoDownload.class); //REDIRECT TO AN ACQUISITION WITH ALL THE UNITS
-
                     }
                 });
             }
-
  */
 
-//QUESTI IF SI POSSONO ELIMINARE GIUSTO? NON DEVO PIU' CLICCARGLI SOPRA
-// DEVO MODIFICARE ANCHE LA FUNZIONE CLICCABILE SU XML?
-            if(view instanceof GridLayout && childnumber==0 ){
 
+/*            if(view instanceof GridLayout && childnumber==0 ){
                 //cast to gridlayout
                 final GridLayout sensor= (GridLayout) view;
 
                 sensor.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         //onIMUpressed();
-
                     }
                 });
             }
-
+*/
+/*
             if(view instanceof GridLayout && childnumber == 1 ){
-
                 //cast to gridlayout
                 final GridLayout sensor= (GridLayout) view;
                 sensor.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         //onpulseoxpressed();
-
-
-
                     }
                 });
-
-
-
             }
-
+*/
+/*
             if(view instanceof GridLayout && childnumber == 5 ){
-
                 //cast to gridlayout
                 final GridLayout sensor= (GridLayout) view;
                 sensor.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         //onEnvironmentalpressed();
-
                     }
                 });
-
-
-
             }
-
+*/
 
             //if it's a switch
             if(view instanceof SwitchCompat){
@@ -339,9 +317,9 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                         if (on)
                         {
 
-//ANCHE QUESTO DA TOGLIERE PER IL SENSORE CLICKABLE?
+
                             //set clickable ON
-                            sensor.setClickable(false);
+                            //sensor.setClickable(false);
                             //set background of the sensor ON
                             sensor.setBackgroundResource(R.drawable.layoutroundedcornerssensor);
                             //set the status icon of the selected sensor ON
@@ -361,9 +339,9 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                         else
                         {
 
-//ANCHE QUA ELIMINO
+
                             //set clickable OFF
-                            sensor.setClickable(false);
+                            //sensor.setClickable(false);
                             //set background of the sensor OFF
                             sensor.setBackgroundResource(R.drawable.layoutroundedcornerssensorfade);
                             //set the status icon of the selected sensor OFF

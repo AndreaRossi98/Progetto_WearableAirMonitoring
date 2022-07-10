@@ -190,7 +190,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private DatabaseReference reference;
     private String userID;
 
-
+    Toast toast;
     
     public final String LOG_TAG = EnvironmentalMonitor.class.getSimpleName();
 //PARAMETRI ANCORA DA SETTARE, SIA ANT CHE PAYLOAD
@@ -535,13 +535,15 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 // Setting the data to be broadcast on the next channel period
                                 if(state==CONNECT6){
                                     payLoad = payLoad6;
+                                    toast.makeText(getApplicationContext(), "Connessione", Toast.LENGTH_SHORT).show();
+
                                 }
 
-/*                                if(state==SYNCHRONIZATION_RESUME)
+                                if(state==SYNCHRONIZATION_RESUME)
                                 {
                                     payLoad = payLoad4;
                                 }
-*/
+
                                 if(state==RECONNECTION)
                                 {
                                     payLoad = payLoad4;
@@ -549,6 +551,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                                 if(state==START)
                                 {
+                                    toast.makeText(getApplicationContext(), "Connesso", Toast.LENGTH_SHORT).show();
                                     payLoad = payLoad4;
                                     //save time to show
                                     SimpleDateFormat formatStartRec=new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
@@ -568,6 +571,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 if(state==STOP) {
                                     //stop the channel sending the payload9
                                     payLoad = payLoad9;
+                                    toast.makeText(getApplicationContext(), "Chiusura canale", Toast.LENGTH_SHORT).show();
+
                                 }
 
                                 //send the message through a specific payload

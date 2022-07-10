@@ -183,9 +183,11 @@
             android:layout_height="500dp"
             android:layout_below="@+id/infotelephonedownload"
             android:layout_margin="15dp"
+            android:layout_marginTop="12dp"
             android:columnCount="3"
             android:rowCount="10"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/infotelephonedownload">
 
@@ -196,7 +198,7 @@
                 android:layout_row="0"
                 android:layout_column="0"
                 android:text="Temperature [°C]"
-                android:textSize="22sp"
+                android:textSize="23sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -206,218 +208,253 @@
                 android:layout_row="0"
                 android:layout_column="2"
                 android:text="Humidity [%]"
-                android:textSize="22sp"
+                android:textSize="23sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/temperature_value"
-                android:paddingTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="1"
                 android:layout_column="0"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
+                android:paddingTop="5dp"
                 android:text="35"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/humidity_value"
-                android:paddingTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="1"
                 android:layout_column="2"
                 android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
                 android:text="35"
-                android:textSize="22sp"/>
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="1"
+                android:layout_centerInParent="true"
+                android:paddingTop="5dp"
+                android:text="    "
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/CO2"
-                android:paddingTop="5dp"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_row="2"
                 android:layout_column="0"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
+                android:paddingTop="5dp"
                 android:text="CO2 [ppm]"
-                android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/VOC"
-                android:paddingTop="5dp"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_row="2"
                 android:layout_column="2"
+                android:paddingTop="5dp"
                 android:text="VOC [ppm]"
-                android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/CO2_value"
-                android:paddingTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="3"
                 android:layout_column="0"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
+                android:paddingTop="5dp"
                 android:text="35"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="3"
+                android:layout_column="1"
+                android:layout_centerInParent="true"
+                android:paddingTop="5dp"
+                android:text=""
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/VOC_value"
-                android:paddingTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="3"
                 android:layout_column="2"
                 android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
                 android:text="35"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/NO2"
-                android:paddingTop="5dp"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_row="4"
                 android:layout_column="0"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
+                android:paddingTop="5dp"
                 android:text="NO2 [ppm]"
-                android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/CO"
-                android:paddingTop="5dp"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_row="4"
                 android:layout_column="2"
+                android:paddingTop="5dp"
                 android:text="CO [ppm]"
-                android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/NO2_value"
-                android:paddingTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="5"
                 android:layout_column="0"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
+                android:paddingTop="5dp"
                 android:text="35"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="5"
+                android:layout_column="1"
+                android:layout_centerInParent="true"
+                android:paddingTop="5dp"
+                android:text=""
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/CO_value"
-                android:paddingTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="5"
                 android:layout_column="2"
                 android:layout_centerInParent="true"
-                android:text="35"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:id="@+id/PM1.0"
-                android:paddingTop="5dp"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_row="6"
-                android:layout_column="0"
-                android:layout_centerInParent="true"
                 android:layout_gravity="center"
-                android:text="PM1.0 [ppm]"
-                android:textStyle="bold"
-                android:textSize="22sp" />
-
-            <TextView
-                android:id="@+id/PM2.5"
                 android:paddingTop="5dp"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_row="6"
-                android:layout_column="2"
-                android:text="PM2.5 [ppm]"
-                android:textStyle="bold"
-                android:textSize="22sp"/>
-
-            <TextView
-                android:id="@+id/PM1.0_value"
-                android:paddingTop="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="7"
-                android:layout_column="0"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
                 android:text="35"
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/PM2.5_value"
+                android:id="@+id/PM1.0"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_row="6"
+                android:layout_column="0"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:paddingTop="5dp"
+                android:text="PM1.0 [ppm]"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/PM2.5"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_row="6"
+                android:layout_column="2"
+                android:paddingTop="5dp"
+                android:text="PM2.5 [ppm]"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/PM1.0_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="7"
+                android:layout_column="0"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:text="35"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="7"
+                android:layout_column="1"
+                android:layout_centerInParent="true"
+                android:paddingTop="5dp"
+                android:text=""
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/PM2.5_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="7"
                 android:layout_column="2"
                 android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
                 android:text="35"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/PM10"
-                android:paddingTop="5dp"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_row="8"
                 android:layout_column="0"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
+                android:paddingTop="5dp"
                 android:text="PM10 [ppm]"
-                android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/indexquality"
-                android:paddingTop="5dp"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_row="8"
                 android:layout_column="2"
+                android:paddingTop="5dp"
                 android:text="Air quality"
-                android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:textSize="23sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/PM10_value"
-                android:paddingTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_row="9"
                 android:layout_column="0"
-                android:layout_centerInParent="true"
-                android:text="35"
-                android:textSize="20sp"/>
 
-            <TextView
-                android:id="@+id/indexquality_value"
+                android:layout_gravity="center"
                 android:paddingTop="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_row="9"
-                android:layout_column="2"
-                android:layout_centerInParent="true"
                 android:text="35"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:translationY="-85dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -425,8 +462,18 @@
                 android:layout_row="9"
                 android:layout_column="1"
                 android:layout_centerInParent="true"
-                android:text="  "
-                android:textSize="20sp"/>
+                android:paddingTop="5dp"
+                android:text=""
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_row="9"
+                android:layout_column="2"
+                android:background="#06670A"
+                android:text="" />
 
 
         </GridLayout>

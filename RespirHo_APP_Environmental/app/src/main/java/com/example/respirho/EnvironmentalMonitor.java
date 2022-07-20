@@ -418,7 +418,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onReceiveMessage(MessageFromAntType messageFromAntType, AntMessageParcel antMessageParcel) {
-//Toast.makeText(getApplicationContext(), "onReceiveMessage" + antMessageParcel, Toast.LENGTH_LONG).show();
 Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); //hex
             switch(messageFromAntType){
 
@@ -526,7 +525,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
 
                 case CHANNEL_EVENT:
                     ChannelEventMessage eventMessage = new ChannelEventMessage(antMessageParcel);
-
+Log.e(LOG_TAG, "channel event: "+ eventMessage);
                     switch (eventMessage.getEventCode()) {
                         case RX_SEARCH_TIMEOUT:
                             break;

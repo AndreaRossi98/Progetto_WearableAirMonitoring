@@ -146,8 +146,8 @@
         <GridLayout
             android:id="@+id/layout_sensors_button_switch"
             android:layout_width="335dp"
-            android:layout_height="468dp"
-            android:layout_margin="15dp"
+            android:layout_height="400dp"
+            android:layout_margin="5dp"
             android:columnCount="2"
             android:rowCount="4"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -160,7 +160,7 @@
             <GridLayout
                 android:id="@+id/layout_sensor_1"
                 android:layout_width="120dp"
-                android:layout_height="140dp"
+                android:layout_height="130dp"
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
@@ -176,11 +176,11 @@
 
                 <!-- SENSOR NAME-->
                 <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="64dp"
                     android:layout_row="0"
-                    android:layout_column="0"
                     android:layout_rowWeight="1"
+                    android:layout_column="0"
                     android:layout_columnWeight="1">
 
                     <TextView

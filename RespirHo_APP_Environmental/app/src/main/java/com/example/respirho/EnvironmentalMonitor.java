@@ -195,7 +195,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public final String LOG_TAG = EnvironmentalMonitor.class.getSimpleName();
 //PARAMETRI ANCORA DA SETTARE, SIA ANT CHE PAYLOAD
     // GESTIONE ANT
-    private static final int USER_PERIOD_SATURATION = 32768; // 3277; 10 Hz
+    private static final int USER_PERIOD_SATURATION = 32768; //32767; //32768; // ; 10 Hz    65535
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound = false;
     private AntService mAntRadioService = null;
@@ -221,8 +221,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     byte[] payLoad9 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0x80}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
 
     public String string0 = "[00][00][00][00][00][00][00][00]";
-    public String string6 = "[04][04][04][04][04][04][04]";//message from slave 6 for check
-
+    //public String string4 = "[04][04][04][04][04][04][04]";//message from slave 6 for check
+    public String string6 = "[04][04][04][04][04][04][04]";
     public String dummy_unit6 = "[04],[00],[FF],[00],[00],[00],[00],[00],";
 
     public String startrec_time = null;
@@ -289,7 +289,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         viewStub.setLayoutResource(R.layout.initialization_environmental_monitor);
         inflated_initialization = viewStub.inflate();
 
-//Vedere se serve anche questo
         //update info layout initialization
         viewStub = (ViewStub) findViewById(R.id.updateinforecording_toinclude);
         viewStub.setLayoutResource(R.layout.updateinfo_recording);
@@ -419,11 +418,12 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onReceiveMessage(MessageFromAntType messageFromAntType, AntMessageParcel antMessageParcel) {
-
+//Toast.makeText(getApplicationContext(), "onReceiveMessage" + antMessageParcel, Toast.LENGTH_LONG).show();
+Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); //hex
             switch(messageFromAntType){
 
                 case BROADCAST_DATA: //HERE ARRIVES ALL THE MESSAGES FROM THE SENSORS
-
+                    Log.e(LOG_TAG, "CHECK Rx: "); //hex
                     //save time
                     day= LocalDateTime.now().toLocalDate().toString(); //datetime
 
@@ -447,6 +447,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             + messageContentString.substring(20,24) + ","
                             + messageContentString.substring(24,28) + ","
                             + messageContentString.substring(28,32) + ",";
+                    toast.makeText(getApplicationContext(),  "stringa: " + msg , Toast.LENGTH_SHORT).show();
+                    Log.e(LOG_TAG,"stringa " + msg);
                     //TODO - end
 
                     //split the bytes
@@ -491,11 +493,12 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                         Log.e(LOG_TAG, "CHECK Rx: " + messageContentString); //hex
 
+
                         if(messageContentString.contains(string6)){
                             connected6 = true;
                             //GlobalVariables.flag_connected6=true;
                             Log.e(LOG_TAG,"1 is:" + connected6);
-                            state=CONNECT6;
+                            state=CONNECT6;   //prova a togliere questa
 
                             //to change the UI we have to put codes in the runOnUiThread
                             runOnUiThread(new Runnable() {
@@ -523,6 +526,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                 case CHANNEL_EVENT:
                     ChannelEventMessage eventMessage = new ChannelEventMessage(antMessageParcel);
+
                     switch (eventMessage.getEventCode()) {
                         case RX_SEARCH_TIMEOUT:
                             break;
@@ -531,12 +535,10 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         case TX: //HERE WE SEND ALL THE BROADCAST MESSAGES TO THE SENSORS
                             //if the channel has been opened during initialization...
                             if (mIsOpen) {
-
                                 // Setting the data to be broadcast on the next channel period
-                                if(state==CONNECT6){
+                                if(state==CONNECT6)
+                                {
                                     payLoad = payLoad6;
-                                    toast.makeText(getApplicationContext(), "Connessione", Toast.LENGTH_SHORT).show();
-
                                 }
 
                                 if(state==SYNCHRONIZATION_RESUME)
@@ -551,7 +553,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                                 if(state==START)
                                 {
-                                    toast.makeText(getApplicationContext(), "Connesso", Toast.LENGTH_SHORT).show();
+                                    toast.makeText(getApplicationContext(), "STATE = START", Toast.LENGTH_SHORT).show();
                                     payLoad = payLoad4;
                                     //save time to show
                                     SimpleDateFormat formatStartRec=new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
@@ -762,7 +764,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 Log.e(LOG_TAG, "Event handler" + eventCallBack);
 
                 try {
-                    antChannelEnvironmental.assign(ChannelType.SHARED_BIDIRECTIONAL_MASTER);//SHARED_BIDIRECTIONAL_MASTER, 48=0x30
+                    antChannelEnvironmental.assign(ChannelType.BIDIRECTIONAL_MASTER);//SHARED_BIDIRECTIONAL_MASTER, 48=0x30
 
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
@@ -857,7 +859,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                 inflated_switch_on_sensors.setVisibility(View.GONE);
 
-                viewStub = (ViewStub) findViewById(R.id.select_recording_toinclude);
+                viewStub = (ViewStub) findViewById(R.id.select_recording_toinclude_8);
                 viewStub.setLayoutResource(R.layout.select_recording);
                 inflated_select_recording = viewStub.inflate();
 

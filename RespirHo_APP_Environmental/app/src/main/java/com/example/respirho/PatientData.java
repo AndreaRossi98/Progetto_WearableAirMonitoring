@@ -334,7 +334,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                             }
 
                             DeviceSelection = DeviceSelection + (int)Math.pow((double) 2,(double) (numberToast-1));
-                            toast.makeText(getApplicationContext(), "Device " + numberToast + " is ON", Toast.LENGTH_SHORT).show();
+                            //toast.makeText(getApplicationContext(), "Device " + numberToast + " is ON", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -357,7 +357,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                             }
 
                             DeviceSelection = DeviceSelection - (int)Math.pow((double) 2,(double) (numberToast-1));
-                            toast.makeText(getApplicationContext(), "Device " + numberToast + " is OFF", Toast.LENGTH_SHORT).show();
+                            //toast.makeText(getApplicationContext(), "Device " + numberToast + " is OFF", Toast.LENGTH_SHORT).show();
 
                         }
                     }

@@ -424,7 +424,6 @@ public class saturation extends AppCompatActivity implements View.OnClickListene
             switch(messageFromAntType){
 
                 case BROADCAST_DATA: //HERE ARRIVES ALL THE MESSAGES FROM THE SENSORS
-
                     //save time
                     day= LocalDateTime.now().toLocalDate().toString(); //datetime
 

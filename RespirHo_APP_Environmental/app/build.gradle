@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 29    //29
 
     //ADDED
     lintOptions {
@@ -11,8 +11,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.respirho"
-        minSdkVersion 21 //DEFAULT: 29
-        targetSdkVersion 29 //DEFAULT: 30
+        minSdkVersion 24    //24    //DEFAULT: 29
+        targetSdkVersion 29    //29 //DEFAULT: 30
         versionCode 1
         versionName "1.0"
         multiDexEnabled true

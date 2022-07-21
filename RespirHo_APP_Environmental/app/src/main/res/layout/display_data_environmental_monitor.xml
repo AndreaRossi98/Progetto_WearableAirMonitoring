@@ -1,188 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.drawerlayout.widget.DrawerLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".DemoDownload">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- SENSOR -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:backgroundTint="#DCE6F2"
-        android:clickable="false"
-        android:visibility="visible"
-        tools:context=".EnvironmentalMonitor">
-
-        <!-- TOOLBAR -->
-        <include
-            layout="@layout/toolbar"
-            android:id="@+id/layout_toolbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-        </include>
-
-        <!-- ID PATIENT -->
-        <RelativeLayout
-            android:id="@+id/idpatient"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="15dp"
-            android:layout_below="@+id/layout_toolbar"
-            android:layout_above="@+id/infomaildownload"
-            android:background="@drawable/layoutroundedcorners"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_toolbar">
-
-            <TextView
-                android:id="@+id/card"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
-                android:gravity="center_vertical"
-                android:textColor="@android:color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="1234567890"/>
-
-            <!-- LOW BATTERY -->
-            <RelativeLayout
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="105dp">
-
-                <ImageView
-                    android:id="@+id/lowbattery_idpatient"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:adjustViewBounds="true"
-                    android:background="#00FFFFFF"
-                    android:clickable="true"
-                    android:visibility="visible"
-                    app:srcCompat="@drawable/low_battery" />
-            </RelativeLayout>
-
-            <!-- WARNINGS -->
-            <RelativeLayout
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="45dp">
-
-                <ImageButton
-                    android:id="@+id/error_idpatient"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:adjustViewBounds="true"
-                    android:background="#00FFFFFF"
-                    android:scaleX="0.8"
-                    android:scaleY="0.8"
-                    android:tint="#FF0000"
-                    android:clickable="true"
-                    android:visibility="gone"
-                    app:srcCompat="@drawable/ic_cancel_foreground" />
-
-                <ImageButton
-                    android:id="@+id/exclamation_point_idpatient"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerInParent="true"
-                    android:adjustViewBounds="true"
-                    android:background="#00FFFFFF"
-                    android:clickable="true"
-                    android:scaleX="0.8"
-                    android:scaleY="0.8"
-                    android:tint="#FFEB3B"
-                    android:visibility="visible"
-                    app:srcCompat="@drawable/ic_exclamation_point_round_foreground" />
-
-                <ImageButton
-                    android:id="@+id/checkmark_idpatient"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:adjustViewBounds="true"
-                    android:background="#00FFFFFF"
-                    android:scaleX="0.8"
-                    android:scaleY="0.8"
-                    android:tint="#53FB5A"
-                    android:clickable="true"
-                    android:visibility="gone"
-                    app:srcCompat="@drawable/ic_checkmark_foreground" />
-            </RelativeLayout>
-
-            <!-- PROGRESS BAR DISCONNECTION -->
-            <RelativeLayout
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="5dp">
-
-                <ProgressBar
-                    android:id="@+id/progressbar_idpatient"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:adjustViewBounds="true"
-                    android:clickable="true"
-                    android:visibility="visible" />
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <!-- INFO AND TELEPHONE DOWNLOAD-->
-        <GridLayout
-            android:id="@+id/infotelephonedownload"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_below="@+id/idpatient"
-            android:layout_above="@+id/displayed_data"
-            android:layout_margin="15dp"
-            android:columnCount="2"
-            android:rowCount="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/idpatient">
-
-            <include
-                layout="@layout/info"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_row="0"
-                android:layout_rowWeight="1"
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_marginRight="130dp"></include>
-
-            <include
-                layout="@layout/telephone_storage"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_row="0"
-                android:layout_rowWeight="1"
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="end"></include>
-        </GridLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="5dp"
+        android:background="@drawable/layoutroundedcornerssensor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <!-- DISPLAYED DATA -->
         <GridLayout
             android:id="@+id/displayed_data"
             android:layout_width="wrap_content"
-            android:layout_height="500dp"
+            android:layout_height="366dp"
             android:layout_below="@+id/infotelephonedownload"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:layout_marginTop="16dp"
             android:columnCount="3"
             android:rowCount="10"
@@ -191,9 +34,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/infotelephonedownload">
 
+            <!-- TEMPERATURE -->
             <TextView
                 android:id="@+id/temperature"
-                android:layout_width="180dp"
+                android:layout_width="195dp"
                 android:layout_height="wrap_content"
                 android:layout_row="0"
                 android:layout_column="0"
@@ -202,9 +46,10 @@
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
+            <!-- HUMIDITY -->
             <TextView
                 android:id="@+id/humididty"
-                android:layout_width="180dp"
+                android:layout_width="195dp"
                 android:layout_height="wrap_content"
                 android:layout_row="0"
                 android:layout_column="2"
@@ -213,6 +58,7 @@
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
+            <!-- TEMPERATURE VALUE -->
             <TextView
                 android:id="@+id/temperature_value"
                 android:layout_width="wrap_content"
@@ -225,6 +71,7 @@
                 android:text="35"
                 android:textSize="20sp" />
 
+            <!-- HUMIDITY VALUE -->
             <TextView
                 android:id="@+id/humidity_value"
                 android:layout_width="wrap_content"
@@ -244,9 +91,10 @@
                 android:layout_column="1"
                 android:layout_centerInParent="true"
                 android:paddingTop="5dp"
-                android:text="    "
+                android:text=""
                 android:textSize="20sp" />
 
+            <!-- CO2 -->
             <TextView
                 android:id="@+id/CO2"
                 android:layout_width="180dp"
@@ -260,6 +108,7 @@
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
+            <!-- VOC -->
             <TextView
                 android:id="@+id/VOC"
                 android:layout_width="180dp"
@@ -272,6 +121,7 @@
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
+            <!-- CO2 VALUE -->
             <TextView
                 android:id="@+id/CO2_value"
                 android:layout_width="wrap_content"
@@ -294,6 +144,7 @@
                 android:text=""
                 android:textSize="20sp" />
 
+            <!-- VOC VALUE -->
             <TextView
                 android:id="@+id/VOC_value"
                 android:layout_width="wrap_content"
@@ -306,6 +157,7 @@
                 android:text="35"
                 android:textSize="20sp" />
 
+            <!-- NO2 -->
             <TextView
                 android:id="@+id/NO2"
                 android:layout_width="180dp"
@@ -319,6 +171,7 @@
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
+            <!-- CO -->
             <TextView
                 android:id="@+id/CO"
                 android:layout_width="180dp"
@@ -331,6 +184,7 @@
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
+            <!-- NO2 VALUE -->
             <TextView
                 android:id="@+id/NO2_value"
                 android:layout_width="wrap_content"
@@ -353,6 +207,7 @@
                 android:text=""
                 android:textSize="20sp" />
 
+            <!-- CO VALUE -->
             <TextView
                 android:id="@+id/CO_value"
                 android:layout_width="wrap_content"
@@ -365,6 +220,7 @@
                 android:text="35"
                 android:textSize="20sp" />
 
+            <!-- PM1.0 -->
             <TextView
                 android:id="@+id/PM1.0"
                 android:layout_width="180dp"
@@ -378,6 +234,7 @@
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
+            <!-- PM2.5 -->
             <TextView
                 android:id="@+id/PM2.5"
                 android:layout_width="180dp"
@@ -390,6 +247,7 @@
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
+            <!-- PM1.0 VALUE -->
             <TextView
                 android:id="@+id/PM1.0_value"
                 android:layout_width="wrap_content"
@@ -412,6 +270,7 @@
                 android:text=""
                 android:textSize="20sp" />
 
+            <!-- PM2.5 VALUE -->
             <TextView
                 android:id="@+id/PM2.5_value"
                 android:layout_width="wrap_content"
@@ -424,6 +283,7 @@
                 android:text="35"
                 android:textSize="20sp" />
 
+            <!-- PM10 -->
             <TextView
                 android:id="@+id/PM10"
                 android:layout_width="180dp"
@@ -437,6 +297,7 @@
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
+            <!-- AIR QUALITY -->
             <TextView
                 android:id="@+id/indexquality"
                 android:layout_width="180dp"
@@ -449,6 +310,8 @@
                 android:textSize="23sp"
                 android:textStyle="bold" />
 
+            <!-- PM10 VALUE -->
+
             <TextView
                 android:id="@+id/PM10_value"
                 android:layout_width="wrap_content"
@@ -460,7 +323,7 @@
                 android:text="35"
                 android:textAlignment="center"
                 android:textSize="20sp"
-                android:translationY="-85dp" />
+                android:translationY="-8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -472,6 +335,7 @@
                 android:text=""
                 android:textSize="20sp" />
 
+            <!-- AIR QUALITY SQUARE -->
             <Button
                 android:id="@+id/button"
                 android:layout_width="100dp"
@@ -484,15 +348,5 @@
 
         </GridLayout>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- DRAWER -->
-    <RelativeLayout
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start">
-
-        <include layout="@layout/main_drawer" />
-    </RelativeLayout>
-</androidx.drawerlayout.widget.DrawerLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

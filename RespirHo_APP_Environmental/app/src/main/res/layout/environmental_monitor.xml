@@ -228,6 +228,13 @@
                     android:layout_height="wrap_content"
                     android:inflatedId="@+id/manual_recording" />
 
+                <!-- DISPLAY DATA -->
+                <ViewStub
+                    android:id="@+id/display_data_toinclude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inflatedId="@+id/display_data"/>
+
                 <!-- UPDATE INFO RECORDING -->
                 <ViewStub
                     android:id="@+id/updateinforecording_toinclude"

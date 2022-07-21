@@ -115,7 +115,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private CountDownTimer countDownTimer;
     private Chronometer chronometer;
     private ViewStub viewStub;
-    private View inflated_initialization,inflated_switch_on_sensors,inflated_select_recording,inflated_calibration,inflated_manual_rec,inflated_timer_rec,inflated_updateinfo;
+    private View inflated_initialization,inflated_switch_on_sensors,inflated_select_recording,inflated_calibration,inflated_manual_rec,inflated_timer_rec,inflated_updateinfo, inflated_displaydata;
 
     //update info recording
     private RadioGroup posture_buttons;
@@ -293,9 +293,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         viewStub.setLayoutResource(R.layout.updateinfo_recording_environmental_monitor);
         inflated_updateinfo = viewStub.inflate();
 
-//        viewStub = (ViewStub) findViewById(R.id.display_data_toinclude);
-//        viewStub.setLayoutResource(R.layout.display_data_environmental_monitor);
-//        inflated_updateinfo = viewStub.inflate();
+        viewStub = (ViewStub) findViewById(R.id.display_data_toinclude);
+        viewStub.setLayoutResource(R.layout.display_data_environmental_monitor);
+        inflated_displaydata = viewStub.inflate();
 
 
 //        posture_buttons=(RadioGroup) inflated_updateinfo.findViewById(R.id.posture_buttons);
@@ -309,6 +309,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         inforecording=(TextView) inflated_updateinfo.findViewById(R.id.inforecording);
 
         inflated_updateinfo.setVisibility(View.GONE);
+        inflated_displaydata.setVisibility(View.GONE);
 
 
         helpbutton = (Button) findViewById(R.id.helpbutton);
@@ -982,6 +983,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                 inforecording.setText(null);
                 //show update info layout
                 inflated_updateinfo.setVisibility(View.VISIBLE);
+                inflated_displaydata.setVisibility(View.VISIBLE);
 
                 //start recording ANT data
                 state=START;
@@ -1025,6 +1027,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
+                        inflated_displaydata.setVisibility(View.GONE);
 
                         antStop();
 
@@ -1079,6 +1082,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
+                        inflated_displaydata.setVisibility(View.GONE);
                     }
                 });
                 //negative no button
@@ -1192,6 +1196,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                 inforecording.setText(null);
                 //show update info layout
                 inflated_updateinfo.setVisibility(View.VISIBLE);
+                inflated_displaydata.setVisibility(View.VISIBLE);
 
                 //start recording ANT data
                 state=START;
@@ -1252,6 +1257,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
+                        inflated_displaydata.setVisibility(View.GONE);
                     }
                 });
                 //negative no button

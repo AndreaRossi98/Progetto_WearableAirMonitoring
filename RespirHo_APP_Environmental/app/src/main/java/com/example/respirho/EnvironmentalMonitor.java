@@ -1116,7 +1116,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                 if(!flag_manual_rec){
 
                     viewStub = (ViewStub) findViewById(R.id.manual_recording_toinclude);
-                    viewStub.setLayoutResource(R.layout.manual_recording);
+                    viewStub.setLayoutResource(R.layout.manual_recording_environmental_monitor);
                     inflated_manual_rec = viewStub.inflate();
 
                     startrecording_manual=(Button) findViewById(R.id.startrecording_manual);

@@ -207,7 +207,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public final String LOG_TAG = EnvironmentalMonitor.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_SATURATION = 32767; //32767; //32768; // ; 10 Hz    65536
+    private static final int USER_PERIOD_SATURATION = 65535; //32767; //32768; // ; 10 Hz    65536
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound = false;
     private AntService mAntRadioService = null;
@@ -478,6 +478,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                             + messageContentString.substring(24,28) + ","
                             + messageContentString.substring(28,32) + ",";
                     Log.e(LOG_TAG,"stringa " + msg);
+toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
                     //TODO - end
 
                     //split the bytes
@@ -518,8 +519,8 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                             public void run() {
 //PER STAMPARE A SCHERMO
                                 int a = 5;
-                                temperature_output.setText(String.valueOf(a));     //temperature
-                                humidity_output.setText(String.valueOf(a+2));    //humidity
+                                temperature_output.setText(String.valueOf(temperature));     //temperature
+                                humidity_output.setText(String.valueOf(humidity));    //humidity
                                 CO2_output.setText(String.valueOf(a+4));
                                 VOC_output.setText(String.valueOf(a+6));
                                 NO2_output.setText(String.valueOf(a+8));

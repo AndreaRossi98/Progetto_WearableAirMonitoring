@@ -146,7 +146,7 @@
                 android:paddingTop="5dp"
                 android:text=""
                 android:textSize="20sp" />
-            
+
             <!-- VOC VALUE -->
             <TextView
                 android:id="@+id/VOC_value"

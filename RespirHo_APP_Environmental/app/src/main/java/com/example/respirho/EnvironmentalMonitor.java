@@ -293,6 +293,11 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         viewStub.setLayoutResource(R.layout.updateinfo_recording_environmental_monitor);
         inflated_updateinfo = viewStub.inflate();
 
+//        viewStub = (ViewStub) findViewById(R.id.display_data_toinclude);
+//        viewStub.setLayoutResource(R.layout.display_data_environmental_monitor);
+//        inflated_updateinfo = viewStub.inflate();
+
+
 //        posture_buttons=(RadioGroup) inflated_updateinfo.findViewById(R.id.posture_buttons);
 
         layout_insert_addinforec=(TextInputLayout) inflated_updateinfo.findViewById(R.id.layout_insert_addinforec);

@@ -68,7 +68,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
-                android:text="35"
+                android:text=""
                 android:textSize="20sp" />
 
             <!-- HUMIDITY VALUE -->
@@ -81,7 +81,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
-                android:text="35"
+                android:text=""
                 android:textSize="20sp" />
 
             <TextView
@@ -131,7 +131,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
-                android:text="35"
+                android:text=""
                 android:textSize="20sp" />
 
             <TextView
@@ -154,7 +154,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
-                android:text="35"
+                android:text=""
                 android:textSize="20sp" />
 
             <!-- NO2 -->
@@ -194,7 +194,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
-                android:text="35"
+                android:text=""
                 android:textSize="20sp" />
 
             <TextView
@@ -217,7 +217,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
-                android:text="35"
+                android:text=""
                 android:textSize="20sp" />
 
             <!-- PM1.0 -->
@@ -257,7 +257,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
-                android:text="35"
+                android:text=""
                 android:textSize="20sp" />
 
             <TextView
@@ -280,7 +280,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
-                android:text="35"
+                android:text=""
                 android:textSize="20sp" />
 
             <!-- PM10 -->
@@ -320,7 +320,7 @@
                 android:layout_column="0"
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
-                android:text="35"
+                android:text=""
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:translationY="-8dp" />

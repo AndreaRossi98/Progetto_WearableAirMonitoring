@@ -117,6 +117,18 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private ViewStub viewStub;
     private View inflated_initialization,inflated_switch_on_sensors,inflated_select_recording,inflated_calibration,inflated_manual_rec,inflated_timer_rec,inflated_updateinfo, inflated_displaydata;
 
+//PER STAMPARE A SCHERMO
+    private TextView temperature_output;
+    private TextView humidity_output;
+    private TextView CO2_output;
+    private TextView VOC_output;
+    private TextView NO2_output;
+    private TextView CO_output;
+    private TextView PM1p0_output;
+    private TextView PM2p5_output;
+    private TextView PM10_output;
+
+
     //update info recording
     private RadioGroup posture_buttons;
     private RadioButton posture_selected;
@@ -354,6 +366,16 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
         initialization_checkmark=(ImageButton) findViewById(R.id.initialization_checkmark);
 
+//PER STAMPARE A SCHERMO
+        temperature_output = (TextView) findViewById(R.id.temperature_value);
+        humidity_output = (TextView) findViewById(R.id.humidity_value);
+        CO2_output = (TextView) findViewById(R.id.CO2_value);
+        VOC_output = (TextView) findViewById(R.id.VOC_value);
+        NO2_output = (TextView) findViewById(R.id.NO2_value);
+        CO_output = (TextView) findViewById(R.id.CO_value);
+        PM1p0_output = (TextView) findViewById(R.id.PM1_0_value);
+        PM2p5_output = (TextView) findViewById(R.id.PM2_5_value);
+        PM10_output = (TextView) findViewById(R.id.PM10_value);
 
         //BINDING TO THE ANT RADIO SERVICE
         serviceIsBound = AntService.bindService(this, mAntRadioServiceConnection);
@@ -427,6 +449,10 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
             switch(messageFromAntType){
 
                 case BROADCAST_DATA: //HERE ARRIVES ALL THE MESSAGES FROM THE SENSORS
+//PER STAMPARE A SCHERMO, è definita anche prima, forse basta solo prima?
+                    //temperature_output = (TextView) findViewById(R.id.temperature_value);
+                    //humidity_output = (TextView) findViewById(R.id.humidity_value);
+
                     Log.e(LOG_TAG, "CHECK Rx: "); //hex
                     //save time
                     day= LocalDateTime.now().toLocalDate().toString(); //datetime
@@ -466,7 +492,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
 
                     //if ALL the units are connected, the next messages will be the recording data
                     if(connected6){
-                        //TODO- write the message to firebase and to file
+                        //write the message to firebase and to file
                         //write the messages
                         //call the firebase class to upload data on firebase
                         WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
@@ -477,8 +503,36 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
 //                        writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
 
 //                        fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+                        //TODO - show on screen the received data
+                        String messageContentString_saturation = messageContentString_split[6].substring(1);
+                        String messageContentString_HR = messageContentString_split[5].substring(1);
 
-                        //TODO - every now and then save the file on firebase for backup, later savings will over write the previous one
+                        int temperature = convertToInt(messageContentString_saturation);
+                        int humidity = convertToInt(messageContentString_HR);
+//aggiungere le variabili mancanti
+
+
+                        //to change the UI we have to put codes in the runOnUiThread
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+//PER STAMPARE A SCHERMO
+                                int a = 5;
+                                temperature_output.setText(String.valueOf(a));     //temperature
+                                humidity_output.setText(String.valueOf(a+2));    //humidity
+                                CO2_output.setText(String.valueOf(a+4));
+                                VOC_output.setText(String.valueOf(a+6));
+                                NO2_output.setText(String.valueOf(a+8));
+                                CO_output.setText(String.valueOf(a+10));
+                                PM1p0_output.setText(String.valueOf(a+12));
+                                PM2p5_output.setText(String.valueOf(a+14));
+                                PM10_output.setText(String.valueOf(a+16));
+
+                                a++;
+                            }
+                        });
+
+                        //every now and then save the file on firebase for backup, later savings will over write the previous one
                         //save the file each 1 MB size (around 10 minutes)
                         long fileIntSizeBytes_backup=fileInt.length();
                         long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
@@ -2037,6 +2091,12 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
         file.delete();
         temp.renameTo(file);
         Log.e("demo","fileInt modified and saved");
+    }
+    //funzione usata per stampare a schermo
+    private int convertToInt(String messageContentString){
+        //convert the battery byte hex value in volt
+        int value_int=Integer.parseInt(messageContentString, 16);
+        return value_int;
     }
 
     public void antClose() {

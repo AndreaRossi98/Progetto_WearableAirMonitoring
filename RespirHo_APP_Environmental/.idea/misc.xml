@@ -105,6 +105,7 @@
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/register.xml" value="0.1489864864864865" />
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/saturation.xml" value="0.18263888888888888" />
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/select_recording.xml" value="0.1489864864864865" />
+        <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/select_recording_environmental_monitor.xml" value="0.16486486486486487" />
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/sensor_data.xml" value="0.1489864864864865" />
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/storagefiles_dialog.xml" value="0.16486486486486487" />
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/support.xml" value="0.1489864864864865" />
@@ -114,6 +115,7 @@
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/switch_on_sensors.xml" value="0.1489864864864865" />
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/telephone_storage.xml" value="0.1489864864864865" />
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/timer_recording.xml" value="0.1489864864864865" />
+        <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/timer_recording_environmental_monitor.xml" value="0.16486486486486487" />
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/toolbar.xml" value="0.1489864864864865" />
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/updateinfo_recording.xml" value="0.1489864864864865" />
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/menu/popup_menu_edit_delete.xml" value="0.1489864864864865" />

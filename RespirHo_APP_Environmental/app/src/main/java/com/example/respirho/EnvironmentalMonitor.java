@@ -193,9 +193,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     Toast toast;
     
     public final String LOG_TAG = EnvironmentalMonitor.class.getSimpleName();
-//PARAMETRI ANCORA DA SETTARE, SIA ANT CHE PAYLOAD
+
     // GESTIONE ANT
-    private static final int USER_PERIOD_SATURATION = 32768; //32767; //32768; // ; 10 Hz    65535
+    private static final int USER_PERIOD_SATURATION = 32767; //32767; //32768; // ; 10 Hz    65536
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound = false;
     private AntService mAntRadioService = null;
@@ -222,7 +222,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
     public String string0 = "[00][00][00][00][00][00][00][00]";
     //public String string4 = "[04][04][04][04][04][04][04]";//message from slave 6 for check
-    public String string6 = "[04][04][04][04][04][04][04]";
+    public String string6 = "[06][06][06][06][06][06][06]";
     public String dummy_unit6 = "[04],[00],[FF],[00],[00],[00],[00],[00],";
 
     public String startrec_time = null;
@@ -248,7 +248,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public String current_default,current,day;
     //save the old message to see if there's data loss
     public String old_messageContentString_unit = null;
-//PENSARE A COME GESTIRE INVIO DEI DATI E SE SERVE
+
     //watchdog timer to check if the sensors are receiving messages
     public int [] watchdog_timer = {0};
     public int sumWt = 0;
@@ -262,7 +262,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private static String sensorDisconnected6="";
 
     private static final int UNIT6 = 0;
-//FINO QUA
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -446,7 +445,6 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                             + messageContentString.substring(20,24) + ","
                             + messageContentString.substring(24,28) + ","
                             + messageContentString.substring(28,32) + ",";
-                    toast.makeText(getApplicationContext(),  "stringa: " + msg , Toast.LENGTH_SHORT).show();
                     Log.e(LOG_TAG,"stringa " + msg);
                     //TODO - end
 
@@ -466,13 +464,13 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         //write the messages
                         //call the firebase class to upload data on firebase
                         WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                        writingDataToFirebase.mainFirebase(msg+current,startrec_time);
+//                        writingDataToFirebase.mainFirebase(msg+current,startrec_time);
 
                         //call the file class to save data in a txt file
                         WritingDataToFile writingDataToFile = new WritingDataToFile();
-                        writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
+//                        writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
 
-                        fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+//                        fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
                         //TODO - every now and then save the file on firebase for backup, later savings will over write the previous one
                         //save the file each 1 MB size (around 10 minutes)
@@ -492,12 +490,11 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
 
                         Log.e(LOG_TAG, "CHECK Rx: " + messageContentString); //hex
 
-
                         if(messageContentString.contains(string6)){
                             connected6 = true;
                             //GlobalVariables.flag_connected6=true;
                             Log.e(LOG_TAG,"1 is:" + connected6);
-                            state=CONNECT6;   //prova a togliere questa
+                            state = CONNECT6;   //prova a togliere questa
 
                             //to change the UI we have to put codes in the runOnUiThread
                             runOnUiThread(new Runnable() {
@@ -525,7 +522,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
 
                 case CHANNEL_EVENT:
                     ChannelEventMessage eventMessage = new ChannelEventMessage(antMessageParcel);
-Log.e(LOG_TAG, "channel event: "+ eventMessage);
+                    Log.e(LOG_TAG, "channel event: "+ eventMessage);
                     switch (eventMessage.getEventCode()) {
                         case RX_SEARCH_TIMEOUT:
                             break;
@@ -564,11 +561,11 @@ Log.e(LOG_TAG, "channel event: "+ eventMessage);
                                     payLoad = payLoad5;
                                 }
 
-/*
+
                                 if(state==CALIBRATION) {
                                     payLoad = payLoad8;
                                 }
-*/
+
                                 if(state==STOP) {
                                     //stop the channel sending the payload9
                                     payLoad = payLoad9;
@@ -858,8 +855,8 @@ Log.e(LOG_TAG, "channel event: "+ eventMessage);
 
                 inflated_switch_on_sensors.setVisibility(View.GONE);
 
-                viewStub = (ViewStub) findViewById(R.id.select_recording_toinclude_8);
-                viewStub.setLayoutResource(R.layout.select_recording);
+                viewStub = (ViewStub) findViewById(R.id.select_recording_toinclude);
+                viewStub.setLayoutResource(R.layout.select_recording_environmental_monitor);
                 inflated_select_recording = viewStub.inflate();
 
                 timerrecordingbutton=(Button) findViewById(R.id.timerrecordingbutton);
@@ -871,9 +868,6 @@ Log.e(LOG_TAG, "channel event: "+ eventMessage);
                 layout_insert_setinforec =(TextInputLayout) findViewById(R.id.layout_insert_setinforec);
 
                 insert_setinforec =(TextInputEditText) findViewById(R.id.insert_setinforec);
-
-                clickhereforcalibration=(TextView) findViewById((R.id.clickhereforcalibration));
-                clickhereforcalibration.setOnClickListener(this);
 
                 break;
 
@@ -890,7 +884,7 @@ Log.e(LOG_TAG, "channel event: "+ eventMessage);
                 if(!flag_timer_rec){
 
                     viewStub = (ViewStub) findViewById(R.id.timer_recording_toinclude);
-                    viewStub.setLayoutResource(R.layout.timer_recording);
+                    viewStub.setLayoutResource(R.layout.timer_recording_environmental_monitor);
                     inflated_timer_rec = viewStub.inflate();
 
                     startrecording_timer=(Button) findViewById(R.id.startrecording_timer);

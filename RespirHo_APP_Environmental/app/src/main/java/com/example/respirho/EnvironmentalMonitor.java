@@ -504,32 +504,97 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 //                        writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
 
 //                        fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
-                        //TODO - show on screen the received data
-                        String messageContentString_saturation = messageContentString_split[6].substring(1);
-                        String messageContentString_HR = messageContentString_split[5].substring(1);
 
-                        int temperature = convertToInt(messageContentString_saturation);
-                        int humidity = convertToInt(messageContentString_HR);
-//aggiungere le variabili mancanti
+                        //TODO - show on screen the received data
+                        int pacchetto_numero = convertToInt(messageContentString_split[1].substring(1));
+                        String messageContentString_temperature = "";
+                        String messageContentString_humidity="";
+                        String messageContentString_CO2 ="";
+                        String messageContentString_VOC="";
+                        String messageContentString_NO2="";
+                        String messageContentString_CO="";
+                        String messageContentString_PM1p0="";
+                        String messageContentString_PM2p5="";
+                        String messageContentString_PM10="";
+//divido la mostra a schermo in base a cio che arriva
+                        if(pacchetto_numero < 3){   //serve per distinguere i due pacchetti che arrivano
+                            messageContentString_temperature = messageContentString_split[2].substring(1);
+                            messageContentString_humidity = messageContentString_split[3].substring(1);
+                            messageContentString_CO2 = messageContentString_split[4].substring(1);
+                            messageContentString_VOC = messageContentString_split[5].substring(1);
+
+                            int temperature = convertToInt(messageContentString_temperature);
+                            int humidity = convertToInt(messageContentString_humidity);
+                            int CO2 = convertToInt(messageContentString_CO2);
+                            int VOC = convertToInt(messageContentString_VOC);
+
+                            //to change the UI we have to put codes in the runOnUiThread
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+//PER STAMPARE A SCHERMO
+                                    temperature_output.setText(String.valueOf(temperature));
+                                    humidity_output.setText(String.valueOf(humidity));
+                                    CO2_output.setText(String.valueOf(CO2));
+                                    VOC_output.setText(String.valueOf(VOC));
+                                }
+                            });
+                        }
+                        //if(pacchetto_numero > 4){
+                        else{
+                            messageContentString_NO2 = messageContentString_split[2].substring(1);
+                            messageContentString_CO = messageContentString_split[3].substring(1);
+                            messageContentString_PM1p0 = messageContentString_split[4].substring(1);
+                            messageContentString_PM2p5 = messageContentString_split[5].substring(1);
+                            messageContentString_PM10 = messageContentString_split[6].substring(1);
+
+                            int NO2 = convertToInt(messageContentString_NO2);
+                            int CO = convertToInt(messageContentString_CO);
+                            int PM1p0 = convertToInt(messageContentString_PM1p0);
+                            int PM2p5 = convertToInt(messageContentString_PM2p5);
+                            int PM10 = convertToInt(messageContentString_PM10);
+
+                            //to change the UI we have to put codes in the runOnUiThread
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+//PER STAMPARE A SCHERMO
+                                    //temperature_output.setText(String.valueOf(temperature));
+                                    //humidity_output.setText(String.valueOf(humidity));
+                                    //CO2_output.setText(String.valueOf(CO2));
+                                    //VOC_output.setText(String.valueOf(VOC));
+                                    NO2_output.setText(String.valueOf(NO2));
+                                    CO_output.setText(String.valueOf(CO));
+                                    PM1p0_output.setText(String.valueOf(PM1p0));
+                                    PM2p5_output.setText(String.valueOf(PM2p5));
+                                    PM10_output.setText(String.valueOf(PM10));
+
+                                }
+                            });
+
+                        }
+
+
+
+
+
 
 
                         //to change the UI we have to put codes in the runOnUiThread
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-//PER STAMPARE A SCHERMO
-                                int a = 5;
-                                temperature_output.setText(String.valueOf(temperature));     //temperature
-                                humidity_output.setText(String.valueOf(humidity));    //humidity
-                                CO2_output.setText(String.valueOf(a+4));
-                                VOC_output.setText(String.valueOf(a+6));
-                                NO2_output.setText(String.valueOf(a+8));
-                                CO_output.setText(String.valueOf(a+10));
-                                PM1p0_output.setText(String.valueOf(a+12));
-                                PM2p5_output.setText(String.valueOf(a+14));
-                                PM10_output.setText(String.valueOf(a+16));
+//PER STAMPARE A SCHERMO, PRIMA ERA COSI'
+                                //temperature_output.setText(String.valueOf(temperature));
+                                //humidity_output.setText(String.valueOf(humidity));
+                                //CO2_output.setText(String.valueOf(CO2));
+                                //VOC_output.setText(String.valueOf(VOC));
+                                //NO2_output.setText(String.valueOf(NO2));
+                                //CO_output.setText(String.valueOf(CO));
+                                //PM1p0_output.setText(String.valueOf(PM1p0));
+                                //PM2p5_output.setText(String.valueOf(PM2p5));
+                                //PM10_output.setText(String.valueOf(PM10));
 
-                                a++;
                             }
                         });
 

@@ -501,9 +501,9 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                         //call the file class to save data in a txt file
                         WritingDataToFile writingDataToFile = new WritingDataToFile();
-//                        writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
+                        writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
 
-//                        fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+                        fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
                         //TODO - show on screen the received data
                         int pacchetto_numero = convertToInt(messageContentString_split[1].substring(1));
@@ -575,11 +575,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         }
 
 
-
-
-
-
-
                         //to change the UI we have to put codes in the runOnUiThread
                         runOnUiThread(new Runnable() {
                             @Override
@@ -602,8 +597,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         //save the file each 1 MB size (around 10 minutes)
                         long fileIntSizeBytes_backup=fileInt.length();
                         long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
-
-                        if(fileIntSizeKyloBytes_backup>size_interval_backupfile && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
+                        //size_interval_backupfile
+                        if(fileIntSizeKyloBytes_backup>3 && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
                             //Log.e("backup","backup 1, size start: " + size_interval_backupfile);
                             saveFileOnFirebase(fileInt);
                             size_interval_backupfile=size_interval_backupfile+SIZE_INTERVAL_BACKUPFILE;

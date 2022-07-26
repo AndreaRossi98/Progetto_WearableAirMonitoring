@@ -148,6 +148,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 //PER STAMPARE A SCHERMO
     private TextView temperature_output;
     private TextView humidity_output;
+    private TextView pressure_output;
     private TextView CO2_output;
     private TextView VOC_output;
     private TextView NO2_output;
@@ -155,7 +156,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private TextView PM1p0_output;
     private TextView PM2p5_output;
     private TextView PM10_output;
-
 
     //update info recording
     private RadioGroup posture_buttons;
@@ -245,8 +245,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public AntMessage antMessage;
     public MessageFromAntType messagetype;
     public boolean mIsOpen = false;
-//QUESTO E' DA CAMBIARE
-    public ChannelId channelId_smartphone = new ChannelId(2,2,2, true); //DEFAULT: 2,2,2, true
+
+    public ChannelId channelId_smartphone = new ChannelId(2,3,2, true); //diverso da DEFAULT: 2,2,2, true
 
     byte[] payLoad;
 
@@ -416,6 +416,7 @@ public SupportMapFragment mapFragment;
 //PER STAMPARE A SCHERMO
         temperature_output = (TextView) findViewById(R.id.temperature_value);
         humidity_output = (TextView) findViewById(R.id.humidity_value);
+//        pressure_output = (TextView) findViewById(R.id.pressure_value);
         CO2_output = (TextView) findViewById(R.id.CO2_value);
         VOC_output = (TextView) findViewById(R.id.VOC_value);
         NO2_output = (TextView) findViewById(R.id.NO2_value);
@@ -500,10 +501,7 @@ public SupportMapFragment mapFragment;
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(1000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-
     }
-
 
 
     public IAntChannelEventHandler eventCallBack = new IAntChannelEventHandler() {
@@ -515,9 +513,6 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
             switch(messageFromAntType){
 
                 case BROADCAST_DATA: //HERE ARRIVES ALL THE MESSAGES FROM THE SENSORS
-//PER STAMPARE A SCHERMO, è definita anche prima, forse basta solo prima?
-                    //temperature_output = (TextView) findViewById(R.id.temperature_value);
-                    //humidity_output = (TextView) findViewById(R.id.humidity_value);
 
                     Log.e(LOG_TAG, "CHECK Rx: "); //hex
                     //save time
@@ -544,9 +539,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                             + messageContentString.substring(24,28) + ","
                             + messageContentString.substring(28,32) + ",";
                     Log.e(LOG_TAG,"stringa " + msg);
-//toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
 //toast.makeText(getApplicationContext(), "latitudine" + latitude, Toast.LENGTH_SHORT).show();
-                    //TODO - end
 
                     //split the bytes
                     String[] messageContentString_split = messageContentString.split("]"); //ex: [01
@@ -578,9 +571,9 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         //write the messages
                         //call the firebase class to upload data on firebase
                         WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                        writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
+                        //writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
 //modificato regole su firebase mettendo tutto true
-                        
+
                         //call the file class to save data in a txt file
                         WritingDataToFile writingDataToFile = new WritingDataToFile();
                         writingDataToFile.mainFile(msg+current+","+latitude+","+longitude, current, day, intPath,extPath);
@@ -590,23 +583,25 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         //TODO - show on screen the received data
                         int pacchetto_numero = convertToInt(messageContentString_split[1].substring(1));
                         String messageContentString_temperature = "";
-                        String messageContentString_humidity="";
-                        String messageContentString_CO2 ="";
-                        String messageContentString_VOC="";
-                        String messageContentString_NO2="";
-                        String messageContentString_CO="";
-                        String messageContentString_PM1p0="";
-                        String messageContentString_PM2p5="";
-                        String messageContentString_PM10="";
+                        String messageContentString_humidity = "";
+                        String messageContentString_pressure = "";
+                        String messageContentString_CO2 = "";
+                        String messageContentString_VOC = "";
+                        String messageContentString_NO2 = "";
+                        String messageContentString_CO = "";
+                        String messageContentString_PM1p0 = "";
+                        String messageContentString_PM2p5 = "";
+                        String messageContentString_PM10 = "";
 //divido la mostra a schermo in base a cio che arriva
                         if(pacchetto_numero < 3){   //serve per distinguere i due pacchetti che arrivano
                             messageContentString_temperature = messageContentString_split[2].substring(1);
                             messageContentString_humidity = messageContentString_split[3].substring(1);
                             messageContentString_CO2 = messageContentString_split[4].substring(1);
                             messageContentString_VOC = messageContentString_split[5].substring(1);
-
+float prova = Float.parseFloat(messageContentString_humidity);
                             int temperature = convertToInt(messageContentString_temperature);
                             int humidity = convertToInt(messageContentString_humidity);
+                            //pressure
                             int CO2 = convertToInt(messageContentString_CO2);
                             int VOC = convertToInt(messageContentString_VOC);
 
@@ -677,7 +672,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
 //RIPORTA A QUESTO VALORE POI, MODIFICA SOLO PER VEDERE CHE FUNZIONI
 //size_interval_backupfile
-                        if(fileIntSizeKyloBytes_backup>3 && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
+                        if(fileIntSizeKyloBytes_backup>2 && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
                             //Log.e("backup","backup 1, size start: " + size_interval_backupfile);
                             saveFileOnFirebase(fileInt);
                             size_interval_backupfile=size_interval_backupfile+SIZE_INTERVAL_BACKUPFILE;

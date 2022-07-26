@@ -573,13 +573,14 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                             latitude = location.getLatitude();
                             longitude = location.getLongitude();
                             }
-toast.makeText(getApplicationContext(), "latitudine" + latitude, Toast.LENGTH_SHORT).show();
+
                         //write the message to firebase and to file
                         //write the messages
                         //call the firebase class to upload data on firebase
                         WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-//                        writingDataToFirebase.mainFirebase(msg+current,startrec_time);
-
+                        writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
+//modificato regole su firebase mettendo tutto true
+                        
                         //call the file class to save data in a txt file
                         WritingDataToFile writingDataToFile = new WritingDataToFile();
                         writingDataToFile.mainFile(msg+current+","+latitude+","+longitude, current, day, intPath,extPath);

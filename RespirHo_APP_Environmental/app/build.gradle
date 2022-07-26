@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'       //se lo lascio non funziona
 
 android {
     compileSdkVersion 29    //29
@@ -61,6 +62,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:20.0.0'
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
 //for recycler view shared preferences
 
     //implementation 'com.opencsv:opencsv:4.6' //open csv

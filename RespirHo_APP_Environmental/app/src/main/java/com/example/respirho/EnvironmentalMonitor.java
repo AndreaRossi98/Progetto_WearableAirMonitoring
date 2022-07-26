@@ -3,23 +3,28 @@ package com.example.respirho;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -78,6 +83,29 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
+
+//IMPORT FOR POSITION
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.util.ArrayUtils;
+import com.google.android.gms.location.ActivityRecognition;
+import com.google.android.gms.location.ActivityRecognitionResult;
+import com.google.android.gms.location.DetectedActivity;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.Task;
+
+import android.location.Location;
 
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
@@ -275,6 +303,25 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
     private static final int UNIT6 = 0;
 
+//dichiaro qua variabili per location
+public FusedLocationProviderClient fusedLocationClient;
+public LocationCallback locationCallback;
+public LocationRequest locationRequest;
+public Location location;
+public double latitude = 0.0, longitude = 0.0;
+
+
+//Activity recognition & map services       //non so se serve
+//private GoogleApiClient apiClient;  //forse non serve, serve nella definizione della funzione?
+private LocalBroadcastManager localBroadcastManager;
+private BroadcastReceiver localActivityReceiver;
+public String activity = "STILL"; //activity level of the user (being still, walking or running)
+public SupportMapFragment mapFragment;
+
+
+//activity recognition al momento non lo metto, non mi serve ma dopo ci si guarda
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -383,7 +430,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         Log.e(LOG_TAG, "Version name: "+ AntService.getVersionName(this));
 
 
-
         drawerLayout=findViewById(R.id.drawer_layout);
 
         drawer_home=findViewById(R.id.drawer_home);
@@ -436,6 +482,26 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
             });
         }
 
+
+        //LOCATION PROVIDER
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult != null) {
+                    location = locationResult.getLastLocation();
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
+                }
+            }
+        };
+
+        locationRequest = LocationRequest.create();
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(1000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+
     }
 
 
@@ -478,7 +544,8 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                             + messageContentString.substring(24,28) + ","
                             + messageContentString.substring(28,32) + ",";
                     Log.e(LOG_TAG,"stringa " + msg);
-toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
+//toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
+//toast.makeText(getApplicationContext(), "latitudine" + latitude, Toast.LENGTH_SHORT).show();
                     //TODO - end
 
                     //split the bytes
@@ -493,6 +560,20 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                     //if ALL the units are connected, the next messages will be the recording data
                     if(connected6){
+
+//aggiungere latitudine e longitudine da mettere nel file
+//bisognerebbe aggiungere controllo che si abbia il permesso, e controllo di geolocalizzazione attivo?
+                        Task<Location> task = fusedLocationClient.getLastLocation();
+                        while(!task.isComplete());
+                        location = task.getResult();
+
+                        if (location == null)
+                            toast.makeText(getApplicationContext(),"Unable to find last location.", Toast.LENGTH_SHORT).show();
+                        else { //actually open the channel only if last location was found
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
+                            }
+toast.makeText(getApplicationContext(), "latitudine" + latitude, Toast.LENGTH_SHORT).show();
                         //write the message to firebase and to file
                         //write the messages
                         //call the firebase class to upload data on firebase
@@ -501,7 +582,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                         //call the file class to save data in a txt file
                         WritingDataToFile writingDataToFile = new WritingDataToFile();
-                        writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
+                        writingDataToFile.mainFile(msg+current+","+latitude+","+longitude, current, day, intPath,extPath);
 
                         fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
@@ -559,10 +640,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                 @Override
                                 public void run() {
 //PER STAMPARE A SCHERMO
-                                    //temperature_output.setText(String.valueOf(temperature));
-                                    //humidity_output.setText(String.valueOf(humidity));
-                                    //CO2_output.setText(String.valueOf(CO2));
-                                    //VOC_output.setText(String.valueOf(VOC));
                                     NO2_output.setText(String.valueOf(NO2));
                                     CO_output.setText(String.valueOf(CO));
                                     PM1p0_output.setText(String.valueOf(PM1p0));
@@ -597,7 +674,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         //save the file each 1 MB size (around 10 minutes)
                         long fileIntSizeBytes_backup=fileInt.length();
                         long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
-                        //size_interval_backupfile
+//RIPORTA A QUESTO VALORE POI, MODIFICA SOLO PER VEDERE CHE FUNZIONI
+//size_interval_backupfile
                         if(fileIntSizeKyloBytes_backup>3 && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
                             //Log.e("backup","backup 1, size start: " + size_interval_backupfile);
                             saveFileOnFirebase(fileInt);
@@ -670,7 +748,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                                 if(state==START)
                                 {
-                                    toast.makeText(getApplicationContext(), "STATE = START", Toast.LENGTH_SHORT).show();
                                     payLoad = payLoad4;
                                     //save time to show
                                     SimpleDateFormat formatStartRec=new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
@@ -1418,7 +1495,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 break;
         }
     }
-
     
     private static void openDrawer(DrawerLayout drawerLayout) {
         //open drawer layout

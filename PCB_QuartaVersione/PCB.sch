@@ -3858,8 +3858,8 @@ Created by Upverter.com</description>
 <part name="C11" library="Cond_10u_0402" deviceset="CL05A106MP5NUNC" device=""/>
 <part name="C12" library="Cond_12p_0402" deviceset="04025A120FAT2A" device=""/>
 <part name="C13" library="Cond_12p_0402" deviceset="04025A120FAT2A" device=""/>
-<part name="R1" library="Res_10M_0402" deviceset="ERJ-2GEJ106X" device=""/>
-<part name="R2" library="Res_10M_0402" deviceset="ERJ-2GEJ106X" device=""/>
+<part name="R19" library="Res_10M_0402" deviceset="ERJ-2GEJ106X" device=""/>
+<part name="R20" library="Res_10M_0402" deviceset="ERJ-2GEJ106X" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -4091,11 +4091,11 @@ CONTROLLARE LE CONNESSIONI</text>
 <instance part="C13" gate="G$1" x="-251.46" y="50.8" smashed="yes">
 <attribute name="NAME" x="-251.46" y="54.61093125" size="1.77843125" layer="95"/>
 </instance>
-<instance part="R1" gate="G$1" x="35.56" y="-60.96" smashed="yes" rot="R180">
+<instance part="R19" gate="G$1" x="35.56" y="-60.96" smashed="yes" rot="R180">
 <attribute name="NAME" x="43.184440625" y="-63.50148125" size="2.54148125" layer="95" rot="R180"/>
 </instance>
-<instance part="R2" gate="G$1" x="50.546" y="-76.2" smashed="yes" rot="R270">
-<attribute name="NAME" x="53.08748125" y="-68.575559375" size="2.54148125" layer="95" rot="R270"/>
+<instance part="R20" gate="G$1" x="50.546" y="-76.2" smashed="yes" rot="R270">
+<attribute name="NAME" x="45.46748125" y="-73.655559375" size="2.54148125" layer="95" rot="R270"/>
 </instance>
 </instances>
 <busses>
@@ -4398,7 +4398,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="60.96" y1="-86.36" x2="53.34" y2="-86.36" width="0.1524" layer="91"/>
 <junction x="53.34" y="-86.36"/>
 <pinref part="C9" gate="G$1" pin="2"/>
-<pinref part="R2" gate="G$1" pin="2"/>
+<pinref part="R20" gate="G$1" pin="2"/>
 <wire x1="53.34" y1="-86.36" x2="50.546" y2="-86.36" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -4630,7 +4630,7 @@ CONTROLLARE LE CONNESSIONI</text>
 <segment>
 <wire x1="25.4" y1="-60.96" x2="20.32" y2="-60.96" width="0.1524" layer="91"/>
 <label x="20.32" y="-60.96" size="1.778" layer="95" rot="R180" xref="yes"/>
-<pinref part="R1" gate="G$1" pin="2"/>
+<pinref part="R19" gate="G$1" pin="2"/>
 </segment>
 <segment>
 <pinref part="S1" gate="G$1" pin="3"/>
@@ -4882,9 +4882,9 @@ CONTROLLARE LE CONNESSIONI</text>
 <wire x1="53.34" y1="-63.5" x2="53.34" y2="-66.04" width="0.1524" layer="91"/>
 <label x="66.04" y="-60.96" size="1.778" layer="95" xref="yes"/>
 <pinref part="C9" gate="G$1" pin="1"/>
-<pinref part="R2" gate="G$1" pin="1"/>
+<pinref part="R20" gate="G$1" pin="1"/>
 <wire x1="53.34" y1="-66.04" x2="50.546" y2="-66.04" width="0.1524" layer="91"/>
-<pinref part="R1" gate="G$1" pin="1"/>
+<pinref part="R19" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="BJT" class="0">

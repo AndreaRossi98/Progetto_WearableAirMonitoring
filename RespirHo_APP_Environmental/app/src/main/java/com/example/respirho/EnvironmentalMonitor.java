@@ -580,7 +580,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
                         //TODO - show on screen the received data
-                        int pacchetto_numero = convertToInt(messageContentString_split[1].substring(1));
+                        int pacchetto_numero = convertToInt(messageContentString_split[0].substring(1));
                         String messageContentString_temperature = "";
                         String messageContentString_humidity = "";
                         String messageContentString_pressure = "";
@@ -604,10 +604,10 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         if(pacchetto_numero == 7) {
                             Toast.makeText(getApplicationContext(), "Pacchetto 7", Toast.LENGTH_LONG).show();
 
-                            messageContentString_temperature = messageContentString_split[2].substring(1);
-                            messageContentString_humidity = messageContentString_split[3].substring(1);
-                            messageContentString_pressure = messageContentString_split[4].substring(1);
-                            messageContentString_VOC = messageContentString_split[5].substring(1);
+                            messageContentString_temperature = messageContentString_split[1].substring(1);
+                            messageContentString_humidity = messageContentString_split[2].substring(1);
+                            messageContentString_pressure = messageContentString_split[3].substring(1);
+                            messageContentString_VOC = messageContentString_split[4].substring(1);
 ;
                             int temperature = convertToInt(messageContentString_temperature);
                             int humidity = convertToInt(messageContentString_humidity);
@@ -630,12 +630,12 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         }
                         else if(pacchetto_numero == 8) {
                             Toast.makeText(getApplicationContext(), "Pacchetto 8", Toast.LENGTH_LONG).show();
-                            messageContentString_CO2 = messageContentString_split[2].substring(1);
-                            messageContentString_CO = messageContentString_split[3].substring(1);
-                            messageContentString_NO2 = messageContentString_split[4].substring(1);
-                            messageContentString_PM1p0 = messageContentString_split[5].substring(1);
-                            messageContentString_PM2p5 = messageContentString_split[6].substring(1);
-                            messageContentString_PM10 = messageContentString_split[7].substring(1);
+                            messageContentString_CO2 = messageContentString_split[1].substring(1);
+                            messageContentString_CO = messageContentString_split[2].substring(1);
+                            messageContentString_NO2 = messageContentString_split[3].substring(1);
+                            messageContentString_PM1p0 = messageContentString_split[4].substring(1);
+                            messageContentString_PM2p5 = messageContentString_split[5].substring(1);
+                            messageContentString_PM10 = messageContentString_split[6].substring(1);
 
                             int CO2 = convertToInt(messageContentString_CO2);
                             int CO = convertToInt(messageContentString_CO);
@@ -655,11 +655,8 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                                     PM1p0_output.setText(String.valueOf(PM1p0));
                                     PM2p5_output.setText(String.valueOf(PM2p5));
                                     PM10_output.setText(String.valueOf(PM10));
-
                                 }
                             });
-
-
                         }
 
                         else{
@@ -669,7 +666,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
  /*                       runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-//PER STAMPARE A SCHERMO, PRIMA ERA COSI'
+//PER STAMPARE A SCHERMO, PRIMA ERA COSI', meglio aggiornare una volta sola tutti insieme? secondo me non cambia molto
                                 //temperature_output.setText(String.valueOf(temperature));
                                 //humidity_output.setText(String.valueOf(humidity));
                                 //CO2_output.setText(String.valueOf(CO2));

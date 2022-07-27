@@ -217,7 +217,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
     //DEFINES
     private static final float THRESHOLD_BATTERY = (float) 2.2;
-    private static final int THRESHOLD_WATCHDOG_TIMER = 150; //DEFAULT: 30
+    private static final int THRESHOLD_WATCHDOG_TIMER = 150; //DEFAULT: 30      //provo ad aumentare?
     private static final int SIZE_INTERVAL_BACKUPFILE = 1000; //1000, each 1 Mb
 
     //drawer
@@ -539,7 +539,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                             + messageContentString.substring(24,28) + ","
                             + messageContentString.substring(28,32) + ",";
                     Log.e(LOG_TAG,"stringa " + msg);
-//toast.makeText(getApplicationContext(), "latitudine" + latitude, Toast.LENGTH_SHORT).show();
+toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
 
                     //split the bytes
                     String[] messageContentString_split = messageContentString.split("]"); //ex: [01
@@ -566,12 +566,12 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                             latitude = location.getLatitude();
                             longitude = location.getLongitude();
                             }
-
+                        
                         //write the message to firebase and to file
                         //write the messages
                         //call the firebase class to upload data on firebase
                         WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                        //writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
+//                        writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
 //modificato regole su firebase mettendo tutto true
 
                         //call the file class to save data in a txt file
@@ -598,7 +598,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                             messageContentString_humidity = messageContentString_split[3].substring(1);
                             messageContentString_CO2 = messageContentString_split[4].substring(1);
                             messageContentString_VOC = messageContentString_split[5].substring(1);
-float prova = Float.parseFloat(messageContentString_humidity);
+//float prova = Float.parseFloat(messageContentString_humidity);
                             int temperature = convertToInt(messageContentString_temperature);
                             int humidity = convertToInt(messageContentString_humidity);
                             //pressure
@@ -647,9 +647,8 @@ float prova = Float.parseFloat(messageContentString_humidity);
 
                         }
 
-
                         //to change the UI we have to put codes in the runOnUiThread
-                        runOnUiThread(new Runnable() {
+ /*                       runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
 //PER STAMPARE A SCHERMO, PRIMA ERA COSI'
@@ -664,7 +663,7 @@ float prova = Float.parseFloat(messageContentString_humidity);
                                 //PM10_output.setText(String.valueOf(PM10));
 
                             }
-                        });
+                        });*/
 
                         //every now and then save the file on firebase for backup, later savings will over write the previous one
                         //save the file each 1 MB size (around 10 minutes)
@@ -672,9 +671,9 @@ float prova = Float.parseFloat(messageContentString_humidity);
                         long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
 //RIPORTA A QUESTO VALORE POI, MODIFICA SOLO PER VEDERE CHE FUNZIONI
 //size_interval_backupfile
-                        if(fileIntSizeKyloBytes_backup>2 && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
+                        if(fileIntSizeKyloBytes_backup>1 && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
                             //Log.e("backup","backup 1, size start: " + size_interval_backupfile);
-                            saveFileOnFirebase(fileInt);
+                            //saveFileOnFirebase(fileInt);
                             size_interval_backupfile=size_interval_backupfile+SIZE_INTERVAL_BACKUPFILE;
                             //Log.e("backup","backup 1, size end: " + size_interval_backupfile);
                         }
@@ -763,7 +762,7 @@ float prova = Float.parseFloat(messageContentString_humidity);
                                 if(state==STOP) {
                                     //stop the channel sending the payload9
                                     payLoad = payLoad9;
-                                    toast.makeText(getApplicationContext(), "Chiusura canale", Toast.LENGTH_SHORT).show();
+toast.makeText(getApplicationContext(), "Chiusura canale", Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -2151,8 +2150,8 @@ float prova = Float.parseFloat(messageContentString_humidity);
             //if the file is smaller than 6 kb (3 sec), avoid saving on Firebase and avoid downloading it with an alert saying it's too small
             long fileIntSizeBytes=fileInt.length();
             long fileIntSizeKyloBytes=fileIntSizeBytes/1024;
-
-            if(fileIntSizeKyloBytes>2){
+// modificato per salvare anche con poco contenuto
+            if(fileIntSizeKyloBytes>1){
                 //call the save firebase class to upload file on firebase
                 SaveFileToFirebase saveFileToFirebase= new SaveFileToFirebase();
                 saveFileToFirebase.mainFirebase(fileInt);

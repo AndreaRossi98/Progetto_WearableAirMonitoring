@@ -22,7 +22,7 @@
         <!-- DISPLAYED DATA -->
         <GridLayout
             android:id="@+id/displayed_data"
-            android:layout_width="340dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/infotelephonedownload"
             android:layout_margin="10dp"
@@ -242,7 +242,7 @@
                 android:layout_row="6"
                 android:layout_column="2"
                 android:paddingTop="5dp"
-                android:text="PM1.0 [ppm]"
+                android:text="PM1.0 [μg/m3]"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -284,6 +284,9 @@
                 android:textSize="20sp" />
 
             <!-- PM2.5 -->
+
+            <!-- PM10 -->
+
             <TextView
                 android:id="@+id/PM2.5"
                 android:layout_width="170dp"
@@ -292,12 +295,11 @@
                 android:layout_column="0"
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
-                android:text="PM2.5 [ppm]"
+                android:text="PM2.5 [μg/m3]"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
 
-            <!-- PM10 -->
             <TextView
                 android:id="@+id/PM10"
                 android:layout_width="170dp"
@@ -305,7 +307,7 @@
                 android:layout_row="8"
                 android:layout_column="2"
                 android:paddingTop="5dp"
-                android:text="PM10 [ppm]"
+                android:text="PM10 [μg/m3]"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />

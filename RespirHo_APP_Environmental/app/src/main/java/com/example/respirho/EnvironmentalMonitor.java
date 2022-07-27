@@ -261,8 +261,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     byte[] payLoad9 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0x80}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
 
     public String string0 = "[00][00][00][00][00][00][00][00]";
-    //public String string4 = "[04][04][04][04][04][04][04]";//message from slave 6 for check
-    public String string6 = "[06][06][06][06][06][06][06]";
+    public String string6 = "[06][06][06][06][06][06][06]"; //message from slave 6 for check
     public String dummy_unit6 = "[04],[00],[FF],[00],[00],[00],[00],[00],";
 
     public String startrec_time = null;
@@ -572,7 +571,6 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
                         //writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
 
-
 //modificato regole su firebase mettendo tutto true
 
                         //call the file class to save data in a txt file
@@ -593,23 +591,36 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         String messageContentString_PM1p0 = "";
                         String messageContentString_PM2p5 = "";
                         String messageContentString_PM10 = "";
+
+//float prova = Float.parseFloat("15.3");
+//float caso = Float.valueOf("15.3");
 //divido la mostra a schermo in base a cio che arriva
-                        if(pacchetto_numero < 3){   //serve per distinguere i due pacchetti che arrivano
+
+                        /*
+                        pacchetto_numero = 6    --> è il pacchetto vecchio per connettersi, ignoralo
+                        pacchetto_numero = 7    --> è il pacchetto 1
+                        pacchetto_numero = 8    --> è il pacchetto 2
+                         */
+                        if(pacchetto_numero == 7) {
+                            Toast.makeText(getApplicationContext(), "Pacchetto 7", Toast.LENGTH_LONG).show();
+
                             messageContentString_temperature = messageContentString_split[2].substring(1);
                             messageContentString_humidity = messageContentString_split[3].substring(1);
                             messageContentString_pressure = messageContentString_split[4].substring(1);
                             messageContentString_VOC = messageContentString_split[5].substring(1);
-//float prova = Float.parseFloat(messageContentString_humidity);
+;
                             int temperature = convertToInt(messageContentString_temperature);
                             int humidity = convertToInt(messageContentString_humidity);
                             int pressure = convertToInt(messageContentString_pressure);
                             int VOC = convertToInt(messageContentString_VOC);
 
+//double doubleValue = Double.parseDouble(messageContentString_VOC);
+
                             //to change the UI we have to put codes in the runOnUiThread
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-//PER STAMPARE A SCHERMO
+                                    //PER STAMPARE A SCHERMO
                                     temperature_output.setText(String.valueOf(temperature));
                                     humidity_output.setText(String.valueOf(humidity));
                                     pressure_output.setText(String.valueOf(pressure));
@@ -617,8 +628,8 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                                 }
                             });
                         }
-                        //if(pacchetto_numero > 4){
-                        else{
+                        else if(pacchetto_numero == 8) {
+                            Toast.makeText(getApplicationContext(), "Pacchetto 8", Toast.LENGTH_LONG).show();
                             messageContentString_CO2 = messageContentString_split[2].substring(1);
                             messageContentString_CO = messageContentString_split[3].substring(1);
                             messageContentString_NO2 = messageContentString_split[4].substring(1);
@@ -648,7 +659,11 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                                 }
                             });
 
+
                         }
+
+                        else{
+                            }
 
                         //to change the UI we have to put codes in the runOnUiThread
  /*                       runOnUiThread(new Runnable() {
@@ -765,7 +780,6 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                                 if(state==STOP) {
                                     //stop the channel sending the payload9
                                     payLoad = payLoad9;
-toast.makeText(getApplicationContext(), "Chiusura canale", Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -2234,6 +2248,13 @@ toast.makeText(getApplicationContext(), "Chiusura canale", Toast.LENGTH_SHORT).s
         return value_int;
     }
 
+/*  da problemi la conversione a decimale, provato sia con float che double
+    private double convertToFloat(String messageContentString){
+
+        double value_float = Double.parseDouble(messageContentString);
+        return value_float;
+    }
+*/
     public void antClose() {
 
         state = CLOSE;

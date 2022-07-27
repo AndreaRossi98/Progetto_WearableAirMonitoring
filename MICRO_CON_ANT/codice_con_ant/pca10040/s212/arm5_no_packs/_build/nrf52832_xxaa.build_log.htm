@@ -1,0 +1,80 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.36.0.0
+Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Andrea Rossi, Politecnico di Milano, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.36.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 7 (build 960)
+Assembler:       Armasm.exe V5.06 update 7 (build 960)
+Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
+Library Manager: ArmAr.exe V5.06 update 7 (build 960)
+Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
+CPU DLL:         SARMCM3.DLL V5.36.0.0
+Dialog DLL:      DCM.DLL V1.17.3.0
+Target DLL:      UL2CM3.DLL V1.164.0.0
+Dialog DLL:      TCM.DLL V1.53.0.0
+ 
+<h2>Project:</h2>
+C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\ant\ant_broadcast\test_ANT\pca10040\s212\arm5_no_packs\ant_broadcast_rx_pca10040_s212.uvprojx
+Project File Date:  05/20/2022
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Build target 'nrf52832_xxaa'
+compiling lis3dh_acc_driver.c...
+..\..\..\Sensor\lis3dh_acc_driver.c(211): error:  #29: expected an expression
+    uint8_t tmp[6] = {};
+..\..\..\Sensor\lis3dh_acc_driver.c(229): warning:  #1-D: last line of file ends without a newline
+  }
+..\..\..\Sensor\lis3dh_acc_driver.c(212): warning:  #177-D: variable "tmp_int16"  was declared but never referenced
+    int16_t tmp_int16[3] = {0};
+..\..\..\Sensor\lis3dh_acc_driver.c(213): warning:  #177-D: variable "status"  was declared but never referenced
+    uint8_t status = 0;
+..\..\..\Sensor\lis3dh_acc_driver.c(21): warning:  #177-D: function "data_handler"  was declared but never referenced
+  __STATIC_INLINE void data_handler(uint8_t temp) {
+..\..\..\Sensor\lis3dh_acc_driver.c: 4 warnings, 1 error
+compiling main.c...
+..\..\..\main.c(29): error:  #5: cannot open source input file "sps30.h": No such file or directory
+  #include "sps30.h"
+..\..\..\main.c: 0 warnings, 1 error
+".\_build\nrf52832_xxaa.axf" - 2 Error(s), 4 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.5.6.0.pack
+                ARM.CMSIS.5.6.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.3.0
+
+Package Vendor: NordicSemiconductor
+                http://developer.nordicsemi.com/nRF5_SDK/pieces/nRF_DeviceFamilyPack/NordicSemiconductor.nRF_DeviceFamilyPack.8.40.3.pack
+                NordicSemiconductor.nRF_DeviceFamilyPack.8.40.3
+                Nordic Semiconductor nRF ARM devices Device Family Pack with BSD license.
+   * Component: Startup Version: 8.40.3
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_nrf52832_xxaa
+  C:\Users\andre\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include
+  C:\Users\andre\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.40.3\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:5.3.0
+
+   * Component: NordicSemiconductor::Device:Startup:8.40.3
+      Source file:   Device\Source\system_nrf52.c
+      Include file:  Device\Include\system_nrf.h
+      Source file:   Device\Source\arm\arm_startup_nrf52.s
+      Include file:  Device\Include\system_nrf52.h
+Target not created.
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>

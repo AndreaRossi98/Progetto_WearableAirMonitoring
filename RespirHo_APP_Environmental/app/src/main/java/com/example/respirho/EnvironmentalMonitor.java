@@ -571,7 +571,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
                         //writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
 
-//modificato regole su firebase mettendo tutto true
+//modificato regole su firebase mettendo tutto true, ma da problemi, anche se per poco ha funzionato
 
                         //call the file class to save data in a txt file
                         WritingDataToFile writingDataToFile = new WritingDataToFile();

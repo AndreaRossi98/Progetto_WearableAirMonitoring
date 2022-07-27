@@ -416,7 +416,7 @@ public SupportMapFragment mapFragment;
 //PER STAMPARE A SCHERMO
         temperature_output = (TextView) findViewById(R.id.temperature_value);
         humidity_output = (TextView) findViewById(R.id.humidity_value);
-//        pressure_output = (TextView) findViewById(R.id.pressure_value);
+        pressure_output = (TextView) findViewById(R.id.pressure_value);
         CO2_output = (TextView) findViewById(R.id.CO2_value);
         VOC_output = (TextView) findViewById(R.id.VOC_value);
         NO2_output = (TextView) findViewById(R.id.NO2_value);
@@ -539,7 +539,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                             + messageContentString.substring(24,28) + ","
                             + messageContentString.substring(28,32) + ",";
                     Log.e(LOG_TAG,"stringa " + msg);
-toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
+//toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
 
                     //split the bytes
                     String[] messageContentString_split = messageContentString.split("]"); //ex: [01
@@ -566,12 +566,13 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                             latitude = location.getLatitude();
                             longitude = location.getLongitude();
                             }
-                        
                         //write the message to firebase and to file
                         //write the messages
                         //call the firebase class to upload data on firebase
                         WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-//                        writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
+                        //writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
+
+
 //modificato regole su firebase mettendo tutto true
 
                         //call the file class to save data in a txt file
@@ -596,13 +597,12 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         if(pacchetto_numero < 3){   //serve per distinguere i due pacchetti che arrivano
                             messageContentString_temperature = messageContentString_split[2].substring(1);
                             messageContentString_humidity = messageContentString_split[3].substring(1);
-                            messageContentString_CO2 = messageContentString_split[4].substring(1);
+                            messageContentString_pressure = messageContentString_split[4].substring(1);
                             messageContentString_VOC = messageContentString_split[5].substring(1);
 //float prova = Float.parseFloat(messageContentString_humidity);
                             int temperature = convertToInt(messageContentString_temperature);
                             int humidity = convertToInt(messageContentString_humidity);
-                            //pressure
-                            int CO2 = convertToInt(messageContentString_CO2);
+                            int pressure = convertToInt(messageContentString_pressure);
                             int VOC = convertToInt(messageContentString_VOC);
 
                             //to change the UI we have to put codes in the runOnUiThread
@@ -612,21 +612,23 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 //PER STAMPARE A SCHERMO
                                     temperature_output.setText(String.valueOf(temperature));
                                     humidity_output.setText(String.valueOf(humidity));
-                                    CO2_output.setText(String.valueOf(CO2));
+                                    pressure_output.setText(String.valueOf(pressure));
                                     VOC_output.setText(String.valueOf(VOC));
                                 }
                             });
                         }
                         //if(pacchetto_numero > 4){
                         else{
-                            messageContentString_NO2 = messageContentString_split[2].substring(1);
+                            messageContentString_CO2 = messageContentString_split[2].substring(1);
                             messageContentString_CO = messageContentString_split[3].substring(1);
-                            messageContentString_PM1p0 = messageContentString_split[4].substring(1);
-                            messageContentString_PM2p5 = messageContentString_split[5].substring(1);
-                            messageContentString_PM10 = messageContentString_split[6].substring(1);
+                            messageContentString_NO2 = messageContentString_split[4].substring(1);
+                            messageContentString_PM1p0 = messageContentString_split[5].substring(1);
+                            messageContentString_PM2p5 = messageContentString_split[6].substring(1);
+                            messageContentString_PM10 = messageContentString_split[7].substring(1);
 
-                            int NO2 = convertToInt(messageContentString_NO2);
+                            int CO2 = convertToInt(messageContentString_CO2);
                             int CO = convertToInt(messageContentString_CO);
+                            int NO2 = convertToInt(messageContentString_NO2);
                             int PM1p0 = convertToInt(messageContentString_PM1p0);
                             int PM2p5 = convertToInt(messageContentString_PM2p5);
                             int PM10 = convertToInt(messageContentString_PM10);
@@ -636,8 +638,9 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                 @Override
                                 public void run() {
 //PER STAMPARE A SCHERMO
-                                    NO2_output.setText(String.valueOf(NO2));
+                                    CO2_output.setText(String.valueOf(CO2));
                                     CO_output.setText(String.valueOf(CO));
+                                    NO2_output.setText(String.valueOf(NO2));
                                     PM1p0_output.setText(String.valueOf(PM1p0));
                                     PM2p5_output.setText(String.valueOf(PM2p5));
                                     PM10_output.setText(String.valueOf(PM10));

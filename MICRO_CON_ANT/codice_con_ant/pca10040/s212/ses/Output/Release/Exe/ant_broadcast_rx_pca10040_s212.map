@@ -127,7 +127,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_rtt.o
  .debug_macro   0x0000000000000000       0x55 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_rtt.o
  .debug_line    0x0000000000000000      0x384 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_rtt.o
- .debug_str     0x0000000000000000    0x699d3 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_rtt.o
+ .debug_str     0x0000000000000000    0x699f4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_rtt.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_rtt.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_rtt.o
@@ -955,7 +955,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x72 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error_handler_gcc.o
  .debug_macro   0x0000000000000000       0x49 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error_handler_gcc.o
  .debug_line    0x0000000000000000      0x39a Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error_handler_gcc.o
- .debug_str     0x0000000000000000    0x69ebb Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error_handler_gcc.o
+ .debug_str     0x0000000000000000    0x69edc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error_handler_gcc.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error_handler_gcc.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error_handler_gcc.o
@@ -1164,7 +1164,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x3a Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_scheduler.o
  .debug_macro   0x0000000000000000       0x8c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_scheduler.o
  .debug_line    0x0000000000000000      0x6a9 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_scheduler.o
- .debug_str     0x0000000000000000    0x6b149 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_scheduler.o
+ .debug_str     0x0000000000000000    0x6b16a Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_scheduler.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_scheduler.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_scheduler.o
@@ -2820,7 +2820,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x20 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_atomic.o
  .debug_macro   0x0000000000000000       0x42 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_atomic.o
  .debug_line    0x0000000000000000      0x8d6 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_atomic.o
- .debug_str     0x0000000000000000    0x6e60d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_atomic.o
+ .debug_str     0x0000000000000000    0x6e62e Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_atomic.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_atomic.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_atomic.o
@@ -3444,7 +3444,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x8c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_drv_common.o
  .debug_macro   0x0000000000000000      0x3dc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_drv_common.o
  .debug_line    0x0000000000000000      0x510 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_drv_common.o
- .debug_str     0x0000000000000000    0x6bcac Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_drv_common.o
+ .debug_str     0x0000000000000000    0x6bccd Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_drv_common.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_drv_common.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_drv_common.o
@@ -3635,7 +3635,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_saadc.o
  .debug_macro   0x0000000000000000       0x16 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_saadc.o
  .debug_line    0x0000000000000000      0x308 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_saadc.o
- .debug_str     0x0000000000000000    0x60ed5 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_saadc.o
+ .debug_str     0x0000000000000000    0x60ef6 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_saadc.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_saadc.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_saadc.o
@@ -3740,7 +3740,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twi.o
  .debug_macro   0x0000000000000000       0x20 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twi.o
  .debug_line    0x0000000000000000      0x573 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twi.o
- .debug_str     0x0000000000000000    0x6ded1 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twi.o
+ .debug_str     0x0000000000000000    0x6def2 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twi.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twi.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twi.o
@@ -4619,7 +4619,7 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x28 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_printf.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_printf.o
  .debug_line    0x0000000000000000      0x8a3 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_printf.o
- .debug_str     0x0000000000000000    0x63641 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_printf.o
+ .debug_str     0x0000000000000000    0x63662 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_printf.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_printf.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_printf.o
@@ -5098,8 +5098,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x56 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bme280.o
  .debug_macro   0x0000000000000000       0x3e Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bme280.o
  .debug_macro   0x0000000000000000       0x7f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bme280.o
- .debug_line    0x0000000000000000     0x1584 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bme280.o
- .debug_str     0x0000000000000000    0x708a6 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bme280.o
+ .debug_line    0x0000000000000000     0x15a5 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bme280.o
+ .debug_str     0x0000000000000000    0x708e8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bme280.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bme280.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bme280.o
@@ -5237,8 +5237,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x3e Output/Release/Obj/ant_broadcast_rx_pca10040_s212/common.o
  .debug_macro   0x0000000000000000       0x7f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/common.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/common.o
- .debug_line    0x0000000000000000      0x902 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/common.o
- .debug_str     0x0000000000000000    0x70c1f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/common.o
+ .debug_line    0x0000000000000000      0x923 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/common.o
+ .debug_str     0x0000000000000000    0x70c61 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/common.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/common.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/common.o
@@ -5402,8 +5402,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x1d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/lis3dh_acc_driver.o
  .debug_macro   0x0000000000000000       0x1c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/lis3dh_acc_driver.o
  .debug_macro   0x0000000000000000       0x10 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/lis3dh_acc_driver.o
- .debug_line    0x0000000000000000      0xbab Output/Release/Obj/ant_broadcast_rx_pca10040_s212/lis3dh_acc_driver.o
- .debug_str     0x0000000000000000    0x74bdd Output/Release/Obj/ant_broadcast_rx_pca10040_s212/lis3dh_acc_driver.o
+ .debug_line    0x0000000000000000      0xbcc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/lis3dh_acc_driver.o
+ .debug_str     0x0000000000000000    0x74c1f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/lis3dh_acc_driver.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/lis3dh_acc_driver.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/lis3dh_acc_driver.o
@@ -5746,8 +5746,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x7f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c_hal.o
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c_hal.o
  .debug_macro   0x0000000000000000       0x28 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c_hal.o
- .debug_line    0x0000000000000000      0x80f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c_hal.o
- .debug_str     0x0000000000000000    0x6f779 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c_hal.o
+ .debug_line    0x0000000000000000      0x830 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c_hal.o
+ .debug_str     0x0000000000000000    0x6f7bb Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c_hal.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c_hal.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c_hal.o
@@ -5902,8 +5902,8 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sps30.o
  .debug_macro   0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sps30.o
  .debug_macro   0x0000000000000000       0x20 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sps30.o
- .debug_line    0x0000000000000000      0xaa8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sps30.o
- .debug_str     0x0000000000000000    0x6e88f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sps30.o
+ .debug_line    0x0000000000000000      0xac9 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sps30.o
+ .debug_str     0x0000000000000000    0x6e8d1 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sps30.o
  .comment       0x0000000000000000       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sps30.o
  .ARM.attributes
                 0x0000000000000000       0x36 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sps30.o
@@ -10045,82 +10045,82 @@ LOAD linker stubs
 
 .debug_str      0x0000000000000000    0x96641
  .debug_str     0x0000000000000000       0xb8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/thumb_crt0.o
- .debug_str     0x00000000000000b8    0x6d63e Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_serial.o
-                                      0x6e582 (size before relaxing)
- .debug_str     0x000000000006d6f6     0x4936 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_uart.o
-                                      0x728e8 (size before relaxing)
- .debug_str     0x000000000007202c      0x12d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_default_backends.o
-                                      0x6e325 (size before relaxing)
- .debug_str     0x0000000000072159     0x14c2 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_frontend.o
-                                      0x6f944 (size before relaxing)
- .debug_str     0x000000000007361b      0x2ea Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
-                                      0x6e632 (size before relaxing)
- .debug_str     0x0000000000073905     0x15a4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/boards.o
-                                      0x6f47b (size before relaxing)
- .debug_str     0x0000000000074ea9     0x19c4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_button.o
-                                      0x727f4 (size before relaxing)
- .debug_str     0x000000000007686d      0x105 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error.o
+ .debug_str     0x00000000000000b8    0x6d6b8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_serial.o
+                                      0x6e5a3 (size before relaxing)
+ .debug_str     0x000000000006d770     0x4936 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_uart.o
+                                      0x72909 (size before relaxing)
+ .debug_str     0x00000000000720a6      0x12d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_default_backends.o
+                                      0x6e346 (size before relaxing)
+ .debug_str     0x00000000000721d3     0x14c2 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_frontend.o
+                                      0x6f965 (size before relaxing)
+ .debug_str     0x0000000000073695      0x2ea Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
+                                      0x6e653 (size before relaxing)
+ .debug_str     0x000000000007397f     0x15a4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/boards.o
+                                      0x6f49c (size before relaxing)
+ .debug_str     0x0000000000074f23     0x19c4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_button.o
+                                      0x72815 (size before relaxing)
+ .debug_str     0x00000000000768e7      0x105 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error.o
                                       0x5ed8e (size before relaxing)
- .debug_str     0x0000000000076972      0xa85 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error_weak.o
-                                      0x6f3a5 (size before relaxing)
- .debug_str     0x00000000000773f7     0x111c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_timer2.o
-                                      0x72538 (size before relaxing)
- .debug_str     0x0000000000078513      0x2c5 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_util_platform.o
+ .debug_str     0x00000000000769ec      0xa85 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error_weak.o
+                                      0x6f3c6 (size before relaxing)
+ .debug_str     0x0000000000077471     0x111c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_timer2.o
+                                      0x72559 (size before relaxing)
+ .debug_str     0x000000000007858d      0x2c5 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_util_platform.o
                                       0x602c5 (size before relaxing)
- .debug_str     0x00000000000787d8      0x798 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/drv_rtc.o
-                                      0x71e2c (size before relaxing)
- .debug_str     0x0000000000078f70       0x7a Output/Release/Obj/ant_broadcast_rx_pca10040_s212/hardfault_handler_gcc.o
-                                      0x699f7 (size before relaxing)
- .debug_str     0x0000000000078fea      0x159 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/hardfault_implementation.o
-                                      0x6eaaf (size before relaxing)
- .debug_str     0x0000000000079143      0x16d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_atfifo.o
-                                      0x6c839 (size before relaxing)
- .debug_str     0x00000000000792b0      0x6ca Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_atomic.o
-                                      0x6a0f4 (size before relaxing)
- .debug_str     0x000000000007997a      0x140 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_balloc.o
-                                      0x6e353 (size before relaxing)
- .debug_str     0x0000000000079aba      0x113 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_fprintf.o
-                                      0x69c85 (size before relaxing)
- .debug_str     0x0000000000079bcd      0x51b Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_fprintf_format.o
-                                      0x6a17f (size before relaxing)
- .debug_str     0x000000000007a0e8      0x1b6 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_memobj.o
-                                      0x6c6c3 (size before relaxing)
- .debug_str     0x000000000007a29e     0x17fd Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_pwr_mgmt.o
-                                      0x74080 (size before relaxing)
- .debug_str     0x000000000007ba9b       0xed Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_ringbuf.o
-                                      0x6afc9 (size before relaxing)
- .debug_str     0x000000000007bb88       0x65 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_section_iter.o
-                                      0x69efe (size before relaxing)
- .debug_str     0x000000000007bbed       0xb1 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sortlist.o
-                                      0x6c503 (size before relaxing)
- .debug_str     0x000000000007bc9e       0xfe Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_strerror.o
-                                      0x69ab9 (size before relaxing)
- .debug_str     0x000000000007bd9c      0x46d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_drv_uart.o
-                                      0x6f34c (size before relaxing)
- .debug_str     0x000000000007c209     0x10bf Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_gpiote.o
-                                      0x730b0 (size before relaxing)
- .debug_str     0x000000000007d2c8      0x329 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_prs.o
-                                      0x714b5 (size before relaxing)
- .debug_str     0x000000000007d5f1      0x697 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_uart.o
-                                      0x72667 (size before relaxing)
- .debug_str     0x000000000007dc88      0x959 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_uarte.o
-                                      0x72aee (size before relaxing)
- .debug_str     0x000000000007e5e1     0x16f3 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_saadc.o
-                                      0x72d98 (size before relaxing)
- .debug_str     0x000000000007fcd4     0x1a9d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_drv_twi.o
-                                      0x6fd8c (size before relaxing)
- .debug_str     0x0000000000081771      0xee4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twim.o
-                                      0x73142 (size before relaxing)
- .debug_str     0x0000000000082655     0x5209 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ant_channel_config.o
-                                      0x6ebcc (size before relaxing)
- .debug_str     0x000000000008785e     0x1001 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bsp.o
-                                      0x71135 (size before relaxing)
- .debug_str     0x000000000008885f     0x39f2 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
+ .debug_str     0x0000000000078852      0x798 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/drv_rtc.o
+                                      0x71e4d (size before relaxing)
+ .debug_str     0x0000000000078fea       0x7a Output/Release/Obj/ant_broadcast_rx_pca10040_s212/hardfault_handler_gcc.o
+                                      0x69a18 (size before relaxing)
+ .debug_str     0x0000000000079064      0x159 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/hardfault_implementation.o
+                                      0x6ead0 (size before relaxing)
+ .debug_str     0x00000000000791bd      0x16d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_atfifo.o
+                                      0x6c85a (size before relaxing)
+ .debug_str     0x000000000007932a      0x6ca Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_atomic.o
+                                      0x6a115 (size before relaxing)
+ .debug_str     0x00000000000799f4      0x140 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_balloc.o
+                                      0x6e374 (size before relaxing)
+ .debug_str     0x0000000000079b34      0x113 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_fprintf.o
+                                      0x69ca6 (size before relaxing)
+ .debug_str     0x0000000000079c47      0x51b Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_fprintf_format.o
+                                      0x6a1a0 (size before relaxing)
+ .debug_str     0x000000000007a162      0x1b6 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_memobj.o
+                                      0x6c6e4 (size before relaxing)
+ .debug_str     0x000000000007a318     0x17fd Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_pwr_mgmt.o
+                                      0x740a1 (size before relaxing)
+ .debug_str     0x000000000007bb15       0xed Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_ringbuf.o
+                                      0x6afea (size before relaxing)
+ .debug_str     0x000000000007bc02       0x65 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_section_iter.o
+                                      0x69f1f (size before relaxing)
+ .debug_str     0x000000000007bc67       0xb1 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sortlist.o
+                                      0x6c524 (size before relaxing)
+ .debug_str     0x000000000007bd18       0xfe Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_strerror.o
+                                      0x69ada (size before relaxing)
+ .debug_str     0x000000000007be16      0x46d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_drv_uart.o
+                                      0x6f36d (size before relaxing)
+ .debug_str     0x000000000007c283     0x10bf Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_gpiote.o
+                                      0x730d1 (size before relaxing)
+ .debug_str     0x000000000007d342      0x329 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_prs.o
+                                      0x714d6 (size before relaxing)
+ .debug_str     0x000000000007d66b      0x697 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_uart.o
+                                      0x72688 (size before relaxing)
+ .debug_str     0x000000000007dd02      0x959 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_uarte.o
+                                      0x72b0f (size before relaxing)
+ .debug_str     0x000000000007e65b     0x16f3 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_saadc.o
+                                      0x72db9 (size before relaxing)
+ .debug_str     0x000000000007fd4e     0x1a9d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_drv_twi.o
+                                      0x6fdad (size before relaxing)
+ .debug_str     0x00000000000817eb      0xee4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twim.o
+                                      0x73163 (size before relaxing)
+ .debug_str     0x00000000000826cf     0x5209 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ant_channel_config.o
+                                      0x6ebed (size before relaxing)
+ .debug_str     0x00000000000878d8     0x1001 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bsp.o
+                                      0x71156 (size before relaxing)
+ .debug_str     0x00000000000888d9     0x3978 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
                                       0x7f2fd (size before relaxing)
  .debug_str     0x000000000008c251      0xd24 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
-                                      0x639a3 (size before relaxing)
+                                      0x639c4 (size before relaxing)
  .debug_str     0x000000000008cf75      0xba8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_Syscalls_SES.o
-                                      0x63fdd (size before relaxing)
+                                      0x63ffe (size before relaxing)
  .debug_str     0x000000000008db1d       0x48 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ses_startup_nrf52.o
                                          0xaf (size before relaxing)
  .debug_str     0x000000000008db65       0x4d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ses_startup_nrf_common.o
@@ -10128,9 +10128,9 @@ LOAD linker stubs
  .debug_str     0x000000000008dbb2     0x828b Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
                                       0x664f7 (size before relaxing)
  .debug_str     0x0000000000095e3d      0x5b0 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
-                                      0x6eece (size before relaxing)
+                                      0x6eeef (size before relaxing)
  .debug_str     0x00000000000963ed      0x254 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
-                                      0x7268b (size before relaxing)
+                                      0x726ac (size before relaxing)
 
 .debug_ranges   0x0000000000000000     0x3a90
  .debug_ranges  0x0000000000000000       0x90 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/thumb_crt0.o

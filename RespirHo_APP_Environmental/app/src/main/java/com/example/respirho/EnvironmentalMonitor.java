@@ -65,6 +65,7 @@ import com.dsi.ant.message.fromant.BroadcastDataMessage;
 import com.dsi.ant.message.fromant.ChannelEventMessage;
 import com.dsi.ant.message.fromant.MessageFromAntType;
 import com.dsi.ant.message.ipc.AntMessageParcel;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -498,6 +499,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(1000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+
+
     }
 
 
@@ -568,8 +572,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         //call the firebase class to upload data on firebase
                         WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
                         writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
-
-//modificato regole su firebase mettendo tutto true, ma da problemi, anche se per poco ha funzionato
 
                         //call the file class to save data in a txt file
                         WritingDataToFile writingDataToFile = new WritingDataToFile();
@@ -1493,6 +1495,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
             case R.id.show_values_on_maps_manual:
                 Toast.makeText(getApplicationContext(), "Il tasto funziona", Toast.LENGTH_SHORT).show();
+                redirectActivity(EnvironmentalMonitor.this, Maps.class);
 
                 break;
 
@@ -1510,6 +1513,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 break;
         }
     }
+
 
     private static void openDrawer(DrawerLayout drawerLayout) {
         //open drawer layout

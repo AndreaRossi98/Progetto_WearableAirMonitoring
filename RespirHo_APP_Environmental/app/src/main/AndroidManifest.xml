@@ -26,6 +26,7 @@
         <activity android:name=".DemoDownload" android:screenOrientation="portrait"/>
         <activity android:name=".saturation" android:screenOrientation="portrait"/>
         <activity android:name=".EnvironmentalMonitor" android:screenOrientation="portrait"/>
+        <activity android:name=".Maps" android:screenOrientation="portrait"/>
         <activity android:name=".ForgotPassword" android:screenOrientation="portrait"/>
         <activity android:name=".Support" android:screenOrientation="portrait"/>
         <activity android:name=".Graph" android:screenOrientation="portrait"/>
@@ -34,12 +35,18 @@
         <activity android:name=".PatientsList" android:screenOrientation="portrait"/>
         <activity android:name=".Login" android:screenOrientation="portrait"/>
         <activity android:name=".Register" android:screenOrientation="portrait"/>
+
         <activity android:name=".Logo" android:screenOrientation="portrait" android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyAgU1GbFanAalRvBxpFfFAORo7kWA4asAI" />
+
     </application>
 
 </manifest>

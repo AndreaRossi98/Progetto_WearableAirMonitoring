@@ -113,14 +113,18 @@ import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -311,12 +315,17 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public Location location;
     public double latitude = 0.0, longitude = 0.0;
 
+    //File management       aggiunto dopo per implementare l'aggiunta dei ounti su maps (richiede accesso ai file con tutti i dati salvati)
+    public File root; //root path of the file
+    public File file; //file path
+    public FileWriter writer;
+    public String file_name; //name of the file
 
     //Activity recognition & map services       //non so se serve
 //private GoogleApiClient apiClient;  //forse non serve, serve nella definizione della funzione?
     private LocalBroadcastManager localBroadcastManager;
     private BroadcastReceiver localActivityReceiver;
-    public String activity = "STILL"; //activity level of the user (being still, walking or running)
+    public String activity;// = "STILL"; //activity level of the user (being still, walking or running)
     public SupportMapFragment mapFragment;
 
 
@@ -503,7 +512,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
 
     }
-
 
     public IAntChannelEventHandler eventCallBack = new IAntChannelEventHandler() {
 
@@ -1494,9 +1502,83 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 break;
 
             case R.id.show_values_on_maps_manual:
-                Toast.makeText(getApplicationContext(), "Il tasto funziona", Toast.LENGTH_SHORT).show();
-                redirectActivity(EnvironmentalMonitor.this, Maps.class);
+Toast.makeText(getApplicationContext(), "Il tasto funziona", Toast.LENGTH_SHORT).show();
+redirectActivity(EnvironmentalMonitor.this, Maps.class);
 
+  //accedere ai file salvati o su firebase  --> capire come fare
+
+  //estrarre le info necessarie     --> fattibile
+
+  //mostrarle sulla mappa   -->questo dovrebbe essere fatto
+               //tutto questo va nel file maps
+                File[] acqs = root.listFiles();
+
+                if(acqs == null)
+                    Toast.makeText(this, "No acquisition found.", Toast.LENGTH_SHORT).show();
+                else {
+                    String[] names = new String[acqs.length];
+                    for (int i = 0; i < acqs.length; i++) {
+                        names[i] = acqs[i].getName();
+                    }
+ /*                   //build dialog to choose acquisition from list          chiamato builders se no da errore
+                    AlertDialog.Builder builders = new AlertDialog.Builder(this);
+                    builders.setTitle("Choose acquisition");
+                    builders.setItems(names, (dialog, which) -> {
+                        List<String> dates = new ArrayList<>();
+                        List<Double> lats = new ArrayList<>();
+                        List<Double> lons = new ArrayList<>();
+                        List<String> acts = new ArrayList<>();
+                        List<Integer> pms = new ArrayList<>();
+                        List<Integer> co2s = new ArrayList<>();
+                        List<Integer> no2s = new ArrayList<>();
+
+                        BufferedReader reader;
+                        final File file = new File(String.valueOf(acqs[which]));
+                        FileInputStream streamer = null;
+                        try {
+                            streamer = new FileInputStream(file);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        reader = new BufferedReader(new InputStreamReader(streamer));
+                        String line = null;
+                        boolean compatible = false; //check if file is compatible and not empty
+                        try {
+                            line = reader.readLine(); //read header
+                            if(line.equals("DATE,LATITUDE,LONGITUDE,ACTIVITY,PM2.5,CO2_GAS,CO2_REF,NO2_GAS,NO2_REF")) { //if header is correct
+                                line = reader.readLine(); //read first row
+                                if (line != null) { //if file is not empty
+                                    compatible = true;
+                                }
+                            }
+                            else
+                                line = null; //force to not enter the next while
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        while (line != null) { //split csv lines and obtain values
+                            try {
+                                String[] attributes = line.split(",");
+                                dates.add(attributes[0]);
+                                lats.add(Double.parseDouble(attributes[1]));
+                                lons.add(Double.parseDouble(attributes[2]));
+                                acts.add(attributes[3]);
+                                pms.add(Integer.valueOf(attributes[4]));
+                                co2s.add(Integer.valueOf(attributes[5]));
+                                no2s.add(Integer.valueOf(attributes[6]));
+                                line = reader.readLine(); //read next row
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if(!compatible)
+                            Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
+
+                        // else riga 769 fino 789
+                    });
+                    AlertDialog dialog = builders.create();
+                    dialog.show();*/
+                }
                 break;
 
             case R.id.updateinfo:

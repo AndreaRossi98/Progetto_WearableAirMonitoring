@@ -17,7 +17,7 @@ public class WritingDataToFirebase extends AppCompatActivity {
 
         //TODO--try to put these two lines out of the mainFirebase
         database=FirebaseDatabase.getInstance();
-        myRef = database.getReference().child("Patients").child(GlobalVariables.string_idpatient).child(startrec_time).push();
+        myRef = database.getReference().child("Patients").child(GlobalVariables.string_idpatient);  //.child(startrec_time).push();
 
         myRef.setValue(message);
     }

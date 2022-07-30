@@ -242,7 +242,7 @@
                 android:layout_row="6"
                 android:layout_column="2"
                 android:paddingTop="5dp"
-                android:text="PM1.0 [μg/m3]"
+                android:text="PM1.0 [μg/m³]"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -295,7 +295,7 @@
                 android:layout_column="0"
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
-                android:text="PM2.5 [μg/m3]"
+                android:text="PM2.5 [μg/m³]"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -307,7 +307,7 @@
                 android:layout_row="8"
                 android:layout_column="2"
                 android:paddingTop="5dp"
-                android:text="PM10 [μg/m3]"
+                android:text="PM10 [μg/m³]"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />

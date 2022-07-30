@@ -123,10 +123,11 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+
 public class EnvironmentalMonitor extends AppCompatActivity implements View.OnClickListener{
 
     private Button timerrecordingbutton,manualrecordingbutton,initializationbutton_environmental_monitor,gotoswitchonenvironmentalmonitor,gotorecordingbutton_environmentale_monitor;
-    private Button startrecording_manual,stoprecording_manual,downloadfile_manual,gotonewrecording_manual,goback_manual;
+    private Button startrecording_manual,stoprecording_manual,downloadfile_manual,gotonewrecording_manual,goback_manual, showvaluesonmaps_manual;
     private Button startrecording_timer,stoprecording_timer,downloadfile_timer,gotonewrecording_timer,goback_timer;
     private Button endcalibration_button;
     private ImageButton initialization_checkmark,
@@ -145,7 +146,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private ViewStub viewStub;
     private View inflated_initialization,inflated_switch_on_sensors,inflated_select_recording,inflated_calibration,inflated_manual_rec,inflated_timer_rec,inflated_updateinfo, inflated_displaydata;
 
-//PER STAMPARE A SCHERMO
+    //PER STAMPARE A SCHERMO
     private TextView temperature_output;
     private TextView humidity_output;
     private TextView pressure_output;
@@ -231,11 +232,11 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private String userID;
 
     Toast toast;
-    
+
     public final String LOG_TAG = EnvironmentalMonitor.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_SATURATION = 65535; //32767; //32768; // ; 10 Hz    65536
+    private static final int USER_PERIOD_SATURATION =  65535;   //65536;
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound = false;
     private AntService mAntRadioService = null;
@@ -302,20 +303,20 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
     private static final int UNIT6 = 0;
 
-//dichiaro qua variabili per location
-public FusedLocationProviderClient fusedLocationClient;
-public LocationCallback locationCallback;
-public LocationRequest locationRequest;
-public Location location;
-public double latitude = 0.0, longitude = 0.0;
+    //dichiaro qua variabili per location
+    public FusedLocationProviderClient fusedLocationClient;
+    public LocationCallback locationCallback;
+    public LocationRequest locationRequest;
+    public Location location;
+    public double latitude = 0.0, longitude = 0.0;
 
 
-//Activity recognition & map services       //non so se serve
+    //Activity recognition & map services       //non so se serve
 //private GoogleApiClient apiClient;  //forse non serve, serve nella definizione della funzione?
-private LocalBroadcastManager localBroadcastManager;
-private BroadcastReceiver localActivityReceiver;
-public String activity = "STILL"; //activity level of the user (being still, walking or running)
-public SupportMapFragment mapFragment;
+    private LocalBroadcastManager localBroadcastManager;
+    private BroadcastReceiver localActivityReceiver;
+    public String activity = "STILL"; //activity level of the user (being still, walking or running)
+    public SupportMapFragment mapFragment;
 
 
 //activity recognition al momento non lo metto, non mi serve ma dopo ci si guarda
@@ -368,7 +369,6 @@ public SupportMapFragment mapFragment;
 
         inflated_updateinfo.setVisibility(View.GONE);
         inflated_displaydata.setVisibility(View.GONE);
-
 
         helpbutton = (Button) findViewById(R.id.helpbutton);
         helpbutton.setOnClickListener(this);
@@ -429,7 +429,6 @@ public SupportMapFragment mapFragment;
         Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
         Log.e(LOG_TAG, "Version name: "+ AntService.getVersionName(this));
 
-
         drawerLayout=findViewById(R.id.drawer_layout);
 
         drawer_home=findViewById(R.id.drawer_home);
@@ -482,7 +481,6 @@ public SupportMapFragment mapFragment;
             });
         }
 
-
         //LOCATION PROVIDER
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
@@ -508,7 +506,7 @@ public SupportMapFragment mapFragment;
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onReceiveMessage(MessageFromAntType messageFromAntType, AntMessageParcel antMessageParcel) {
-Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); //hex
+            Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); //hex
             switch(messageFromAntType){
 
                 case BROADCAST_DATA: //HERE ARRIVES ALL THE MESSAGES FROM THE SENSORS
@@ -564,12 +562,12 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         else { //actually open the channel only if last location was found
                             latitude = location.getLatitude();
                             longitude = location.getLongitude();
-                            }
+                        }
                         //write the message to firebase and to file
                         //write the messages
                         //call the firebase class to upload data on firebase
                         WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                        //writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
+                        writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
 
 //modificato regole su firebase mettendo tutto true, ma da problemi, anche se per poco ha funzionato
 
@@ -608,7 +606,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                             messageContentString_humidity = messageContentString_split[2].substring(1);
                             messageContentString_pressure = messageContentString_split[3].substring(1);
                             messageContentString_VOC = messageContentString_split[4].substring(1);
-;
+                            ;
                             int temperature = convertToInt(messageContentString_temperature);
                             int humidity = convertToInt(messageContentString_humidity);
                             int pressure = convertToInt(messageContentString_pressure);
@@ -617,6 +615,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
 //double doubleValue = Double.parseDouble(messageContentString_VOC);
 
                             //to change the UI we have to put codes in the runOnUiThread
+                            String finalMessageContentString_VOC = messageContentString_VOC;
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -625,6 +624,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                                     humidity_output.setText(String.valueOf(humidity));
                                     pressure_output.setText(String.valueOf(pressure));
                                     VOC_output.setText(String.valueOf(VOC));
+//VOC_output.setText(finalMessageContentString_VOC);        può essere alternativa per problema a gestire i numeri con la virgola
                                 }
                             });
                         }
@@ -660,7 +660,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         }
 
                         else{
-                            }
+                        }
 
                         //to change the UI we have to put codes in the runOnUiThread
  /*                       runOnUiThread(new Runnable() {
@@ -688,7 +688,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
 //size_interval_backupfile
                         if(fileIntSizeKyloBytes_backup>1 && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
                             //Log.e("backup","backup 1, size start: " + size_interval_backupfile);
-                            //saveFileOnFirebase(fileInt);
+                            saveFileOnFirebase(fileInt);
                             size_interval_backupfile=size_interval_backupfile+SIZE_INTERVAL_BACKUPFILE;
                             //Log.e("backup","backup 1, size end: " + size_interval_backupfile);
                         }
@@ -1344,6 +1344,9 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                     gotonewrecording_manual=(Button) findViewById(R.id.gotonewrecording_manual);
                     gotonewrecording_manual.setOnClickListener(this);
 
+                    showvaluesonmaps_manual = (Button) findViewById(R.id.show_values_on_maps_manual);
+                    showvaluesonmaps_manual.setOnClickListener(this);
+
                     goback_manual=(Button) findViewById(R.id.goback_manual);
                     goback_manual.setOnClickListener(this);
 
@@ -1368,6 +1371,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                     status_manual.setVisibility(View.GONE);
                     downloadfile_manual.setVisibility(View.GONE);
                     gotonewrecording_manual.setVisibility(View.GONE);
+                    showvaluesonmaps_manual.setVisibility(View.GONE);
 
                     manual_recording_filename.setVisibility(View.GONE);
 
@@ -1451,10 +1455,9 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                         progressBar_manual.setVisibility(View.GONE);
                         stoprecording_manual.setVisibility(View.GONE);
 
-                        //startrecording_manual.setText("Start new recording"); //NO, go to initialization
-                        //startrecording_manual.setVisibility(View.VISIBLE);
                         downloadfile_manual.setVisibility(View.VISIBLE);
                         gotonewrecording_manual.setVisibility(View.VISIBLE);
+                        showvaluesonmaps_manual.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
@@ -1488,12 +1491,15 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                 gotonewrecording(inflated_manual_rec);
                 break;
 
+            case R.id.show_values_on_maps_manual:
+                Toast.makeText(getApplicationContext(), "Il tasto funziona", Toast.LENGTH_SHORT).show();
+
+                break;
+
             case R.id.updateinfo:
                 posture=savePosture();
                 updateInfo();
                 break;
-
-
 
             case R.id.exclamation_point_idpatient:
                 sensorsDisconnection(this);
@@ -1504,7 +1510,7 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
                 break;
         }
     }
-    
+
     private static void openDrawer(DrawerLayout drawerLayout) {
         //open drawer layout
         drawerLayout.openDrawer(GravityCompat.START);
@@ -2245,13 +2251,13 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
         return value_int;
     }
 
-/*  da problemi la conversione a decimale, provato sia con float che double
-    private double convertToFloat(String messageContentString){
+    /*  da problemi la conversione a decimale, provato sia con float che double
+        private double convertToFloat(String messageContentString){
 
-        double value_float = Double.parseDouble(messageContentString);
-        return value_float;
-    }
-*/
+            double value_float = Double.parseDouble(messageContentString);
+            return value_float;
+        }
+    */
     public void antClose() {
 
         state = CLOSE;
@@ -2484,3 +2490,4 @@ Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); 
         builder.show();
     }
 }
+

@@ -106,7 +106,6 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
     //TODO-- END drawer
     //Variable to choose the correct selected sensors to activate
     int DeviceSelection = 15; //All sensors are selected
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

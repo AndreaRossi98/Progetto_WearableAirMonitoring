@@ -1502,15 +1502,20 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 break;
 
             case R.id.show_values_on_maps_manual:
-Toast.makeText(getApplicationContext(), "Il tasto funziona", Toast.LENGTH_SHORT).show();
-redirectActivity(EnvironmentalMonitor.this, Maps.class);
 
-  //accedere ai file salvati o su firebase  --> capire come fare
+//redirectActivity(EnvironmentalMonitor.this, Maps.class);
+
+  //accedere ai file salvati  --> capire come fare
 
   //estrarre le info necessarie     --> fattibile
 
   //mostrarle sulla mappa   -->questo dovrebbe essere fatto
                //tutto questo va nel file maps
+
+                //path where the root of the txt file is located on the smartphone
+                extPath=getExternalFilesDir(null).getAbsolutePath();
+                File folderInt=new File(extPath + "/respirho/Patients/" + GlobalVariables.string_idpatient+"/" + GlobalVariables.string_idpatient );  //intPath
+                root = folderInt.getParentFile();
                 File[] acqs = root.listFiles();
 
                 if(acqs == null)
@@ -1520,7 +1525,7 @@ redirectActivity(EnvironmentalMonitor.this, Maps.class);
                     for (int i = 0; i < acqs.length; i++) {
                         names[i] = acqs[i].getName();
                     }
- /*                   //build dialog to choose acquisition from list          chiamato builders se no da errore
+                    //build dialog to choose acquisition from list          chiamato builders se no da errore
                     AlertDialog.Builder builders = new AlertDialog.Builder(this);
                     builders.setTitle("Choose acquisition");
                     builders.setItems(names, (dialog, which) -> {
@@ -1577,7 +1582,7 @@ redirectActivity(EnvironmentalMonitor.this, Maps.class);
                         // else riga 769 fino 789
                     });
                     AlertDialog dialog = builders.create();
-                    dialog.show();*/
+                    dialog.show();
                 }
                 break;
 

@@ -1505,13 +1505,13 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
 //redirectActivity(EnvironmentalMonitor.this, Maps.class);
 
-  //accedere ai file salvati  --> capire come fare
 
-  //estrarre le info necessarie     --> fattibile
+
+
 
   //mostrarle sulla mappa   -->questo dovrebbe essere fatto
                //tutto questo va nel file maps
-
+//accedere ai file salvati
                 //path where the root of the txt file is located on the smartphone
                 extPath=getExternalFilesDir(null).getAbsolutePath();
                 File folderInt=new File(extPath + "/respirho/Patients/" + GlobalVariables.string_idpatient+"/" + GlobalVariables.string_idpatient );  //intPath
@@ -1528,6 +1528,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     //build dialog to choose acquisition from list          chiamato builders se no da errore
                     AlertDialog.Builder builders = new AlertDialog.Builder(this);
                     builders.setTitle("Choose acquisition");
+//estrarre le info necessarie     --> fattibile
                     builders.setItems(names, (dialog, which) -> {
                         List<String> dates = new ArrayList<>();
                         List<Double> lats = new ArrayList<>();
@@ -1550,7 +1551,10 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         boolean compatible = false; //check if file is compatible and not empty
                         try {
                             line = reader.readLine(); //read header
-                            if(line.equals("DATE,LATITUDE,LONGITUDE,ACTIVITY,PM2.5,CO2_GAS,CO2_REF,NO2_GAS,NO2_REF")) { //if header is correct
+
+                            if(line.equals("ID Patient: " + GlobalVariables.string_idpatient)) { //if header is correct
+//Toast.makeText(this, "stringa" + line, Toast.LENGTH_SHORT).show();
+Toast.makeText(this, "ID PATIENT OK", Toast.LENGTH_SHORT).show();
                                 line = reader.readLine(); //read first row
                                 if (line != null) { //if file is not empty
                                     compatible = true;
@@ -1561,16 +1565,30 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+
                         while (line != null) { //split csv lines and obtain values
                             try {
                                 String[] attributes = line.split(",");
-                                dates.add(attributes[0]);
-                                lats.add(Double.parseDouble(attributes[1]));
-                                lons.add(Double.parseDouble(attributes[2]));
-                                acts.add(attributes[3]);
-                                pms.add(Integer.valueOf(attributes[4]));
-                                co2s.add(Integer.valueOf(attributes[5]));
-                                no2s.add(Integer.valueOf(attributes[6]));
+
+                                if(line.contains("06")) {    //per indicare che è il pacchetto di environmental monitor
+//Toast.makeText(this, "Selezionata correttamente", Toast.LENGTH_SHORT).show();
+
+                                    //per rimuovere le parentesi quadre dai valori salvati
+                                    //String [] newLine = line.split("]"); //ex: [01
+                                    //String Lat = newLine[9].substring(1);
+                                    lats.add(45.800);
+                                    lons.add(9.090);
+
+//Toast.makeText(this, "numero" + Lat, Toast.LENGTH_SHORT).show();
+
+                                    //dates.add(attributes[0]);
+                                    //lats.add(Double.parseDouble(attributes[10]));
+                                    //lons.add(Double.parseDouble(attributes[11]));
+                                    //acts.add(attributes[3]);
+                                    //pms.add(Integer.valueOf(attributes[4]));
+                                    //co2s.add(Integer.valueOf(attributes[5]));
+                                    //no2s.add(Integer.valueOf(attributes[6]));
+                                }
                                 line = reader.readLine(); //read next row
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -1579,7 +1597,28 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         if(!compatible)
                             Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
 
-                        // else riga 769 fino 789
+                        else
+                        {
+                            //create map with as many markers as acquisition points
+                            mapFragment = SupportMapFragment.newInstance();
+                            getSupportFragmentManager().beginTransaction().add(R.id.map_fragment, mapFragment).commit();
+double lat = 45.8;
+double longi = 9.09;
+                            mapFragment.getMapAsync(googleMap -> {
+                                //dates.size() da mettere al posto del 2 nel for
+                                for (int i = 0; i < 2; i++) {
+                                    googleMap.addMarker(new MarkerOptions()
+                                            //.position(new LatLng(lats.get(i), lons.get(i)))
+                                            .position(new LatLng(lat, longi))
+                                            //.title(dates.get(i))
+                                            .title("Prova")
+                                            //.snippet(acts.get(i) + ", PM2.5: " + pms.get(i) + ", CO2: " + co2s.get(i) + ", NO2: " + no2s.get(i)));
+                                            .snippet("CAZZO funziona"));
+                                }
+                                //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 12));
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, longi), 12));
+                            });
+                        }
                     });
                     AlertDialog dialog = builders.create();
                     dialog.show();

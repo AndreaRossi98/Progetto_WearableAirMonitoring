@@ -258,6 +258,22 @@
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageButton
+        android:id="@+id/closemaps_manual"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:drawable/screen_background_light_transparent"
+        android:backgroundTintMode="add"
+        android:translationX="190dp"
+        android:translationY="-270dp"
+        app:layout_constraintBottom_toBottomOf="@id/map_fragment"
+        app:layout_constraintEnd_toEndOf="@id/map_fragment"
+        app:layout_constraintHorizontal_bias="0.997"
+        app:layout_constraintStart_toStartOf="@id/map_fragment"
+        app:layout_constraintTop_toTopOf="@id/map_fragment"
+        app:layout_constraintVertical_bias="0.008"
+        app:srcCompat="@android:drawable/btn_dialog" />
+
     <FrameLayout
         android:id="@+id/map_fragment"
         android:layout_width="410dp"

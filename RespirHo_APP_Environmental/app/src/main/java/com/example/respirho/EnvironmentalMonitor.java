@@ -175,7 +175,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
     //demo download layout
     private TextView id_patient,info_patient;
-    private ImageButton telephone, storage,error_idpatient, exclamation_point_idpatient, checkmark_idpatient;
+    private ImageButton telephone, storage,error_idpatient, exclamation_point_idpatient, checkmark_idpatient, close_maps_manual;
     private ImageView lowbattery_idpatient;
     private Button helpbutton;
 
@@ -434,6 +434,11 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         PM2p5_output = (TextView) findViewById(R.id.PM2_5_value);
         PM10_output = (TextView) findViewById(R.id.PM10_value);
 
+        //bottone per la chiusura della visione di Maps
+        close_maps_manual = (ImageButton) findViewById(R.id.closemaps_manual);
+        close_maps_manual.setOnClickListener(this);
+        close_maps_manual.setVisibility(View.GONE);
+
         //BINDING TO THE ANT RADIO SERVICE
         serviceIsBound = AntService.bindService(this, mAntRadioServiceConnection);
         Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
@@ -672,23 +677,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         else{
                         }
 
-                        //to change the UI we have to put codes in the runOnUiThread
- /*                       runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-//PER STAMPARE A SCHERMO, PRIMA ERA COSI', meglio aggiornare una volta sola tutti insieme? secondo me non cambia molto
-                                //temperature_output.setText(String.valueOf(temperature));
-                                //humidity_output.setText(String.valueOf(humidity));
-                                //CO2_output.setText(String.valueOf(CO2));
-                                //VOC_output.setText(String.valueOf(VOC));
-                                //NO2_output.setText(String.valueOf(NO2));
-                                //CO_output.setText(String.valueOf(CO));
-                                //PM1p0_output.setText(String.valueOf(PM1p0));
-                                //PM2p5_output.setText(String.valueOf(PM2p5));
-                                //PM10_output.setText(String.valueOf(PM10));
-
-                            }
-                        });*/
 
                         //every now and then save the file on firebase for backup, later savings will over write the previous one
                         //save the file each 1 MB size (around 10 minutes)
@@ -702,7 +690,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             size_interval_backupfile=size_interval_backupfile+SIZE_INTERVAL_BACKUPFILE;
                             //Log.e("backup","backup 1, size end: " + size_interval_backupfile);
                         }
-
 
 
                     }else { //if the unit is NOT connected, check each one in the "switch on sensors" layout
@@ -1503,12 +1490,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
             case R.id.show_values_on_maps_manual:
 
-//redirectActivity(EnvironmentalMonitor.this, Maps.class);
-
-
-
-
-
   //mostrarle sulla mappa   -->questo dovrebbe essere fatto
                //tutto questo va nel file maps
 //accedere ai file salvati
@@ -1599,9 +1580,11 @@ Toast.makeText(this, "ID PATIENT OK", Toast.LENGTH_SHORT).show();
 
                         else
                         {
+
                             //create map with as many markers as acquisition points
                             mapFragment = SupportMapFragment.newInstance();
                             getSupportFragmentManager().beginTransaction().add(R.id.map_fragment, mapFragment).commit();
+
 double lat = 45.8;
 double longi = 9.09;
                             mapFragment.getMapAsync(googleMap -> {
@@ -1617,13 +1600,19 @@ double longi = 9.09;
                                 }
                                 //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 12));
                                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, longi), 12));
+                                close_maps_manual.setVisibility(View.VISIBLE);
                             });
                         }
                     });
                     AlertDialog dialog = builders.create();
                     dialog.show();
+                    close_maps_manual.setVisibility(View.VISIBLE);
                 }
                 break;
+
+            case R.id.closemaps_manual:
+                getSupportFragmentManager().beginTransaction().remove(mapFragment).commit();
+                close_maps_manual.setVisibility(View.INVISIBLE);
 
             case R.id.updateinfo:
                 posture=savePosture();

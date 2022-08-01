@@ -211,7 +211,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private boolean flag_support=false;
     private boolean flag_logout=false;
     private boolean flag_closeapp=false;
-
+    private boolean show_maps_flag = false;
     //flag for download
     public boolean flag_filetoosmall = false;
 
@@ -399,14 +399,18 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         lowbattery_idpatient =(ImageView) findViewById(R.id.lowbattery_idpatient);
         lowbattery_idpatient.setOnClickListener(this);
         lowbattery_idpatient.setVisibility(View.GONE);
+
         error_idpatient=(ImageButton) findViewById(R.id.error_idpatient);
         error_idpatient.setVisibility(View.GONE);
+
         exclamation_point_idpatient=(ImageButton) findViewById(R.id.exclamation_point_idpatient);
         exclamation_point_idpatient.setOnClickListener(this);
         exclamation_point_idpatient.setVisibility(View.GONE);
+
         checkmark_idpatient=(ImageButton) findViewById(R.id.checkmark_idpatient);
         checkmark_idpatient.setOnClickListener(this);
         checkmark_idpatient.setVisibility(View.GONE);
+
         progressbar_idpatient=(ProgressBar) findViewById(R.id.progressbar_idpatient);
         progressbar_idpatient.setVisibility(View.GONE);
 
@@ -433,11 +437,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         PM1p0_output = (TextView) findViewById(R.id.PM1_0_value);
         PM2p5_output = (TextView) findViewById(R.id.PM2_5_value);
         PM10_output = (TextView) findViewById(R.id.PM10_value);
-
-        //bottone per la chiusura della visione di Maps
-        close_maps_manual = (ImageButton) findViewById(R.id.closemaps_manual);
-        close_maps_manual.setOnClickListener(this);
-        close_maps_manual.setVisibility(View.GONE);
 
         //BINDING TO THE ANT RADIO SERVICE
         serviceIsBound = AntService.bindService(this, mAntRadioServiceConnection);
@@ -1600,19 +1599,14 @@ double longi = 9.09;
                                 }
                                 //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 12));
                                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, longi), 12));
-                                close_maps_manual.setVisibility(View.VISIBLE);
                             });
                         }
                     });
                     AlertDialog dialog = builders.create();
                     dialog.show();
-                    close_maps_manual.setVisibility(View.VISIBLE);
+                    show_maps_flag = true;
                 }
                 break;
-
-            case R.id.closemaps_manual:
-                getSupportFragmentManager().beginTransaction().remove(mapFragment).commit();
-                close_maps_manual.setVisibility(View.INVISIBLE);
 
             case R.id.updateinfo:
                 posture=savePosture();
@@ -2569,9 +2563,14 @@ double longi = 9.09;
     @Override
     public void onBackPressed() {
         //manage back button in some steps of the recording to ensure a safe quit of the recording
-
-        if(state==QUIT_RECORDING){
-            state= SYNCHRONIZATION_RESUME;
+    if(show_maps_flag == true) {
+        Toast.makeText(this, "Chiudi maps", Toast.LENGTH_SHORT).show();
+        getSupportFragmentManager().beginTransaction().remove(mapFragment).commit();
+        show_maps_flag = false;
+    }
+    else {
+        if (state == QUIT_RECORDING) {
+            state = SYNCHRONIZATION_RESUME;
             super.onBackPressed();
             return;
         }
@@ -2592,7 +2591,7 @@ double longi = 9.09;
                 antClose();
 
                 //go to patient data layout
-                state=QUIT_RECORDING;
+                state = QUIT_RECORDING;
                 //call again the onBackPressed() and in this way it enters in the previous if condition
                 onBackPressed();
             }
@@ -2607,6 +2606,7 @@ double longi = 9.09;
         });
         //show dialog
         builder.show();
+    }
     }
 }
 

@@ -329,6 +329,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public SupportMapFragment mapFragment;
 
 
+    int latitudine;
+    int longitudine;
+
 //activity recognition al momento non lo metto, non mi serve ma dopo ci si guarda
 
 
@@ -553,6 +556,10 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             + messageContentString.substring(28,32) + ",";
                     Log.e(LOG_TAG,"stringa " + msg);
 //toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
+//String prova = "[13.4]";
+//float risultato;
+//risultato = Float.parseFloat(prova);
+//Toast.makeText(getApplicationContext(), "stringa" +prova, Toast.LENGTH_LONG).show();
 
                     //split the bytes
                     String[] messageContentString_split = messageContentString.split("]"); //ex: [01
@@ -563,7 +570,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     String unitReceived_default=messageContentString_unit.substring(1); //ex: 1 (String)
                     int unitReceived=Integer.parseInt(unitReceived_default); //ex: 1 (int)
                     resetWatchdogTimer(0); //we subtract 1 to match the array indexes
-
                     //if ALL the units are connected, the next messages will be the recording data
                     if(connected6){
 
@@ -604,8 +610,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         String messageContentString_PM2p5 = "";
                         String messageContentString_PM10 = "";
 
-//float prova = Float.parseFloat("15.3");
-//float caso = Float.valueOf("15.3");
+
 //divido la mostra a schermo in base a cio che arriva
 
                         /*
@@ -1488,9 +1493,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 break;
 
             case R.id.show_values_on_maps_manual:
-
-  //mostrarle sulla mappa   -->questo dovrebbe essere fatto
-               //tutto questo va nel file maps
 //accedere ai file salvati
                 //path where the root of the txt file is located on the smartphone
                 extPath=getExternalFilesDir(null).getAbsolutePath();
@@ -1533,8 +1535,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             line = reader.readLine(); //read header
 
                             if(line.equals("ID Patient: " + GlobalVariables.string_idpatient)) { //if header is correct
-//Toast.makeText(this, "stringa" + line, Toast.LENGTH_SHORT).show();
-Toast.makeText(this, "ID PATIENT OK", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this, "ID PATIENT OK", Toast.LENGTH_SHORT).show();
                                 line = reader.readLine(); //read first row
                                 if (line != null) { //if file is not empty
                                     compatible = true;
@@ -1551,15 +1552,17 @@ Toast.makeText(this, "ID PATIENT OK", Toast.LENGTH_SHORT).show();
                                 String[] attributes = line.split(",");
 
                                 if(line.contains("06")) {    //per indicare che è il pacchetto di environmental monitor
-//Toast.makeText(this, "Selezionata correttamente", Toast.LENGTH_SHORT).show();
 
                                     //per rimuovere le parentesi quadre dai valori salvati
                                     //String [] newLine = line.split("]"); //ex: [01
                                     //String Lat = newLine[9].substring(1);
+                                    //String Longit = newLine[10].substring(1);
+//Toast.makeText(this, "numero:" + Lat, Toast.LENGTH_SHORT).show();
                                     lats.add(45.800);
                                     lons.add(9.090);
-
-//Toast.makeText(this, "numero" + Lat, Toast.LENGTH_SHORT).show();
+//latitudine = convertToInt(Lat);
+//longitudine = convertToInt(Longit);
+//Toast.makeText(this, "numero" + latitudine, Toast.LENGTH_SHORT).show();
 
                                     //dates.add(attributes[0]);
                                     //lats.add(Double.parseDouble(attributes[10]));
@@ -1576,29 +1579,27 @@ Toast.makeText(this, "ID PATIENT OK", Toast.LENGTH_SHORT).show();
                         }
                         if(!compatible)
                             Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
-
                         else
                         {
-
                             //create map with as many markers as acquisition points
                             mapFragment = SupportMapFragment.newInstance();
                             getSupportFragmentManager().beginTransaction().add(R.id.map_fragment, mapFragment).commit();
-
 double lat = 45.8;
 double longi = 9.09;
                             mapFragment.getMapAsync(googleMap -> {
                                 //dates.size() da mettere al posto del 2 nel for
-                                for (int i = 0; i < 2; i++) {
+                                for (int i = 0; i < 3; i++) {
                                     googleMap.addMarker(new MarkerOptions()
                                             //.position(new LatLng(lats.get(i), lons.get(i)))
-                                            .position(new LatLng(lat, longi))
+                                            .position(new LatLng(i,i)) //latitudine, longitudine   lat, longi
                                             //.title(dates.get(i))
                                             .title("Prova")
                                             //.snippet(acts.get(i) + ", PM2.5: " + pms.get(i) + ", CO2: " + co2s.get(i) + ", NO2: " + no2s.get(i)));
                                             .snippet("CAZZO funziona"));
+
                                 }
                                 //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 12));
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lat, longi), 12));
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(0, 0), 7));
                             });
                         }
                     });
@@ -1622,7 +1623,6 @@ double longi = 9.09;
                 break;
         }
     }
-
 
     private static void openDrawer(DrawerLayout drawerLayout) {
         //open drawer layout
@@ -2357,7 +2357,7 @@ double longi = 9.09;
         temp.renameTo(file);
         Log.e("demo","fileInt modified and saved");
     }
-    //funzione usata per stampare a schermo
+
     private int convertToInt(String messageContentString){
         //convert the battery byte hex value in volt
         int value_int=Integer.parseInt(messageContentString, 16);
@@ -2564,7 +2564,6 @@ double longi = 9.09;
     public void onBackPressed() {
         //manage back button in some steps of the recording to ensure a safe quit of the recording
     if(show_maps_flag == true) {
-        Toast.makeText(this, "Chiudi maps", Toast.LENGTH_SHORT).show();
         getSupportFragmentManager().beginTransaction().remove(mapFragment).commit();
         show_maps_flag = false;
     }

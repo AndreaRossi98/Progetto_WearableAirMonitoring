@@ -212,6 +212,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private boolean flag_logout=false;
     private boolean flag_closeapp=false;
     private boolean show_maps_flag = false;
+    private boolean flag_null_line = false;
     //flag for download
     public boolean flag_filetoosmall = false;
 
@@ -1535,7 +1536,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             line = reader.readLine(); //read header
 
                             if(line.equals("ID Patient: " + GlobalVariables.string_idpatient)) { //if header is correct
-                                Toast.makeText(this, "ID PATIENT OK", Toast.LENGTH_SHORT).show();
+//Toast.makeText(this, "ID PATIENT OK", Toast.LENGTH_SHORT).show();
                                 line = reader.readLine(); //read first row
                                 if (line != null) { //if file is not empty
                                     compatible = true;
@@ -1547,10 +1548,14 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             e.printStackTrace();
                         }
 
-                        while (line != null) { //split csv lines and obtain values
+                        while (line != null && flag_null_line == false) { //split csv lines and obtain values
                             try {
                                 String[] attributes = line.split(",");
-
+//Toast.makeText(this, "line" + attributes, Toast.LENGTH_SHORT).show();
+//String [] newLine = line.split("]"); //ex: [01
+//Toast.makeText(this, "line" + newLine, Toast.LENGTH_SHORT).show();
+//String Lat = newLine[9].substring(10);
+//Toast.makeText(this, "lat" + Lat, Toast.LENGTH_SHORT).show();
                                 if(line.contains("06")) {    //per indicare che è il pacchetto di environmental monitor
 
                                     //per rimuovere le parentesi quadre dai valori salvati
@@ -1573,9 +1578,12 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     //no2s.add(Integer.valueOf(attributes[6]));
                                 }
                                 line = reader.readLine(); //read next row
+//Toast.makeText(this, "line" + line, Toast.LENGTH_SHORT).show();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
+                            if( line == null)
+                                flag_null_line = true;
                         }
                         if(!compatible)
                             Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
@@ -1605,6 +1613,7 @@ double longi = 9.09;
                     });
                     AlertDialog dialog = builders.create();
                     dialog.show();
+                    flag_null_line = false;
                     show_maps_flag = true;
                 }
                 break;

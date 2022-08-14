@@ -129,19 +129,19 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 
-public class EnvironmentalMonitor extends AppCompatActivity implements View.OnClickListener{
+public class EnvironmentalMonitor extends AppCompatActivity implements View.OnClickListener {
 
-    private Button timerrecordingbutton,manualrecordingbutton,initializationbutton_environmental_monitor,gotoswitchonenvironmentalmonitor,gotorecordingbutton_environmentale_monitor;
-    private Button startrecording_manual,stoprecording_manual,downloadfile_manual,gotonewrecording_manual,goback_manual, showvaluesonmaps_manual;
-    private Button startrecording_timer,stoprecording_timer,downloadfile_timer,gotonewrecording_timer,goback_timer;
+    private Button timerrecordingbutton, manualrecordingbutton, initializationbutton_environmental_monitor, gotoswitchonenvironmentalmonitor, gotorecordingbutton_environmentale_monitor;
+    private Button startrecording_manual, stoprecording_manual, downloadfile_manual, gotonewrecording_manual, goback_manual, showvaluesonmaps_manual;
+    private Button startrecording_timer, stoprecording_timer, downloadfile_timer, gotonewrecording_timer, goback_timer;
     private Button endcalibration_button;
     private ImageButton initialization_checkmark,
             switchonenvironmentalmonitor_checkmark;
 
-    private ProgressBar progressBar_manual, progressBar_timer,progressbar_initialization,
-            switchonenvironmentalmonitor_progressbar,progressbar_idpatient;
-    private TextView status_manual,status_timer,status_initialization,bottom_initialization,
-            switch_on_environmentalmonitor,manual_recording_filename,timer_recording_filename;
+    private ProgressBar progressBar_manual, progressBar_timer, progressbar_initialization,
+            switchonenvironmentalmonitor_progressbar, progressbar_idpatient;
+    private TextView status_manual, status_timer, status_initialization, bottom_initialization,
+            switch_on_environmentalmonitor, manual_recording_filename, timer_recording_filename;
     private TextView timer;
     private TextView clickhereforcalibration;
     private TextInputLayout layout_insert_setduration, layout_insert_setinforec;
@@ -149,7 +149,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private CountDownTimer countDownTimer;
     private Chronometer chronometer;
     private ViewStub viewStub;
-    private View inflated_initialization,inflated_switch_on_sensors,inflated_select_recording,inflated_calibration,inflated_manual_rec,inflated_timer_rec,inflated_updateinfo, inflated_displaydata;
+    private View inflated_initialization, inflated_switch_on_sensors, inflated_select_recording, inflated_calibration, inflated_manual_rec, inflated_timer_rec, inflated_updateinfo, inflated_displaydata;
 
     //PER STAMPARE A SCHERMO
     private TextView temperature_output;
@@ -170,19 +170,19 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private TextInputEditText insert_addinforec;
     private TextView inforecording;
     private Button updateinfo;
-    private String posture= "None";
+    private String posture = "None";
     private String oldposture = "None";
 
     //demo download layout
-    private TextView id_patient,info_patient;
-    private ImageButton telephone, storage,error_idpatient, exclamation_point_idpatient, checkmark_idpatient, close_maps_manual;
+    private TextView id_patient, info_patient;
+    private ImageButton telephone, storage, error_idpatient, exclamation_point_idpatient, checkmark_idpatient, close_maps_manual;
     private ImageView lowbattery_idpatient;
     private Button helpbutton;
 
     //STORAGE variables
     private StorageReference mStorageRef;
     //recycler view for storage from firebase storage
-    public ArrayList<Item_StorageFiles> item_storage_files=null;
+    public ArrayList<Item_StorageFiles> item_storage_files = null;
     private RecyclerView recyclerview_storage_files;
     private Adapter_PatientData adapter_storage_files;
     private RecyclerView.LayoutManager layoutManager_storage_files;
@@ -191,36 +191,36 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     //dialog storage storage
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialogDownloadStorage;
-    private Button update_storage_files,cancel_storage_files;
+    private Button update_storage_files, cancel_storage_files;
     private ProgressBar progressbar_storage_files;
     private TextView status_storage_files;
 
     //file variables
     public File fileInt;
-    public String intPath,extPath;
+    public String intPath, extPath;
 
     //flag for the recording
-    public boolean flag_stoprec=false;
+    public boolean flag_stoprec = false;
 
     //flag to manage inflated views
-    private boolean flag_manual_rec=false;
-    private boolean flag_timer_rec=false;
+    private boolean flag_manual_rec = false;
+    private boolean flag_timer_rec = false;
 
     //flag to manage drawer while recording
-    private boolean flag_home=false;
-    private boolean flag_support=false;
-    private boolean flag_logout=false;
-    private boolean flag_closeapp=false;
+    private boolean flag_home = false;
+    private boolean flag_support = false;
+    private boolean flag_logout = false;
+    private boolean flag_closeapp = false;
     private boolean show_maps_flag = false;
     private boolean flag_null_line = false;
     //flag for download
     public boolean flag_filetoosmall = false;
 
     //backup variables
-    private long size_interval_backupfile=1000; //initialize at each acquisition to 1000 (1 Mb)
+    private long size_interval_backupfile = 1000; //initialize at each acquisition to 1000 (1 Mb)
 
-    private String inforecordingtext="";
-    private String old_inforecordingtext="";
+    private String inforecordingtext = "";
+    private String old_inforecordingtext = "";
 
     //DEFINES
     private static final float THRESHOLD_BATTERY = (float) 2.2;
@@ -228,9 +228,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private static final int SIZE_INTERVAL_BACKUPFILE = 1000; //1000, each 1 Mb
 
     //drawer
-    private ImageButton idicon,arrowback;
+    private ImageButton idicon, arrowback;
     private DrawerLayout drawerLayout;
-    private RelativeLayout drawer_home, drawer_support,drawer_logout,drawer_closeapp;
+    private RelativeLayout drawer_home, drawer_support, drawer_logout, drawer_closeapp;
 
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -242,7 +242,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public final String LOG_TAG = EnvironmentalMonitor.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_SATURATION =  65535;   //65536;
+    private static final int USER_PERIOD_SATURATION = 65535;   //65536;
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound = false;
     private AntService mAntRadioService = null;
@@ -253,7 +253,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public MessageFromAntType messagetype;
     public boolean mIsOpen = false;
 
-    public ChannelId channelId_smartphone = new ChannelId(2,3,2, true); //diverso da DEFAULT: 2,2,2, true
+    public ChannelId channelId_smartphone = new ChannelId(2, 3, 2, true); //diverso da DEFAULT: 2,2,2, true
 
     byte[] payLoad;
 
@@ -291,12 +291,12 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private static final int QUIT_RECORDING = 12; //quit recording
 
     BroadcastDataMessage broadcastDataMessage;
-    public String current_default,current,day;
+    public String current_default, current, day;
     //save the old message to see if there's data loss
     public String old_messageContentString_unit = null;
 
     //watchdog timer to check if the sensors are receiving messages
-    public int [] watchdog_timer = {0};
+    public int[] watchdog_timer = {0};
     public int sumWt = 0;
     public boolean flag_watchdog_timer_overflow = true;
     public boolean flag_reconnection = false;
@@ -305,7 +305,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public String sensors_disconnection_header = "You have to go back initialize the sensors because in the last recording a problem occurred with the communication.\n\nSwitch OFF the sensors and then press YES";
 
     private String sensorsDisconnectedText;
-    private static String sensorDisconnected6="";
+    private static String sensorDisconnected6 = "";
 
     private static final int UNIT6 = 0;
 
@@ -343,18 +343,18 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
         //FILES INT AND EXT INITIALIZATION
         //path where the txt file is saved internally before downloading
-        intPath=getApplicationContext().getFilesDir().getAbsolutePath();
+        intPath = getApplicationContext().getFilesDir().getAbsolutePath();
 
         //path where the root of the txt file is located on the smartphone
-        extPath=getExternalFilesDir(null).getAbsolutePath();
+        extPath = getExternalFilesDir(null).getAbsolutePath();
 
-        File folderInt=new File(intPath);
+        File folderInt = new File(intPath);
 
-        fileInt=new File(folderInt,"demo");
+        fileInt = new File(folderInt, "demo");
 
         //STORAGE FILES INITIALIZATION
         //always clear the storage list and reload it
-        item_storage_files=new ArrayList<>();
+        item_storage_files = new ArrayList<>();
 
         //initialize the initialization view
         viewStub = (ViewStub) findViewById(R.id.initialization_toinclude_1);
@@ -373,13 +373,13 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
 //        posture_buttons=(RadioGroup) inflated_updateinfo.findViewById(R.id.posture_buttons);
 
-        layout_insert_addinforec=(TextInputLayout) inflated_updateinfo.findViewById(R.id.layout_insert_addinforec);
-        insert_addinforec=(TextInputEditText) inflated_updateinfo.findViewById(R.id.insert_addinforec);
+        layout_insert_addinforec = (TextInputLayout) inflated_updateinfo.findViewById(R.id.layout_insert_addinforec);
+        insert_addinforec = (TextInputEditText) inflated_updateinfo.findViewById(R.id.insert_addinforec);
 
-        updateinfo=(Button) inflated_updateinfo.findViewById(R.id.updateinfo);
+        updateinfo = (Button) inflated_updateinfo.findViewById(R.id.updateinfo);
         updateinfo.setOnClickListener(this);
 
-        inforecording=(TextView) inflated_updateinfo.findViewById(R.id.inforecording);
+        inforecording = (TextView) inflated_updateinfo.findViewById(R.id.inforecording);
 
         inflated_updateinfo.setVisibility(View.GONE);
         inflated_displaydata.setVisibility(View.GONE);
@@ -393,42 +393,42 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         storage = (ImageButton) findViewById(R.id.storage);
         storage.setOnClickListener(this);
 
-        id_patient=(TextView) findViewById(R.id.card);
+        id_patient = (TextView) findViewById(R.id.card);
         id_patient.setText(GlobalVariables.string_idpatient);
 
-        info_patient=(TextView) findViewById(R.id.info);
+        info_patient = (TextView) findViewById(R.id.info);
         info_patient.setText("INFO PATIENT: \n" + GlobalVariables.string_infopatient);
 
         //WARNINGS
-        lowbattery_idpatient =(ImageView) findViewById(R.id.lowbattery_idpatient);
+        lowbattery_idpatient = (ImageView) findViewById(R.id.lowbattery_idpatient);
         lowbattery_idpatient.setOnClickListener(this);
         lowbattery_idpatient.setVisibility(View.GONE);
 
-        error_idpatient=(ImageButton) findViewById(R.id.error_idpatient);
+        error_idpatient = (ImageButton) findViewById(R.id.error_idpatient);
         error_idpatient.setVisibility(View.GONE);
 
-        exclamation_point_idpatient=(ImageButton) findViewById(R.id.exclamation_point_idpatient);
+        exclamation_point_idpatient = (ImageButton) findViewById(R.id.exclamation_point_idpatient);
         exclamation_point_idpatient.setOnClickListener(this);
         exclamation_point_idpatient.setVisibility(View.GONE);
 
-        checkmark_idpatient=(ImageButton) findViewById(R.id.checkmark_idpatient);
+        checkmark_idpatient = (ImageButton) findViewById(R.id.checkmark_idpatient);
         checkmark_idpatient.setOnClickListener(this);
         checkmark_idpatient.setVisibility(View.GONE);
 
-        progressbar_idpatient=(ProgressBar) findViewById(R.id.progressbar_idpatient);
+        progressbar_idpatient = (ProgressBar) findViewById(R.id.progressbar_idpatient);
         progressbar_idpatient.setVisibility(View.GONE);
 
-        initializationbutton_environmental_monitor=(Button) findViewById(R.id.initializationbutton_environmental_monitor);
+        initializationbutton_environmental_monitor = (Button) findViewById(R.id.initializationbutton_environmental_monitor);
         initializationbutton_environmental_monitor.setOnClickListener(this);
 
-        gotoswitchonenvironmentalmonitor=(Button) findViewById(R.id.gotoswitchonenvironmentalmonitor);
+        gotoswitchonenvironmentalmonitor = (Button) findViewById(R.id.gotoswitchonenvironmentalmonitor);
         gotoswitchonenvironmentalmonitor.setOnClickListener(this);
 
-        progressbar_initialization=(ProgressBar) findViewById(R.id.progressbar_initialization);
-        status_initialization=(TextView) findViewById(R.id.status_initialization);
-        bottom_initialization=(TextView) findViewById(R.id.bottom_initialization);
+        progressbar_initialization = (ProgressBar) findViewById(R.id.progressbar_initialization);
+        status_initialization = (TextView) findViewById(R.id.status_initialization);
+        bottom_initialization = (TextView) findViewById(R.id.bottom_initialization);
 
-        initialization_checkmark=(ImageButton) findViewById(R.id.initialization_checkmark);
+        initialization_checkmark = (ImageButton) findViewById(R.id.initialization_checkmark);
 
 //PER STAMPARE A SCHERMO
         temperature_output = (TextView) findViewById(R.id.temperature_value);
@@ -444,49 +444,49 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
         //BINDING TO THE ANT RADIO SERVICE
         serviceIsBound = AntService.bindService(this, mAntRadioServiceConnection);
-        Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
-        Log.e(LOG_TAG, "Version name: "+ AntService.getVersionName(this));
+        Log.e(LOG_TAG, "Ant Service is bound: " + serviceIsBound);
+        Log.e(LOG_TAG, "Version name: " + AntService.getVersionName(this));
 
-        drawerLayout=findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
-        drawer_home=findViewById(R.id.drawer_home);
+        drawer_home = findViewById(R.id.drawer_home);
         drawer_home.setOnClickListener(this);
 
-        drawer_support =findViewById(R.id.drawer_support);
+        drawer_support = findViewById(R.id.drawer_support);
         drawer_support.setOnClickListener(this);
 
-        drawer_logout=findViewById(R.id.drawer_logout);
+        drawer_logout = findViewById(R.id.drawer_logout);
         drawer_logout.setOnClickListener(this);
 
-        drawer_closeapp=findViewById(R.id.drawer_closeapp);
+        drawer_closeapp = findViewById(R.id.drawer_closeapp);
         drawer_closeapp.setOnClickListener(this);
 
-        idicon=findViewById(R.id.idicon);
+        idicon = findViewById(R.id.idicon);
         idicon.setOnClickListener(this);
 
-        arrowback=findViewById(R.id.arrowback);
+        arrowback = findViewById(R.id.arrowback);
         arrowback.setOnClickListener(this);
 
-        final TextView drawerMail=(TextView) findViewById(R.id.drawermail);
-        final TextView drawerFullname=(TextView) findViewById(R.id.drawerfullname);
+        final TextView drawerMail = (TextView) findViewById(R.id.drawermail);
+        final TextView drawerFullname = (TextView) findViewById(R.id.drawerfullname);
 
         //check the user info to display on drawer
-        mAuth=FirebaseAuth.getInstance();
-        user=mAuth.getCurrentUser();
-        reference= FirebaseDatabase.getInstance().getReference("Users");
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users");
 
         //if the user is not null
-        if(user!=null){
-            userID=user.getUid();
+        if (user != null) {
+            userID = user.getUid();
 
             reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                    User userDrawer=snapshot.getValue(User.class);
+                    User userDrawer = snapshot.getValue(User.class);
 
-                    if(userDrawer !=null){
-                        String mail=userDrawer.mail;
-                        String fullname=userDrawer.fullname;
+                    if (userDrawer != null) {
+                        String mail = userDrawer.mail;
+                        String fullname = userDrawer.fullname;
                         drawerMail.setText(mail);
                         drawerFullname.setText(fullname);
                     }
@@ -518,7 +518,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
 
-
     }
 
     public IAntChannelEventHandler eventCallBack = new IAntChannelEventHandler() {
@@ -527,35 +526,35 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         @Override
         public void onReceiveMessage(MessageFromAntType messageFromAntType, AntMessageParcel antMessageParcel) {
             Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); //hex
-            switch(messageFromAntType){
+            switch (messageFromAntType) {
 
                 case BROADCAST_DATA: //HERE ARRIVES ALL THE MESSAGES FROM THE SENSORS
 
                     Log.e(LOG_TAG, "CHECK Rx: "); //hex
                     //save time
-                    day= LocalDateTime.now().toLocalDate().toString(); //datetime
+                    day = LocalDateTime.now().toLocalDate().toString(); //datetime
 
                     //save time to show
-                    SimpleDateFormat format=new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
-                    current=format.format(new Date().getTime());
+                    SimpleDateFormat format = new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
+                    current = format.format(new Date().getTime());
 
                     String messageContentString_default = antMessageParcel.getMessageContentString(); //9 bytes, first is always [00] (to erase)
 
                     //remove the first byte always equal to [00]
                     //OFFICIAL MESSAGE messageContentString
-                    String messageContentString=messageContentString_default.substring(4); //8 bytes, correct. Ex:"[03][5C][00][00][62][2E][3C][E8]"
+                    String messageContentString = messageContentString_default.substring(4); //8 bytes, correct. Ex:"[03][5C][00][00][62][2E][3C][E8]"
 
                     //the following string is used to be uploaded on firebase and to be written on the file .txt, it has the same format of the messages needed for the ANALISI_SEGNALE_FAST.py
                     //example output format: [02],[5b],[00],[00],[16],[c2],[5e],[cb],
-                    String msg= messageContentString.substring(0,4) + ","
-                            + messageContentString.substring(4,8) + ","
-                            + messageContentString.substring(8,12) + ","
-                            + messageContentString.substring(12,16) + ","
-                            + messageContentString.substring(16,20) + ","
-                            + messageContentString.substring(20,24) + ","
-                            + messageContentString.substring(24,28) + ","
-                            + messageContentString.substring(28,32) + ",";
-                    Log.e(LOG_TAG,"stringa " + msg);
+                    String msg = messageContentString.substring(0, 4) + ","
+                            + messageContentString.substring(4, 8) + ","
+                            + messageContentString.substring(8, 12) + ","
+                            + messageContentString.substring(12, 16) + ","
+                            + messageContentString.substring(16, 20) + ","
+                            + messageContentString.substring(20, 24) + ","
+                            + messageContentString.substring(24, 28) + ","
+                            + messageContentString.substring(28, 32) + ",";
+                    Log.e(LOG_TAG, "stringa " + msg);
 //toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
 //String prova = "[13.4]";
 //float risultato;
@@ -565,17 +564,16 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     //split the bytes
                     String[] messageContentString_split = messageContentString.split("]"); //ex: [01
                     //get the first byte to find the unit and remove the open square bracket
-                    String messageContentString_unit=messageContentString_split[0].substring(1); //ex: 01
+                    String messageContentString_unit = messageContentString_split[0].substring(1); //ex: 01
 
                     //if the message is received, reset watchdog timer of the unit received
-                    String unitReceived_default=messageContentString_unit.substring(1); //ex: 1 (String)
-                    int unitReceived=Integer.parseInt(unitReceived_default); //ex: 1 (int)
+                    String unitReceived_default = messageContentString_unit.substring(1); //ex: 1 (String)
+                    int unitReceived = Integer.parseInt(unitReceived_default); //ex: 1 (int)
                     resetWatchdogTimer(0); //we subtract 1 to match the array indexes
                     //if ALL the units are connected, the next messages will be the recording data
-                    if(connected6){
+                    if (connected6) {
 
-//aggiungere latitudine e longitudine da mettere nel file
-//bisognerebbe aggiungere controllo che si abbia il permesso, e controllo di geolocalizzazione attivo?
+//bisognerebbe aggiungere controllo che si abbia il permesso, ma mi da errore con il this, non so cosa sostituire (comunque cosi funziona)
                         Task<Location> task = fusedLocationClient.getLastLocation();
                         while(!task.isComplete());
                         location = task.getResult();
@@ -1014,8 +1012,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                 state = CONNECT6;
 
-                //TODO - end ANT
-
                 if(mIsOpen){
                     //if the channel is open
                     progressbar_initialization.setVisibility(View.GONE);
@@ -1051,9 +1047,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                 switchonenvironmentalmonitor_progressbar=(ProgressBar) findViewById(R.id.switchonenvironmentalmonitor_progressbar);
 
-
                 switch_on_environmentalmonitor=(TextView) findViewById(R.id.switch_on_environmentalmonitor);
-
 
                 gotorecordingbutton_environmentale_monitor=(Button) findViewById(R.id.gotorecordingbutton_environmental_monitor);
                 gotorecordingbutton_environmentale_monitor.setOnClickListener(this);
@@ -1556,6 +1550,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 //Toast.makeText(this, "line" + newLine, Toast.LENGTH_SHORT).show();
 //String Lat = newLine[9].substring(10);
 //Toast.makeText(this, "lat" + Lat, Toast.LENGTH_SHORT).show();
+                                //float a = Float.compare();
                                 if(line.contains("06")) {    //per indicare che è il pacchetto di environmental monitor
 
                                     //per rimuovere le parentesi quadre dai valori salvati

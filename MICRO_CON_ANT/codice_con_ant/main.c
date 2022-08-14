@@ -96,7 +96,8 @@ uint8_t connesso = 0;           //queste due variabili servono per gestire i sen
 float partial_calc = 0;        //variable to maintein partial calculation
 
 //variabili per la gestione di ANT
-uint8_t message_addr[8] = {6,6,6,6,6,6,6,6};
+//uint8_t message_addr[8] = {6,6,6,6,6,6,6,6};    //E' QUESTA DA USARE
+float message_addr[8] = {6,6,6,6,6,6,6,6};
 uint8_t pacchetto = 0;
 
 nrf_saadc_value_t adc_val;  //variabile per campionamento 
@@ -479,11 +480,11 @@ if (pacchetto <2)
 {   //T,RH,P,VOC
     message_addr [0] = 7;
     message_addr [1] = 7;
-    message_addr [2] = valore;
-    message_addr [3] = valore;
-    message_addr [4] = valore;
-    message_addr [5] = valore;
-    message_addr [6] = valore;
+    message_addr [2] = 1000; //valore;
+    message_addr [3] = 1000;  //valore;
+    message_addr [4] = 1000;  //valore;
+    message_addr [5] = 1000;  //valore;
+    message_addr [6] = 1000;  //valore;
     message_addr [7] = valore;
 }
 else

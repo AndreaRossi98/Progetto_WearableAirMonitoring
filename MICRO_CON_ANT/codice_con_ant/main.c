@@ -62,7 +62,7 @@ struct data{
 struct val_campionati{
     float Temp;
     float Hum;
-    float Pres;
+    double Pres;    //Attenzione dimensioni variabile
     float PM1p0;    //controlla che sia corretto, scegliere quali valori guardare di PM
     float PM2p5;
     float CO2;
@@ -91,20 +91,30 @@ int i = 0;
 uint8_t notshown = 1;           // per il log
 
 int rtc_count = 0;
+//queste due variabili servono per gestire i sensori: se flag misurazione 1 e connesso 1 allora misuro ogni 20 sec, aggiorno e invio
 uint8_t flag_misurazioni = 0;
-uint8_t connesso = 0;           //queste due variabili servono per gestire i sensori: se flag misurazione 1 e connesso 1 allora misuro ogni 20 sec, aggiorno e invio
+uint8_t connesso = 0;           // = 1 indica che il master si è connesso e sta chiedendo i dati letti
 float partial_calc = 0;        //variable to maintein partial calculation
 
 //variabili per la gestione di ANT
-//uint8_t message_addr[8] = {6,6,6,6,6,6,6,6};    //E' QUESTA DA USARE
-float message_addr[8] = {6,6,6,6,6,6,6,6};
+uint8_t message_addr[8] = {6,6,6,6,6,6,6,6};
+uint8_t pacchetto_1[8] = {0,0,0,0,0,0,0,0};  //pacchetti che contengono i valori campionati
+uint8_t pacchetto_2[8] = {0,0,0,0,0,0,0,0};  //ed elaborati per poter essere inviati tramite ANT
+uint8_t pacchetto_3[8] = {0,0,0,0,0,0,0,0};  //senza problemi di formato (uint8_t
+
+uint8_t pacchetto_1_inviare[8] = {0,0,0,0,0,0,0,0}; //pacchetti che contengono i valori campionati ed elaborati
+uint8_t pacchetto_2_inviare[8] = {0,0,0,0,0,0,0,0}; //pronti ad essere inviati
+uint8_t pacchetto_3_inviare[8] = {0,0,0,0,0,0,0,0}; //divisi in modo tale che non c'è il rischio di modifiche durante l'invio
+
+uint8_t numero_pacchetto = 1;   //serve a selezionare il pacchetto da inviare tra 1 2 3
+
 uint8_t pacchetto = 0;
 
 nrf_saadc_value_t adc_val;  //variabile per campionamento 
 ret_code_t err_code;        //variabile per valore di ritorno
 
 uint8_t flag_inizializzazione = 0;  //flag che definisce inizializzazione dei sensori in corso
-
+uint8_t flag_dati_pronti = 0; //flag che dice che non ci sono ancora dei dati da inviare
 uint8_t valore = 0;
 
 //VARIABILI DEI SENSORI
@@ -272,13 +282,46 @@ printf("\n");
                     
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x06 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x07] == 0x00)
                     { //connesso a master, invia dati
-                        NRF_LOG_INFO("Inizio acquisizione");	
+                        
                         sd_ant_pending_transmit_clear (BROADCAST_CHANNEL_NUMBER, NULL); //svuota il buffer, utile per una seconda acquisizione
                         connesso = 1;
+//aggiungere gestione del pacchetto da inviare 1 2 3
+
+//se i dati non sono ancora pronti (caso di accensione), invio un pacchetto standard es 6,6,6,6,6,6,6,6,6
+//se no invio in ordine sequenziale pacchetto 1, pacchetto 2, pacchetto 3
+
+//fare controllo che dati siano pronti    if (flag_dati_pronti == 0){
+//invio pacchetto standard                    err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
+//
+//se no gestisco i tre pacchetti          else{
+//                                            if (numero_pacchetto == 1)   //invio pacchetto 1
+//                                                err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_1_inviare);
+//                                            else if (numero_pacchetto == 2)
+//                                                err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_2_inviare);
+//                                            else if (numero_pacchetto == 3)
+//                                                err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_3_inviare);
+//                                            
+//                                            numero_pacchetto++;
+
+
                         err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
                         printf("Invio: ");
                         for(int i = 0;i<8;i++)  printf("%d", message_addr[i]);
                         printf("\n");
+
+//aggiungere aggiornamento dei pacchetti da inviare quando la misurazione è terminata
+//usare flag_misurazione == 2; riportarla poi a 0
+                        if (flag_misurazioni == 2 && numero_pacchetto == 4) //aggiorno i pacchetti da inviare. Farlo dopo che ho inviato lo stesso numero di pacchetti per ogni pacchetto??
+                        {
+                            for (int i = 0; i < 8 ; i++)
+                            {
+                                pacchetto_1_inviare[i] = pacchetto_1[i];
+                                pacchetto_2_inviare[i] = pacchetto_2[i];
+                                pacchetto_3_inviare[i] = pacchetto_3[i];
+                            }                      
+                        } //pacchetti da inviare aggiornati, i prossimi da inviare sono aggiornati
+                        if (numero_pacchetto == 4)
+                            numero_pacchetto = 1; //riparto ad inviare il primo pacchetto
                     }
 
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x00 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x07] == 0x80 )
@@ -286,6 +329,9 @@ printf("\n");
                         sd_ant_pending_transmit_clear (BROADCAST_CHANNEL_NUMBER, NULL); //svuota il buffer, utile per una seconda acquisizione
                         NRF_LOG_INFO("Ricevuto messaggio di stop acquisizione");
                         connesso = 0;
+                        numero_pacchetto = 0;
+                        flag_misurazioni = 0;
+                        flag_dati_pronti = 0;
 
                     }
                        
@@ -364,9 +410,13 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
     if ((rtc_count % _2_SEC) == 0 )  //non serve perchè invio gestito in ANT HANDLER
     {
         printf("\n2 sec\n");
-flag_misurazioni = 1; //non andrebbe qua
+//flag_misurazioni = 1; //non andrebbe qua
     }
-
+//simulo un aggiornamento dei valori ogni 6 secondi, così invio ogni pacchetto 2 volte
+if((rtc_count % 6) == 0)
+{
+    flag_misurazioni = 1;
+}
     //20 sec
     if ((rtc_count % _20_SEC) == 0)
     {
@@ -476,32 +526,64 @@ printf("Sensori correttamente inizializzati\n");
 //simulazione di dati letti e pronti da inviare al device   
 //gestione del doppio pacchetto in base al secondo byte
 printf("Misuro\n");
-if (pacchetto <2)
-{   //T,RH,P,VOC
-    message_addr [0] = 7;
-    message_addr [1] = 7;
-    message_addr [2] = 1000; //valore;
-    message_addr [3] = 1000;  //valore;
-    message_addr [4] = 1000;  //valore;
-    message_addr [5] = 1000;  //valore;
-    message_addr [6] = 1000;  //valore;
-    message_addr [7] = valore;
-}
-else
-{   //CO2,CO,NO2,PM1.0,PM2.5,PM10
-    message_addr [0] = 8;
-    message_addr [1] = 8;
-    message_addr [2] = valore;
-    message_addr [3] = valore;
-    message_addr [4] = valore;
-    message_addr [5] = valore;
-    message_addr [6] = valore;
-    message_addr [7] = valore;
-}
-valore++;
-pacchetto++;
-if (pacchetto == 4) pacchetto = 0;
-flag_misurazioni = 0;
+
+//vecchia gestione dei pacchetti
+  if (pacchetto <2)
+  {   //T,RH,P,VOC
+      message_addr [0] = 7; message_addr [1] = 7; message_addr [2] = valore; message_addr [3] = valore; message_addr [4] = valore; message_addr [5] = valore; message_addr [6] = valore; message_addr [7] = valore;
+  }
+  else
+  {   //CO2,CO,NO2,PM1.0,PM2.5,PM10
+      message_addr [0] = 8; message_addr [1] = 8; message_addr [2] = valore; message_addr [3] = valore; message_addr [4] = valore; message_addr [5] = valore; message_addr [6] = valore; message_addr [7] = valore;
+  }
+  valore++;
+  pacchetto++;
+  if (pacchetto == 4) pacchetto = 0;
+  flag_misurazioni = 0;
+//fine vecchia gestione dei pacchetti
+
+          //letti tutti i valori, elaboro i dati in modo da poterli inviare come uint8 e li salvo nei pacchetti, poi metto flag_misurazione = 2 e la gestisco in ANT
+          pacchetto_1[0];
+          pacchetto_1[1]; //Temperatura
+          pacchetto_1[2]; //Temperatura
+          pacchetto_1[3]; //Umidità
+          pacchetto_1[4]; //Umidità
+          pacchetto_1[5]; //Pressione
+          pacchetto_1[6]; //Pressione
+          pacchetto_1[7]; //Pressione
+
+          pacchetto_2[0];
+          pacchetto_2[1]; //VOC
+          pacchetto_2[2]; //VOC
+          pacchetto_2[3]; //CO2
+          pacchetto_2[4]; //CO2
+          pacchetto_2[5]; //NO2
+          pacchetto_2[6]; //NO2
+          pacchetto_2[7]; //CO
+
+          pacchetto_3[0];
+          pacchetto_3[1]; //CO
+          pacchetto_3[2]; //PM1.0
+          pacchetto_3[3]; //PM1.0
+          pacchetto_3[4]; //PM2.5
+          pacchetto_3[5]; //PM2.5
+          pacchetto_3[6]; //PM10
+          pacchetto_3[7]; //PM10
+
+          flag_misurazioni = 2;
+
+          if (flag_dati_pronti == 0){ //problema è che ho dati pronti ma non si sono aggiornati i pacchetti da inviare
+              //primo aggiornamento lo faccio io qua
+              for (int i = 0; i < 8 ; i++)
+                  {
+                      pacchetto_1_inviare[i] = pacchetto_1[i];
+                      pacchetto_2_inviare[i] = pacchetto_2[i];
+                      pacchetto_3_inviare[i] = pacchetto_3[i];
+                  }  
+              flag_dati_pronti = 1;
+          }
+
+
         }
 
         //NRF_LOG_FLUSH();

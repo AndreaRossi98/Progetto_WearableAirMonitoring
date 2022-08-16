@@ -555,7 +555,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             + messageContentString.substring(24, 28) + ","
                             + messageContentString.substring(28, 32) + ",";
                     Log.e(LOG_TAG, "stringa " + msg);
-//toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
+toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
 //String prova = "[13.4]";
 //float risultato;
 //risultato = Float.parseFloat(prova);

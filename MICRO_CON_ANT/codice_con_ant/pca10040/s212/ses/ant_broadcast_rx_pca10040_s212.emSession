@@ -61,7 +61,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="33" y="567" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="571" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="585" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="427" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="33" y="78" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/ant/ant_broadcast/test_ANT/main.c" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="52" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="280" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/ant/ant_broadcast/test_ANT/main.c" useBinaryEdit="0" left="0" path="../../../Sensor/sps30.h" selected="0" top="258" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="9" y="399" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/ant/ant_broadcast/test_ANT/main.c" useBinaryEdit="0" left="0" path="../../../Sensor/bme280.h" selected="0" top="383" codecName="Default"/>

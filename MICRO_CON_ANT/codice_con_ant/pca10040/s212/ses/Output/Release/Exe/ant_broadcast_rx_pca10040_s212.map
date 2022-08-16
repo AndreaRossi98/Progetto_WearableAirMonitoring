@@ -9193,8 +9193,7 @@ Linker script and memory map
  .rodata.repeated_timer_handler.str1.1
                 0x000000000001810a        0x7 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
  .rodata.main.str1.1
-                0x0000000000018111       0x14 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
- *fill*         0x0000000000018125        0x1 
+                0x0000000000018111       0x15 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
  .rodata        0x0000000000018126       0x1e Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
  .rodata.default_config.0
                 0x0000000000018144        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o

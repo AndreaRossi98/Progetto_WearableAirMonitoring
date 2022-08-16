@@ -1395,8 +1395,9 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 //delete update info
                 old_inforecordingtext="";
                 inforecording.setText(null);
-                //show update info layout
-                inflated_updateinfo.setVisibility(View.VISIBLE);
+
+                //not show update info layout
+                inflated_updateinfo.setVisibility(View.GONE);
                 inflated_displaydata.setVisibility(View.VISIBLE);
 
                 //start recording ANT data

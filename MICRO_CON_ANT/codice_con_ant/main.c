@@ -551,7 +551,7 @@ printf("Sensori correttamente inizializzati\n");
 */            //scegliere ogni quanto campionare   
 //simulazione di dati letti e pronti da inviare al device   
 
-printf("Misuro\n");
+printf("\nMisuro\n");
 
 //vecchia gestione dei pacchetti, gestione del doppio pacchetto in base al secondo byte
 /*  if (pacchetto <2)

@@ -302,21 +302,21 @@ printf("\n");
                               {   //invio pacchetto 1
                                   err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_1_inviare);
 printf("Invio P1: ");
-for(int i = 0;i<8;i++)  printf("%d", pacchetto_1_inviare[i]);
+for(int i = 0;i<8;i++)  printf("%d ", pacchetto_1_inviare[i]);
 printf("\n");
                               }
                               else if (numero_pacchetto == 2)
                               {
                                   err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_2_inviare);
 printf("Invio P2: ");
-for(int i = 0;i<8;i++)  printf("%d", pacchetto_2_inviare[i]);
+for(int i = 0;i<8;i++)  printf("%d ", pacchetto_2_inviare[i]);
 printf("\n");
                               }
                               else if (numero_pacchetto == 3)
                               {
                                   err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_3_inviare);
 printf("Invio P3: ");
-for(int i = 0;i<8;i++)  printf("%d", pacchetto_3_inviare[i]);
+for(int i = 0;i<8;i++)  printf("%d ", pacchetto_3_inviare[i]);
 printf("\n");
                               }
 

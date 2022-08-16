@@ -242,7 +242,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public final String LOG_TAG = EnvironmentalMonitor.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_SATURATION = 65535;   //65536;
+    private static final int USER_PERIOD_SATURATION = 32767;        //65535;
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound = false;
     private AntService mAntRadioService = null;

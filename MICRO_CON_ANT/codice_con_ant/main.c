@@ -106,7 +106,8 @@ uint8_t pacchetto_1_inviare[8] = {0,0,0,0,0,0,0,0}; //pacchetti che contengono i
 uint8_t pacchetto_2_inviare[8] = {0,0,0,0,0,0,0,0}; //pronti ad essere inviati
 uint8_t pacchetto_3_inviare[8] = {0,0,0,0,0,0,0,0}; //divisi in modo tale che non c'è il rischio di modifiche durante l'invio
 
-uint8_t numero_pacchetto = 1;   //serve a selezionare il pacchetto da inviare tra 1 2 3
+uint8_t pacchetto_P = 1;   //serve a selezionare il pacchetto da inviare tra P1 P2 P3
+uint8_t numero_pacchetto = 1;   //numero incrementale del pacchetto che si invia (da 1 a 63, 6 bit)
 
 uint8_t pacchetto = 0;
 
@@ -298,21 +299,21 @@ printf("\n");
 //se no gestisco i tre pacchetti          
                         else
                         {   //aggiungi stampa del pacchetto inviato per vedere che funzioni correttamente
-                              if (numero_pacchetto == 1)
+                              if (pacchetto_P == 1)
                               {   //invio pacchetto 1
                                   err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_1_inviare);
 printf("Invio P1: ");
 for(int i = 0;i<8;i++)  printf("%d ", pacchetto_1_inviare[i]);
 printf("\n");
                               }
-                              else if (numero_pacchetto == 2)
+                              else if (pacchetto_P == 2)
                               {
                                   err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_2_inviare);
 printf("Invio P2: ");
 for(int i = 0;i<8;i++)  printf("%d ", pacchetto_2_inviare[i]);
 printf("\n");
                               }
-                              else if (numero_pacchetto == 3)
+                              else if (pacchetto_P == 3)
                               {
                                   err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_3_inviare);
 printf("Invio P3: ");
@@ -320,7 +321,7 @@ for(int i = 0;i<8;i++)  printf("%d ", pacchetto_3_inviare[i]);
 printf("\n");
                               }
 
-                              numero_pacchetto++;
+                              pacchetto_P++;
 
 
                         //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
@@ -330,7 +331,7 @@ printf("\n");
 
 //aggiungere aggiornamento dei pacchetti da inviare quando la misurazione è terminata
 //usare flag_misurazione == 2; riportarla poi a 0
-                            if (flag_misurazioni == 2 && numero_pacchetto == 4) //aggiorno i pacchetti da inviare. Farlo dopo che ho inviato lo stesso numero di pacchetti per ogni pacchetto??
+                            if (flag_misurazioni == 2 && pacchetto_P == 4) //aggiorno i pacchetti da inviare. Farlo dopo che ho inviato lo stesso numero di pacchetti per ogni pacchetto??
                             {
                                 for (int i = 0; i < 8 ; i++)
                                 {
@@ -340,8 +341,8 @@ printf("\n");
                                 }
                                 flag_misurazioni = 0;                      
                             } //pacchetti da inviare aggiornati, i prossimi da inviare sono aggiornati
-                            if (numero_pacchetto == 4)
-                                numero_pacchetto = 1; //riparto ad inviare il primo pacchetto
+                            if (pacchetto_P == 4)
+                                pacchetto_P = 1; //riparto ad inviare il primo pacchetto
                         }
                     }
 
@@ -350,7 +351,7 @@ printf("\n");
                         sd_ant_pending_transmit_clear (BROADCAST_CHANNEL_NUMBER, NULL); //svuota il buffer, utile per una seconda acquisizione
                         NRF_LOG_INFO("Ricevuto messaggio di stop acquisizione");
                         connesso = 0;
-                        numero_pacchetto = 0;
+                        pacchetto_P = 0;
                         flag_misurazioni = 0;
                         flag_dati_pronti = 0;
 
@@ -453,7 +454,8 @@ if((rtc_count % 12) == 0)
 
 int main(void)
 {
-printf("inizio\n");
+printf("inizio\n"); 
+
     nrf_gpio_cfg_output(LED);
     nrf_gpio_pin_set(LED);
 
@@ -501,7 +503,7 @@ printf("Sensori correttamente inizializzati\n");
     }
 
     /*
-     * Tenere traccia del giorno e vedere quanto è passato per fare pulizia della ventola?
+     * Pulizia ventola ad ogni accensione 
      */
 
 
@@ -553,23 +555,8 @@ printf("Sensori correttamente inizializzati\n");
 
 printf("\nMisuro\n");
 
-//vecchia gestione dei pacchetti, gestione del doppio pacchetto in base al secondo byte
-/*  if (pacchetto <2)
-  {   //T,RH,P,VOC
-      message_addr [0] = 7; message_addr [1] = 7; message_addr [2] = valore; message_addr [3] = valore; message_addr [4] = valore; message_addr [5] = valore; message_addr [6] = valore; message_addr [7] = valore;
-  }
-  else
-  {   //CO2,CO,NO2,PM1.0,PM2.5,PM10
-      message_addr [0] = 8; message_addr [1] = 8; message_addr [2] = valore; message_addr [3] = valore; message_addr [4] = valore; message_addr [5] = valore; message_addr [6] = valore; message_addr [7] = valore;
-  }
-  valore++;
-  pacchetto++;
-  if (pacchetto == 4) pacchetto = 0;
-  flag_misurazioni = 0;*/
-//fine vecchia gestione dei pacchetti
-
           //letti tutti i valori, elaboro i dati in modo da poterli inviare come uint8 e li salvo nei pacchetti, poi metto flag_misurazione = 2 e la gestisco in ANT
-          //pacchetto_1[0] = 1;
+//Valori simulati          
           pacchetto_1[0] = 64;
           pacchetto_1[1] = valore_prova; //Temperatura
           pacchetto_1[2] = valore_prova; //Temperatura
@@ -578,29 +565,71 @@ printf("\nMisuro\n");
           pacchetto_1[5] = valore_prova; //Pressione
           pacchetto_1[6] = valore_prova; //Pressione
           pacchetto_1[7] = valore_prova; //Pressione
+//valori veri
+/*
+          pacchetto_1[0] = 64 + numero_pacchetto;
+          pacchetto_1[1] = (int) measure_bme280.temperature + 20;    //Parte intera della Temperatura incrementato di 20 (o più?)
+          pacchetto_1[2] = abs((int)((measure_bme280.temperature - (int)measure_bme280.temperature)*100));  //parte decimale della Temperatura
+          pacchetto_1[3] = (int) measure_bme280.humidity;
+          pacchetto_1[4] = (int)((measure_bme280.humidity - (int)measure_bme280.humidity)*100);
+          pacchetto_1[5] = valore_prova; //Pressione
+          pacchetto_1[6] = valore_prova; //Pressione
+          pacchetto_1[7] = valore_prova; //Pressione
+*/
 
-          //pacchetto_2[0] = 2;
+//Valori simulati          
           pacchetto_2[0] = 128;
-          pacchetto_2[1] = valore_prova +1; //VOC
-          pacchetto_2[2] = valore_prova+1; //VOC
+          pacchetto_2[1] = valore_prova+1; //VOC      
+          pacchetto_2[2] = valore_prova+1; //VOC      
           pacchetto_2[3] = valore_prova+1; //CO2
           pacchetto_2[4] = valore_prova+1; //CO2
           pacchetto_2[5] = valore_prova+1; //NO2
           pacchetto_2[6] = valore_prova+1; //NO2
           pacchetto_2[7] = valore_prova+1; //CO
 
-          //pacchetto_3[0] = 3;
+//Valori veri
+/*
+          pacchetto_2[0] = 128 + numero_pacchetto;
+          pacchetto_2[1] = valore_prova+1; //VOC  LSB (least significant Byte)      
+          pacchetto_2[2] = valore_prova+1; //VOC  MSB (Most significant Byte)     
+          pacchetto_2[3] = measure_scd4x.CO2; //CO2  LSB (least significant Byte)   //dovrebbe bastare così
+          pacchetto_2[4] = measure_scd4x.CO2 >> 8; //CO2  MSB (Most significant Byte)
+          pacchetto_2[5] = valore_prova+1; //NO2
+          pacchetto_2[6] = valore_prova+1; //NO2
+          pacchetto_2[7] = valore_prova+1; //CO
+*/
+//valori simulati
           pacchetto_3[0] = 192;
+          pacchetto_3[1] = valore_prova+1; //VOC      
+          pacchetto_3[2] = valore_prova+1; //VOC      
+          pacchetto_3[3] = valore_prova+1; //CO2
+          pacchetto_3[4] = valore_prova+1; //CO2
+          pacchetto_3[5] = valore_prova+1; //NO2
+          pacchetto_3[6] = valore_prova+1; //NO2
+          pacchetto_3[7] = valore_prova+1; //CO
+
+//valori veri
+/*          
+          pacchetto_3[0] = 192 + numero_pacchetto;
           pacchetto_3[1] = valore_prova+2; //CO
-          pacchetto_3[2] = valore_prova+2; //PM1.0
-          pacchetto_3[3] = valore_prova+2; //PM1.0
-          pacchetto_3[4] = valore_prova+2; //PM2.5
-          pacchetto_3[5] = valore_prova+2; //PM2.5
-          pacchetto_3[6] = valore_prova+2; //PM10
-          pacchetto_3[7] = valore_prova+2; //PM10
+          pacchetto_3[2] = (int)(measure_sps30.mc_1p0 * 10); //PM1.0 LSB        PM valori moltiplicati per 10
+          pacchetto_3[3] = (int)(measure_sps30.mc_1p0 * 10) >> 8; //PM1.0  MSB
+          pacchetto_3[4] = (int)(measure_sps30.mc_2p5 * 10); //PM2.5  LSB
+          pacchetto_3[5] = (int)(measure_sps30.mc_2p5 * 10) >> 8; //PM2.5  MSB
+          pacchetto_3[6] = (int)(measure_sps30.mc_10p0 * 10); //PM10   LSB
+          pacchetto_3[7] = (int)(measure_sps30.mc_10p0 * 10) >> 8; //PM10   MSB
+*/
+
+//finiti di mettere i valori negli array, incremento il valore di numero_pacchetto.
+// se supera 63 (6 bit), lo riporto a 1
+
+        numero_pacchetto++;
+        if (numero_pacchetto == 64)
+          numero_pacchetto = 1;
+
 valore_prova = valore_prova +10;
           flag_misurazioni = 2;
-
+printf("DATI PRONTI PER ESSERE INVIATI\n");
           if (flag_dati_pronti == 0){ //problema è che ho dati pronti ma non si sono aggiornati i pacchetti da inviare
               //primo aggiornamento lo faccio io qua
               for (int i = 0; i < 8 ; i++)

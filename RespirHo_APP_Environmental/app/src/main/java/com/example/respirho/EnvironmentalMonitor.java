@@ -597,7 +597,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
                         //TODO - show on screen the received data
-                        int pacchetto_numero = convertToInt(messageContentString_split[0].substring(1));
+                        int pacchetto_numero;   //numero incrementale del pacchetto che arriva
+                        int pacchetto_P = 0;   //numero del pacchetto P arrivato
                         String messageContentString_temperature = "";
                         String messageContentString_humidity = "";
                         String messageContentString_pressure = "";
@@ -611,21 +612,21 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
 
 //divido la mostra a schermo in base a cio che arriva
-
-                        /*  VECCHIO FORMATO, NON PIU' VERO
+                        /*
+                         * considero solo i due bit più significativi del primo byte arrivato
+                         * per distinguere il numero del pacchetto
+                         */
+                        /*
                         pacchetto_numero = 6    --> è il pacchetto vecchio per connettersi, ignoralo
-                        pacchetto_numero = 7    --> è il pacchetto 1
-                        pacchetto_numero = 8    --> è il pacchetto 2
+                        pacchetto_P = 1    --> è il pacchetto P1
+                        pacchetto_P = 2    --> è il pacchetto P2
+                        pacchetto_P = 3    --> è il pacchetto P3
                          */
 
-                        /*
-                        * considero solo i due bit più significativi del primo byte arrivato
-                        * per distinguere il numero del pacchetto
-                        */
-                        pacchetto_numero = pacchetto_numero >> 6;
-                        //if(pacchetto_numero == 7) {
-                        if(pacchetto_numero == 1) {
-                            //Toast.makeText(getApplicationContext(), "Pacchetto 7", Toast.LENGTH_LONG).show();
+                        pacchetto_numero = convertToInt(messageContentString_split[0].substring(1));
+                        pacchetto_P = pacchetto_numero >> 6;
+                        pacchetto_numero = pacchetto_numero - (pacchetto_P << 6);
+                        if(pacchetto_P == 1) {
                             Toast.makeText(getApplicationContext(), "Pacchetto P1", Toast.LENGTH_LONG).show();
 
                             messageContentString_temperature = messageContentString_split[1].substring(1);
@@ -654,9 +655,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                 }
                             });
                         }
-                        //else if(pacchetto_numero == 8) {
-                        else if(pacchetto_numero == 2) {
-                            //Toast.makeText(getApplicationContext(), "Pacchetto 8", Toast.LENGTH_LONG).show();
+
+                        else if(pacchetto_P == 2) {
                             Toast.makeText(getApplicationContext(), "Pacchetto P2", Toast.LENGTH_LONG).show();
                             messageContentString_CO2 = messageContentString_split[1].substring(1);
                             messageContentString_CO = messageContentString_split[2].substring(1);
@@ -687,7 +687,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                             });
                         }
 
-                        else if(pacchetto_numero == 3) {
+                        else if(pacchetto_P == 3) {
                             Toast.makeText(getApplicationContext(), "Pacchetto P3", Toast.LENGTH_LONG).show();
                         }
                         else{
@@ -698,8 +698,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         //save the file each 1 MB size (around 10 minutes)
                         long fileIntSizeBytes_backup=fileInt.length();
                         long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
-//RIPORTA A QUESTO VALORE POI, MODIFICA SOLO PER VEDERE CHE FUNZIONI
-//size_interval_backupfile
+
                         if(fileIntSizeKyloBytes_backup>size_interval_backupfile && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
                             //Log.e("backup","backup 1, size start: " + size_interval_backupfile);
                             saveFileOnFirebase(fileInt);

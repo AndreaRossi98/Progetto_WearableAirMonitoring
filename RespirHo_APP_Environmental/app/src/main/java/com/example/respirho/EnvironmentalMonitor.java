@@ -612,13 +612,21 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
 //divido la mostra a schermo in base a cio che arriva
 
-                        /*
+                        /*  VECCHIO FORMATO, NON PIU' VERO
                         pacchetto_numero = 6    --> è il pacchetto vecchio per connettersi, ignoralo
                         pacchetto_numero = 7    --> è il pacchetto 1
                         pacchetto_numero = 8    --> è il pacchetto 2
                          */
-                        if(pacchetto_numero == 7) {
-                            Toast.makeText(getApplicationContext(), "Pacchetto 7", Toast.LENGTH_LONG).show();
+
+                        /*
+                        * considero solo i due bit più significativi del primo byte arrivato
+                        * per distinguere il numero del pacchetto
+                        */
+                        pacchetto_numero = pacchetto_numero >> 6;
+                        //if(pacchetto_numero == 7) {
+                        if(pacchetto_numero == 1) {
+                            //Toast.makeText(getApplicationContext(), "Pacchetto 7", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Pacchetto P1", Toast.LENGTH_LONG).show();
 
                             messageContentString_temperature = messageContentString_split[1].substring(1);
                             messageContentString_humidity = messageContentString_split[2].substring(1);
@@ -646,8 +654,10 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                 }
                             });
                         }
-                        else if(pacchetto_numero == 8) {
-                            Toast.makeText(getApplicationContext(), "Pacchetto 8", Toast.LENGTH_LONG).show();
+                        //else if(pacchetto_numero == 8) {
+                        else if(pacchetto_numero == 2) {
+                            //Toast.makeText(getApplicationContext(), "Pacchetto 8", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Pacchetto P2", Toast.LENGTH_LONG).show();
                             messageContentString_CO2 = messageContentString_split[1].substring(1);
                             messageContentString_CO = messageContentString_split[2].substring(1);
                             messageContentString_NO2 = messageContentString_split[3].substring(1);
@@ -677,6 +687,9 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                             });
                         }
 
+                        else if(pacchetto_numero == 3) {
+                            Toast.makeText(getApplicationContext(), "Pacchetto P3", Toast.LENGTH_LONG).show();
+                        }
                         else{
                         }
 
@@ -687,7 +700,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
 //RIPORTA A QUESTO VALORE POI, MODIFICA SOLO PER VEDERE CHE FUNZIONI
 //size_interval_backupfile
-                        if(fileIntSizeKyloBytes_backup>1 && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
+                        if(fileIntSizeKyloBytes_backup>size_interval_backupfile && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
                             //Log.e("backup","backup 1, size start: " + size_interval_backupfile);
                             saveFileOnFirebase(fileInt);
                             size_interval_backupfile=size_interval_backupfile+SIZE_INTERVAL_BACKUPFILE;

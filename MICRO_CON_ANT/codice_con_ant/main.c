@@ -40,7 +40,7 @@
 #define TWI_ADDRESSES   127         //Number of possible TWI addresses.
 #define APP_ANT_OBSERVER_PRIO   1   // Application's ANT observer priority. You shouldn't need to modify this value.
 #define SAADC_BATTERY   0           //Canale tensione della batteria
-#define TIMEOUT_VALUE   1000   //1000       // 25 mseconds timer time-out value. Interrupt a 40Hz
+#define TIMEOUT_VALUE   1000   //1000       //interrupt timer a 1 sec
 #define START_ADDR  0x00011200      //indirizzo di partenza per salvataggio dati in memoria non volatile
 #define LED             07
 
@@ -569,7 +569,8 @@ printf("\nMisuro\n");
 //fine vecchia gestione dei pacchetti
 
           //letti tutti i valori, elaboro i dati in modo da poterli inviare come uint8 e li salvo nei pacchetti, poi metto flag_misurazione = 2 e la gestisco in ANT
-          pacchetto_1[0] = 1;
+          //pacchetto_1[0] = 1;
+          pacchetto_1[0] = 64;
           pacchetto_1[1] = valore_prova; //Temperatura
           pacchetto_1[2] = valore_prova; //Temperatura
           pacchetto_1[3] = valore_prova; //Umidità
@@ -578,7 +579,8 @@ printf("\nMisuro\n");
           pacchetto_1[6] = valore_prova; //Pressione
           pacchetto_1[7] = valore_prova; //Pressione
 
-          pacchetto_2[0] = 2;
+          //pacchetto_2[0] = 2;
+          pacchetto_2[0] = 128;
           pacchetto_2[1] = valore_prova +1; //VOC
           pacchetto_2[2] = valore_prova+1; //VOC
           pacchetto_2[3] = valore_prova+1; //CO2
@@ -587,7 +589,8 @@ printf("\nMisuro\n");
           pacchetto_2[6] = valore_prova+1; //NO2
           pacchetto_2[7] = valore_prova+1; //CO
 
-          pacchetto_3[0] = 3;
+          //pacchetto_3[0] = 3;
+          pacchetto_3[0] = 192;
           pacchetto_3[1] = valore_prova+2; //CO
           pacchetto_3[2] = valore_prova+2; //PM1.0
           pacchetto_3[3] = valore_prova+2; //PM1.0

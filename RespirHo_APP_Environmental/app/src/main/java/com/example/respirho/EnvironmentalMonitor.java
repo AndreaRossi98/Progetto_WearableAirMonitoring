@@ -128,7 +128,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-
 public class EnvironmentalMonitor extends AppCompatActivity implements View.OnClickListener {
 
     private Button timerrecordingbutton, manualrecordingbutton, initializationbutton_environmental_monitor, gotoswitchonenvironmentalmonitor, gotorecordingbutton_environmentale_monitor;
@@ -1329,7 +1328,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 break;
 
             case R.id.show_values_on_maps_timer:
-                //metti qua quello che serve una volta che hai sistemato la parte manual
+                //metti qua quello che serve una volta che hai sistemato la parte show_values_on_maps_manual
                 break;
 
             case R.id.manualrecordingbutton:
@@ -1622,7 +1621,7 @@ double longi = 9.09;
                                             //.title(dates.get(i))
                                             .title("Prova")
                                             //.snippet(acts.get(i) + ", PM2.5: " + pms.get(i) + ", CO2: " + co2s.get(i) + ", NO2: " + no2s.get(i)));
-                                            .snippet("CAZZO funziona"));
+                                            .snippet("Funziona"));
 
                                 }
                                 //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 12));

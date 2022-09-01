@@ -63,14 +63,15 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="475" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="453" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="31" y="627" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="610" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="28" y="78" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="49" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="8" y="280" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/ant/ant_broadcast/test_ANT/main.c" useBinaryEdit="0" left="0" path="../../../Sensor/sps30.h" selected="0" top="258" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="15" y="64" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/ant/ant_broadcast/test_ANT/main.c" useBinaryEdit="0" left="0" path="../../../Sensor/sps30.h" selected="0" top="48" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="9" y="399" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/ant/ant_broadcast/test_ANT/main.c" useBinaryEdit="0" left="0" path="../../../Sensor/bme280.h" selected="0" top="383" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="3" y="27" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/ant/ant_broadcast/test_ANT/main.c" useBinaryEdit="0" left="0" path="../../../Sensor/lis3dh_acc_driver.h" selected="0" top="9" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="3" y="176" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../Sensor/lis3dh_acc_driver.c" selected="0" top="171" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="47" y="277" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../../../../../../../components/softdevice/s212/headers/ant_interface.h" selected="0" top="261" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="3" y="368" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../../../../../../ant/ant_broadcast/test_ANT/Sensor/bme280_defs.h" selected="0" top="351" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="10" y="129" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/include/stdlib.h" selected="0" top="113" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="ant_broadcast_rx_pca10040_s212" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/ant/ant_broadcast/test_ANT/Sensor" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

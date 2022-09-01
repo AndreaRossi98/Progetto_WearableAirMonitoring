@@ -127,6 +127,7 @@
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/manual_recording_environmental_monitor.xml" value="0.15670289855072464" />
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/patient_data.xml" value="0.16770833333333332" />
         <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/show_Maps.xml" value="0.25416666666666665" />
+        <entry key="..\:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/RespirHo_APP_Environmental/app/src/main/res/layout/timer_recording_environmental_monitor.xml" value="0.19791666666666666" />
       </map>
     </option>
   </component>

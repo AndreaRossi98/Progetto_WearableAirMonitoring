@@ -133,7 +133,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
     private Button timerrecordingbutton, manualrecordingbutton, initializationbutton_environmental_monitor, gotoswitchonenvironmentalmonitor, gotorecordingbutton_environmentale_monitor;
     private Button startrecording_manual, stoprecording_manual, downloadfile_manual, gotonewrecording_manual, goback_manual, showvaluesonmaps_manual;
-    private Button startrecording_timer, stoprecording_timer, downloadfile_timer, gotonewrecording_timer, goback_timer;
+    private Button startrecording_timer, stoprecording_timer, downloadfile_timer, gotonewrecording_timer, goback_timer, showvaluesonmaps_timer;
     private Button endcalibration_button;
     private ImageButton initialization_checkmark,
             switchonenvironmentalmonitor_checkmark;
@@ -175,7 +175,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
     //demo download layout
     private TextView id_patient, info_patient;
-    private ImageButton telephone, storage, error_idpatient, exclamation_point_idpatient, checkmark_idpatient, close_maps_manual;
+    private ImageButton telephone, storage, error_idpatient, exclamation_point_idpatient, checkmark_idpatient;
     private ImageView lowbattery_idpatient;
     private Button helpbutton;
 
@@ -633,7 +633,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                             messageContentString_humidity = messageContentString_split[2].substring(1);
                             messageContentString_pressure = messageContentString_split[3].substring(1);
                             messageContentString_VOC = messageContentString_split[4].substring(1);
-                            ;
+                            //;
                             int temperature = convertToInt(messageContentString_temperature);
                             int humidity = convertToInt(messageContentString_humidity);
                             int pressure = convertToInt(messageContentString_pressure);
@@ -1117,6 +1117,9 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                     gotonewrecording_timer=(Button) findViewById(R.id.gotonewrecording_timer);
                     gotonewrecording_timer.setOnClickListener(this);
 
+                    showvaluesonmaps_timer = (Button) findViewById(R.id.show_values_on_maps_timer);
+                    showvaluesonmaps_timer.setOnClickListener(this);
+
                     goback_timer=(Button) findViewById(R.id.goback_timer);
                     goback_timer.setOnClickListener(this);
 
@@ -1140,8 +1143,11 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                     downloadfile_timer.setVisibility(View.GONE);
                     gotonewrecording_timer.setVisibility(View.GONE);
+                    showvaluesonmaps_timer.setVisibility(View.GONE);
+
                     status_timer.setVisibility(View.GONE);
                     timer_recording_filename.setVisibility(View.GONE);
+
 
                     layout_insert_setduration.setVisibility(View.VISIBLE);
                     insert_setduration.setVisibility(View.VISIBLE);
@@ -1288,6 +1294,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                         downloadfile_timer.setVisibility(View.VISIBLE);
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
+                        showvaluesonmaps_timer.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
@@ -1319,6 +1326,10 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
             case R.id.gotonewrecording_timer:
                 gotonewrecording(inflated_timer_rec);
+                break;
+
+            case R.id.show_values_on_maps_timer:
+                //metti qua quello che serve una volta che hai sistemato la parte manual
                 break;
 
             case R.id.manualrecordingbutton:

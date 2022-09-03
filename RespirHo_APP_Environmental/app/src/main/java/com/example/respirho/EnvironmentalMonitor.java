@@ -1196,6 +1196,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 old_inforecordingtext="";
                 inforecording.setText(null);
                 //show update info layout
+                //metti questo gone
                 inflated_updateinfo.setVisibility(View.VISIBLE);
                 inflated_displaydata.setVisibility(View.VISIBLE);
 

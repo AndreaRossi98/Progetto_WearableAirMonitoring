@@ -519,6 +519,25 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
     }
 
+    //variabili per la gestione dei pacchetti e scrittura dei dati su file
+    int pacchetto_numero_ricevuto;   //numero incrementale del pacchetto che arriva
+    int numero_pacchetto = 1;
+    int pacchetto_P = 0;   //numero del pacchetto P arrivato
+    int flag_dati_scritti = 0;
+
+    //variabili per prendere contenuto pacchetti ricevuti
+    String messageContentString_temperature = "";
+    String messageContentString_humidity = "";
+    String messageContentString_pressure = "";
+    String messageContentString_CO2 = "";
+    String messageContentString_VOC = "";
+    String messageContentString_NO2 = "";
+    String messageContentString_CO = "";
+    String messageContentString_PM1p0 = "";
+    String messageContentString_PM2p5 = "";
+    String messageContentString_PM10 = "";
+
+
     public IAntChannelEventHandler eventCallBack = new IAntChannelEventHandler() {
 
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -555,8 +574,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             + messageContentString.substring(28, 32) + ",";
                     Log.e(LOG_TAG, "stringa " + msg);
 toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
-//String prova = "[13.4]";
-//float risultato;
+
 //risultato = Float.parseFloat(prova);
 //Toast.makeText(getApplicationContext(), "stringa" +prova, Toast.LENGTH_LONG).show();
 
@@ -573,6 +591,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                     if (connected6) {
 
 //bisognerebbe aggiungere controllo che si abbia il permesso, ma mi da errore con il this, non so cosa sostituire (comunque cosi funziona)
+                        //non va bene farlo qua, ma devo farlo sotto
                         Task<Location> task = fusedLocationClient.getLastLocation();
                         while(!task.isComplete());
                         location = task.getResult();
@@ -583,6 +602,53 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                             latitude = location.getLatitude();
                             longitude = location.getLongitude();
                         }
+//SPOSTO QUA SOPRA
+
+                        pacchetto_numero_ricevuto = convertToInt(messageContentString_split[0].substring(1));
+                        pacchetto_P = pacchetto_numero_ricevuto >> 6;
+                        pacchetto_numero_ricevuto = pacchetto_numero_ricevuto - (pacchetto_P << 6);
+
+                        if (numero_pacchetto != pacchetto_numero_ricevuto){
+                            if (flag_dati_scritti == 1){
+                                numero_pacchetto = pacchetto_numero_ricevuto;
+                                flag_dati_scritti = 0;
+                            }
+                            else{
+                                //salvo i valori su file e firebase
+                                numero_pacchetto = pacchetto_numero_ricevuto;
+                                //azzero le flag dei pacchetti P arrivati
+                            }
+                        }
+                        else if (numero_pacchetto == pacchetto_numero_ricevuto ){
+                            //la prima volta che entro in questo if, devo prendere latitudine e longitudine
+                            switch (pacchetto_P){
+                                case 1:
+                                    //ricostruisco i dati in variabili
+                                    //conteggio quanti ne sono arrivati
+                                    //mostri dati a schermo
+                                    break;
+                                case 2:
+                                    //ricostruisco i dati in variabili
+                                    //conteggio quanti ne sono arrivati
+                                    //mostri dati a schermo
+                                    break;
+                                case 3:
+                                    //ricostruisco i dati in variabili
+                                    //conteggio quanti ne sono arrivati
+                                    //mostri dati a schermo
+                                    break;
+                            }
+                            /*if (){ condizione: almeno un pacchetto P per ognuno è arrivato
+                                //scrivo su file
+                                //scrivo su firebase
+                                //dati, orario, coordinate, numero pacchetti arrivati, valore batteria lo escluderei
+                                //metto flag_dati_scritti = 1;
+                            }*/
+
+                        }
+
+
+
                         //write the message to firebase and to file
                         //write the messages
                         //call the firebase class to upload data on firebase
@@ -596,9 +662,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
                         //TODO - show on screen the received data
-                        int pacchetto_numero;   //numero incrementale del pacchetto che arriva
-                        int pacchetto_P = 0;   //numero del pacchetto P arrivato
-                        String messageContentString_temperature = "";
+
+/*                        String messageContentString_temperature = "";
                         String messageContentString_humidity = "";
                         String messageContentString_pressure = "";
                         String messageContentString_CO2 = "";
@@ -608,7 +673,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         String messageContentString_PM1p0 = "";
                         String messageContentString_PM2p5 = "";
                         String messageContentString_PM10 = "";
-
+*/
 
 //divido la mostra a schermo in base a cio che arriva
                         /*
@@ -622,9 +687,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         pacchetto_P = 3    --> è il pacchetto P3
                          */
 
-                        pacchetto_numero = convertToInt(messageContentString_split[0].substring(1));
-                        pacchetto_P = pacchetto_numero >> 6;
-                        pacchetto_numero = pacchetto_numero - (pacchetto_P << 6);
+
                         if(pacchetto_P == 1) {
                             Toast.makeText(getApplicationContext(), "Pacchetto P1", Toast.LENGTH_LONG).show();
 
@@ -1196,8 +1259,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 old_inforecordingtext="";
                 inforecording.setText(null);
                 //show update info layout
-                //metti questo gone
-                inflated_updateinfo.setVisibility(View.VISIBLE);
+//metto questo gone
+                inflated_updateinfo.setVisibility(View.GONE);
                 inflated_displaydata.setVisibility(View.VISIBLE);
 
                 //start recording ANT data
@@ -1239,7 +1302,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         stoprecording_timer.setVisibility(View.GONE);
 
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
-
+//aggiungo qua show value on maps
+                        showvaluesonmaps_timer.setVisibility(View.VISIBLE);
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
                         inflated_displaydata.setVisibility(View.GONE);
@@ -2392,13 +2456,6 @@ double longi = 9.09;
         return value_int;
     }
 
-    /*  da problemi la conversione a decimale, provato sia con float che double
-        private double convertToFloat(String messageContentString){
-
-            double value_float = Double.parseDouble(messageContentString);
-            return value_float;
-        }
-    */
     public void antClose() {
 
         state = CLOSE;

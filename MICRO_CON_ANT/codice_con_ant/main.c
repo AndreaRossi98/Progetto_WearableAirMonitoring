@@ -595,8 +595,8 @@ printf("\nMisuro\n");
           pacchetto_2[3] = measure_scd4x.CO2; //CO2  LSB (least significant Byte)   //dovrebbe bastare così
           pacchetto_2[4] = measure_scd4x.CO2 >> 8; //CO2  MSB (Most significant Byte)
           pacchetto_2[5] = valore_prova+1; //NO2
-          pacchetto_2[6] = valore_prova+1; //NO2
-          pacchetto_2[7] = valore_prova+1; //CO
+          pacchetto_2[6] = valore_prova+1; //CO
+          pacchetto_2[7] = valore_prova+1; // BATTERY   capire ogni quanto campionare
 */
 //valori simulati
           pacchetto_3[0] = 192;
@@ -611,7 +611,7 @@ printf("\nMisuro\n");
 //valori veri
 /*          
           pacchetto_3[0] = 192 + numero_pacchetto;
-          pacchetto_3[1] = valore_prova+2; //CO
+          pacchetto_3[1] = valore_prova+2; //ACCELERATION   capire ogni quanto leggere il dato
           pacchetto_3[2] = (int)(measure_sps30.mc_1p0 * 10); //PM1.0 LSB        PM valori moltiplicati per 10
           pacchetto_3[3] = (int)(measure_sps30.mc_1p0 * 10) >> 8; //PM1.0  MSB
           pacchetto_3[4] = (int)(measure_sps30.mc_2p5 * 10); //PM2.5  LSB

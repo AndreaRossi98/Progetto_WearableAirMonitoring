@@ -8075,7 +8075,7 @@ FLASH1           0x0000000000000000 0x0000000000080000 xw
 Linker script and memory map
 
                 0x0000000000000000                __do_debug_operation = __do_debug_operation_mempoll
-                0x0000000000016c8c                __vfprintf = __vfprintf_long
+                0x0000000000016c90                __vfprintf = __vfprintf_long
                 0x0000000000000000                __vfscanf = __vfscanf_long
                 0x0000000020000000                __RAM1_segment_start__ = 0x20000000
                 0x0000000020010000                __RAM1_segment_end__ = 0x20010000
@@ -8211,7 +8211,7 @@ Linker script and memory map
                 0x0000000000000001                . = ASSERT (((__init_rodata_start__ == __init_rodata_end__) || ((__init_rodata_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .init_rodata is too large to fit in FLASH1 memory segment)
                 0x00000000000123d0                __text_load_start__ = ALIGN (__init_rodata_end__, 0x4)
 
-.text           0x00000000000123d0     0x4ec0
+.text           0x00000000000123d0     0x4ec4
                 0x00000000000123d0                __text_start__ = .
  *(.text .text.* .glue_7t .glue_7 .gnu.linkonce.t.* .gcc_except_table .ARM.extab* .gnu.linkonce.armextab.*)
  .glue_7        0x00000000000123d0        0x0 linker stubs
@@ -8713,144 +8713,144 @@ Linker script and memory map
                 0x0000000000015f00       0x5c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
                 0x0000000000015f00                saadc_init
  .text.startup.main
-                0x0000000000015f5c      0x20c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
+                0x0000000000015f5c      0x210 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
                 0x0000000000015f5c                main
  .text._GetAvailWriteSpace
-                0x0000000000016168       0x12 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
+                0x000000000001616c       0x12 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
  .text._WriteNoCheck
-                0x000000000001617a       0x38 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
+                0x000000000001617e       0x38 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
  .text._WriteBlocking
-                0x00000000000161b2       0x52 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
- .text._DoInit  0x0000000000016204       0x60 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
+                0x00000000000161b6       0x52 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
+ .text._DoInit  0x0000000000016208       0x60 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
  .text.SEGGER_RTT_WriteNoLock
-                0x0000000000016264       0x60 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
-                0x0000000000016264                SEGGER_RTT_WriteNoLock
+                0x0000000000016268       0x60 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
+                0x0000000000016268                SEGGER_RTT_WriteNoLock
  .text.SEGGER_RTT_Write
-                0x00000000000162c4       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
-                0x00000000000162c4                SEGGER_RTT_Write
+                0x00000000000162c8       0x40 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
+                0x00000000000162c8                SEGGER_RTT_Write
  .text.SEGGER_RTT_WriteString
-                0x0000000000016304       0x1c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
-                0x0000000000016304                SEGGER_RTT_WriteString
- .text.printf   0x0000000000016320       0x3a Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_Syscalls_SES.o
-                0x0000000000016320                printf
- .text.puts     0x000000000001635a        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_Syscalls_SES.o
-                0x000000000001635a                puts
+                0x0000000000016308       0x1c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
+                0x0000000000016308                SEGGER_RTT_WriteString
+ .text.printf   0x0000000000016324       0x3a Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_Syscalls_SES.o
+                0x0000000000016324                printf
+ .text.puts     0x000000000001635e        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_Syscalls_SES.o
+                0x000000000001635e                puts
  .text.__putchar
-                0x0000000000016362       0x16 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_Syscalls_SES.o
-                0x0000000000016362                __putchar
+                0x0000000000016366       0x16 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_Syscalls_SES.o
+                0x0000000000016366                __putchar
  .text.nrf52_errata_12
-                0x0000000000016378       0x1c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
+                0x000000000001637c       0x1c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
  .text.nrf52_errata_16
-                0x0000000000016394       0x28 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
+                0x0000000000016398       0x28 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
  .text.nvmc_wait
-                0x00000000000163bc       0x10 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
-                0x00000000000163bc                nvmc_wait
+                0x00000000000163c0       0x10 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
+                0x00000000000163c0                nvmc_wait
  .text.SystemInit
-                0x00000000000163cc      0x298 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
-                0x00000000000163cc                SystemInit
+                0x00000000000163d0      0x298 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
+                0x00000000000163d0                SystemInit
  .text.sd_softdevice_enable
-                0x0000000000016664        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
+                0x0000000000016668        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
  .text.sdh_request_observer_notify
-                0x0000000000016668       0x30 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
+                0x000000000001666c       0x30 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
  .text.sdh_state_observer_notify
-                0x0000000000016698       0x28 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
+                0x000000000001669c       0x28 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
  .text.softdevices_evt_irq_enable
-                0x00000000000166c0       0x38 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
+                0x00000000000166c4       0x38 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
  .text.nrf_sdh_enable_request
-                0x00000000000166f8       0x80 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
-                0x00000000000166f8                nrf_sdh_enable_request
+                0x00000000000166fc       0x80 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
+                0x00000000000166fc                nrf_sdh_enable_request
  .text.nrf_sdh_is_enabled
-                0x0000000000016778        0xc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
-                0x0000000000016778                nrf_sdh_is_enabled
+                0x000000000001677c        0xc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
+                0x000000000001677c                nrf_sdh_is_enabled
  .text.nrf_sdh_evts_poll
-                0x0000000000016784       0x28 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
-                0x0000000000016784                nrf_sdh_evts_poll
+                0x0000000000016788       0x28 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
+                0x0000000000016788                nrf_sdh_evts_poll
  .text.SWI2_EGU2_IRQHandler
-                0x00000000000167ac        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
-                0x00000000000167ac                SWI2_EGU2_IRQHandler
+                0x00000000000167b0        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
+                0x00000000000167b0                SWI2_EGU2_IRQHandler
  .text.sd_ant_event_get
-                0x00000000000167b0        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
- .text.sd_ant_enable
                 0x00000000000167b4        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
+ .text.sd_ant_enable
+                0x00000000000167b8        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
  .text.nrf_sdh_ant_evts_poll
-                0x00000000000167b8       0x54 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
+                0x00000000000167bc       0x54 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
  .text.nrf_sdh_ant_enable
-                0x000000000001680c       0x54 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
-                0x000000000001680c                nrf_sdh_ant_enable
+                0x0000000000016810       0x54 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
+                0x0000000000016810                nrf_sdh_ant_enable
  .text.libc.__int64_udivmod
-                0x0000000000016860       0xce C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
-                0x0000000000016860                __aeabi_uldivmod
-                0x0000000000016860                __int64_udiv
-                0x0000000000016860                __udivdi3
-                0x0000000000016860                __int64_udivmod
- *fill*         0x000000000001692e        0x2 
+                0x0000000000016864       0xce C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc_asm.o)
+                0x0000000000016864                __aeabi_uldivmod
+                0x0000000000016864                __int64_udiv
+                0x0000000000016864                __udivdi3
+                0x0000000000016864                __int64_udivmod
+ *fill*         0x0000000000016932        0x2 
  .text.libc.__RAL_ascii_isctype
-                0x0000000000016930       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000016934       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_toupper
-                0x000000000001694c        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000016950        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_tolower
-                0x0000000000016958        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000001695c        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_wctomb
-                0x0000000000016964       0x10 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000016964                __RAL_ascii_wctomb
+                0x0000000000016968       0x10 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000016968                __RAL_ascii_wctomb
  .text.libc.__RAL_ascii_mbtowc
-                0x0000000000016974       0x24 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000016974                __RAL_ascii_mbtowc
+                0x0000000000016978       0x24 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000016978                __RAL_ascii_mbtowc
  .text.libc.__RAL_ascii_towupper
-                0x0000000000016998        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x000000000001699c        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_towlower
-                0x00000000000169a4        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000169a8        0xc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__RAL_ascii_iswctype
-                0x00000000000169b0       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000169b4       0x1c C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
  .text.libc.__putc
-                0x00000000000169cc       0x34 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x00000000000169cc                __putc
+                0x00000000000169d0       0x34 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x00000000000169d0                __putc
  .text.libc.__RAL_print_padding
-                0x0000000000016a00       0x54 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000016a00                __RAL_print_padding
+                0x0000000000016a04       0x54 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000016a04                __RAL_print_padding
  .text.libc.__RAL_pre_padding
-                0x0000000000016a54       0x64 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000016a54                __RAL_pre_padding
+                0x0000000000016a58       0x64 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000016a58                __RAL_pre_padding
  .text.libc.isprint
-                0x0000000000016ab8       0x10 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000016ab8                isprint
+                0x0000000000016abc       0x10 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000016abc                isprint
  .text.libc.putchar
-                0x0000000000016ac8       0x20 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000016ac8                putchar
+                0x0000000000016acc       0x20 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000016acc                putchar
  .text.libc.strnlen
-                0x0000000000016ae8       0x28 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000016ae8                strnlen
+                0x0000000000016aec       0x28 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000016aec                strnlen
  .text.libc.vsnprintf
-                0x0000000000016b10       0x20 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
-                0x0000000000016b10                vsnprintf
+                0x0000000000016b14       0x20 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2.o)
+                0x0000000000016b14                vsnprintf
  .text.libc.memcpy
-                0x0000000000016b30       0x52 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x0000000000016b30                __aeabi_memcpy
-                0x0000000000016b30                memcpy
-                0x0000000000016b3c                __aeabi_memcpy8
-                0x0000000000016b3c                __aeabi_memcpy4
+                0x0000000000016b34       0x52 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x0000000000016b34                __aeabi_memcpy
+                0x0000000000016b34                memcpy
+                0x0000000000016b40                __aeabi_memcpy8
+                0x0000000000016b40                __aeabi_memcpy4
  .text.libc.memset
-                0x0000000000016b82       0x66 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x0000000000016b82                memset
+                0x0000000000016b86       0x66 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x0000000000016b86                memset
  .text.libc.strcpy
-                0x0000000000016be8       0x44 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x0000000000016be8                strcpy
+                0x0000000000016bec       0x44 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x0000000000016bec                strcpy
  .text.libc.strlen
-                0x0000000000016c2c       0x60 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
-                0x0000000000016c2c                strlen
+                0x0000000000016c30       0x60 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc2_asm.o)
+                0x0000000000016c30                strlen
  .text.libc.__vfprintf_long
-                0x0000000000016c8c      0x5fc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libvfprintf.o)
-                0x0000000000016c8c                __vfprintf_long
+                0x0000000000016c90      0x5fc C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libvfprintf.o)
+                0x0000000000016c90                __vfprintf_long
  .text.libc.__printf_lock
-                0x0000000000017288        0x4 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
-                0x0000000000017288                __printf_lock
- .text.libc.__printf_unlock
                 0x000000000001728c        0x4 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
-                0x000000000001728c                __printf_unlock
-                0x0000000000017290                . = ALIGN (MAX ((__text_start__ + 0x4), .), 0x4)
-                0x0000000000017290                __text_end__ = (__text_start__ + SIZEOF (.text))
-                0x0000000000004ec0                __text_size__ = SIZEOF (.text)
-                0x0000000000017290                __text_load_end__ = __text_end__
+                0x000000000001728c                __printf_lock
+ .text.libc.__printf_unlock
+                0x0000000000017290        0x4 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
+                0x0000000000017290                __printf_unlock
+                0x0000000000017294                . = ALIGN (MAX ((__text_start__ + 0x4), .), 0x4)
+                0x0000000000017294                __text_end__ = (__text_start__ + SIZEOF (.text))
+                0x0000000000004ec4                __text_size__ = SIZEOF (.text)
+                0x0000000000017294                __text_load_end__ = __text_end__
 
 .vfp11_veneer   0x0000000100000000        0x0
  .vfp11_veneer  0x0000000100000000        0x0 linker stubs
@@ -8861,167 +8861,167 @@ Linker script and memory map
 .iplt           0x0000000100000000        0x0
  .iplt          0x0000000100000000        0x0 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/thumb_crt0.o
                 0x0000000000000001                . = ASSERT (((__text_start__ == __text_end__) || ((__text_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .text is too large to fit in FLASH1 memory segment)
-                0x0000000000017290                __sdh_ant_observers_load_start__ = ALIGN (__text_end__, 0x4)
+                0x0000000000017294                __sdh_ant_observers_load_start__ = ALIGN (__text_end__, 0x4)
 
 .sdh_ant_observers
-                0x0000000000017290        0x8
-                0x0000000000017290                __sdh_ant_observers_start__ = .
-                0x0000000000017290                __start_sdh_ant_observers = __sdh_ant_observers_start__
+                0x0000000000017294        0x8
+                0x0000000000017294                __sdh_ant_observers_start__ = .
+                0x0000000000017294                __start_sdh_ant_observers = __sdh_ant_observers_start__
  *(SORT_BY_NAME(.sdh_ant_observers*))
  .sdh_ant_observers1
-                0x0000000000017290        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
-                0x0000000000017298                __sdh_ant_observers_end__ = (__sdh_ant_observers_start__ + SIZEOF (.sdh_ant_observers))
+                0x0000000000017294        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
+                0x000000000001729c                __sdh_ant_observers_end__ = (__sdh_ant_observers_start__ + SIZEOF (.sdh_ant_observers))
                 0x0000000000000008                __sdh_ant_observers_size__ = SIZEOF (.sdh_ant_observers)
-                0x0000000000017298                __stop_sdh_ant_observers = __sdh_ant_observers_end__
-                0x0000000000017298                __sdh_ant_observers_load_end__ = __sdh_ant_observers_end__
+                0x000000000001729c                __stop_sdh_ant_observers = __sdh_ant_observers_end__
+                0x000000000001729c                __sdh_ant_observers_load_end__ = __sdh_ant_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_ant_observers_start__ == __sdh_ant_observers_end__) || ((__sdh_ant_observers_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .sdh_ant_observers is too large to fit in FLASH1 memory segment)
-                0x0000000000017298                __pwr_mgmt_data_load_start__ = ALIGN (__sdh_ant_observers_end__, 0x4)
+                0x000000000001729c                __pwr_mgmt_data_load_start__ = ALIGN (__sdh_ant_observers_end__, 0x4)
 
-.pwr_mgmt_data  0x0000000000017298        0x0
-                0x0000000000017298                __pwr_mgmt_data_start__ = .
-                0x0000000000017298                __start_pwr_mgmt_data = __pwr_mgmt_data_start__
+.pwr_mgmt_data  0x000000000001729c        0x0
+                0x000000000001729c                __pwr_mgmt_data_start__ = .
+                0x000000000001729c                __start_pwr_mgmt_data = __pwr_mgmt_data_start__
  *(SORT_BY_NAME(.pwr_mgmt_data*))
-                0x0000000000017298                __pwr_mgmt_data_end__ = (__pwr_mgmt_data_start__ + SIZEOF (.pwr_mgmt_data))
+                0x000000000001729c                __pwr_mgmt_data_end__ = (__pwr_mgmt_data_start__ + SIZEOF (.pwr_mgmt_data))
                 0x0000000000000000                __pwr_mgmt_data_size__ = SIZEOF (.pwr_mgmt_data)
-                0x0000000000017298                __stop_pwr_mgmt_data = __pwr_mgmt_data_end__
-                0x0000000000017298                __pwr_mgmt_data_load_end__ = __pwr_mgmt_data_end__
+                0x000000000001729c                __stop_pwr_mgmt_data = __pwr_mgmt_data_end__
+                0x000000000001729c                __pwr_mgmt_data_load_end__ = __pwr_mgmt_data_end__
                 0x0000000000000001                . = ASSERT (((__pwr_mgmt_data_start__ == __pwr_mgmt_data_end__) || ((__pwr_mgmt_data_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .pwr_mgmt_data is too large to fit in FLASH1 memory segment)
-                0x0000000000017298                __log_const_data_load_start__ = ALIGN (__pwr_mgmt_data_end__, 0x4)
+                0x000000000001729c                __log_const_data_load_start__ = ALIGN (__pwr_mgmt_data_end__, 0x4)
 
 .log_const_data
-                0x0000000000017298       0x70
-                0x0000000000017298                __log_const_data_start__ = .
-                0x0000000000017298                __start_log_const_data = __log_const_data_start__
+                0x000000000001729c       0x70
+                0x000000000001729c                __log_const_data_start__ = .
+                0x000000000001729c                __start_log_const_data = __log_const_data_start__
  *(SORT_BY_NAME(.log_const_data*))
  .log_const_data_GPIOTE
-                0x0000000000017298        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_gpiote.o
-                0x0000000000017298                m_nrf_log_GPIOTE_logs_data_const
+                0x000000000001729c        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_gpiote.o
+                0x000000000001729c                m_nrf_log_GPIOTE_logs_data_const
  .log_const_data_PRS
-                0x00000000000172a0        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_prs.o
-                0x00000000000172a0                m_nrf_log_PRS_logs_data_const
+                0x00000000000172a4        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_prs.o
+                0x00000000000172a4                m_nrf_log_PRS_logs_data_const
  .log_const_data_SAADC
-                0x00000000000172a8        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_saadc.o
-                0x00000000000172a8                m_nrf_log_SAADC_logs_data_const
+                0x00000000000172ac        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_saadc.o
+                0x00000000000172ac                m_nrf_log_SAADC_logs_data_const
  .log_const_data_TWIM
-                0x00000000000172b0        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twim.o
-                0x00000000000172b0                m_nrf_log_TWIM_logs_data_const
+                0x00000000000172b4        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twim.o
+                0x00000000000172b4                m_nrf_log_TWIM_logs_data_const
  .log_const_data_UART
-                0x00000000000172b8        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_uart.o
-                0x00000000000172b8                m_nrf_log_UART_logs_data_const
+                0x00000000000172bc        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_uart.o
+                0x00000000000172bc                m_nrf_log_UART_logs_data_const
  .log_const_data_UARTE
-                0x00000000000172c0        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_uarte.o
-                0x00000000000172c0                m_nrf_log_UARTE_logs_data_const
+                0x00000000000172c4        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_uarte.o
+                0x00000000000172c4                m_nrf_log_UARTE_logs_data_const
  .log_const_data_app
-                0x00000000000172c8        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_frontend.o
-                0x00000000000172c8                m_nrf_log_app_logs_data_const
+                0x00000000000172cc        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_frontend.o
+                0x00000000000172cc                m_nrf_log_app_logs_data_const
  .log_const_data_app_button
-                0x00000000000172d0        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_button.o
-                0x00000000000172d0                m_nrf_log_app_button_logs_data_const
+                0x00000000000172d4        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_button.o
+                0x00000000000172d4                m_nrf_log_app_button_logs_data_const
  .log_const_data_app_timer
-                0x00000000000172d8        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_timer2.o
-                0x00000000000172d8                m_nrf_log_app_timer_logs_data_const
+                0x00000000000172dc        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_timer2.o
+                0x00000000000172dc                m_nrf_log_app_timer_logs_data_const
  .log_const_data_hardfault
-                0x00000000000172e0        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/hardfault_implementation.o
-                0x00000000000172e0                m_nrf_log_hardfault_logs_data_const
+                0x00000000000172e4        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/hardfault_implementation.o
+                0x00000000000172e4                m_nrf_log_hardfault_logs_data_const
  .log_const_data_nrf_sdh
-                0x00000000000172e8        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
-                0x00000000000172e8                m_nrf_log_nrf_sdh_logs_data_const
+                0x00000000000172ec        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
+                0x00000000000172ec                m_nrf_log_nrf_sdh_logs_data_const
  .log_const_data_nrf_sdh_ant
-                0x00000000000172f0        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
-                0x00000000000172f0                m_nrf_log_nrf_sdh_ant_logs_data_const
+                0x00000000000172f4        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
+                0x00000000000172f4                m_nrf_log_nrf_sdh_ant_logs_data_const
  .log_const_data_pwr_mgmt
-                0x00000000000172f8        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_pwr_mgmt.o
-                0x00000000000172f8                m_nrf_log_pwr_mgmt_logs_data_const
+                0x00000000000172fc        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_pwr_mgmt.o
+                0x00000000000172fc                m_nrf_log_pwr_mgmt_logs_data_const
  .log_const_data_sortlist
-                0x0000000000017300        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sortlist.o
-                0x0000000000017300                m_nrf_log_sortlist_logs_data_const
-                0x0000000000017308                __log_const_data_end__ = (__log_const_data_start__ + SIZEOF (.log_const_data))
+                0x0000000000017304        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sortlist.o
+                0x0000000000017304                m_nrf_log_sortlist_logs_data_const
+                0x000000000001730c                __log_const_data_end__ = (__log_const_data_start__ + SIZEOF (.log_const_data))
                 0x0000000000000070                __log_const_data_size__ = SIZEOF (.log_const_data)
-                0x0000000000017308                __stop_log_const_data = __log_const_data_end__
-                0x0000000000017308                __log_const_data_load_end__ = __log_const_data_end__
+                0x000000000001730c                __stop_log_const_data = __log_const_data_end__
+                0x000000000001730c                __log_const_data_load_end__ = __log_const_data_end__
                 0x0000000000000001                . = ASSERT (((__log_const_data_start__ == __log_const_data_end__) || ((__log_const_data_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .log_const_data is too large to fit in FLASH1 memory segment)
-                0x0000000000017308                __sdh_req_observers_load_start__ = ALIGN (__log_const_data_end__, 0x4)
+                0x000000000001730c                __sdh_req_observers_load_start__ = ALIGN (__log_const_data_end__, 0x4)
 
 .sdh_req_observers
-                0x0000000000017308        0x0
-                0x0000000000017308                __sdh_req_observers_start__ = .
-                0x0000000000017308                __start_sdh_req_observers = __sdh_req_observers_start__
+                0x000000000001730c        0x0
+                0x000000000001730c                __sdh_req_observers_start__ = .
+                0x000000000001730c                __start_sdh_req_observers = __sdh_req_observers_start__
  *(SORT_BY_NAME(.sdh_req_observers*))
-                0x0000000000017308                __sdh_req_observers_end__ = (__sdh_req_observers_start__ + SIZEOF (.sdh_req_observers))
+                0x000000000001730c                __sdh_req_observers_end__ = (__sdh_req_observers_start__ + SIZEOF (.sdh_req_observers))
                 0x0000000000000000                __sdh_req_observers_size__ = SIZEOF (.sdh_req_observers)
-                0x0000000000017308                __stop_sdh_req_observers = __sdh_req_observers_end__
-                0x0000000000017308                __sdh_req_observers_load_end__ = __sdh_req_observers_end__
+                0x000000000001730c                __stop_sdh_req_observers = __sdh_req_observers_end__
+                0x000000000001730c                __sdh_req_observers_load_end__ = __sdh_req_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_req_observers_start__ == __sdh_req_observers_end__) || ((__sdh_req_observers_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .sdh_req_observers is too large to fit in FLASH1 memory segment)
-                0x0000000000017308                __sdh_state_observers_load_start__ = ALIGN (__sdh_req_observers_end__, 0x4)
+                0x000000000001730c                __sdh_state_observers_load_start__ = ALIGN (__sdh_req_observers_end__, 0x4)
 
 .sdh_state_observers
-                0x0000000000017308        0x0
-                0x0000000000017308                __sdh_state_observers_start__ = .
-                0x0000000000017308                __start_sdh_state_observers = __sdh_state_observers_start__
+                0x000000000001730c        0x0
+                0x000000000001730c                __sdh_state_observers_start__ = .
+                0x000000000001730c                __start_sdh_state_observers = __sdh_state_observers_start__
  *(SORT_BY_NAME(.sdh_state_observers*))
-                0x0000000000017308                __sdh_state_observers_end__ = (__sdh_state_observers_start__ + SIZEOF (.sdh_state_observers))
+                0x000000000001730c                __sdh_state_observers_end__ = (__sdh_state_observers_start__ + SIZEOF (.sdh_state_observers))
                 0x0000000000000000                __sdh_state_observers_size__ = SIZEOF (.sdh_state_observers)
-                0x0000000000017308                __stop_sdh_state_observers = __sdh_state_observers_end__
-                0x0000000000017308                __sdh_state_observers_load_end__ = __sdh_state_observers_end__
+                0x000000000001730c                __stop_sdh_state_observers = __sdh_state_observers_end__
+                0x000000000001730c                __sdh_state_observers_load_end__ = __sdh_state_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_state_observers_start__ == __sdh_state_observers_end__) || ((__sdh_state_observers_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .sdh_state_observers is too large to fit in FLASH1 memory segment)
-                0x0000000000017308                __sdh_stack_observers_load_start__ = ALIGN (__sdh_state_observers_end__, 0x4)
+                0x000000000001730c                __sdh_stack_observers_load_start__ = ALIGN (__sdh_state_observers_end__, 0x4)
 
 .sdh_stack_observers
-                0x0000000000017308        0x8
-                0x0000000000017308                __sdh_stack_observers_start__ = .
-                0x0000000000017308                __start_sdh_stack_observers = __sdh_stack_observers_start__
+                0x000000000001730c        0x8
+                0x000000000001730c                __sdh_stack_observers_start__ = .
+                0x000000000001730c                __start_sdh_stack_observers = __sdh_stack_observers_start__
  *(SORT_BY_NAME(.sdh_stack_observers*))
  .sdh_stack_observers0
-                0x0000000000017308        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
-                0x0000000000017310                __sdh_stack_observers_end__ = (__sdh_stack_observers_start__ + SIZEOF (.sdh_stack_observers))
+                0x000000000001730c        0x8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
+                0x0000000000017314                __sdh_stack_observers_end__ = (__sdh_stack_observers_start__ + SIZEOF (.sdh_stack_observers))
                 0x0000000000000008                __sdh_stack_observers_size__ = SIZEOF (.sdh_stack_observers)
-                0x0000000000017310                __stop_sdh_stack_observers = __sdh_stack_observers_end__
-                0x0000000000017310                __sdh_stack_observers_load_end__ = __sdh_stack_observers_end__
+                0x0000000000017314                __stop_sdh_stack_observers = __sdh_stack_observers_end__
+                0x0000000000017314                __sdh_stack_observers_load_end__ = __sdh_stack_observers_end__
                 0x0000000000000001                . = ASSERT (((__sdh_stack_observers_start__ == __sdh_stack_observers_end__) || ((__sdh_stack_observers_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .sdh_stack_observers is too large to fit in FLASH1 memory segment)
-                0x0000000000017310                __log_backends_load_start__ = ALIGN (__sdh_stack_observers_end__, 0x4)
+                0x0000000000017314                __log_backends_load_start__ = ALIGN (__sdh_stack_observers_end__, 0x4)
 
-.log_backends   0x0000000000017310       0x10
-                0x0000000000017310                __log_backends_start__ = .
-                0x0000000000017310                __start_log_backends = __log_backends_start__
+.log_backends   0x0000000000017314       0x10
+                0x0000000000017314                __log_backends_start__ = .
+                0x0000000000017314                __start_log_backends = __log_backends_start__
  *(SORT_BY_NAME(.log_backends*))
- .log_backends  0x0000000000017310       0x10 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_default_backends.o
-                0x0000000000017320                __log_backends_end__ = (__log_backends_start__ + SIZEOF (.log_backends))
+ .log_backends  0x0000000000017314       0x10 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_default_backends.o
+                0x0000000000017324                __log_backends_end__ = (__log_backends_start__ + SIZEOF (.log_backends))
                 0x0000000000000010                __log_backends_size__ = SIZEOF (.log_backends)
-                0x0000000000017320                __stop_log_backends = __log_backends_end__
-                0x0000000000017320                __log_backends_load_end__ = __log_backends_end__
+                0x0000000000017324                __stop_log_backends = __log_backends_end__
+                0x0000000000017324                __log_backends_load_end__ = __log_backends_end__
                 0x0000000000000001                . = ASSERT (((__log_backends_start__ == __log_backends_end__) || ((__log_backends_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .log_backends is too large to fit in FLASH1 memory segment)
-                0x0000000000017320                __nrf_balloc_load_start__ = ALIGN (__log_backends_end__, 0x4)
+                0x0000000000017324                __nrf_balloc_load_start__ = ALIGN (__log_backends_end__, 0x4)
 
-.nrf_balloc     0x0000000000017320       0x14
-                0x0000000000017320                __nrf_balloc_start__ = .
-                0x0000000000017320                __start_nrf_balloc = __nrf_balloc_start__
+.nrf_balloc     0x0000000000017324       0x14
+                0x0000000000017324                __nrf_balloc_start__ = .
+                0x0000000000017324                __start_nrf_balloc = __nrf_balloc_start__
  *(.nrf_balloc*)
- .nrf_balloc    0x0000000000017320       0x14 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_frontend.o
-                0x0000000000017320                log_mempool
-                0x0000000000017334                __nrf_balloc_end__ = (__nrf_balloc_start__ + SIZEOF (.nrf_balloc))
+ .nrf_balloc    0x0000000000017324       0x14 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_frontend.o
+                0x0000000000017324                log_mempool
+                0x0000000000017338                __nrf_balloc_end__ = (__nrf_balloc_start__ + SIZEOF (.nrf_balloc))
                 0x0000000000000014                __nrf_balloc_size__ = SIZEOF (.nrf_balloc)
-                0x0000000000017334                __stop_nrf_balloc = __nrf_balloc_end__
-                0x0000000000017334                __nrf_balloc_load_end__ = __nrf_balloc_end__
+                0x0000000000017338                __stop_nrf_balloc = __nrf_balloc_end__
+                0x0000000000017338                __nrf_balloc_load_end__ = __nrf_balloc_end__
                 0x0000000000000001                . = ASSERT (((__nrf_balloc_start__ == __nrf_balloc_end__) || ((__nrf_balloc_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .nrf_balloc is too large to fit in FLASH1 memory segment)
-                0x0000000000017334                __nrf_sections_load_start__ = ALIGN (__nrf_balloc_end__, 0x4)
+                0x0000000000017338                __nrf_sections_load_start__ = ALIGN (__nrf_balloc_end__, 0x4)
 
-.nrf_sections   0x0000000000017334        0x0
-                0x0000000000017334                __nrf_sections_start__ = .
-                0x0000000000017334                __start_nrf_sections = __nrf_sections_start__
+.nrf_sections   0x0000000000017338        0x0
+                0x0000000000017338                __nrf_sections_start__ = .
+                0x0000000000017338                __start_nrf_sections = __nrf_sections_start__
  *(.nrf_sections .nrf_sections.*)
-                0x0000000000017334                __nrf_sections_end__ = (__nrf_sections_start__ + SIZEOF (.nrf_sections))
+                0x0000000000017338                __nrf_sections_end__ = (__nrf_sections_start__ + SIZEOF (.nrf_sections))
                 0x0000000000000000                __nrf_sections_size__ = SIZEOF (.nrf_sections)
-                0x0000000000017334                __nrf_sections_load_end__ = __nrf_sections_end__
+                0x0000000000017338                __nrf_sections_load_end__ = __nrf_sections_end__
                 0x0000000000000001                . = ASSERT (((__nrf_sections_start__ == __nrf_sections_end__) || ((__nrf_sections_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .nrf_sections is too large to fit in FLASH1 memory segment)
-                0x0000000000017334                __log_dynamic_data_load_start__ = ALIGN (__nrf_sections_end__, 0x4)
+                0x0000000000017338                __log_dynamic_data_load_start__ = ALIGN (__nrf_sections_end__, 0x4)
 
 .log_dynamic_data
-                0x0000000020000b80        0x0 load address 0x0000000000017334
+                0x0000000020000b80        0x0 load address 0x0000000000017338
                 0x0000000020000b80                __log_dynamic_data_start__ = .
  *(SORT_BY_NAME(.log_dynamic_data*))
                 0x0000000020000b80                __log_dynamic_data_end__ = (__log_dynamic_data_start__ + SIZEOF (.log_dynamic_data))
                 0x0000000000000000                __log_dynamic_data_size__ = SIZEOF (.log_dynamic_data)
-                0x0000000000017334                __log_dynamic_data_load_end__ = (__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data))
+                0x0000000000017338                __log_dynamic_data_load_end__ = (__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data))
                 0x0000000000000001                . = ASSERT (((__log_dynamic_data_load_start__ == __log_dynamic_data_load_end__) || ((__log_dynamic_data_load_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .log_dynamic_data is too large to fit in FLASH1 memory segment)
 
 .log_dynamic_data_run
@@ -9033,15 +9033,15 @@ Linker script and memory map
                 0x0000000020000b80                __stop_log_dynamic_data = __log_dynamic_data_run_end__
                 0x0000000020000b80                __log_dynamic_data_run_load_end__ = __log_dynamic_data_run_end__
                 0x0000000000000001                . = ASSERT (((__log_dynamic_data_run_start__ == __log_dynamic_data_run_end__) || ((__log_dynamic_data_run_end__ - __RAM1_segment_start__) <= __RAM1_segment_size__)), error: .log_dynamic_data_run is too large to fit in RAM1 memory segment)
-                0x0000000000017334                __log_filter_data_load_start__ = ALIGN ((__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data)), 0x4)
+                0x0000000000017338                __log_filter_data_load_start__ = ALIGN ((__log_dynamic_data_load_start__ + SIZEOF (.log_dynamic_data)), 0x4)
 
 .log_filter_data
-                0x0000000020000b80        0x0 load address 0x0000000000017334
+                0x0000000020000b80        0x0 load address 0x0000000000017338
                 0x0000000020000b80                __log_filter_data_start__ = .
  *(SORT_BY_NAME(.log_filter_data*))
                 0x0000000020000b80                __log_filter_data_end__ = (__log_filter_data_start__ + SIZEOF (.log_filter_data))
                 0x0000000000000000                __log_filter_data_size__ = SIZEOF (.log_filter_data)
-                0x0000000000017334                __log_filter_data_load_end__ = (__log_filter_data_load_start__ + SIZEOF (.log_filter_data))
+                0x0000000000017338                __log_filter_data_load_end__ = (__log_filter_data_load_start__ + SIZEOF (.log_filter_data))
                 0x0000000000000001                . = ASSERT (((__log_filter_data_load_start__ == __log_filter_data_load_end__) || ((__log_filter_data_load_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .log_filter_data is too large to fit in FLASH1 memory segment)
 
 .log_filter_data_run
@@ -9064,81 +9064,81 @@ Linker script and memory map
                 0x0000000000000000                __nrf_sections_run_end_size__ = SIZEOF (.nrf_sections_run_end)
                 0x0000000020000b80                __nrf_sections_run_end_load_end__ = __nrf_sections_run_end_end__
                 0x0000000000000001                . = ASSERT (((__nrf_sections_run_end_start__ == __nrf_sections_run_end_end__) || ((__nrf_sections_run_end_end__ - __RAM1_segment_start__) <= __RAM1_segment_size__)), error: .nrf_sections_run_end is too large to fit in RAM1 memory segment)
-                0x0000000000017334                __dtors_load_start__ = ALIGN ((__log_filter_data_load_start__ + SIZEOF (.log_filter_data)), 0x4)
+                0x0000000000017338                __dtors_load_start__ = ALIGN ((__log_filter_data_load_start__ + SIZEOF (.log_filter_data)), 0x4)
 
-.dtors          0x0000000000017334        0x0
-                0x0000000000017334                __dtors_start__ = .
+.dtors          0x0000000000017338        0x0
+                0x0000000000017338                __dtors_start__ = .
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
  *(.fini_array)
  *(SORT_BY_NAME(.fini_array.*))
-                0x0000000000017334                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
+                0x0000000000017338                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
                 0x0000000000000000                __dtors_size__ = SIZEOF (.dtors)
-                0x0000000000017334                __dtors_load_end__ = __dtors_end__
+                0x0000000000017338                __dtors_load_end__ = __dtors_end__
                 0x0000000000000001                . = ASSERT (((__dtors_start__ == __dtors_end__) || ((__dtors_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .dtors is too large to fit in FLASH1 memory segment)
-                0x0000000000017334                __ctors_load_start__ = ALIGN (__dtors_end__, 0x4)
+                0x0000000000017338                __ctors_load_start__ = ALIGN (__dtors_end__, 0x4)
 
-.ctors          0x0000000000017334        0x0
-                0x0000000000017334                __ctors_start__ = .
+.ctors          0x0000000000017338        0x0
+                0x0000000000017338                __ctors_start__ = .
  *(SORT_BY_NAME(.ctors.*))
  *(.ctors)
  *(.init_array)
  *(SORT_BY_NAME(.init_array.*))
-                0x0000000000017334                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
+                0x0000000000017338                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
                 0x0000000000000000                __ctors_size__ = SIZEOF (.ctors)
-                0x0000000000017334                __ctors_load_end__ = __ctors_end__
+                0x0000000000017338                __ctors_load_end__ = __ctors_end__
                 0x0000000000000001                . = ASSERT (((__ctors_start__ == __ctors_end__) || ((__ctors_end__ - __FLASH1_segment_start__) <= __FLASH1_segment_size__)), error: .ctors is too large to fit in FLASH1 memory segment)
-                0x0000000000017334                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
+                0x0000000000017338                __rodata_load_start__ = ALIGN (__ctors_end__, 0x4)
 
-.rodata         0x0000000000017334     0x11a8
-                0x0000000000017334                __rodata_start__ = .
+.rodata         0x0000000000017338     0x11a4
+                0x0000000000017338                __rodata_start__ = .
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata        0x0000000000017334       0x20 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_uart.o
+ .rodata        0x0000000000017338       0x20 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_uart.o
  .rodata.nrf_log_backend_uart_api
-                0x0000000000017354        0xc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_uart.o
-                0x0000000000017354                nrf_log_backend_uart_api
+                0x0000000000017358        0xc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_uart.o
+                0x0000000000017358                nrf_log_backend_uart_api
  .rodata.str1.1
-                0x0000000000017360       0x11 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_default_backends.o
+                0x0000000000017364       0x11 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_default_backends.o
  .rodata.nrf_log_frontend_dequeue.str1.1
-                0x0000000000017371       0x11 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_frontend.o
+                0x0000000000017375       0x11 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_frontend.o
  .rodata.str1.1
-                0x0000000000017382        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_frontend.o
- *fill*         0x0000000000017386        0x2 
+                0x0000000000017386        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_frontend.o
+ *fill*         0x000000000001738a        0x2 
  .rodata.m_log_push_ringbuf
-                0x0000000000017388        0xc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_frontend.o
+                0x000000000001738c        0xc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_frontend.o
  .rodata.prefix_process.str1.1
-                0x0000000000017394       0x32 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
+                0x0000000000017398       0x32 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
  .rodata.postfix_process.str1.1
-                0x00000000000173c6       0x32 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
+                0x00000000000173ca       0x32 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
                                           0x3 (size before relaxing)
  .rodata.nrf_log_hexdump_entry_process.str1.1
-                0x00000000000173c6        0xf Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
+                0x00000000000173ca        0xf Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
                                          0x11 (size before relaxing)
  .rodata.str1.1
-                0x00000000000173d5       0x4b Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
+                0x00000000000173d9       0x4b Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
                                          0x51 (size before relaxing)
  .rodata.m_colors
-                0x0000000000017420       0x24 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
+                0x0000000000017424       0x24 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
  .rodata.severity_names
-                0x0000000000017444       0x14 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
+                0x0000000000017448       0x14 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_str_formatter.o
  .rodata.m_board_led_list
-                0x0000000000017458        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/boards.o
+                0x000000000001745c        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/boards.o
  .rodata.str1.1
-                0x000000000001745c        0xb Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_button.o
- *fill*         0x0000000000017467        0x1 
+                0x0000000000017460        0xb Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_button.o
+ *fill*         0x000000000001746b        0x1 
  .rodata.m_detection_delay_timer_id
-                0x0000000000017468        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_button.o
+                0x000000000001746c        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_button.o
  .rodata.app_error_fault_handler.str1.1
-                0x000000000001746c       0x19 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error_weak.o
+                0x0000000000017470       0x19 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_error_weak.o
  .rodata.str1.1
-                0x0000000000017485        0xa Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_timer2.o
- *fill*         0x000000000001748f        0x1 
- .rodata        0x0000000000017490        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_timer2.o
+                0x0000000000017489        0xa Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_timer2.o
+ *fill*         0x0000000000017493        0x1 
+ .rodata        0x0000000000017494        0x4 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_timer2.o
  .rodata.m_app_timer_sortlist
-                0x0000000000017494        0xc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_timer2.o
+                0x0000000000017498        0xc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/app_timer2.o
  .rodata.drv_rtc_init.str1.1
-                0x00000000000174a0       0x34 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/drv_rtc.o
- *fill*         0x00000000000174d4        0xc 
+                0x00000000000174a4       0x34 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/drv_rtc.o
+ *fill*         0x00000000000174d8        0x8 
  .rodata.delay_machine_code.0
                 0x00000000000174e0        0x6 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/drv_rtc.o
  .rodata.HardFault_c_handler.str1.1
@@ -9299,7 +9299,7 @@ Linker script and memory map
                 0x00000000000184dc                . = ALIGN (MAX ((__rodata_start__ + 0x4), .), 0x4)
  *fill*         0x00000000000184db        0x1 
                 0x00000000000184dc                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
-                0x00000000000011a8                __rodata_size__ = SIZEOF (.rodata)
+                0x00000000000011a4                __rodata_size__ = SIZEOF (.rodata)
                 0x00000000000184dc                __rodata_load_end__ = __rodata_end__
 
 .rel.dyn        0x00000000000184dc        0x0
@@ -9839,7 +9839,7 @@ LOAD linker stubs
  .comment       0x000000000000003f       0x40 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libvfprintf.o)
  .comment       0x000000000000003f       0x40 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
 
-.debug_line     0x0000000000000000    0x1ce83
+.debug_line     0x0000000000000000    0x1ce89
  .debug_line    0x0000000000000000      0x21f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/thumb_crt0.o
  .debug_line    0x000000000000021f      0x758 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_serial.o
  .debug_line    0x0000000000000977      0xa27 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_uart.o
@@ -9876,14 +9876,14 @@ LOAD linker stubs
  .debug_line    0x0000000000015b8b     0x1874 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twim.o
  .debug_line    0x00000000000173ff      0x4c1 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ant_channel_config.o
  .debug_line    0x00000000000178c0      0xe5c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bsp.o
- .debug_line    0x000000000001871c     0x15bd Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
- .debug_line    0x0000000000019cd9     0x134f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
- .debug_line    0x000000000001b028      0x484 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_Syscalls_SES.o
- .debug_line    0x000000000001b4ac       0x86 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ses_startup_nrf52.o
- .debug_line    0x000000000001b532       0xa8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ses_startup_nrf_common.o
- .debug_line    0x000000000001b5da      0x707 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
- .debug_line    0x000000000001bce1      0xb0e Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
- .debug_line    0x000000000001c7ef      0x694 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
+ .debug_line    0x000000000001871c     0x15c3 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
+ .debug_line    0x0000000000019cdf     0x134f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
+ .debug_line    0x000000000001b02e      0x484 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_Syscalls_SES.o
+ .debug_line    0x000000000001b4b2       0x86 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ses_startup_nrf52.o
+ .debug_line    0x000000000001b538       0xa8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ses_startup_nrf_common.o
+ .debug_line    0x000000000001b5e0      0x707 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
+ .debug_line    0x000000000001bce7      0xb0e Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
+ .debug_line    0x000000000001c7f5      0x694 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
 
 .debug_info     0x0000000000000000    0x2ad2e
  .debug_info    0x0000000000000000       0x22 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/thumb_crt0.o

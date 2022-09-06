@@ -557,7 +557,7 @@ printf("\nMisuro\n");
 
           //letti tutti i valori, elaboro i dati in modo da poterli inviare come uint8 e li salvo nei pacchetti, poi metto flag_misurazione = 2 e la gestisco in ANT
 //Valori simulati          
-          pacchetto_1[0] = 64;
+          pacchetto_1[0] = 64 + numero_pacchetto;
           pacchetto_1[1] = valore_prova; //Temperatura
           pacchetto_1[2] = valore_prova; //Temperatura
           pacchetto_1[3] = valore_prova; //Umidità
@@ -578,7 +578,7 @@ printf("\nMisuro\n");
 */
 
 //Valori simulati          
-          pacchetto_2[0] = 128;
+          pacchetto_2[0] = 128 + numero_pacchetto;
           pacchetto_2[1] = valore_prova+1; //VOC      
           pacchetto_2[2] = valore_prova+1; //VOC      
           pacchetto_2[3] = valore_prova+1; //CO2
@@ -599,7 +599,7 @@ printf("\nMisuro\n");
           pacchetto_2[7] = valore_prova+1; // BATTERY   capire ogni quanto campionare
 */
 //valori simulati
-          pacchetto_3[0] = 192;
+          pacchetto_3[0] = 192 + numero_pacchetto;
           pacchetto_3[1] = valore_prova+1; //VOC      
           pacchetto_3[2] = valore_prova+1; //VOC      
           pacchetto_3[3] = valore_prova+1; //CO2

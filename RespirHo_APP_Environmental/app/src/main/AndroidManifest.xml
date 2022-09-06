@@ -26,6 +26,7 @@
         <activity android:name=".DemoDownload" android:screenOrientation="portrait"/>
         <activity android:name=".saturation" android:screenOrientation="portrait"/>
         <activity android:name=".EnvironmentalMonitor" android:screenOrientation="portrait"/>
+        <activity android:name=".saturation_environmental" android:screenOrientation="portrait"/>
         <activity android:name=".ForgotPassword" android:screenOrientation="portrait"/>
         <activity android:name=".Support" android:screenOrientation="portrait"/>
         <activity android:name=".Graph" android:screenOrientation="portrait"/>

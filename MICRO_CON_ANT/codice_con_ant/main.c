@@ -148,8 +148,8 @@ void twi_init (void)
 {
     ret_code_t err_code;
     const nrf_drv_twi_config_t twi_config = {
-       .scl                = 6, //19,
-       .sda                = 8, //18,
+       .scl                = 19,  //6
+       .sda                = 18,  //8  
        .frequency          = NRF_DRV_TWI_FREQ_100K,
        .interrupt_priority = APP_IRQ_PRIORITY_HIGH,
        .clear_bus_init     = false
@@ -568,13 +568,13 @@ printf("\nMisuro\n");
 //valori veri
 /*
           pacchetto_1[0] = 64 + numero_pacchetto;
-          pacchetto_1[1] = (int) measure_bme280.temperature + 20;    //Parte intera della Temperatura incrementato di 20 (o più?)
+          pacchetto_1[1] = (int) measure_bme280.temperature + 30;    //Parte intera della Temperatura incrementato di 30 (o più?)
           pacchetto_1[2] = abs((int)((measure_bme280.temperature - (int)measure_bme280.temperature)*100));  //parte decimale della Temperatura
           pacchetto_1[3] = (int) measure_bme280.humidity;
           pacchetto_1[4] = (int)((measure_bme280.humidity - (int)measure_bme280.humidity)*100);
-          pacchetto_1[5] = valore_prova; //Pressione
-          pacchetto_1[6] = valore_prova; //Pressione
-          pacchetto_1[7] = valore_prova; //Pressione
+          pacchetto_1[5] = measure_bme280.pressure >> 16; //Pressione  >> 16
+          pacchetto_1[6] = measure_bme280.pressure >> 8; //Pressione  >> 8
+          pacchetto_1[7] = measure_bme280; //Pressione
 */
 
 //Valori simulati          

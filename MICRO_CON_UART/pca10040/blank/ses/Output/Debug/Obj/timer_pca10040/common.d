@@ -1,14 +1,14 @@
 Output/Debug/Obj/timer_pca10040/common.o: \
- C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\My\ Projects\Progetto_WearableAirMonitoring\sensor\common.c \
+ C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\Progetto_WearableAirMonitoring\MICRO_CON_UART\sensor\common.c \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/stdlib.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/__crossworks.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/stdio.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/string.h \
- C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\My\ Projects\Progetto_WearableAirMonitoring\sensor\bme68x.h \
- C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\My\ Projects\Progetto_WearableAirMonitoring\sensor\bme68x_defs.h \
+ C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\Progetto_WearableAirMonitoring\MICRO_CON_UART\sensor\bme68x.h \
+ C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\Progetto_WearableAirMonitoring\MICRO_CON_UART\sensor\bme68x_defs.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/stddef.h \
- C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\My\ Projects\Progetto_WearableAirMonitoring\sensor\common.h \
+ C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\Progetto_WearableAirMonitoring\MICRO_CON_UART\sensor\common.h \
  ../../../../../../integration/nrfx/legacy/nrf_drv_twi.h \
  ../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../integration/nrfx/nrfx_config.h ../config/sdk_config.h \

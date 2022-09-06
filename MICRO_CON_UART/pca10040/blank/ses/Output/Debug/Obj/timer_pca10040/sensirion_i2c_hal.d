@@ -1,5 +1,5 @@
 Output/Debug/Obj/timer_pca10040/sensirion_i2c_hal.o: \
- C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\My\ Projects\Progetto_WearableAirMonitoring\sensor\sensirion_i2c_hal.c \
+ C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\Progetto_WearableAirMonitoring\MICRO_CON_UART\sensor\sensirion_i2c_hal.c \
  C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/components/libraries/delay/nrf_delay.h \
  ../../../../../../modules/nrfx/nrfx.h \
  ../../../../../../integration/nrfx/nrfx_config.h ../config/sdk_config.h \
@@ -49,7 +49,7 @@ Output/Debug/Obj/timer_pca10040/sensirion_i2c_hal.o: \
  ../../../../../../modules/nrfx/hal/nrf_twim.h \
  ../../../../../../modules/nrfx/drivers/include/nrfx_twi.h \
  ../../../../../../modules/nrfx/hal/nrf_twi.h \
- C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\My\ Projects\Progetto_WearableAirMonitoring\sensor\sensirion_common.h \
- C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\My\ Projects\Progetto_WearableAirMonitoring\sensor\sensirion_config.h \
+ C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\Progetto_WearableAirMonitoring\MICRO_CON_UART\sensor\sensirion_common.h \
+ C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\Progetto_WearableAirMonitoring\MICRO_CON_UART\sensor\sensirion_config.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/stdlib.h \
- C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\My\ Projects\Progetto_WearableAirMonitoring\sensor\sensirion_i2c_hal.h
+ C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\Progetto_WearableAirMonitoring\MICRO_CON_UART\sensor\sensirion_i2c_hal.h

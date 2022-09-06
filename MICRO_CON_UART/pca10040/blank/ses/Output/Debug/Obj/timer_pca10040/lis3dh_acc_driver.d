@@ -1,5 +1,5 @@
 Output/Debug/Obj/timer_pca10040/lis3dh_acc_driver.o: \
- C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\My\ Projects\Progetto_WearableAirMonitoring\sensor\lis3dh_acc_driver.c \
+ C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\Progetto_WearableAirMonitoring\MICRO_CON_UART\sensor\lis3dh_acc_driver.c \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/stdbool.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/stdint.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/string.h \
@@ -49,7 +49,7 @@ Output/Debug/Obj/timer_pca10040/lis3dh_acc_driver.o: \
  ../../../../../../modules/nrfx/hal/nrf_twim.h \
  ../../../../../../modules/nrfx/drivers/include/nrfx_twi.h \
  ../../../../../../modules/nrfx/hal/nrf_twi.h \
- C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\My\ Projects\Progetto_WearableAirMonitoring\sensor\lis3dh_acc_driver.h \
+ C:\nrf_sdk\nRF5_SDK_17.1.0_ddde560\examples\Progetto_WearableAirMonitoring\MICRO_CON_UART\sensor\lis3dh_acc_driver.h \
  ../../../../../../components/libraries/log/nrf_log.h \
  ../../../../../../components/libraries/util/sdk_common.h \
  ../../../../../../components/libraries/util/sdk_os.h \

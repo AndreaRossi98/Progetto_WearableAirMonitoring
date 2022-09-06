@@ -484,7 +484,7 @@ int8_t bme280_init(struct bme280_dev *dev)
             rslt = bme280_get_regs(BME280_CHIP_ID_ADDR, &chip_id, 1, dev);
 
             /* Check for chip id validity */
-            if ((rslt == BME280_OK) && (chip_id == 0x58))   //BME280_CHIP_ID
+            if ((rslt == BME280_OK) && (chip_id == BME280_CHIP_ID))   //0x58
             {
 
                 dev->chip_id = chip_id;
@@ -496,6 +496,7 @@ int8_t bme280_init(struct bme280_dev *dev)
                 {
                     /* Read the calibration data */
                     rslt = get_calib_data(dev);
+
                 }
 
                 break;

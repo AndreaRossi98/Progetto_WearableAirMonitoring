@@ -1,30 +1,14 @@
 package com.example.respirho;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.Manifest;
+//import android.content.pm.PackageManager;     manca da saturation ma non dovrebbe servirmi
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -51,6 +35,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;    //aggiunto da environmental
+
 import com.dsi.ant.AntService;
 import com.dsi.ant.channel.AntChannel;
 import com.dsi.ant.channel.AntChannelProvider;
@@ -65,7 +61,6 @@ import com.dsi.ant.message.fromant.BroadcastDataMessage;
 import com.dsi.ant.message.fromant.ChannelEventMessage;
 import com.dsi.ant.message.fromant.MessageFromAntType;
 import com.dsi.ant.message.ipc.AntMessageParcel;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -84,6 +79,25 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+import java.io.FileInputStream;         //importati da environmental
+import java.io.FileNotFoundException;   //importati da environmental
+import java.io.InputStreamReader;       //importati da environmental
+import java.util.List;                  //importati da environmental
 
 //IMPORT FOR POSITION
 
@@ -108,39 +122,19 @@ import com.google.android.gms.tasks.Task;
 
 import android.location.Location;
 
-import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
+public class saturation_environmental extends AppCompatActivity implements View.OnClickListener {
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
-
-public class EnvironmentalMonitor extends AppCompatActivity implements View.OnClickListener {
-
-    private Button timerrecordingbutton, manualrecordingbutton, initializationbutton_environmental_monitor, gotoswitchonenvironmentalmonitor, gotorecordingbutton_environmentale_monitor;
-    private Button startrecording_manual, stoprecording_manual, downloadfile_manual, gotonewrecording_manual, goback_manual, showvaluesonmaps_manual;
-    private Button startrecording_timer, stoprecording_timer, downloadfile_timer, gotonewrecording_timer, goback_timer, showvaluesonmaps_timer;
+    private Button timerrecordingbutton,manualrecordingbutton,initializationbutton_pulseox_environmental,gotoswitchonpulseox,gotoswitchonenvironmental,gotorecordingbutton_pulseox_environmental;
+    private Button startrecording_manual,stoprecording_manual,downloadfile_manual,gotonewrecording_manual,goback_manual,showvaluesonmaps_manual;
+    private Button startrecording_timer,stoprecording_timer,downloadfile_timer,gotonewrecording_timer,goback_timer,showvaluesonmaps_timer;
     private Button endcalibration_button;
     private ImageButton initialization_checkmark,
-            switchonenvironmentalmonitor_checkmark;
+            switchonpulseox_checkmark,switchonenvironmentalmonitor_checkmark;
 
-    private ProgressBar progressBar_manual, progressBar_timer, progressbar_initialization,
-            switchonenvironmentalmonitor_progressbar, progressbar_idpatient;
-    private TextView status_manual, status_timer, status_initialization, bottom_initialization,
-            switch_on_environmentalmonitor, manual_recording_filename, timer_recording_filename;
+    private ProgressBar progressBar_manual, progressBar_timer,progressbar_initialization,
+            switchonpulseox_progressbar,switchonenvironmentalmonitor_progressbar,progressbar_idpatient;
+    private TextView status_manual,status_timer,status_initialization,bottom_initialization,
+            switch_on_pulseox,switch_on_environmentalmonitor,manual_recording_filename,timer_recording_filename;
     private TextView timer;
     private TextView clickhereforcalibration;
     private TextInputLayout layout_insert_setduration, layout_insert_setinforec;
@@ -148,7 +142,23 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private CountDownTimer countDownTimer;
     private Chronometer chronometer;
     private ViewStub viewStub;
-    private View inflated_initialization, inflated_switch_on_sensors, inflated_select_recording, inflated_calibration, inflated_manual_rec, inflated_timer_rec, inflated_updateinfo, inflated_displaydata;
+    private View inflated_initialization,inflated_switch_on_sensors,inflated_select_recording,inflated_calibration,inflated_manual_rec,inflated_timer_rec,inflated_updateinfo,inflated_displaydata;
+
+    //update info recording
+    private RadioGroup posture_buttons;
+    private RadioButton posture_selected;
+    private TextInputLayout layout_insert_addinforec;
+    private TextInputEditText insert_addinforec;
+    private TextView inforecording;
+    private Button updateinfo;
+    private String posture= "None";
+    private String oldposture = "None";
+
+    //demo download layout
+    private TextView id_patient,info_patient;
+    private ImageButton telephone, storage,error_idpatient, exclamation_point_idpatient, checkmark_idpatient;
+    private ImageView lowbattery_idpatient;
+    private Button helpbutton;
 
     //PER STAMPARE A SCHERMO
     private TextView temperature_output;
@@ -162,26 +172,10 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private TextView PM2p5_output;
     private TextView PM10_output;
 
-    //update info recording
-    private RadioGroup posture_buttons;
-    private RadioButton posture_selected;
-    private TextInputLayout layout_insert_addinforec;
-    private TextInputEditText insert_addinforec;
-    private TextView inforecording;
-    private Button updateinfo;
-    private String posture = "None";
-    private String oldposture = "None";
-
-    //demo download layout
-    private TextView id_patient, info_patient;
-    private ImageButton telephone, storage, error_idpatient, exclamation_point_idpatient, checkmark_idpatient;
-    private ImageView lowbattery_idpatient;
-    private Button helpbutton;
-
     //STORAGE variables
     private StorageReference mStorageRef;
     //recycler view for storage from firebase storage
-    public ArrayList<Item_StorageFiles> item_storage_files = null;
+    public ArrayList<Item_StorageFiles> item_storage_files=null;
     private RecyclerView recyclerview_storage_files;
     private Adapter_PatientData adapter_storage_files;
     private RecyclerView.LayoutManager layoutManager_storage_files;
@@ -190,26 +184,28 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     //dialog storage storage
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialogDownloadStorage;
-    private Button update_storage_files, cancel_storage_files;
+    private Button update_storage_files,cancel_storage_files;
     private ProgressBar progressbar_storage_files;
     private TextView status_storage_files;
 
     //file variables
     public File fileInt;
-    public String intPath, extPath;
+    public String intPath,extPath;
 
     //flag for the recording
-    public boolean flag_stoprec = false;
+    public boolean flag_stoprec=false;
 
     //flag to manage inflated views
-    private boolean flag_manual_rec = false;
-    private boolean flag_timer_rec = false;
+    private boolean flag_manual_rec=false;
+    private boolean flag_timer_rec=false;
 
     //flag to manage drawer while recording
-    private boolean flag_home = false;
-    private boolean flag_support = false;
-    private boolean flag_logout = false;
-    private boolean flag_closeapp = false;
+    private boolean flag_home=false;
+    private boolean flag_support=false;
+    private boolean flag_logout=false;
+    private boolean flag_closeapp=false;
+
+    //flag to manage maps
     private boolean show_maps_flag = false;
     private boolean flag_null_line = false;
 
@@ -217,20 +213,19 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public boolean flag_filetoosmall = false;
 
     //backup variables
-    private long size_interval_backupfile = 1000; //initialize at each acquisition to 1000 (1 Mb)
+    private long size_interval_backupfile=1000; //initialize at each acquisition to 1000 (1 Mb)
 
-    private String inforecordingtext = "";
-    private String old_inforecordingtext = "";
+    private String inforecordingtext="";
+    private String old_inforecordingtext="";
 
     //DEFINES
     private static final float THRESHOLD_BATTERY = (float) 2.2;
-    private static final int THRESHOLD_WATCHDOG_TIMER = 150; //DEFAULT: 30      //provo ad aumentare?
+    private static final int THRESHOLD_WATCHDOG_TIMER = 150; //DEFAULT: 30
     private static final int SIZE_INTERVAL_BACKUPFILE = 1000; //1000, each 1 Mb
 
-    //drawer
-    private ImageButton idicon, arrowback;
+    private ImageButton idicon,arrowback;
     private DrawerLayout drawerLayout;
-    private RelativeLayout drawer_home, drawer_support, drawer_logout, drawer_closeapp;
+    private RelativeLayout drawer_home, drawer_support,drawer_logout,drawer_closeapp;
 
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -240,49 +235,57 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     Toast toast;
 
 
-    public final String LOG_TAG = EnvironmentalMonitor.class.getSimpleName();
+    public final String LOG_TAG = saturation_environmental.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_ENVIRONMENTAL = 32767;        //65535;
+    private static final int USER_PERIOD_SATURATION = 32768; // 3277; 10 Hz
+    private static final int USER_PERIOD_ENVIRONMENTAL = 32768; // 3277; 10 Hz          //DA CAMBIARE IN BASE A COME DECIDO
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound = false;
     private AntService mAntRadioService = null;
     public AntChannelProvider antChannelProvider;
+    public AntChannel antChannelIMUs;
     public AntChannel antChannelEnvironmental;
+    public ChannelType antChannelIMUs_type;
     public ChannelType antChannelEnvironmental_type;
     public AntMessage antMessage;
-    public MessageFromAntType messagetype;
+    public MessageFromAntType messagetype; //
     public boolean mIsOpen = false;
-
-    public ChannelId channelId_smartphone = new ChannelId(2, 3, 2, true); //diverso da DEFAULT: 2,2,2, true
+    public ChannelId channelId_smartphone = new ChannelId(2,2,2, true); //DEFAULT: 2,2,2, true
+    public ChannelId channelId_smartphone_environmental = new ChannelId(2, 3, 2, true); //diverso da DEFAULT: 2,2,2, true
 
     byte[] payLoad;
+
+    byte[] payLoad10 = {0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04}; // payload to call unit 1 for the first time
 
     byte[] payLoad6 = {0x06, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06}; // payload to call Environmental Monitor unit for the first time
 
     byte[] payLoad4 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to synchronize the three units and to stop checking after calibration
 
-    byte[] payLoad5 = {0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 6 during acquisition
+    byte[] payLoad5 = {0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 4 during acquisition
 
-
+    //manca un payload perchè ha setsso nome del saturation
+//TODO-- end SONO ARRIVATO QUA
     byte[] payLoad8 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0xFF}; // payload to calibrate and do movements, when sensors leds are OFF send payload 4 and go on
     byte[] payLoad9 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0x80}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
 
     public String string0 = "[00][00][00][00][00][00][00][00]";
+    public String string4 = "[04][04][04][04][04][04][04]";//message from slave 4 for check
     public String string6 = "[06][06][06][06][06][06][06]"; //message from slave 6 for check
-    public String dummy_unit6 = "[04],[00],[FF],[00],[00],[00],[00],[00],";
+
+    public String dummy_unit4 = "[04],[00],[FF],[00],[00],[00],[00],[00],";
 
     public String startrec_time = null;
 
     public int state;
-    public boolean connected6 = false;
+    public boolean connected4 = false;
 
     //STATES
     private static final int INITIALIZATION = 0;
-    private static final int CONNECT6 = 1;
+    private static final int CONNECT4 = 1;
     private static final int SYNCHRONIZATION_RESUME = 4;
     private static final int START = 5;
-    private static final int CALL6 = 6;
+    private static final int CALL4 = 6;
     private static final int CALIBRATION = 9; //payload 8
     private static final int STOP = 10; //stop and resume, payload 9
     private static final int RECONNECTION = 11;
@@ -292,12 +295,12 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private static final int QUIT_RECORDING = 12; //quit recording
 
     BroadcastDataMessage broadcastDataMessage;
-    public String current_default, current, day, orario;
+    public String current_default,current,day;
     //save the old message to see if there's data loss
     public String old_messageContentString_unit = null;
 
     //watchdog timer to check if the sensors are receiving messages
-    public int[] watchdog_timer = {0};
+    public int [] watchdog_timer = {0};
     public int sumWt = 0;
     public boolean flag_watchdog_timer_overflow = true;
     public boolean flag_reconnection = false;
@@ -306,84 +309,54 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public String sensors_disconnection_header = "You have to go back initialize the sensors because in the last recording a problem occurred with the communication.\n\nSwitch OFF the sensors and then press YES";
 
     private String sensorsDisconnectedText;
-    private static String sensorDisconnected6 = "";
+    private static String sensorDisconnected4="";
 
-    private static final int UNIT6 = 0;
-
-    //dichiaro qua variabili per location
-    public FusedLocationProviderClient fusedLocationClient;
-    public LocationCallback locationCallback;
-    public LocationRequest locationRequest;
-    public Location location;
-    public double latitude = 0.0, longitude = 0.0;
-
-    //File management       aggiunto dopo per implementare l'aggiunta dei ounti su maps (richiede accesso ai file con tutti i dati salvati)
-    public File root; //root path of the file
-    public File file; //file path
-    public FileWriter writer;
-    public String file_name; //name of the file
-
-    //Activity recognition & map services       //non so se serve
-//private GoogleApiClient apiClient;  //forse non serve, serve nella definizione della funzione?
-    private LocalBroadcastManager localBroadcastManager;
-    private BroadcastReceiver localActivityReceiver;
-    public String activity;// = "STILL"; //activity level of the user (being still, walking or running)
-    public SupportMapFragment mapFragment;
-
-
-    int latitudine;
-    int longitudine;
-
-//activity recognition al momento non lo metto, non mi serve ma dopo ci si guarda
-
+    private static final int UNIT4 = 0;
+    //TODO-- end ANT variables
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.environmental_monitor);
+        setContentView(R.layout.saturation);
 
         //FILES INT AND EXT INITIALIZATION
         //path where the txt file is saved internally before downloading
-        intPath = getApplicationContext().getFilesDir().getAbsolutePath();
+        intPath=getApplicationContext().getFilesDir().getAbsolutePath();
 
         //path where the root of the txt file is located on the smartphone
-        extPath = getExternalFilesDir(null).getAbsolutePath();
+        extPath=getExternalFilesDir(null).getAbsolutePath();
 
-        File folderInt = new File(intPath);
+        File folderInt=new File(intPath);
 
-        fileInt = new File(folderInt, "demo");
+        fileInt=new File(folderInt,"demo");
 
         //STORAGE FILES INITIALIZATION
         //always clear the storage list and reload it
-        item_storage_files = new ArrayList<>();
+        item_storage_files=new ArrayList<>();
 
         //initialize the initialization view
         viewStub = (ViewStub) findViewById(R.id.initialization_toinclude_1);
-        viewStub.setLayoutResource(R.layout.initialization_environmental_monitor);
+        viewStub.setLayoutResource(R.layout.initialization_pulse_ox);
         inflated_initialization = viewStub.inflate();
 
+        //TODO- move this initialization elsewhere
         //update info layout initialization
         viewStub = (ViewStub) findViewById(R.id.updateinforecording_toinclude);
-        viewStub.setLayoutResource(R.layout.updateinfo_recording_environmental_monitor);
+        viewStub.setLayoutResource(R.layout.updateinfo_recording);
         inflated_updateinfo = viewStub.inflate();
 
-        viewStub = (ViewStub) findViewById(R.id.display_data_toinclude);
-        viewStub.setLayoutResource(R.layout.display_data_environmental_monitor);
-        inflated_displaydata = viewStub.inflate();
+        posture_buttons=(RadioGroup) inflated_updateinfo.findViewById(R.id.posture_buttons);
 
+        layout_insert_addinforec=(TextInputLayout) inflated_updateinfo.findViewById(R.id.layout_insert_addinforec);
+        insert_addinforec=(TextInputEditText) inflated_updateinfo.findViewById(R.id.insert_addinforec);
 
-//        posture_buttons=(RadioGroup) inflated_updateinfo.findViewById(R.id.posture_buttons);
-
-        layout_insert_addinforec = (TextInputLayout) inflated_updateinfo.findViewById(R.id.layout_insert_addinforec);
-        insert_addinforec = (TextInputEditText) inflated_updateinfo.findViewById(R.id.insert_addinforec);
-
-        updateinfo = (Button) inflated_updateinfo.findViewById(R.id.updateinfo);
+        updateinfo=(Button) inflated_updateinfo.findViewById(R.id.updateinfo);
         updateinfo.setOnClickListener(this);
 
-        inforecording = (TextView) inflated_updateinfo.findViewById(R.id.inforecording);
+        inforecording=(TextView) inflated_updateinfo.findViewById(R.id.inforecording);
 
         inflated_updateinfo.setVisibility(View.GONE);
-        inflated_displaydata.setVisibility(View.GONE);
+        //TODO- end move this initialization elsewhere
 
         helpbutton = (Button) findViewById(R.id.helpbutton);
         helpbutton.setOnClickListener(this);
@@ -394,100 +367,87 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         storage = (ImageButton) findViewById(R.id.storage);
         storage.setOnClickListener(this);
 
-        id_patient = (TextView) findViewById(R.id.card);
+        id_patient=(TextView) findViewById(R.id.card);
         id_patient.setText(GlobalVariables.string_idpatient);
 
-        info_patient = (TextView) findViewById(R.id.info);
+        info_patient=(TextView) findViewById(R.id.info);
         info_patient.setText("INFO PATIENT: \n" + GlobalVariables.string_infopatient);
 
         //WARNINGS
-        lowbattery_idpatient = (ImageView) findViewById(R.id.lowbattery_idpatient);
+        lowbattery_idpatient =(ImageView) findViewById(R.id.lowbattery_idpatient);
         lowbattery_idpatient.setOnClickListener(this);
         lowbattery_idpatient.setVisibility(View.GONE);
-
-        error_idpatient = (ImageButton) findViewById(R.id.error_idpatient);
+        error_idpatient=(ImageButton) findViewById(R.id.error_idpatient);
         error_idpatient.setVisibility(View.GONE);
-
-        exclamation_point_idpatient = (ImageButton) findViewById(R.id.exclamation_point_idpatient);
+        exclamation_point_idpatient=(ImageButton) findViewById(R.id.exclamation_point_idpatient);
         exclamation_point_idpatient.setOnClickListener(this);
         exclamation_point_idpatient.setVisibility(View.GONE);
-
-        checkmark_idpatient = (ImageButton) findViewById(R.id.checkmark_idpatient);
+        checkmark_idpatient=(ImageButton) findViewById(R.id.checkmark_idpatient);
         checkmark_idpatient.setOnClickListener(this);
         checkmark_idpatient.setVisibility(View.GONE);
-
-        progressbar_idpatient = (ProgressBar) findViewById(R.id.progressbar_idpatient);
+        progressbar_idpatient=(ProgressBar) findViewById(R.id.progressbar_idpatient);
         progressbar_idpatient.setVisibility(View.GONE);
 
-        initializationbutton_environmental_monitor = (Button) findViewById(R.id.initializationbutton_environmental_monitor);
-        initializationbutton_environmental_monitor.setOnClickListener(this);
+        initializationbutton_pulseox_environmental=(Button) findViewById(R.id.initializationbutton_pulse_ox);
+        initializationbutton_pulseox_environmental.setOnClickListener(this);
 
-        gotoswitchonenvironmentalmonitor = (Button) findViewById(R.id.gotoswitchonenvironmentalmonitor);
-        gotoswitchonenvironmentalmonitor.setOnClickListener(this);
+        gotoswitchonpulseox=(Button) findViewById(R.id.gotoswitchonpulseox);
+        gotoswitchonpulseox.setOnClickListener(this);
 
-        progressbar_initialization = (ProgressBar) findViewById(R.id.progressbar_initialization);
-        status_initialization = (TextView) findViewById(R.id.status_initialization);
-        bottom_initialization = (TextView) findViewById(R.id.bottom_initialization);
+        progressbar_initialization=(ProgressBar) findViewById(R.id.progressbar_initialization);
+        status_initialization=(TextView) findViewById(R.id.status_initialization);
+        bottom_initialization=(TextView) findViewById(R.id.bottom_initialization);
 
-        initialization_checkmark = (ImageButton) findViewById(R.id.initialization_checkmark);
+        initialization_checkmark=(ImageButton) findViewById(R.id.initialization_checkmark);
 
-//PER STAMPARE A SCHERMO
-        temperature_output = (TextView) findViewById(R.id.temperature_value);
-        humidity_output = (TextView) findViewById(R.id.humidity_value);
-        pressure_output = (TextView) findViewById(R.id.pressure_value);
-        CO2_output = (TextView) findViewById(R.id.CO2_value);
-        VOC_output = (TextView) findViewById(R.id.VOC_value);
-        NO2_output = (TextView) findViewById(R.id.NO2_value);
-        CO_output = (TextView) findViewById(R.id.CO_value);
-        PM1p0_output = (TextView) findViewById(R.id.PM1_0_value);
-        PM2p5_output = (TextView) findViewById(R.id.PM2_5_value);
-        PM10_output = (TextView) findViewById(R.id.PM10_value);
-
+        //TODO-- ANT
         //BINDING TO THE ANT RADIO SERVICE
         serviceIsBound = AntService.bindService(this, mAntRadioServiceConnection);
-        Log.e(LOG_TAG, "Ant Service is bound: " + serviceIsBound);
-        Log.e(LOG_TAG, "Version name: " + AntService.getVersionName(this));
+        Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
+        Log.e(LOG_TAG, "Version name: "+ AntService.getVersionName(this));
+        //TODO-- end ANT
 
-        drawerLayout = findViewById(R.id.drawer_layout);
+        //TODO-- drawer
+        drawerLayout=findViewById(R.id.drawer_layout);
 
-        drawer_home = findViewById(R.id.drawer_home);
+        drawer_home=findViewById(R.id.drawer_home);
         drawer_home.setOnClickListener(this);
 
-        drawer_support = findViewById(R.id.drawer_support);
+        drawer_support =findViewById(R.id.drawer_support);
         drawer_support.setOnClickListener(this);
 
-        drawer_logout = findViewById(R.id.drawer_logout);
+        drawer_logout=findViewById(R.id.drawer_logout);
         drawer_logout.setOnClickListener(this);
 
-        drawer_closeapp = findViewById(R.id.drawer_closeapp);
+        drawer_closeapp=findViewById(R.id.drawer_closeapp);
         drawer_closeapp.setOnClickListener(this);
 
-        idicon = findViewById(R.id.idicon);
+        idicon=findViewById(R.id.idicon);
         idicon.setOnClickListener(this);
 
-        arrowback = findViewById(R.id.arrowback);
+        arrowback=findViewById(R.id.arrowback);
         arrowback.setOnClickListener(this);
 
-        final TextView drawerMail = (TextView) findViewById(R.id.drawermail);
-        final TextView drawerFullname = (TextView) findViewById(R.id.drawerfullname);
+        final TextView drawerMail=(TextView) findViewById(R.id.drawermail);
+        final TextView drawerFullname=(TextView) findViewById(R.id.drawerfullname);
 
         //check the user info to display on drawer
-        mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users");
+        mAuth=FirebaseAuth.getInstance();
+        user=mAuth.getCurrentUser();
+        reference= FirebaseDatabase.getInstance().getReference("Users");
 
         //if the user is not null
-        if (user != null) {
-            userID = user.getUid();
+        if(user!=null){
+            userID=user.getUid();
 
             reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                    User userDrawer = snapshot.getValue(User.class);
+                    User userDrawer=snapshot.getValue(User.class);
 
-                    if (userDrawer != null) {
-                        String mail = userDrawer.mail;
-                        String fullname = userDrawer.fullname;
+                    if(userDrawer !=null){
+                        String mail=userDrawer.mail;
+                        String fullname=userDrawer.fullname;
                         drawerMail.setText(mail);
                         drawerFullname.setText(fullname);
                     }
@@ -499,405 +459,70 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 }
             });
         }
-
-        //LOCATION PROVIDER
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        locationCallback = new LocationCallback() {
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                if (locationResult != null) {
-                    location = locationResult.getLastLocation();
-                    latitude = location.getLatitude();
-                    longitude = location.getLongitude();
-                }
-            }
-        };
-
-        locationRequest = LocationRequest.create();
-        locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(1000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-
+        //TODO-- end drawer
     }
 
-    //variabili per la gestione dei pacchetti e scrittura dei dati su file
-    int pacchetto_numero_ricevuto;   //numero incrementale del pacchetto che arriva
-    int numero_pacchetto = 1;
-    int pacchetto_P = 0;   //numero del pacchetto P arrivato
-    int flag_dati_scritti = 0;
-    int flag_location = 0;
-    int count_P1 = 0;
-    int count_P2 = 0;
-    int count_P3 = 0;
-    //variabili per contenere i valori inviati
-    float temperature = 0;
-    float humidity = 0;
-    int pressure = 0;
-    int VOC = 0;
-    int CO2 = 0;
-    float NO2 = 0;
-    float CO = 0;
-    float battery = 0;
-    int acceleration = 0;
-    float PM1p0 = 0;
-    float PM2p5 = 0;
-    float PM10p0 = 0;
-    float partial_calculation = 0; //variabile usata per fare calcoli parziali
-    String messaggio_salvato;
-
-    //variabili per prendere contenuto pacchetti ricevuti       probabilmente non mi servono più
-    String messageContentString_temperature = "";
-    String messageContentString_humidity = "";
-    String messageContentString_pressure = "";
-    String messageContentString_CO2 = "";
-    String messageContentString_VOC = "";
-    String messageContentString_NO2 = "";
-    String messageContentString_CO = "";
-    String messageContentString_PM1p0 = "";
-    String messageContentString_PM2p5 = "";
-    String messageContentString_PM10 = "";
-
+    //TODO-- ANT
 
     public IAntChannelEventHandler eventCallBack = new IAntChannelEventHandler() {
 
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onReceiveMessage(MessageFromAntType messageFromAntType, AntMessageParcel antMessageParcel) {
-            Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); //hex
-            switch (messageFromAntType) {
+
+            switch(messageFromAntType){
 
                 case BROADCAST_DATA: //HERE ARRIVES ALL THE MESSAGES FROM THE SENSORS
-
-                    Log.e(LOG_TAG, "CHECK Rx: "); //hex
                     //save time
-                    day = LocalDateTime.now().toLocalDate().toString(); //datetime
+                    day= LocalDateTime.now().toLocalDate().toString(); //datetime
 
                     //save time to show
-                    SimpleDateFormat format = new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
-                    current = format.format(new Date().getTime());
+                    SimpleDateFormat format=new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
+                    current=format.format(new Date().getTime());
 
                     String messageContentString_default = antMessageParcel.getMessageContentString(); //9 bytes, first is always [00] (to erase)
 
                     //remove the first byte always equal to [00]
                     //OFFICIAL MESSAGE messageContentString
-                    String messageContentString = messageContentString_default.substring(4); //8 bytes, correct. Ex:"[03][5C][00][00][62][2E][3C][E8]"
+                    String messageContentString=messageContentString_default.substring(4); //8 bytes, correct. Ex:"[03][5C][00][00][62][2E][3C][E8]"
 
                     //the following string is used to be uploaded on firebase and to be written on the file .txt, it has the same format of the messages needed for the ANALISI_SEGNALE_FAST.py
                     //example output format: [02],[5b],[00],[00],[16],[c2],[5e],[cb],
-                    String msg = messageContentString.substring(0, 4) + ","
-                            + messageContentString.substring(4, 8) + ","
-                            + messageContentString.substring(8, 12) + ","
-                            + messageContentString.substring(12, 16) + ","
-                            + messageContentString.substring(16, 20) + ","
-                            + messageContentString.substring(20, 24) + ","
-                            + messageContentString.substring(24, 28) + ","
-                            + messageContentString.substring(28, 32) + ",";
-                    Log.e(LOG_TAG, "stringa " + msg);
-toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
-
-//risultato = Float.parseFloat(prova);
-//Toast.makeText(getApplicationContext(), "stringa" +prova, Toast.LENGTH_LONG).show();
+                    String msg= messageContentString.substring(0,4) + ","
+                            + messageContentString.substring(4,8) + ","
+                            + messageContentString.substring(8,12) + ","
+                            + messageContentString.substring(12,16) + ","
+                            + messageContentString.substring(16,20) + ","
+                            + messageContentString.substring(20,24) + ","
+                            + messageContentString.substring(24,28) + ","
+                            + messageContentString.substring(28,32) + ",";
+                    //TODO - end
 
                     //split the bytes
                     String[] messageContentString_split = messageContentString.split("]"); //ex: [01
                     //get the first byte to find the unit and remove the open square bracket
-                    String messageContentString_unit = messageContentString_split[0].substring(1); //ex: 01
+                    String messageContentString_unit=messageContentString_split[0].substring(1); //ex: 01
 
                     //if the message is received, reset watchdog timer of the unit received
-                    String unitReceived_default = messageContentString_unit.substring(1); //ex: 1 (String)
-                    int unitReceived = Integer.parseInt(unitReceived_default); //ex: 1 (int)
+                    String unitReceived_default=messageContentString_unit.substring(1); //ex: 1 (String)
+                    int unitReceived=Integer.parseInt(unitReceived_default); //ex: 1 (int)
                     resetWatchdogTimer(0); //we subtract 1 to match the array indexes
+
                     //if ALL the units are connected, the next messages will be the recording data
-                    if (connected6) {
-
-//bisognerebbe aggiungere controllo che si abbia il permesso, ma mi da errore con il this, non so cosa sostituire (comunque cosi funziona)
-                        //non va bene farlo qua, ma devo farlo sotto
-/*                        Task<Location> task = fusedLocationClient.getLastLocation();
-                        while(!task.isComplete());
-                        location = task.getResult();
-
-                        if (location == null)
-                            toast.makeText(getApplicationContext(),"Unable to find last location.", Toast.LENGTH_SHORT).show();
-                        else { //actually open the channel only if last location was found
-                            latitude = location.getLatitude();
-                            longitude = location.getLongitude();
-                        }*/
-//SPOSTO QUA SOPRA
-                        /*
-                         * considero solo i due bit più significativi del primo byte arrivato
-                         * per distinguere il numero del pacchetto
-                         */
-                        /*
-                        pacchetto_numero = 6    --> è il pacchetto vecchio per connettersi, ignoralo
-                        pacchetto_P = 1    --> è il pacchetto P1
-                        pacchetto_P = 2    --> è il pacchetto P2
-                        pacchetto_P = 3    --> è il pacchetto P3
-                         */
-
-                        pacchetto_numero_ricevuto = convertToInt(messageContentString_split[0].substring(1));
-                        pacchetto_P = pacchetto_numero_ricevuto >> 6;
-                        pacchetto_numero_ricevuto = pacchetto_numero_ricevuto - (pacchetto_P << 6);
-
-                        if (numero_pacchetto != pacchetto_numero_ricevuto){
-                            if (flag_dati_scritti == 1){
-                                numero_pacchetto = pacchetto_numero_ricevuto;
-                                flag_dati_scritti = 0;
-                            }
-                            else{
-                                //salvo i valori su file e firebase
-                                //gestire che alcuni dati sono persi
-                                numero_pacchetto = pacchetto_numero_ricevuto;
-                                //azzero le flag dei pacchetti P arrivati
-                            }
-
-                            count_P1 = 0;
-                            count_P2 = 0;
-                            count_P3 = 0;
-                            flag_location = 0;
-                        }
-                        if (numero_pacchetto == pacchetto_numero_ricevuto ){
-                            //la prima volta che entro in questo if, devo prendere latitudine e longitudine
-                            if ( flag_location == 0){
-                                orario = format.format(new Date().getTime());
-                                Task<Location> task = fusedLocationClient.getLastLocation();
-                                while(!task.isComplete());
-                                location = task.getResult();
-
-                                if (location == null)
-                                    toast.makeText(getApplicationContext(),"Unable to find last location.", Toast.LENGTH_SHORT).show();
-                                else { //actually open the channel only if last location was found
-                                    latitude = location.getLatitude();
-                                    longitude = location.getLongitude();
-                                }
-
-                                flag_location = 1;  //solo la prima volta rilevo le coordinate
-                            }
-                            switch (pacchetto_P){
-                                case 1:
-
-                                    count_P1 ++;
-                                    if (count_P1 == 1) {
-                                        //ricostruisco i dati in variabili
-                                        //Temperature
-                                        partial_calculation = (convertToInt(messageContentString_split[1].substring(1)) - 30);
-                                        if (partial_calculation > 0){
-                                            temperature = partial_calculation + ((float)convertToInt(messageContentString_split[2].substring(1))/100);
-                                        }
-                                        else{
-                                            temperature = partial_calculation - ((float)convertToInt(messageContentString_split[2].substring(1))/100);
-                                        }
-                                        //humidity
-                                        humidity = convertToInt(messageContentString_split[3].substring(1)) + ((float)convertToInt(messageContentString_split[4].substring(1))/100);
-                                        //pressure
-                                        pressure = (convertToInt(messageContentString_split[5].substring(1)) << 16) + (convertToInt(messageContentString_split[6].substring(1)) <<8) + convertToInt(messageContentString_split[7].substring(1));
-
-                                        //mostri dati a schermo
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                temperature_output.setText(String.valueOf(temperature));
-                                                humidity_output.setText(String.valueOf(humidity));
-                                                pressure_output.setText(String.valueOf(pressure));
-//String finalMessageContentString_VOC = messageContentString_VOC;
-//VOC_output.setText(finalMessageContentString_VOC);        può essere alternativa per problema a gestire i numeri con la virgola
-                                            }
-                                        });
-
-                                    }
-                                    break;
-
-                                case 2:
-
-                                    count_P2 ++;
-                                    if (count_P2 == 1) {
-                                        //ricostruisco i dati in variabili
-                                        //VOC
-                                        VOC = convertToInt(messageContentString_split[1].substring(1)) + (convertToInt(messageContentString_split[2].substring(1)) <<8);
-                                        //CO2
-                                        CO2 = convertToInt(messageContentString_split[3].substring(1)) + (convertToInt(messageContentString_split[4].substring(1)) <<8);
-                                        //NO2 bisogna riportare la funzione di conversione da bit a valore dopo aver fatto la calibrazione
-                                        NO2 = convertToInt(messageContentString_split[5].substring(1));
-                                        //CO
-                                        CO = convertToInt(messageContentString_split[6].substring(1));
-                                        //Batteria
-                                        battery = convertToInt(messageContentString_split[7].substring(1));
-
-                                        //mostri dati a schermo
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                VOC_output.setText(String.valueOf(VOC));
-                                                CO2_output.setText(String.valueOf(CO2));
-                                                CO_output.setText(String.valueOf(CO));
-                                                NO2_output.setText(String.valueOf(NO2));
-                                            }
-                                        });
-                                    }
-                                    break;
-
-                                case 3:
-
-                                    count_P3 ++;
-                                    if (count_P3 == 1) {
-                                        //ricostruisco i dati in variabili
-                                        //acceleration
-                                        acceleration = convertToInt(messageContentString_split[1].substring(1));
-                                        //PM1.0
-                                        PM1p0 = convertToInt(messageContentString_split[2].substring(1)) + (convertToInt(messageContentString_split[3].substring(1)) <<8);
-                                        //PM2.5
-                                        PM2p5 = convertToInt(messageContentString_split[4].substring(1)) + (convertToInt(messageContentString_split[5].substring(1)) <<8);
-                                        //PM10
-                                        PM10p0 = convertToInt(messageContentString_split[6].substring(1)) + (convertToInt(messageContentString_split[7].substring(1)) <<8);
-
-                                        //mostri dati a schermo
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                PM1p0_output.setText(String.valueOf(PM1p0));
-                                                PM2p5_output.setText(String.valueOf(PM2p5));
-                                                PM10_output.setText(String.valueOf(PM10p0));
-                                            }
-                                        });
-                                    }
-                                    break;
-
-                            }
-                            if (count_P1 > 0 && count_P2 > 0 && count_P3 > 0 && flag_dati_scritti == 0){ //condizione: almeno un pacchetto P per ognuno è arrivato
-                                //preparo messaggio da salvare
-                                messaggio_salvato = 6 + ";" +   //per indicare pacchetto di environmental monitor
-                                                    temperature + ";" +
-                                                    humidity + ";" +
-                                                    pressure + ";" +
-                                                    VOC + ";" +
-                                                    CO2 + ";" +
-                                                    NO2 + ";" +
-                                                    CO + ";" +
-                                                    PM1p0 + ";" +
-                                                    PM2p5 + ";" +
-                                                    PM10p0 + ";" +
-                                                    acceleration + ";" +
-                                                    count_P1 + ";" +
-                                                    count_P2 + ";" +
-                                                    count_P3 + ";" +
-                                                    orario + ";" +
-                                                    latitude + ";" +
-                                                    longitude + ";";    //valore batteria lo salvo?
-
-
-    toast.makeText(getApplicationContext(), "scrivo su file" , Toast.LENGTH_SHORT).show();
-                                //scrivo su firebase
-                                //write the messages
-                                //call the firebase class to upload data on firebase
-                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                writingDataToFirebase.mainFirebase(messaggio_salvato,startrec_time);
-                                //scrivo su file
-                                WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                writingDataToFile.mainFile(messaggio_salvato, current, day, intPath,extPath);
-
-                                fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
-
-                                flag_dati_scritti = 1;
-                            }
-
-                        }
-
-
-/*
-                        //write the message to firebase and to file
+                    if(connected4){
+                        //TODO- write the message to firebase and to file
                         //write the messages
                         //call the firebase class to upload data on firebase
                         WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                        writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
+                        writingDataToFirebase.mainFirebase(msg+current,startrec_time);
 
                         //call the file class to save data in a txt file
                         WritingDataToFile writingDataToFile = new WritingDataToFile();
-                        writingDataToFile.mainFile(msg+current+","+latitude+","+longitude, current, day, intPath,extPath);
+                        writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
 
                         fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
-*/
-/*                        String messageContentString_temperature = "";
-                        String messageContentString_humidity = "";
-                        String messageContentString_pressure = "";
-                        String messageContentString_CO2 = "";
-                        String messageContentString_VOC = "";
-                        String messageContentString_NO2 = "";
-                        String messageContentString_CO = "";
-                        String messageContentString_PM1p0 = "";
-                        String messageContentString_PM2p5 = "";
-                        String messageContentString_PM10 = "";
-*/
 
-/*
-                        if(pacchetto_P == 1) {
-                            Toast.makeText(getApplicationContext(), "Pacchetto P1", Toast.LENGTH_LONG).show();
-
-                            messageContentString_temperature = messageContentString_split[1].substring(1);
-                            messageContentString_humidity = messageContentString_split[2].substring(1);
-                            messageContentString_pressure = messageContentString_split[3].substring(1);
-                            messageContentString_VOC = messageContentString_split[4].substring(1);
-                            //;
-                            int temperature = convertToInt(messageContentString_temperature);
-                            int humidity = convertToInt(messageContentString_humidity);
-                            int pressure = convertToInt(messageContentString_pressure);
-                            int VOC = convertToInt(messageContentString_VOC);
-
-//double doubleValue = Double.parseDouble(messageContentString_VOC);
-
-                            //to change the UI we have to put codes in the runOnUiThread
-                            String finalMessageContentString_VOC = messageContentString_VOC;
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    //PER STAMPARE A SCHERMO
-                                    temperature_output.setText(String.valueOf(temperature));
-                                    humidity_output.setText(String.valueOf(humidity));
-                                    pressure_output.setText(String.valueOf(pressure));
-                                    VOC_output.setText(String.valueOf(VOC));
-//VOC_output.setText(finalMessageContentString_VOC);        può essere alternativa per problema a gestire i numeri con la virgola
-                                }
-                            });
-                        }
-
-                        else if(pacchetto_P == 2) {
-                            Toast.makeText(getApplicationContext(), "Pacchetto P2", Toast.LENGTH_LONG).show();
-                            messageContentString_CO2 = messageContentString_split[1].substring(1);
-                            messageContentString_CO = messageContentString_split[2].substring(1);
-                            messageContentString_NO2 = messageContentString_split[3].substring(1);
-                            messageContentString_PM1p0 = messageContentString_split[4].substring(1);
-                            messageContentString_PM2p5 = messageContentString_split[5].substring(1);
-                            messageContentString_PM10 = messageContentString_split[6].substring(1);
-
-                            int CO2 = convertToInt(messageContentString_CO2);
-                            int CO = convertToInt(messageContentString_CO);
-                            int NO2 = convertToInt(messageContentString_NO2);
-                            int PM1p0 = convertToInt(messageContentString_PM1p0);
-                            int PM2p5 = convertToInt(messageContentString_PM2p5);
-                            int PM10 = convertToInt(messageContentString_PM10);
-
-                            //to change the UI we have to put codes in the runOnUiThread
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-//PER STAMPARE A SCHERMO
-                                    CO2_output.setText(String.valueOf(CO2));
-                                    CO_output.setText(String.valueOf(CO));
-                                    NO2_output.setText(String.valueOf(NO2));
-                                    PM1p0_output.setText(String.valueOf(PM1p0));
-                                    PM2p5_output.setText(String.valueOf(PM2p5));
-                                    PM10_output.setText(String.valueOf(PM10));
-                                }
-                            });
-                        }
-
-                        else if(pacchetto_P == 3) {
-                            Toast.makeText(getApplicationContext(), "Pacchetto P3", Toast.LENGTH_LONG).show();
-                        }
-                        else{
-                        }
-*/
-
-                        //every now and then save the file on firebase for backup, later savings will over write the previous one
+                        //TODO - every now and then save the file on firebase for backup, later savings will over write the previous one
                         //save the file each 1 MB size (around 10 minutes)
                         long fileIntSizeBytes_backup=fileInt.length();
                         long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
@@ -910,27 +535,28 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         }
 
 
+
                     }else { //if the unit is NOT connected, check each one in the "switch on sensors" layout
 
                         Log.e(LOG_TAG, "CHECK Rx: " + messageContentString); //hex
 
-                        if(messageContentString.contains(string6)){
-                            connected6 = true;
-                            //GlobalVariables.flag_connected6=true;
-                            Log.e(LOG_TAG,"1 is:" + connected6);
-                            state = CONNECT6;   //prova a togliere questa
+                        if(messageContentString.contains(string4)){
+                            connected4 = true;
+                            //GlobalVariables.flag_connected4=true;
+                            Log.e(LOG_TAG,"1 is:" + connected4);
+                            state=CONNECT4;
 
                             //to change the UI we have to put codes in the runOnUiThread
                             runOnUiThread(new Runnable() {
 
                                 @Override
                                 public void run() {
-                                    switchonenvironmentalmonitor_progressbar.setVisibility(View.GONE);
-                                    switchonenvironmentalmonitor_checkmark.setVisibility(View.VISIBLE);
+                                    switchonpulseox_progressbar.setVisibility(View.GONE);
+                                    switchonpulseox_checkmark.setVisibility(View.VISIBLE);
 
                                     progressbar_idpatient.setVisibility(View.GONE);
                                     checkmark_idpatient.setVisibility(View.VISIBLE);
-                                    gotorecordingbutton_environmentale_monitor.setVisibility(View.VISIBLE);
+                                    gotorecordingbutton_pulseox_environmental.setVisibility(View.VISIBLE);
 
                                 }
                             });
@@ -946,7 +572,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                 case CHANNEL_EVENT:
                     ChannelEventMessage eventMessage = new ChannelEventMessage(antMessageParcel);
-                    Log.e(LOG_TAG, "channel event: "+ eventMessage);
                     switch (eventMessage.getEventCode()) {
                         case RX_SEARCH_TIMEOUT:
                             break;
@@ -955,11 +580,12 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         case TX: //HERE WE SEND ALL THE BROADCAST MESSAGES TO THE SENSORS
                             //if the channel has been opened during initialization...
                             if (mIsOpen) {
+
                                 // Setting the data to be broadcast on the next channel period
-                                if(state==CONNECT6)
-                                {
-                                    payLoad = payLoad6;
+                                if(state==CONNECT4){
+                                    payLoad = payLoad10;
                                 }
+
 
                                 if(state==SYNCHRONIZATION_RESUME)
                                 {
@@ -980,7 +606,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                     Log.e("start","New rec: "+ startrec_time);
                                 }
 
-                                if(state==CALL6) {
+                                if(state==CALL4) {
                                     payLoad = payLoad5;
                                 }
 
@@ -992,13 +618,11 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                 if(state==STOP) {
                                     //stop the channel sending the payload9
                                     payLoad = payLoad9;
-                                    //azzero tutte le flag
-
                                 }
 
                                 //send the message through a specific payload
                                 try {
-                                    antChannelEnvironmental.setBroadcastData(payLoad);
+                                    antChannelIMUs.setBroadcastData(payLoad);
                                 } catch (RemoteException e) {
                                     e.printStackTrace();
                                 }
@@ -1007,12 +631,12 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                 //after synchronization (START), call periodically one after the other
                                 if(state==START || state==RECONNECTION)
                                 {
-                                    state=CALL6;
+                                    state=CALL4;
                                 }
-                                else if(state == CALL6)
+                                else if(state == CALL4)
                                 {
-                                    state = CALL6;
-                                    startWatchdogTimer(UNIT6);
+                                    state = CALL4;
+                                    startWatchdogTimer(UNIT4);
                                     checkWatchdogTimer();
                                 }
 
@@ -1046,7 +670,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
         @Override
         public void onChannelDeath()
         {
-            antDisconnection(EnvironmentalMonitor.this);
+            antDisconnection(saturation_environmental.this);
         };
     };
 
@@ -1059,11 +683,11 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
 
-            antDisconnection(EnvironmentalMonitor.this);
+            antDisconnection(saturation_environmental.this);
         }
     };
 
-
+    //TODO -- end ANT
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -1080,22 +704,22 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
             case R.id.drawer_home:
                 flag_home=true;
-                endRecording(EnvironmentalMonitor.this,PatientsList.class);
+                endRecording(saturation_environmental.this,PatientsList.class);
                 break;
 
             case R.id.drawer_support:
                 flag_support =true;
-                endRecording(EnvironmentalMonitor.this, Support.class);
+                endRecording(saturation_environmental.this, Support.class);
                 break;
 
             case R.id.drawer_logout:
                 flag_logout=true;
-                endRecording(EnvironmentalMonitor.this,PatientsList.class);
+                endRecording(saturation_environmental.this,PatientsList.class);
                 break;
 
             case R.id.drawer_closeapp:
                 flag_closeapp=true;
-                endRecording(EnvironmentalMonitor.this,PatientsList.class);
+                endRecording(saturation_environmental.this,PatientsList.class);
                 break;
 
             case R.id.helpbutton:
@@ -1135,13 +759,13 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 dialogDownloadStorage.dismiss();
                 break;
 
-            case R.id.initializationbutton_environmental_monitor:
+            case R.id.initializationbutton_pulse_ox:
                 //show progressbar
                 progressbar_initialization.setVisibility(View.VISIBLE);
                 //change title on initialization started
                 status_initialization.setText("Initialization started");
                 //hide the button
-                initializationbutton_environmental_monitor.setVisibility(View.GONE);
+                initializationbutton_pulseox_environmental.setVisibility(View.GONE);
 
                 //TODO-- ANT
                 try {
@@ -1169,21 +793,21 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 }
 
                 try {
-                    antChannelEnvironmental = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
+                    antChannelIMUs = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
                 } catch (ChannelNotAvailableException | RemoteException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "Ant Channel Environmental Monitor: "+ antChannelEnvironmental);
+                Log.e(LOG_TAG, "Ant Channel IMUs: "+ antChannelIMUs);
 
                 try {
-                    antChannelEnvironmental.setChannelEventHandler(eventCallBack);
+                    antChannelIMUs.setChannelEventHandler(eventCallBack);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "Event handler" + eventCallBack);
 
                 try {
-                    antChannelEnvironmental.assign(ChannelType.BIDIRECTIONAL_MASTER);//SHARED_BIDIRECTIONAL_MASTER, 48=0x30
+                    antChannelIMUs.assign(ChannelType.SHARED_BIDIRECTIONAL_MASTER);//SHARED_BIDIRECTIONAL_MASTER, 48=0x30
 
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
@@ -1191,56 +815,58 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 Log.e(LOG_TAG, "Channel is a SHARED_BIDIRECTIONAL_MASTER");
 
                 try {
-                    antChannelEnvironmental.setChannelId(channelId_smartphone);
+                    antChannelIMUs.setChannelId(channelId_smartphone);
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "" + channelId_smartphone);
 
                 try {
-                    antChannelEnvironmental.setPeriod(USER_PERIOD_ENVIRONMENTAL);
+                    antChannelIMUs.setPeriod(USER_PERIOD_SATURATION);
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "User period is:" + USER_PERIOD_ENVIRONMENTAL);
+                Log.e(LOG_TAG, "User period is:" + USER_PERIOD_SATURATION);
 
                 try {
-                    antChannelEnvironmental.setRfFrequency(USER_RADIOFREQUENCY);
+                    antChannelIMUs.setRfFrequency(USER_RADIOFREQUENCY);
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "User radiofrequency is:" + USER_RADIOFREQUENCY);
 
                 try {
-                    antChannelEnvironmental.setTransmitPower(3);
+                    antChannelIMUs.setTransmitPower(3);
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "Transmit power is 3");
 
                 try {
-                    antChannelEnvironmental.open();
+                    antChannelIMUs.open();
                     mIsOpen = true;
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "Channel is open");
 
-                state = CONNECT6;
+                state = CONNECT4;
+
+                //TODO - end ANT
 
                 if(mIsOpen){
                     //if the channel is open
                     progressbar_initialization.setVisibility(View.GONE);
-                    initializationbutton_environmental_monitor.setVisibility(View.GONE);
+                    initializationbutton_pulseox_environmental.setVisibility(View.GONE);
 
-                    //change text,add checkmark and show gotoswitchonenvironmentalmonitor
+                    //change text,add checkmark and show gotoswitchonpulseox
                     status_initialization.setText("Initialization successful!");
                     initialization_checkmark.setVisibility(View.VISIBLE);
                     bottom_initialization.setVisibility(View.VISIBLE);
-                    gotoswitchonenvironmentalmonitor.setVisibility(View.VISIBLE);
+                    gotoswitchonpulseox.setVisibility(View.VISIBLE);
                 }
                 else{
-                    antDisconnection(EnvironmentalMonitor.this);
+                    antDisconnection(saturation_environmental.this);
 
                     //display some error text
                     status_initialization.setText("Go back and retry initialization");
@@ -1249,33 +875,35 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 }
                 break;
 
-            case R.id.gotoswitchonenvironmentalmonitor:
+            case R.id.gotoswitchonpulseox:
 
                 inflated_initialization.setVisibility(View.GONE);
 
-                viewStub = (ViewStub) findViewById(R.id.switchonenvironmentalmonitor_toinclude);
-                viewStub.setLayoutResource(R.layout.switch_on_environmental_monitor);
+                viewStub = (ViewStub) findViewById(R.id.switchonpulseox_toinclude);
+                viewStub.setLayoutResource(R.layout.switch_on_pulse_ox);
                 inflated_switch_on_sensors = viewStub.inflate();
 
                 progressbar_idpatient.setVisibility(View.VISIBLE);
 
-                switchonenvironmentalmonitor_checkmark=(ImageButton) findViewById(R.id.switchonenvironmentalmonitor_checkmark);
+                switchonpulseox_checkmark=(ImageButton) findViewById(R.id.switchonpulseox_checkmark);
 
-                switchonenvironmentalmonitor_progressbar=(ProgressBar) findViewById(R.id.switchonenvironmentalmonitor_progressbar);
+                switchonpulseox_progressbar=(ProgressBar) findViewById(R.id.switchonpulseox_progressbar);
 
-                switch_on_environmentalmonitor=(TextView) findViewById(R.id.switch_on_environmentalmonitor);
 
-                gotorecordingbutton_environmentale_monitor=(Button) findViewById(R.id.gotorecordingbutton_environmental_monitor);
-                gotorecordingbutton_environmentale_monitor.setOnClickListener(this);
+                switch_on_pulseox=(TextView) findViewById(R.id.switch_on_pulseox);
+
+
+                gotorecordingbutton_pulseox_environmental=(Button) findViewById(R.id.gotorecordingbutton_pulse_ox);
+                gotorecordingbutton_pulseox_environmental.setOnClickListener(this);
 
                 break;
 
-            case R.id.gotorecordingbutton_environmental_monitor:
+            case R.id.gotorecordingbutton_pulse_ox:
 
                 inflated_switch_on_sensors.setVisibility(View.GONE);
 
                 viewStub = (ViewStub) findViewById(R.id.select_recording_toinclude);
-                viewStub.setLayoutResource(R.layout.select_recording_environmental_monitor);
+                viewStub.setLayoutResource(R.layout.select_recording);
                 inflated_select_recording = viewStub.inflate();
 
                 timerrecordingbutton=(Button) findViewById(R.id.timerrecordingbutton);
@@ -1287,6 +915,9 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 layout_insert_setinforec =(TextInputLayout) findViewById(R.id.layout_insert_setinforec);
 
                 insert_setinforec =(TextInputEditText) findViewById(R.id.insert_setinforec);
+
+                clickhereforcalibration=(TextView) findViewById((R.id.clickhereforcalibration));
+                clickhereforcalibration.setOnClickListener(this);
 
                 break;
 
@@ -1303,7 +934,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 if(!flag_timer_rec){
 
                     viewStub = (ViewStub) findViewById(R.id.timer_recording_toinclude);
-                    viewStub.setLayoutResource(R.layout.timer_recording_environmental_monitor);
+                    viewStub.setLayoutResource(R.layout.timer_recording);
                     inflated_timer_rec = viewStub.inflate();
 
                     startrecording_timer=(Button) findViewById(R.id.startrecording_timer);
@@ -1320,9 +951,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                     gotonewrecording_timer=(Button) findViewById(R.id.gotonewrecording_timer);
                     gotonewrecording_timer.setOnClickListener(this);
-
-                    showvaluesonmaps_timer = (Button) findViewById(R.id.show_values_on_maps_timer);
-                    showvaluesonmaps_timer.setOnClickListener(this);
 
                     goback_timer=(Button) findViewById(R.id.goback_timer);
                     goback_timer.setOnClickListener(this);
@@ -1347,11 +975,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                     downloadfile_timer.setVisibility(View.GONE);
                     gotonewrecording_timer.setVisibility(View.GONE);
-                    showvaluesonmaps_timer.setVisibility(View.GONE);
-
                     status_timer.setVisibility(View.GONE);
                     timer_recording_filename.setVisibility(View.GONE);
-
 
                     layout_insert_setduration.setVisibility(View.VISIBLE);
                     insert_setduration.setVisibility(View.VISIBLE);
@@ -1401,9 +1026,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 old_inforecordingtext="";
                 inforecording.setText(null);
                 //show update info layout
-//metto questo gone
-                inflated_updateinfo.setVisibility(View.GONE);
-                inflated_displaydata.setVisibility(View.VISIBLE);
+                inflated_updateinfo.setVisibility(View.VISIBLE);
 
                 //start recording ANT data
                 state=START;
@@ -1444,11 +1067,9 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         stoprecording_timer.setVisibility(View.GONE);
 
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
-//aggiungo qua show value on maps
-                        showvaluesonmaps_timer.setVisibility(View.VISIBLE);
+
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
-                        inflated_displaydata.setVisibility(View.GONE);
 
                         antStop();
 
@@ -1456,7 +1077,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         exclamation_point_idpatient.setVisibility(View.GONE);
                         progressbar_idpatient.setVisibility(View.GONE);
 
-                        sendNotification(EnvironmentalMonitor.this,"Timer","Recording is finished!");
+                        sendNotification(saturation_environmental.this,"Timer","Recording is finished!");
                     }
                 }.start();
 
@@ -1471,7 +1092,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
             case R.id.stoprecording_timer:
 
                 //initialize alert dialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(EnvironmentalMonitor.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(saturation_environmental.this);
                 //set title
                 builder.setTitle("Stop recording");
                 //set message
@@ -1500,11 +1121,9 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                         downloadfile_timer.setVisibility(View.VISIBLE);
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
-                        showvaluesonmaps_timer.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
-                        inflated_displaydata.setVisibility(View.GONE);
                     }
                 });
                 //negative no button
@@ -1534,10 +1153,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 gotonewrecording(inflated_timer_rec);
                 break;
 
-            case R.id.show_values_on_maps_timer:
-                //metti qua quello che serve una volta che hai sistemato la parte show_values_on_maps_manual
-                break;
-
             case R.id.manualrecordingbutton:
 
                 //get recording info
@@ -1551,7 +1166,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 if(!flag_manual_rec){
 
                     viewStub = (ViewStub) findViewById(R.id.manual_recording_toinclude);
-                    viewStub.setLayoutResource(R.layout.manual_recording_environmental_monitor);
+                    viewStub.setLayoutResource(R.layout.manual_recording);
                     inflated_manual_rec = viewStub.inflate();
 
                     startrecording_manual=(Button) findViewById(R.id.startrecording_manual);
@@ -1568,9 +1183,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                     gotonewrecording_manual=(Button) findViewById(R.id.gotonewrecording_manual);
                     gotonewrecording_manual.setOnClickListener(this);
-
-                    showvaluesonmaps_manual = (Button) findViewById(R.id.show_values_on_maps_manual);
-                    showvaluesonmaps_manual.setOnClickListener(this);
 
                     goback_manual=(Button) findViewById(R.id.goback_manual);
                     goback_manual.setOnClickListener(this);
@@ -1596,7 +1208,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                     status_manual.setVisibility(View.GONE);
                     downloadfile_manual.setVisibility(View.GONE);
                     gotonewrecording_manual.setVisibility(View.GONE);
-                    showvaluesonmaps_manual.setVisibility(View.GONE);
 
                     manual_recording_filename.setVisibility(View.GONE);
 
@@ -1624,10 +1235,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 //delete update info
                 old_inforecordingtext="";
                 inforecording.setText(null);
-
-                //not show update info layout
-                inflated_updateinfo.setVisibility(View.GONE);
-                inflated_displaydata.setVisibility(View.VISIBLE);
+                //show update info layout
+                inflated_updateinfo.setVisibility(View.VISIBLE);
 
                 //start recording ANT data
                 state=START;
@@ -1653,7 +1262,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
             case R.id.stoprecording_manual:
 
                 //initialize alert dialog
-                AlertDialog.Builder builder_manual = new AlertDialog.Builder(EnvironmentalMonitor.this);
+                AlertDialog.Builder builder_manual = new AlertDialog.Builder(saturation_environmental.this);
                 //set title
                 builder_manual.setTitle("Stop recording");
                 //set message
@@ -1681,13 +1290,13 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         progressBar_manual.setVisibility(View.GONE);
                         stoprecording_manual.setVisibility(View.GONE);
 
+                        //startrecording_manual.setText("Start new recording"); //NO, go to initialization
+                        //startrecording_manual.setVisibility(View.VISIBLE);
                         downloadfile_manual.setVisibility(View.VISIBLE);
                         gotonewrecording_manual.setVisibility(View.VISIBLE);
-                        showvaluesonmaps_manual.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
-                        inflated_displaydata.setVisibility(View.GONE);
                     }
                 });
                 //negative no button
@@ -1717,136 +1326,12 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 gotonewrecording(inflated_manual_rec);
                 break;
 
-            case R.id.show_values_on_maps_manual:
-//accedere ai file salvati
-                //path where the root of the txt file is located on the smartphone
-                extPath=getExternalFilesDir(null).getAbsolutePath();
-                File folderInt=new File(extPath + "/respirho/Patients/" + GlobalVariables.string_idpatient+"/" + GlobalVariables.string_idpatient );  //intPath
-                root = folderInt.getParentFile();
-                File[] acqs = root.listFiles();
-
-                if(acqs == null)
-                    Toast.makeText(this, "No acquisition found.", Toast.LENGTH_SHORT).show();
-                else {
-                    String[] names = new String[acqs.length];
-                    for (int i = 0; i < acqs.length; i++) {
-                        names[i] = acqs[i].getName();
-                    }
-                    //build dialog to choose acquisition from list          chiamato builders se no da errore
-                    AlertDialog.Builder builders = new AlertDialog.Builder(this);
-                    builders.setTitle("Choose acquisition");
-//estrarre le info necessarie     --> fattibile
-                    builders.setItems(names, (dialog, which) -> {
-                        List<String> dates = new ArrayList<>();
-                        List<Double> lats = new ArrayList<>();
-                        List<Double> lons = new ArrayList<>();
-                        List<String> acts = new ArrayList<>();
-                        List<Integer> pms = new ArrayList<>();
-                        List<Integer> co2s = new ArrayList<>();
-                        List<Integer> no2s = new ArrayList<>();
-
-                        BufferedReader reader;
-                        final File file = new File(String.valueOf(acqs[which]));
-                        FileInputStream streamer = null;
-                        try {
-                            streamer = new FileInputStream(file);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
-                        reader = new BufferedReader(new InputStreamReader(streamer));
-                        String line = null;
-                        boolean compatible = false; //check if file is compatible and not empty
-                        try {
-                            line = reader.readLine(); //read header
-
-                            if(line.equals("ID Patient: " + GlobalVariables.string_idpatient)) { //if header is correct
-//Toast.makeText(this, "ID PATIENT OK", Toast.LENGTH_SHORT).show();
-                                line = reader.readLine(); //read first row
-                                if (line != null) { //if file is not empty
-                                    compatible = true;
-                                }
-                            }
-                            else
-                                line = null; //force to not enter the next while
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        while (line != null && flag_null_line == false) { //split csv lines and obtain values
-                            try {
-                                String[] attributes = line.split(",");
-//Toast.makeText(this, "line" + attributes, Toast.LENGTH_SHORT).show();
-//String [] newLine = line.split("]"); //ex: [01
-//Toast.makeText(this, "line" + newLine, Toast.LENGTH_SHORT).show();
-//String Lat = newLine[9].substring(10);
-//Toast.makeText(this, "lat" + Lat, Toast.LENGTH_SHORT).show();
-                                //float a = Float.compare();
-                                if(line.contains("06")) {    //per indicare che è il pacchetto di environmental monitor
-
-                                    //per rimuovere le parentesi quadre dai valori salvati
-                                    //String [] newLine = line.split("]"); //ex: [01
-                                    //String Lat = newLine[9].substring(1);
-                                    //String Longit = newLine[10].substring(1);
-//Toast.makeText(this, "numero:" + Lat, Toast.LENGTH_SHORT).show();
-                                    lats.add(45.800);
-                                    lons.add(9.090);
-//latitudine = convertToInt(Lat);
-//longitudine = convertToInt(Longit);
-//Toast.makeText(this, "numero" + latitudine, Toast.LENGTH_SHORT).show();
-
-                                    //dates.add(attributes[0]);
-                                    //lats.add(Double.parseDouble(attributes[10]));
-                                    //lons.add(Double.parseDouble(attributes[11]));
-                                    //acts.add(attributes[3]);
-                                    //pms.add(Integer.valueOf(attributes[4]));
-                                    //co2s.add(Integer.valueOf(attributes[5]));
-                                    //no2s.add(Integer.valueOf(attributes[6]));
-                                }
-                                line = reader.readLine(); //read next row
-//Toast.makeText(this, "line" + line, Toast.LENGTH_SHORT).show();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            if( line == null)
-                                flag_null_line = true;
-                        }
-                        if(!compatible)
-                            Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
-                        else
-                        {
-                            //create map with as many markers as acquisition points
-                            mapFragment = SupportMapFragment.newInstance();
-                            getSupportFragmentManager().beginTransaction().add(R.id.map_fragment, mapFragment).commit();
-double lat = 45.8;
-double longi = 9.09;
-                            mapFragment.getMapAsync(googleMap -> {
-                                //dates.size() da mettere al posto del 2 nel for
-                                for (int i = 0; i < 3; i++) {
-                                    googleMap.addMarker(new MarkerOptions()
-                                            //.position(new LatLng(lats.get(i), lons.get(i)))
-                                            .position(new LatLng(i,i)) //latitudine, longitudine   lat, longi
-                                            //.title(dates.get(i))
-                                            .title("Prova")
-                                            //.snippet(acts.get(i) + ", PM2.5: " + pms.get(i) + ", CO2: " + co2s.get(i) + ", NO2: " + no2s.get(i)));
-                                            .snippet("Funziona"));
-
-                                }
-                                //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 12));
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(0, 0), 7));
-                            });
-                        }
-                    });
-                    AlertDialog dialog = builders.create();
-                    dialog.show();
-                    flag_null_line = false;
-                    show_maps_flag = true;
-                }
-                break;
-
             case R.id.updateinfo:
                 posture=savePosture();
                 updateInfo();
                 break;
+
+
 
             case R.id.exclamation_point_idpatient:
                 sensorsDisconnection(this);
@@ -1858,6 +1343,7 @@ double longi = 9.09;
         }
     }
 
+    //TODO-- drawer
     private static void openDrawer(DrawerLayout drawerLayout) {
         //open drawer layout
         drawerLayout.openDrawer(GravityCompat.START);
@@ -1894,7 +1380,7 @@ double longi = 9.09;
                 //finish activity
                 activity.finishAffinity();
                 //go to login page
-                redirectActivity(EnvironmentalMonitor.this, Login.class);
+                redirectActivity(saturation_environmental.this, Login.class);
             }
         });
         //negative no button
@@ -1904,7 +1390,7 @@ double longi = 9.09;
                 //dismiss dialog
                 dialog.dismiss();
                 //in any case we arrive here after we end the recording, so go to the patients list activity
-                redirectActivity(EnvironmentalMonitor.this, PatientsList.class);
+                redirectActivity(saturation_environmental.this, PatientsList.class);
             }
         });
         //show dialog
@@ -1951,12 +1437,13 @@ double longi = 9.09;
                 //dismiss dialog
                 dialog.dismiss();
                 //in any case we arrive here after we end the recording, so go to the patients list activity
-                redirectActivity(EnvironmentalMonitor.this, PatientsList.class);
+                redirectActivity(saturation_environmental.this, PatientsList.class);
             }
         });
         //show dialog
         builder.show();
     }
+    //TODO-- END drawer
 
     private void telephone(final Activity activity){
         //initialize alert dialog
@@ -2045,7 +1532,7 @@ double longi = 9.09;
 
                     @Override
                     public void onDeleteFileClick(int position) {
-                        deleteFileStorage(EnvironmentalMonitor.this,position);
+                        deleteFileStorage(saturation_environmental.this,position);
                     }
                 });
             }
@@ -2271,6 +1758,8 @@ double longi = 9.09;
         return battery_value;
     }
 
+
+
     private void initializeNotification(String title) {
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
             NotificationChannel channel_not= new NotificationChannel(title,title, NotificationManager.IMPORTANCE_DEFAULT);
@@ -2372,7 +1861,7 @@ double longi = 9.09;
         //initialize the variables of the batteries
 
         //watchdog reset
-        resetWatchdogTimer(UNIT6);
+        resetWatchdogTimer(UNIT4);
         sumWt=0;
         //lower the flag
         flag_reconnection=false;
@@ -2392,7 +1881,7 @@ double longi = 9.09;
             //and just change the message in the dialog raising the following flag
             flag_home=true;
             flag_sensors_disconnection_header=true;
-            endRecording(EnvironmentalMonitor.this,PatientsList.class);
+            endRecording(saturation_environmental.this,PatientsList.class);
         }
         else{
             //go back setting the right visibility of the view previously inflated
@@ -2443,11 +1932,11 @@ double longi = 9.09;
                     flag_support =false;
                 }
                 else if(flag_logout){
-                    logout(EnvironmentalMonitor.this);
+                    logout(saturation_environmental.this);
                     flag_logout=false;
                 }
                 else if(flag_closeapp){
-                    closeApp(EnvironmentalMonitor.this);
+                    closeApp(saturation_environmental.this);
                     flag_closeapp=false;
                 }
             }
@@ -2517,8 +2006,8 @@ double longi = 9.09;
             //if the file is smaller than 6 kb (3 sec), avoid saving on Firebase and avoid downloading it with an alert saying it's too small
             long fileIntSizeBytes=fileInt.length();
             long fileIntSizeKyloBytes=fileIntSizeBytes/1024;
-// modificato per salvare anche con poco contenuto
-            if(fileIntSizeKyloBytes>1){
+
+            if(fileIntSizeKyloBytes>2){
                 //call the save firebase class to upload file on firebase
                 SaveFileToFirebase saveFileToFirebase= new SaveFileToFirebase();
                 saveFileToFirebase.mainFirebase(fileInt);
@@ -2592,12 +2081,6 @@ double longi = 9.09;
         Log.e("demo","fileInt modified and saved");
     }
 
-    private int convertToInt(String messageContentString){
-        //convert the battery byte hex value in volt
-        int value_int=Integer.parseInt(messageContentString, 16);
-        return value_int;
-    }
-
     public void antClose() {
 
         state = CLOSE;
@@ -2614,7 +2097,7 @@ double longi = 9.09;
         if(mIsOpen){
             //close the channel
             try {
-                antChannelEnvironmental.close();
+                antChannelIMUs.close();
             } catch (RemoteException e) {
                 e.printStackTrace();
             } catch (AntCommandFailedException e) {
@@ -2647,7 +2130,7 @@ double longi = 9.09;
                 checkmark_idpatient.setVisibility(View.GONE);
 
                 //TODO- send notification
-                sendNotification(EnvironmentalMonitor.this,"Communication failed","Go back and restart acquisition");
+                sendNotification(saturation_environmental.this,"Communication failed","Go back and restart acquisition");
 
                 //check if the activity is not closing clicking back button to avoid crash trying to create the dialog
                 if(!((Activity) activity).isFinishing())
@@ -2679,14 +2162,14 @@ double longi = 9.09;
 
     private void sensorsDisconnection(final Activity activity){
 
-        Log.e("sensorsDisconnection","sensorsDisconnection: " + watchdog_timer[6]);
+        Log.e("sensorsDisconnection","sensorsDisconnection: " + watchdog_timer[4]);
 
         //check which sensor is disconnected
-        if(watchdog_timer[UNIT6]>=30){
-            sensorDisconnected6="6";    //NON DOVREBBE CAMBIARE NIENTE METTERE 6 AL POSTO DI 4
+        if(watchdog_timer[UNIT4]>=30){
+            sensorDisconnected4="4";
         }
 
-        sensorsDisconnectedText=sensorDisconnected6;
+        sensorsDisconnectedText=sensorDisconnected4;
 
         //initialize alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -2722,11 +2205,11 @@ double longi = 9.09;
             //raise the flag to enter eventually in the OVERFLOW if statement only once
             flag_watchdog_timer_overflow=true;
             //reset the wt the first time I reconnect
-            watchdog_timer[UNIT6]=0;
+            watchdog_timer[UNIT4]=0;
             sumWt=0;
 
             //reset the warnings
-            sensorDisconnected6="";
+            sensorDisconnected4="";
 
 
             //to change the UI we have to put codes in the runOnUiThread
@@ -2747,7 +2230,7 @@ double longi = 9.09;
 
     //watchdog timer check
     public void checkWatchdogTimer(){
-        sumWt = watchdog_timer[UNIT6];
+        sumWt = watchdog_timer[UNIT4];
         //threshold set to 30, if only one unit does not work --> 3 sec, if all the three --> 1 sec
         if(sumWt > THRESHOLD_WATCHDOG_TIMER){
             //if the flag is true, execute the following lines to send warnings and notification
@@ -2763,7 +2246,7 @@ double longi = 9.09;
                         flag_sensors_disconnection=true; //save the state in which one of the sensors is disconnected
 
                         //send warning to the user (notification), tell to go closer to sensors and automatically sync the unit
-                        sendNotification(EnvironmentalMonitor.this,"Sensors disconnection","Go closer to the sensors");
+                        sendNotification(saturation_environmental.this,"Sensors disconnection","Go closer to the sensors");
 
                         //TODO- send SMS (now it works only with SIM)
                         //TODO- ask the number in logo page
@@ -2790,19 +2273,15 @@ double longi = 9.09;
     @Override
     public void onBackPressed() {
         //manage back button in some steps of the recording to ensure a safe quit of the recording
-    if(show_maps_flag == true) {
-        getSupportFragmentManager().beginTransaction().remove(mapFragment).commit();
-        show_maps_flag = false;
-    }
-    else {
-        if (state == QUIT_RECORDING) {
-            state = SYNCHRONIZATION_RESUME;
+
+        if(state==QUIT_RECORDING){
+            state= SYNCHRONIZATION_RESUME;
             super.onBackPressed();
             return;
         }
 
         //initialize alert dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(EnvironmentalMonitor.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(saturation_environmental.this);
         //set title
         builder.setTitle("End recording");
         //set message
@@ -2817,7 +2296,7 @@ double longi = 9.09;
                 antClose();
 
                 //go to patient data layout
-                state = QUIT_RECORDING;
+                state=QUIT_RECORDING;
                 //call again the onBackPressed() and in this way it enters in the previous if condition
                 onBackPressed();
             }
@@ -2833,6 +2312,4 @@ double longi = 9.09;
         //show dialog
         builder.show();
     }
-    }
 }
-

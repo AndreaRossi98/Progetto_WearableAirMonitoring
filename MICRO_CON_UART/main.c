@@ -33,7 +33,7 @@
 #define SAADC_BATTERY   0           //Canale tensione della batteria
 #define TIMEOUT_VALUE   25   //1000       // 25 mseconds timer time-out value. Interrupt a 40Hz
 #define START_ADDR  0x00011200      //indirizzo di partenza per salvataggio dati in memoria non volatile
-#define LED             07
+#define LED             10    //07  //valore breadboard
 
 #define NO2_CHANNEL     0           //NO2 channel for ADC
 #define CO_CHANNEL      2           //CO channel for ADC
@@ -123,8 +123,8 @@ void twi_init (void)
 {
     ret_code_t err_code;
     const nrf_drv_twi_config_t twi_config = {
-       .scl                = 19,
-       .sda                = 18,
+       .scl                = 6, //19, //valore breadboard
+       .sda                = 8, //18, //valore breadboard
        .frequency          = NRF_DRV_TWI_FREQ_100K,
        .interrupt_priority = APP_IRQ_PRIORITY_HIGH,
        .clear_bus_init     = false
@@ -308,13 +308,13 @@ int main(void)
     }
 
     //Inizializzazione dei sensori
-    err_code = sps30_init();
+//    err_code = sps30_init();
     //NRF_LOG_INFO("SPS30 inizializzato");
     printf("\nSPS30 inizializzato\n");
     //scd41 non serve init
     err_code = bme280_init_set(&dev_bme280);
     //NRF_LOG_INFO("BME280 inizializzato");
-    printf("\nBME280 inizializzato\n");
+    printf("\nBME280 inizializzato err_code %d\n", err_code);
     err_code = lis3dh_init();
     printf("\nLIS3DH inizializzato\n");
     err_code = sgp30_init();
@@ -364,7 +364,7 @@ int main(void)
             measure_mics6814.CO = pow(10, (log10(partial_calc)-0.55)/(-0.85));
             
             //BME280
-            bme280_set_sensor_mode(BME280_FORCED_MODE, &dev_bme280);
+            bme280_set_sensor_mode(BME280_NORMAL_MODE, &dev_bme280);  //BME280_FORCED_MODE
             nrf_delay_us(100);
             bme280_get_sensor_data(BME280_ALL, &measure_bme280, &dev_bme280);
     

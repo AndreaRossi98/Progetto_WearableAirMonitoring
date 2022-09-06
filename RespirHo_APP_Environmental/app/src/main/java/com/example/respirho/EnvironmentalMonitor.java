@@ -648,7 +648,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                 //salvo i valori su file e firebase
                                 //gestire che alcuni dati sono persi
                                 numero_pacchetto = pacchetto_numero_ricevuto;
-                                //azzero le flag dei pacchetti P arrivati
+                                toast.makeText(getApplicationContext(),"Alcuni pacchetti sono stati persi", Toast.LENGTH_SHORT).show();
+                                //come gestirlo? faccio tutti i vari casi? salvo i dati e poi elimino quelli non corretti?
                             }
 
                             count_P1 = 0;
@@ -766,27 +767,15 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                             if (count_P1 > 0 && count_P2 > 0 && count_P3 > 0 && flag_dati_scritti == 0){ //condizione: almeno un pacchetto P per ognuno è arrivato
                                 //preparo messaggio da salvare
                                 messaggio_salvato = 6 + ";" +   //per indicare pacchetto di environmental monitor
-                                                    temperature + ";" +
-                                                    humidity + ";" +
-                                                    pressure + ";" +
-                                                    VOC + ";" +
-                                                    CO2 + ";" +
-                                                    NO2 + ";" +
-                                                    CO + ";" +
-                                                    PM1p0 + ";" +
-                                                    PM2p5 + ";" +
-                                                    PM10p0 + ";" +
-                                                    acceleration + ";" +
-                                                    count_P1 + ";" +
-                                                    count_P2 + ";" +
-                                                    count_P3 + ";" +
-                                                    orario + ";" +
-                                                    latitude + ";" +
-                                                    longitude + ";";    //valore batteria lo salvo?
+                                        temperature + ";" + humidity + ";" + pressure + ";" +
+                                        VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";" +
+                                        PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";" +
+                                        count_P1 + ";" + count_P2 + ";" + count_P3 + ";" +
+                                        orario + ";" + latitude + ";" + longitude + ";";    //valore batteria lo salvo?
 
 
     toast.makeText(getApplicationContext(), "scrivo su file" , Toast.LENGTH_SHORT).show();
-                                //scrivo su firebase
+
                                 //write the messages
                                 //call the firebase class to upload data on firebase
                                 WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
@@ -816,18 +805,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                         fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 */
-/*                        String messageContentString_temperature = "";
-                        String messageContentString_humidity = "";
-                        String messageContentString_pressure = "";
-                        String messageContentString_CO2 = "";
-                        String messageContentString_VOC = "";
-                        String messageContentString_NO2 = "";
-                        String messageContentString_CO = "";
-                        String messageContentString_PM1p0 = "";
-                        String messageContentString_PM2p5 = "";
-                        String messageContentString_PM10 = "";
-*/
-
+//non serve più questa parte dopo
 /*
                         if(pacchetto_P == 1) {
                             Toast.makeText(getApplicationContext(), "Pacchetto P1", Toast.LENGTH_LONG).show();
@@ -1112,17 +1090,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 //open archive dialog
                 dialogDownloadStorage();
 
-                /*
-                //enabled only when it's not recording
-                if(state==STOP){
-                    //call storage function
-                    dialogDownloadStorage();
-                }
-                else{
-                    //TODO- maybe it's possible also during recording, try it
-                    Toast.makeText(getApplicationContext(), "You can open archive only when the communication is closed in the previous page or at the end of a recording", Toast.LENGTH_LONG).show();
-                }
-                */
                 break;
 
             case R.id.update_storage_files:
@@ -1401,7 +1368,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 old_inforecordingtext="";
                 inforecording.setText(null);
                 //show update info layout
-//metto questo gone
+
                 inflated_updateinfo.setVisibility(View.GONE);
                 inflated_displaydata.setVisibility(View.VISIBLE);
 
@@ -1444,7 +1411,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         stoprecording_timer.setVisibility(View.GONE);
 
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
-//aggiungo qua show value on maps
+
                         showvaluesonmaps_timer.setVisibility(View.VISIBLE);
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
@@ -1828,7 +1795,7 @@ double longi = 9.09;
                                             //.title(dates.get(i))
                                             .title("Prova")
                                             //.snippet(acts.get(i) + ", PM2.5: " + pms.get(i) + ", CO2: " + co2s.get(i) + ", NO2: " + no2s.get(i)));
-                                            .snippet("Funziona"));
+                                            .snippet("Ancora da implementare"));
 
                                 }
                                 //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 12));

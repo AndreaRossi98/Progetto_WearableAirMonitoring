@@ -323,14 +323,6 @@ printf("\n");
 
                               pacchetto_P++;
 
-
-                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
-                        //printf("Invio: ");
-                        //for(int i = 0;i<8;i++)  printf("%d", message_addr[i]);
-                        //printf("\n");
-
-//aggiungere aggiornamento dei pacchetti da inviare quando la misurazione è terminata
-//usare flag_misurazione == 2; riportarla poi a 0
                             if (flag_misurazioni == 2 && pacchetto_P == 4) //aggiorno i pacchetti da inviare. Farlo dopo che ho inviato lo stesso numero di pacchetti per ogni pacchetto??
                             {
                                 for (int i = 0; i < 8 ; i++)
@@ -349,7 +341,6 @@ printf("\n");
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x00 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x07] == 0x80 )
                     { 	//ferma l'acquisizione																				
                         sd_ant_pending_transmit_clear (BROADCAST_CHANNEL_NUMBER, NULL); //svuota il buffer, utile per una seconda acquisizione
-                        NRF_LOG_INFO("Ricevuto messaggio di stop acquisizione");
                         connesso = 0;
                         pacchetto_P = 0;
                         flag_misurazioni = 0;
@@ -432,12 +423,12 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
     if ((rtc_count % _2_SEC) == 0 )  //non serve perchè invio gestito in ANT HANDLER
     {
         printf("\n2 sec\n");
-//flag_misurazioni = 1; //non andrebbe qua
+
     }
 //simulo un aggiornamento dei valori ogni 6 secondi, così invio ogni pacchetto 2 volte
 if((rtc_count % 12) == 0)
 {
-    flag_misurazioni = 1;
+    flag_misurazioni = 1; //non andrebbe qua, ma nei 20 sec
 }
     //20 sec
     if ((rtc_count % _20_SEC) == 0)
@@ -644,7 +635,6 @@ printf("DATI PRONTI PER ESSERE INVIATI\n");
 
         }
 
-        //NRF_LOG_FLUSH();
         nrf_pwr_mgmt_run();
         __WFI();//GO INTO LOW POWER MODE
     }

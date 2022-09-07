@@ -649,7 +649,45 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                 //gestire che alcuni dati sono persi
                                 numero_pacchetto = pacchetto_numero_ricevuto;
                                 toast.makeText(getApplicationContext(),"Alcuni pacchetti sono stati persi", Toast.LENGTH_SHORT).show();
-                                //come gestirlo? faccio tutti i vari casi? salvo i dati e poi elimino quelli non corretti?
+
+                                //gestione ricezione parziale dei pacchetti
+                                if (count_P1 == 0){ //non ho ricevuto il pacchetto P1
+                                    messaggio_salvato = 6 + ";" +   //per indicare pacchetto di environmental monitor
+                                            "-" + ";" + "-" + ";" + "-" + ";";
+                                }
+                                else{
+                                    messaggio_salvato = 6 + ";" +   //per indicare pacchetto di environmental monitor
+                                            temperature + ";" + humidity + ";" + pressure + ";";
+                                }
+                                if(count_P2 == 0){
+                                    messaggio_salvato = messaggio_salvato +
+                                            "-" + ";" + "-" + ";" + "-" + ";" + "-" + ";";
+                                }
+                                else{
+                                    messaggio_salvato = messaggio_salvato +
+                                            VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";";
+                                }
+                                if(count_P3 == 0){
+                                    messaggio_salvato = messaggio_salvato +
+                                            "-" + ";" + "-" + ";" + "-" + ";" + "-" + ";";
+                                }
+                                else{
+                                    messaggio_salvato = messaggio_salvato +
+                                            PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";";
+                                }
+
+                                messaggio_salvato = messaggio_salvato + count_P1 + count_P2 + count_P3 + orario + latitude + longitude;
+                                //do per scontato che almeno un pacchetto sia arrivato, e quindi ho latitudine longitudine e ora
+
+                                //write the messages
+                                //call the firebase class to upload data on firebase
+                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                writingDataToFirebase.mainFirebase(messaggio_salvato,startrec_time);
+                                //scrivo su file
+                                WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                writingDataToFile.mainFile(messaggio_salvato, current, day, intPath,extPath);
+
+                                fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
                             }
 
                             count_P1 = 0;

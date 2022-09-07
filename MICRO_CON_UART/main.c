@@ -123,8 +123,8 @@ void twi_init (void)
 {
     ret_code_t err_code;
     const nrf_drv_twi_config_t twi_config = {
-       .scl                = 6, //19, //valore breadboard
-       .sda                = 8, //18, //valore breadboard
+       .scl                = 19, //valore breadboard  6
+       .sda                = 18, //valore breadboard  8
        .frequency          = NRF_DRV_TWI_FREQ_100K,
        .interrupt_priority = APP_IRQ_PRIORITY_HIGH,
        .clear_bus_init     = false
@@ -263,11 +263,11 @@ void stampa_decimale(float valore)
 {
     int intero;
     int decimale;
-    intero = valore;
+    intero = (int)valore;
     if (valore > 0)
-        decimale = (valore - intero) * 100;
+        decimale = (int)((valore - intero) * 100);
     else
-        decimale = (intero - valore) * 100;
+        decimale = (int)((intero - valore) * 100);
     printf("%d.%d\n", intero, decimale);
 }
 
@@ -308,7 +308,7 @@ int main(void)
     }
 
     //Inizializzazione dei sensori
-//    err_code = sps30_init();
+    err_code = sps30_init();
     //NRF_LOG_INFO("SPS30 inizializzato");
     printf("\nSPS30 inizializzato\n");
     //scd41 non serve init
@@ -339,6 +339,7 @@ int main(void)
             //SPS30 
             sps30_wake_up();
             sps30_start_measurement();
+            sps30_start_manual_fan_cleaning();
             nrf_delay_ms(1000);
             sps30_read_measurement(&measure_sps30);
             sps30_stop_measurement();
@@ -364,7 +365,7 @@ int main(void)
             measure_mics6814.CO = pow(10, (log10(partial_calc)-0.55)/(-0.85));
             
             //BME280
-            bme280_set_sensor_mode(BME280_NORMAL_MODE, &dev_bme280);  //BME280_FORCED_MODE
+            bme280_set_sensor_mode(BME280_FORCED_MODE, &dev_bme280);  //BME280_FORCED_MODEOR NORMALE_MODE
             nrf_delay_us(100);
             bme280_get_sensor_data(BME280_ALL, &measure_bme280, &dev_bme280);
     
@@ -382,14 +383,14 @@ int main(void)
             printf("\n");
             //BME280
             //NRF_LOG_INFO("Temperatura [°C] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.temperature));
-            printf("Temperatura [°C] = "); 
+            printf("Temperatura [°C]  = %d   ", (int)measure_bme280.temperature); 
             stampa_decimale(measure_bme280.temperature);
             //NRF_LOG_INFO("Umidità [%%] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.humidity));
-            printf("Umidità [%%] = ");
+            printf("Umidità [%%] = %d  ", (int)measure_bme280.humidity);
             stampa_decimale(measure_bme280.humidity);
             //NRF_LOG_INFO("Pressione [Pa] =" NRF_LOG_FLOAT_MARKER"\r" ,NRF_LOG_FLOAT(measure_bme280.pressure));
 //Problema nello stampare la pressione
-            printf("Pressione [Pa] = ");
+            printf("Pressione [Pa] = %d", (int)measure_bme280.pressure);
             stampa_decimale(measure_bme280.pressure);
 
             //SCD41

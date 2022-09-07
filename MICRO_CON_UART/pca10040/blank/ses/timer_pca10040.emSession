@@ -59,8 +59,8 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="20" y="365" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="357" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="284" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../sensor/sps30.c" selected="0" top="257" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="105" y="367" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="330" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="272" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_UART/main.c" useBinaryEdit="0" left="0" path="../../../sensor/sps30.c" selected="0" top="257" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="40" y="160" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/My Projects/Progetto_WearableAirMonitoring/main.c" useBinaryEdit="0" left="0" path="../../../sensor/sgp30.c" selected="0" top="149" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="805" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_UART/main.c" useBinaryEdit="0" left="0" path="../../../sensor/bme280.c" selected="0" top="795" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="19" y="156" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_UART/main.c" useBinaryEdit="0" left="0" path="../../../sensor/bme280_defs.h" selected="0" top="139" codecName="Default"/>

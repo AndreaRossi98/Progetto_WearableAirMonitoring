@@ -594,7 +594,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             + messageContentString.substring(24, 28) + ","
                             + messageContentString.substring(28, 32) + ",";
                     Log.e(LOG_TAG, "stringa " + msg);
-toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
+//toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
 
 //risultato = Float.parseFloat(prova);
 //Toast.makeText(getApplicationContext(), "stringa" +prova, Toast.LENGTH_LONG).show();
@@ -714,7 +714,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                             }
                             switch (pacchetto_P){
                                 case 1:
-
+                                    toast.makeText(getApplicationContext(), "P1" , Toast.LENGTH_SHORT).show();
                                     count_P1 ++;
                                     if (count_P1 == 1) {
                                         //ricostruisco i dati in variabili
@@ -747,7 +747,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                     break;
 
                                 case 2:
-
+                                    toast.makeText(getApplicationContext(), "P2" , Toast.LENGTH_SHORT).show();
                                     count_P2 ++;
                                     if (count_P2 == 1) {
                                         //ricostruisco i dati in variabili
@@ -776,7 +776,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                     break;
 
                                 case 3:
-
+                                    toast.makeText(getApplicationContext(), "P3" , Toast.LENGTH_SHORT).show();
                                     count_P3 ++;
                                     if (count_P3 == 1) {
                                         //ricostruisco i dati in variabili

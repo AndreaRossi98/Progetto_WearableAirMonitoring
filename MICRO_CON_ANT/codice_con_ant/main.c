@@ -262,7 +262,7 @@ void ant_send(uint8_t numero_pacchetto, int counter, int quat1, int quat2, int q
 //Function for handling stack event
 void ant_evt_handler(ant_evt_t * p_ant_evt, void * p_context)
 {
-    if (p_ant_evt->channel == BROADCAST_CHANNEL_NUMBER && flag_inizializzazione == 0)  //durante l'inizializzazione dei sensori ignora tutti i messaggi che arrivano dal master
+    if (p_ant_evt->channel == BROADCAST_CHANNEL_NUMBER && flag_inizializzazione == 1)  //durante l'inizializzazione dei sensori ignora tutti i messaggi che arrivano dal master
     {
         switch (p_ant_evt->event)
         {
@@ -426,16 +426,16 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
 
     }
 //simulo un aggiornamento dei valori ogni 6 secondi, così invio ogni pacchetto 2 volte
-if((rtc_count % 12) == 0)
+/*if((rtc_count % 12) == 0)
 {
     flag_misurazioni = 1; //non andrebbe qua, ma nei 20 sec
-}
+}*/
     //20 sec
     if ((rtc_count % _20_SEC) == 0)
     {
         //campiono tutti i valori, flag e si fa nel main, confronto con umidità
-        //rtc_count = 0 se non mi serve intervallo più grande
-        //flag_misurazioni = 1; //eseguire misurazioni ogni 20 sec nel main
+        rtc_count = 0;  // se non mi serve intervallo più grande
+        flag_misurazioni = 1; //eseguire misurazioni ogni 20 sec nel main
     }
     
     //1 ora per sgp30 baseline iaq (capire se serve)                                                                                     
@@ -477,17 +477,17 @@ printf("Timer\n");
     /* 
      * Inizializzazione dei sensori
      */
-/*    if(flag_inizializzazione == 0)
+    if(flag_inizializzazione == 0)
     {
         err_code = 1;
-        while (err_code != 0)
-            err_code = sps30_init();   //tutto ok ritorna 0
+//        while (err_code != 0)
+//            err_code = sps30_init();   //tutto ok ritorna 0
         err_code = 1;
-        while (err_code = !0)
+//        while (err_code = !0)
              err_code = bme280_init_set(&dev_bme280); //tutto ok ritorna 0
         //scd41 non serve init
         err_code = 1;
-        while (err_code = !0)
+//        while (err_code = !0)
             err_code = lis3dh_init();    //tutto ok ritorna 0
 printf("Sensori correttamente inizializzati\n");
         flag_inizializzazione = 1;
@@ -507,8 +507,9 @@ printf("Sensori correttamente inizializzati\n");
     {
         if(flag_misurazioni == 1 && connesso == 1)   //esegui tutte le misurazioni tranne VOC
         {
-/*            
+            
             float partial_calc = 0;        //variable to maintein partial calculation
+            int calcolo_parziale = 0;
 //ha senso guardare se restituiscono o meno errore queste funzioni?
             
             //unire sps e scd per fare un unico delay, o separarli per consumo di corrente massimo disponibile
@@ -530,24 +531,26 @@ printf("Sensori correttamente inizializzati\n");
 
             //MICS6814
             nrfx_saadc_sample_convert(NO2_CHANNEL, &adc_val); //A1
-            partial_calc = (5 - adc_to_volts(adc_val))/adc_to_volts(adc_val);
-            measure_mics6814.NO2 = pow(10, (log10(partial_calc) -0.804)/(1.026))*1000;
+            //partial_calc = (5 - adc_to_volts(adc_val))/adc_to_volts(adc_val);
+            //measure_mics6814.NO2 = pow(10, (log10(partial_calc) -0.804)/(1.026))*1000;
+            measure_mics6814.NO2 = adc_val;
             nrfx_saadc_sample_convert(CO_CHANNEL, &adc_val); //A3
-            partial_calc = (5 - adc_to_volts(adc_val))/adc_to_volts(adc_val);
-            measure_mics6814.CO = pow(10, (log10(partial_calc)-0.55)/(-0.85));
+            //partial_calc = (5 - adc_to_volts(adc_val))/adc_to_volts(adc_val);
+            //measure_mics6814.CO = pow(10, (log10(partial_calc)-0.55)/(-0.85));
+            measure_mics6814.CO = adc_val;
             
             //BME280
             bme280_set_sensor_mode(BME280_FORCED_MODE, &dev_bme280);
             bme280_get_sensor_data(BME280_ALL, &measure_bme280, &dev_bme280);
     
             //LIS3DH
-*/            //scegliere ogni quanto campionare   
+            //scegliere ogni quanto campionare   
 //simulazione di dati letti e pronti da inviare al device   
 
 printf("\nMisuro\n");
 
           //letti tutti i valori, elaboro i dati in modo da poterli inviare come uint8 e li salvo nei pacchetti, poi metto flag_misurazione = 2 e la gestisco in ANT
-//Valori simulati          
+/*//Valori simulati          
           pacchetto_1[0] = 64 + numero_pacchetto;
           pacchetto_1[1] = valore_prova; //Temperatura
           pacchetto_1[2] = valore_prova; //Temperatura
@@ -556,18 +559,20 @@ printf("\nMisuro\n");
           pacchetto_1[5] = valore_prova; //Pressione
           pacchetto_1[6] = valore_prova; //Pressione
           pacchetto_1[7] = valore_prova; //Pressione
+          */
 //valori veri
-/*
+
           pacchetto_1[0] = 64 + numero_pacchetto;
           pacchetto_1[1] = (int) measure_bme280.temperature + 30;    //Parte intera della Temperatura incrementato di 30 (o più?)
           pacchetto_1[2] = abs((int)((measure_bme280.temperature - (int)measure_bme280.temperature)*100));  //parte decimale della Temperatura
           pacchetto_1[3] = (int) measure_bme280.humidity;
           pacchetto_1[4] = (int)((measure_bme280.humidity - (int)measure_bme280.humidity)*100);
-          pacchetto_1[5] = measure_bme280.pressure >> 16; //Pressione  >> 16
-          pacchetto_1[6] = measure_bme280.pressure >> 8; //Pressione  >> 8
-          pacchetto_1[7] = measure_bme280; //Pressione
-*/
+          calcolo_parziale = measure_bme280.pressure;
+          pacchetto_1[5] = calcolo_parziale >> 16; //Pressione  >> 16
+          pacchetto_1[6] = calcolo_parziale >> 8; //Pressione  >> 8
+          pacchetto_1[7] = calcolo_parziale; //Pressione
 
+/*
 //Valori simulati          
           pacchetto_2[0] = 128 + numero_pacchetto;
           pacchetto_2[1] = valore_prova+1; //VOC      
@@ -577,18 +582,18 @@ printf("\nMisuro\n");
           pacchetto_2[5] = valore_prova+1; //NO2
           pacchetto_2[6] = valore_prova+1; //NO2
           pacchetto_2[7] = valore_prova+1; //CO
-
+*/
 //Valori veri
-/*
+
           pacchetto_2[0] = 128 + numero_pacchetto;
-          pacchetto_2[1] = valore_prova+1; //VOC  LSB (least significant Byte)      
-          pacchetto_2[2] = valore_prova+1; //VOC  MSB (Most significant Byte)     
+          pacchetto_2[1] = 1; //VOC  LSB (least significant Byte)      
+          pacchetto_2[2] = 1; //VOC  MSB (Most significant Byte)     
           pacchetto_2[3] = measure_scd4x.CO2; //CO2  LSB (least significant Byte)   //dovrebbe bastare così
           pacchetto_2[4] = measure_scd4x.CO2 >> 8; //CO2  MSB (Most significant Byte)
-          pacchetto_2[5] = valore_prova+1; //NO2
-          pacchetto_2[6] = valore_prova+1; //CO
-          pacchetto_2[7] = valore_prova+1; // BATTERY   capire ogni quanto campionare
-*/
+          pacchetto_2[5] = measure_mics6814.NO2; //NO2
+          pacchetto_2[6] = measure_mics6814.CO; //CO
+          pacchetto_2[7] = 123; // BATTERY   capire ogni quanto campionare
+/*
 //valori simulati
           pacchetto_3[0] = 192 + numero_pacchetto;
           pacchetto_3[1] = valore_prova+1; //VOC      
@@ -598,18 +603,18 @@ printf("\nMisuro\n");
           pacchetto_3[5] = valore_prova+1; //NO2
           pacchetto_3[6] = valore_prova+1; //NO2
           pacchetto_3[7] = valore_prova+1; //CO
-
+*/
 //valori veri
-/*          
+          
           pacchetto_3[0] = 192 + numero_pacchetto;
-          pacchetto_3[1] = valore_prova+2; //ACCELERATION   capire ogni quanto leggere il dato
+          pacchetto_3[1] = 10; //ACCELERATION   capire ogni quanto leggere il dato
           pacchetto_3[2] = (int)(measure_sps30.mc_1p0 * 10); //PM1.0 LSB        PM valori moltiplicati per 10
           pacchetto_3[3] = (int)(measure_sps30.mc_1p0 * 10) >> 8; //PM1.0  MSB
           pacchetto_3[4] = (int)(measure_sps30.mc_2p5 * 10); //PM2.5  LSB
           pacchetto_3[5] = (int)(measure_sps30.mc_2p5 * 10) >> 8; //PM2.5  MSB
           pacchetto_3[6] = (int)(measure_sps30.mc_10p0 * 10); //PM10   LSB
           pacchetto_3[7] = (int)(measure_sps30.mc_10p0 * 10) >> 8; //PM10   MSB
-*/
+
 
 //finiti di mettere i valori negli array, incremento il valore di numero_pacchetto.
 // se supera 63 (6 bit), lo riporto a 1

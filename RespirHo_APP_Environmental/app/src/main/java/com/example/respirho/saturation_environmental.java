@@ -251,7 +251,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
     public ChannelType antChannelEnvironmental_type;
     public AntMessage antMessage;
     public MessageFromAntType messagetype; //
-    public boolean mIsOpen = false;
+    public boolean mIsOpen_IMUs = false;
+    public boolean mIsOpen_Environmental = false;
     public ChannelId channelId_smartphone = new ChannelId(2,2,2, true); //DEFAULT: 2,2,2, true
     public ChannelId channelId_smartphone_environmental = new ChannelId(2, 3, 2, true); //diverso da DEFAULT: 2,2,2, true
 
@@ -291,7 +292,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
     private static final int CONNECT6 = 2;
     private static final int SYNCHRONIZATION_RESUME = 4;
     private static final int START = 5;
-    private static final int CALL4 = 6;
+    private static final int CALL_4_6 = 6;
     private static final int CALL6 = 6;
     private static final int CALIBRATION = 9; //payload 8
     private static final int STOP = 10; //stop and resume, payload 9
@@ -689,7 +690,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                             break;
                         case TX: //HERE WE SEND ALL THE BROADCAST MESSAGES TO THE SENSORS
                             //if the channel has been opened during initialization...
-                            if (mIsOpen) {
+                            if (mIsOpen_IMUs && mIsOpen_Environmental) {
 
                                 // Setting the data to be broadcast on the next channel period
                                 if(state==CONNECT4){
@@ -722,12 +723,10 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                     Log.e("start","New rec: "+ startrec_time);
                                 }
 
-                                if(state==CALL4) {
+                                if(state==CALL_4_6) {
                                     payLoad = payLoad5;
-                                }
-
-                                if(state==CALL6) {
                                     payLoad_Environmental = payLoad6;
+
                                 }
 
                                 if(state==CALIBRATION) {
@@ -750,21 +749,16 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                                 //CONTINUOUS ACQUISITION
                                 //after synchronization (START), call periodically one after the other
-        //TODO--  non sono sicuro che così funzioni, controlla
+//TODO--  non sono sicuro che così funzioni, controlla
                                 if(state==START || state==RECONNECTION)
                                 {
-                                    state=CALL4;
+                                    state=CALL_4_6;
                                 }
-                                else if(state == CALL4)
+//unite le chiamate ai due device, ccapire se va bene
+                                else if(state == CALL_4_6)
                                 {
-                                    state = CALL4;
+                                    state = CALL_4_6;
                                     startWatchdogTimer(UNIT4);
-                                    checkWatchdogTimer();
-                                }
-                                else if(state == CALL6)
-                                {
-                                    state = CALL4;
-                                    startWatchdogTimer(UNIT6);
                                     checkWatchdogTimer();
                                 }
 
@@ -816,8 +810,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
     };
 
 
-//TODO -- SONO ARRIVATO QUA
-    
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View v) {
@@ -865,17 +857,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 //open archive dialog
                 dialogDownloadStorage();
 
-                /*
-                //enabled only when it's not recording
-                if(state==STOP){
-                    //call storage function
-                    dialogDownloadStorage();
-                }
-                else{
-                    //TODO- maybe it's possible also during recording, try it
-                    Toast.makeText(getApplicationContext(), "You can open archive only when the communication is closed in the previous page or at the end of a recording", Toast.LENGTH_LONG).show();
-                }
-                */
                 break;
 
             case R.id.update_storage_files:
@@ -888,7 +869,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 dialogDownloadStorage.dismiss();
                 break;
 
-            case R.id.initializationbutton_pulse_ox:
+            case R.id.initializationbutton_pulse_ox_environmental:
                 //show progressbar
                 progressbar_initialization.setVisibility(View.VISIBLE);
                 //change title on initialization started
@@ -896,7 +877,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 //hide the button
                 initializationbutton_pulseox_environmental.setVisibility(View.GONE);
 
-                //TODO-- ANT
                 try {
                     antChannelProvider = mAntRadioService.getChannelProvider();
                 } catch (RemoteException e) {
@@ -904,7 +884,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 }
                 Log.e(LOG_TAG, "Ant Channel Provider is " + antChannelProvider);
 
-                //TODO--remove channels available
                 //channels available
                 int channels=0;
                 try {
@@ -920,7 +899,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                     Toast.makeText(getApplicationContext(), "ERROR\n\nThe communication does not work correctly\n\nPress back button, go back and retry", Toast.LENGTH_LONG).show();
                     break;
                 }
-
+//canale saturimetro
                 try {
                     antChannelIMUs = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
                 } catch (ChannelNotAvailableException | RemoteException e) {
@@ -973,17 +952,78 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                 try {
                     antChannelIMUs.open();
-                    mIsOpen = true;
+                    mIsOpen_IMUs = true;
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "Channel is open");
 
+
+//canale ENVIRONMENTAL MONITOR
+                try {
+                    antChannelEnvironmental = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
+                } catch (ChannelNotAvailableException | RemoteException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Ant Channel IMUs: "+ antChannelEnvironmental);
+
+                try {
+                    antChannelEnvironmental.setChannelEventHandler(eventCallBack);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Event handler" + eventCallBack);
+
+                try {
+                    antChannelIMUs.assign(ChannelType.BIDIRECTIONAL_MASTER);//SHARED_BIDIRECTIONAL_MASTER, 48=0x30
+
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Channel is a BIDIRECTIONAL_MASTER");
+
+                try {
+                    antChannelEnvironmental.setChannelId(channelId_smartphone_environmental);
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "" + channelId_smartphone_environmental);
+
+                try {
+                    antChannelEnvironmental.setPeriod(USER_PERIOD_ENVIRONMENTAL);
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "User period is:" + USER_PERIOD_ENVIRONMENTAL);
+
+                try {
+                    antChannelEnvironmental.setRfFrequency(USER_RADIOFREQUENCY);
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "User radiofrequency is:" + USER_RADIOFREQUENCY);
+
+                try {
+                    antChannelEnvironmental.setTransmitPower(3);
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Transmit power is 3");
+
+                try {
+                    antChannelEnvironmental.open();
+                    mIsOpen_Environmental = true;
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Channel is open");
+
+
                 state = CONNECT4;
 
                 //TODO - end ANT
 
-                if(mIsOpen){
+                if(mIsOpen_IMUs && mIsOpen_Environmental){
                     //if the channel is open
                     progressbar_initialization.setVisibility(View.GONE);
                     initializationbutton_pulseox_environmental.setVisibility(View.GONE);
@@ -1004,30 +1044,31 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 }
                 break;
 
-            case R.id.gotoswitchonpulseox:
+            case R.id.gotoswitchon_pulseox_environmental:
 
                 inflated_initialization.setVisibility(View.GONE);
 
-                viewStub = (ViewStub) findViewById(R.id.switchonpulseox_toinclude);
+                viewStub = (ViewStub) findViewById(R.id.switchon_pulseox_environmental_toinclude);
                 viewStub.setLayoutResource(R.layout.switch_on_saturation_environmental);
                 inflated_switch_on_sensors = viewStub.inflate();
 
                 progressbar_idpatient.setVisibility(View.VISIBLE);
 
                 switchonpulseox_checkmark=(ImageButton) findViewById(R.id.switchonpulseox_checkmark);
+                switchonenvironmentalmonitor_checkmark=(ImageButton) findViewById(R.id.switchonenvironmentalmonitor_checkmark);
 
                 switchonpulseox_progressbar=(ProgressBar) findViewById(R.id.switchonpulseox_progressbar);
-
+                switchonenvironmentalmonitor_progressbar=(ProgressBar) findViewById(R.id.switchonenvironmentalmonitor_progressbar);
 
                 switch_on_pulseox=(TextView) findViewById(R.id.switch_on_pulseox);
-
+                switch_on_environmentalmonitor=(TextView) findViewById(R.id.switch_on_environmentalmonitor);
 
                 gotorecordingbutton_pulseox_environmental=(Button) findViewById(R.id.gotorecordingbutton_pulse_ox);
                 gotorecordingbutton_pulseox_environmental.setOnClickListener(this);
 
                 break;
 
-            case R.id.gotorecordingbutton_pulse_ox:
+            case R.id.gotorecordingbutton:
 
                 inflated_switch_on_sensors.setVisibility(View.GONE);
 
@@ -1081,6 +1122,9 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                     gotonewrecording_timer=(Button) findViewById(R.id.gotonewrecording_timer);
                     gotonewrecording_timer.setOnClickListener(this);
 
+                    showvaluesonmaps_timer = (Button) findViewById(R.id.show_values_on_maps_timer);
+                    showvaluesonmaps_timer.setOnClickListener(this);
+
                     goback_timer=(Button) findViewById(R.id.goback_timer);
                     goback_timer.setOnClickListener(this);
 
@@ -1104,6 +1148,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                     downloadfile_timer.setVisibility(View.GONE);
                     gotonewrecording_timer.setVisibility(View.GONE);
+                    showvaluesonmaps_timer.setVisibility(View.GONE);
+
                     status_timer.setVisibility(View.GONE);
                     timer_recording_filename.setVisibility(View.GONE);
 
@@ -1154,6 +1200,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 //delete update info
                 old_inforecordingtext="";
                 inforecording.setText(null);
+
                 //show update info layout
                 inflated_updateinfo.setVisibility(View.VISIBLE);
 
@@ -1197,8 +1244,11 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
 
+                        showvaluesonmaps_timer.setVisibility(View.VISIBLE);
+
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
+                        inflated_displaydata.setVisibility(View.GONE);
 
                         antStop();
 
@@ -1250,9 +1300,11 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                         downloadfile_timer.setVisibility(View.VISIBLE);
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
+                        showvaluesonmaps_timer.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
+                        inflated_displaydata.setVisibility(View.GONE);
                     }
                 });
                 //negative no button
@@ -1280,6 +1332,10 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
             case R.id.gotonewrecording_timer:
                 gotonewrecording(inflated_timer_rec);
+                break;
+
+            case R.id.show_values_on_maps_timer:
+                //metti qua quello che serve una volta che hai sistemato la parte show_values_on_maps_manual
                 break;
 
             case R.id.manualrecordingbutton:
@@ -1313,6 +1369,9 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                     gotonewrecording_manual=(Button) findViewById(R.id.gotonewrecording_manual);
                     gotonewrecording_manual.setOnClickListener(this);
 
+                    showvaluesonmaps_manual = (Button) findViewById(R.id.show_values_on_maps_manual);
+                    showvaluesonmaps_manual.setOnClickListener(this);
+
                     goback_manual=(Button) findViewById(R.id.goback_manual);
                     goback_manual.setOnClickListener(this);
 
@@ -1337,6 +1396,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                     status_manual.setVisibility(View.GONE);
                     downloadfile_manual.setVisibility(View.GONE);
                     gotonewrecording_manual.setVisibility(View.GONE);
+                    showvaluesonmaps_manual.setVisibility(View.GONE);
 
                     manual_recording_filename.setVisibility(View.GONE);
 
@@ -1423,9 +1483,11 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         //startrecording_manual.setVisibility(View.VISIBLE);
                         downloadfile_manual.setVisibility(View.VISIBLE);
                         gotonewrecording_manual.setVisibility(View.VISIBLE);
+                        showvaluesonmaps_manual.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
+                        inflated_displaydata.setVisibility(View.GONE);
                     }
                 });
                 //negative no button
@@ -1887,8 +1949,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
         return battery_value;
     }
 
-
-
     private void initializeNotification(String title) {
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
             NotificationChannel channel_not= new NotificationChannel(title,title, NotificationManager.IMPORTANCE_DEFAULT);
@@ -2223,7 +2283,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
         //initialize size_interval_backupfile for a new recording
         size_interval_backupfile=SIZE_INTERVAL_BACKUPFILE;
 
-        if(mIsOpen){
+        if(mIsOpen_IMUs && mIsOpen_Environmental){
             //close the channel
             try {
                 antChannelIMUs.close();
@@ -2232,7 +2292,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
             } catch (AntCommandFailedException e) {
                 e.printStackTrace();
             }
-            mIsOpen = false;
+            mIsOpen_IMUs = false;
+            mIsOpen_Environmental = false;
             Log.e(LOG_TAG, "mIsOpen was true and now the Channel is closed");
         }
     }
@@ -2403,6 +2464,10 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
     public void onBackPressed() {
         //manage back button in some steps of the recording to ensure a safe quit of the recording
 
+        if(show_maps_flag == true) {
+            getSupportFragmentManager().beginTransaction().remove(mapFragment).commit();
+            show_maps_flag = false;
+        }
         if(state==QUIT_RECORDING){
             state= SYNCHRONIZATION_RESUME;
             super.onBackPressed();

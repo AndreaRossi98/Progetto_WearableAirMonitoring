@@ -57,16 +57,16 @@
             android:layout_margin="5dp">
 
             <TextView
-                android:id="@+id/switchonsensor1"
+                android:id="@+id/switchonpulseox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1. Switch on sensor Pulse Oximeter:"
+                android:text="1. Switch on Pulse Oximeter:"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="20dp" />
 
             <ProgressBar
-                android:id="@+id/switchonsensor1_progressbar"
+                android:id="@+id/pulseox_progressbar"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"
                 android:layout_alignParentRight="true"
@@ -75,7 +75,7 @@
                 android:visibility="visible" />
 
             <ImageButton
-                android:id="@+id/switchonsensor1_checkmark"
+                android:id="@+id/pulseox_checkmark"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"
                 android:layout_centerInParent="true"
@@ -97,17 +97,17 @@
             android:layout_margin="5dp">
 
             <TextView
-                android:id="@+id/switchonsensor2"
+                android:id="@+id/switchonenvironmental"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2. Switch on sensor Environmnetal Monitor:"
+                android:text="2. Switch on Environmnetal Monitor:"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="20dp"
                 android:visibility="gone"/>
 
             <ProgressBar
-                android:id="@+id/switchonsensor2_progressbar"
+                android:id="@+id/switchonenvironmental_progressbar"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"
                 android:layout_centerInParent="true"
@@ -116,7 +116,7 @@
                 android:visibility="gone" />
 
             <ImageButton
-                android:id="@+id/switchonsensor2_checkmark"
+                android:id="@+id/switchonenvironmental_checkmark"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"
                 android:layout_centerInParent="true"

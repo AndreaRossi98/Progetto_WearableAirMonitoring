@@ -130,7 +130,7 @@ import java.util.concurrent.TimeUnit;
 
 public class EnvironmentalMonitor extends AppCompatActivity implements View.OnClickListener {
 
-    private Button timerrecordingbutton, manualrecordingbutton, initializationbutton_environmental_monitor, gotoswitchonenvironmentalmonitor, gotorecordingbutton_environmentale_monitor;
+    private Button timerrecordingbutton, manualrecordingbutton, initializationbutton_environmental_monitor, gotoswitchonenvironmentalmonitor, gotorecordingbutton_environmental_monitor;
     private Button startrecording_manual, stoprecording_manual, downloadfile_manual, gotonewrecording_manual, goback_manual, showvaluesonmaps_manual;
     private Button startrecording_timer, stoprecording_timer, downloadfile_timer, gotonewrecording_timer, goback_timer, showvaluesonmaps_timer;
     private Button endcalibration_button;
@@ -941,7 +941,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                                     progressbar_idpatient.setVisibility(View.GONE);
                                     checkmark_idpatient.setVisibility(View.VISIBLE);
-                                    gotorecordingbutton_environmentale_monitor.setVisibility(View.VISIBLE);
+                                    gotorecordingbutton_environmental_monitor.setVisibility(View.VISIBLE);
 
                                 }
                             });
@@ -1143,7 +1143,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 //hide the button
                 initializationbutton_environmental_monitor.setVisibility(View.GONE);
 
-                //TODO-- ANT
                 try {
                     antChannelProvider = mAntRadioService.getChannelProvider();
                 } catch (RemoteException e) {
@@ -1151,7 +1150,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 }
                 Log.e(LOG_TAG, "Ant Channel Provider is " + antChannelProvider);
 
-                //TODO--remove channels available
                 //channels available
                 int channels=0;
                 try {
@@ -1188,7 +1186,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "Channel is a SHARED_BIDIRECTIONAL_MASTER");
+                Log.e(LOG_TAG, "Channel is a BIDIRECTIONAL_MASTER");
 
                 try {
                     antChannelEnvironmental.setChannelId(channelId_smartphone);
@@ -1265,8 +1263,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                 switch_on_environmentalmonitor=(TextView) findViewById(R.id.switch_on_environmentalmonitor);
 
-                gotorecordingbutton_environmentale_monitor=(Button) findViewById(R.id.gotorecordingbutton_environmental_monitor);
-                gotorecordingbutton_environmentale_monitor.setOnClickListener(this);
+                gotorecordingbutton_environmental_monitor=(Button) findViewById(R.id.gotorecordingbutton_environmental_monitor);
+                gotorecordingbutton_environmental_monitor.setOnClickListener(this);
 
                 break;
 
@@ -1400,8 +1398,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 //delete update info
                 old_inforecordingtext="";
                 inforecording.setText(null);
-                //show update info layout
 
+                //show update info layout
                 inflated_updateinfo.setVisibility(View.GONE);
                 inflated_displaydata.setVisibility(View.VISIBLE);
 

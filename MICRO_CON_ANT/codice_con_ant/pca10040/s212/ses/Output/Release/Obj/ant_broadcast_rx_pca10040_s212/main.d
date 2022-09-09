@@ -107,4 +107,8 @@ Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o: \
  ../../../../../../../examples/ant/ant_broadcast/test_ANT/Sensor/bme280.h \
  ../../../../../../../examples/ant/ant_broadcast/test_ANT/Sensor/bme280_defs.h \
  ../../../../../../../examples/ant/ant_broadcast/test_ANT/Sensor/lis3dh_acc_driver.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/Sensor/sgp30.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/Sensor/sensirion_common.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/Sensor/sensirion_i2c.h \
+ C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/Sensor/sgp_git_version.h \
  C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ for\ ARM\ 5.70a/include/math.h

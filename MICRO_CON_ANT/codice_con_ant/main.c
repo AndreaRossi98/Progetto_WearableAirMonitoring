@@ -30,6 +30,7 @@
 #include "scd4x_i2c.h"
 #include "bme280.h"
 #include "lis3dh_acc_driver.h"
+#include "sgp30.h"
 #include <math.h>
 //=============================================================================================================================================================================
 /*
@@ -81,6 +82,11 @@ struct scd4x_data{
     int32_t Temperature;
     int32_t Humidity;
 };
+
+struct sgp30_data{
+    uint16_t tVOC;
+    uint16_t CO2_eq;
+};
 //=============================================================================================================================================================================
 /*
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -124,7 +130,8 @@ struct bme280_data          measure_bme280;     //struct for measured values by 
 struct sps30_measurement    measure_sps30;      //struct for measured values by SPS30
 struct lis3dh_data          measure_lis3dh;     //struct for measured values by LIS3DH
 struct mics6814_data        measure_mics6814;   //struct for measured values by MICS6814
-struct scd4x_data           measure_scd4x;     //struct for measured values by SCD41
+struct scd4x_data           measure_scd4x;      //struct for measured values by SCD41
+struct sgp30_data           measure_sgp30;      //struct for measured values by SGP30
 //=============================================================================================================================================================================
 
 //=============================================================================================================================================================================
@@ -407,7 +414,8 @@ static void ant_channel_rx_broadcast_setup(void)
   %%%%%%%%%%%%%% TIMER HANDLER %%%%%%%%%%%%%%%
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 */
-
+int VOC = 0;
+int count_VOC = 0;
 static void repeated_timer_handler(void * p_context)  //app timer, faccio scattare ogni un secondo
 { 
     rtc_count ++;
@@ -417,8 +425,10 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
     //APP_ERROR_CHECK(err_code);
 
     //1 sec
-    //Lettura dati VOC
-    
+    sgp30_measure_iaq_blocking_read(&measure_sgp30.tVOC, &measure_sgp30.CO2_eq);
+    VOC = VOC + measure_sgp30.tVOC;
+    count_VOC ++;
+    printf("VOC %d\n", VOC);
     //2 sec
     if ((rtc_count % _2_SEC) == 0 )  //non serve perchè invio gestito in ANT HANDLER
     {
@@ -438,6 +448,12 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
         flag_misurazioni = 1; //eseguire misurazioni ogni 20 sec nel main
     }
     
+    if ((rtc_count % 30) == 0)
+    {
+        VOC = 0;
+        count_VOC =0;
+    }
+
     //1 ora per sgp30 baseline iaq (capire se serve)                                                                                     
 }
 //=============================================================================================================================================================================
@@ -488,6 +504,12 @@ printf("Timer\n");
         //scd41 non serve init
         err_code = 1;
 //        while (err_code = !0)
+            
+        //SGP30
+        err_code = sgp30_init();
+        printf("\nSGP30 inizializzato\n\n");
+        sgp30_iaq_init();
+
             err_code = lis3dh_init();    //tutto ok ritorna 0
 printf("Sensori correttamente inizializzati\n");
         flag_inizializzazione = 1;
@@ -542,7 +564,8 @@ printf("Sensori correttamente inizializzati\n");
             //BME280
             bme280_set_sensor_mode(BME280_FORCED_MODE, &dev_bme280);
             bme280_get_sensor_data(BME280_ALL, &measure_bme280, &dev_bme280);
-    
+
+
             //LIS3DH
             //scegliere ogni quanto campionare   
 //simulazione di dati letti e pronti da inviare al device   
@@ -584,10 +607,11 @@ printf("\nMisuro\n");
           pacchetto_2[7] = valore_prova+1; //CO
 */
 //Valori veri
-
+          calcolo_parziale = (int)(VOC/count_VOC);
+          count_VOC = 0;
           pacchetto_2[0] = 128 + numero_pacchetto;
-          pacchetto_2[1] = 1; //VOC  LSB (least significant Byte)      
-          pacchetto_2[2] = 1; //VOC  MSB (Most significant Byte)     
+          pacchetto_2[1] = calcolo_parziale; //VOC  LSB (least significant Byte)      
+          pacchetto_2[2] = calcolo_parziale >> 8; //VOC  MSB (Most significant Byte)     
           pacchetto_2[3] = measure_scd4x.CO2; //CO2  LSB (least significant Byte)   //dovrebbe bastare così
           pacchetto_2[4] = measure_scd4x.CO2 >> 8; //CO2  MSB (Most significant Byte)
           pacchetto_2[5] = measure_mics6814.NO2; //NO2

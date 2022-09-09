@@ -42,7 +42,7 @@
 #define SAADC_BATTERY   0           //Canale tensione della batteria
 #define TIMEOUT_VALUE   1000   //1000       //interrupt timer a 1 sec
 #define START_ADDR  0x00011200      //indirizzo di partenza per salvataggio dati in memoria non volatile
-#define LED             07
+#define LED             10  //07
 
 #define NO2_CHANNEL     0           //NO2 channel for ADC
 #define CO_CHANNEL      2           //CO channel for ADC
@@ -148,8 +148,8 @@ void twi_init (void)
 {
     ret_code_t err_code;
     const nrf_drv_twi_config_t twi_config = {
-       .scl                = 19,  //6
-       .sda                = 18,  //8  
+       .scl                = 6, //19,  //6
+       .sda                = 8, //18,  //8  
        .frequency          = NRF_DRV_TWI_FREQ_100K,
        .interrupt_priority = APP_IRQ_PRIORITY_HIGH,
        .clear_bus_init     = false
@@ -454,7 +454,7 @@ printf("inizio\n");
     log_init();
     saadc_init();
     twi_init();
-
+printf("Start\n");
     softdevice_setup();
     ant_channel_rx_broadcast_setup();
     utils_setup();

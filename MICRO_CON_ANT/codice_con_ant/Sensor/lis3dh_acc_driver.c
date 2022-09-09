@@ -151,7 +151,7 @@ bool lis3dh_verify_product_id(void)
     // datasheet of your slave device.
     if (lis3dh_register_read(LIS3DH_WHO_AM_I, &who_am_i, 1))
     {
-        if (who_am_i != 0x33)
+        if (who_am_i != 0x3F) //0x33
         {
             NRF_LOG_INFO("Register read who am I not working");
             return false;

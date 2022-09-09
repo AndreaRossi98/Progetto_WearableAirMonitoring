@@ -317,7 +317,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public Location location;
     public double latitude = 0.0, longitude = 0.0;
 
-    //File management       aggiunto dopo per implementare l'aggiunta dei ounti su maps (richiede accesso ai file con tutti i dati salvati)
+    //File management       aggiunto dopo per implementare l'aggiunta dei punti su maps (richiede accesso ai file con tutti i dati salvati)
     public File root; //root path of the file
     public File file; //file path
     public FileWriter writer;
@@ -329,10 +329,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private BroadcastReceiver localActivityReceiver;
     public String activity;// = "STILL"; //activity level of the user (being still, walking or running)
     public SupportMapFragment mapFragment;
-
-
-    int latitudine;
-    int longitudine;
 
 //activity recognition al momento non lo metto, non mi serve ma dopo ci si guarda
 
@@ -564,12 +560,11 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         public void onReceiveMessage(MessageFromAntType messageFromAntType, AntMessageParcel antMessageParcel) {
-            Log.e(LOG_TAG, "on receive messagge " + messageFromAntType + antMessageParcel); //hex
+
             switch (messageFromAntType) {
 
                 case BROADCAST_DATA: //HERE ARRIVES ALL THE MESSAGES FROM THE SENSORS
 
-                    Log.e(LOG_TAG, "CHECK Rx: "); //hex
                     //save time
                     day = LocalDateTime.now().toLocalDate().toString(); //datetime
 
@@ -593,7 +588,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             + messageContentString.substring(20, 24) + ","
                             + messageContentString.substring(24, 28) + ","
                             + messageContentString.substring(28, 32) + ",";
-                    Log.e(LOG_TAG, "stringa " + msg);
+
 //toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
 
 //risultato = Float.parseFloat(prova);

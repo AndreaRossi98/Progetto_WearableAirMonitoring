@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -124,7 +125,7 @@ import android.location.Location;
 
 public class saturation_environmental extends AppCompatActivity implements View.OnClickListener {
 
-    private Button timerrecordingbutton,manualrecordingbutton,initializationbutton_pulseox_environmental,gotoswitchonpulseox,gotoswitchonenvironmental,gotorecordingbutton_pulseox_environmental;
+    private Button timerrecordingbutton,manualrecordingbutton,initializationbutton_pulseox_environmental,gotoswitchonpulseox_environmental,gotoswitchonenvironmental,gotorecordingbutton_pulseox_environmental;
     private Button startrecording_manual,stoprecording_manual,downloadfile_manual,gotonewrecording_manual,goback_manual,showvaluesonmaps_manual;
     private Button startrecording_timer,stoprecording_timer,downloadfile_timer,gotonewrecording_timer,goback_timer,showvaluesonmaps_timer;
     private Button endcalibration_button;
@@ -255,16 +256,19 @@ public class saturation_environmental extends AppCompatActivity implements View.
     public ChannelId channelId_smartphone_environmental = new ChannelId(2, 3, 2, true); //diverso da DEFAULT: 2,2,2, true
 
     byte[] payLoad;
+    byte[] payLoad_Environmental;
 
     byte[] payLoad10 = {0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04}; // payload to call unit 1 for the first time
 
-    byte[] payLoad6 = {0x06, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06}; // payload to call Environmental Monitor unit for the first time
+    byte[] payLoad11 = {0x06, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06}; // payload to call Environmental Monitor unit for the first time
 
     byte[] payLoad4 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to synchronize the three units and to stop checking after calibration
 
     byte[] payLoad5 = {0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 4 during acquisition
 
-    //manca un payload perchè ha setsso nome del saturation
+    byte[] payLoad6 = {0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit Environmental Monitor during acquisition
+
+    //nome payload sarebbero da sistemare, lasciati così per non coerenza con altri file
 //TODO-- end SONO ARRIVATO QUA
     byte[] payLoad8 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0xFF}; // payload to calibrate and do movements, when sensors leds are OFF send payload 4 and go on
     byte[] payLoad9 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0x80}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
@@ -279,13 +283,16 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
     public int state;
     public boolean connected4 = false;
+    public boolean connected6 = false;
 
     //STATES
     private static final int INITIALIZATION = 0;
     private static final int CONNECT4 = 1;
+    private static final int CONNECT6 = 2;
     private static final int SYNCHRONIZATION_RESUME = 4;
     private static final int START = 5;
     private static final int CALL4 = 6;
+    private static final int CALL6 = 6;
     private static final int CALIBRATION = 9; //payload 8
     private static final int STOP = 10; //stop and resume, payload 9
     private static final int RECONNECTION = 11;
@@ -312,12 +319,33 @@ public class saturation_environmental extends AppCompatActivity implements View.
     private static String sensorDisconnected4="";
 
     private static final int UNIT4 = 0;
-    //TODO-- end ANT variables
+    private static final int UNIT6 = 0;
+
+    //dichiaro qua variabili per location
+    public FusedLocationProviderClient fusedLocationClient;
+    public LocationCallback locationCallback;
+    public LocationRequest locationRequest;
+    public Location location;
+    public double latitude = 0.0, longitude = 0.0;
+
+    //File management       aggiunto dopo per implementare l'aggiunta dei punti su maps (richiede accesso ai file con tutti i dati salvati)
+    public File root; //root path of the file
+    public File file; //file path
+    public FileWriter writer;
+    public String file_name; //name of the file
+
+    //Activity recognition & map services       //non so se serve
+//private GoogleApiClient apiClient;  //forse non serve, serve nella definizione della funzione?
+    private LocalBroadcastManager localBroadcastManager;
+    private BroadcastReceiver localActivityReceiver;
+    public String activity;// = "STILL"; //activity level of the user (being still, walking or running)
+    public SupportMapFragment mapFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.saturation);
+        setContentView(R.layout.saturation_environmental);
 
         //FILES INT AND EXT INITIALIZATION
         //path where the txt file is saved internally before downloading
@@ -336,14 +364,17 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
         //initialize the initialization view
         viewStub = (ViewStub) findViewById(R.id.initialization_toinclude_1);
-        viewStub.setLayoutResource(R.layout.initialization_pulse_ox);
+        viewStub.setLayoutResource(R.layout.initialization_saturation_environmental);
         inflated_initialization = viewStub.inflate();
 
-        //TODO- move this initialization elsewhere
         //update info layout initialization
         viewStub = (ViewStub) findViewById(R.id.updateinforecording_toinclude);
         viewStub.setLayoutResource(R.layout.updateinfo_recording);
         inflated_updateinfo = viewStub.inflate();
+
+        viewStub = (ViewStub) findViewById(R.id.display_data_toinclude);
+        viewStub.setLayoutResource(R.layout.display_data_environmental_monitor);
+        inflated_displaydata = viewStub.inflate();
 
         posture_buttons=(RadioGroup) inflated_updateinfo.findViewById(R.id.posture_buttons);
 
@@ -356,7 +387,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
         inforecording=(TextView) inflated_updateinfo.findViewById(R.id.inforecording);
 
         inflated_updateinfo.setVisibility(View.GONE);
-        //TODO- end move this initialization elsewhere
+        inflated_displaydata.setVisibility(View.GONE);
 
         helpbutton = (Button) findViewById(R.id.helpbutton);
         helpbutton.setOnClickListener(this);
@@ -377,22 +408,26 @@ public class saturation_environmental extends AppCompatActivity implements View.
         lowbattery_idpatient =(ImageView) findViewById(R.id.lowbattery_idpatient);
         lowbattery_idpatient.setOnClickListener(this);
         lowbattery_idpatient.setVisibility(View.GONE);
+
         error_idpatient=(ImageButton) findViewById(R.id.error_idpatient);
         error_idpatient.setVisibility(View.GONE);
+
         exclamation_point_idpatient=(ImageButton) findViewById(R.id.exclamation_point_idpatient);
         exclamation_point_idpatient.setOnClickListener(this);
         exclamation_point_idpatient.setVisibility(View.GONE);
+
         checkmark_idpatient=(ImageButton) findViewById(R.id.checkmark_idpatient);
         checkmark_idpatient.setOnClickListener(this);
         checkmark_idpatient.setVisibility(View.GONE);
+
         progressbar_idpatient=(ProgressBar) findViewById(R.id.progressbar_idpatient);
         progressbar_idpatient.setVisibility(View.GONE);
 
-        initializationbutton_pulseox_environmental=(Button) findViewById(R.id.initializationbutton_pulse_ox);
+        initializationbutton_pulseox_environmental=(Button) findViewById(R.id.initializationbutton_pulse_ox_environmental);
         initializationbutton_pulseox_environmental.setOnClickListener(this);
 
-        gotoswitchonpulseox=(Button) findViewById(R.id.gotoswitchonpulseox);
-        gotoswitchonpulseox.setOnClickListener(this);
+        gotoswitchonpulseox_environmental=(Button) findViewById(R.id.gotoswitchon_pulseox_environmental);
+        gotoswitchonpulseox_environmental.setOnClickListener(this);
 
         progressbar_initialization=(ProgressBar) findViewById(R.id.progressbar_initialization);
         status_initialization=(TextView) findViewById(R.id.status_initialization);
@@ -400,14 +435,23 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
         initialization_checkmark=(ImageButton) findViewById(R.id.initialization_checkmark);
 
-        //TODO-- ANT
+        //PER STAMPARE A SCHERMO
+        temperature_output = (TextView) findViewById(R.id.temperature_value);
+        humidity_output = (TextView) findViewById(R.id.humidity_value);
+        pressure_output = (TextView) findViewById(R.id.pressure_value);
+        CO2_output = (TextView) findViewById(R.id.CO2_value);
+        VOC_output = (TextView) findViewById(R.id.VOC_value);
+        NO2_output = (TextView) findViewById(R.id.NO2_value);
+        CO_output = (TextView) findViewById(R.id.CO_value);
+        PM1p0_output = (TextView) findViewById(R.id.PM1_0_value);
+        PM2p5_output = (TextView) findViewById(R.id.PM2_5_value);
+        PM10_output = (TextView) findViewById(R.id.PM10_value);
+
         //BINDING TO THE ANT RADIO SERVICE
         serviceIsBound = AntService.bindService(this, mAntRadioServiceConnection);
         Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
         Log.e(LOG_TAG, "Version name: "+ AntService.getVersionName(this));
-        //TODO-- end ANT
 
-        //TODO-- drawer
         drawerLayout=findViewById(R.id.drawer_layout);
 
         drawer_home=findViewById(R.id.drawer_home);
@@ -459,10 +503,51 @@ public class saturation_environmental extends AppCompatActivity implements View.
                 }
             });
         }
-        //TODO-- end drawer
+
+        //LOCATION PROVIDER
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult != null) {
+                    location = locationResult.getLastLocation();
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
+                }
+            }
+        };
+
+        locationRequest = LocationRequest.create();
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(1000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
-    //TODO-- ANT
+    //variabili per la gestione dei pacchetti e scrittura dei dati su file
+    int pacchetto_numero_ricevuto;   //numero incrementale del pacchetto che arriva
+    int numero_pacchetto = 1;
+    int pacchetto_P = 0;   //numero del pacchetto P arrivato
+    int flag_dati_scritti = 0;
+    int flag_location = 0;
+    int count_P1 = 0;
+    int count_P2 = 0;
+    int count_P3 = 0;
+    //variabili per contenere i valori inviati
+    float temperature = 0;
+    float humidity = 0;
+    int pressure = 0;
+    int VOC = 0;
+    int CO2 = 0;
+    float NO2 = 0;
+    float CO = 0;
+    float battery = 0;
+    int acceleration = 0;
+    float PM1p0 = 0;
+    float PM2p5 = 0;
+    float PM10p0 = 0;
+    float partial_calculation = 0; //variabile usata per fare calcoli parziali
+    String messaggio_salvato;
+
 
     public IAntChannelEventHandler eventCallBack = new IAntChannelEventHandler() {
 
@@ -473,6 +558,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
             switch(messageFromAntType){
 
                 case BROADCAST_DATA: //HERE ARRIVES ALL THE MESSAGES FROM THE SENSORS
+
                     //save time
                     day= LocalDateTime.now().toLocalDate().toString(); //datetime
 
@@ -496,7 +582,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
                             + messageContentString.substring(20,24) + ","
                             + messageContentString.substring(24,28) + ","
                             + messageContentString.substring(28,32) + ",";
-                    //TODO - end
+
+toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
 
                     //split the bytes
                     String[] messageContentString_split = messageContentString.split("]"); //ex: [01
@@ -509,7 +596,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
                     resetWatchdogTimer(0); //we subtract 1 to match the array indexes
 
                     //if ALL the units are connected, the next messages will be the recording data
-                    if(connected4){
+                    if(connected4   && connected6){
+                        //idea è che sono entrambi connessi
                         //TODO- write the message to firebase and to file
                         //write the messages
                         //call the firebase class to upload data on firebase
@@ -543,8 +631,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
                         if(messageContentString.contains(string4)){
                             connected4 = true;
                             //GlobalVariables.flag_connected4=true;
-                            Log.e(LOG_TAG,"1 is:" + connected4);
-                            state=CONNECT4;
+                            Log.e(LOG_TAG,"4 is:" + connected4);
+                            state=CONNECT6;
 
                             //to change the UI we have to put codes in the runOnUiThread
                             runOnUiThread(new Runnable() {
@@ -554,14 +642,36 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                     switchonpulseox_progressbar.setVisibility(View.GONE);
                                     switchonpulseox_checkmark.setVisibility(View.VISIBLE);
 
-                                    progressbar_idpatient.setVisibility(View.GONE);
-                                    checkmark_idpatient.setVisibility(View.VISIBLE);
-                                    gotorecordingbutton_pulseox_environmental.setVisibility(View.VISIBLE);
-
+                                    switch_on_environmentalmonitor.setVisibility(View.VISIBLE);
+                                    switchonenvironmentalmonitor_progressbar.setVisibility(View.VISIBLE);
                                 }
                             });
                         }
 
+                        if(messageContentString.contains(string6)){
+                            connected6 = true;
+                            //GlobalVariables.flag_connected4=true;
+                            Log.e(LOG_TAG,"6 is:" + connected4);
+                            //non dovrebbe servirmi, neanche in demodownload lo usa
+                            //state=CONNECT4;
+
+                            //to change the UI we have to put codes in the runOnUiThread
+                            runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    switchonenvironmentalmonitor_progressbar.setVisibility(View.GONE);
+                                    switchonenvironmentalmonitor_checkmark.setVisibility(View.VISIBLE);
+
+                                    //show green checkmark
+                                    checkmark_idpatient.setVisibility(View.VISIBLE);
+                                    lowbattery_idpatient.setVisibility(View.GONE);  //capire se serve o meno
+                                    progressbar_idpatient.setVisibility(View.GONE);
+
+                                    gotorecordingbutton_pulseox_environmental.setVisibility(View.VISIBLE);
+                                }
+                            });
+                        }
                     }
 
                     break;
@@ -586,6 +696,10 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                     payLoad = payLoad10;
                                 }
 
+                                if (state==CONNECT6){
+                                    payLoad_Environmental = payLoad11;
+                                }
+
 
                                 if(state==SYNCHRONIZATION_RESUME)
                                 {
@@ -595,11 +709,13 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                 if(state==RECONNECTION)
                                 {
                                     payLoad = payLoad4;
+                                    payLoad_Environmental = payLoad4;
                                 }
 
                                 if(state==START)
                                 {
                                     payLoad = payLoad4;
+                                    payLoad_Environmental = payLoad4;
                                     //save time to show
                                     SimpleDateFormat formatStartRec=new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
                                     startrec_time=formatStartRec.format(new Date().getTime());
@@ -610,6 +726,9 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                     payLoad = payLoad5;
                                 }
 
+                                if(state==CALL6) {
+                                    payLoad_Environmental = payLoad6;
+                                }
 
                                 if(state==CALIBRATION) {
                                     payLoad = payLoad8;
@@ -618,17 +737,20 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                 if(state==STOP) {
                                     //stop the channel sending the payload9
                                     payLoad = payLoad9;
+                                    payLoad_Environmental = payLoad9;
                                 }
 
                                 //send the message through a specific payload
                                 try {
                                     antChannelIMUs.setBroadcastData(payLoad);
+                                    antChannelEnvironmental.setBroadcastData(payLoad_Environmental);
                                 } catch (RemoteException e) {
                                     e.printStackTrace();
                                 }
 
                                 //CONTINUOUS ACQUISITION
                                 //after synchronization (START), call periodically one after the other
+        //TODO--  non sono sicuro che così funzioni, controlla
                                 if(state==START || state==RECONNECTION)
                                 {
                                     state=CALL4;
@@ -637,6 +759,12 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                 {
                                     state = CALL4;
                                     startWatchdogTimer(UNIT4);
+                                    checkWatchdogTimer();
+                                }
+                                else if(state == CALL6)
+                                {
+                                    state = CALL4;
+                                    startWatchdogTimer(UNIT6);
                                     checkWatchdogTimer();
                                 }
 
@@ -687,8 +815,9 @@ public class saturation_environmental extends AppCompatActivity implements View.
         }
     };
 
-    //TODO -- end ANT
 
+//TODO -- SONO ARRIVATO QUA
+    
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onClick(View v) {
@@ -863,7 +992,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                     status_initialization.setText("Initialization successful!");
                     initialization_checkmark.setVisibility(View.VISIBLE);
                     bottom_initialization.setVisibility(View.VISIBLE);
-                    gotoswitchonpulseox.setVisibility(View.VISIBLE);
+                    gotoswitchonpulseox_environmental.setVisibility(View.VISIBLE);
                 }
                 else{
                     antDisconnection(saturation_environmental.this);
@@ -880,7 +1009,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                 inflated_initialization.setVisibility(View.GONE);
 
                 viewStub = (ViewStub) findViewById(R.id.switchonpulseox_toinclude);
-                viewStub.setLayoutResource(R.layout.switch_on_pulse_ox);
+                viewStub.setLayoutResource(R.layout.switch_on_saturation_environmental);
                 inflated_switch_on_sensors = viewStub.inflate();
 
                 progressbar_idpatient.setVisibility(View.VISIBLE);

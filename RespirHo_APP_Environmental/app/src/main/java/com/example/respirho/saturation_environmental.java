@@ -126,8 +126,8 @@ import android.location.Location;
 public class saturation_environmental extends AppCompatActivity implements View.OnClickListener {
 
     private Button timerrecordingbutton,manualrecordingbutton,initializationbutton,gotoswitchonsensors,gotorecordingbutton;
-    private Button startrecording_manual,stoprecording_manual,downloadfile_manual,gotonewrecording_manual,goback_manual;
-    private Button startrecording_timer,stoprecording_timer,downloadfile_timer,gotonewrecording_timer,goback_timer;
+    private Button startrecording_manual,stoprecording_manual,downloadfile_manual,gotonewrecording_manual,goback_manual,showvaluesonmaps_manual;
+    private Button startrecording_timer,stoprecording_timer,downloadfile_timer,gotonewrecording_timer,goback_timer,showvaluesonmaps_timer;
     private Button endcalibration_button;
     private ImageButton initialization_checkmark,
             switchonsensor1_checkmark,switchonsensor2_checkmark,switchonsensor3_checkmark, switchonsensor4_checkmark;
@@ -520,7 +520,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                 }
             });
         }
-        //LOCATION PROVIDER
+/*        //LOCATION PROVIDER
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
             @Override
@@ -536,7 +536,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(1000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);*/
     }
 
     //variabili per la gestione dei pacchetti e scrittura dei dati su file
@@ -1091,18 +1091,6 @@ state=START;
             case R.id.storage:
                 //open archive dialog
                 dialogDownloadStorage();
-
-                /*
-                //enabled only when it's not recording
-                if(state==STOP){
-                    //call storage function
-                    dialogDownloadStorage();
-                }
-                else{
-                    //TODO- maybe it's possible also during recording, try it
-                    Toast.makeText(getApplicationContext(), "You can open archive only when the communication is closed in the previous page or at the end of a recording", Toast.LENGTH_LONG).show();
-                }
-                */
                 break;
 
             case R.id.update_storage_files:
@@ -1123,7 +1111,6 @@ state=START;
                 //hide the button
                 initializationbutton.setVisibility(View.GONE);
 
-                //TODO-- ANT
                 try {
                     antChannelProvider = mAntRadioService.getChannelProvider();
                 } catch (RemoteException e) {
@@ -1131,7 +1118,7 @@ state=START;
                 }
                 Log.e(LOG_TAG, "Ant Channel Provider is " + antChannelProvider);
 
-                //TODO--remove channels available
+
                 //channels available
                 int channels=0;
                 try {
@@ -1297,7 +1284,7 @@ state=START;
                 if(!flag_timer_rec){
 
                     viewStub = (ViewStub) findViewById(R.id.timer_recording_toinclude);
-                    viewStub.setLayoutResource(R.layout.timer_recording);
+                    viewStub.setLayoutResource(R.layout.timer_recording_general);
                     inflated_timer_rec = viewStub.inflate();
 
                     startrecording_timer=(Button) findViewById(R.id.startrecording_timer);
@@ -1314,6 +1301,9 @@ state=START;
 
                     gotonewrecording_timer=(Button) findViewById(R.id.gotonewrecording_timer);
                     gotonewrecording_timer.setOnClickListener(this);
+
+//showvaluesonmaps_timer = (Button) findViewById(R.id.show_values_on_maps_timer);
+//showvaluesonmaps_timer.setOnClickListener(this);
 
                     goback_timer=(Button) findViewById(R.id.goback_timer);
                     goback_timer.setOnClickListener(this);
@@ -1338,6 +1328,8 @@ state=START;
 
                     downloadfile_timer.setVisibility(View.GONE);
                     gotonewrecording_timer.setVisibility(View.GONE);
+//showvaluesonmaps_timer.setVisibility(View.GONE);
+
                     status_timer.setVisibility(View.GONE);
                     timer_recording_filename.setVisibility(View.GONE);
 
@@ -1433,6 +1425,7 @@ state=START;
 
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
 
+//showvaluesonmaps_timer.setVisibility(View.VISIBLE);
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
                         inflated_displaydata.setVisibility(View.GONE);
@@ -1552,6 +1545,9 @@ state=START;
                     gotonewrecording_manual=(Button) findViewById(R.id.gotonewrecording_manual);
                     gotonewrecording_manual.setOnClickListener(this);
 
+//showvaluesonmaps_manual = (Button) findViewById(R.id.show_values_on_maps_manual);
+//showvaluesonmaps_manual.setOnClickListener(this);
+
                     goback_manual=(Button) findViewById(R.id.goback_manual);
                     goback_manual.setOnClickListener(this);
 
@@ -1576,6 +1572,7 @@ state=START;
                     status_manual.setVisibility(View.GONE);
                     downloadfile_manual.setVisibility(View.GONE);
                     gotonewrecording_manual.setVisibility(View.GONE);
+//showvaluesonmaps_manual.setVisibility(View.GONE);
 
                     manual_recording_filename.setVisibility(View.GONE);
 

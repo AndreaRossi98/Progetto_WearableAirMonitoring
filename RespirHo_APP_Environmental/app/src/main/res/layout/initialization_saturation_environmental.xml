@@ -91,7 +91,7 @@
             android:visibility="gone"/>
 
         <Button
-            android:id="@+id/initializationbutton_pulse_ox_environmental"
+            android:id="@+id/initializationbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Start initialization"
@@ -101,7 +101,7 @@
             android:layout_column="0" />
 
         <Button
-            android:id="@+id/gotoswitchon_pulseox_environmental"
+            android:id="@+id/gotoswitchonsensors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Go to sensors initialization"

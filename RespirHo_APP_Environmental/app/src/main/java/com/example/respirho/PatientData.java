@@ -240,58 +240,6 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
 
             //look if it's a sensor or a switch investigating the type
 
-/*
-            //if it's a sensor
-            if(view instanceof GridLayout ){
-                //cast to gridlayout
-                final GridLayout sensor= (GridLayout) view;
-                sensor.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //TODO--go to the storage demo page
-                        redirectActivity(PatientData.this, DemoDownload.class); //REDIRECT TO AN ACQUISITION WITH ALL THE UNITS
-                    }
-                });
-            }
- */
-
-
-/*            if(view instanceof GridLayout && childnumber==0 ){
-                //cast to gridlayout
-                final GridLayout sensor= (GridLayout) view;
-
-                sensor.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //onIMUpressed();
-                    }
-                });
-            }
-*/
-/*
-            if(view instanceof GridLayout && childnumber == 1 ){
-                //cast to gridlayout
-                final GridLayout sensor= (GridLayout) view;
-                sensor.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //onpulseoxpressed();
-                    }
-                });
-            }
-*/
-/*
-            if(view instanceof GridLayout && childnumber == 5 ){
-                //cast to gridlayout
-                final GridLayout sensor= (GridLayout) view;
-                sensor.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //onEnvironmentalpressed();
-                    }
-                });
-            }
-*/
 
             //if it's a switch
             if(view instanceof SwitchCompat){
@@ -509,7 +457,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case 10: //Environmental Monitor e SPO2
-                toast.makeText(getApplicationContext(), "Calma per Environmental Monitor e SPO2", Toast.LENGTH_SHORT).show();
+                redirectActivity(PatientData.this, saturation_environmental.class);
                 break;
 
             case 11: //Environmental Monitor e IMUs e SPO2

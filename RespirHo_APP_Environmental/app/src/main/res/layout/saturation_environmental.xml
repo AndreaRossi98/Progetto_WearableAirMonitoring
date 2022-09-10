@@ -15,7 +15,7 @@
         android:backgroundTint="#DCE6F2"
         android:clickable="false"
         android:visibility="visible"
-        tools:context=".saturation">
+        tools:context=".DemoDownload">
 
         <!-- TOOLBAR -->
         <include
@@ -45,10 +45,10 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center_vertical"
+                android:text="1234567890"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
-                android:textStyle="bold"
-                android:text="1234567890"/>
+                android:textStyle="bold" />
 
             <!-- LOW BATTERY -->
             <RelativeLayout
@@ -178,7 +178,6 @@
 
         <!-- RECORDING PROCESS -->
         <ScrollView
-            android:id="@+id/layout_recording_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
@@ -195,17 +194,17 @@
 
                 <!-- INITIALIZATION -->
                 <ViewStub
-                    android:id="@+id/initialization_toinclude_1"
+                    android:id="@+id/initialization_toinclude"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inflatedId="@+id/initialization_1" />
+                    android:inflatedId="@+id/initialization" />
 
                 <!-- SWITCH ON SENSORS -->
                 <ViewStub
-                    android:id="@+id/switchon_pulseox_environmental_toinclude"
+                    android:id="@+id/switchonsensors_toinclude"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inflatedId="@+id/switch_on_pulse_environmental" />
+                    android:inflatedId="@+id/switch_on_sensors" />
 
                 <!-- SELECT RECORDING -->
                 <ViewStub
@@ -257,6 +256,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start">
 
-        <include layout="@layout/main_drawer" />
+        <include
+            layout="@layout/main_drawer"/>
     </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

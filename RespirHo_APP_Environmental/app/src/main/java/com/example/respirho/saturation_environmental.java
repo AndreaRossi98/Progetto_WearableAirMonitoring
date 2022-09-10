@@ -125,17 +125,17 @@ import android.location.Location;
 
 public class saturation_environmental extends AppCompatActivity implements View.OnClickListener {
 
-    private Button timerrecordingbutton,manualrecordingbutton,initializationbutton_pulseox_environmental,gotoswitchonpulseox_environmental,gotoswitchonenvironmental,gotorecordingbutton_pulseox_environmental;
-    private Button startrecording_manual,stoprecording_manual,downloadfile_manual,gotonewrecording_manual,goback_manual,showvaluesonmaps_manual;
-    private Button startrecording_timer,stoprecording_timer,downloadfile_timer,gotonewrecording_timer,goback_timer,showvaluesonmaps_timer;
+    private Button timerrecordingbutton,manualrecordingbutton,initializationbutton,gotoswitchonsensors,gotorecordingbutton;
+    private Button startrecording_manual,stoprecording_manual,downloadfile_manual,gotonewrecording_manual,goback_manual;
+    private Button startrecording_timer,stoprecording_timer,downloadfile_timer,gotonewrecording_timer,goback_timer;
     private Button endcalibration_button;
     private ImageButton initialization_checkmark,
-            switchonpulseox_checkmark,switchonenvironmentalmonitor_checkmark;
+            switchonsensor1_checkmark,switchonsensor2_checkmark,switchonsensor3_checkmark, switchonsensor4_checkmark;
 
     private ProgressBar progressBar_manual, progressBar_timer,progressbar_initialization,
-            switchonpulseox_progressbar,switchonenvironmentalmonitor_progressbar,progressbar_idpatient;
+            switchonsensor1_progressbar,switchonsensor2_progressbar,switchonsensor3_progressbar,switchonsensor4_progressbar,progressbar_idpatient;
     private TextView status_manual,status_timer,status_initialization,bottom_initialization,
-            switch_on_pulseox,switch_on_environmentalmonitor,manual_recording_filename,timer_recording_filename;
+            switchonsensor1,switchonsensor2,switchonsensor3,switchonsensor4,manual_recording_filename,timer_recording_filename;
     private TextView timer;
     private TextView clickhereforcalibration;
     private TextInputLayout layout_insert_setduration, layout_insert_setinforec;
@@ -144,6 +144,18 @@ public class saturation_environmental extends AppCompatActivity implements View.
     private Chronometer chronometer;
     private ViewStub viewStub;
     private View inflated_initialization,inflated_switch_on_sensors,inflated_select_recording,inflated_calibration,inflated_manual_rec,inflated_timer_rec,inflated_updateinfo,inflated_displaydata;
+
+    //PER STAMPARE A SCHERMO
+    private TextView temperature_output;
+    private TextView humidity_output;
+    private TextView pressure_output;
+    private TextView CO2_output;
+    private TextView VOC_output;
+    private TextView NO2_output;
+    private TextView CO_output;
+    private TextView PM1p0_output;
+    private TextView PM2p5_output;
+    private TextView PM10_output;
 
     //update info recording
     private RadioGroup posture_buttons;
@@ -160,18 +172,6 @@ public class saturation_environmental extends AppCompatActivity implements View.
     private ImageButton telephone, storage,error_idpatient, exclamation_point_idpatient, checkmark_idpatient;
     private ImageView lowbattery_idpatient;
     private Button helpbutton;
-
-    //PER STAMPARE A SCHERMO
-    private TextView temperature_output;
-    private TextView humidity_output;
-    private TextView pressure_output;
-    private TextView CO2_output;
-    private TextView VOC_output;
-    private TextView NO2_output;
-    private TextView CO_output;
-    private TextView PM1p0_output;
-    private TextView PM2p5_output;
-    private TextView PM10_output;
 
     //STORAGE variables
     private StorageReference mStorageRef;
@@ -206,9 +206,12 @@ public class saturation_environmental extends AppCompatActivity implements View.
     private boolean flag_logout=false;
     private boolean flag_closeapp=false;
 
-    //flag to manage maps
-    private boolean show_maps_flag = false;
-    private boolean flag_null_line = false;
+    //flag for dead batteries show only once and save unit
+    private static boolean flag_battery=false;
+    private static String dead_battery_unit1 ="";
+    private static String dead_battery_unit2 ="";
+    private static String dead_battery_unit3 ="";
+    private static String dead_battery_unit4 ="";
 
     //flag for download
     public boolean flag_filetoosmall = false;
@@ -221,7 +224,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
     //DEFINES
     private static final float THRESHOLD_BATTERY = (float) 2.2;
-    private static final int THRESHOLD_WATCHDOG_TIMER = 150; //DEFAULT: 30
+    private static final int THRESHOLD_WATCHDOG_TIMER = 160; //DEFAULT: 40
     private static final int SIZE_INTERVAL_BACKUPFILE = 1000; //1000, each 1 Mb
 
     private ImageButton idicon,arrowback;
@@ -235,65 +238,69 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
     Toast toast;
 
-
-    public final String LOG_TAG = saturation_environmental.class.getSimpleName();
+    public final String LOG_TAG = DemoDownload.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_SATURATION = 32768; // 3277; 10 Hz
-    private static final int USER_PERIOD_ENVIRONMENTAL = 32768; // 3277; 10 Hz          //DA CAMBIARE IN BASE A COME DECIDO
+    private static final int USER_PERIOD_SENSORS = 819; // 1092; 30 Hz --> change to 819
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound = false;
     private AntService mAntRadioService = null;
     public AntChannelProvider antChannelProvider;
     public AntChannel antChannelIMUs;
-    public AntChannel antChannelEnvironmental;
     public ChannelType antChannelIMUs_type;
-    public ChannelType antChannelEnvironmental_type;
     public AntMessage antMessage;
     public MessageFromAntType messagetype; //
-    public boolean mIsOpen_IMUs = false;
-    public boolean mIsOpen_Environmental = false;
+    public boolean mIsOpen = false;
     public ChannelId channelId_smartphone = new ChannelId(2,2,2, true); //DEFAULT: 2,2,2, true
-    public ChannelId channelId_smartphone_environmental = new ChannelId(2, 3, 2, true); //diverso da DEFAULT: 2,2,2, true
 
     byte[] payLoad;
-    byte[] payLoad_Environmental;
 
-    byte[] payLoad10 = {0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04}; // payload to call unit 1 for the first time
-
-    byte[] payLoad11 = {0x06, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06}; // payload to call Environmental Monitor unit for the first time
+    byte[] payLoad1 = {0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01}; // payload to call unit 1 for the first time
+    byte[] payLoad2 = {0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02}; // payload to call unit 2 for the first time
+    byte[] payLoad3 = {0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03}; // payload to call unit 3 for the first time
+    byte[] payLoad10 = {0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04}; // payload to call unit 4 for the first time
 
     byte[] payLoad4 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to synchronize the three units and to stop checking after calibration
 
-    byte[] payLoad5 = {0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 4 during acquisition
+    byte[] payLoad5 = {0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 1 during acquisition
+    byte[] payLoad6 = {0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 2 during acquisition
+    byte[] payLoad7 = {0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 3 during acquisition
+    byte[] payLoad11 = {0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 4 during acquisition
 
-    byte[] payLoad6 = {0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit Environmental Monitor during acquisition
-
-    //nome payload sarebbero da sistemare, lasciati così per non coerenza con altri file
-//TODO-- end SONO ARRIVATO QUA
-    byte[] payLoad8 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0xFF}; // payload to calibrate and do movements, when sensors leds are OFF send payload 4 and go on
+    byte[] payLoad8 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0xFF}; // payload to calibrate and do movements, when sensors leds are off send payload 4 and go on
     byte[] payLoad9 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0x80}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
 
     public String string0 = "[00][00][00][00][00][00][00][00]";
+    public String string1 = "[01][01][01][01][01][01][01]"; //message from slave 1 for check
+    public String string2 = "[02][02][02][02][02][02][02]";//message from slave 2 for check
+    public String string3 = "[03][03][03][03][03][03][03]";//message from slave 3 for check
     public String string4 = "[04][04][04][04][04][04][04]";//message from slave 4 for check
-    public String string6 = "[06][06][06][06][06][06][06]"; //message from slave 6 for check
 
-    public String dummy_unit4 = "[04],[00],[FF],[00],[00],[00],[00],[00],";
+    public String dummy_unit1="[01],[00],[FF],[00],[00],[00],[00],[00],";
+    public String dummy_unit2="[02],[00],[FF],[00],[00],[00],[00],[00],";
+    public String dummy_unit3="[03],[00],[FF],[00],[00],[00],[00],[00],";
+    public String dummy_unit4="[04],[00],[FF],[00],[00],[00],[00],[00],";
 
-    public String startrec_time = null;
+    public String startrec_time=null;
 
     public int state;
+    public boolean connected1 = false;
+    public boolean connected2 = false;
+    public boolean connected3 = false;
     public boolean connected4 = false;
-    public boolean connected6 = false;
 
     //STATES
     private static final int INITIALIZATION = 0;
-    private static final int CONNECT4 = 1;
-    private static final int CONNECT6 = 2;
+    private static final int CONNECT1 = 1;
+    private static final int CONNECT2 = 2;
+    private static final int CONNECT3 = 3;
+    private static final int CONNECT4 = 13;
     private static final int SYNCHRONIZATION_RESUME = 4;
     private static final int START = 5;
-    private static final int CALL_4_6 = 6;
-    private static final int CALL6 = 6;
+    private static final int CALL1 = 6;
+    private static final int CALL2 = 7;
+    private static final int CALL3 = 8;
+    private static final int CALL4 = 14;
     private static final int CALIBRATION = 9; //payload 8
     private static final int STOP = 10; //stop and resume, payload 9
     private static final int RECONNECTION = 11;
@@ -305,22 +312,32 @@ public class saturation_environmental extends AppCompatActivity implements View.
     BroadcastDataMessage broadcastDataMessage;
     public String current_default,current,day;
     //save the old message to see if there's data loss
-    public String old_messageContentString_unit = null;
+    public String old_messageContentString_unit=null;
 
     //watchdog timer to check if the sensors are receiving messages
-    public int [] watchdog_timer = {0};
-    public int sumWt = 0;
+    public int [] watchdog_timer={0,0,0,0}; //{UNIT1,UNIT2,UNI3, UNIT4}
+    public int wt_unit1=0;
+    public int wt_unit2=0;
+    public int wt_unit3=0;
+    public int wt_unit4=0;
+    public int sumWt=0;
     public boolean flag_watchdog_timer_overflow = true;
     public boolean flag_reconnection = false;
     public boolean flag_sensors_disconnection = false;
     public boolean flag_sensors_disconnection_header = false;
-    public String sensors_disconnection_header = "You have to go back initialize the sensors because in the last recording a problem occurred with the communication.\n\nSwitch OFF the sensors and then press YES";
+    public String sensors_disconnection_header="You have to go back initialize the sensors because in the last recording a problem occurred with the communication.\n\nSwitch OFF the sensors ad then press YES";
 
     private String sensorsDisconnectedText;
+    private static String sensorDisconnected1="";
+    private static String sensorDisconnected2="";
+    private static String sensorDisconnected3="";
     private static String sensorDisconnected4="";
 
-    private static final int UNIT4 = 0;
-    private static final int UNIT6 = 0;
+    private static final int UNIT1 = 0;
+    private static final int UNIT2 = 1;
+    private static final int UNIT3 = 2;
+    private static final int UNIT4 = 3;
+
 
     //dichiaro qua variabili per location
     public FusedLocationProviderClient fusedLocationClient;
@@ -341,7 +358,6 @@ public class saturation_environmental extends AppCompatActivity implements View.
     private BroadcastReceiver localActivityReceiver;
     public String activity;// = "STILL"; //activity level of the user (being still, walking or running)
     public SupportMapFragment mapFragment;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -364,7 +380,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
         item_storage_files=new ArrayList<>();
 
         //initialize the initialization view
-        viewStub = (ViewStub) findViewById(R.id.initialization_toinclude_1);
+        viewStub = (ViewStub) findViewById(R.id.initialization_toinclude);
         viewStub.setLayoutResource(R.layout.initialization_saturation_environmental);
         inflated_initialization = viewStub.inflate();
 
@@ -409,26 +425,22 @@ public class saturation_environmental extends AppCompatActivity implements View.
         lowbattery_idpatient =(ImageView) findViewById(R.id.lowbattery_idpatient);
         lowbattery_idpatient.setOnClickListener(this);
         lowbattery_idpatient.setVisibility(View.GONE);
-
         error_idpatient=(ImageButton) findViewById(R.id.error_idpatient);
         error_idpatient.setVisibility(View.GONE);
-
         exclamation_point_idpatient=(ImageButton) findViewById(R.id.exclamation_point_idpatient);
         exclamation_point_idpatient.setOnClickListener(this);
         exclamation_point_idpatient.setVisibility(View.GONE);
-
         checkmark_idpatient=(ImageButton) findViewById(R.id.checkmark_idpatient);
         checkmark_idpatient.setOnClickListener(this);
         checkmark_idpatient.setVisibility(View.GONE);
-
         progressbar_idpatient=(ProgressBar) findViewById(R.id.progressbar_idpatient);
         progressbar_idpatient.setVisibility(View.GONE);
 
-        initializationbutton_pulseox_environmental=(Button) findViewById(R.id.initializationbutton_pulse_ox_environmental);
-        initializationbutton_pulseox_environmental.setOnClickListener(this);
+        initializationbutton=(Button) findViewById(R.id.initializationbutton);
+        initializationbutton.setOnClickListener(this);
 
-        gotoswitchonpulseox_environmental=(Button) findViewById(R.id.gotoswitchon_pulseox_environmental);
-        gotoswitchonpulseox_environmental.setOnClickListener(this);
+        gotoswitchonsensors=(Button) findViewById(R.id.gotoswitchonsensors);
+        gotoswitchonsensors.setOnClickListener(this);
 
         progressbar_initialization=(ProgressBar) findViewById(R.id.progressbar_initialization);
         status_initialization=(TextView) findViewById(R.id.status_initialization);
@@ -452,7 +464,9 @@ public class saturation_environmental extends AppCompatActivity implements View.
         serviceIsBound = AntService.bindService(this, mAntRadioServiceConnection);
         Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
         Log.e(LOG_TAG, "Version name: "+ AntService.getVersionName(this));
+        //TODO-- end ANT
 
+        //TODO-- drawer
         drawerLayout=findViewById(R.id.drawer_layout);
 
         drawer_home=findViewById(R.id.drawer_home);
@@ -481,6 +495,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
         user=mAuth.getCurrentUser();
         reference= FirebaseDatabase.getInstance().getReference("Users");
 
+        Log.e(LOG_TAG, "IN DEMO DOWNLOAD "  );
+
         //if the user is not null
         if(user!=null){
             userID=user.getUid();
@@ -504,7 +520,6 @@ public class saturation_environmental extends AppCompatActivity implements View.
                 }
             });
         }
-
         //LOCATION PROVIDER
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
@@ -583,8 +598,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                             + messageContentString.substring(20,24) + ","
                             + messageContentString.substring(24,28) + ","
                             + messageContentString.substring(28,32) + ",";
-
-toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
+                    //TODO - end
 
                     //split the bytes
                     String[] messageContentString_split = messageContentString.split("]"); //ex: [01
@@ -594,11 +608,163 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                     //if the message is received, reset watchdog timer of the unit received
                     String unitReceived_default=messageContentString_unit.substring(1); //ex: 1 (String)
                     int unitReceived=Integer.parseInt(unitReceived_default); //ex: 1 (int)
-                    resetWatchdogTimer(0); //we subtract 1 to match the array indexes
+                    resetWatchdogTimer(unitReceived-1); //we subtract 1 to match the array indexes
 
                     //if ALL the units are connected, the next messages will be the recording data
-                    if(connected4   && connected6){
-                        //idea è che sono entrambi connessi
+                    if(connected1 && connected2 && connected3 && connected4){
+
+                        //TODO- dummy messages for data loss - IT WORKSSSSS - find a less cpu solution
+                        //if recording started, look for data loss in each unit and eventually add a dummy message.
+                        //we check the unit of the previous message.
+                        //if it's different respect to the correct order, the units missing can be:
+                        // 1 --> we send a dummy message of the previous unit missing
+                        // 2 --> we send two dummy messages of the previous units missing
+
+                        //the first time we acces old_messageContentString is null, so we won't add any dummy messages
+                        //always initialize old_messageContentString as null
+
+                        if(old_messageContentString_unit!=null){
+                            //Log.e(LOG_TAG,"old_messageContentString_unit not null");
+                            if((messageContentString_unit.equals("01"))&&(!old_messageContentString_unit.equals("04"))){
+                                //Log.e(LOG_TAG,dummy_unit3);
+                                if(old_messageContentString_unit.equals("01")){
+                                    //call the firebase class to upload data on firebase
+                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
+                                    writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
+
+                                    //call the file class to save data in a txt file
+                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
+                                    writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
+
+                                }
+
+                                else if(old_messageContentString_unit.equals("02")){
+                                    //call the firebase class to upload data on firebase
+                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
+
+                                    //call the file class to save data in a txt file
+                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
+                                }
+
+
+                                //call the firebase class to upload data on firebase
+                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
+
+                                //call the file class to save data in a txt file
+                                WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
+                            }
+
+                            else if((messageContentString_unit.equals("02"))&&(!old_messageContentString_unit.equals("01"))){
+                                //Log.e(LOG_TAG,dummy_unit1);
+                                if(old_messageContentString_unit.equals("02")){
+                                    //call the firebase class to upload data on firebase
+                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
+                                    writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
+
+                                    //call the file class to save data in a txt file
+                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
+                                    writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
+                                }
+
+                                else if(old_messageContentString_unit.equals("03")){
+                                    //call the firebase class to upload data on firebase
+                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
+
+                                    //call the file class to save data in a txt file
+                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
+                                }
+
+                                //call the firebase class to upload data on firebase
+                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
+
+                                //call the file class to save data in a txt file
+                                WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
+                            }
+
+                            else if((messageContentString_unit.equals("03"))&&(!old_messageContentString_unit.equals("02"))){
+                                //Log.e(LOG_TAG,dummy_unit2);
+                                if(old_messageContentString_unit.equals("03")){
+                                    //call the firebase class to upload data on firebase
+                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
+                                    writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
+
+                                    //call the file class to save data in a txt file
+                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
+                                    writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
+                                }
+
+                                else if(old_messageContentString_unit.equals("04")){
+                                    //call the firebase class to upload data on firebase
+                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
+
+                                    //call the file class to save data in a txt file
+                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
+                                }
+
+                                //call the firebase class to upload data on firebase
+                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
+
+                                //call the file class to save data in a txt file
+                                WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
+                            }
+
+                            else if((messageContentString_unit.equals("04"))&&(!old_messageContentString_unit.equals("03"))){
+                                //Log.e(LOG_TAG,dummy_unit2);
+                                if(old_messageContentString_unit.equals("04")){
+                                    //call the firebase class to upload data on firebase
+                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
+                                    writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
+
+                                    //call the file class to save data in a txt file
+                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
+                                    writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
+                                }
+
+                                else if(old_messageContentString_unit.equals("01")){
+                                    //call the firebase class to upload data on firebase
+                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
+
+                                    //call the file class to save data in a txt file
+                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
+                                }
+
+                                //call the firebase class to upload data on firebase
+                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
+
+                                //call the file class to save data in a txt file
+                                WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
+                            }
+
+                        }
+                        //save the previous unit of the message to constantly check the order
+                        old_messageContentString_unit=messageContentString_unit;
+
+                        //TODO-END implement dummy messages for data loss
+
                         //TODO- write the message to firebase and to file
                         //write the messages
                         //call the firebase class to upload data on firebase
@@ -623,56 +789,121 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                             //Log.e("backup","backup 1, size end: " + size_interval_backupfile);
                         }
 
+                        //TODO- warning for low battery
+                        //get the second byte to find the battery hex value and remove the open square bracket
+                        String messageContentString_battery=messageContentString_split[1].substring(1); //ex: 5C
+                        float battery_unit=convertToBattery(messageContentString_battery);
+
+                        //demo line to force the value and check if the warning appears and the following if statement
+                        //battery_unit= (float) 1.0;
+
+                        //check battery value in volt
+                        //TIP: the value 81 in int represents the battery value of 2.2
+                        //Log.e("demo","Unit " + messageContentString_unit+" battery "+battery_unit);
+
+                        if((battery_unit<THRESHOLD_BATTERY)&&(battery_unit>0.1)){
+
+                            if(messageContentString_unit.equals("01")){
+                                dead_battery_unit1="1";
+                            }
+                            if(messageContentString_unit.equals("02")){
+                                dead_battery_unit2="2";
+                            }
+                            if(messageContentString_unit.equals("03")){
+                                dead_battery_unit3="3";
+                            }
+                            if(messageContentString_unit.equals("04")){
+                                dead_battery_unit4="4";
+                            }
 
 
-                    }else { //if the unit is NOT connected, check each one in the "switch on sensors" layout
+                            if(flag_battery){
+
+                                //to change the UI we have to put codes in the runOnUiThread
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        lowbattery_idpatient.setVisibility(View.VISIBLE);
+                                        checkmark_idpatient.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                                //so the warning is shown only once
+                                flag_battery=false;
+                            }
+                        }
+                        //else show the green checkmark
+                        else{
+                            //with this flag the visibility is set only once
+                            if(flag_battery){
+
+                                //to change the UI we have to put codes in the runOnUiThread
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        lowbattery_idpatient.setVisibility(View.GONE);
+                                        checkmark_idpatient.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                                //so the warning is shown only once
+                                flag_battery=false;
+                            }
+                        }
+                        //TODO- end warning for low battery
+
+                    }else { //if the three units are NOT connected, check each one in the "switch on sensors" layout
 
                         Log.e(LOG_TAG, "CHECK Rx: " + messageContentString); //hex
 
-                        if(messageContentString.contains(string4)){
-                            connected4 = true;
-                            //GlobalVariables.flag_connected4=true;
-                            Log.e(LOG_TAG,"4 is:" + connected4);
-                            state=CONNECT6;
+                        if(messageContentString.contains(string1)){
+                            connected1 = true;
+                            //GlobalVariables.flag_connected1=true;
+                            Log.e(LOG_TAG,"1 is:" + connected1);
+                            state=CONNECT2;
+        Toast.makeText(getApplicationContext(), "Connesso Pulse ox", Toast.LENGTH_LONG).show();
 
                             //to change the UI we have to put codes in the runOnUiThread
                             runOnUiThread(new Runnable() {
 
                                 @Override
                                 public void run() {
-                                    switchonpulseox_progressbar.setVisibility(View.GONE);
-                                    switchonpulseox_checkmark.setVisibility(View.VISIBLE);
+                                    switchonsensor1_progressbar.setVisibility(View.GONE);
+                                    switchonsensor1_checkmark.setVisibility(View.VISIBLE);
 
-                                    switch_on_environmentalmonitor.setVisibility(View.VISIBLE);
-                                    switchonenvironmentalmonitor_progressbar.setVisibility(View.VISIBLE);
+                                    switchonsensor2.setVisibility(View.VISIBLE);
+                                    switchonsensor2_progressbar.setVisibility(View.VISIBLE);
                                 }
                             });
                         }
 
-                        if(messageContentString.contains(string6)){
-                            connected6 = true;
-                            //GlobalVariables.flag_connected4=true;
-                            Log.e(LOG_TAG,"6 is:" + connected4);
-                            //non dovrebbe servirmi, neanche in demodownload lo usa
-                            //state=CONNECT4;
-
+                        if(messageContentString.contains(string2)){
+                            connected2 = true;
+                            Log.e(LOG_TAG,"2 is:" + connected2);
+        Toast.makeText(getApplicationContext(), "Connesso Environmental", Toast.LENGTH_LONG).show();
+state=START;
                             //to change the UI we have to put codes in the runOnUiThread
                             runOnUiThread(new Runnable() {
 
                                 @Override
                                 public void run() {
-                                    switchonenvironmentalmonitor_progressbar.setVisibility(View.GONE);
-                                    switchonenvironmentalmonitor_checkmark.setVisibility(View.VISIBLE);
+                                    switchonsensor2_progressbar.setVisibility(View.GONE);
+                                    switchonsensor2_checkmark.setVisibility(View.VISIBLE);
+
+                                    //switchonsensor3.setVisibility(View.VISIBLE);
+                                    //switchonsensor3_progressbar.setVisibility(View.VISIBLE);
 
                                     //show green checkmark
                                     checkmark_idpatient.setVisibility(View.VISIBLE);
-                                    lowbattery_idpatient.setVisibility(View.GONE);  //capire se serve o meno
+                                    lowbattery_idpatient.setVisibility(View.GONE);
                                     progressbar_idpatient.setVisibility(View.GONE);
 
-                                    gotorecordingbutton_pulseox_environmental.setVisibility(View.VISIBLE);
+                                    //put the flag on to check the battery to display warning once
+                                    flag_battery=true;
+
+                                    gotorecordingbutton.setVisibility(View.VISIBLE);
                                 }
                             });
                         }
+
                     }
 
                     break;
@@ -690,17 +921,16 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                             break;
                         case TX: //HERE WE SEND ALL THE BROADCAST MESSAGES TO THE SENSORS
                             //if the channel has been opened during initialization...
-                            if (mIsOpen_IMUs && mIsOpen_Environmental) {
+                            if (mIsOpen) {
 
                                 // Setting the data to be broadcast on the next channel period
-                                if(state==CONNECT4){
-                                    payLoad = payLoad10;
+                                if(state==CONNECT1){
+                                    payLoad = payLoad1;
                                 }
 
-                                if (state==CONNECT6){
-                                    payLoad_Environmental = payLoad11;
+                                if(state==CONNECT2) {
+                                    payLoad = payLoad2;
                                 }
-
 
                                 if(state==SYNCHRONIZATION_RESUME)
                                 {
@@ -710,23 +940,23 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                 if(state==RECONNECTION)
                                 {
                                     payLoad = payLoad4;
-                                    payLoad_Environmental = payLoad4;
                                 }
 
                                 if(state==START)
                                 {
                                     payLoad = payLoad4;
-                                    payLoad_Environmental = payLoad4;
                                     //save time to show
                                     SimpleDateFormat formatStartRec=new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
                                     startrec_time=formatStartRec.format(new Date().getTime());
                                     Log.e("start","New rec: "+ startrec_time);
                                 }
 
-                                if(state==CALL_4_6) {
+                                if(state==CALL1) {
                                     payLoad = payLoad5;
-                                    payLoad_Environmental = payLoad6;
+                                }
 
+                                if(state==CALL2) {
+                                    payLoad = payLoad6;
                                 }
 
                                 if(state==CALIBRATION) {
@@ -736,29 +966,33 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                                 if(state==STOP) {
                                     //stop the channel sending the payload9
                                     payLoad = payLoad9;
-                                    payLoad_Environmental = payLoad9;
                                 }
 
                                 //send the message through a specific payload
                                 try {
                                     antChannelIMUs.setBroadcastData(payLoad);
-                                    antChannelEnvironmental.setBroadcastData(payLoad_Environmental);
                                 } catch (RemoteException e) {
                                     e.printStackTrace();
                                 }
 
                                 //CONTINUOUS ACQUISITION
                                 //after synchronization (START), call periodically one after the other
-//TODO--  non sono sicuro che così funzioni, controlla
                                 if(state==START || state==RECONNECTION)
                                 {
-                                    state=CALL_4_6;
+                                    state=CALL1;
+                                    startWatchdogTimer(UNIT1);
+                                    checkWatchdogTimer();
                                 }
-//unite le chiamate ai due device, ccapire se va bene
-                                else if(state == CALL_4_6)
+                                else if(state == CALL1)
                                 {
-                                    state = CALL_4_6;
-                                    startWatchdogTimer(UNIT4);
+                                    state = CALL2;
+                                    startWatchdogTimer(UNIT2);
+                                    checkWatchdogTimer();
+                                }
+                                else if(state == CALL2)
+                                {
+                                    state = CALL1;
+                                    startWatchdogTimer(UNIT3);
                                     checkWatchdogTimer();
                                 }
 
@@ -809,6 +1043,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
         }
     };
 
+    //TODO -- end ANT
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -857,6 +1092,17 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 //open archive dialog
                 dialogDownloadStorage();
 
+                /*
+                //enabled only when it's not recording
+                if(state==STOP){
+                    //call storage function
+                    dialogDownloadStorage();
+                }
+                else{
+                    //TODO- maybe it's possible also during recording, try it
+                    Toast.makeText(getApplicationContext(), "You can open archive only when the communication is closed in the previous page or at the end of a recording", Toast.LENGTH_LONG).show();
+                }
+                */
                 break;
 
             case R.id.update_storage_files:
@@ -869,14 +1115,15 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 dialogDownloadStorage.dismiss();
                 break;
 
-            case R.id.initializationbutton_pulse_ox_environmental:
+            case R.id.initializationbutton:
                 //show progressbar
                 progressbar_initialization.setVisibility(View.VISIBLE);
                 //change title on initialization started
                 status_initialization.setText("Initialization started");
                 //hide the button
-                initializationbutton_pulseox_environmental.setVisibility(View.GONE);
+                initializationbutton.setVisibility(View.GONE);
 
+                //TODO-- ANT
                 try {
                     antChannelProvider = mAntRadioService.getChannelProvider();
                 } catch (RemoteException e) {
@@ -884,6 +1131,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 }
                 Log.e(LOG_TAG, "Ant Channel Provider is " + antChannelProvider);
 
+                //TODO--remove channels available
                 //channels available
                 int channels=0;
                 try {
@@ -899,7 +1147,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                     Toast.makeText(getApplicationContext(), "ERROR\n\nThe communication does not work correctly\n\nPress back button, go back and retry", Toast.LENGTH_LONG).show();
                     break;
                 }
-//canale saturimetro
+
                 try {
                     antChannelIMUs = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
                 } catch (ChannelNotAvailableException | RemoteException e) {
@@ -930,11 +1178,11 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 Log.e(LOG_TAG, "" + channelId_smartphone);
 
                 try {
-                    antChannelIMUs.setPeriod(USER_PERIOD_SATURATION);
+                    antChannelIMUs.setPeriod(USER_PERIOD_SENSORS);
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "User period is:" + USER_PERIOD_SATURATION);
+                Log.e(LOG_TAG, "User period is:" + USER_PERIOD_SENSORS);
 
                 try {
                     antChannelIMUs.setRfFrequency(USER_RADIOFREQUENCY);
@@ -952,87 +1200,26 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                 try {
                     antChannelIMUs.open();
-                    mIsOpen_IMUs = true;
+                    mIsOpen = true;
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "Channel is open");
 
-
-//canale ENVIRONMENTAL MONITOR
-                try {
-                    antChannelEnvironmental = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
-                } catch (ChannelNotAvailableException | RemoteException e) {
-                    e.printStackTrace();
-                }
-                Log.e(LOG_TAG, "Ant Channel IMUs: "+ antChannelEnvironmental);
-
-                try {
-                    antChannelEnvironmental.setChannelEventHandler(eventCallBack);
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-                Log.e(LOG_TAG, "Event handler" + eventCallBack);
-
-                try {
-                    antChannelIMUs.assign(ChannelType.BIDIRECTIONAL_MASTER);//SHARED_BIDIRECTIONAL_MASTER, 48=0x30
-
-                } catch (RemoteException | AntCommandFailedException e) {
-                    e.printStackTrace();
-                }
-                Log.e(LOG_TAG, "Channel is a BIDIRECTIONAL_MASTER");
-
-                try {
-                    antChannelEnvironmental.setChannelId(channelId_smartphone_environmental);
-                } catch (RemoteException | AntCommandFailedException e) {
-                    e.printStackTrace();
-                }
-                Log.e(LOG_TAG, "" + channelId_smartphone_environmental);
-
-                try {
-                    antChannelEnvironmental.setPeriod(USER_PERIOD_ENVIRONMENTAL);
-                } catch (RemoteException | AntCommandFailedException e) {
-                    e.printStackTrace();
-                }
-                Log.e(LOG_TAG, "User period is:" + USER_PERIOD_ENVIRONMENTAL);
-
-                try {
-                    antChannelEnvironmental.setRfFrequency(USER_RADIOFREQUENCY);
-                } catch (RemoteException | AntCommandFailedException e) {
-                    e.printStackTrace();
-                }
-                Log.e(LOG_TAG, "User radiofrequency is:" + USER_RADIOFREQUENCY);
-
-                try {
-                    antChannelEnvironmental.setTransmitPower(3);
-                } catch (RemoteException | AntCommandFailedException e) {
-                    e.printStackTrace();
-                }
-                Log.e(LOG_TAG, "Transmit power is 3");
-
-                try {
-                    antChannelEnvironmental.open();
-                    mIsOpen_Environmental = true;
-                } catch (RemoteException | AntCommandFailedException e) {
-                    e.printStackTrace();
-                }
-                Log.e(LOG_TAG, "Channel is open");
-
-
-                state = CONNECT4;
+                state = CONNECT1;
 
                 //TODO - end ANT
 
-                if(mIsOpen_IMUs && mIsOpen_Environmental){
+                if(mIsOpen){
                     //if the channel is open
                     progressbar_initialization.setVisibility(View.GONE);
-                    initializationbutton_pulseox_environmental.setVisibility(View.GONE);
+                    initializationbutton.setVisibility(View.GONE);
 
-                    //change text,add checkmark and show gotoswitchonpulseox
+                    //change text,add checkmark and show gotoswitchonsensorsbutton
                     status_initialization.setText("Initialization successful!");
                     initialization_checkmark.setVisibility(View.VISIBLE);
                     bottom_initialization.setVisibility(View.VISIBLE);
-                    gotoswitchonpulseox_environmental.setVisibility(View.VISIBLE);
+                    gotoswitchonsensors.setVisibility(View.VISIBLE);
                 }
                 else{
                     antDisconnection(saturation_environmental.this);
@@ -1044,27 +1231,33 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 }
                 break;
 
-            case R.id.gotoswitchon_pulseox_environmental:
+            case R.id.gotoswitchonsensors:
 
                 inflated_initialization.setVisibility(View.GONE);
 
-                viewStub = (ViewStub) findViewById(R.id.switchon_pulseox_environmental_toinclude);
+                viewStub = (ViewStub) findViewById(R.id.switchonsensors_toinclude);
                 viewStub.setLayoutResource(R.layout.switch_on_saturation_environmental);
                 inflated_switch_on_sensors = viewStub.inflate();
 
                 progressbar_idpatient.setVisibility(View.VISIBLE);
 
-                switchonpulseox_checkmark=(ImageButton) findViewById(R.id.switchonpulseox_checkmark);
-                switchonenvironmentalmonitor_checkmark=(ImageButton) findViewById(R.id.switchonenvironmentalmonitor_checkmark);
+                switchonsensor1_checkmark=(ImageButton) findViewById(R.id.switchonsensor1_checkmark);
+                switchonsensor2_checkmark=(ImageButton) findViewById(R.id.switchonsensor2_checkmark);
+//                switchonsensor3_checkmark=(ImageButton) findViewById(R.id.switchonsensor3_checkmark);
+//                switchonsensor4_checkmark=(ImageButton) findViewById(R.id.switchonsensor4_checkmark);
 
-                switchonpulseox_progressbar=(ProgressBar) findViewById(R.id.switchonpulseox_progressbar);
-                switchonenvironmentalmonitor_progressbar=(ProgressBar) findViewById(R.id.switchonenvironmentalmonitor_progressbar);
+                switchonsensor1_progressbar=(ProgressBar) findViewById(R.id.switchonsensor1_progressbar);
+                switchonsensor2_progressbar=(ProgressBar) findViewById(R.id.switchonsensor2_progressbar);
+//                switchonsensor3_progressbar=(ProgressBar) findViewById(R.id.switchonsensor3_progressbar);
+//                switchonsensor4_progressbar=(ProgressBar) findViewById(R.id.switchonsensor4_progressbar);
 
-                switch_on_pulseox=(TextView) findViewById(R.id.switch_on_pulseox);
-                switch_on_environmentalmonitor=(TextView) findViewById(R.id.switch_on_environmentalmonitor);
+                switchonsensor1=(TextView) findViewById(R.id.switchonsensor1);
+                switchonsensor2=(TextView) findViewById(R.id.switchonsensor2);
+//                switchonsensor3=(TextView) findViewById(R.id.switchonsensor3);
+//                switchonsensor4=(TextView) findViewById(R.id.switchonsensor4);
 
-                gotorecordingbutton_pulseox_environmental=(Button) findViewById(R.id.gotorecordingbutton_pulse_ox);
-                gotorecordingbutton_pulseox_environmental.setOnClickListener(this);
+                gotorecordingbutton=(Button) findViewById(R.id.gotorecordingbutton);
+                gotorecordingbutton.setOnClickListener(this);
 
                 break;
 
@@ -1073,7 +1266,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 inflated_switch_on_sensors.setVisibility(View.GONE);
 
                 viewStub = (ViewStub) findViewById(R.id.select_recording_toinclude);
-                viewStub.setLayoutResource(R.layout.select_recording);
+                viewStub.setLayoutResource(R.layout.select_recording_general);
                 inflated_select_recording = viewStub.inflate();
 
                 timerrecordingbutton=(Button) findViewById(R.id.timerrecordingbutton);
@@ -1122,9 +1315,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                     gotonewrecording_timer=(Button) findViewById(R.id.gotonewrecording_timer);
                     gotonewrecording_timer.setOnClickListener(this);
 
-                    showvaluesonmaps_timer = (Button) findViewById(R.id.show_values_on_maps_timer);
-                    showvaluesonmaps_timer.setOnClickListener(this);
-
                     goback_timer=(Button) findViewById(R.id.goback_timer);
                     goback_timer.setOnClickListener(this);
 
@@ -1148,8 +1338,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                     downloadfile_timer.setVisibility(View.GONE);
                     gotonewrecording_timer.setVisibility(View.GONE);
-                    showvaluesonmaps_timer.setVisibility(View.GONE);
-
                     status_timer.setVisibility(View.GONE);
                     timer_recording_filename.setVisibility(View.GONE);
 
@@ -1203,6 +1391,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                 //show update info layout
                 inflated_updateinfo.setVisibility(View.VISIBLE);
+                inflated_displaydata.setVisibility(View.VISIBLE);
 
                 //start recording ANT data
                 state=START;
@@ -1243,8 +1432,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         stoprecording_timer.setVisibility(View.GONE);
 
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
-
-                        showvaluesonmaps_timer.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
@@ -1300,7 +1487,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
                         downloadfile_timer.setVisibility(View.VISIBLE);
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
-                        showvaluesonmaps_timer.setVisibility(View.VISIBLE);
+//showvaluesonmaps_timer.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
@@ -1334,10 +1521,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 gotonewrecording(inflated_timer_rec);
                 break;
 
-            case R.id.show_values_on_maps_timer:
-                //metti qua quello che serve una volta che hai sistemato la parte show_values_on_maps_manual
-                break;
-
             case R.id.manualrecordingbutton:
 
                 //get recording info
@@ -1369,9 +1552,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                     gotonewrecording_manual=(Button) findViewById(R.id.gotonewrecording_manual);
                     gotonewrecording_manual.setOnClickListener(this);
 
-                    showvaluesonmaps_manual = (Button) findViewById(R.id.show_values_on_maps_manual);
-                    showvaluesonmaps_manual.setOnClickListener(this);
-
                     goback_manual=(Button) findViewById(R.id.goback_manual);
                     goback_manual.setOnClickListener(this);
 
@@ -1396,7 +1576,6 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                     status_manual.setVisibility(View.GONE);
                     downloadfile_manual.setVisibility(View.GONE);
                     gotonewrecording_manual.setVisibility(View.GONE);
-                    showvaluesonmaps_manual.setVisibility(View.GONE);
 
                     manual_recording_filename.setVisibility(View.GONE);
 
@@ -1424,8 +1603,10 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 //delete update info
                 old_inforecordingtext="";
                 inforecording.setText(null);
+
                 //show update info layout
                 inflated_updateinfo.setVisibility(View.VISIBLE);
+                inflated_displaydata.setVisibility(View.VISIBLE);
 
                 //start recording ANT data
                 state=START;
@@ -1483,7 +1664,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                         //startrecording_manual.setVisibility(View.VISIBLE);
                         downloadfile_manual.setVisibility(View.VISIBLE);
                         gotonewrecording_manual.setVisibility(View.VISIBLE);
-                        showvaluesonmaps_manual.setVisibility(View.VISIBLE);
+//showvaluesonmaps_manual.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
@@ -1505,7 +1686,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
             case R.id.downloadfile_manual:
                 //if the flag_filetoosmall is raised avoid downloading the file
-                if(flag_filetoosmall){
+                if(flag_filetoosmall){      //mettere == true
                     Toast.makeText(getApplicationContext(), "The file is too small and you can NOT downloading it", Toast.LENGTH_LONG).show();
                 }else{
                     //call download function
@@ -1522,7 +1703,55 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 updateInfo();
                 break;
 
+            case R.id.clickhereforcalibration:
+                //dialog to enter
+                //initialize alert dialog
+                AlertDialog.Builder builder_cal = new AlertDialog.Builder(saturation_environmental.this);
+                //set title
+                builder_cal.setTitle("Enter calibration");
+                //set message
+                builder_cal.setMessage("Are you sure to enter in calibration mode?\n\nOnce you entered you have to complete all the calibration steps before going back again.");
+                //Positive yes button
+                builder_cal.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //get recording info
+                        GlobalVariables.string_setinforec = insert_setinforec.getText().toString();
+                        //Log.e("demo",GlobalVariables.string_addinforec);
 
+                        //start CALIBRATION ANT data
+                        state=CALIBRATION;
+
+                        inflated_select_recording.setVisibility(View.GONE);
+
+                        viewStub = (ViewStub) findViewById(R.id.calibration_toinclude);
+                        viewStub.setLayoutResource(R.layout.calibration);
+                        inflated_calibration = viewStub.inflate();
+
+                        endcalibration_button=(Button) findViewById(R.id.endcalibration_button);
+                        endcalibration_button.setOnClickListener(saturation_environmental.this);
+                    }
+                });
+                //negative no button
+                builder_cal.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //dismiss dialog
+                        dialog.dismiss();
+                    }
+                });
+                //show dialog
+                builder_cal.show();
+
+                break;
+
+            case R.id.endcalibration_button:
+                endCalibration(this);
+                break;
+
+            case R.id.lowbattery_idpatient:
+                changeBatteriesWarning(saturation_environmental.this);
+                break;
 
             case R.id.exclamation_point_idpatient:
                 sensorsDisconnection(this);
@@ -1949,6 +2178,56 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
         return battery_value;
     }
 
+    private void changeBatteriesWarning(Activity activity) {
+        String text_dead_batteries=dead_battery_unit1 + " " + dead_battery_unit2 + " " + dead_battery_unit3 + " " + dead_battery_unit4;
+
+        //initialize alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        //set title
+        builder.setTitle("Warning batteries sensors");
+        //set message
+        builder.setMessage("Change the batteries of the sensors unit:\n\n" + text_dead_batteries + "\n\nPress back button, go back and restart recording");
+        //Positive yes button
+        builder.setPositiveButton("CLOSE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //dismiss dialog
+                dialog.dismiss();
+            }
+        });
+        //show dialog
+        builder.show();
+    }
+
+    private void endCalibration(final Activity activity){
+        //initialize alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        //set title
+        builder.setTitle("End calibration");
+        //set message
+        builder.setMessage("Are you sure you want to end calibration?\n\nDon't go back if the calibration is not completed.\nWait till the LEDs will turn off");
+        //Positive yes button
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //go to select recording layout
+                inflated_calibration.setVisibility(View.GONE);
+                inflated_select_recording.setVisibility(View.VISIBLE);
+                state= SYNCHRONIZATION_RESUME;
+            }
+        });
+        //negative no button
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //dismiss dialog
+                dialog.dismiss();
+            }
+        });
+        //show dialog
+        builder.show();
+    }
+
     private void initializeNotification(String title) {
         if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
             NotificationChannel channel_not= new NotificationChannel(title,title, NotificationManager.IMPORTANCE_DEFAULT);
@@ -2048,8 +2327,17 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
         checkmark_idpatient.setVisibility(View.GONE);
         lowbattery_idpatient.setVisibility(View.GONE);
         //initialize the variables of the batteries
+        dead_battery_unit1="";
+        dead_battery_unit2="";
+        dead_battery_unit3="";
+        dead_battery_unit4="";
+        //put the flag on to check the battery to display warning once
+        flag_battery=true;
 
         //watchdog reset
+        resetWatchdogTimer(UNIT1);
+        resetWatchdogTimer(UNIT2);
+        resetWatchdogTimer(UNIT3);
         resetWatchdogTimer(UNIT4);
         sumWt=0;
         //lower the flag
@@ -2105,7 +2393,11 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 progressbar_idpatient.setVisibility(View.GONE);
                 lowbattery_idpatient.setVisibility(View.GONE);
                 checkmark_idpatient.setVisibility(View.GONE);
-
+                //initialize the variables of the batteries
+                dead_battery_unit1="";
+                dead_battery_unit2="";
+                dead_battery_unit3="";
+                dead_battery_unit4="";
 
                 flag_sensors_disconnection=false;
                 flag_sensors_disconnection_header=false;
@@ -2196,7 +2488,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
             long fileIntSizeBytes=fileInt.length();
             long fileIntSizeKyloBytes=fileIntSizeBytes/1024;
 
-            if(fileIntSizeKyloBytes>2){
+            if(fileIntSizeKyloBytes>6){
                 //call the save firebase class to upload file on firebase
                 SaveFileToFirebase saveFileToFirebase= new SaveFileToFirebase();
                 saveFileToFirebase.mainFirebase(fileInt);
@@ -2283,7 +2575,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
         //initialize size_interval_backupfile for a new recording
         size_interval_backupfile=SIZE_INTERVAL_BACKUPFILE;
 
-        if(mIsOpen_IMUs && mIsOpen_Environmental){
+        if(mIsOpen){
             //close the channel
             try {
                 antChannelIMUs.close();
@@ -2292,8 +2584,7 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
             } catch (AntCommandFailedException e) {
                 e.printStackTrace();
             }
-            mIsOpen_IMUs = false;
-            mIsOpen_Environmental = false;
+            mIsOpen = false;
             Log.e(LOG_TAG, "mIsOpen was true and now the Channel is closed");
         }
     }
@@ -2310,7 +2601,11 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 antStop();
                 //close the ANT channel
                 antClose();
-
+                //initialize the variables of the batteries
+                dead_battery_unit1="";
+                dead_battery_unit2="";
+                dead_battery_unit3="";
+                dead_battery_unit4="";
 
                 //display error warning
                 error_idpatient.setVisibility(View.VISIBLE);
@@ -2352,14 +2647,23 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
     private void sensorsDisconnection(final Activity activity){
 
-        Log.e("sensorsDisconnection","sensorsDisconnection: " + watchdog_timer[4]);
+        Log.e("sensorsDisconnection","sensorsDisconnection: " + watchdog_timer[UNIT1] + "-" + watchdog_timer[UNIT2] + "-" + watchdog_timer[UNIT3]+ "-" + watchdog_timer[UNIT4]);
 
         //check which sensor is disconnected
-        if(watchdog_timer[UNIT4]>=30){
+        if(watchdog_timer[UNIT1]>=10){
+            sensorDisconnected1="1";
+        }
+        if(watchdog_timer[UNIT2]>=10){
+            sensorDisconnected2="2";
+        }
+        if(watchdog_timer[UNIT3]>=10){
+            sensorDisconnected3="3";
+        }
+        if(watchdog_timer[UNIT4]>=10){
             sensorDisconnected4="4";
         }
 
-        sensorsDisconnectedText=sensorDisconnected4;
+        sensorsDisconnectedText=sensorDisconnected1 + " " + sensorDisconnected2 + " " + sensorDisconnected3 + " " + sensorDisconnected4;
 
         //initialize alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -2390,17 +2694,22 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
         watchdog_timer[unit]=0; //reset the i-unit wt
         //if we come back from the RECONNECTION states it means now the sensors works
         //so we hide the exclamation point and show the green checkmark
-        if(flag_reconnection && sumWt<30){
+        if(flag_reconnection && sumWt<40){
             Log.e("w","RESTORE CONNECTION");
             //raise the flag to enter eventually in the OVERFLOW if statement only once
             flag_watchdog_timer_overflow=true;
             //reset the wt the first time I reconnect
+            watchdog_timer[UNIT1]=0;
+            watchdog_timer[UNIT2]=0;
+            watchdog_timer[UNIT3]=0;
             watchdog_timer[UNIT4]=0;
             sumWt=0;
 
             //reset the warnings
+            sensorDisconnected1="";
+            sensorDisconnected2="";
+            sensorDisconnected3="";
             sensorDisconnected4="";
-
 
             //to change the UI we have to put codes in the runOnUiThread
             runOnUiThread(new Runnable() {
@@ -2420,8 +2729,8 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
 
     //watchdog timer check
     public void checkWatchdogTimer(){
-        sumWt = watchdog_timer[UNIT4];
-        //threshold set to 30, if only one unit does not work --> 3 sec, if all the three --> 1 sec
+        sumWt = watchdog_timer[UNIT1] + watchdog_timer[UNIT2] + watchdog_timer[UNIT3]+ watchdog_timer[UNIT4];
+        //threshold set to 40, if only one unit does not work --> 4 sec, if all the three --> 1 sec
         if(sumWt > THRESHOLD_WATCHDOG_TIMER){
             //if the flag is true, execute the following lines to send warnings and notification
             if(flag_watchdog_timer_overflow && !flag_reconnection){
@@ -2463,11 +2772,11 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
     @Override
     public void onBackPressed() {
         //manage back button in some steps of the recording to ensure a safe quit of the recording
-
-        if(show_maps_flag == true) {
-            getSupportFragmentManager().beginTransaction().remove(mapFragment).commit();
-            show_maps_flag = false;
+        if(state==CALIBRATION){
+            endCalibration(saturation_environmental.this);
+            return;
         }
+
         if(state==QUIT_RECORDING){
             state= SYNCHRONIZATION_RESUME;
             super.onBackPressed();
@@ -2488,7 +2797,11 @@ toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).sho
                 antStop();
                 //close the ANT channel
                 antClose();
-
+                //initialize the variables of the batteries
+                dead_battery_unit1="";
+                dead_battery_unit2="";
+                dead_battery_unit3="";
+                dead_battery_unit4="";
                 //go to patient data layout
                 state=QUIT_RECORDING;
                 //call again the onBackPressed() and in this way it enters in the previous if condition

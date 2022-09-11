@@ -61,11 +61,12 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="80" y="427" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="414" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="28" y="78" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="49" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="43" y="245" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="225" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="26" y="68" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_Simulazione_device/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="46" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="21" y="464" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../Sensor/bme280.c" selected="0" top="463" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="326" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../../../Sensor/sgp30.h" selected="0" top="303" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="1" y="402" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../Sensor/sgp30.c" selected="0" top="370" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="8" y="141" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_Simulazione_device/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../../../../../../../components/softdevice/s212/headers/ant_parameters.h" selected="0" top="121" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="ant_broadcast_rx_pca10040_s212" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/Sensor" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

@@ -205,6 +205,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
     private boolean flag_support=false;
     private boolean flag_logout=false;
     private boolean flag_closeapp=false;
+    private boolean show_maps_flag = false;
 
     //flag for dead batteries show only once and save unit
     private static boolean flag_battery=false;
@@ -241,31 +242,33 @@ public class saturation_environmental extends AppCompatActivity implements View.
     public final String LOG_TAG = DemoDownload.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_SENSORS = 819; // 1092; 30 Hz --> change to 819
+    private static final int USER_PERIOD_SATURATION = 32768;    //819; // 1092; 30 Hz --> change to 819
+    private static final int USER_PERIOD_ENVIRONMENTAL = 32768;
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
-    public static boolean serviceIsBound = false;
+    public static boolean serviceIsBound_SATURATION = false;
+    public static boolean serviceIsBound_ENVIRONMENTAL = false;
     private AntService mAntRadioService = null;
     public AntChannelProvider antChannelProvider;
-    public AntChannel antChannelIMUs;
+    public AntChannel antChannelSATURATION;
+    public AntChannel antChannelENVIRONMENTAL;
     public ChannelType antChannelIMUs_type;
     public AntMessage antMessage;
     public MessageFromAntType messagetype; //
-    public boolean mIsOpen = false;
-    public ChannelId channelId_smartphone = new ChannelId(2,2,2, true); //DEFAULT: 2,2,2, true
+    public boolean mIsOpen_SATURATION = false;
+    public boolean mIsOpen_ENVIRONMENTAL = false;
+    public ChannelId channelId_smartphone_SATURATION = new ChannelId(2,2,2, true); //DEFAULT: 2,2,2, true
+    public ChannelId channelId_smartphone_ENVIRONMENTAL = new ChannelId(2,3,2, true); //DEFAULT: 2,2,2, true
 
-    byte[] payLoad;
+    byte[] payLoad_SATURATION;
+    byte[] payLoad_ENVIRONMENTAL;
 
-    byte[] payLoad1 = {0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01}; // payload to call unit 1 for the first time
-    byte[] payLoad2 = {0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02}; // payload to call unit 2 for the first time
-    byte[] payLoad3 = {0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03}; // payload to call unit 3 for the first time
-    byte[] payLoad10 = {0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04}; // payload to call unit 4 for the first time
+    byte[] payLoad1 = {0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04}; // payload to call PULSE_OX for the first time
+    byte[] payLoad2 = {0x06, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06, 0x06}; // payload to call ENVIRONMENTAL_MONITOR for the first time
 
     byte[] payLoad4 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to synchronize the three units and to stop checking after calibration
 
-    byte[] payLoad5 = {0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 1 during acquisition
-    byte[] payLoad6 = {0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 2 during acquisition
-    byte[] payLoad7 = {0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 3 during acquisition
     byte[] payLoad11 = {0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 4 during acquisition
+    byte[] payLoad12 = {0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 4 during acquisition
 
     byte[] payLoad8 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0xFF}; // payload to calibrate and do movements, when sensors leds are off send payload 4 and go on
     byte[] payLoad9 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0x80}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
@@ -297,7 +300,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
     private static final int CONNECT4 = 13;
     private static final int SYNCHRONIZATION_RESUME = 4;
     private static final int START = 5;
-    private static final int CALL1 = 6;
+    private static final int CALL = 6;
     private static final int CALL2 = 7;
     private static final int CALL3 = 8;
     private static final int CALL4 = 14;
@@ -461,8 +464,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
         PM10_output = (TextView) findViewById(R.id.PM10_value);
 
         //BINDING TO THE ANT RADIO SERVICE
-        serviceIsBound = AntService.bindService(this, mAntRadioServiceConnection);
-        Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
+        serviceIsBound_SATURATION = AntService.bindService(this, mAntRadioServiceConnection);
+        Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound_SATURATION);
         Log.e(LOG_TAG, "Version name: "+ AntService.getVersionName(this));
         //TODO-- end ANT
 
@@ -611,173 +614,40 @@ public class saturation_environmental extends AppCompatActivity implements View.
                     resetWatchdogTimer(unitReceived-1); //we subtract 1 to match the array indexes
 
                     //if ALL the units are connected, the next messages will be the recording data
-                    if(connected1 && connected2 && connected3 && connected4){
+                    if(connected1 && connected2){
+//QUESTA CONDIZIONE DOVREBBE FUNZIONARE
+                        if (messageContentString_unit.equals("04")) {
+            Toast.makeText(getApplicationContext(), "Pacchetto Pulse Ox", Toast.LENGTH_LONG).show();
+                            //write the messages
+                            //call the firebase class to upload data on firebase
+                            WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
+                            writingDataToFirebase.mainFirebase(msg + current, startrec_time);
 
-                        //TODO- dummy messages for data loss - IT WORKSSSSS - find a less cpu solution
-                        //if recording started, look for data loss in each unit and eventually add a dummy message.
-                        //we check the unit of the previous message.
-                        //if it's different respect to the correct order, the units missing can be:
-                        // 1 --> we send a dummy message of the previous unit missing
-                        // 2 --> we send two dummy messages of the previous units missing
+                            //call the file class to save data in a txt file
+                            WritingDataToFile writingDataToFile = new WritingDataToFile();
+                            writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
 
-                        //the first time we acces old_messageContentString is null, so we won't add any dummy messages
-                        //always initialize old_messageContentString as null
-
-                        if(old_messageContentString_unit!=null){
-                            //Log.e(LOG_TAG,"old_messageContentString_unit not null");
-                            if((messageContentString_unit.equals("01"))&&(!old_messageContentString_unit.equals("04"))){
-                                //Log.e(LOG_TAG,dummy_unit3);
-                                if(old_messageContentString_unit.equals("01")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
-                                    writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
-                                    writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
-
-                                }
-
-                                else if(old_messageContentString_unit.equals("02")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
-                                }
-
-
-                                //call the firebase class to upload data on firebase
-                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
-
-                                //call the file class to save data in a txt file
-                                WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
-                            }
-
-                            else if((messageContentString_unit.equals("02"))&&(!old_messageContentString_unit.equals("01"))){
-                                //Log.e(LOG_TAG,dummy_unit1);
-                                if(old_messageContentString_unit.equals("02")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
-                                    writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
-                                    writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
-                                }
-
-                                else if(old_messageContentString_unit.equals("03")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
-                                }
-
-                                //call the firebase class to upload data on firebase
-                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
-
-                                //call the file class to save data in a txt file
-                                WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
-                            }
-
-                            else if((messageContentString_unit.equals("03"))&&(!old_messageContentString_unit.equals("02"))){
-                                //Log.e(LOG_TAG,dummy_unit2);
-                                if(old_messageContentString_unit.equals("03")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
-                                    writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
-                                    writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
-                                }
-
-                                else if(old_messageContentString_unit.equals("04")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
-                                }
-
-                                //call the firebase class to upload data on firebase
-                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
-
-                                //call the file class to save data in a txt file
-                                WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
-                            }
-
-                            else if((messageContentString_unit.equals("04"))&&(!old_messageContentString_unit.equals("03"))){
-                                //Log.e(LOG_TAG,dummy_unit2);
-                                if(old_messageContentString_unit.equals("04")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
-                                    writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
-                                    writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
-                                }
-
-                                else if(old_messageContentString_unit.equals("01")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
-                                }
-
-                                //call the firebase class to upload data on firebase
-                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
-
-                                //call the file class to save data in a txt file
-                                WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
-                            }
-
+                            fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
                         }
-                        //save the previous unit of the message to constantly check the order
-                        old_messageContentString_unit=messageContentString_unit;
+                        else if(messageContentString_unit.equals("06")){
+                            //pacchetto di ricevuto per collegare il device, non serve salvarlo
+                            //VALUTARE SE SERVE O SI PUO' ELIMINARE QUESTO CASO
+                        }
+                        else{   //CASO DI ENVIRONMENTAL MONITOR, GESTIONE DEI PACCHETTI
+            Toast.makeText(getApplicationContext(), "Pacchetto Environmental Monitor", Toast.LENGTH_LONG).show();
+//TODO - al momento metto questo codice per vedere che funzioni, poi metto gestione del triplice pacchetto
+                            //write the messages
+                            //call the firebase class to upload data on firebase
+                            WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
+                            writingDataToFirebase.mainFirebase(msg + current, startrec_time);
 
-                        //TODO-END implement dummy messages for data loss
+                            //call the file class to save data in a txt file
+                            WritingDataToFile writingDataToFile = new WritingDataToFile();
+                            writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
 
-                        //TODO- write the message to firebase and to file
-                        //write the messages
-                        //call the firebase class to upload data on firebase
-                        WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                        writingDataToFirebase.mainFirebase(msg+current,startrec_time);
-
-                        //call the file class to save data in a txt file
-                        WritingDataToFile writingDataToFile = new WritingDataToFile();
-                        writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
-
-                        fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
-
-                        //TODO - every now and then save the file on firebase for backup, later savings will over write the previous one
+                            fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+                        }
+                        //every now and then save the file on firebase for backup, later savings will over write the previous one
                         //save the file each 1 MB size (around 10 minutes)
                         long fileIntSizeBytes_backup=fileInt.length();
                         long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
@@ -789,7 +659,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                             //Log.e("backup","backup 1, size end: " + size_interval_backupfile);
                         }
 
-                        //TODO- warning for low battery
+//TODO- warning for low battery  CAPIRE SE MI SERVE
                         //get the second byte to find the battery hex value and remove the open square bracket
                         String messageContentString_battery=messageContentString_split[1].substring(1); //ex: 5C
                         float battery_unit=convertToBattery(messageContentString_battery);
@@ -808,12 +678,6 @@ public class saturation_environmental extends AppCompatActivity implements View.
                             }
                             if(messageContentString_unit.equals("02")){
                                 dead_battery_unit2="2";
-                            }
-                            if(messageContentString_unit.equals("03")){
-                                dead_battery_unit3="3";
-                            }
-                            if(messageContentString_unit.equals("04")){
-                                dead_battery_unit4="4";
                             }
 
 
@@ -848,10 +712,11 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                 flag_battery=false;
                             }
                         }
-                        //TODO- end warning for low battery
 
                     }else { //if the three units are NOT connected, check each one in the "switch on sensors" layout
 
+
+//TODO--    CONNESSIONE DISPOSITIV FATTA
                         Log.e(LOG_TAG, "CHECK Rx: " + messageContentString); //hex
 
                         if(messageContentString.contains(string1)){
@@ -921,56 +786,63 @@ state=START;
                             break;
                         case TX: //HERE WE SEND ALL THE BROADCAST MESSAGES TO THE SENSORS
                             //if the channel has been opened during initialization...
-                            if (mIsOpen) {
+                            if (mIsOpen_SATURATION  && mIsOpen_ENVIRONMENTAL) {
 
                                 // Setting the data to be broadcast on the next channel period
                                 if(state==CONNECT1){
-                                    payLoad = payLoad1;
+                                    payLoad_SATURATION = payLoad1;
                                 }
 
                                 if(state==CONNECT2) {
-                                    payLoad = payLoad2;
+                                    payLoad_ENVIRONMENTAL = payLoad2;
                                 }
-
+//non serve per questo caso
                                 if(state==SYNCHRONIZATION_RESUME)
                                 {
-                                    payLoad = payLoad4;
+                                    payLoad_SATURATION = payLoad4;
+                                    payLoad_ENVIRONMENTAL = payLoad4;
                                 }
 
                                 if(state==RECONNECTION)
                                 {
-                                    payLoad = payLoad4;
+                                    payLoad_SATURATION = payLoad4;
+                                    payLoad_ENVIRONMENTAL = payLoad4;
                                 }
 
                                 if(state==START)
                                 {
-                                    payLoad = payLoad4;
+                                    payLoad_SATURATION = payLoad4;
+                                    payLoad_ENVIRONMENTAL = payLoad4;
                                     //save time to show
                                     SimpleDateFormat formatStartRec=new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
                                     startrec_time=formatStartRec.format(new Date().getTime());
                                     Log.e("start","New rec: "+ startrec_time);
                                 }
 
-                                if(state==CALL1) {
-                                    payLoad = payLoad5;
-                                }
-
-                                if(state==CALL2) {
-                                    payLoad = payLoad6;
+                                if(state==CALL) {
+                                    payLoad_SATURATION = payLoad11;
+                                    payLoad_ENVIRONMENTAL = payLoad12;
                                 }
 
                                 if(state==CALIBRATION) {
-                                    payLoad = payLoad8;
+                                    payLoad_SATURATION = payLoad8;
                                 }
 
                                 if(state==STOP) {
                                     //stop the channel sending the payload9
-                                    payLoad = payLoad9;
+                                    payLoad_SATURATION = payLoad9;
+                                    payLoad_ENVIRONMENTAL = payLoad9;
                                 }
 
                                 //send the message through a specific payload
                                 try {
-                                    antChannelIMUs.setBroadcastData(payLoad);
+                                    antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
+                                } catch (RemoteException e) {
+                                    e.printStackTrace();
+                                }
+
+                                try {
+                                    antChannelENVIRONMENTAL.setBroadcastData(payLoad_ENVIRONMENTAL);
                                 } catch (RemoteException e) {
                                     e.printStackTrace();
                                 }
@@ -979,20 +851,16 @@ state=START;
                                 //after synchronization (START), call periodically one after the other
                                 if(state==START || state==RECONNECTION)
                                 {
-                                    state=CALL1;
+                                    state=CALL;
                                     startWatchdogTimer(UNIT1);
-                                    checkWatchdogTimer();
-                                }
-                                else if(state == CALL1)
-                                {
-                                    state = CALL2;
                                     startWatchdogTimer(UNIT2);
                                     checkWatchdogTimer();
                                 }
-                                else if(state == CALL2)
+                                else if(state == CALL)
                                 {
-                                    state = CALL1;
-                                    startWatchdogTimer(UNIT3);
+                                    state = CALL;
+                                    startWatchdogTimer(UNIT1);
+                                    startWatchdogTimer(UNIT2);
                                     checkWatchdogTimer();
                                 }
 
@@ -1134,23 +1002,23 @@ state=START;
                     Toast.makeText(getApplicationContext(), "ERROR\n\nThe communication does not work correctly\n\nPress back button, go back and retry", Toast.LENGTH_LONG).show();
                     break;
                 }
-
+//CANALE SATURATION
                 try {
-                    antChannelIMUs = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
+                    antChannelSATURATION = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
                 } catch (ChannelNotAvailableException | RemoteException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "Ant Channel IMUs: "+ antChannelIMUs);
-
+                Log.e(LOG_TAG, "Ant Channel IMUs: "+ antChannelSATURATION);
+//TODO- CAPIRE SE POSSO USARE STESSO EVENT HANDLER O DEVO SEPARARLI
                 try {
-                    antChannelIMUs.setChannelEventHandler(eventCallBack);
+                    antChannelSATURATION.setChannelEventHandler(eventCallBack);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "Event handler" + eventCallBack);
 
                 try {
-                    antChannelIMUs.assign(ChannelType.SHARED_BIDIRECTIONAL_MASTER);//SHARED_BIDIRECTIONAL_MASTER, 48=0x30
+                    antChannelSATURATION.assign(ChannelType.SHARED_BIDIRECTIONAL_MASTER);//SHARED_BIDIRECTIONAL_MASTER, 48=0x30
 
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
@@ -1158,36 +1026,95 @@ state=START;
                 Log.e(LOG_TAG, "Channel is a SHARED_BIDIRECTIONAL_MASTER");
 
                 try {
-                    antChannelIMUs.setChannelId(channelId_smartphone);
+                    antChannelSATURATION.setChannelId(channelId_smartphone_SATURATION);
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "" + channelId_smartphone);
+                Log.e(LOG_TAG, "" + channelId_smartphone_SATURATION);
 
                 try {
-                    antChannelIMUs.setPeriod(USER_PERIOD_SENSORS);
+                    antChannelSATURATION.setPeriod(USER_PERIOD_SATURATION);
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "User period is:" + USER_PERIOD_SENSORS);
+                Log.e(LOG_TAG, "User period is:" + USER_PERIOD_SATURATION);
 
                 try {
-                    antChannelIMUs.setRfFrequency(USER_RADIOFREQUENCY);
+                    antChannelSATURATION.setRfFrequency(USER_RADIOFREQUENCY);
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "User radiofrequency is:" + USER_RADIOFREQUENCY);
 
                 try {
-                    antChannelIMUs.setTransmitPower(3);
+                    antChannelSATURATION.setTransmitPower(3);
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "Transmit power is 3");
 
                 try {
-                    antChannelIMUs.open();
-                    mIsOpen = true;
+                    antChannelSATURATION.open();
+                    mIsOpen_SATURATION = true;
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Channel is open");
+
+//CANALE ENVIRONMENTAL MONITOR
+                try {
+                    antChannelENVIRONMENTAL = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
+                } catch (ChannelNotAvailableException | RemoteException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Ant Channel IMUs: "+ antChannelENVIRONMENTAL);
+//TODO- CAPIRE SE POSSO USARE STESSO EVENT HANDLER O DEVO SEPARARLI
+                try {
+                    antChannelENVIRONMENTAL.setChannelEventHandler(eventCallBack);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Event handler" + eventCallBack);
+
+                try {
+                    antChannelENVIRONMENTAL.assign(ChannelType.BIDIRECTIONAL_MASTER);
+
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Channel is a BIDIRECTIONAL_MASTER");
+
+                try {
+                    antChannelENVIRONMENTAL.setChannelId(channelId_smartphone_ENVIRONMENTAL);
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "" + channelId_smartphone_ENVIRONMENTAL);
+
+                try {
+                    antChannelENVIRONMENTAL.setPeriod(USER_PERIOD_ENVIRONMENTAL);
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "User period is:" + USER_PERIOD_ENVIRONMENTAL);
+
+                try {
+                    antChannelENVIRONMENTAL.setRfFrequency(USER_RADIOFREQUENCY);
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "User radiofrequency is:" + USER_RADIOFREQUENCY);
+
+                try {
+                    antChannelENVIRONMENTAL.setTransmitPower(3);
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Transmit power is 3");
+
+                try {
+                    antChannelENVIRONMENTAL.open();
+                    mIsOpen_ENVIRONMENTAL = true;
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
@@ -1195,9 +1122,8 @@ state=START;
 
                 state = CONNECT1;
 
-                //TODO - end ANT
 
-                if(mIsOpen){
+                if(mIsOpen_SATURATION   && mIsOpen_ENVIRONMENTAL){
                     //if the channel is open
                     progressbar_initialization.setVisibility(View.GONE);
                     initializationbutton.setVisibility(View.GONE);
@@ -2572,16 +2498,17 @@ state=START;
         //initialize size_interval_backupfile for a new recording
         size_interval_backupfile=SIZE_INTERVAL_BACKUPFILE;
 
-        if(mIsOpen){
+        if(mIsOpen_SATURATION   && mIsOpen_ENVIRONMENTAL){
             //close the channel
             try {
-                antChannelIMUs.close();
+                antChannelSATURATION.close();
             } catch (RemoteException e) {
                 e.printStackTrace();
             } catch (AntCommandFailedException e) {
                 e.printStackTrace();
             }
-            mIsOpen = false;
+            mIsOpen_SATURATION = false;
+            mIsOpen_ENVIRONMENTAL = false;
             Log.e(LOG_TAG, "mIsOpen was true and now the Channel is closed");
         }
     }
@@ -2772,6 +2699,11 @@ state=START;
         if(state==CALIBRATION){
             endCalibration(saturation_environmental.this);
             return;
+        }
+
+        if(show_maps_flag == true) {
+            getSupportFragmentManager().beginTransaction().remove(mapFragment).commit();
+            show_maps_flag = false;
         }
 
         if(state==QUIT_RECORDING){

@@ -567,7 +567,17 @@ public class saturation_environmental extends AppCompatActivity implements View.
     float partial_calculation = 0; //variabile usata per fare calcoli parziali
     String messaggio_salvato;
 
+public IAntChannelEventHandler eventCallBack_Environmental = new IAntChannelEventHandler() {
+    @Override
+    public void onReceiveMessage(MessageFromAntType messageFromAntType, AntMessageParcel antMessageParcel) {
 
+    }
+
+    @Override
+    public void onChannelDeath() {
+
+    }
+};
     public IAntChannelEventHandler eventCallBack = new IAntChannelEventHandler() {
 
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -1003,13 +1013,15 @@ state=START;
                     break;
                 }
 //CANALE SATURATION
+                /*
                 try {
                     antChannelSATURATION = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
                 } catch (ChannelNotAvailableException | RemoteException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "Ant Channel IMUs: "+ antChannelSATURATION);
+                Log.e(LOG_TAG, "Ant Channel Saturation: "+ antChannelSATURATION);
 //TODO- CAPIRE SE POSSO USARE STESSO EVENT HANDLER O DEVO SEPARARLI
+
                 try {
                     antChannelSATURATION.setChannelEventHandler(eventCallBack);
                 } catch (RemoteException e) {
@@ -1060,21 +1072,23 @@ state=START;
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "Channel is open");
-
+*/
 //CANALE ENVIRONMENTAL MONITOR
+
                 try {
                     antChannelENVIRONMENTAL = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
                 } catch (ChannelNotAvailableException | RemoteException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "Ant Channel IMUs: "+ antChannelENVIRONMENTAL);
+                Log.e(LOG_TAG, "Ant Channel Environmental: "+ antChannelENVIRONMENTAL);
 //TODO- CAPIRE SE POSSO USARE STESSO EVENT HANDLER O DEVO SEPARARLI
+                
                 try {
-                    antChannelENVIRONMENTAL.setChannelEventHandler(eventCallBack);
+                    antChannelENVIRONMENTAL.setChannelEventHandler(eventCallBack_Environmental);
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "Event handler" + eventCallBack);
+                Log.e(LOG_TAG, "Event handler" + eventCallBack_Environmental);
 
                 try {
                     antChannelENVIRONMENTAL.assign(ChannelType.BIDIRECTIONAL_MASTER);
@@ -1123,7 +1137,7 @@ state=START;
                 state = CONNECT1;
 
 
-                if(mIsOpen_SATURATION   && mIsOpen_ENVIRONMENTAL){
+                if( mIsOpen_ENVIRONMENTAL){  //&& mIsOpen_ENVIRONMENTALmIsOpen_SATURATION  &&
                     //if the channel is open
                     progressbar_initialization.setVisibility(View.GONE);
                     initializationbutton.setVisibility(View.GONE);

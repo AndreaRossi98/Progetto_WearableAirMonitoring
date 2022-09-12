@@ -497,7 +497,7 @@ printf("Timer\n");
     {
         err_code = 1;
 //        while (err_code != 0)
-//            err_code = sps30_init();   //tutto ok ritorna 0
+            err_code = sps30_init();   //tutto ok ritorna 0
         err_code = 1;
 //        while (err_code = !0)
              err_code = bme280_init_set(&dev_bme280); //tutto ok ritorna 0

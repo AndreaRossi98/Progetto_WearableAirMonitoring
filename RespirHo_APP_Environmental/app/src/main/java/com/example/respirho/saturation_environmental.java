@@ -1082,7 +1082,7 @@ state=START;
                 }
                 Log.e(LOG_TAG, "Ant Channel Environmental: "+ antChannelENVIRONMENTAL);
 //TODO- CAPIRE SE POSSO USARE STESSO EVENT HANDLER O DEVO SEPARARLI
-                
+
                 try {
                     antChannelENVIRONMENTAL.setChannelEventHandler(eventCallBack_Environmental);
                 } catch (RemoteException e) {

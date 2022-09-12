@@ -671,7 +671,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";";
                                 }
 
-                                messaggio_salvato = messaggio_salvato + count_P1 + count_P2 + count_P3 + orario + latitude + longitude;
+                                messaggio_salvato = messaggio_salvato + ";" + count_P1 + ";" + count_P2 + ";" + count_P3 + ";" + orario + ";" + latitude + ";" + longitude;
                                 //do per scontato che almeno un pacchetto sia arrivato, e quindi ho latitudine longitudine e ora
 
                                 //write the messages
@@ -778,11 +778,11 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                         //acceleration
                                         acceleration = convertToInt(messageContentString_split[1].substring(1));
                                         //PM1.0
-                                        PM1p0 = convertToInt(messageContentString_split[2].substring(1)) + (convertToInt(messageContentString_split[3].substring(1)) <<8);
+                                        PM1p0 = (convertToInt(messageContentString_split[2].substring(1)))/10 + ((convertToInt(messageContentString_split[3].substring(1))/10) <<8);
                                         //PM2.5
-                                        PM2p5 = convertToInt(messageContentString_split[4].substring(1)) + (convertToInt(messageContentString_split[5].substring(1)) <<8);
+                                        PM2p5 = (convertToInt(messageContentString_split[4].substring(1))/10) + ((convertToInt(messageContentString_split[5].substring(1))/10) <<8);
                                         //PM10
-                                        PM10p0 = convertToInt(messageContentString_split[6].substring(1)) + (convertToInt(messageContentString_split[7].substring(1)) <<8);
+                                        PM10p0 = (convertToInt(messageContentString_split[6].substring(1))/10) + ((convertToInt(messageContentString_split[7].substring(1))/10) <<8);
 
                                         //mostri dati a schermo
                                         runOnUiThread(new Runnable() {
@@ -823,90 +823,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             }
 
                         }
-
-
-/*
-                        //write the message to firebase and to file
-                        //write the messages
-                        //call the firebase class to upload data on firebase
-                        WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                        writingDataToFirebase.mainFirebase(msg+current+","+latitude+","+longitude,startrec_time);
-
-                        //call the file class to save data in a txt file
-                        WritingDataToFile writingDataToFile = new WritingDataToFile();
-                        writingDataToFile.mainFile(msg+current+","+latitude+","+longitude, current, day, intPath,extPath);
-
-                        fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
-*/
-//non serve più questa parte dopo
-/*
-                        if(pacchetto_P == 1) {
-                            Toast.makeText(getApplicationContext(), "Pacchetto P1", Toast.LENGTH_LONG).show();
-
-                            messageContentString_temperature = messageContentString_split[1].substring(1);
-                            messageContentString_humidity = messageContentString_split[2].substring(1);
-                            messageContentString_pressure = messageContentString_split[3].substring(1);
-                            messageContentString_VOC = messageContentString_split[4].substring(1);
-                            //;
-                            int temperature = convertToInt(messageContentString_temperature);
-                            int humidity = convertToInt(messageContentString_humidity);
-                            int pressure = convertToInt(messageContentString_pressure);
-                            int VOC = convertToInt(messageContentString_VOC);
-
-//double doubleValue = Double.parseDouble(messageContentString_VOC);
-
-                            //to change the UI we have to put codes in the runOnUiThread
-                            String finalMessageContentString_VOC = messageContentString_VOC;
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    //PER STAMPARE A SCHERMO
-                                    temperature_output.setText(String.valueOf(temperature));
-                                    humidity_output.setText(String.valueOf(humidity));
-                                    pressure_output.setText(String.valueOf(pressure));
-                                    VOC_output.setText(String.valueOf(VOC));
-//VOC_output.setText(finalMessageContentString_VOC);        può essere alternativa per problema a gestire i numeri con la virgola
-                                }
-                            });
-                        }
-
-                        else if(pacchetto_P == 2) {
-                            Toast.makeText(getApplicationContext(), "Pacchetto P2", Toast.LENGTH_LONG).show();
-                            messageContentString_CO2 = messageContentString_split[1].substring(1);
-                            messageContentString_CO = messageContentString_split[2].substring(1);
-                            messageContentString_NO2 = messageContentString_split[3].substring(1);
-                            messageContentString_PM1p0 = messageContentString_split[4].substring(1);
-                            messageContentString_PM2p5 = messageContentString_split[5].substring(1);
-                            messageContentString_PM10 = messageContentString_split[6].substring(1);
-
-                            int CO2 = convertToInt(messageContentString_CO2);
-                            int CO = convertToInt(messageContentString_CO);
-                            int NO2 = convertToInt(messageContentString_NO2);
-                            int PM1p0 = convertToInt(messageContentString_PM1p0);
-                            int PM2p5 = convertToInt(messageContentString_PM2p5);
-                            int PM10 = convertToInt(messageContentString_PM10);
-
-                            //to change the UI we have to put codes in the runOnUiThread
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-//PER STAMPARE A SCHERMO
-                                    CO2_output.setText(String.valueOf(CO2));
-                                    CO_output.setText(String.valueOf(CO));
-                                    NO2_output.setText(String.valueOf(NO2));
-                                    PM1p0_output.setText(String.valueOf(PM1p0));
-                                    PM2p5_output.setText(String.valueOf(PM2p5));
-                                    PM10_output.setText(String.valueOf(PM10));
-                                }
-                            });
-                        }
-
-                        else if(pacchetto_P == 3) {
-                            Toast.makeText(getApplicationContext(), "Pacchetto P3", Toast.LENGTH_LONG).show();
-                        }
-                        else{
-                        }
-*/
 
                         //every now and then save the file on firebase for backup, later savings will over write the previous one
                         //save the file each 1 MB size (around 10 minutes)

@@ -276,8 +276,11 @@ int16_t sps30_init(void){
         printf("probe failed\n\r"); //poi si toglie questo
         nrf_delay_ms(1000);
     }
-    printf("probe succeeded\n\r");
+    printf("probe SPS30 succeeded\n\r");
+    sps30_start_measurement();
     sps30_start_manual_fan_cleaning();
+    nrf_delay_ms(10000);
+    sps30_stop_measurement();
     sps30_sleep();
     return 0;
 }

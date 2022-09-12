@@ -521,7 +521,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     int pacchetto_numero_ricevuto;   //numero incrementale del pacchetto che arriva
     int numero_pacchetto = 1;
     int pacchetto_P = 0;   //numero del pacchetto P arrivato
-    int flag_dati_scritti = 0;
+    int flag_dati_ricevuti = 0;
     int flag_location = 0;
     int count_P1 = 0;
     int count_P2 = 0;
@@ -606,19 +606,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     //if ALL the units are connected, the next messages will be the recording data
                     if (connected6) {
 
-//bisognerebbe aggiungere controllo che si abbia il permesso, ma mi da errore con il this, non so cosa sostituire (comunque cosi funziona)
-                        //non va bene farlo qua, ma devo farlo sotto
-/*                        Task<Location> task = fusedLocationClient.getLastLocation();
-                        while(!task.isComplete());
-                        location = task.getResult();
-
-                        if (location == null)
-                            toast.makeText(getApplicationContext(),"Unable to find last location.", Toast.LENGTH_SHORT).show();
-                        else { //actually open the channel only if last location was found
-                            latitude = location.getLatitude();
-                            longitude = location.getLongitude();
-                        }*/
-//SPOSTO QUA SOPRA
                         /*
                          * considero solo i due bit più significativi del primo byte arrivato
                          * per distinguere il numero del pacchetto
@@ -635,9 +622,29 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         pacchetto_numero_ricevuto = pacchetto_numero_ricevuto - (pacchetto_P << 6);
 
                         if (numero_pacchetto != pacchetto_numero_ricevuto){
-                            if (flag_dati_scritti == 1){
-                                numero_pacchetto = pacchetto_numero_ricevuto;
-                                flag_dati_scritti = 0;
+                            if (flag_dati_ricevuti == 1){               //scrivo su file
+                                //preparo messaggio da salvare
+                                messaggio_salvato = 6 + ";" +   //per indicare pacchetto di environmental monitor
+                                        temperature + ";" + humidity + ";" + pressure + ";" +
+                                        VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";" +
+                                        PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";" +
+                                        count_P1 + ";" + count_P2 + ";" + count_P3 + ";" +
+                                        orario + ";" + latitude + ";" + longitude + ";";    //valore batteria lo salvo?
+
+                                toast.makeText(getApplicationContext(), "scrivo su file" , Toast.LENGTH_SHORT).show();
+
+                                //write the messages
+                                //call the firebase class to upload data on firebase
+                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                writingDataToFirebase.mainFirebase(messaggio_salvato,startrec_time);
+                                //scrivo su file
+                                WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                writingDataToFile.mainFile(messaggio_salvato, current, day, intPath,extPath);
+
+                                fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+
+                                //numero_pacchetto = pacchetto_numero_ricevuto;
+                                //flag_dati_scritti = 0;
                             }
                             else{
                                 //salvo i valori su file e firebase
@@ -671,7 +678,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";";
                                 }
 
-                                messaggio_salvato = messaggio_salvato + ";" + count_P1 + ";" + count_P2 + ";" + count_P3 + ";" + orario + ";" + latitude + ";" + longitude;
+                                messaggio_salvato = messaggio_salvato + count_P1 + ";" + count_P2 + ";" + count_P3 + ";" + orario + ";" + latitude + ";" + longitude;
                                 //do per scontato che almeno un pacchetto sia arrivato, e quindi ho latitudine longitudine e ora
 
                                 //write the messages
@@ -684,6 +691,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                                 fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
                             }
+
+                            numero_pacchetto = pacchetto_numero_ricevuto;
+                            flag_dati_ricevuti = 0;
 
                             count_P1 = 0;
                             count_P2 = 0;
@@ -797,29 +807,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     break;
 
                             }
-                            if (count_P1 > 0 && count_P2 > 0 && count_P3 > 0 && flag_dati_scritti == 0){ //condizione: almeno un pacchetto P per ognuno è arrivato
-                                //preparo messaggio da salvare
-                                messaggio_salvato = 6 + ";" +   //per indicare pacchetto di environmental monitor
-                                        temperature + ";" + humidity + ";" + pressure + ";" +
-                                        VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";" +
-                                        PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";" +
-                                        count_P1 + ";" + count_P2 + ";" + count_P3 + ";" +
-                                        orario + ";" + latitude + ";" + longitude + ";";    //valore batteria lo salvo?
+                            if (count_P1 > 0 && count_P2 > 0 && count_P3 > 0 && flag_dati_ricevuti == 0){ //condizione: almeno un pacchetto P per ognuno è arrivato
 
-
-    toast.makeText(getApplicationContext(), "scrivo su file" , Toast.LENGTH_SHORT).show();
-
-                                //write the messages
-                                //call the firebase class to upload data on firebase
-                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                writingDataToFirebase.mainFirebase(messaggio_salvato,startrec_time);
-                                //scrivo su file
-                                WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                writingDataToFile.mainFile(messaggio_salvato, current, day, intPath,extPath);
-
-                                fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
-
-                                flag_dati_scritti = 1;
+                                flag_dati_ricevuti = 1;
                             }
 
                         }

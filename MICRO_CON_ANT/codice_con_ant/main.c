@@ -432,7 +432,7 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
     //2 sec
     if ((rtc_count % _2_SEC) == 0 )  //non serve perchè invio gestito in ANT HANDLER
     {
-        printf("\n2 sec\n");
+        printf("2 sec\n");
 
     }
 //simulo un aggiornamento dei valori ogni 6 secondi, così invio ogni pacchetto 2 volte
@@ -490,27 +490,25 @@ printf("Timer\n");
     err_code = app_timer_start(m_repeated_timer_id, APP_TIMER_TICKS(TIMEOUT_VALUE), NULL);
     APP_ERROR_CHECK(err_code);	
 
+printf("Aspetta 10 sec\n"); //stabilizzazione del potenziale al SPS30
+nrf_delay_ms(10000);
     /* 
      * Inizializzazione dei sensori
      */
     if(flag_inizializzazione == 0)
     {
-        err_code = 1;
-//        while (err_code != 0)
-            err_code = sps30_init();   //tutto ok ritorna 0
-        err_code = 1;
-//        while (err_code = !0)
-             err_code = bme280_init_set(&dev_bme280); //tutto ok ritorna 0
+    printf("inizializzazione dei sensori\n");
+        printf("BME\n");     
+        err_code = bme280_init_set(&dev_bme280); //tutto ok ritorna 0
         //scd41 non serve init
-        err_code = 1;
-//        while (err_code = !0)
-            
-        //SGP30
+        printf("SGP30\n");
         err_code = sgp30_init();
-        printf("\nSGP30 inizializzato\n\n");
         sgp30_iaq_init();
+        printf("LIS3DH\n");
+        err_code = lis3dh_init();    //tutto ok ritorna 0    
+        printf("SPS30\n");      
+        err_code = sps30_init();   //tutto ok ritorna 0
 
-            err_code = lis3dh_init();    //tutto ok ritorna 0
 printf("Sensori correttamente inizializzati\n");
         flag_inizializzazione = 1;
     }
@@ -573,7 +571,8 @@ printf("Sensori correttamente inizializzati\n");
 printf("\nMisuro\n");
 
           //letti tutti i valori, elaboro i dati in modo da poterli inviare come uint8 e li salvo nei pacchetti, poi metto flag_misurazione = 2 e la gestisco in ANT
-/*//Valori simulati          
+/*
+//Valori simulati          
           pacchetto_1[0] = 64 + numero_pacchetto;
           pacchetto_1[1] = valore_prova; //Temperatura
           pacchetto_1[2] = valore_prova; //Temperatura

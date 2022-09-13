@@ -906,7 +906,7 @@ int a = antMessageParcel.getMessageId();
                 case CHANNEL_EVENT:
                     ChannelEventMessage eventMessage = new ChannelEventMessage(antMessageParcel);
                     byte[] content = new byte[4];
-                    getMessageContent();
+                    //getMessageContent();
 
                     switch (eventMessage.getEventCode()) {
                         case RX_SEARCH_TIMEOUT:

@@ -104,7 +104,7 @@ uint8_t connesso = 0;           // = 1 indica che il master si è connesso e sta 
 float partial_calc = 0;        //variable to maintein partial calculation
 
 //variabili per la gestione di ANT
-uint8_t message_addr[8] = {6,6,6,6,6,6,6,6};
+uint8_t message_addr[8] = {0,0,0,0,0,0,0,0};
 uint8_t pacchetto_1[8] = {0,0,0,0,0,0,0,0};  //pacchetti che contengono i valori campionati
 uint8_t pacchetto_2[8] = {0,0,0,0,0,0,0,0};  //ed elaborati per poter essere inviati tramite ANT
 uint8_t pacchetto_3[8] = {0,0,0,0,0,0,0,0};  //senza problemi di formato (uint8_t
@@ -122,7 +122,7 @@ nrf_saadc_value_t adc_val;  //variabile per campionamento
 ret_code_t err_code;        //variabile per valore di ritorno
 
 uint8_t flag_inizializzazione = 0;  //flag che definisce inizializzazione dei sensori in corso
-uint8_t flag_dati_pronti = 0; //flag che dice che non ci sono ancora dei dati da inviare
+uint8_t flag_dati_pronti = 1; //flag che dice che non ci sono ancora dei dati da inviare
 uint8_t valore = 0;
 
 //VARIABILI DEI SENSORI
@@ -287,65 +287,46 @@ printf("\n");
                         memset(message_addr, 6, ANT_STANDARD_DATA_PAYLOAD_SIZE);	
                         err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr); //invia messaggio di connessione
                         NRF_LOG_INFO("Ricevuto messaggio di connessione");
+                        connesso = 1;
                     }
                     
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x06 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x07] == 0x00)
                     { //connesso a master, invia dati
-                        
                         sd_ant_pending_transmit_clear (BROADCAST_CHANNEL_NUMBER, NULL); //svuota il buffer, utile per una seconda acquisizione
                         connesso = 1;
-                        flag_misurazioni = 1;
-                        rtc_count = 0;
-//aggiungere gestione del pacchetto da inviare 1 2 3
+                        //flag_misurazioni = 1;
+                        //rtc_count = 0;
 
-//se i dati non sono ancora pronti (caso di accensione), invio un pacchetto standard es 6,6,6,6,6,6,6,6,6
-//se no invio in ordine sequenziale pacchetto 1, pacchetto 2, pacchetto 3
-
-//fare controllo che dati siano pronti    
-                        if (flag_dati_pronti == 0)
-//invio pacchetto standard                    
-                            err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
-
-//se no gestisco i tre pacchetti          
-                        else
-                        {   //aggiungi stampa del pacchetto inviato per vedere che funzioni correttamente
+                           //aggiungi stampa del pacchetto inviato per vedere che funzioni correttamente
+                              
+                                  
                               if (pacchetto_P == 1)
                               {   //invio pacchetto 1
                                   err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_1_inviare);
-printf("Invio P1: ");
-for(int i = 0;i<8;i++)  printf("%d ", pacchetto_1_inviare[i]);
-printf("\n");
+                                  printf("Invio P1: ");
+                                  for(int i = 0;i<8;i++)  printf("%d ", pacchetto_1_inviare[i]);
+                                  printf("\n");
                               }
                               else if (pacchetto_P == 2)
                               {
                                   err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_2_inviare);
-printf("Invio P2: ");
-for(int i = 0;i<8;i++)  printf("%d ", pacchetto_2_inviare[i]);
-printf("\n");
+                                  printf("Invio P2: ");
+                                  for(int i = 0;i<8;i++)  printf("%d ", pacchetto_2_inviare[i]);
+                                  printf("\n");
                               }
                               else if (pacchetto_P == 3)
                               {
                                   err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_3_inviare);
-printf("Invio P3: ");
-for(int i = 0;i<8;i++)  printf("%d ", pacchetto_3_inviare[i]);
-printf("\n");
+                                  printf("Invio P3: ");
+                                  for(int i = 0;i<8;i++)  printf("%d ", pacchetto_3_inviare[i]);
+                                  printf("\n");
                               }
 
                               pacchetto_P++;
 
-                            if (flag_misurazioni == 2 && pacchetto_P == 4) //aggiorno i pacchetti da inviare. Farlo dopo che ho inviato lo stesso numero di pacchetti per ogni pacchetto??
-                            {
-                                for (int i = 0; i < 8 ; i++)
-                                {
-                                    pacchetto_1_inviare[i] = pacchetto_1[i];
-                                    pacchetto_2_inviare[i] = pacchetto_2[i];
-                                    pacchetto_3_inviare[i] = pacchetto_3[i];
-                                }
-                                flag_misurazioni = 0;                      
-                            } //pacchetti da inviare aggiornati, i prossimi da inviare sono aggiornati
-                            if (pacchetto_P == 4)
-                                pacchetto_P = 1; //riparto ad inviare il primo pacchetto
-                        }
+                              if (pacchetto_P == 4)
+                                  pacchetto_P = 1;
+                        
                     }
 
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x00 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x07] == 0x80 )
@@ -392,7 +373,7 @@ static void ant_channel_rx_broadcast_setup(void)
     ant_channel_config_t broadcast_channel_config =
     {
         .channel_number    = BROADCAST_CHANNEL_NUMBER,
-        .channel_type      = CHANNEL_TYPE_SLAVE,     //CHANNEL_TYPE_SLAVE,
+        .channel_type      = CHANNEL_TYPE_SLAVE,    
         .ext_assign        = 0x00,
         .rf_freq           = RF_FREQ,
         .transmission_type = CHAN_ID_TRANS_TYPE,
@@ -432,30 +413,20 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
     VOC = VOC + measure_sgp30.tVOC;
     count_VOC ++;
     printf("VOC %d\n", VOC);
-    //2 sec
-    if ((rtc_count % _2_SEC) == 0 )  //non serve perchè invio gestito in ANT HANDLER
-    {
-        printf("2 sec\n");
 
-    }
-//simulo un aggiornamento dei valori ogni 6 secondi, così invio ogni pacchetto 2 volte
-/*if((rtc_count % 12) == 0)
-{
-    flag_misurazioni = 1; //non andrebbe qua, ma nei 20 sec
-}*/
     //20 sec
-    if ((rtc_count % _20_SEC) == 0)
+    if ((rtc_count % 18) == 0)  //_20_SEC
     {
         //campiono tutti i valori, flag e si fa nel main, confronto con umidità
         //rtc_count = 0;  // se non mi serve intervallo più grande
         flag_misurazioni = 1; //eseguire misurazioni ogni 20 sec nel main
     }
     
-    if ((rtc_count % 30) == 0)
+    if ((rtc_count % 36) == 0)
     {
-        VOC = 0;
-        count_VOC =0;
-        rtc_count = 0;
+        //VOC = 0;
+        //count_VOC =0;
+        //rtc_count = 0;
     }
 
     //1 ora per sgp30 baseline iaq (capire se serve)                                                                                     
@@ -498,8 +469,6 @@ printf("Timer\n");
     err_code = app_timer_start(m_repeated_timer_id, APP_TIMER_TICKS(TIMEOUT_VALUE), NULL);
     APP_ERROR_CHECK(err_code);	
 
-printf("Aspetta 15 sec\n"); //stabilizzazione del potenziale al SPS30
-nrf_delay_ms(15000);
     /* 
      * Inizializzazione dei sensori
      */
@@ -517,7 +486,7 @@ nrf_delay_ms(15000);
         printf("\nSPS30\n");      
         err_code = sps30_init();   //tutto ok ritorna 0
 
-printf("Sensori correttamente inizializzati\n");
+printf("Sensori correttamente inizializzati\n\n");
         flag_inizializzazione = 1;
     }
 
@@ -538,10 +507,7 @@ printf("Sensori correttamente inizializzati\n");
             
             float partial_calc = 0;        //variable to maintein partial calculation
             int calcolo_parziale = 0;
-//ha senso guardare se restituiscono o meno errore queste funzioni?
-            
-            //unire sps e scd per fare un unico delay, o separarli per consumo di corrente massimo disponibile
-            
+printf("\nMisuro\n");
             //SPS30 
             sps30_wake_up();
             sps30_start_measurement();
@@ -574,23 +540,8 @@ printf("Sensori correttamente inizializzati\n");
 
             //LIS3DH
             //scegliere ogni quanto campionare   
-//simulazione di dati letti e pronti da inviare al device   
-
-printf("\nMisuro\n");
 
           //letti tutti i valori, elaboro i dati in modo da poterli inviare come uint8 e li salvo nei pacchetti, poi metto flag_misurazione = 2 e la gestisco in ANT
-/*
-//Valori simulati          
-          pacchetto_1[0] = 64 + numero_pacchetto;
-          pacchetto_1[1] = valore_prova; //Temperatura
-          pacchetto_1[2] = valore_prova; //Temperatura
-          pacchetto_1[3] = valore_prova; //Umidità
-          pacchetto_1[4] = valore_prova; //Umidità
-          pacchetto_1[5] = valore_prova; //Pressione
-          pacchetto_1[6] = valore_prova; //Pressione
-          pacchetto_1[7] = valore_prova; //Pressione
-          */
-//valori veri
 
           pacchetto_1[0] = 64 + numero_pacchetto;
           pacchetto_1[1] = (int) measure_bme280.temperature + 30;    //Parte intera della Temperatura incrementato di 30 (o più?)
@@ -602,18 +553,6 @@ printf("\nMisuro\n");
           pacchetto_1[6] = calcolo_parziale >> 8; //Pressione  >> 8
           pacchetto_1[7] = calcolo_parziale; //Pressione
 
-/*
-//Valori simulati          
-          pacchetto_2[0] = 128 + numero_pacchetto;
-          pacchetto_2[1] = valore_prova+1; //VOC      
-          pacchetto_2[2] = valore_prova+1; //VOC      
-          pacchetto_2[3] = valore_prova+1; //CO2
-          pacchetto_2[4] = valore_prova+1; //CO2
-          pacchetto_2[5] = valore_prova+1; //NO2
-          pacchetto_2[6] = valore_prova+1; //NO2
-          pacchetto_2[7] = valore_prova+1; //CO
-*/
-//Valori veri
           calcolo_parziale = (int)(VOC/count_VOC);
           count_VOC = 0;
           pacchetto_2[0] = 128 + numero_pacchetto;
@@ -624,18 +563,6 @@ printf("\nMisuro\n");
           pacchetto_2[5] = measure_mics6814.NO2; //NO2
           pacchetto_2[6] = measure_mics6814.CO; //CO
           pacchetto_2[7] = 123; // BATTERY   capire ogni quanto campionare
-/*
-//valori simulati
-          pacchetto_3[0] = 192 + numero_pacchetto;
-          pacchetto_3[1] = valore_prova+1; //VOC      
-          pacchetto_3[2] = valore_prova+1; //VOC      
-          pacchetto_3[3] = valore_prova+1; //CO2
-          pacchetto_3[4] = valore_prova+1; //CO2
-          pacchetto_3[5] = valore_prova+1; //NO2
-          pacchetto_3[6] = valore_prova+1; //NO2
-          pacchetto_3[7] = valore_prova+1; //CO
-*/
-//valori veri
           
           pacchetto_3[0] = 192 + numero_pacchetto;
           pacchetto_3[1] = 10; //ACCELERATION   capire ogni quanto leggere il dato
@@ -646,31 +573,31 @@ printf("\nMisuro\n");
           pacchetto_3[6] = (int)(measure_sps30.mc_10p0 * 10); //PM10   LSB
           pacchetto_3[7] = (int)(measure_sps30.mc_10p0 * 10) >> 8; //PM10   MSB
 
-
+          flag_misurazioni = 2;
+flag_dati_pronti = 1;
 //finiti di mettere i valori negli array, incremento il valore di numero_pacchetto.
 // se supera 63 (6 bit), lo riporto a 1
 
-        numero_pacchetto++;
-        if (numero_pacchetto == 64)
-          numero_pacchetto = 1;
+          numero_pacchetto++;
 
-valore_prova = valore_prova +10;
-          flag_misurazioni = 2;
-printf("DATI PRONTI PER ESSERE INVIATI\n");
-          if (flag_dati_pronti == 0){ //problema è che ho dati pronti ma non si sono aggiornati i pacchetti da inviare
-              //primo aggiornamento lo faccio io qua
+          if (numero_pacchetto == 64)
+          {
+            numero_pacchetto = 1;
+          }
+printf("Numero: %d", numero_pacchetto);
+          
+          printf("DATI PRONTI PER ESSERE INVIATI\n");
+          
               for (int i = 0; i < 8 ; i++)
                   {
                       pacchetto_1_inviare[i] = pacchetto_1[i];
                       pacchetto_2_inviare[i] = pacchetto_2[i];
                       pacchetto_3_inviare[i] = pacchetto_3[i];
                   }  
-              flag_dati_pronti = 1;
+              flag_misurazioni = 0;
+              
+
           }
-
-
-        }
-
         nrf_pwr_mgmt_run();
         __WFI();//GO INTO LOW POWER MODE
     }

@@ -43,7 +43,7 @@
 #define SAADC_BATTERY   0           //Canale tensione della batteria
 #define TIMEOUT_VALUE   1000   //1000       //interrupt timer a 1 sec
 #define START_ADDR  0x00011200      //indirizzo di partenza per salvataggio dati in memoria non volatile
-#define LED             10  //07
+#define LED             07
 
 #define NO2_CHANNEL     0           //NO2 channel for ADC
 #define CO_CHANNEL      2           //CO channel for ADC
@@ -238,7 +238,7 @@ int prova = 0;
 //Function for handling stack event
 void ant_evt_handler(ant_evt_t * p_ant_evt, void * p_context)
 {
-    if (p_ant_evt->channel == BROADCAST_CHANNEL_NUMBER)  //durante l'inizializzazione dei sensori ignora tutti i messaggi che arrivano dal master
+    if (p_ant_evt->channel == BROADCAST_CHANNEL_NUMBER) 
     {
         switch (p_ant_evt->event)
         {
@@ -250,30 +250,38 @@ printf("\nRicevuto: ");
 for(int i = 0;i<8;i++)  printf("%d", p_ant_evt->message.ANT_MESSAGE_aucPayload [i]);
 printf("\n");
 
-                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x01 );
+                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x01 );
                     { //richiesta di connessione saturation
                         //uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
                         //memset(message_addr, 6, ANT_STANDARD_DATA_PAYLOAD_SIZE);	
                         //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr); //invia messaggio di connessione
-                        if(prova <5){
-                        prova++;
                         printf("Saturation connesso\n");
                         ant_send(1);
                         sd_ant_pending_transmit_clear (BROADCAST_CHANNEL_NUMBER, NULL); //svuota il buffer, utile per una seconda acquisizione
-                        }
-                       else{
-                        printf("Environmental connesso\n");
-                        ant_send(2);
-                       }
+                       
                     }
                     
-                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x02 )
+                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x02 )
                     { //connesso a master, invia dati
                         //uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
                         //memset(message_addr, 6, ANT_STANDARD_DATA_PAYLOAD_SIZE);	
                         //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr); //invia messaggio di connessione
                         printf("Environmental connesso\n");
                         ant_send(2);                           
+                    }
+                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x04 )
+                    { //connesso a master, invia dati
+                        //uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
+                        //memset(message_addr, 6, ANT_STANDARD_DATA_PAYLOAD_SIZE);	
+                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr); //invia messaggio di connessione
+                        uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
+                        for(int i = 0;i <8;i++)
+                        {
+                            message_addr[i] = 4;
+                        }                        
+                        printf("Saturation solo connesso\n");
+                        err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
+                        //ant_send(4);                           
                     }
 
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x00 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x07] == 0x80 )
@@ -316,7 +324,7 @@ static void ant_channel_rx_broadcast_setup(void)
     ant_channel_config_t broadcast_channel_config =
     {
         .channel_number    = BROADCAST_CHANNEL_NUMBER,
-        .channel_type      = CHANNEL_TYPE_SHARED_SLAVE,     //CHANNEL_TYPE_SLAVE,
+        .channel_type      = CHANNEL_TYPE_SHARED_SLAVE,  //CHANNEL_TYPE_SHARED_SLAVE,     //
         .ext_assign        = 0x00,
         .rf_freq           = RF_FREQ,
         .transmission_type = CHAN_ID_TRANS_TYPE,

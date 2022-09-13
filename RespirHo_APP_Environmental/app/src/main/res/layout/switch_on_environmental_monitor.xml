@@ -60,7 +60,7 @@
                 android:id="@+id/switch_on_environmentalmonitor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Switch on sensor 6:"
+                android:text="Switch on \nEnvironmental Monitor:"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="20dp" />

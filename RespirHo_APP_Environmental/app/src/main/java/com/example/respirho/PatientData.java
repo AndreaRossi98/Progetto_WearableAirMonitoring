@@ -453,7 +453,7 @@ public class PatientData extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case 9: //Environmental Monitor e IMUs
-                toast.makeText(getApplicationContext(), "Calma per Environmental Monitor e IMUs", Toast.LENGTH_SHORT).show();
+                redirectActivity(PatientData.this, IMUs_Environmental.class);
                 break;
 
             case 10: //Environmental Monitor e SPO2

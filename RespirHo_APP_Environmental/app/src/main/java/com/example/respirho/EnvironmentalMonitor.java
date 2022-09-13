@@ -514,7 +514,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
         locationRequest.setFastestInterval(1000);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-
     }
 
     //variabili per la gestione dei pacchetti e scrittura dei dati su file
@@ -591,9 +590,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
 //toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
 
-//risultato = Float.parseFloat(prova);
-//Toast.makeText(getApplicationContext(), "stringa" +prova, Toast.LENGTH_LONG).show();
-
                     //split the bytes
                     String[] messageContentString_split = messageContentString.split("]"); //ex: [01
                     //get the first byte to find the unit and remove the open square bracket
@@ -609,8 +605,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         /*
                          * considero solo i due bit più significativi del primo byte arrivato
                          * per distinguere il numero del pacchetto
-                         */
-                        /*
                         pacchetto_numero = 6    --> è il pacchetto vecchio per connettersi, ignoralo
                         pacchetto_P = 1    --> è il pacchetto P1
                         pacchetto_P = 2    --> è il pacchetto P2
@@ -643,8 +637,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                                 fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
-                                //numero_pacchetto = pacchetto_numero_ricevuto;
-                                //flag_dati_scritti = 0;
                             }
                             else{
                                 //salvo i valori su file e firebase
@@ -743,8 +735,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                                 temperature_output.setText(String.valueOf(temperature));
                                                 humidity_output.setText(String.valueOf(humidity));
                                                 pressure_output.setText(String.valueOf(pressure));
-//String finalMessageContentString_VOC = messageContentString_VOC;
-//VOC_output.setText(finalMessageContentString_VOC);        può essere alternativa per problema a gestire i numeri con la virgola
                                             }
                                         });
 

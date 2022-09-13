@@ -43,7 +43,8 @@
 #define SAADC_BATTERY   0           //Canale tensione della batteria
 #define TIMEOUT_VALUE   1000   //1000       //interrupt timer a 1 sec
 #define START_ADDR  0x00011200      //indirizzo di partenza per salvataggio dati in memoria non volatile
-#define LED             10  //07
+#define LED             10  //07 breadboard
+#define bjt             27  //01 breadboard
 
 #define NO2_CHANNEL     0           //NO2 channel for ADC
 #define CO_CHANNEL      2           //CO channel for ADC
@@ -293,6 +294,8 @@ printf("\n");
                         
                         sd_ant_pending_transmit_clear (BROADCAST_CHANNEL_NUMBER, NULL); //svuota il buffer, utile per una seconda acquisizione
                         connesso = 1;
+                        flag_misurazioni = 1;
+                        rtc_count = 0;
 //aggiungere gestione del pacchetto da inviare 1 2 3
 
 //se i dati non sono ancora pronti (caso di accensione), invio un pacchetto standard es 6,6,6,6,6,6,6,6,6
@@ -444,7 +447,7 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
     if ((rtc_count % _20_SEC) == 0)
     {
         //campiono tutti i valori, flag e si fa nel main, confronto con umidità
-        rtc_count = 0;  // se non mi serve intervallo più grande
+        //rtc_count = 0;  // se non mi serve intervallo più grande
         flag_misurazioni = 1; //eseguire misurazioni ogni 20 sec nel main
     }
     
@@ -452,6 +455,7 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
     {
         VOC = 0;
         count_VOC =0;
+        rtc_count = 0;
     }
 
     //1 ora per sgp30 baseline iaq (capire se serve)                                                                                     
@@ -465,6 +469,10 @@ printf("inizio\n");
 
     nrf_gpio_cfg_output(LED);
     nrf_gpio_pin_set(LED);
+ 
+    nrf_gpio_cfg_output(bjt);
+    //nrf_gpio_pin_set(bjt);
+    nrf_gpio_pin_clear(bjt);
 
     //Inizializzazione di tutte le componenti
     log_init();
@@ -490,23 +498,23 @@ printf("Timer\n");
     err_code = app_timer_start(m_repeated_timer_id, APP_TIMER_TICKS(TIMEOUT_VALUE), NULL);
     APP_ERROR_CHECK(err_code);	
 
-printf("Aspetta 10 sec\n"); //stabilizzazione del potenziale al SPS30
-nrf_delay_ms(10000);
+printf("Aspetta 15 sec\n"); //stabilizzazione del potenziale al SPS30
+nrf_delay_ms(15000);
     /* 
      * Inizializzazione dei sensori
      */
     if(flag_inizializzazione == 0)
     {
     printf("inizializzazione dei sensori\n");
-        printf("BME\n");     
+        printf("\nBME\n");     
         err_code = bme280_init_set(&dev_bme280); //tutto ok ritorna 0
         //scd41 non serve init
-        printf("SGP30\n");
+        printf("\nSGP30\n");
         err_code = sgp30_init();
         sgp30_iaq_init();
-        printf("LIS3DH\n");
+        printf("\nLIS3DH\n");
         err_code = lis3dh_init();    //tutto ok ritorna 0    
-        printf("SPS30\n");      
+        printf("\nSPS30\n");      
         err_code = sps30_init();   //tutto ok ritorna 0
 
 printf("Sensori correttamente inizializzati\n");

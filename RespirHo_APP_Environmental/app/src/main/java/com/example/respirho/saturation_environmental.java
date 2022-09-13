@@ -300,7 +300,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
     private static final int CONNECT4 = 13;
     private static final int SYNCHRONIZATION_RESUME = 4;
     private static final int START = 5;
-    private static final int CALL = 6;
+    private static final int CALL1 = 6;
     private static final int CALL2 = 7;
     private static final int CALL3 = 8;
     private static final int CALL4 = 14;
@@ -566,6 +566,135 @@ public class saturation_environmental extends AppCompatActivity implements View.
     float partial_calculation = 0; //variabile usata per fare calcoli parziali
     String messaggio_salvato;
 
+
+    public IAntChannelEventHandler event = new IAntChannelEventHandler() {
+        @RequiresApi(api = Build.VERSION_CODES.O)
+        @Override
+        public void onReceiveMessage(MessageFromAntType messageFromAntType, AntMessageParcel antMessageParcel) {
+            switch(messageFromAntType){
+                case BROADCAST_DATA:
+                    break;
+                case CHANNEL_ID:
+                    Log.e(LOG_TAG, "CASE CHANNEL ID");
+                    break;
+                case CHANNEL_EVENT:
+                    ChannelEventMessage eventMessage = new ChannelEventMessage(antMessageParcel);
+                    switch (eventMessage.getEventCode()) {
+                        case RX_SEARCH_TIMEOUT:
+                            break;
+                        case RX_FAIL:
+                            break;
+                        case TX: //HERE WE SEND ALL THE BROADCAST MESSAGES TO THE SENSORS
+                            //if the channel has been opened during initialization...
+                            if (mIsOpen_SATURATION  && mIsOpen_ENVIRONMENTAL) {
+
+                                // Setting the data to be broadcast on the next channel period
+                                if(state==CONNECT1){
+                                    //payLoad_SATURATION = payLoad1;
+                                }
+
+                                if(state==CONNECT2) {
+                                    payLoad_ENVIRONMENTAL = payLoad2;
+                                    //payLoad_SATURATION = payLoad2;
+                                }
+//non serve per questo caso
+                                if(state==SYNCHRONIZATION_RESUME)
+                                {
+                                    //payLoad_SATURATION = payLoad4;
+                                    //payLoad_ENVIRONMENTAL = payLoad4;
+                                }
+
+                                if(state==RECONNECTION)
+                                {
+                                    //payLoad_SATURATION = payLoad4;
+                                    payLoad_ENVIRONMENTAL = payLoad4;
+                                }
+
+                                if(state==START)
+                                {
+                                    //payLoad_SATURATION = payLoad4;
+                                    payLoad_ENVIRONMENTAL = payLoad4;
+                                    //save time to show
+                                    SimpleDateFormat formatStartRec=new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
+                                    startrec_time=formatStartRec.format(new Date().getTime());
+                                    Log.e("start","New rec: "+ startrec_time);
+                                }
+
+                                if(state==CALL2) {
+                                    //payLoad_SATURATION = payLoad11;
+                                    payLoad_ENVIRONMENTAL = payLoad12;
+                                }
+
+                                if(state==CALIBRATION) {
+                                    payLoad_SATURATION = payLoad8;
+                                }
+
+                                if(state==STOP) {
+                                    //stop the channel sending the payload9
+                                    payLoad_SATURATION = payLoad9;
+                                    //payLoad_ENVIRONMENTAL = payLoad9;
+                                }
+
+                                //send the message through a specific payload
+/*                              try {
+                                    antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
+                                } catch (RemoteException e) {
+                                    e.printStackTrace();
+                                }
+*/
+                                try {
+                                    antChannelENVIRONMENTAL.setBroadcastData(payLoad_ENVIRONMENTAL);
+                                } catch (RemoteException e) {
+                                    e.printStackTrace();
+                                }
+
+                                //CONTINUOUS ACQUISITION
+                                //after synchronization (START), call periodically one after the other
+                                if(state==START || state==RECONNECTION)
+                                {
+                                    state=CALL2;
+                                    startWatchdogTimer(UNIT2);
+                                    checkWatchdogTimer();
+                                }
+                                else if(state == CALL2)
+                                {
+                                    state = CALL2;
+                                    startWatchdogTimer(UNIT2);
+                                    checkWatchdogTimer();
+                                }
+
+                            }
+                            else{
+                                //Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
+                            }
+
+                            break;
+                        case TRANSFER_RX_FAILED:
+                            break;
+                        case TRANSFER_TX_COMPLETED:
+                            break;
+                        case TRANSFER_TX_FAILED:
+                            break;
+                        case CHANNEL_CLOSED:
+                            break;
+                        case RX_FAIL_GO_TO_SEARCH:
+                            break;
+                        case CHANNEL_COLLISION:
+                            break;
+                        case TRANSFER_TX_START:
+                            break;
+                        case UNKNOWN:
+                            break;
+                    }
+                    break;
+            }
+        }
+
+        @Override
+        public void onChannelDeath() {
+            antDisconnection(saturation_environmental.this);
+        }
+    };
     public IAntChannelEventHandler eventCallBack = new IAntChannelEventHandler() {
 
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -584,7 +713,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                     current=format.format(new Date().getTime());
 
                     String messageContentString_default = antMessageParcel.getMessageContentString(); //9 bytes, first is always [00] (to erase)
-
+int a = antMessageParcel.getMessageId();
                     //remove the first byte always equal to [00]
                     //OFFICIAL MESSAGE messageContentString
                     String messageContentString=messageContentString_default.substring(4); //8 bytes, correct. Ex:"[03][5C][00][00][62][2E][3C][E8]"
@@ -776,6 +905,9 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                 case CHANNEL_EVENT:
                     ChannelEventMessage eventMessage = new ChannelEventMessage(antMessageParcel);
+                    byte[] content = new byte[4];
+                    getMessageContent();
+
                     switch (eventMessage.getEventCode()) {
                         case RX_SEARCH_TIMEOUT:
                             break;
@@ -788,37 +920,67 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                 // Setting the data to be broadcast on the next channel period
                                 if(state==CONNECT1){
                                     payLoad_SATURATION = payLoad1;
+                                    try {
+                                        antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
+                                    } catch (RemoteException e) {
+                                        e.printStackTrace();
+                                    }
+
                                 }
 
                                 if(state==CONNECT2) {
                                     payLoad_ENVIRONMENTAL = payLoad2;
+                                    //payLoad_SATURATION = payLoad2;
+                                    try {
+                                        antChannelENVIRONMENTAL.setBroadcastData(payLoad_ENVIRONMENTAL);
+                                    } catch (RemoteException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
 //non serve per questo caso
                                 if(state==SYNCHRONIZATION_RESUME)
                                 {
                                     payLoad_SATURATION = payLoad4;
-                                    payLoad_ENVIRONMENTAL = payLoad4;
+
+                                    try {
+                                        antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
+                                    } catch (RemoteException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
 
                                 if(state==RECONNECTION)
                                 {
                                     payLoad_SATURATION = payLoad4;
-                                    payLoad_ENVIRONMENTAL = payLoad4;
+                                    //payLoad_ENVIRONMENTAL = payLoad4;
                                 }
 
                                 if(state==START)
                                 {
                                     payLoad_SATURATION = payLoad4;
+
+                                    try {
+                                        antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
+                                    } catch (RemoteException e) {
+                                        e.printStackTrace();
+                                    }
+
                                     payLoad_ENVIRONMENTAL = payLoad4;
+
+                                    try {
+                                        antChannelENVIRONMENTAL.setBroadcastData(payLoad_ENVIRONMENTAL);
+                                    } catch (RemoteException e) {
+                                        e.printStackTrace();
+                                    }
                                     //save time to show
                                     SimpleDateFormat formatStartRec=new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
                                     startrec_time=formatStartRec.format(new Date().getTime());
                                     Log.e("start","New rec: "+ startrec_time);
                                 }
 
-                                if(state==CALL) {
+                                if(state==CALL1) {
                                     payLoad_SATURATION = payLoad11;
-                                    payLoad_ENVIRONMENTAL = payLoad12;
+                                    //payLoad_ENVIRONMENTAL = payLoad12;
                                 }
 
                                 if(state==CALIBRATION) {
@@ -828,36 +990,34 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                 if(state==STOP) {
                                     //stop the channel sending the payload9
                                     payLoad_SATURATION = payLoad9;
-                                    payLoad_ENVIRONMENTAL = payLoad9;
+                                    //payLoad_ENVIRONMENTAL = payLoad9;
                                 }
 
                                 //send the message through a specific payload
-                                try {
+                               /* try {
                                     antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
                                 } catch (RemoteException e) {
                                     e.printStackTrace();
-                                }
+                                }*/
 
-                                try {
+                               /* try {
                                     antChannelENVIRONMENTAL.setBroadcastData(payLoad_ENVIRONMENTAL);
                                 } catch (RemoteException e) {
                                     e.printStackTrace();
-                                }
+                                }*/
 
                                 //CONTINUOUS ACQUISITION
                                 //after synchronization (START), call periodically one after the other
                                 if(state==START || state==RECONNECTION)
                                 {
-                                    state=CALL;
+                                    state=CALL1;
                                     startWatchdogTimer(UNIT1);
-                                    startWatchdogTimer(UNIT2);
                                     checkWatchdogTimer();
                                 }
-                                else if(state == CALL)
+                                else if(state == CALL1)
                                 {
-                                    state = CALL;
+                                    state = CALL1;
                                     startWatchdogTimer(UNIT1);
-                                    startWatchdogTimer(UNIT2);
                                     checkWatchdogTimer();
                                 }
 
@@ -889,8 +1049,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
         };
 
         @Override
-        public void onChannelDeath()
-        {
+        public void onChannelDeath() {
             antDisconnection(saturation_environmental.this);
         };
     };
@@ -1060,7 +1219,23 @@ public class saturation_environmental extends AppCompatActivity implements View.
                 Log.e(LOG_TAG, "Channel is open");
 
 //CANALE ENVIRONMENTAL MONITOR
+//provato ad aggiungere per vedere se cambia qualcosa
+                //channels available
+                channels=0;
+                try {
+                    channels=antChannelProvider.getNumChannelsAvailable();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Ant Channels available " + channels);
 
+                if(channels==0){
+                    //display some error text
+                    status_initialization.setText("Go back and retry initialization");
+                    Toast.makeText(getApplicationContext(), "ERROR\n\nThe communication does not work correctly\n\nPress back button, go back and retry", Toast.LENGTH_LONG).show();
+                    break;
+                }
+// fino qua
                 try {
                     antChannelENVIRONMENTAL = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
                 } catch (ChannelNotAvailableException | RemoteException e) {
@@ -1125,6 +1300,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                 if( mIsOpen_ENVIRONMENTAL   &&  mIsOpen_SATURATION){
                     //if the channel is open
+Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show();
                     progressbar_initialization.setVisibility(View.GONE);
                     initializationbutton.setVisibility(View.GONE);
 

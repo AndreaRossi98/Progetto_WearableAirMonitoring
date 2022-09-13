@@ -61,9 +61,9 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="474" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="99" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="28" y="509" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="498" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="28" y="78" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="49" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="21" y="464" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../Sensor/bme280.c" selected="0" top="463" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="1659" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../../../Sensor/bme280.c" selected="1" top="1649" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="326" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../../../Sensor/sgp30.h" selected="0" top="303" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="4" y="394" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../../../Sensor/sgp30.c" selected="0" top="370" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../Sensor/sps30.c" selected="0" top="265" codecName="Default"/>

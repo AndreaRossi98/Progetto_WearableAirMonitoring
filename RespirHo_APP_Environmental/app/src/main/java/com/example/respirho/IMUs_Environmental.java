@@ -368,7 +368,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.IMUs_environmental);
+        setContentView(R.layout.environmental_imus);
 
         //FILES INT AND EXT INITIALIZATION
         //path where the txt file is saved internally before downloading
@@ -387,7 +387,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
 
         //initialize the initialization view
         viewStub = (ViewStub) findViewById(R.id.initialization_toinclude);
-        viewStub.setLayoutResource(R.layout.initialization_IMUs_environmental);
+        viewStub.setLayoutResource(R.layout.initialization_imus_environmental);
         inflated_initialization = viewStub.inflate();
 
         //update info layout initialization
@@ -1287,7 +1287,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                 inflated_initialization.setVisibility(View.GONE);
 
                 viewStub = (ViewStub) findViewById(R.id.switchonsensors_toinclude);
-                viewStub.setLayoutResource(R.layout.switch_on_IMUs_environmental);
+                viewStub.setLayoutResource(R.layout.switch_on_imus_environmental);
                 inflated_switch_on_sensors = viewStub.inflate();
 
                 progressbar_idpatient.setVisibility(View.VISIBLE);

@@ -467,9 +467,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
         serviceIsBound_SATURATION = AntService.bindService(this, mAntRadioServiceConnection);
         Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound_SATURATION);
         Log.e(LOG_TAG, "Version name: "+ AntService.getVersionName(this));
-        //TODO-- end ANT
 
-        //TODO-- drawer
         drawerLayout=findViewById(R.id.drawer_layout);
 
         drawer_home=findViewById(R.id.drawer_home);
@@ -523,6 +521,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                 }
             });
         }
+
 /*        //LOCATION PROVIDER
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
@@ -542,7 +541,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);*/
     }
 
-    //variabili per la gestione dei pacchetti e scrittura dei dati su file
+    //variabili per la gestione dei pacchetti Environmental e scrittura dei dati su file
     int pacchetto_numero_ricevuto;   //numero incrementale del pacchetto che arriva
     int numero_pacchetto = 1;
     int pacchetto_P = 0;   //numero del pacchetto P arrivato
@@ -909,7 +908,6 @@ public class saturation_environmental extends AppCompatActivity implements View.
         }
     };
 
-    //TODO -- end ANT
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -1352,8 +1350,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
                         stoprecording_timer.setVisibility(View.GONE);
 
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
-
 //showvaluesonmaps_timer.setVisibility(View.VISIBLE);
+
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
                         inflated_displaydata.setVisibility(View.GONE);

@@ -143,7 +143,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
     private CountDownTimer countDownTimer;
     private Chronometer chronometer;
     private ViewStub viewStub;
-    private View inflated_initialization,inflated_switch_on_sensors,inflated_select_recording,inflated_calibration,inflated_manual_rec,inflated_timer_rec,inflated_updateinfo;
+    private View inflated_initialization,inflated_switch_on_sensors,inflated_select_recording,inflated_calibration,inflated_manual_rec,inflated_timer_rec,inflated_updateinfo, inflated_displaydata;
 
     //PER STAMPARE A SCHERMO
     private TextView temperature_output;
@@ -387,14 +387,17 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
 
         //initialize the initialization view
         viewStub = (ViewStub) findViewById(R.id.initialization_toinclude);
-        viewStub.setLayoutResource(R.layout.initialization);
+        viewStub.setLayoutResource(R.layout.initialization_IMUs_environmental);
         inflated_initialization = viewStub.inflate();
 
-        //TODO- move this initialization elsewhere
         //update info layout initialization
         viewStub = (ViewStub) findViewById(R.id.updateinforecording_toinclude);
         viewStub.setLayoutResource(R.layout.updateinfo_recording);
         inflated_updateinfo = viewStub.inflate();
+
+        viewStub = (ViewStub) findViewById(R.id.display_data_toinclude);
+        viewStub.setLayoutResource(R.layout.display_data_environmental_monitor);
+        inflated_displaydata = viewStub.inflate();
 
         posture_buttons=(RadioGroup) inflated_updateinfo.findViewById(R.id.posture_buttons);
 
@@ -407,7 +410,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
         inforecording=(TextView) inflated_updateinfo.findViewById(R.id.inforecording);
 
         inflated_updateinfo.setVisibility(View.GONE);
-        //TODO- end move this initialization elsewhere
+        inflated_displaydata.setVisibility(View.GONE);
 
         helpbutton = (Button) findViewById(R.id.helpbutton);
         helpbutton.setOnClickListener(this);
@@ -451,14 +454,23 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
 
         initialization_checkmark=(ImageButton) findViewById(R.id.initialization_checkmark);
 
-        //TODO-- ANT
+        //PER STAMPARE A SCHERMO
+        temperature_output = (TextView) findViewById(R.id.temperature_value);
+        humidity_output = (TextView) findViewById(R.id.humidity_value);
+        pressure_output = (TextView) findViewById(R.id.pressure_value);
+        CO2_output = (TextView) findViewById(R.id.CO2_value);
+        VOC_output = (TextView) findViewById(R.id.VOC_value);
+        NO2_output = (TextView) findViewById(R.id.NO2_value);
+        CO_output = (TextView) findViewById(R.id.CO_value);
+        PM1p0_output = (TextView) findViewById(R.id.PM1_0_value);
+        PM2p5_output = (TextView) findViewById(R.id.PM2_5_value);
+        PM10_output = (TextView) findViewById(R.id.PM10_value);
+
         //BINDING TO THE ANT RADIO SERVICE
         serviceIsBound_IMUs = AntService.bindService(this, mAntRadioServiceConnection);
         Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound_IMUs);
         Log.e(LOG_TAG, "Version name: "+ AntService.getVersionName(this));
-        //TODO-- end ANT
 
-        //TODO-- drawer
         drawerLayout=findViewById(R.id.drawer_layout);
 
         drawer_home=findViewById(R.id.drawer_home);
@@ -512,11 +524,54 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                 }
             });
         }
-        //TODO-- end drawer
+
+/*        //LOCATION PROVIDER
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                if (locationResult != null) {
+                    location = locationResult.getLastLocation();
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
+                }
+            }
+        };
+
+        locationRequest = LocationRequest.create();
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(1000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);*/
+
     }
 
-    //TODO-- ANT
+    //variabili per la gestione dei pacchetti Environmental e scrittura dei dati su file
+    int pacchetto_numero_ricevuto;   //numero incrementale del pacchetto che arriva
+    int numero_pacchetto = 1;
+    int pacchetto_P = 0;   //numero del pacchetto P arrivato
+    int flag_dati_scritti = 0;
+    int flag_location = 0;
+    int count_P1 = 0;
+    int count_P2 = 0;
+    int count_P3 = 0;
+    //variabili per contenere i valori inviati
+    float temperature = 0;
+    float humidity = 0;
+    int pressure = 0;
+    int VOC = 0;
+    int CO2 = 0;
+    float NO2 = 0;
+    float CO = 0;
+    float battery = 0;
+    int acceleration = 0;
+    float PM1p0 = 0;
+    float PM2p5 = 0;
+    float PM10p0 = 0;
+    float partial_calculation = 0; //variabile usata per fare calcoli parziali
+    String messaggio_salvato;
 
+
+    //TODO-- ANT HANDLER ANCORA DA SISTEMARE
     public IAntChannelEventHandler eventCallBack = new IAntChannelEventHandler() {
 
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -1054,7 +1109,6 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
         }
     };
 
-    //TODO -- end ANT
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -1102,18 +1156,6 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
             case R.id.storage:
                 //open archive dialog
                 dialogDownloadStorage();
-
-                /*
-                //enabled only when it's not recording
-                if(state==STOP){
-                    //call storage function
-                    dialogDownloadStorage();
-                }
-                else{
-                    //TODO- maybe it's possible also during recording, try it
-                    Toast.makeText(getApplicationContext(), "You can open archive only when the communication is closed in the previous page or at the end of a recording", Toast.LENGTH_LONG).show();
-                }
-                */
                 break;
 
             case R.id.update_storage_files:
@@ -1134,7 +1176,6 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                 //hide the button
                 initializationbutton.setVisibility(View.GONE);
 
-                //TODO-- ANT
                 try {
                     antChannelProvider = mAntRadioService.getChannelProvider();
                 } catch (RemoteException e) {
@@ -1142,7 +1183,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                 }
                 Log.e(LOG_TAG, "Ant Channel Provider is " + antChannelProvider);
 
-                //TODO--remove channels available
+
                 //channels available
                 int channels=0;
                 try {
@@ -1216,10 +1257,9 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "Channel is open");
-
+//TODO - AGGIUNGERE CANALE SATURATION
                 state = CONNECT1;
 
-                //TODO - end ANT
 
                 if(mIsOpen_IMUs){
                     //if the channel is open
@@ -1247,7 +1287,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                 inflated_initialization.setVisibility(View.GONE);
 
                 viewStub = (ViewStub) findViewById(R.id.switchonsensors_toinclude);
-                viewStub.setLayoutResource(R.layout.switch_on_sensors);
+                viewStub.setLayoutResource(R.layout.switch_on_IMUs_environmental);
                 inflated_switch_on_sensors = viewStub.inflate();
 
                 progressbar_idpatient.setVisibility(View.VISIBLE);
@@ -1277,7 +1317,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                 inflated_switch_on_sensors.setVisibility(View.GONE);
 
                 viewStub = (ViewStub) findViewById(R.id.select_recording_toinclude);
-                viewStub.setLayoutResource(R.layout.select_recording);
+                viewStub.setLayoutResource(R.layout.select_recording_general);
                 inflated_select_recording = viewStub.inflate();
 
                 timerrecordingbutton=(Button) findViewById(R.id.timerrecordingbutton);
@@ -1326,6 +1366,9 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                     gotonewrecording_timer=(Button) findViewById(R.id.gotonewrecording_timer);
                     gotonewrecording_timer.setOnClickListener(this);
 
+//showvaluesonmaps_timer = (Button) findViewById(R.id.show_values_on_maps_timer);
+//showvaluesonmaps_timer.setOnClickListener(this);
+
                     goback_timer=(Button) findViewById(R.id.goback_timer);
                     goback_timer.setOnClickListener(this);
 
@@ -1349,6 +1392,8 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
 
                     downloadfile_timer.setVisibility(View.GONE);
                     gotonewrecording_timer.setVisibility(View.GONE);
+//showvaluesonmaps_timer.setVisibility(View.GONE);
+
                     status_timer.setVisibility(View.GONE);
                     timer_recording_filename.setVisibility(View.GONE);
 
@@ -1401,6 +1446,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                 inforecording.setText(null);
                 //show update info layout
                 inflated_updateinfo.setVisibility(View.VISIBLE);
+                inflated_displaydata.setVisibility(View.VISIBLE);
 
                 //start recording ANT data
                 state=START;
@@ -1441,9 +1487,11 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                         stoprecording_timer.setVisibility(View.GONE);
 
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
+//showvaluesonmaps_timer.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
+                        inflated_displaydata.setVisibility(View.GONE);
 
                         antStop();
 
@@ -1495,9 +1543,10 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
 
                         downloadfile_timer.setVisibility(View.VISIBLE);
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
-
+//showvaluesonmaps_timer.setVisibility(View.VISIBLE);
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
+                        inflated_displaydata.setVisibility(View.GONE);
                     }
                 });
                 //negative no button
@@ -1558,6 +1607,9 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                     gotonewrecording_manual=(Button) findViewById(R.id.gotonewrecording_manual);
                     gotonewrecording_manual.setOnClickListener(this);
 
+//showvaluesonmaps_manual = (Button) findViewById(R.id.show_values_on_maps_manual);
+//showvaluesonmaps_manual.setOnClickListener(this);
+
                     goback_manual=(Button) findViewById(R.id.goback_manual);
                     goback_manual.setOnClickListener(this);
 
@@ -1582,6 +1634,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                     status_manual.setVisibility(View.GONE);
                     downloadfile_manual.setVisibility(View.GONE);
                     gotonewrecording_manual.setVisibility(View.GONE);
+//showvaluesonmaps_manual.setVisibility(View.GONE);
 
                     manual_recording_filename.setVisibility(View.GONE);
 
@@ -1611,6 +1664,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                 inforecording.setText(null);
                 //show update info layout
                 inflated_updateinfo.setVisibility(View.VISIBLE);
+                inflated_displaydata.setVisibility(View.VISIBLE);
 
                 //start recording ANT data
                 state=START;
@@ -1668,9 +1722,11 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                         //startrecording_manual.setVisibility(View.VISIBLE);
                         downloadfile_manual.setVisibility(View.VISIBLE);
                         gotonewrecording_manual.setVisibility(View.VISIBLE);
+//showvaluesonmaps_manual.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
+                        inflated_displaydata.setVisibility(View.GONE);
                     }
                 });
                 //negative no button
@@ -2777,6 +2833,11 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
         if(state==CALIBRATION){
             endCalibration(IMUs_Environmental.this);
             return;
+        }
+
+        if(show_maps_flag == true) {
+            getSupportFragmentManager().beginTransaction().remove(mapFragment).commit();
+            show_maps_flag = false;
         }
 
         if(state==QUIT_RECORDING){

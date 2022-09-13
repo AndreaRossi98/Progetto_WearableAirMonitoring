@@ -28,6 +28,7 @@
         <activity android:name=".EnvironmentalMonitor" android:screenOrientation="portrait"/>
         <activity android:name=".saturation_environmental" android:screenOrientation="portrait"/>
         <activity android:name=".IMUs_Environmental" android:screenOrientation="portrait"/>
+        <activity android:name=".IMUs_Saturation_Environmental" android:screenOrientation="portrait"/>
         <activity android:name=".ForgotPassword" android:screenOrientation="portrait"/>
         <activity android:name=".Support" android:screenOrientation="portrait"/>
         <activity android:name=".Graph" android:screenOrientation="portrait"/>

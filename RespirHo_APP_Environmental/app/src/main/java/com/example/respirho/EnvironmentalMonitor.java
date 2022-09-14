@@ -243,7 +243,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public final String LOG_TAG = EnvironmentalMonitor.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_ENVIRONMENTAL = 65535; //32767;        //
+    private static final int USER_PERIOD_ENVIRONMENTAL = 32767;        //65535; //
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound = false;
     private AntService mAntRadioService = null;
@@ -563,6 +563,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
             switch (messageFromAntType) {
 
                 case BROADCAST_DATA: //HERE ARRIVES ALL THE MESSAGES FROM THE SENSORS
+                    Log.e(LOG_TAG, "Pacchetto arrivato"); //hex
 
                     //save time
                     day = LocalDateTime.now().toLocalDate().toString(); //datetime
@@ -597,7 +598,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                     //if the message is received, reset watchdog timer of the unit received
                     String unitReceived_default = messageContentString_unit.substring(1); //ex: 1 (String)
-                    int unitReceived = Integer.parseInt(unitReceived_default); //ex: 1 (int)
+                    //commentato non dovrebbe servire
+                    //int unitReceived = Integer.parseInt(unitReceived_default); //ex: 1 (int)
                     resetWatchdogTimer(0); //we subtract 1 to match the array indexes
                     //if ALL the units are connected, the next messages will be the recording data
                     if (connected6) {
@@ -610,13 +612,10 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         pacchetto_P = 2    --> è il pacchetto P2
                         pacchetto_P = 3    --> è il pacchetto P3
                          */
-
-                        pacchetto_numero_ricevuto = convertToInt(messageContentString_split[0].substring(1));
+pacchetto_numero_ricevuto = Integer.decode("0x"+ messageContentString_split[0].substring(1));
+                        //pacchetto_numero_ricevuto = convertToInt(messageContentString_split[0].substring(1));
                         pacchetto_P = pacchetto_numero_ricevuto >> 6;
                         pacchetto_numero_ricevuto = pacchetto_numero_ricevuto - (pacchetto_P << 6);
-
-
-
 
 
 
@@ -635,22 +634,23 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         switch (pacchetto_P){
                             case 1:
                                 //toast.makeText(getApplicationContext(), "P1" , Toast.LENGTH_SHORT).show();
-
+                                Log.e(LOG_TAG, "Pacchetto 1"); //hex
                                     //ricostruisco i dati in variabili
                                     //Temperature
-                                    partial_calculation = (convertToInt(messageContentString_split[1].substring(1)) - 30);
+                                    //partial_calculation = (convertToInt(messageContentString_split[1].substring(1)) - 30);
+                        partial_calculation = (Integer.decode("0x"+ messageContentString_split[1].substring(1)) - 30);
                                     if (partial_calculation > 0){
-                                        temperature = partial_calculation + ((float)convertToInt(messageContentString_split[2].substring(1))/100);
+                                        temperature = partial_calculation + ((float)Integer.decode("0x"+ messageContentString_split[2].substring(1))/100);
                                     }
                                     else{
-                                        temperature = partial_calculation - ((float)convertToInt(messageContentString_split[2].substring(1))/100);
+                                        temperature = partial_calculation - ((float)Integer.decode("0x"+ messageContentString_split[2].substring(1))/100);
                                     }
                                     //humidity
-                                    humidity = convertToInt(messageContentString_split[3].substring(1)) + ((float)convertToInt(messageContentString_split[4].substring(1))/100);
+                                    humidity = Integer.decode("0x"+ messageContentString_split[3].substring(1)) + ((float)Integer.decode("0x"+ messageContentString_split[4].substring(1))/100);
                                     //pressure
-                                    pressure = (convertToInt(messageContentString_split[5].substring(1)) << 16) + (convertToInt(messageContentString_split[6].substring(1)) <<8) + convertToInt(messageContentString_split[7].substring(1));
+                                    pressure = (Integer.decode("0x"+ messageContentString_split[5].substring(1)) << 16) + (Integer.decode("0x"+ messageContentString_split[6].substring(1)) <<8) + Integer.decode("0x"+messageContentString_split[7].substring(1));
 
-                                    messaggio_salvato = "6;" + numero_pacchetto + ";" + pacchetto_P + ";" + temperature + ";" + humidity + ";" + pressure + ";" +
+                                    messaggio_salvato = "6;" + pacchetto_numero_ricevuto + ";" + pacchetto_P + ";" + temperature + ";" + humidity + ";" + pressure + ";" +
                                                         orario + ";" + latitude + ";" + longitude;
                                     //mostri dati a schermo
                                     runOnUiThread(new Runnable() {
@@ -664,9 +664,10 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
 
                                 break;
-
+/*
                             case 2:
                                 //toast.makeText(getApplicationContext(), "P2" , Toast.LENGTH_SHORT).show();
+                                Log.e(LOG_TAG, "Pacchetto 2"); //hex
                                     //ricostruisco i dati in variabili
                                     //VOC
                                     VOC = convertToInt(messageContentString_split[1].substring(1)) + (convertToInt(messageContentString_split[2].substring(1)) <<8);
@@ -688,7 +689,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     //CO = convertToInt(messageContentString_split[6].substring(1));
                                     //Batteria
                                     battery = convertToInt(messageContentString_split[7].substring(1));
-                                    messaggio_salvato = "6;" + numero_pacchetto + ";" + pacchetto_P + ";" + VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";" +
+                                    messaggio_salvato = "6;" + pacchetto_numero_ricevuto + ";" + pacchetto_P + ";" + VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";" +
                                             orario + ";" + latitude + ";" + longitude;
                                     //mostri dati a schermo
                                     runOnUiThread(new Runnable() {
@@ -705,6 +706,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                             case 3:
                                 //toast.makeText(getApplicationContext(), "P3" , Toast.LENGTH_SHORT).show();
+                                Log.e(LOG_TAG, "Pacchetto 3"); //hex
                                     //ricostruisco i dati in variabili
                                     //acceleration
                                     acceleration = convertToInt(messageContentString_split[1].substring(1));
@@ -715,7 +717,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     //PM10
                                     PM10p0 = (convertToInt(messageContentString_split[6].substring(1))/10) + ((convertToInt(messageContentString_split[7].substring(1))/10) <<8);
 
-                                    messaggio_salvato = "6;" + numero_pacchetto + ";" + pacchetto_P + ";" + PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" +
+                                    messaggio_salvato = "6;" + pacchetto_numero_ricevuto + ";" + pacchetto_P + ";" + PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" +
                                             orario + ";" + latitude + ";" + longitude;
                                     //mostri dati a schermo
                                     runOnUiThread(new Runnable() {
@@ -729,7 +731,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                                 break;
 
-
+*/
                         }
                         //write the messages
                         //call the firebase class to upload data on firebase
@@ -738,205 +740,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         //scrivo su file
                         WritingDataToFile writingDataToFile = new WritingDataToFile();
                         writingDataToFile.mainFile(messaggio_salvato, current, day, intPath,extPath);
-
+                        Log.e(LOG_TAG, "Scrivo"); //hex
                         fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
                         messaggio_salvato = "";
-
-
-
-
-
-
-                        /*if (numero_pacchetto != pacchetto_numero_ricevuto){
-                            //Toast.makeText(getApplicationContext(), "Pacchetto Nuovo", Toast.LENGTH_LONG).show();
-                            if (flag_dati_ricevuti == 1){               //scrivo su file
-                                //preparo messaggio da salvare
-                                messaggio_salvato = 6 + ";" + numero_pacchetto +  ";" +//per indicare pacchetto di environmental monitor
-                                        temperature + ";" + humidity + ";" + pressure + ";" +
-                                        VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";" +
-                                        PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";" +
-                                        count_P1 + ";" + count_P2 + ";" + count_P3 + ";" +
-                                        orario + ";" + latitude + ";" + longitude + ";";    //valore batteria lo salvo?
-
-                                //toast.makeText(getApplicationContext(), "scrivo su file" , Toast.LENGTH_SHORT).show();
-
-                                //write the messages
-                                //call the firebase class to upload data on firebase
-                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                writingDataToFirebase.mainFirebase(messaggio_salvato,startrec_time);
-                                //scrivo su file
-                                WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                writingDataToFile.mainFile(messaggio_salvato, current, day, intPath,extPath);
-
-                                fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
-
-                            }
-                            else{
-                                //salvo i valori su file e firebase
-                                //gestire che alcuni dati sono persi
-                                numero_pacchetto = pacchetto_numero_ricevuto;
-                                //toast.makeText(getApplicationContext(),"pacchetti persi", Toast.LENGTH_SHORT).show();
-
-                                //gestione ricezione parziale dei pacchetti
-                                if (count_P1 == 0){ //non ho ricevuto il pacchetto P1
-                                    messaggio_salvato = 6 + ";" + numero_pacchetto + ";"  + //per indicare pacchetto di environmental monitor
-                                            "-" + ";" + "-" + ";" + "-" + ";";
-                                }
-                                else{
-                                    messaggio_salvato = 6 + ";" +  numero_pacchetto + ";"  + //per indicare pacchetto di environmental monitor
-                                            temperature + ";" + humidity + ";" + pressure + ";";
-                                }
-                                if(count_P2 == 0){
-                                    messaggio_salvato = messaggio_salvato +
-                                            "-" + ";" + "-" + ";" + "-" + ";" + "-" + ";";
-                                }
-                                else{
-                                    messaggio_salvato = messaggio_salvato +
-                                            VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";";
-                                }
-                                if(count_P3 == 0){
-                                    messaggio_salvato = messaggio_salvato +
-                                            "-" + ";" + "-" + ";" + "-" + ";" + "-" + ";";
-                                }
-                                else{
-                                    messaggio_salvato = messaggio_salvato +
-                                            PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";";
-                                }
-
-                                messaggio_salvato = messaggio_salvato + count_P1 + ";" + count_P2 + ";" + count_P3 + ";" + orario + ";" + latitude + ";" + longitude;
-                                //do per scontato che almeno un pacchetto sia arrivato, e quindi ho latitudine longitudine e ora
-
-                                //write the messages
-                                //call the firebase class to upload data on firebase
-                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                writingDataToFirebase.mainFirebase(messaggio_salvato,startrec_time);
-                                //scrivo su file
-                                WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                writingDataToFile.mainFile(messaggio_salvato, current, day, intPath,extPath);
-
-                                fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
-                            }
-
-                            numero_pacchetto = pacchetto_numero_ricevuto;
-                            flag_dati_ricevuti = 0;
-
-                            count_P1 = 0;
-                            count_P2 = 0;
-                            count_P3 = 0;
-                            flag_location = 0;
-                        }*/
-                        //if (numero_pacchetto == pacchetto_numero_ricevuto ){
-                            //la prima volta che entro in questo if, devo prendere latitudine e longitudine
-                            /*if ( flag_location == 0){
-                                orario = format.format(new Date().getTime());
-                                Task<Location> task = fusedLocationClient.getLastLocation();
-                                while(!task.isComplete());
-                                location = task.getResult();
-
-                                if (location == null)
-                                    toast.makeText(getApplicationContext(),"Unable to find last location.", Toast.LENGTH_SHORT).show();
-                                else { //actually open the channel only if last location was found
-                                    latitude = location.getLatitude();
-                                    longitude = location.getLongitude();
-                                }
-
-                                flag_location = 1;  //solo la prima volta rilevo le coordinate
-                            }*/
-                            /*
-                            switch (pacchetto_P){
-                                case 1:
-                                    //toast.makeText(getApplicationContext(), "P1" , Toast.LENGTH_SHORT).show();
-                                    count_P1 ++;
-                                    if (count_P1 == 1) {
-                                        //ricostruisco i dati in variabili
-                                        //Temperature
-                                        partial_calculation = (convertToInt(messageContentString_split[1].substring(1)) - 30);
-                                        if (partial_calculation > 0){
-                                            temperature = partial_calculation + ((float)convertToInt(messageContentString_split[2].substring(1))/100);
-                                        }
-                                        else{
-                                            temperature = partial_calculation - ((float)convertToInt(messageContentString_split[2].substring(1))/100);
-                                        }
-                                        //humidity
-                                        humidity = convertToInt(messageContentString_split[3].substring(1)) + ((float)convertToInt(messageContentString_split[4].substring(1))/100);
-                                        //pressure
-                                        pressure = (convertToInt(messageContentString_split[5].substring(1)) << 16) + (convertToInt(messageContentString_split[6].substring(1)) <<8) + convertToInt(messageContentString_split[7].substring(1));
-
-                                        //mostri dati a schermo
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                temperature_output.setText(String.valueOf(temperature));
-                                                humidity_output.setText(String.valueOf(humidity));
-                                                pressure_output.setText(String.valueOf(pressure));
-                                            }
-                                        });
-
-                                    }
-                                    break;
-
-                                case 2:
-                                    //toast.makeText(getApplicationContext(), "P2" , Toast.LENGTH_SHORT).show();
-                                    count_P2 ++;
-                                    if (count_P2 == 1) {
-                                        //ricostruisco i dati in variabili
-                                        //VOC
-                                        VOC = convertToInt(messageContentString_split[1].substring(1)) + (convertToInt(messageContentString_split[2].substring(1)) <<8);
-                                        //CO2
-                                        CO2 = convertToInt(messageContentString_split[3].substring(1)) + (convertToInt(messageContentString_split[4].substring(1)) <<8);
-                                        //NO2 bisogna riportare la funzione di conversione da bit a valore dopo aver fatto la calibrazione
-                                        NO2 = convertToInt(messageContentString_split[5].substring(1));
-                                        //CO
-                                        CO = convertToInt(messageContentString_split[6].substring(1));
-                                        //Batteria
-                                        battery = convertToInt(messageContentString_split[7].substring(1));
-
-                                        //mostri dati a schermo
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                VOC_output.setText(String.valueOf(VOC));
-                                                CO2_output.setText(String.valueOf(CO2));
-                                                CO_output.setText(String.valueOf(CO));
-                                                NO2_output.setText(String.valueOf(NO2));
-                                            }
-                                        });
-                                    }
-                                    break;
-
-                                case 3:
-                                    //toast.makeText(getApplicationContext(), "P3" , Toast.LENGTH_SHORT).show();
-                                    count_P3 ++;
-                                    if (count_P3 == 1) {
-                                        //ricostruisco i dati in variabili
-                                        //acceleration
-                                        acceleration = convertToInt(messageContentString_split[1].substring(1));
-                                        //PM1.0
-                                        PM1p0 = (convertToInt(messageContentString_split[2].substring(1)))/10 + ((convertToInt(messageContentString_split[3].substring(1))/10) <<8);
-                                        //PM2.5
-                                        PM2p5 = (convertToInt(messageContentString_split[4].substring(1))/10) + ((convertToInt(messageContentString_split[5].substring(1))/10) <<8);
-                                        //PM10
-                                        PM10p0 = (convertToInt(messageContentString_split[6].substring(1))/10) + ((convertToInt(messageContentString_split[7].substring(1))/10) <<8);
-
-                                        //mostri dati a schermo
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                PM1p0_output.setText(String.valueOf(PM1p0));
-                                                PM2p5_output.setText(String.valueOf(PM2p5));
-                                                PM10_output.setText(String.valueOf(PM10p0));
-                                            }
-                                        });
-                                    }
-                                    break;
-
-                            }
-                            if (count_P1 > 0 && count_P2 > 0 && count_P3 > 0 && flag_dati_ricevuti == 0){ //condizione: almeno un pacchetto P per ognuno è arrivato
-
-                                flag_dati_ricevuti = 1;
-                            }
-                            */
-                        //}
 
                         //every now and then save the file on firebase for backup, later savings will over write the previous one
                         //save the file each 1 MB size (around 10 minutes)
@@ -944,10 +750,10 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
 
                         if(fileIntSizeKyloBytes_backup>size_interval_backupfile && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
-                            //Log.e("backup","backup 1, size start: " + size_interval_backupfile);
+                            Log.e("backup","backup 1, size start: " + size_interval_backupfile);
                             saveFileOnFirebase(fileInt);
                             size_interval_backupfile=size_interval_backupfile+SIZE_INTERVAL_BACKUPFILE;
-                            //Log.e("backup","backup 1, size end: " + size_interval_backupfile);
+                            Log.e("backup","backup 1, size end: " + size_interval_backupfile);
                         }
 
 
@@ -1055,6 +861,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     state = CALL6;
                                     startWatchdogTimer(UNIT6);
                                     checkWatchdogTimer();
+                                    Log.e(LOG_TAG, "CALL6"); //hex
                                 }
 
                             }
@@ -1349,8 +1156,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     gotonewrecording_timer=(Button) findViewById(R.id.gotonewrecording_timer);
                     gotonewrecording_timer.setOnClickListener(this);
 
-                    showvaluesonmaps_timer = (Button) findViewById(R.id.show_values_on_maps_timer);
-                    showvaluesonmaps_timer.setOnClickListener(this);
+                    //showvaluesonmaps_timer = (Button) findViewById(R.id.show_values_on_maps_timer);
+                    //showvaluesonmaps_timer.setOnClickListener(this);
 
                     goback_timer=(Button) findViewById(R.id.goback_timer);
                     goback_timer.setOnClickListener(this);
@@ -1375,7 +1182,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                     downloadfile_timer.setVisibility(View.GONE);
                     gotonewrecording_timer.setVisibility(View.GONE);
-                    showvaluesonmaps_timer.setVisibility(View.GONE);
+                    //showvaluesonmaps_timer.setVisibility(View.GONE);
 
                     status_timer.setVisibility(View.GONE);
                     timer_recording_filename.setVisibility(View.GONE);
@@ -1473,7 +1280,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
 
-                        showvaluesonmaps_timer.setVisibility(View.VISIBLE);
+                        //showvaluesonmaps_timer.setVisibility(View.VISIBLE);
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
                         inflated_displaydata.setVisibility(View.GONE);
@@ -1528,7 +1335,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                         downloadfile_timer.setVisibility(View.VISIBLE);
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
-                        showvaluesonmaps_timer.setVisibility(View.VISIBLE);
+                        //showvaluesonmaps_timer.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
@@ -1597,8 +1404,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     gotonewrecording_manual=(Button) findViewById(R.id.gotonewrecording_manual);
                     gotonewrecording_manual.setOnClickListener(this);
 
-                    showvaluesonmaps_manual = (Button) findViewById(R.id.show_values_on_maps_manual);
-                    showvaluesonmaps_manual.setOnClickListener(this);
+                    //showvaluesonmaps_manual = (Button) findViewById(R.id.show_values_on_maps_manual);
+                    //showvaluesonmaps_manual.setOnClickListener(this);
 
                     goback_manual=(Button) findViewById(R.id.goback_manual);
                     goback_manual.setOnClickListener(this);
@@ -1624,7 +1431,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     status_manual.setVisibility(View.GONE);
                     downloadfile_manual.setVisibility(View.GONE);
                     gotonewrecording_manual.setVisibility(View.GONE);
-                    showvaluesonmaps_manual.setVisibility(View.GONE);
+                    //showvaluesonmaps_manual.setVisibility(View.GONE);
 
                     manual_recording_filename.setVisibility(View.GONE);
 
@@ -1711,7 +1518,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                         downloadfile_manual.setVisibility(View.VISIBLE);
                         gotonewrecording_manual.setVisibility(View.VISIBLE);
-                        showvaluesonmaps_manual.setVisibility(View.VISIBLE);
+                        //showvaluesonmaps_manual.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
@@ -2546,7 +2353,7 @@ double longi = 9.09;
             long fileIntSizeBytes=fileInt.length();
             long fileIntSizeKyloBytes=fileIntSizeBytes/1024;
 // modificato per salvare anche con poco contenuto
-            if(fileIntSizeKyloBytes>0){     //era 1
+            if(fileIntSizeKyloBytes>1){
                 //call the save firebase class to upload file on firebase
                 SaveFileToFirebase saveFileToFirebase= new SaveFileToFirebase();
                 saveFileToFirebase.mainFirebase(fileInt);

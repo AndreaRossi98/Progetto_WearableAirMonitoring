@@ -591,8 +591,6 @@ flag_dati_pronti = 1;
           }
 printf("Numero: %d", numero_pacchetto);
           
-          printf("DATI PRONTI PER ESSERE INVIATI\n");
-          
               for (int i = 0; i < 8 ; i++)
                   {
                       pacchetto_1_inviare[i] = pacchetto_1[i];

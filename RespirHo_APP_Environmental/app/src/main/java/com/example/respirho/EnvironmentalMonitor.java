@@ -650,7 +650,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     //pressure
                                     pressure = (convertToInt(messageContentString_split[5].substring(1)) << 16) + (convertToInt(messageContentString_split[6].substring(1)) <<8) + convertToInt(messageContentString_split[7].substring(1));
 
-                                    messaggio_salvato = "6;" + numero_pacchetto + ";" + temperature + ";" + humidity + ";" + pressure + ";" +
+                                    messaggio_salvato = "6;" + numero_pacchetto + ";" + pacchetto_P + ";" + temperature + ";" + humidity + ";" + pressure + ";" +
                                                         orario + ";" + latitude + ";" + longitude;
                                     //mostri dati a schermo
                                     runOnUiThread(new Runnable() {
@@ -672,13 +672,23 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     VOC = convertToInt(messageContentString_split[1].substring(1)) + (convertToInt(messageContentString_split[2].substring(1)) <<8);
                                     //CO2
                                     CO2 = convertToInt(messageContentString_split[3].substring(1)) + (convertToInt(messageContentString_split[4].substring(1)) <<8);
+
+                                    double calcolo_parziale;
+                                    calcolo_parziale = ((convertToInt(messageContentString_split[5].substring(1))) * 3.6)/255;
+                                    calcolo_parziale = (5 - calcolo_parziale)/calcolo_parziale;
+                                    NO2 = (float) ((Math.pow(10, ((Math.log10(calcolo_parziale))-0.804)/1.026))*1000);
                                     //NO2 bisogna riportare la funzione di conversione da bit a valore dopo aver fatto la calibrazione
-                                    NO2 = convertToInt(messageContentString_split[5].substring(1));
+                                    //NO2 = convertToInt(messageContentString_split[5].substring(1));
                                     //CO
-                                    CO = convertToInt(messageContentString_split[6].substring(1));
+
+
+                                    calcolo_parziale = ((convertToInt(messageContentString_split[6].substring(1))) * 3.6)/255;
+                                    calcolo_parziale = (5 - calcolo_parziale)/calcolo_parziale;
+                                    CO = (float) (Math.pow(10, ((Math.log10(calcolo_parziale))-0.55)/(-0.85)));
+                                    //CO = convertToInt(messageContentString_split[6].substring(1));
                                     //Batteria
                                     battery = convertToInt(messageContentString_split[7].substring(1));
-                                    messaggio_salvato = "6;" + numero_pacchetto + ";" + VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";" +
+                                    messaggio_salvato = "6;" + numero_pacchetto + ";" + pacchetto_P + ";" + VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";" +
                                             orario + ";" + latitude + ";" + longitude;
                                     //mostri dati a schermo
                                     runOnUiThread(new Runnable() {
@@ -705,7 +715,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     //PM10
                                     PM10p0 = (convertToInt(messageContentString_split[6].substring(1))/10) + ((convertToInt(messageContentString_split[7].substring(1))/10) <<8);
 
-                                    messaggio_salvato = "6;" + numero_pacchetto + ";" + PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" +
+                                    messaggio_salvato = "6;" + numero_pacchetto + ";" + pacchetto_P + ";" + PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" +
                                             orario + ";" + latitude + ";" + longitude;
                                     //mostri dati a schermo
                                     runOnUiThread(new Runnable() {

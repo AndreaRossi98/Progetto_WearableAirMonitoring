@@ -200,7 +200,7 @@ void saadc_init(void)   //prova a mettere low power mode
 //Transform the ADC value in bit in voltage value
 float adc_to_volts (int adc)
 {
-    float volts = (adc + 5) * 3.6 / 1023;
+    float volts = (adc + 5) * 3.6 / 255;
     return volts;
 }
 //=============================================================================================================================================================================
@@ -410,11 +410,14 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
 
     //1 sec
     sgp30_measure_iaq_blocking_read(&measure_sgp30.tVOC, &measure_sgp30.CO2_eq);
-    VOC = VOC + measure_sgp30.tVOC;
-    count_VOC ++;
-    printf("VOC %d\n", VOC);
+    if(connesso == 1)
+    {
+        VOC = VOC + measure_sgp30.tVOC;
+        count_VOC ++;
+        printf("VOC %d\n", VOC);
+    }
 
-    //20 sec
+    //18 sec
     if ((rtc_count % 18) == 0)  //_20_SEC
     {
         //campiono tutti i valori, flag e si fa nel main, confronto con umidità
@@ -422,11 +425,12 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
         flag_misurazioni = 1; //eseguire misurazioni ogni 20 sec nel main
     }
     
-    if ((rtc_count % 36) == 0)
+    if ((rtc_count % 180) == 0)
     {
         //VOC = 0;
         //count_VOC =0;
-        //rtc_count = 0;
+        rtc_count = 0;
+        printf("Azzero trimer\n");
     }
 
     //1 ora per sgp30 baseline iaq (capire se serve)                                                                                     
@@ -554,6 +558,7 @@ printf("\nMisuro\n");
           pacchetto_1[7] = calcolo_parziale; //Pressione
 
           calcolo_parziale = (int)(VOC/count_VOC);
+          VOC = 0;
           count_VOC = 0;
           pacchetto_2[0] = 128 + numero_pacchetto;
           pacchetto_2[1] = calcolo_parziale; //VOC  LSB (least significant Byte)      

@@ -43,7 +43,7 @@
 #define SAADC_BATTERY   0           //Canale tensione della batteria
 #define TIMEOUT_VALUE   1000   //1000       //interrupt timer a 1 sec
 #define START_ADDR  0x00011200      //indirizzo di partenza per salvataggio dati in memoria non volatile
-#define LED             07
+#define LED             10
 
 #define NO2_CHANNEL     0           //NO2 channel for ADC
 #define CO_CHANNEL      2           //CO channel for ADC

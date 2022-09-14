@@ -55,11 +55,13 @@ import com.dsi.ant.channel.AntCommandFailedException;
 import com.dsi.ant.channel.ChannelNotAvailableException;
 import com.dsi.ant.channel.IAntChannelEventHandler;
 import com.dsi.ant.channel.PredefinedNetwork;
+import com.dsi.ant.channel.ipc.IAntChannelCommunicator;
 import com.dsi.ant.message.AntMessage;
 import com.dsi.ant.message.ChannelId;
 import com.dsi.ant.message.ChannelType;
 import com.dsi.ant.message.fromant.BroadcastDataMessage;
 import com.dsi.ant.message.fromant.ChannelEventMessage;
+import com.dsi.ant.message.fromant.ChannelIdMessage;
 import com.dsi.ant.message.fromant.MessageFromAntType;
 import com.dsi.ant.message.ipc.AntMessageParcel;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -251,6 +253,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
     public AntChannelProvider antChannelProvider;
     public AntChannel antChannelSATURATION;
     public AntChannel antChannelENVIRONMENTAL;
+    public AntChannel Canale;
     public ChannelType antChannelIMUs_type;
     public AntMessage antMessage;
     public MessageFromAntType messagetype; //
@@ -259,6 +262,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
     public ChannelId channelId_smartphone_SATURATION = new ChannelId(2,2,2, true); //DEFAULT: 2,2,2, true
     public ChannelId channelId_smartphone_ENVIRONMENTAL = new ChannelId(2,3,2, true); //DEFAULT: 2,2,2, true
 
+    public ChannelId prova = new ChannelId(0,0,0,true);
     byte[] payLoad_SATURATION;
     byte[] payLoad_ENVIRONMENTAL;
 
@@ -272,6 +276,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
     byte[] payLoad8 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0xFF}; // payload to calibrate and do movements, when sensors leds are off send payload 4 and go on
     byte[] payLoad9 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0x80}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
+
+    byte[] payLoad99 = {0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, (byte) 0xF}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
 
     public String string0 = "[00][00][00][00][00][00][00][00]";
     public String string1 = "[04][04][04][04][04][04][04]"; //message from slave 1 for check
@@ -567,134 +573,6 @@ public class saturation_environmental extends AppCompatActivity implements View.
     String messaggio_salvato;
 
 
-    public IAntChannelEventHandler event = new IAntChannelEventHandler() {
-        @RequiresApi(api = Build.VERSION_CODES.O)
-        @Override
-        public void onReceiveMessage(MessageFromAntType messageFromAntType, AntMessageParcel antMessageParcel) {
-            switch(messageFromAntType){
-                case BROADCAST_DATA:
-                    break;
-                case CHANNEL_ID:
-                    Log.e(LOG_TAG, "CASE CHANNEL ID");
-                    break;
-                case CHANNEL_EVENT:
-                    ChannelEventMessage eventMessage = new ChannelEventMessage(antMessageParcel);
-                    switch (eventMessage.getEventCode()) {
-                        case RX_SEARCH_TIMEOUT:
-                            break;
-                        case RX_FAIL:
-                            break;
-                        case TX: //HERE WE SEND ALL THE BROADCAST MESSAGES TO THE SENSORS
-                            //if the channel has been opened during initialization...
-                            if (mIsOpen_SATURATION  && mIsOpen_ENVIRONMENTAL) {
-
-                                // Setting the data to be broadcast on the next channel period
-                                if(state==CONNECT1){
-                                    //payLoad_SATURATION = payLoad1;
-                                }
-
-                                if(state==CONNECT2) {
-                                    payLoad_ENVIRONMENTAL = payLoad2;
-                                    //payLoad_SATURATION = payLoad2;
-                                }
-//non serve per questo caso
-                                if(state==SYNCHRONIZATION_RESUME)
-                                {
-                                    //payLoad_SATURATION = payLoad4;
-                                    //payLoad_ENVIRONMENTAL = payLoad4;
-                                }
-
-                                if(state==RECONNECTION)
-                                {
-                                    //payLoad_SATURATION = payLoad4;
-                                    payLoad_ENVIRONMENTAL = payLoad4;
-                                }
-
-                                if(state==START)
-                                {
-                                    //payLoad_SATURATION = payLoad4;
-                                    payLoad_ENVIRONMENTAL = payLoad4;
-                                    //save time to show
-                                    SimpleDateFormat formatStartRec=new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
-                                    startrec_time=formatStartRec.format(new Date().getTime());
-                                    Log.e("start","New rec: "+ startrec_time);
-                                }
-
-                                if(state==CALL2) {
-                                    //payLoad_SATURATION = payLoad11;
-                                    payLoad_ENVIRONMENTAL = payLoad12;
-                                }
-
-                                if(state==CALIBRATION) {
-                                    payLoad_SATURATION = payLoad8;
-                                }
-
-                                if(state==STOP) {
-                                    //stop the channel sending the payload9
-                                    payLoad_SATURATION = payLoad9;
-                                    //payLoad_ENVIRONMENTAL = payLoad9;
-                                }
-
-                                //send the message through a specific payload
-/*                              try {
-                                    antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
-                                } catch (RemoteException e) {
-                                    e.printStackTrace();
-                                }
-*/
-                                try {
-                                    antChannelENVIRONMENTAL.setBroadcastData(payLoad_ENVIRONMENTAL);
-                                } catch (RemoteException e) {
-                                    e.printStackTrace();
-                                }
-
-                                //CONTINUOUS ACQUISITION
-                                //after synchronization (START), call periodically one after the other
-                                if(state==START || state==RECONNECTION)
-                                {
-                                    state=CALL2;
-                                    startWatchdogTimer(UNIT2);
-                                    checkWatchdogTimer();
-                                }
-                                else if(state == CALL2)
-                                {
-                                    state = CALL2;
-                                    startWatchdogTimer(UNIT2);
-                                    checkWatchdogTimer();
-                                }
-
-                            }
-                            else{
-                                //Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
-                            }
-
-                            break;
-                        case TRANSFER_RX_FAILED:
-                            break;
-                        case TRANSFER_TX_COMPLETED:
-                            break;
-                        case TRANSFER_TX_FAILED:
-                            break;
-                        case CHANNEL_CLOSED:
-                            break;
-                        case RX_FAIL_GO_TO_SEARCH:
-                            break;
-                        case CHANNEL_COLLISION:
-                            break;
-                        case TRANSFER_TX_START:
-                            break;
-                        case UNKNOWN:
-                            break;
-                    }
-                    break;
-            }
-        }
-
-        @Override
-        public void onChannelDeath() {
-            antDisconnection(saturation_environmental.this);
-        }
-    };
     public IAntChannelEventHandler eventCallBack = new IAntChannelEventHandler() {
 
         @RequiresApi(api = Build.VERSION_CODES.O)
@@ -713,7 +591,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                     current=format.format(new Date().getTime());
 
                     String messageContentString_default = antMessageParcel.getMessageContentString(); //9 bytes, first is always [00] (to erase)
-int a = antMessageParcel.getMessageId();
+
                     //remove the first byte always equal to [00]
                     //OFFICIAL MESSAGE messageContentString
                     String messageContentString=messageContentString_default.substring(4); //8 bytes, correct. Ex:"[03][5C][00][00][62][2E][3C][E8]"
@@ -904,6 +782,9 @@ int a = antMessageParcel.getMessageId();
                     break;
 
                 case CHANNEL_EVENT:
+                    Log.e(LOG_TAG, "antMessageParcel" + antMessageParcel);
+                    String MessageId = antMessageParcel.getMessageContentString();
+                    Log.e(LOG_TAG, "MessageId" + MessageId);
                     ChannelEventMessage eventMessage = new ChannelEventMessage(antMessageParcel);
                     byte[] content = new byte[4];
                     //getMessageContent();
@@ -915,27 +796,54 @@ int a = antMessageParcel.getMessageId();
                             break;
                         case TX: //HERE WE SEND ALL THE BROADCAST MESSAGES TO THE SENSORS
                             //if the channel has been opened during initialization...
-                            if (mIsOpen_SATURATION  && mIsOpen_ENVIRONMENTAL) {
 
+                            if (mIsOpen_SATURATION  && mIsOpen_ENVIRONMENTAL) {
+                                String Message = antMessageParcel.getMessageContentString();
+                                Log.e(LOG_TAG, "MessageId" + MessageId);
                                 // Setting the data to be broadcast on the next channel period
-                                if(state==CONNECT1){
-                                    payLoad_SATURATION = payLoad1;
-                                    try {
-                                        antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
-                                    } catch (RemoteException e) {
-                                        e.printStackTrace();
+
+                                if( MessageId.equals("[00][01][03]")){
+                                    Log.e(LOG_TAG, "Saturation");
+                                    if(state==CONNECT1){
+                                        payLoad_SATURATION = payLoad1;
+                                        Log.e(LOG_TAG, "payLoad1");
+                                        try {
+                                            antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
+                                        } catch (RemoteException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                    if(state==CONNECT2) {
+                                        payLoad_SATURATION = payLoad99;
+                                        Log.e(LOG_TAG, "payLoad99");
                                     }
 
-                                }
 
-                                if(state==CONNECT2) {
-                                    payLoad_ENVIRONMENTAL = payLoad2;
-                                    //payLoad_SATURATION = payLoad2;
+                                }
+                                if( MessageId.equals("[01][01][03]")){
+                                    Log.e(LOG_TAG, "Environmental");
+                                    if(state==CONNECT1){
+                                        payLoad_ENVIRONMENTAL = payLoad99;
+                                    }
+                                    if(state==CONNECT2) {
+                                        payLoad_ENVIRONMENTAL = payLoad2;
+                                    }
+
                                     try {
                                         antChannelENVIRONMENTAL.setBroadcastData(payLoad_ENVIRONMENTAL);
                                     } catch (RemoteException e) {
                                         e.printStackTrace();
                                     }
+
+                                }
+                                /*
+                                if(state==CONNECT1){
+                                    payLoad_SATURATION = payLoad1;
+                                }
+
+                                if(state==CONNECT2) {
+                                    payLoad_ENVIRONMENTAL = payLoad2;
+                                    //payLoad_SATURATION = payLoad2;
                                 }
 //non serve per questo caso
                                 if(state==SYNCHRONIZATION_RESUME)
@@ -994,17 +902,17 @@ int a = antMessageParcel.getMessageId();
                                 }
 
                                 //send the message through a specific payload
-                               /* try {
+                                try {
                                     antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
                                 } catch (RemoteException e) {
                                     e.printStackTrace();
-                                }*/
+                                }
 
-                               /* try {
+                                try {
                                     antChannelENVIRONMENTAL.setBroadcastData(payLoad_ENVIRONMENTAL);
                                 } catch (RemoteException e) {
                                     e.printStackTrace();
-                                }*/
+                                }
 
                                 //CONTINUOUS ACQUISITION
                                 //after synchronization (START), call periodically one after the other
@@ -1020,7 +928,7 @@ int a = antMessageParcel.getMessageId();
                                     startWatchdogTimer(UNIT1);
                                     checkWatchdogTimer();
                                 }
-
+*/
                             }
                             else{
                                 //Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
@@ -1187,7 +1095,6 @@ int a = antMessageParcel.getMessageId();
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "" + channelId_smartphone_SATURATION);
 
                 try {
                     antChannelSATURATION.setPeriod(USER_PERIOD_SATURATION);
@@ -1216,7 +1123,7 @@ int a = antMessageParcel.getMessageId();
                 } catch (RemoteException | AntCommandFailedException e) {
                     e.printStackTrace();
                 }
-                Log.e(LOG_TAG, "Channel is open");
+                Log.e(LOG_TAG, "Channel Saturation is open");
 
 //CANALE ENVIRONMENTAL MONITOR
 //provato ad aggiungere per vedere se cambia qualcosa
@@ -1296,6 +1203,7 @@ int a = antMessageParcel.getMessageId();
                 Log.e(LOG_TAG, "Channel is open");
 
                 state = CONNECT1;
+
 
 
                 if( mIsOpen_ENVIRONMENTAL   &&  mIsOpen_SATURATION){

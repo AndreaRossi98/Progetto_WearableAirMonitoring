@@ -802,7 +802,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                 Log.e(LOG_TAG, "MessageId" + MessageId);
                                 // Setting the data to be broadcast on the next channel period
 
-                                if( MessageId.equals("[00][01][03]")){
+                                if( MessageId.equals("[00][01][03]")){  //Canale Saturation
                                     Log.e(LOG_TAG, "Saturation");
                                     if(state==CONNECT1){
                                         payLoad_SATURATION = payLoad1;
@@ -820,7 +820,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
 
                                 }
-                                if( MessageId.equals("[01][01][03]")){
+                                if( MessageId.equals("[01][01][03]")){  //Canale environmental
                                     Log.e(LOG_TAG, "Environmental");
                                     if(state==CONNECT1){
                                         payLoad_ENVIRONMENTAL = payLoad99;

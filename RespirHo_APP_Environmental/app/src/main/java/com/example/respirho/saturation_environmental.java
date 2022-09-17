@@ -632,6 +632,10 @@ public class saturation_environmental extends AppCompatActivity implements View.
                     fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
                     if(connected1 && connected2){
+
+                        //CAPIRE PERCHE' NON ENTRA QUA
+
+                        Log.e(LOG_TAG, "DATOOOO");
                         Log.e(LOG_TAG, "antMessageParcel" + antMessageParcel);
                         String MessageId = antMessageParcel.getMessageContentString();
                         Log.e(LOG_TAG, "MessageId" + MessageId);
@@ -792,8 +796,12 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                                 @Override
                                 public void run() {
+    switchonsensor2.setVisibility(View.VISIBLE);    //potrebbero non servire
                                     switchonsensor2_progressbar.setVisibility(View.GONE);
                                     switchonsensor2_checkmark.setVisibility(View.VISIBLE);
+
+    switchonsensor1_progressbar.setVisibility(View.GONE);
+    switchonsensor1_checkmark.setVisibility(View.VISIBLE);
 
                                     //switchonsensor3.setVisibility(View.VISIBLE);
                                     //switchonsensor3_progressbar.setVisibility(View.VISIBLE);

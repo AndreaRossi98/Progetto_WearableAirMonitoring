@@ -1674,7 +1674,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                         while (line != null && flag_null_line == false) { //split csv lines and obtain values
                             try {
-                                String[] attributes = line.split(",");
+                                //String[] attributes = line.split(",");
 //Toast.makeText(this, "line" + attributes, Toast.LENGTH_SHORT).show();
 //String [] newLine = line.split("]"); //ex: [01
 //Toast.makeText(this, "line" + newLine, Toast.LENGTH_SHORT).show();
@@ -1682,6 +1682,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 //Toast.makeText(this, "lat" + Lat, Toast.LENGTH_SHORT).show();
                                 //float a = Float.compare();
                                 if(line.contains("06")) {    //per indicare che è il pacchetto di environmental monitor
+                                    Log.e(LOG_TAG, "linea:" +  line);
 
                                     //per rimuovere le parentesi quadre dai valori salvati
                                     //String [] newLine = line.split("]"); //ex: [01

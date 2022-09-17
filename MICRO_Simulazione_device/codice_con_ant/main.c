@@ -269,7 +269,7 @@ printf("\n");
                         printf("Environmental connesso\n");
                         ant_send(2);                           
                     }
-                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x04 )
+                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x04 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x04)
                     { //connesso a master, invia dati
                         //uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
                         //memset(message_addr, 6, ANT_STANDARD_DATA_PAYLOAD_SIZE);	
@@ -279,7 +279,21 @@ printf("\n");
                         {
                             message_addr[i] = 4;
                         }                        
-                        printf("Saturation solo connesso\n");
+                        printf("Saturation connesso\n");
+                        err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
+                        //ant_send(4);                           
+                    }
+                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x04 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x00)
+                    { //connesso a master, invia dati
+                        //uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
+                        //memset(message_addr, 6, ANT_STANDARD_DATA_PAYLOAD_SIZE);	
+                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr); //invia messaggio di connessione
+                        uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
+                        for(int i = 0;i <8;i++)
+                        {
+                            message_addr[i] = 4;
+                        }                        
+                        printf("Saturation dati\n");
                         err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
                         //ant_send(4);                           
                     }

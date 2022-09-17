@@ -280,8 +280,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
     byte[] payLoad99 = {0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, (byte) 0xF}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
 
     public String string0 = "[00][00][00][00][00][00][00][00]";
-    public String string1 = "[04][04][04][04][04][04][04]"; //message from slave 1 for check
-    public String string2 = "[02][02][02][02][02][02][02]";//message from slave 2 for check
+    public String string1 = "[04][04][04][04][04][04][04]"; //message from Pulse Ox for check
+    public String string2 = "[06][06][06][06][06][06][06]";//message from Environmental Monitor for check
     public String string3 = "[03][03][03][03][03][03][03]";//message from slave 3 for check
     public String string4 = "[04][04][04][04][04][04][04]";//message from slave 4 for check
 
@@ -310,6 +310,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
     private static final int CALL2 = 7;
     private static final int CALL3 = 8;
     private static final int CALL4 = 14;
+    private static final int CALL = 12;     //CHIAMARE ENTRAMBI I DEVICE
     private static final int CALIBRATION = 9; //payload 8
     private static final int STOP = 10; //stop and resume, payload 9
     private static final int RECONNECTION = 11;
@@ -528,7 +529,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
             });
         }
 
-/*        //LOCATION PROVIDER
+        //LOCATION PROVIDER
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
             @Override
@@ -544,7 +545,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(1000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);*/
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
     }
 
     //variabili per la gestione dei pacchetti Environmental e scrittura dei dati su file
@@ -615,12 +616,46 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                     //if the message is received, reset watchdog timer of the unit received
                     String unitReceived_default=messageContentString_unit.substring(1); //ex: 1 (String)
-                    int unitReceived=Integer.parseInt(unitReceived_default); //ex: 1 (int)
-                    resetWatchdogTimer(unitReceived-1); //we subtract 1 to match the array indexes
+                    int unitReceived=Integer.decode("0x"+ unitReceived_default); //ex: 1 (int)
+ //SERVE?                   //resetWatchdogTimer(unitReceived-1); //we subtract 1 to match the array indexes
 
                     //if ALL the units are connected, the next messages will be the recording data
+
+
+                    WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
+                    writingDataToFirebase.mainFirebase(msg + current, startrec_time);
+
+                    //call the file class to save data in a txt file
+                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                    writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
+
+                    fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+
                     if(connected1 && connected2){
+                        Log.e(LOG_TAG, "antMessageParcel" + antMessageParcel);
+                        String MessageId = antMessageParcel.getMessageContentString();
+                        Log.e(LOG_TAG, "MessageId" + MessageId);
+
+                        if( MessageId.equals("[00][01][03]"))
+                        {
+                            Log.e(LOG_TAG, "Saturation DATO");
+                        }
+                        if( MessageId.equals("[01][01][03]"))
+                        {
+                            Log.e(LOG_TAG, "Environmental DATO");
+                        }
+
+                        /*WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
+                        writingDataToFirebase.mainFirebase(msg + current, startrec_time);
+
+                        //call the file class to save data in a txt file
+                        WritingDataToFile writingDataToFile = new WritingDataToFile();
+                        writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
+
+                        fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+*/
 //QUESTA CONDIZIONE DOVREBBE FUNZIONARE
+                        /*
                         if (messageContentString_unit.equals("04")) {
                             Toast.makeText(getApplicationContext(), "Pacchetto Pulse Ox", Toast.LENGTH_LONG).show();
                             //write the messages
@@ -652,6 +687,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                             fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
                         }
+
+                         */
                         //every now and then save the file on firebase for backup, later savings will over write the previous one
                         //save the file each 1 MB size (around 10 minutes)
                         long fileIntSizeBytes_backup=fileInt.length();
@@ -726,7 +763,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                         if(messageContentString.contains(string1)){
                             connected1 = true;
                             //GlobalVariables.flag_connected1=true;
-                            Log.e(LOG_TAG,"1 is:" + connected1);
+                            Log.e(LOG_TAG,"Pulse Ox is connected:" + connected1);
                             state=CONNECT2;
                             Toast.makeText(getApplicationContext(), "Connesso Pulse ox", Toast.LENGTH_LONG).show();
 
@@ -746,9 +783,10 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                         if(messageContentString.contains(string2)){
                             connected2 = true;
-                            Log.e(LOG_TAG,"2 is:" + connected2);
+                            Log.e(LOG_TAG,"Environmental Monitor is connected:" + connected2);
                             Toast.makeText(getApplicationContext(), "Connesso Environmental", Toast.LENGTH_LONG).show();
-                            state=START;
+//TODO-- QUESTA RIGA NON DOVREBBE SERVIRE
+// state=START;
                             //to change the UI we have to put codes in the runOnUiThread
                             runOnUiThread(new Runnable() {
 
@@ -798,44 +836,142 @@ public class saturation_environmental extends AppCompatActivity implements View.
                             //if the channel has been opened during initialization...
 
                             if (mIsOpen_SATURATION  && mIsOpen_ENVIRONMENTAL) {
-                                String Message = antMessageParcel.getMessageContentString();
+                                //String Message = antMessageParcel.getMessageContentString();
                                 Log.e(LOG_TAG, "MessageId" + MessageId);
                                 // Setting the data to be broadcast on the next channel period
 
-                                if( MessageId.equals("[00][01][03]")){  //Canale Saturation
+                                if( MessageId.equals("[00][01][03]")) {  //Canale Saturation
                                     Log.e(LOG_TAG, "Saturation");
-                                    if(state==CONNECT1){
+
+                                    if (state == CONNECT1) {
                                         payLoad_SATURATION = payLoad1;
                                         Log.e(LOG_TAG, "payLoad1");
-                                        try {
-                                            antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
-                                        } catch (RemoteException e) {
-                                            e.printStackTrace();
-                                        }
                                     }
-                                    if(state==CONNECT2) {
+
+                                    if (state == CONNECT2) {
                                         payLoad_SATURATION = payLoad99;
                                         Log.e(LOG_TAG, "payLoad99");
                                     }
 
+                                    if (state == SYNCHRONIZATION_RESUME) {
+                                        payLoad_SATURATION = payLoad4;
+                                    }
+
+                                    if (state == RECONNECTION) {
+                                        payLoad_SATURATION = payLoad4;
+                                    }
+
+                                    if (state == START) {
+                                        payLoad_SATURATION = payLoad4;
+                                        //save time to show
+                                        SimpleDateFormat formatStartRec = new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
+                                        startrec_time = formatStartRec.format(new Date().getTime());
+                                        Log.e("start", "New rec: " + startrec_time);
+                                    }
+
+                                    if (state == CALL) {
+                                        payLoad_SATURATION = payLoad11;
+                                    }
+
+                                    if (state == CALIBRATION) {
+                                        payLoad_SATURATION = payLoad8;
+                                    }
+
+                                    if (state == STOP) {
+                                        //stop the channel sending the payload9
+                                        payLoad_SATURATION = payLoad9;
+                                        //payLoad_ENVIRONMENTAL = payLoad9;
+                                    }
+
+                                    try {
+                                        antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
+                                    } catch (RemoteException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    //CONTINUOUS ACQUISITION
+                                    //after synchronization (START), call periodically one after the other
+                                    if (state == START || state == RECONNECTION) {
+                                        state = CALL;
+                                        startWatchdogTimer(UNIT1);
+                                        checkWatchdogTimer();
+                                    } else if (state == CALL) {
+                                        state = CALL;
+                                        startWatchdogTimer(UNIT1);
+                                        checkWatchdogTimer();
+                                    }
 
                                 }
                                 if( MessageId.equals("[01][01][03]")){  //Canale environmental
                                     Log.e(LOG_TAG, "Environmental");
-                                    if(state==CONNECT1){
+                                    if(state==CONNECT1)
+                                    {
                                         payLoad_ENVIRONMENTAL = payLoad99;
                                     }
-                                    if(state==CONNECT2) {
+
+                                    if(state==CONNECT2)
+                                    {
                                         payLoad_ENVIRONMENTAL = payLoad2;
                                     }
 
-                                    try {
+                                    if(state==SYNCHRONIZATION_RESUME)
+                                    {
+                                        payLoad_ENVIRONMENTAL = payLoad4;
+                                    }
+
+                                    if(state==RECONNECTION)
+                                    {
+                                        payLoad_ENVIRONMENTAL = payLoad4;
+                                    }
+
+                                    if (state == START) {
+                                        payLoad_ENVIRONMENTAL = payLoad4;
+                                        //save time to show
+                                        //DOVREBBE BASTARE SOLO UNA DELLE DUE
+                                        //SimpleDateFormat formatStartRec = new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
+                                        //startrec_time = formatStartRec.format(new Date().getTime());
+                                        //Log.e("start", "New rec: " + startrec_time);
+                                    }
+
+                                    if (state == CALL) {
+                                        payLoad_ENVIRONMENTAL = payLoad12;
+                                    }
+
+                                    if (state == CALIBRATION) {
+                                        payLoad_ENVIRONMENTAL = payLoad8;
+                                    }
+
+                                    if (state == STOP) {
+                                        //stop the channel sending the payload9
+                                        payLoad_ENVIRONMENTAL = payLoad9;
+                                        //payLoad_ENVIRONMENTAL = payLoad9;
+                                    }
+
+                                        try {
                                         antChannelENVIRONMENTAL.setBroadcastData(payLoad_ENVIRONMENTAL);
                                     } catch (RemoteException e) {
                                         e.printStackTrace();
                                     }
 
+                                    //CONTINUOUS ACQUISITION
+                                    //after synchronization (START), call periodically one after the other
+                                    if (state == START || state == RECONNECTION) {
+                                        state = CALL;
+                                        startWatchdogTimer(UNIT2);
+                                        checkWatchdogTimer();
+                                    } else if (state == CALL) {
+                                        state = CALL;
+                                        startWatchdogTimer(UNIT2);
+                                        checkWatchdogTimer();
+                                    }
+
+
                                 }
+                                else{
+                                    Log.e(LOG_TAG, "CANALE NON PREVISTO");
+                                }
+
+                            }
                                 /*
                                 if(state==CONNECT1){
                                     payLoad_SATURATION = payLoad1;
@@ -928,8 +1064,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                     startWatchdogTimer(UNIT1);
                                     checkWatchdogTimer();
                                 }
-*/
-                            }
+
+                            }*/
                             else{
                                 //Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
                             }
@@ -1203,8 +1339,6 @@ public class saturation_environmental extends AppCompatActivity implements View.
                 Log.e(LOG_TAG, "Channel is open");
 
                 state = CONNECT1;
-
-
 
                 if( mIsOpen_ENVIRONMENTAL   &&  mIsOpen_SATURATION){
                     //if the channel is open
@@ -2699,7 +2833,7 @@ Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show
 
     //watchdog timer reset
     public void resetWatchdogTimer(int unit){
-        watchdog_timer[unit]=0; //reset the i-unit wt
+//SERVE?        watchdog_timer[unit]=0; //reset the i-unit wt
         //if we come back from the RECONNECTION states it means now the sensors works
         //so we hide the exclamation point and show the green checkmark
         if(flag_reconnection && sumWt<40){

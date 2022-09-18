@@ -208,7 +208,7 @@
 
                 <!-- SELECT RECORDING -->
                 <ViewStub
-                    android:id="@+id/select_recording_toinclude"
+                    android:id="@+id/select_recording_toinclude_10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inflatedId="@+id/select_recording" />

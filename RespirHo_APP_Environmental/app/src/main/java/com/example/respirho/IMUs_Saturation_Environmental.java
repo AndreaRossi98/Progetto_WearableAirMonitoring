@@ -626,7 +626,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
 
                     //if the message is received, reset watchdog timer of the unit received
                     String unitReceived_default=messageContentString_unit.substring(1); //ex: 1 (String)
-                    int unitReceived=Integer.parseInt(unitReceived_default); //ex: 1 (int)
+                    int unitReceived=Integer.decode("0x"+ unitReceived_default); //ex: 1 (int)
                     resetWatchdogTimer(unitReceived-1); //we subtract 1 to match the array indexes
 
                     //if ALL the units are connected, the next messages will be the recording data

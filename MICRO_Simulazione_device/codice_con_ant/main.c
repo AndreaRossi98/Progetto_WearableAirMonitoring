@@ -249,26 +249,8 @@ void ant_evt_handler(ant_evt_t * p_ant_evt, void * p_context)
 printf("\nRicevuto: ");
 for(int i = 0;i<8;i++)  printf("%d", p_ant_evt->message.ANT_MESSAGE_aucPayload [i]);
 printf("\n");
-
-                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x01 );
-                    { //richiesta di connessione saturation
-                        //uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
-                        //memset(message_addr, 6, ANT_STANDARD_DATA_PAYLOAD_SIZE);	
-                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr); //invia messaggio di connessione
-                        printf("Saturation connesso\n");
-                        ant_send(1);
-                        sd_ant_pending_transmit_clear (BROADCAST_CHANNEL_NUMBER, NULL); //svuota il buffer, utile per una seconda acquisizione
-                       
-                    }
                     
-                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x02 )
-                    { //connesso a master, invia dati
-                        //uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
-                        //memset(message_addr, 6, ANT_STANDARD_DATA_PAYLOAD_SIZE);	
-                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr); //invia messaggio di connessione
-                        printf("Environmental connesso\n");
-                        ant_send(2);                           
-                    }
+
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x04 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x04)
                     { //connesso a master, invia dati
                         //uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];

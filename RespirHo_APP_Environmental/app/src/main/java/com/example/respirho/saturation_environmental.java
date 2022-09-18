@@ -633,8 +633,6 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                     if(connected1 && connected2){
 
-                        //CAPIRE PERCHE' NON ENTRA QUA
-
                         Log.e(LOG_TAG, "DATOOOO");
                         Log.e(LOG_TAG, "antMessageParcel" + antMessageParcel);
                         String MessageId = antMessageParcel.getMessageContentString();
@@ -764,12 +762,12 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                         Log.e(LOG_TAG, "CHECK Rx: " + messageContentString); //hex
 
-                        if(messageContentString.contains(string1)){
+                        if(messageContentString.contains(string1)   && state == CONNECT1){
                             connected1 = true;
                             //GlobalVariables.flag_connected1=true;
                             Log.e(LOG_TAG,"Pulse Ox is connected:" + connected1);
                             state=CONNECT2;
-                            Toast.makeText(getApplicationContext(), "Connesso Pulse ox", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Connesso Pulse ox", Toast.LENGTH_LONG).show();
 
                             //to change the UI we have to put codes in the runOnUiThread
                             runOnUiThread(new Runnable() {
@@ -785,10 +783,10 @@ public class saturation_environmental extends AppCompatActivity implements View.
                             });
                         }
 
-                        if(messageContentString.contains(string2)){
+                        if(messageContentString.contains(string2)   && state == CONNECT2){
                             connected2 = true;
                             Log.e(LOG_TAG,"Environmental Monitor is connected:" + connected2);
-                            Toast.makeText(getApplicationContext(), "Connesso Environmental", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "Connesso Environmental", Toast.LENGTH_LONG).show();
 //TODO-- QUESTA RIGA NON DOVREBBE SERVIRE
 // state=START;
                             //to change the UI we have to put codes in the runOnUiThread
@@ -800,8 +798,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                     switchonsensor2_progressbar.setVisibility(View.GONE);
                                     switchonsensor2_checkmark.setVisibility(View.VISIBLE);
 
-    switchonsensor1_progressbar.setVisibility(View.GONE);
-    switchonsensor1_checkmark.setVisibility(View.VISIBLE);
+    switchonsensor1_progressbar.setVisibility(View.GONE);//potrebbero non servire
+    switchonsensor1_checkmark.setVisibility(View.VISIBLE);//potrebbero non servire
 
                                     //switchonsensor3.setVisibility(View.VISIBLE);
                                     //switchonsensor3_progressbar.setVisibility(View.VISIBLE);
@@ -976,7 +974,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                                 }
                                 else{
-                                    Log.e(LOG_TAG, "CANALE NON PREVISTO");
+                                    //Log.e(LOG_TAG, "ALTRO");
                                 }
 
                             }
@@ -1404,7 +1402,7 @@ Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show
 
                 inflated_switch_on_sensors.setVisibility(View.GONE);
 
-                viewStub = (ViewStub) findViewById(R.id.select_recording_toinclude);
+                viewStub = (ViewStub) findViewById(R.id.select_recording_toinclude_10);
                 viewStub.setLayoutResource(R.layout.select_recording_general);
                 inflated_select_recording = viewStub.inflate();
 

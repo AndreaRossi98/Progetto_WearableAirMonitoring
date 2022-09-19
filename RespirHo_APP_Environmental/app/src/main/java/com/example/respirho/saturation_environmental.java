@@ -571,6 +571,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
     float partial_calculation = 0; //variabile usata per fare calcoli parziali
     String messaggio_salvato;
 
+    int flag_selezione_canale = 0;
 
     public IAntChannelEventHandler eventCallBack = new IAntChannelEventHandler() {
 
@@ -772,15 +773,8 @@ battery_unit = 3;
 
                                 @Override
                                 public void run() {
-    //switchonsensor2.setVisibility(View.VISIBLE);    //potrebbero non servire
                                     switchonsensor2_progressbar.setVisibility(View.GONE);
                                     switchonsensor2_checkmark.setVisibility(View.VISIBLE);
-
-    //switchonsensor1_progressbar.setVisibility(View.GONE);//potrebbero non servire
-    //switchonsensor1_checkmark.setVisibility(View.VISIBLE);//potrebbero non servire
-
-                                    //switchonsensor3.setVisibility(View.VISIBLE);
-                                    //switchonsensor3_progressbar.setVisibility(View.VISIBLE);
 
                                     //show green checkmark
                                     checkmark_idpatient.setVisibility(View.VISIBLE);
@@ -956,100 +950,7 @@ battery_unit = 3;
                                 }
 
                             }
-                                /*
-                                if(state==CONNECT1){
-                                    payLoad_SATURATION = payLoad1;
-                                }
 
-                                if(state==CONNECT2) {
-                                    payLoad_ENVIRONMENTAL = payLoad2;
-                                    //payLoad_SATURATION = payLoad2;
-                                }
-//non serve per questo caso
-                                if(state==SYNCHRONIZATION_RESUME)
-                                {
-                                    payLoad_SATURATION = payLoad4;
-
-                                    try {
-                                        antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
-                                    } catch (RemoteException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                                if(state==RECONNECTION)
-                                {
-                                    payLoad_SATURATION = payLoad4;
-                                    //payLoad_ENVIRONMENTAL = payLoad4;
-                                }
-
-                                if(state==START)
-                                {
-                                    payLoad_SATURATION = payLoad4;
-
-                                    try {
-                                        antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
-                                    } catch (RemoteException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                    payLoad_ENVIRONMENTAL = payLoad4;
-
-                                    try {
-                                        antChannelENVIRONMENTAL.setBroadcastData(payLoad_ENVIRONMENTAL);
-                                    } catch (RemoteException e) {
-                                        e.printStackTrace();
-                                    }
-                                    //save time to show
-                                    SimpleDateFormat formatStartRec=new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
-                                    startrec_time=formatStartRec.format(new Date().getTime());
-                                    Log.e("start","New rec: "+ startrec_time);
-                                }
-
-                                if(state==CALL1) {
-                                    payLoad_SATURATION = payLoad11;
-                                    //payLoad_ENVIRONMENTAL = payLoad12;
-                                }
-
-                                if(state==CALIBRATION) {
-                                    payLoad_SATURATION = payLoad8;
-                                }
-
-                                if(state==STOP) {
-                                    //stop the channel sending the payload9
-                                    payLoad_SATURATION = payLoad9;
-                                    //payLoad_ENVIRONMENTAL = payLoad9;
-                                }
-
-                                //send the message through a specific payload
-                                try {
-                                    antChannelSATURATION.setBroadcastData(payLoad_SATURATION);
-                                } catch (RemoteException e) {
-                                    e.printStackTrace();
-                                }
-
-                                try {
-                                    antChannelENVIRONMENTAL.setBroadcastData(payLoad_ENVIRONMENTAL);
-                                } catch (RemoteException e) {
-                                    e.printStackTrace();
-                                }
-
-                                //CONTINUOUS ACQUISITION
-                                //after synchronization (START), call periodically one after the other
-                                if(state==START || state==RECONNECTION)
-                                {
-                                    state=CALL1;
-                                    startWatchdogTimer(UNIT1);
-                                    checkWatchdogTimer();
-                                }
-                                else if(state == CALL1)
-                                {
-                                    state = CALL1;
-                                    startWatchdogTimer(UNIT1);
-                                    checkWatchdogTimer();
-                                }
-
-                            }*/
                             else{
                                 //Log.e(LOG_TAG, "Ant Service is bound: "+ serviceIsBound);
                             }

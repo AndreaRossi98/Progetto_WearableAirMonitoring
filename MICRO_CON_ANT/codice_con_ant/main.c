@@ -446,7 +446,7 @@ printf("inizio\n");
     nrf_gpio_pin_set(LED);
  
     nrf_gpio_cfg_output(bjt);
-    //nrf_gpio_pin_set(bjt);
+    //nrf_gpio_pin_set(bjt);    //cosi funziona
     nrf_gpio_pin_clear(bjt);
 
     //Inizializzazione di tutte le componenti
@@ -517,6 +517,8 @@ printf("\nMisuro\n");
             sps30_start_measurement();
             nrf_delay_ms(1000);
             sps30_read_measurement(&measure_sps30);
+            nrf_delay_ms(2000);
+            sps30_read_measurement(&measure_sps30);
             sps30_stop_measurement();
             sps30_sleep();
 
@@ -543,7 +545,16 @@ printf("\nMisuro\n");
 
 
             //LIS3DH
-            //scegliere ogni quanto campionare   
+            //scegliere ogni quanto campionare
+            if(lis3dh_ReadAcc(&measure_lis3dh.AccX, &measure_lis3dh.AccY, &measure_lis3dh.AccZ) == true)
+            {
+                measure_lis3dh.AccX = (measure_lis3dh.AccX*16)/1000;
+                measure_lis3dh.AccY = (measure_lis3dh.AccY*16)/1000;
+                measure_lis3dh.AccZ = (measure_lis3dh.AccZ*16)/1000;
+                measure_lis3dh.Acc = (int)sqrt(pow(measure_lis3dh.AccX,2) + pow(measure_lis3dh.AccY,2)+ pow(measure_lis3dh.AccZ,2));
+            }   //ACC in [g]
+            else  printf("errore ACC\n");   
+            printf("Acc %d\n",measure_lis3dh.Acc);
 
           //letti tutti i valori, elaboro i dati in modo da poterli inviare come uint8 e li salvo nei pacchetti, poi metto flag_misurazione = 2 e la gestisco in ANT
 
@@ -570,13 +581,14 @@ printf("\nMisuro\n");
           pacchetto_2[7] = 123; // BATTERY   capire ogni quanto campionare
           
           pacchetto_3[0] = 192 + numero_pacchetto;
-          pacchetto_3[1] = 10; //ACCELERATION   capire ogni quanto leggere il dato
-          pacchetto_3[2] = (int)(measure_sps30.mc_1p0 * 10); //PM1.0 LSB        PM valori moltiplicati per 10
-          pacchetto_3[3] = (int)(measure_sps30.mc_1p0 * 10) >> 8; //PM1.0  MSB
-          pacchetto_3[4] = (int)(measure_sps30.mc_2p5 * 10); //PM2.5  LSB
-          pacchetto_3[5] = (int)(measure_sps30.mc_2p5 * 10) >> 8; //PM2.5  MSB
-          pacchetto_3[6] = (int)(measure_sps30.mc_10p0 * 10); //PM10   LSB
-          pacchetto_3[7] = (int)(measure_sps30.mc_10p0 * 10) >> 8; //PM10   MSB
+          pacchetto_3[1] = measure_lis3dh.Acc; //ACCELERATION   capire ogni quanto leggere il dato
+          pacchetto_3[2] = (int)(measure_sps30.mc_1p0 * 100); //PM1.0 LSB        PM valori moltiplicati per 10
+          pacchetto_3[3] = (int)(measure_sps30.mc_1p0 * 100) >> 8; //PM1.0  MSB
+          pacchetto_3[4] = (int)(measure_sps30.mc_2p5 * 100); //PM2.5  LSB
+          pacchetto_3[5] = (int)(measure_sps30.mc_2p5 * 100) >> 8; //PM2.5  MSB
+          pacchetto_3[6] = (int)(measure_sps30.mc_10p0 * 100); //PM10   LSB
+          pacchetto_3[7] = (int)(measure_sps30.mc_10p0 * 100) >> 8; //PM10   MSB
+          //dati PM inviarli come interi e decimale separati
 
           flag_misurazioni = 2;
 flag_dati_pronti = 1;

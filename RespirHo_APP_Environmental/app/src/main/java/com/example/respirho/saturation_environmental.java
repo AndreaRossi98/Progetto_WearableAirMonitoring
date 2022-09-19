@@ -213,8 +213,6 @@ public class saturation_environmental extends AppCompatActivity implements View.
     private static boolean flag_battery=false;
     private static String dead_battery_unit1 ="";
     private static String dead_battery_unit2 ="";
-    private static String dead_battery_unit3 ="";
-    private static String dead_battery_unit4 ="";
 
     //flag for download
     public boolean flag_filetoosmall = false;
@@ -244,7 +242,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
     public final String LOG_TAG = saturation_environmental.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_SATURATION = 32768;    //819; // 1092; 30 Hz --> change to 819
+    private static final int USER_PERIOD_SATURATION = 819; // 1092; 30 Hz --> change to 819
     private static final int USER_PERIOD_ENVIRONMENTAL = 32768;
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound_SATURATION = false;
@@ -583,7 +581,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
             switch(messageFromAntType){
 
                 case BROADCAST_DATA: //HERE ARRIVES ALL THE MESSAGES FROM THE SENSORS
-                    Toast.makeText(getApplicationContext(), "Pacchetto arrivato", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "Pacchetto arrivato", Toast.LENGTH_LONG).show();
                     //save time
                     day= LocalDateTime.now().toLocalDate().toString(); //datetime
 
@@ -607,6 +605,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                             + messageContentString.substring(20,24) + ","
                             + messageContentString.substring(24,28) + ","
                             + messageContentString.substring(28,32) + ",";
+                    toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
                     //TODO - end
 
                     //split the bytes
@@ -621,33 +620,11 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                     //if ALL the units are connected, the next messages will be the recording data
 
-
-                    WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
-                    writingDataToFirebase.mainFirebase(msg + current, startrec_time);
-
-                    //call the file class to save data in a txt file
-                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                    writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
-
-                    fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
-
                     if(connected1 && connected2){
 
                         Log.e(LOG_TAG, "DATOOOO");
-                        Log.e(LOG_TAG, "antMessageParcel" + antMessageParcel);
-                        String MessageId = antMessageParcel.getMessageContentString();
-                        Log.e(LOG_TAG, "MessageId" + MessageId);
-
-                        if( MessageId.equals("[00][01][03]"))
-                        {
-                            Log.e(LOG_TAG, "Saturation DATO");
-                        }
-                        if( MessageId.equals("[01][01][03]"))
-                        {
-                            Log.e(LOG_TAG, "Environmental DATO");
-                        }
-
-                        /*WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
+/*
+                        WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
                         writingDataToFirebase.mainFirebase(msg + current, startrec_time);
 
                         //call the file class to save data in a txt file
@@ -657,7 +634,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                         fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 */
 //QUESTA CONDIZIONE DOVREBBE FUNZIONARE
-                        /*
+
                         if (messageContentString_unit.equals("04")) {
                             Toast.makeText(getApplicationContext(), "Pacchetto Pulse Ox", Toast.LENGTH_LONG).show();
                             //write the messages
@@ -690,7 +667,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                             fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
                         }
 
-                         */
+
                         //every now and then save the file on firebase for backup, later savings will over write the previous one
                         //save the file each 1 MB size (around 10 minutes)
                         long fileIntSizeBytes_backup=fileInt.length();
@@ -714,7 +691,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
                         //check battery value in volt
                         //TIP: the value 81 in int represents the battery value of 2.2
                         //Log.e("demo","Unit " + messageContentString_unit+" battery "+battery_unit);
-
+battery_unit = 3;
+//messa momentaneamente per evitare problema batteria
                         if((battery_unit<THRESHOLD_BATTERY)&&(battery_unit>0.1)){
 
                             if(messageContentString_unit.equals("01")){
@@ -794,12 +772,12 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                                 @Override
                                 public void run() {
-    switchonsensor2.setVisibility(View.VISIBLE);    //potrebbero non servire
+    //switchonsensor2.setVisibility(View.VISIBLE);    //potrebbero non servire
                                     switchonsensor2_progressbar.setVisibility(View.GONE);
                                     switchonsensor2_checkmark.setVisibility(View.VISIBLE);
 
-    switchonsensor1_progressbar.setVisibility(View.GONE);//potrebbero non servire
-    switchonsensor1_checkmark.setVisibility(View.VISIBLE);//potrebbero non servire
+    //switchonsensor1_progressbar.setVisibility(View.GONE);//potrebbero non servire
+    //switchonsensor1_checkmark.setVisibility(View.VISIBLE);//potrebbero non servire
 
                                     //switchonsensor3.setVisibility(View.VISIBLE);
                                     //switchonsensor3_progressbar.setVisibility(View.VISIBLE);
@@ -2326,7 +2304,7 @@ Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show
     }
 
     private void changeBatteriesWarning(Activity activity) {
-        String text_dead_batteries=dead_battery_unit1 + " " + dead_battery_unit2 + " " + dead_battery_unit3 + " " + dead_battery_unit4;
+        String text_dead_batteries=dead_battery_unit1 + " " + dead_battery_unit2;
 
         //initialize alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -2476,8 +2454,7 @@ Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show
         //initialize the variables of the batteries
         dead_battery_unit1="";
         dead_battery_unit2="";
-        dead_battery_unit3="";
-        dead_battery_unit4="";
+
         //put the flag on to check the battery to display warning once
         flag_battery=true;
 
@@ -2543,8 +2520,6 @@ Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show
                 //initialize the variables of the batteries
                 dead_battery_unit1="";
                 dead_battery_unit2="";
-                dead_battery_unit3="";
-                dead_battery_unit4="";
 
                 flag_sensors_disconnection=false;
                 flag_sensors_disconnection_header=false;
@@ -2752,8 +2727,6 @@ Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show
                 //initialize the variables of the batteries
                 dead_battery_unit1="";
                 dead_battery_unit2="";
-                dead_battery_unit3="";
-                dead_battery_unit4="";
 
                 //display error warning
                 error_idpatient.setVisibility(View.VISIBLE);
@@ -2953,8 +2926,7 @@ Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show
                 //initialize the variables of the batteries
                 dead_battery_unit1="";
                 dead_battery_unit2="";
-                dead_battery_unit3="";
-                dead_battery_unit4="";
+
                 //go to patient data layout
                 state=QUIT_RECORDING;
                 //call again the onBackPressed() and in this way it enters in the previous if condition

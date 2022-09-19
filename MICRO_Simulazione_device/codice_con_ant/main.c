@@ -253,9 +253,7 @@ printf("\n");
 
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x04 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x04)
                     { //connesso a master, invia dati
-                        //uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
-                        //memset(message_addr, 6, ANT_STANDARD_DATA_PAYLOAD_SIZE);	
-                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr); //invia messaggio di connessione
+                        
                         uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
                         for(int i = 0;i <8;i++)
                         {
@@ -267,9 +265,7 @@ printf("\n");
                     }
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x04 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x00)
                     { //connesso a master, invia dati
-                        //uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
-                        //memset(message_addr, 6, ANT_STANDARD_DATA_PAYLOAD_SIZE);	
-                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr); //invia messaggio di connessione
+                        
                         uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
                         for(int i = 0;i <8;i++)
                         {
@@ -366,7 +362,7 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
 
 int main(void)
 {
-printf("inizio\n"); 
+printf("inizio simulazione invio\n"); 
 
     nrf_gpio_cfg_output(LED);
     nrf_gpio_pin_set(LED);
@@ -374,7 +370,6 @@ printf("inizio\n");
     //Inizializzazione di tutte le componenti
     log_init();
 
-printf("Start\n");
     softdevice_setup();
     ant_channel_rx_broadcast_setup();
     utils_setup();

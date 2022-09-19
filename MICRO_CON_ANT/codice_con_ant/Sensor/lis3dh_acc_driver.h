@@ -192,7 +192,7 @@ typedef enum {
 
 /* MACROS --------------------------------------------------------*/
 
-#define LIS3DH_ADDRESS                                  0x19      // I2C address of accelerometer
+#define LIS3DH_ADDRESS                                  0X1E    //0x19      // I2C address of accelerometer OF BREADBOARD
 //#define LIS3DH_ADDRESS (0x33U >> 1)
 #define MEMS_SET                                        0x01
 #define MEMS_RESET                                      0x00

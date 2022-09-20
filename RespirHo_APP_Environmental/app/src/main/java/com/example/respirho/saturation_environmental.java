@@ -591,7 +591,6 @@ public class saturation_environmental extends AppCompatActivity implements View.
                     current=format.format(new Date().getTime());
 
                     String messageContentString_default = antMessageParcel.getMessageContentString(); //9 bytes, first is always [00] (to erase)
-
                     //remove the first byte always equal to [00]
                     //OFFICIAL MESSAGE messageContentString
                     String messageContentString=messageContentString_default.substring(4); //8 bytes, correct. Ex:"[03][5C][00][00][62][2E][3C][E8]"
@@ -626,53 +625,57 @@ public class saturation_environmental extends AppCompatActivity implements View.
                         Log.e(LOG_TAG, "DATOOOO");
 
                         WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
-                        writingDataToFirebase.mainFirebase(msg + current, startrec_time);
+                        //writingDataToFirebase.mainFirebase(msg + current, startrec_time);
 
                         //call the file class to save data in a txt file
                         WritingDataToFile writingDataToFile = new WritingDataToFile();
-                        writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
+                        //writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
 
-                        fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+                        //fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
 //QUESTA CONDIZIONE DOVREBBE FUNZIONARE
 
                         if (messageContentString_unit.equals("04")) {
+                            Log.e(LOG_TAG, "Pacchetto Pulse Ox");
+//capire se è corretto
+                            resetWatchdogTimer(0);
 
-                            Toast.makeText(getApplicationContext(), "Pacchetto Pulse Ox", Toast.LENGTH_LONG).show();
-                            /*
                             //write the messages
                             //call the firebase class to upload data on firebase
-                            WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
+                            //WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
                             writingDataToFirebase.mainFirebase(msg + current, startrec_time);
 
                             //call the file class to save data in a txt file
-                            WritingDataToFile writingDataToFile = new WritingDataToFile();
+                            //WritingDataToFile writingDataToFile = new WritingDataToFile();
                             writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
 
                             fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
-                             */
+
                         }
                         else if(messageContentString_unit.equals("06")){
                             //pacchetto di ricevuto per collegare il device, non serve salvarlo
                             //VALUTARE SE SERVE O SI PUO' ELIMINARE QUESTO CASO
                         }
                         else{   //CASO DI ENVIRONMENTAL MONITOR, GESTIONE DEI PACCHETTI
-                            Toast.makeText(getApplicationContext(), "Pacchetto Environmental Monitor", Toast.LENGTH_LONG).show();
+
+                            Log.e(LOG_TAG, "Pacchetto Environmental");
+//capire se è corretto
+                            resetWatchdogTimer(1);
 //TODO - al momento metto questo codice per vedere che funzioni, poi metto gestione del triplice pacchetto
-                            /*
+
                             //write the messages
                             //call the firebase class to upload data on firebase
-                            WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
+                            //WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
                             writingDataToFirebase.mainFirebase(msg + current, startrec_time);
 
                             //call the file class to save data in a txt file
-                            WritingDataToFile writingDataToFile = new WritingDataToFile();
+                            //WritingDataToFile writingDataToFile = new WritingDataToFile();
                             writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
 
                             fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
-                             */
+
                         }
 
 
@@ -753,6 +756,8 @@ battery_unit = 3;
 
                         if(messageContentString.contains(string1)   && state == CONNECT1){
                             connected1 = true;
+//capire se è corretto
+                            resetWatchdogTimer(0);
                             //GlobalVariables.flag_connected1=true;
                             Log.e(LOG_TAG,"Pulse Ox is connected:" + connected1);
                             state=CONNECT2;
@@ -774,6 +779,8 @@ battery_unit = 3;
 
                         if(messageContentString.contains(string2)   && state == CONNECT2){
                             connected2 = true;
+//capire se è corretto
+                            resetWatchdogTimer(1);
                             Log.e(LOG_TAG,"Environmental Monitor is connected:" + connected2);
                             //Toast.makeText(getApplicationContext(), "Connesso Environmental", Toast.LENGTH_LONG).show();
 //TODO-- QUESTA RIGA NON DOVREBBE SERVIRE
@@ -2723,7 +2730,7 @@ Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show
 
     //watchdog timer reset
     public void resetWatchdogTimer(int unit){
-//SERVE?        watchdog_timer[unit]=0; //reset the i-unit wt
+        watchdog_timer[unit]=0; //reset the i-unit wt
         //if we come back from the RECONNECTION states it means now the sensors works
         //so we hide the exclamation point and show the green checkmark
         if(flag_reconnection && sumWt<40){

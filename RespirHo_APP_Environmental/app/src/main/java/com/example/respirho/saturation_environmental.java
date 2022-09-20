@@ -624,7 +624,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                     if(connected1 && connected2){
 
                         Log.e(LOG_TAG, "DATOOOO");
-/*
+
                         WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
                         writingDataToFirebase.mainFirebase(msg + current, startrec_time);
 
@@ -633,11 +633,13 @@ public class saturation_environmental extends AppCompatActivity implements View.
                         writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
 
                         fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
-*/
+
 //QUESTA CONDIZIONE DOVREBBE FUNZIONARE
 
                         if (messageContentString_unit.equals("04")) {
+
                             Toast.makeText(getApplicationContext(), "Pacchetto Pulse Ox", Toast.LENGTH_LONG).show();
+                            /*
                             //write the messages
                             //call the firebase class to upload data on firebase
                             WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
@@ -648,6 +650,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
                             writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
 
                             fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+
+                             */
                         }
                         else if(messageContentString_unit.equals("06")){
                             //pacchetto di ricevuto per collegare il device, non serve salvarlo
@@ -656,6 +660,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                         else{   //CASO DI ENVIRONMENTAL MONITOR, GESTIONE DEI PACCHETTI
                             Toast.makeText(getApplicationContext(), "Pacchetto Environmental Monitor", Toast.LENGTH_LONG).show();
 //TODO - al momento metto questo codice per vedere che funzioni, poi metto gestione del triplice pacchetto
+                            /*
                             //write the messages
                             //call the firebase class to upload data on firebase
                             WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
@@ -666,6 +671,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
                             writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
 
                             fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+
+                             */
                         }
 
 
@@ -679,6 +686,8 @@ public class saturation_environmental extends AppCompatActivity implements View.
                             saveFileOnFirebase(fileInt);
                             size_interval_backupfile=size_interval_backupfile+SIZE_INTERVAL_BACKUPFILE;
                             //Log.e("backup","backup 1, size end: " + size_interval_backupfile);
+
+
                         }
 
 //TODO- warning for low battery  CAPIRE SE MI SERVE
@@ -710,8 +719,9 @@ battery_unit = 3;
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        lowbattery_idpatient.setVisibility(View.VISIBLE);
-                                        checkmark_idpatient.setVisibility(View.VISIBLE);
+//TODO -- SISTEMA FLAG BATTERY (COMMENTATE PER EVITARE ERRORI)
+                                        //lowbattery_idpatient.setVisibility(View.VISIBLE);
+                                        //checkmark_idpatient.setVisibility(View.VISIBLE);
                                     }
                                 });
                                 //so the warning is shown only once

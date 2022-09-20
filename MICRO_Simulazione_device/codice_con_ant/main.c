@@ -103,7 +103,7 @@ uint8_t connesso = 0;           // = 1 indica che il master si è connesso e sta 
 float partial_calc = 0;        //variable to maintein partial calculation
 
 //variabili per la gestione di ANT
-uint8_t message_addr[8] = {6,6,6,6,6,6,6,6};
+
 uint8_t pacchetto_1[8] = {0,0,0,0,0,0,0,0};  //pacchetti che contengono i valori campionati
 uint8_t pacchetto_2[8] = {0,0,0,0,0,0,0,0};  //ed elaborati per poter essere inviati tramite ANT
 uint8_t pacchetto_3[8] = {0,0,0,0,0,0,0,0};  //senza problemi di formato (uint8_t
@@ -235,6 +235,7 @@ void ant_send(uint8_t numero)
     APP_ERROR_CHECK(err_code);
 }
 int prova = 0;
+uint8_t  message_addr[8] ={4,4,4,4,4,4,4,4};
 //Function for handling stack event
 void ant_evt_handler(ant_evt_t * p_ant_evt, void * p_context)
 {
@@ -254,23 +255,14 @@ printf("\n");
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x04 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x04)
                     { //connesso a master, invia dati
                         
-                        uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
-                        for(int i = 0;i <8;i++)
-                        {
-                            message_addr[i] = 4;
-                        }                        
+                                   
                         printf("Saturation connesso\n");
                         err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
                         //ant_send(4);                           
                     }
-                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x04 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x00)
+                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x04 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x00)
                     { //connesso a master, invia dati
-                        
-                        uint8_t  message_addr[ANT_STANDARD_DATA_PAYLOAD_SIZE];
-                        for(int i = 0;i <8;i++)
-                        {
-                            message_addr[i] = 4;
-                        }                        
+                                             
                         printf("Saturation dati\n");
                         err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
                         //ant_send(4);                           

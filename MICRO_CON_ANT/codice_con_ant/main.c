@@ -582,14 +582,13 @@ printf("\nMisuro\n");
           
           pacchetto_3[0] = 192 + numero_pacchetto;
           pacchetto_3[1] = measure_lis3dh.Acc; //ACCELERATION   capire ogni quanto leggere il dato
-          pacchetto_3[2] = (int)(measure_sps30.mc_1p0 * 100); //PM1.0 LSB        PM valori moltiplicati per 10
-          pacchetto_3[3] = (int)(measure_sps30.mc_1p0 * 100) >> 8; //PM1.0  MSB
-          pacchetto_3[4] = (int)(measure_sps30.mc_2p5 * 100); //PM2.5  LSB
-          pacchetto_3[5] = (int)(measure_sps30.mc_2p5 * 100) >> 8; //PM2.5  MSB
-          pacchetto_3[6] = (int)(measure_sps30.mc_10p0 * 100); //PM10   LSB
-          pacchetto_3[7] = (int)(measure_sps30.mc_10p0 * 100) >> 8; //PM10   MSB
-          //dati PM inviarli come interi e decimale separati
-
+          pacchetto_3[2] = (int)(measure_sps30.mc_1p0); //PM1.0 intero
+          pacchetto_3[3] = (int)(measure_sps30.mc_1p0 * 100 - (int)(measure_sps30.mc_1p0 * 100)); //PM1.0  decimale
+          pacchetto_3[4] = (int)(measure_sps30.mc_2p5); //PM2.5  intero
+          pacchetto_3[5] = (int)(measure_sps30.mc_2p5 * 100 - (int)(measure_sps30.mc_2p5 * 100)); //PM2.5  decimale
+          pacchetto_3[6] = (int)(measure_sps30.mc_10p0); //PM10   intero
+          pacchetto_3[7] = (int)(measure_sps30.mc_10p0 * 100 - (int)(measure_sps30.mc_10p0 * 100)); //PM10   decimale
+          
           flag_misurazioni = 2;
 flag_dati_pronti = 1;
 //finiti di mettere i valori negli array, incremento il valore di numero_pacchetto.

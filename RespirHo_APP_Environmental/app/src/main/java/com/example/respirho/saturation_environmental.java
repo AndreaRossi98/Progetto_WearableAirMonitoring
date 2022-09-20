@@ -1097,6 +1097,7 @@ battery_unit = 3;
                 }
                 Log.e(LOG_TAG, "Ant Channels available " + channels);
 
+//CANALE SATURATION
                 if(channels==0){
                     //display some error text
                     status_initialization.setText("Go back and retry initialization");
@@ -1104,14 +1105,12 @@ battery_unit = 3;
                     break;
                 }
 
-//CANALE SATURATION
                 try {
                     antChannelSATURATION = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
                 } catch (ChannelNotAvailableException | RemoteException e) {
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "Ant Channel Saturation: "+ antChannelSATURATION);
-//TODO- CAPIRE SE POSSO USARE STESSO EVENT HANDLER O DEVO SEPARARLI
 
                 try {
                     antChannelSATURATION.setChannelEventHandler(eventCallBack);
@@ -1164,7 +1163,7 @@ battery_unit = 3;
                 Log.e(LOG_TAG, "Channel Saturation is open");
 
 //CANALE ENVIRONMENTAL MONITOR
-//provato ad aggiungere per vedere se cambia qualcosa
+
                 //channels available
                 channels=0;
                 try {
@@ -1180,14 +1179,13 @@ battery_unit = 3;
                     Toast.makeText(getApplicationContext(), "ERROR\n\nThe communication does not work correctly\n\nPress back button, go back and retry", Toast.LENGTH_LONG).show();
                     break;
                 }
-// fino qua
+
                 try {
                     antChannelENVIRONMENTAL = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
                 } catch (ChannelNotAvailableException | RemoteException e) {
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "Ant Channel Environmental: "+ antChannelENVIRONMENTAL);
-//TODO- CAPIRE SE POSSO USARE STESSO EVENT HANDLER O DEVO SEPARARLI
 
                 try {
                     antChannelENVIRONMENTAL.setChannelEventHandler(eventCallBack);
@@ -2625,6 +2623,14 @@ Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show
                 e.printStackTrace();
             }
             mIsOpen_SATURATION = false;
+            //TODO- MODIFICATO QUESTO, CAPIRE SE FUNZIONA CORRETTAMENTE
+            try {
+                antChannelENVIRONMENTAL.close();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            } catch (AntCommandFailedException e) {
+                e.printStackTrace();
+            }
             mIsOpen_ENVIRONMENTAL = false;
             Log.e(LOG_TAG, "mIsOpen was true and now the Channel is closed");
         }

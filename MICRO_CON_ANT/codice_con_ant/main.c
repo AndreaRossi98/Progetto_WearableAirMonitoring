@@ -410,6 +410,9 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
 
     //1 sec
     sgp30_measure_iaq_blocking_read(&measure_sgp30.tVOC, &measure_sgp30.CO2_eq);
+    //PROBLEMA CALCOLARE L'UMIDITA' ASSOLUTA
+    //uint32_t ah = _get_absolute_humidity(); // absolute humidity in mg/m^3
+    //sgp30_set_absolute_humidity(ah);
     if(connesso == 1)
     {
         VOC = VOC + measure_sgp30.tVOC;

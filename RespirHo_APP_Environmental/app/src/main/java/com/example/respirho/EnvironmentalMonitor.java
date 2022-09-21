@@ -804,9 +804,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                                 flag_dati_ricevuti = 1;
                             }
-
-
-
                         }
 
                         //every now and then save the file on firebase for backup, later savings will over write the previous one

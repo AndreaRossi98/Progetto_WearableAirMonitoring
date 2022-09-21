@@ -2791,7 +2791,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
         //initialize size_interval_backupfile for a new recording
         size_interval_backupfile=SIZE_INTERVAL_BACKUPFILE;
 
-        if(mIsOpen_IMUs && mIsOpen_ENVIRONMENTAL){
+        if(mIsOpen_IMUs && mIsOpen_ENVIRONMENTAL) {
             //close the channel
             try {
                 antChannelIMUs.close();
@@ -2801,6 +2801,8 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                 e.printStackTrace();
             }
             mIsOpen_IMUs = false;
+            Log.e(LOG_TAG, "mIsOpen_IMUs was true and now the Channel is closed");
+
             try {
                 antChannelENVIRONMENTAL.close();
             } catch (RemoteException e) {
@@ -2809,7 +2811,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                 e.printStackTrace();
             }
             mIsOpen_ENVIRONMENTAL = false;
-            Log.e(LOG_TAG, "mIsOpen was true and now the Channel is closed");
+            Log.e(LOG_TAG, "mIsOpen_Environmental was true and now the Channel is closed");
         }
     }
 

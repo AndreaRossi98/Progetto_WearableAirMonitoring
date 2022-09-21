@@ -973,7 +973,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                             break;
                         case TX: //HERE WE SEND ALL THE BROADCAST MESSAGES TO THE SENSORS
                             //if the channel has been opened during initialization...
-                            if (mIsOpen_IMUs) {
+                            if (mIsOpen_IMUs && mIsOpen_ENVIRONMENTAL) {
 
                                 // Setting the data to be broadcast on the next channel period
                                 if(state==CONNECT1){
@@ -1269,11 +1269,84 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                     e.printStackTrace();
                 }
                 Log.e(LOG_TAG, "Channel is open");
-//TODO - AGGIUNGERE CANALE SATURATION
+// CANALE ENVIRONMENTAL
+                //channels available
+                channels=0;
+                try {
+                    channels=antChannelProvider.getNumChannelsAvailable();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Ant Channels available " + channels);
+
+                if(channels==0){
+                    //display some error text
+                    status_initialization.setText("Go back and retry initialization");
+                    Toast.makeText(getApplicationContext(), "ERROR\n\nThe communication does not work correctly\n\nPress back button, go back and retry", Toast.LENGTH_LONG).show();
+                    break;
+                }
+
+                try {
+                    antChannelENVIRONMENTAL = antChannelProvider.acquireChannel(this, PredefinedNetwork.PUBLIC);
+                } catch (ChannelNotAvailableException | RemoteException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Ant Channel IMUs: "+ antChannelENVIRONMENTAL);
+
+                try {
+                    antChannelENVIRONMENTAL.setChannelEventHandler(eventCallBack);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Event handler" + eventCallBack);
+
+                try {
+                    antChannelENVIRONMENTAL.assign(ChannelType.BIDIRECTIONAL_MASTER);
+
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Channel is a BIDIRECTIONAL_MASTER");
+
+                try {
+                    antChannelENVIRONMENTAL.setChannelId(channelId_smartphone_ENVIRONMENTAL);
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "" + channelId_smartphone_ENVIRONMENTAL);
+
+                try {
+                    antChannelENVIRONMENTAL.setPeriod(USER_PERIOD_ENVIRONMENTAL);
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "User period is:" + USER_PERIOD_ENVIRONMENTAL);
+
+                try {
+                    antChannelENVIRONMENTAL.setRfFrequency(USER_RADIOFREQUENCY);
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "User radiofrequency is:" + USER_RADIOFREQUENCY);
+
+                try {
+                    antChannelENVIRONMENTAL.setTransmitPower(3);
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Transmit power is 3");
+
+                try {
+                    antChannelENVIRONMENTAL.open();
+                    mIsOpen_ENVIRONMENTAL = true;
+                } catch (RemoteException | AntCommandFailedException e) {
+                    e.printStackTrace();
+                }
+                Log.e(LOG_TAG, "Channel is open");
+
                 state = CONNECT1;
 
-
-                if(mIsOpen_IMUs){
+                if(mIsOpen_IMUs && mIsOpen_ENVIRONMENTAL){
                     //if the channel is open
                     progressbar_initialization.setVisibility(View.GONE);
                     initializationbutton.setVisibility(View.GONE);
@@ -2648,7 +2721,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
         //initialize size_interval_backupfile for a new recording
         size_interval_backupfile=SIZE_INTERVAL_BACKUPFILE;
 
-        if(mIsOpen_IMUs){
+        if(mIsOpen_IMUs && mIsOpen_ENVIRONMENTAL){
             //close the channel
             try {
                 antChannelIMUs.close();
@@ -2658,7 +2731,18 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                 e.printStackTrace();
             }
             mIsOpen_IMUs = false;
-            Log.e(LOG_TAG, "mIsOpen was true and now the Channel is closed");
+            Log.e(LOG_TAG, "mIsOpen_IMUs was true and now the Channel is closed");
+
+            //close the channel
+            try {
+                antChannelENVIRONMENTAL.close();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            } catch (AntCommandFailedException e) {
+                e.printStackTrace();
+            }
+            mIsOpen_ENVIRONMENTAL = false;
+            Log.e(LOG_TAG, "mIsOpen_Environmental was true and now the Channel is closed");
         }
     }
 

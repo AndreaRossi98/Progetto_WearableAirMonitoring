@@ -633,7 +633,6 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                         //fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
-//QUESTA CONDIZIONE DOVREBBE FUNZIONARE
 
                         if (messageContentString_unit.equals("04")) {
                             Log.e(LOG_TAG, "Pacchetto Pulse Ox");
@@ -655,7 +654,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                         }
                         else if(messageContentString_unit.equals("06")){
                             //pacchetto di ricevuto per collegare il device, non serve salvarlo
-                            //VALUTARE SE SERVE O SI PUO' ELIMINARE QUESTO CASO
+                            //di regola non serve questo caso, ma meglio lasicarlo per evitare pacchetti in ritardo
                         }
                         else{   //CASO DI ENVIRONMENTAL MONITOR, GESTIONE DEI PACCHETTI
 
@@ -678,7 +677,6 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
                         }
 
-
                         //every now and then save the file on firebase for backup, later savings will over write the previous one
                         //save the file each 1 MB size (around 10 minutes)
                         long fileIntSizeBytes_backup=fileInt.length();
@@ -694,6 +692,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                         }
 
 //TODO- warning for low battery  CAPIRE SE MI SERVE
+                        /*
                         //get the second byte to find the battery hex value and remove the open square bracket
                         String messageContentString_battery=messageContentString_split[1].substring(1); //ex: 5C
                         float battery_unit=convertToBattery(messageContentString_battery);
@@ -748,7 +747,7 @@ battery_unit = 3;
                                 flag_battery=false;
                             }
                         }
-
+*/
                     }else { //if the three units are NOT connected, check each one in the "switch on sensors" layout
 
 
@@ -2611,7 +2610,7 @@ Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show
         //initialize size_interval_backupfile for a new recording
         size_interval_backupfile=SIZE_INTERVAL_BACKUPFILE;
 
-        if(mIsOpen_SATURATION   && mIsOpen_ENVIRONMENTAL){
+        if(mIsOpen_SATURATION && mIsOpen_ENVIRONMENTAL) {
             //close the channel
             try {
                 antChannelSATURATION.close();
@@ -2621,6 +2620,9 @@ Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show
                 e.printStackTrace();
             }
             mIsOpen_SATURATION = false;
+            Log.e(LOG_TAG, "mIsOpen_Saturation was true and now the Channel is closed");
+
+            //close the channel
             //TODO- MODIFICATO QUESTO, CAPIRE SE FUNZIONA CORRETTAMENTE
             try {
                 antChannelENVIRONMENTAL.close();
@@ -2630,7 +2632,7 @@ Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show
                 e.printStackTrace();
             }
             mIsOpen_ENVIRONMENTAL = false;
-            Log.e(LOG_TAG, "mIsOpen was true and now the Channel is closed");
+            Log.e(LOG_TAG, "mIsOpen_Environmental was true and now the Channel is closed");
         }
     }
 

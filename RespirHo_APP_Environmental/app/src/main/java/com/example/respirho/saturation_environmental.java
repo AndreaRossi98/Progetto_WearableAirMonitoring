@@ -275,7 +275,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
     byte[] payLoad8 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0xFF}; // payload to calibrate and do movements, when sensors leds are off send payload 4 and go on
     byte[] payLoad9 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0x80}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
 
-    byte[] payLoad99 = {0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, (byte) 0xF}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
+    byte[] payLoad99 = {0xF, 0xF, 0xF, 0xF, 0xF, 0xF, 0xF, (byte) 0xF}; // payload to wait
 
     public String string0 = "[00][00][00][00][00][00][00][00]";
     public String string1 = "[04][04][04][04][04][04][04]"; //message from Pulse Ox for check
@@ -831,8 +831,6 @@ battery_unit = 3;
                             //if the channel has been opened during initialization...
 
                             if (mIsOpen_SATURATION  && mIsOpen_ENVIRONMENTAL) {
-                                //String Message = antMessageParcel.getMessageContentString();
-                                Log.e(LOG_TAG, "MessageId" + MessageId);
                                 // Setting the data to be broadcast on the next channel period
 
                                 if( MessageId.equals("[00][01][03]")) {  //Canale Saturation

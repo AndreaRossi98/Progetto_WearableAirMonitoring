@@ -211,7 +211,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private boolean flag_logout = false;
     private boolean flag_closeapp = false;
     private boolean show_maps_flag = false;
-    private boolean flag_null_line = false;
+
 
     //flag for download
     public boolean flag_filetoosmall = false;
@@ -1221,8 +1221,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     gotonewrecording_timer=(Button) findViewById(R.id.gotonewrecording_timer);
                     gotonewrecording_timer.setOnClickListener(this);
 
-                    //showvaluesonmaps_timer = (Button) findViewById(R.id.show_values_on_maps_timer);
-                    //showvaluesonmaps_timer.setOnClickListener(this);
+                    showvaluesonmaps_timer = (Button) findViewById(R.id.show_values_on_maps_timer);
+                    showvaluesonmaps_timer.setOnClickListener(this);
 
                     goback_timer=(Button) findViewById(R.id.goback_timer);
                     goback_timer.setOnClickListener(this);
@@ -1247,7 +1247,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                     downloadfile_timer.setVisibility(View.GONE);
                     gotonewrecording_timer.setVisibility(View.GONE);
-                    //showvaluesonmaps_timer.setVisibility(View.GONE);
+                    showvaluesonmaps_timer.setVisibility(View.GONE);
 
                     status_timer.setVisibility(View.GONE);
                     timer_recording_filename.setVisibility(View.GONE);
@@ -1345,7 +1345,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
 
-                        //showvaluesonmaps_timer.setVisibility(View.VISIBLE);
+                        showvaluesonmaps_timer.setVisibility(View.VISIBLE);
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
                         inflated_displaydata.setVisibility(View.GONE);
@@ -1400,7 +1400,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                         downloadfile_timer.setVisibility(View.VISIBLE);
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
-                        //showvaluesonmaps_timer.setVisibility(View.VISIBLE);
+                        showvaluesonmaps_timer.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
@@ -1469,8 +1469,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     gotonewrecording_manual=(Button) findViewById(R.id.gotonewrecording_manual);
                     gotonewrecording_manual.setOnClickListener(this);
 
-                    //showvaluesonmaps_manual = (Button) findViewById(R.id.show_values_on_maps_manual);
-                    //showvaluesonmaps_manual.setOnClickListener(this);
+                    showvaluesonmaps_manual = (Button) findViewById(R.id.show_values_on_maps_manual);
+                    showvaluesonmaps_manual.setOnClickListener(this);
 
                     goback_manual=(Button) findViewById(R.id.goback_manual);
                     goback_manual.setOnClickListener(this);
@@ -1496,7 +1496,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     status_manual.setVisibility(View.GONE);
                     downloadfile_manual.setVisibility(View.GONE);
                     gotonewrecording_manual.setVisibility(View.GONE);
-                    //showvaluesonmaps_manual.setVisibility(View.GONE);
+                    showvaluesonmaps_manual.setVisibility(View.GONE);
 
                     manual_recording_filename.setVisibility(View.GONE);
 
@@ -1583,7 +1583,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                         downloadfile_manual.setVisibility(View.VISIBLE);
                         gotonewrecording_manual.setVisibility(View.VISIBLE);
-                        //showvaluesonmaps_manual.setVisibility(View.VISIBLE);
+                        showvaluesonmaps_manual.setVisibility(View.VISIBLE);
 
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
@@ -1635,7 +1635,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     //build dialog to choose acquisition from list          chiamato builders se no da errore
                     AlertDialog.Builder builders = new AlertDialog.Builder(this);
                     builders.setTitle("Choose acquisition");
-//estrarre le info necessarie     --> fattibile
+
                     builders.setItems(names, (dialog, which) -> {
                         List<String> dates = new ArrayList<>();
                         List<Double> lats = new ArrayList<>();
@@ -1653,6 +1653,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         }
+
                         reader = new BufferedReader(new InputStreamReader(streamer));
                         String line = null;
                         boolean compatible = false; //check if file is compatible and not empty
@@ -1660,7 +1661,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             line = reader.readLine(); //read header
 
                             if(line.equals("ID Patient: " + GlobalVariables.string_idpatient)) { //if header is correct
-//Toast.makeText(this, "ID PATIENT OK", Toast.LENGTH_SHORT).show();
+                                Log.e(LOG_TAG, "ID patient:" +  line);  //GlobalVariables.string_idpatient
                                 line = reader.readLine(); //read first row
                                 if (line != null) { //if file is not empty
                                     compatible = true;
@@ -1671,47 +1672,79 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
-                        while (line != null && flag_null_line == false) { //split csv lines and obtain values
+//salto le prime righe che non contengono dati da mostrare
+                        for (int i = 0; i < 4; i++ ){
                             try {
-                                //String[] attributes = line.split(",");
-//Toast.makeText(this, "line" + attributes, Toast.LENGTH_SHORT).show();
-//String [] newLine = line.split("]"); //ex: [01
-//Toast.makeText(this, "line" + newLine, Toast.LENGTH_SHORT).show();
-//String Lat = newLine[9].substring(10);
-//Toast.makeText(this, "lat" + Lat, Toast.LENGTH_SHORT).show();
-                                //float a = Float.compare();
-                                if(line.contains("06")) {    //per indicare che è il pacchetto di environmental monitor
-                                    Log.e(LOG_TAG, "linea:" +  line);
-
-                                    //per rimuovere le parentesi quadre dai valori salvati
-                                    //String [] newLine = line.split("]"); //ex: [01
-                                    //String Lat = newLine[9].substring(1);
-                                    //String Longit = newLine[10].substring(1);
-//Toast.makeText(this, "numero:" + Lat, Toast.LENGTH_SHORT).show();
-                                    lats.add(45.800);
-                                    lons.add(9.090);
-//latitudine = convertToInt(Lat);
-//longitudine = convertToInt(Longit);
-//Toast.makeText(this, "numero" + latitudine, Toast.LENGTH_SHORT).show();
-
-                                    //dates.add(attributes[0]);
-                                    //lats.add(Double.parseDouble(attributes[10]));
-                                    //lons.add(Double.parseDouble(attributes[11]));
-                                    //acts.add(attributes[3]);
-                                    //pms.add(Integer.valueOf(attributes[4]));
-                                    //co2s.add(Integer.valueOf(attributes[5]));
-                                    //no2s.add(Integer.valueOf(attributes[6]));
-                                }
-                                line = reader.readLine(); //read next row
-//Toast.makeText(this, "line" + line, Toast.LENGTH_SHORT).show();
+                                line = reader.readLine(); //read first row
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            if( line == null)
-                                flag_null_line = true;
                         }
-                        if(!compatible)
+//fino qua tutto ok
+//prendere le linee dal file per mostrare i dati
+/*                        while(line != null) {
+                            if(!compatible)
+                                Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
+                            else {
+                                try {
+                                    line = reader.readLine(); //read header
+//LAGGA                                    //if (line.contains("0"+"6"))    //indica dato environmental
+                                    Log.e(LOG_TAG, "LINEA:" + line);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+
+                                //create map with as many markers as acquisition points
+                                mapFragment = SupportMapFragment.newInstance();
+                                getSupportFragmentManager().beginTransaction().add(R.id.map_fragment, mapFragment).commit();
+                            }
+
+                        }*/
+
+int flag_map_fragment = 0;
+                        while (line != null ) { //split csv lines and obtain values
+                                try {
+                                    //leggo le linee
+                                    line = reader.readLine(); //read next row
+                                    Log.e(LOG_TAG, "LINEA:" + line);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+//String Lat = newLine[9].substring(10);
+//Toast.makeText(this, "lat" + Lat, Toast.LENGTH_SHORT).show();
+                                //float a = Float.compare();
+                                //if(line.contains("0"+"6")) {    //per indicare che è il pacchetto di environmental monitor
+                                    //Log.e(LOG_TAG, "linea:" +  line);
+                            if(!compatible)
+                                Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
+                            else
+                            {
+                                //create map with as many markers as acquisition points
+                                if(flag_map_fragment == 0) {
+                                    mapFragment = SupportMapFragment.newInstance();
+                                    getSupportFragmentManager().beginTransaction().add(R.id.map_fragment, mapFragment).commit();
+                                    flag_map_fragment = 1;
+                                }
+                                mapFragment.getMapAsync(googleMap -> {
+                                    //dates.size() da mettere al posto del 2 nel for
+                                    for (int i = 0; i < 3; i++) {
+                                        googleMap.addMarker(new MarkerOptions()
+                                                //.position(new LatLng(lats.get(i), lons.get(i)))
+                                                .position(new LatLng(i,i)) //latitudine, longitudine   lat, longi
+                                                //.title(dates.get(i))
+                                                .title("Prova")
+                                                //.snippet(acts.get(i) + ", PM2.5: " + pms.get(i) + ", CO2: " + co2s.get(i) + ", NO2: " + no2s.get(i)));
+                                                .snippet("Ancora da implementare"));
+
+                                    }
+                                    //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 12));
+                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(0, 0), 7));
+                                });
+                            }
+                        }
+
+
+/*                        if(!compatible)
                             Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
                         else
                         {
@@ -1735,11 +1768,10 @@ double longi = 9.09;
                                 //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 12));
                                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(0, 0), 7));
                             });
-                        }
+                        }*/
                     });
                     AlertDialog dialog = builders.create();
                     dialog.show();
-                    flag_null_line = false;
                     show_maps_flag = true;
                 }
                 break;

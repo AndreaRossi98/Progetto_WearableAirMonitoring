@@ -621,245 +621,264 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
 
                     //if ALL the units are connected, the next messages will be the recording data
                     if(connected1 && connected2 && connected3 && connected4){
+                        if (messageContentString_unit.equals("01") || messageContentString_unit.equals("02") || messageContentString_unit.equals("03")){
+                            Log.e(LOG_TAG, "Pacchetto IMUs ");
 
-                        //TODO- dummy messages for data loss - IT WORKSSSSS - find a less cpu solution
-                        //if recording started, look for data loss in each unit and eventually add a dummy message.
-                        //we check the unit of the previous message.
-                        //if it's different respect to the correct order, the units missing can be:
-                        // 1 --> we send a dummy message of the previous unit missing
-                        // 2 --> we send two dummy messages of the previous units missing
+                            //TODO- dummy messages for data loss - IT WORKSSSSS - find a less cpu solution
+                            //if recording started, look for data loss in each unit and eventually add a dummy message.
+                            //we check the unit of the previous message.
+                            //if it's different respect to the correct order, the units missing can be:
+                            // 1 --> we send a dummy message of the previous unit missing
+                            // 2 --> we send two dummy messages of the previous units missing
 
-                        //the first time we acces old_messageContentString is null, so we won't add any dummy messages
-                        //always initialize old_messageContentString as null
+                            //the first time we acces old_messageContentString is null, so we won't add any dummy messages
+                            //always initialize old_messageContentString as null
 
-                        if(old_messageContentString_unit!=null){
-                            //Log.e(LOG_TAG,"old_messageContentString_unit not null");
-                            if((messageContentString_unit.equals("01"))&&(!old_messageContentString_unit.equals("04"))){
-                                //Log.e(LOG_TAG,dummy_unit3);
-                                if(old_messageContentString_unit.equals("01")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
-                                    writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
+                            if(old_messageContentString_unit!=null){
+                                //Log.e(LOG_TAG,"old_messageContentString_unit not null");
+                                if((messageContentString_unit.equals("01"))&&(!old_messageContentString_unit.equals("04"))){
+                                    //Log.e(LOG_TAG,dummy_unit3);
+                                    if(old_messageContentString_unit.equals("01")){
+                                        //call the firebase class to upload data on firebase
+                                        WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                        writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
+                                        writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
 
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
-                                    writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
+                                        //call the file class to save data in a txt file
+                                        WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                        writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
+                                        writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
 
-                                }
-
-                                else if(old_messageContentString_unit.equals("02")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
-                                }
-
-
-                                //call the firebase class to upload data on firebase
-                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
-
-                                //call the file class to save data in a txt file
-                                WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
-                            }
-
-                            else if((messageContentString_unit.equals("02"))&&(!old_messageContentString_unit.equals("01"))){
-                                //Log.e(LOG_TAG,dummy_unit1);
-                                if(old_messageContentString_unit.equals("02")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
-                                    writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
-                                    writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
-                                }
-
-                                else if(old_messageContentString_unit.equals("03")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
-                                }
-
-                                //call the firebase class to upload data on firebase
-                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
-
-                                //call the file class to save data in a txt file
-                                WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
-                            }
-
-                            else if((messageContentString_unit.equals("03"))&&(!old_messageContentString_unit.equals("02"))){
-                                //Log.e(LOG_TAG,dummy_unit2);
-                                if(old_messageContentString_unit.equals("03")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
-                                    writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
-                                    writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
-                                }
-
-                                else if(old_messageContentString_unit.equals("04")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
-                                }
-
-                                //call the firebase class to upload data on firebase
-                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
-
-                                //call the file class to save data in a txt file
-                                WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
-                            }
-
-                            else if((messageContentString_unit.equals("04"))&&(!old_messageContentString_unit.equals("03"))){
-                                //Log.e(LOG_TAG,dummy_unit2);
-                                if(old_messageContentString_unit.equals("04")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
-                                    writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
-                                    writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
-                                }
-
-                                else if(old_messageContentString_unit.equals("01")){
-                                    //call the firebase class to upload data on firebase
-                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                    writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
-
-                                    //call the file class to save data in a txt file
-                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                    writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
-                                }
-
-                                //call the firebase class to upload data on firebase
-                                WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                                writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
-
-                                //call the file class to save data in a txt file
-                                WritingDataToFile writingDataToFile = new WritingDataToFile();
-                                writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
-                            }
-
-                        }
-                        //save the previous unit of the message to constantly check the order
-                        old_messageContentString_unit=messageContentString_unit;
-
-                        //TODO-END implement dummy messages for data loss
-
-                        //TODO- write the message to firebase and to file
-                        //write the messages
-                        //call the firebase class to upload data on firebase
-                        WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                        writingDataToFirebase.mainFirebase(msg+current,startrec_time);
-
-                        //call the file class to save data in a txt file
-                        WritingDataToFile writingDataToFile = new WritingDataToFile();
-                        writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
-
-                        fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
-
-                        //TODO - every now and then save the file on firebase for backup, later savings will over write the previous one
-                        //save the file each 1 MB size (around 10 minutes)
-                        long fileIntSizeBytes_backup=fileInt.length();
-                        long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
-
-                        if(fileIntSizeKyloBytes_backup>size_interval_backupfile && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
-                            //Log.e("backup","backup 1, size start: " + size_interval_backupfile);
-                            saveFileOnFirebase(fileInt);
-                            size_interval_backupfile=size_interval_backupfile+SIZE_INTERVAL_BACKUPFILE;
-                            //Log.e("backup","backup 1, size end: " + size_interval_backupfile);
-                        }
-
-                        //TODO- warning for low battery
-                        //get the second byte to find the battery hex value and remove the open square bracket
-                        String messageContentString_battery=messageContentString_split[1].substring(1); //ex: 5C
-                        float battery_unit=convertToBattery(messageContentString_battery);
-
-                        //demo line to force the value and check if the warning appears and the following if statement
-                        //battery_unit= (float) 1.0;
-
-                        //check battery value in volt
-                        //TIP: the value 81 in int represents the battery value of 2.2
-                        //Log.e("demo","Unit " + messageContentString_unit+" battery "+battery_unit);
-
-                        if((battery_unit<THRESHOLD_BATTERY)&&(battery_unit>0.1)){
-
-                            if(messageContentString_unit.equals("01")){
-                                dead_battery_unit1="1";
-                            }
-                            if(messageContentString_unit.equals("02")){
-                                dead_battery_unit2="2";
-                            }
-                            if(messageContentString_unit.equals("03")){
-                                dead_battery_unit3="3";
-                            }
-                            if(messageContentString_unit.equals("04")){
-                                dead_battery_unit4="4";
-                            }
-
-
-                            if(flag_battery){
-
-                                //to change the UI we have to put codes in the runOnUiThread
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        lowbattery_idpatient.setVisibility(View.VISIBLE);
-                                        checkmark_idpatient.setVisibility(View.VISIBLE);
                                     }
-                                });
-                                //so the warning is shown only once
-                                flag_battery=false;
-                            }
-                        }
-                        //else show the green checkmark
-                        else{
-                            //with this flag the visibility is set only once
-                            if(flag_battery){
 
-                                //to change the UI we have to put codes in the runOnUiThread
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        lowbattery_idpatient.setVisibility(View.GONE);
-                                        checkmark_idpatient.setVisibility(View.VISIBLE);
+                                    else if(old_messageContentString_unit.equals("02")){
+                                        //call the firebase class to upload data on firebase
+                                        WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                        writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
+
+                                        //call the file class to save data in a txt file
+                                        WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                        writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
                                     }
-                                });
-                                //so the warning is shown only once
-                                flag_battery=false;
-                            }
-                        }
-                        //TODO- end warning for low battery
 
-                    }else { //if the three units are NOT connected, check each one in the "switch on sensors" layout
+
+                                    //call the firebase class to upload data on firebase
+                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
+
+                                    //call the file class to save data in a txt file
+                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
+                                }
+
+                                else if((messageContentString_unit.equals("02"))&&(!old_messageContentString_unit.equals("01"))){
+                                    //Log.e(LOG_TAG,dummy_unit1);
+                                    if(old_messageContentString_unit.equals("02")){
+                                        //call the firebase class to upload data on firebase
+                                        WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                        writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
+                                        writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
+
+                                        //call the file class to save data in a txt file
+                                        WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                        writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
+                                        writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
+                                    }
+
+                                    else if(old_messageContentString_unit.equals("03")){
+                                        //call the firebase class to upload data on firebase
+                                        WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                        writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
+
+                                        //call the file class to save data in a txt file
+                                        WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                        writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
+                                    }
+
+                                    //call the firebase class to upload data on firebase
+                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
+
+                                    //call the file class to save data in a txt file
+                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
+                                }
+
+                                else if((messageContentString_unit.equals("03"))&&(!old_messageContentString_unit.equals("02"))){
+                                    //Log.e(LOG_TAG,dummy_unit2);
+                                    if(old_messageContentString_unit.equals("03")){
+                                        //call the firebase class to upload data on firebase
+                                        WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                        writingDataToFirebase.mainFirebase(dummy_unit4+current,startrec_time);
+                                        writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
+
+                                        //call the file class to save data in a txt file
+                                        WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                        writingDataToFile.mainFile(dummy_unit4+current, current, day, intPath,extPath);
+                                        writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
+                                    }
+
+                                    else if(old_messageContentString_unit.equals("04")){
+                                        //call the firebase class to upload data on firebase
+                                        WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                        writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
+
+                                        //call the file class to save data in a txt file
+                                        WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                        writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
+                                    }
+
+                                    //call the firebase class to upload data on firebase
+                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
+
+                                    //call the file class to save data in a txt file
+                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
+                                }
+
+                                else if((messageContentString_unit.equals("04"))&&(!old_messageContentString_unit.equals("03"))){
+                                    //Log.e(LOG_TAG,dummy_unit2);
+                                    if(old_messageContentString_unit.equals("04")){
+                                        //call the firebase class to upload data on firebase
+                                        WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                        writingDataToFirebase.mainFirebase(dummy_unit1+current,startrec_time);
+                                        writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
+
+                                        //call the file class to save data in a txt file
+                                        WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                        writingDataToFile.mainFile(dummy_unit1+current, current, day, intPath,extPath);
+                                        writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
+                                    }
+
+                                    else if(old_messageContentString_unit.equals("01")){
+                                        //call the firebase class to upload data on firebase
+                                        WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                        writingDataToFirebase.mainFirebase(dummy_unit2+current,startrec_time);
+
+                                        //call the file class to save data in a txt file
+                                        WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                        writingDataToFile.mainFile(dummy_unit2+current, current, day, intPath,extPath);
+                                    }
+
+                                    //call the firebase class to upload data on firebase
+                                    WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(dummy_unit3+current,startrec_time);
+
+                                    //call the file class to save data in a txt file
+                                    WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(dummy_unit3+current, current, day, intPath,extPath);
+                                }
+
+                            }
+                            //save the previous unit of the message to constantly check the order
+                            old_messageContentString_unit=messageContentString_unit;
+
+                            //TODO-END implement dummy messages for data loss
+
+                            //TODO- write the message to firebase and to file
+                            //write the messages
+                            //call the firebase class to upload data on firebase
+                            WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                            writingDataToFirebase.mainFirebase(msg+current,startrec_time);
+
+                            //call the file class to save data in a txt file
+                            WritingDataToFile writingDataToFile = new WritingDataToFile();
+                            writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
+
+                            fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+
+                            //TODO - every now and then save the file on firebase for backup, later savings will over write the previous one
+                            //save the file each 1 MB size (around 10 minutes)
+                            long fileIntSizeBytes_backup=fileInt.length();
+                            long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
+
+                            if(fileIntSizeKyloBytes_backup>size_interval_backupfile && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
+                                //Log.e("backup","backup 1, size start: " + size_interval_backupfile);
+                                saveFileOnFirebase(fileInt);
+                                size_interval_backupfile=size_interval_backupfile+SIZE_INTERVAL_BACKUPFILE;
+                                //Log.e("backup","backup 1, size end: " + size_interval_backupfile);
+                            }
+
+                            //TODO- warning for low battery
+                            //get the second byte to find the battery hex value and remove the open square bracket
+                            String messageContentString_battery=messageContentString_split[1].substring(1); //ex: 5C
+                            float battery_unit=convertToBattery(messageContentString_battery);
+
+                            //demo line to force the value and check if the warning appears and the following if statement
+                            //battery_unit= (float) 1.0;
+
+                            //check battery value in volt
+                            //TIP: the value 81 in int represents the battery value of 2.2
+                            //Log.e("demo","Unit " + messageContentString_unit+" battery "+battery_unit);
+
+                            if((battery_unit<THRESHOLD_BATTERY)&&(battery_unit>0.1)){
+
+                                if(messageContentString_unit.equals("01")){
+                                    dead_battery_unit1="1";
+                                }
+                                if(messageContentString_unit.equals("02")){
+                                    dead_battery_unit2="2";
+                                }
+                                if(messageContentString_unit.equals("03")){
+                                    dead_battery_unit3="3";
+                                }
+                                if(messageContentString_unit.equals("04")){
+                                    dead_battery_unit4="4";
+                                }
+
+
+                                if(flag_battery){
+
+                                    //to change the UI we have to put codes in the runOnUiThread
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            lowbattery_idpatient.setVisibility(View.VISIBLE);
+                                            checkmark_idpatient.setVisibility(View.VISIBLE);
+                                        }
+                                    });
+                                    //so the warning is shown only once
+                                    flag_battery=false;
+                                }
+                            }
+                            //else show the green checkmark
+                            else{
+                                //with this flag the visibility is set only once
+                                if(flag_battery){
+
+                                    //to change the UI we have to put codes in the runOnUiThread
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            lowbattery_idpatient.setVisibility(View.GONE);
+                                            checkmark_idpatient.setVisibility(View.VISIBLE);
+                                        }
+                                    });
+                                    //so the warning is shown only once
+                                    flag_battery=false;
+                                }
+                            }
+                            //TODO- end warning for low battery
+
+                        }
+                        else {
+                            Log.e(LOG_TAG, "Pacchetto Environmental");
+
+                            //write the messages
+                            //call the firebase class to upload data on firebase
+                            WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                            writingDataToFirebase.mainFirebase(msg+current,startrec_time);
+
+                            //call the file class to save data in a txt file
+                            WritingDataToFile writingDataToFile = new WritingDataToFile();
+                            writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
+
+                            fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+
+                        }
+                    }
+                    else { //if the four units are NOT connected, check each one in the "switch on sensors" layout
 
                         Log.e(LOG_TAG, "CHECK Rx: " + messageContentString); //hex
 
@@ -921,7 +940,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                             });
                         }
 
-                        if(messageContentString.contains(string6)){
+                        if(messageContentString.contains(string6)){ //ENVIRONMENTAL MONITOR
                             connected4 = true;
                             Log.e(LOG_TAG,"6 is:" + connected4);
                             //to change the UI we have to put codes in the runOnUiThread
@@ -945,9 +964,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                             });
                         }
 
-
                     }
-
                     break;
 
                 case CHANNEL_ID:
@@ -1127,35 +1144,6 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                                     } catch (RemoteException e) {
                                         e.printStackTrace();
                                     }
-/*      NON DOVREBBE SERVIRE, LO GESTISCO NELLA PARTE DELL'IMUs
-
-                                    //CONTINUOUS ACQUISITION
-                                    //after synchronization (START), call periodically one after the other
-                                    if(state==START || state==RECONNECTION)
-                                    {
-                                        state=CALL1;
-                                        startWatchdogTimer(UNIT1);
-                                        checkWatchdogTimer();
-                                    }
-                                    else if(state == CALL1)
-                                    {
-                                        state = CALL2;
-                                        startWatchdogTimer(UNIT2);
-                                        checkWatchdogTimer();
-                                    }
-                                    else if(state == CALL2)
-                                    {
-                                        state = CALL3;
-                                        startWatchdogTimer(UNIT3);
-                                        checkWatchdogTimer();
-                                    }
-                                    else if (state == CALL3)
-                                    {
-                                        state = CALL1;
-                                        startWatchdogTimer(UNIT1);
-                                        checkWatchdogTimer();
-                                    }
-                                    */
                                 }
                             }
                             else{

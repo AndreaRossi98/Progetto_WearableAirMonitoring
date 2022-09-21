@@ -605,7 +605,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                             + messageContentString.substring(20,24) + ","
                             + messageContentString.substring(24,28) + ","
                             + messageContentString.substring(28,32) + ",";
-                    
+
                     Log.e(LOG_TAG,"Stringa:" + msg);
 
                     //split the bytes

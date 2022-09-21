@@ -652,7 +652,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 //gestione ricezione parziale dei pacchetti
                                 if (count_P1 == 0){ //non ho ricevuto il pacchetto P1
                                     messaggio_salvato = 6 + ";" + numero_pacchetto + ";"  + //per indicare pacchetto di environmental monitor
-                                            "-" + ";" + "-" + ";" + "-" + ";";
+                                            "0" + ";" + "0" + ";" + "0" + ";";
                                 }
                                 else{
                                     messaggio_salvato = 6 + ";" +  numero_pacchetto + ";"  + //per indicare pacchetto di environmental monitor
@@ -660,7 +660,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 }
                                 if(count_P2 == 0){
                                     messaggio_salvato = messaggio_salvato +
-                                            "-" + ";" + "-" + ";" + "-" + ";" + "-" + ";";
+                                            "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";";
                                 }
                                 else{
                                     messaggio_salvato = messaggio_salvato +
@@ -668,7 +668,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 }
                                 if(count_P3 == 0){
                                     messaggio_salvato = messaggio_salvato +
-                                            "-" + ";" + "-" + ";" + "-" + ";" + "-" + ";";
+                                            "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";";
                                 }
                                 else{
                                     messaggio_salvato = messaggio_salvato +
@@ -1634,13 +1634,21 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     builders.setTitle("Choose acquisition");
 
                     builders.setItems(names, (dialog, which) -> {
-                        List<String> dates = new ArrayList<>();
+
                         List<Double> lats = new ArrayList<>();
                         List<Double> lons = new ArrayList<>();
-                        List<String> acts = new ArrayList<>();
-                        List<Integer> pms = new ArrayList<>();
-                        List<Integer> co2s = new ArrayList<>();
-                        List<Integer> no2s = new ArrayList<>();
+                        List<Double> temps = new ArrayList<>();
+                        List<Double> humids = new ArrayList<>();
+                        List<Double> presss = new ArrayList<>();
+                        List<Integer> CO2s = new ArrayList<>();
+                        List<Integer> VOCs = new ArrayList<>();
+                        List<Double> COs = new ArrayList<>();
+                        List<Double> NO2s = new ArrayList<>();
+                        List<Double> PM1s = new ArrayList<>();
+                        List<Double> PM2p5s = new ArrayList<>();
+                        List<Double> PM10s = new ArrayList<>();
+                        List<String> orarios = new ArrayList<>();
+
 
                         BufferedReader reader;
                         final File file = new File(String.valueOf(acqs[which]));
@@ -1677,99 +1685,75 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 e.printStackTrace();
                             }
                         }
-//fino qua tutto ok
-//prendere le linee dal file per mostrare i dati
-/*                        while(line != null) {
-                            if(!compatible)
-                                Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
-                            else {
-                                try {
-                                    line = reader.readLine(); //read header
-//LAGGA                                    //if (line.contains("0"+"6"))    //indica dato environmental
-                                    Log.e(LOG_TAG, "LINEA:" + line);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
 
+//prendere le linee dal file per mostrare i dati
+                        while (line != null ) { //split csv lines and obtain values
+                            try {
+                                //leggo le linee
+                                line = reader.readLine(); //read next row
+                                Log.e(LOG_TAG, "LINEA:" + line);
+                                String[] attributes;
+                                //String linea = line;
+                                if(line != null){
+                                    attributes = line.split(";");
+
+                                    temps.add(Double.parseDouble(attributes[2]));
+                                    humids.add(Double.parseDouble(attributes[3]));
+                                    presss.add(Double.parseDouble(attributes[4]));
+                                    VOCs.add(Integer.valueOf(attributes[5]));
+                                    CO2s.add(Integer.valueOf(attributes[6]));
+                                    NO2s.add(Double.parseDouble(attributes[7]));
+                                    COs.add(Double.parseDouble(attributes[8]));
+                                    PM1s.add(Double.parseDouble(attributes[9]));
+                                    PM2p5s.add(Double.parseDouble(attributes[10]));
+                                    PM10s.add(Double.parseDouble(attributes[11]));
+                                    lats.add(Double.parseDouble(attributes[17]));
+                                    lons.add(Double.parseDouble(attributes[18]));
+                                    orarios.add(attributes[16]);
+
+                                    //for(int i = 0; i < attributes.length;i++) {
+                                      //  Log.e(LOG_TAG, i + "attribute:" + attributes[i]);
+                                    //}
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            if(!compatible) {
+                                Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
+                                Log.e(LOG_TAG, "INCOMPATIBLE");
+                            }
+                            else
+                            {
+                                Log.e(LOG_TAG, "creazione Maps");
                                 //create map with as many markers as acquisition points
                                 mapFragment = SupportMapFragment.newInstance();
                                 getSupportFragmentManager().beginTransaction().add(R.id.map_fragment, mapFragment).commit();
-                            }
+                                Log.e(LOG_TAG, "creazione Marker");
 
-                        }*/
-
-int flag_map_fragment = 0;
-                        while (line != null ) { //split csv lines and obtain values
-                                try {
-                                    //leggo le linee
-                                    line = reader.readLine(); //read next row
-                                    Log.e(LOG_TAG, "LINEA:" + line);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-//String Lat = newLine[9].substring(10);
-//Toast.makeText(this, "lat" + Lat, Toast.LENGTH_SHORT).show();
-                                //float a = Float.compare();
-                                //if(line.contains("0"+"6")) {    //per indicare che è il pacchetto di environmental monitor
-                                    //Log.e(LOG_TAG, "linea:" +  line);
-                            if(!compatible)
-                                Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
-                            else
-                            {
-                                //create map with as many markers as acquisition points
-                                if(flag_map_fragment == 0) {
-                                    mapFragment = SupportMapFragment.newInstance();
-                                    getSupportFragmentManager().beginTransaction().add(R.id.map_fragment, mapFragment).commit();
-                                    flag_map_fragment = 1;
-                                }
+                                //lagga qui
                                 mapFragment.getMapAsync(googleMap -> {
-                                    //dates.size() da mettere al posto del 2 nel for
-                                    for (int i = 0; i < 3; i++) {
+                                    for (int i = 0; i < temps.size(); i++) {        //temps o un altro non cambia niente
+                                        Log.e(LOG_TAG, "marker");
                                         googleMap.addMarker(new MarkerOptions()
-                                                //.position(new LatLng(lats.get(i), lons.get(i)))
-                                                .position(new LatLng(i,i)) //latitudine, longitudine   lat, longi
-                                                //.title(dates.get(i))
-                                                .title("Prova")
-                                                //.snippet(acts.get(i) + ", PM2.5: " + pms.get(i) + ", CO2: " + co2s.get(i) + ", NO2: " + no2s.get(i)));
-                                                .snippet("Ancora da implementare"));
+                                                .position(new LatLng(lats.get(i), lons.get(i))) //latitudine, longitudine
+                                                .title(i + ")" + orarios.get(i))
+                                                //.snippet("T[°C]: "+ temps.get(i)+" RH[%]: "+ humids.get(i)+ " P[Pa]: "+ presss.get(i)+
+                                                //        " VOC[ppm]: "+ VOCs.get(i)+" CO2[ppm]: "+ CO2s.get(i) +" NO2[ppm]: "+ NO2s.get(i) + " CO[ppm]: "+ COs.get(i)+
+                                                //        " PM1.0[μg/m³]: "+ PM1s.get(i)+ " PM2.5[μg/m³]: "+ PM2p5s.get(i) + " PM10[μg/m³]: "+ PM10s.get(i)));
+                                                .snippet(" VOC[ppm]: "+ VOCs.get(i)+", CO2[ppm]: "+ CO2s.get(i) + ", PM2.5[μg/m³]: "+ PM2p5s.get(i) + ", PM10[μg/m³]: "+ PM10s.get(i)));
 
                                     }
-                                    //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 12));
-                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(0, 0), 7));
+                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(4), lons.get(4)), 12));
                                 });
+
                             }
                         }
-
-
-/*                        if(!compatible)
-                            Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
-                        else
-                        {
-                            //create map with as many markers as acquisition points
-                            mapFragment = SupportMapFragment.newInstance();
-                            getSupportFragmentManager().beginTransaction().add(R.id.map_fragment, mapFragment).commit();
-double lat = 45.8;
-double longi = 9.09;
-                            mapFragment.getMapAsync(googleMap -> {
-                                //dates.size() da mettere al posto del 2 nel for
-                                for (int i = 0; i < 3; i++) {
-                                    googleMap.addMarker(new MarkerOptions()
-                                            //.position(new LatLng(lats.get(i), lons.get(i)))
-                                            .position(new LatLng(i,i)) //latitudine, longitudine   lat, longi
-                                            //.title(dates.get(i))
-                                            .title("Prova")
-                                            //.snippet(acts.get(i) + ", PM2.5: " + pms.get(i) + ", CO2: " + co2s.get(i) + ", NO2: " + no2s.get(i)));
-                                            .snippet("Ancora da implementare"));
-
-                                }
-                                //googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 12));
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(0, 0), 7));
-                            });
-                        }*/
                     });
                     AlertDialog dialog = builders.create();
                     dialog.show();
                     show_maps_flag = true;
+
                 }
                 break;
 
@@ -2723,6 +2707,8 @@ double longi = 9.09;
     if(show_maps_flag == true) {
         getSupportFragmentManager().beginTransaction().remove(mapFragment).commit();
         show_maps_flag = false;
+        //Toast.makeText(this, "CHIUDI MAPS.", Toast.LENGTH_SHORT).show();
+
     }
     else {
         if (state == QUIT_RECORDING) {

@@ -268,6 +268,54 @@ printf("\n");
                         //ant_send(4);                           
                     }
 
+                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x01 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x01)
+                    { //connesso a master, invia dati
+                        
+                                   
+                        printf("IMU 1 connesso OK\n");
+                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
+                        ant_send(1);                           
+                    }
+                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x01 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x00)
+                    { //connesso a master, invia dati
+                                             
+                        printf("IMU1 dati\n");
+                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
+                        ant_send(1);                           
+                    }
+
+                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x02 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x02)
+                    { //connesso a master, invia dati
+                        
+                                   
+                        printf("IMU 2 connesso\n");
+                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
+                        ant_send(2);                           
+                    }
+                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x02 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x00)
+                    { //connesso a master, invia dati
+                                             
+                        printf("IMU2 dati\n");
+                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
+                        ant_send(2);                           
+                    }
+
+                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x01] == 0x03 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x03)
+                    { //connesso a master, invia dati
+                        
+                                   
+                        printf("IMU 3 connesso\n");
+                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
+                        ant_send(3);                           
+                    }
+                    if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x03 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x03] == 0x00)
+                    { //connesso a master, invia dati
+                                             
+                        printf("IMU3 dati\n");
+                        //err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr);
+                        ant_send(3);                           
+                    }
+
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x00 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x07] == 0x80 )
                     { 	//ferma l'acquisizione																				
                         sd_ant_pending_transmit_clear (BROADCAST_CHANNEL_NUMBER, NULL); //svuota il buffer, utile per una seconda acquisizione

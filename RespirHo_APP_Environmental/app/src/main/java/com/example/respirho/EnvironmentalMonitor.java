@@ -1712,13 +1712,13 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     orarios.add(attributes[16]);
 
                                     //for(int i = 0; i < attributes.length;i++) {
-                                      //  Log.e(LOG_TAG, i + "attribute:" + attributes[i]);
+                                    //  Log.e(LOG_TAG, i + "attribute:" + attributes[i]);
                                     //}
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-
+                        }
                             if(!compatible) {
                                 Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
                                 Log.e(LOG_TAG, "INCOMPATIBLE");
@@ -1733,7 +1733,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                                 //lagga qui
                                 mapFragment.getMapAsync(googleMap -> {
-                                    for (int i = 0; i < temps.size(); i++) {        //temps o un altro non cambia niente
+                                    for (int i = 2; i < temps.size(); i++) {        //temps o un altro non cambia niente
                                         Log.e(LOG_TAG, "marker");
                                         googleMap.addMarker(new MarkerOptions()
                                                 .position(new LatLng(lats.get(i), lons.get(i))) //latitudine, longitudine
@@ -1741,14 +1741,14 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                                 //.snippet("T[°C]: "+ temps.get(i)+" RH[%]: "+ humids.get(i)+ " P[Pa]: "+ presss.get(i)+
                                                 //        " VOC[ppm]: "+ VOCs.get(i)+" CO2[ppm]: "+ CO2s.get(i) +" NO2[ppm]: "+ NO2s.get(i) + " CO[ppm]: "+ COs.get(i)+
                                                 //        " PM1.0[μg/m³]: "+ PM1s.get(i)+ " PM2.5[μg/m³]: "+ PM2p5s.get(i) + " PM10[μg/m³]: "+ PM10s.get(i)));
-                                                .snippet(" VOC[ppm]: "+ VOCs.get(i)+", CO2[ppm]: "+ CO2s.get(i) + ", PM2.5[μg/m³]: "+ PM2p5s.get(i) + ", PM10[μg/m³]: "+ PM10s.get(i)));
+                                                .snippet(" VOC[ppm]: "+ VOCs.get(i)+", CO2[ppm]: "+ CO2s.get(i) + ", PM2.5[ug/m3]: "+ PM2p5s.get(i) + ", PM10[ug/m3]: "+ PM10s.get(i)));
 
                                     }
                                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(4), lons.get(4)), 12));
                                 });
 
                             }
-                        }
+
                     });
                     AlertDialog dialog = builders.create();
                     dialog.show();
@@ -2704,51 +2704,51 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     @Override
     public void onBackPressed() {
         //manage back button in some steps of the recording to ensure a safe quit of the recording
-    if(show_maps_flag == true) {
-        getSupportFragmentManager().beginTransaction().remove(mapFragment).commit();
-        show_maps_flag = false;
-        //Toast.makeText(this, "CHIUDI MAPS.", Toast.LENGTH_SHORT).show();
+        if(show_maps_flag == true) {
+            getSupportFragmentManager().beginTransaction().remove(mapFragment).commit();
+            show_maps_flag = false;
+            //Toast.makeText(this, "CHIUDI MAPS.", Toast.LENGTH_SHORT).show();
 
-    }
-    else {
-        if (state == QUIT_RECORDING) {
-            state = SYNCHRONIZATION_RESUME;
-            super.onBackPressed();
-            return;
         }
-
-        //initialize alert dialog
-        AlertDialog.Builder builder = new AlertDialog.Builder(EnvironmentalMonitor.this);
-        //set title
-        builder.setTitle("End recording");
-        //set message
-        builder.setMessage("Are you sure you want to end recording?\n\nGoing back you have to initialize again communication and sensors\n\nIf YES, switch OFF the sensors.");
-        //Positive yes button
-        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //stop the channel, so in case it saves fileInt on Firebase
-                antStop();
-                //close the ANT channel
-                antClose();
-
-                //go to patient data layout
-                state = QUIT_RECORDING;
-                //call again the onBackPressed() and in this way it enters in the previous if condition
-                onBackPressed();
+        else {
+            if (state == QUIT_RECORDING) {
+                state = SYNCHRONIZATION_RESUME;
+                super.onBackPressed();
+                return;
             }
-        });
-        //negative no button
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //dismiss dialog
-                dialog.dismiss();
-            }
-        });
-        //show dialog
-        builder.show();
-    }
+
+            //initialize alert dialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(EnvironmentalMonitor.this);
+            //set title
+            builder.setTitle("End recording");
+            //set message
+            builder.setMessage("Are you sure you want to end recording?\n\nGoing back you have to initialize again communication and sensors\n\nIf YES, switch OFF the sensors.");
+            //Positive yes button
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //stop the channel, so in case it saves fileInt on Firebase
+                    antStop();
+                    //close the ANT channel
+                    antClose();
+
+                    //go to patient data layout
+                    state = QUIT_RECORDING;
+                    //call again the onBackPressed() and in this way it enters in the previous if condition
+                    onBackPressed();
+                }
+            });
+            //negative no button
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    //dismiss dialog
+                    dialog.dismiss();
+                }
+            });
+            //show dialog
+            builder.show();
+        }
     }
 }
 

@@ -1741,7 +1741,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                                 //.snippet("T[°C]: "+ temps.get(i)+" RH[%]: "+ humids.get(i)+ " P[Pa]: "+ presss.get(i)+
                                                 //        " VOC[ppm]: "+ VOCs.get(i)+" CO2[ppm]: "+ CO2s.get(i) +" NO2[ppm]: "+ NO2s.get(i) + " CO[ppm]: "+ COs.get(i)+
                                                 //        " PM1.0[μg/m³]: "+ PM1s.get(i)+ " PM2.5[μg/m³]: "+ PM2p5s.get(i) + " PM10[μg/m³]: "+ PM10s.get(i)));
-                                                .snippet(" VOC[ppm]: "+ VOCs.get(i)+", CO2[ppm]: "+ CO2s.get(i) + ", PM2.5[ug/m3]: "+ PM2p5s.get(i) + ", PM10[ug/m3]: "+ PM10s.get(i)));
+                                                .snippet(" VOC[ppm]: "+ VOCs.get(i)+", CO2[ppm]: "+ CO2s.get(i) + ", PM2.5[μg/m3]: "+ PM2p5s.get(i) + ", PM10[μg/m3]: "+ PM10s.get(i)));
 
                                     }
                                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(4), lons.get(4)), 12));

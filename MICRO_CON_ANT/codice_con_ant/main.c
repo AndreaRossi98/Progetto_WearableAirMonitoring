@@ -446,7 +446,7 @@ int main(void)
 printf("inizio\n"); 
 
     nrf_gpio_cfg_output(LED);
-    nrf_gpio_pin_set(LED);
+    nrf_gpio_pin_set(LED);          
  
     nrf_gpio_cfg_output(bjt);
     //nrf_gpio_pin_set(bjt);    //cosi funziona
@@ -501,10 +501,6 @@ printf("Sensori correttamente inizializzati\n\n");
      * Pulizia ventola ad ogni accensione 
      */
 
-
-//valore di prova per simulare valori inviati
-//da eliminare poi
- uint8_t valore_prova = 0;
 
     // Main loop.
     for (;;)

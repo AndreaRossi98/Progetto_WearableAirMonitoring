@@ -1711,9 +1711,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     lons.add(Double.parseDouble(attributes[18]));
                                     orarios.add(attributes[16]);
 
-                                    //for(int i = 0; i < attributes.length;i++) {
-                                    //  Log.e(LOG_TAG, i + "attribute:" + attributes[i]);
-                                    //}
+                                    /*for(int i = 0; i < attributes.length;i++) {
+                                      Log.e(LOG_TAG, i + "attribute:" + attributes[i]);
+                                    }*/
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -1733,7 +1733,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                                 //lagga qui
                                 mapFragment.getMapAsync(googleMap -> {
-                                    for (int i = 2; i < temps.size(); i++) {        //temps o un altro non cambia niente
+                                    for (int i = 1; i < temps.size(); i++) {        //temps o un altro non cambia niente
                                         Log.e(LOG_TAG, "marker");
                                         googleMap.addMarker(new MarkerOptions()
                                                 .position(new LatLng(lats.get(i), lons.get(i))) //latitudine, longitudine

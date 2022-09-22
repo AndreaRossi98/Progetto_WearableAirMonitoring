@@ -882,7 +882,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
 
                         Log.e(LOG_TAG, "CHECK Rx: " + messageContentString); //hex
 
-                        if(messageContentString.contains(string1)){
+                        if(messageContentString.contains(string1)   && connected1 == false){
                             connected1 = true;
                             //GlobalVariables.flag_connected1=true;
                             Log.e(LOG_TAG,"1 is:" + connected1);
@@ -902,7 +902,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                             });
                         }
 
-                        if(messageContentString.contains(string2)){
+                        if(messageContentString.contains(string2)   && connected1 == true){
                             connected2 = true;
                             Log.e(LOG_TAG,"2 is:" + connected2);
                             state=CONNECT3;
@@ -972,10 +972,10 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                     break;
 
                 case CHANNEL_EVENT:
-                    Log.e(LOG_TAG, "antMessageParcel" + antMessageParcel);
                     String MessageId = antMessageParcel.getMessageContentString();
                     Log.e(LOG_TAG, "MessageId" + MessageId);
                     ChannelEventMessage eventMessage = new ChannelEventMessage(antMessageParcel);
+
                     switch (eventMessage.getEventCode()) {
                         case RX_SEARCH_TIMEOUT:
                             break;
@@ -990,14 +990,17 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                                     Log.e(LOG_TAG, "IMUs");
                                     if(state == CONNECT1){
                                         payLoad_IMUs = payLoad1;
+                                        Log.e(LOG_TAG, "CONNECT1");
                                     }
 
                                     if(state==CONNECT2) {
                                         payLoad_IMUs = payLoad2;
+                                        Log.e(LOG_TAG, "CONNECT2");
                                     }
 
                                     if(state==CONNECT3) {
                                         payLoad_IMUs = payLoad3;
+                                        Log.e(LOG_TAG, "CONNECT3");
                                     }
 
                                     if(state==CONNECT4){    //connect environmental in the other channel

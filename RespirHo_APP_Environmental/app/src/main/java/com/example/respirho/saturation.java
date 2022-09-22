@@ -197,7 +197,7 @@ public class saturation extends AppCompatActivity implements View.OnClickListene
     public final String LOG_TAG = saturation.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_SATURATION = 32768; // 3277; 10 Hz
+    private static final int USER_PERIOD_SATURATION = 819;      //32768; // 3277; 10 Hz
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound = false;
     private AntService mAntRadioService = null;

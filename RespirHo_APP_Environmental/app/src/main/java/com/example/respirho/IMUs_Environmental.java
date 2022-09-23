@@ -1147,6 +1147,8 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                                     } catch (RemoteException e) {
                                         e.printStackTrace();
                                     }
+
+                                    //qua non metto variazione degli stati perchè non serve
                                 }
                             }
                             else{

@@ -652,9 +652,20 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
 
                         }
-                        else if(messageContentString_unit.equals("06")){
-                            //pacchetto di ricevuto per collegare il device, non serve salvarlo
-                            //di regola non serve questo caso, ma meglio lasicarlo per evitare pacchetti in ritardo
+                        else if(messageContentString_unit.equals("06") || messageContentString_unit.equals("06")){
+                            //pacchetti in ritardo che arrivano
+                            Log.e(LOG_TAG, "Pacchetto ritardatario"); //hex
+                            //write the messages
+                            //call the firebase class to upload data on firebase
+                            //WritingDataToFirebase writingDataToFirebase = new WritingDataToFirebase();
+                            writingDataToFirebase.mainFirebase(msg + current, startrec_time);
+
+                            //call the file class to save data in a txt file
+                            //WritingDataToFile writingDataToFile = new WritingDataToFile();
+                            writingDataToFile.mainFile(msg + current, current, day, intPath, extPath);
+
+                            fileInt = writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+
                         }
                         else{   //CASO DI ENVIRONMENTAL MONITOR, GESTIONE DEI PACCHETTI
 
@@ -709,7 +720,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                     //gestione ricezione parziale dei pacchetti
                                     if (count_P1 == 0){ //non ho ricevuto il pacchetto P1
                                         messaggio_salvato = 6 + ";" + numero_pacchetto + ";"  + //per indicare pacchetto di environmental monitor
-                                                "-" + ";" + "-" + ";" + "-" + ";";
+                                                "0" + ";" + "0" + ";" + "0" + ";";
                                     }
                                     else{
                                         messaggio_salvato = 6 + ";" +  numero_pacchetto + ";"  + //per indicare pacchetto di environmental monitor
@@ -717,7 +728,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                     }
                                     if(count_P2 == 0){
                                         messaggio_salvato = messaggio_salvato +
-                                                "-" + ";" + "-" + ";" + "-" + ";" + "-" + ";";
+                                                "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";";
                                     }
                                     else{
                                         messaggio_salvato = messaggio_salvato +
@@ -725,7 +736,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                     }
                                     if(count_P3 == 0){
                                         messaggio_salvato = messaggio_salvato +
-                                                "-" + ";" + "-" + ";" + "-" + ";" + "-" + ";";
+                                                "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";";
                                     }
                                     else{
                                         messaggio_salvato = messaggio_salvato +
@@ -970,8 +981,7 @@ battery_unit = 3;
                             resetWatchdogTimer(1);
                             Log.e(LOG_TAG,"Environmental Monitor is connected:" + connected2);
                             //Toast.makeText(getApplicationContext(), "Connesso Environmental", Toast.LENGTH_LONG).show();
-//TODO-- QUESTA RIGA NON DOVREBBE SERVIRE
-// state=START;
+
                             //to change the UI we have to put codes in the runOnUiThread
                             runOnUiThread(new Runnable() {
 

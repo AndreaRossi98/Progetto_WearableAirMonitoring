@@ -323,6 +323,20 @@ printf("\n");
                               }
 
                               pacchetto_P++;
+                              
+
+                              if (flag_misurazioni == 2 && pacchetto_P == 4)
+                              {//aggiorno pacchetti da inviare
+                                  for (int i = 0; i < 8 ; i++)
+                                      {
+                                          pacchetto_1_inviare[i] = pacchetto_1[i];
+                                          pacchetto_2_inviare[i] = pacchetto_2[i];
+                                          pacchetto_3_inviare[i] = pacchetto_3[i];
+                                      }  
+                                  flag_misurazioni = 0;
+                                  printf("Aggiorno pacchetti\n");
+
+                              }
 
                               if (pacchetto_P == 4)
                                   pacchetto_P = 1;
@@ -336,7 +350,12 @@ printf("\n");
                         pacchetto_P = 0;
                         flag_misurazioni = 0;
                         flag_dati_pronti = 0;
-
+                        for (int i = 0; i < 8 ; i++)
+                            {
+                                pacchetto_1_inviare[i] = 0;
+                                pacchetto_2_inviare[i] = 0;
+                                pacchetto_3_inviare[i] = 0;
+                            } 
                     }
                        
                 }
@@ -599,16 +618,16 @@ flag_dati_pronti = 1;
           {
             numero_pacchetto = 1;
           }
-printf("Numero: %d", numero_pacchetto);
+printf("Numero: %d\n", numero_pacchetto);
           
-              for (int i = 0; i < 8 ; i++)
+              /*for (int i = 0; i < 8 ; i++)
                   {
                       pacchetto_1_inviare[i] = pacchetto_1[i];
                       pacchetto_2_inviare[i] = pacchetto_2[i];
                       pacchetto_3_inviare[i] = pacchetto_3[i];
                   }  
               flag_misurazioni = 0;
-              
+              */
 
           }
         nrf_pwr_mgmt_run();

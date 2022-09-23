@@ -1712,17 +1712,17 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 //String linea = line;
                                 if(line != null){
                                     attributes = line.split(";");
-
-                                    temps.add(Double.parseDouble(attributes[2]));
-                                    humids.add(Double.parseDouble(attributes[3]));
-                                    presss.add(Double.parseDouble(attributes[4]));
+                                    //tolti perchè non li mostro a schermo
+                                    //temps.add(Double.parseDouble(attributes[2]));
+                                    //humids.add(Double.parseDouble(attributes[3]));
+                                    //presss.add(Double.parseDouble(attributes[4]));
                                     VOCs.add(Integer.valueOf(attributes[5]));
                                     CO2s.add(Integer.valueOf(attributes[6]));
-                                    NO2s.add(Double.parseDouble(attributes[7]));
-                                    COs.add(Double.parseDouble(attributes[8]));
-                                    PM1s.add(Double.parseDouble(attributes[9]));
+                                    //NO2s.add(Double.parseDouble(attributes[7]));
+                                    //COs.add(Double.parseDouble(attributes[8]));
+                                    //PM1s.add(Double.parseDouble(attributes[9]));
                                     PM2p5s.add(Double.parseDouble(attributes[10]));
-                                    PM10s.add(Double.parseDouble(attributes[11]));
+                                    //PM10s.add(Double.parseDouble(attributes[11]));
                                     lats.add(Double.parseDouble(attributes[17]));
                                     lons.add(Double.parseDouble(attributes[18]));
                                     orarios.add(attributes[16]);
@@ -1749,7 +1749,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                                 //lagga qui
                                 mapFragment.getMapAsync(googleMap -> {
-                                    for (int i = 1; i < temps.size(); i++) {        //temps o un altro non cambia niente
+                                    for (int i = 1; i < lats.size(); i++) {        //temps o un altro non cambia niente
                                         Log.e(LOG_TAG, "marker");
                                         googleMap.addMarker(new MarkerOptions()
                                                 .position(new LatLng(lats.get(i), lons.get(i))) //latitudine, longitudine

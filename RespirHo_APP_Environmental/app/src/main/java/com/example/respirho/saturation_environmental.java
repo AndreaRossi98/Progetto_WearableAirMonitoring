@@ -1437,7 +1437,6 @@ battery_unit = 3;
 
                 if( mIsOpen_ENVIRONMENTAL   &&  mIsOpen_SATURATION){
                     //if the channel is open
-Toast.makeText(getApplicationContext(), "CANALI APERTI", Toast.LENGTH_LONG).show();
                     progressbar_initialization.setVisibility(View.GONE);
                     initializationbutton.setVisibility(View.GONE);
 

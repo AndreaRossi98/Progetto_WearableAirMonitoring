@@ -768,7 +768,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             //ricostruisco i dati in variabili
                                             //VOC
                                             VOC = Integer.decode("0x" + messageContentString_split[1].substring(1)) + (Integer.decode("0x" + messageContentString_split[2].substring(1)) << 8);
-                                            //CO2
+                                            //CO2 bisogna riportare la funzione di conversione da bit a valore dopo aver fatto la calibrazione
                                             CO2 = Integer.decode("0x" + messageContentString_split[3].substring(1)) + (Integer.decode("0x" + messageContentString_split[4].substring(1)) << 8);
                                             //NO2 bisogna riportare la funzione di conversione da bit a valore dopo aver fatto la calibrazione
                                             NO2 = Integer.decode("0x" + messageContentString_split[5].substring(1));

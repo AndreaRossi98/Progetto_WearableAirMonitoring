@@ -61,17 +61,6 @@ struct data{
     uint8_t anno;
 };
 
-struct val_campionati{
-    float Temp;
-    float Hum;
-    double Pres;    //Attenzione dimensioni variabile
-    float PM1p0;    //controlla che sia corretto, scegliere quali valori guardare di PM
-    float PM2p5;
-    float CO2;
-    float CO;
-    float NO2;
-    float VOC;
-};
 
 struct mics6814_data{
     uint16_t NO2;
@@ -133,6 +122,9 @@ struct lis3dh_data          measure_lis3dh;     //struct for measured values by 
 struct mics6814_data        measure_mics6814;   //struct for measured values by MICS6814
 struct scd4x_data           measure_scd4x;      //struct for measured values by SCD41
 struct sgp30_data           measure_sgp30;      //struct for measured values by SGP30
+
+double humidity_prev = 0;        //variabile per l'umidità precedente per fare il confronto
+uint32_t absolute_humidity = 0;     //variabile per umidità asooluta da dare a SGP30
 //=============================================================================================================================================================================
 
 //=============================================================================================================================================================================
@@ -522,6 +514,7 @@ printf("Sensori correttamente inizializzati\n\n");
 
 
     // Main loop.
+printf("Doppia lettura del SPS30\n");
     for (;;)
     {
         if(flag_misurazioni == 1 && connesso == 1)   //esegui tutte le misurazioni tranne VOC
@@ -533,10 +526,10 @@ printf("\nMisuro\n");
             //SPS30 
             sps30_wake_up();
             sps30_start_measurement();
-            nrf_delay_ms(1000);
+            nrf_delay_ms(3000);
             sps30_read_measurement(&measure_sps30);
-            nrf_delay_ms(2000);
-            sps30_read_measurement(&measure_sps30);
+            nrf_delay_ms(3000);
+            sps30_read_measurement(&measure_sps30);   //AGGIUNTA DOPPIA LETTURA PER VEDERE COME SI COMPORTA
             sps30_stop_measurement();
             sps30_sleep();
 
@@ -560,6 +553,13 @@ printf("\nMisuro\n");
             //BME280
             bme280_set_sensor_mode(BME280_FORCED_MODE, &dev_bme280);
             bme280_get_sensor_data(BME280_ALL, &measure_bme280, &dev_bme280);
+
+            if (abs(measure_bme280.humidity - humidity_prev) > 2)
+            {
+                absolute_humidity =  216.7 * measure_bme280.humidity / 100 * 6.112 * exp((17.62 * measure_bme280.temperature)/(243.12 + measure_bme280.temperature))/(273.15 + measure_bme280.temperature);   //formula da datasheet SGP30 [g/m3]
+                sgp30_set_absolute_humidity(absolute_humidity);
+                printf("Absolute humidity %d", absolute_humidity);
+            }
 
 
             //LIS3DH

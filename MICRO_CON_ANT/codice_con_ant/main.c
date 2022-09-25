@@ -460,7 +460,7 @@ printf("inizio\n");
     nrf_gpio_pin_set(LED);          
  
     nrf_gpio_cfg_output(bjt);
-    //nrf_gpio_pin_set(bjt);    //cosi funziona
+    //nrf_gpio_pin_set(bjt);    //cosi funziona?
     nrf_gpio_pin_clear(bjt);
 
     //Inizializzazione di tutte le componenti
@@ -502,7 +502,7 @@ printf("Timer\n");
         printf("\nLIS3DH\n");
         err_code = lis3dh_init();    //tutto ok ritorna 0    
         printf("\nSPS30\n");      
-        err_code = sps30_init();   //tutto ok ritorna 0
+        err_code = sps30_init();   //tutto ok ritorna 0   //SPENTA VENTOLA
 
 printf("Sensori correttamente inizializzati\n\n");
         flag_inizializzazione = 1;
@@ -511,10 +511,48 @@ printf("Sensori correttamente inizializzati\n\n");
     /*
      * Pulizia ventola ad ogni accensione 
      */
+     int intero;
+     int decimale;
+/////codice di prova da eliminare
+/*
+int intero = 99;
+            int decimale = 99;
+for (int i = 0; i<10; i++)
+{
+            sps30_wake_up();
+            sps30_start_measurement();
+            nrf_delay_ms(3000);
+            err_code = sps30_read_measurement(&measure_sps30);
+            if (err_code  <0)
+            printf("Errore\n"); 
+            else{
+            intero = measure_sps30.mc_2p5;
+            decimale = (measure_sps30.mc_2p5 - intero)*100;
+            printf("PM 2.5: %d.%d [ï¿½g/mï¿½]\n\r", intero, decimale);
+            }
+            
+ /*           nrf_delay_ms(1000);
+            err_code = sps30_read_measurement(&measure_sps30);
+            if (err_code  <0)
+            printf("Errore\n"); 
+            else{
+            intero = measure_sps30.mc_2p5;
+            decimale = (measure_sps30.mc_2p5 - intero)*100;
+            printf("PM 2.5: %d.%d [ï¿½g/mï¿½]\n\r", intero, decimale);
+            }
+*/
+/*            sps30_stop_measurement();
+            printf("SLEEp\n");
+            sps30_sleep();
+            nrf_delay_ms(10000);
+}
 
+
+
+*/
+/////
 
     // Main loop.
-printf("Doppia lettura del SPS30\n");
     for (;;)
     {
         if(flag_misurazioni == 1 && connesso == 1)   //esegui tutte le misurazioni tranne VOC
@@ -528,10 +566,16 @@ printf("\nMisuro\n");
             sps30_start_measurement();
             nrf_delay_ms(3000);
             sps30_read_measurement(&measure_sps30);
+intero = measure_sps30.mc_2p5;
+decimale = (measure_sps30.mc_2p5 - intero)*100;
+printf("PM 2.5: %d.%d [ï¿½g/mï¿½]\n\r", intero, decimale);
             nrf_delay_ms(3000);
-            sps30_read_measurement(&measure_sps30);   //AGGIUNTA DOPPIA LETTURA PER VEDERE COME SI COMPORTA
-            sps30_stop_measurement();
-            sps30_sleep();
+            sps30_read_measurement(&measure_sps30);
+intero = measure_sps30.mc_2p5;
+decimale = (measure_sps30.mc_2p5 - intero)*100;
+printf("PM 2.5: %d.%d [ï¿½g/mï¿½]\n\r", intero, decimale);
+//            sps30_stop_measurement();
+//            sps30_sleep();
 
             //SCD41
             scd4x_wake_up();
@@ -577,10 +621,11 @@ printf("\nMisuro\n");
           //letti tutti i valori, elaboro i dati in modo da poterli inviare come uint8 e li salvo nei pacchetti, poi metto flag_misurazione = 2 e la gestisco in ANT
 
           pacchetto_1[0] = 64 + numero_pacchetto;
-          pacchetto_1[1] = (int) measure_bme280.temperature + 30;    //Parte intera della Temperatura incrementato di 30 (o più?)
-          pacchetto_1[2] = abs((int)((measure_bme280.temperature - (int)measure_bme280.temperature)*100));  //parte decimale della Temperatura
-          pacchetto_1[3] = (int) measure_bme280.humidity;
-          pacchetto_1[4] = (int)((measure_bme280.humidity - (int)measure_bme280.humidity)*100);
+          //pacchetto_1[1] = (int) measure_bme280.temperature + 30;    //Parte intera della Temperatura incrementato di 30 (o più?)
+          pacchetto_1[1] = (int) (measure_scd4x.Temperature/1000) + 30;    //Parte intera della Temperatura incrementato di 30 (o più?)
+          pacchetto_1[2] = abs((int)((measure_scd4x.Temperature - (int)measure_scd4x.Temperature)/10));  //parte decimale della Temperatura
+          pacchetto_1[3] = (int)measure_scd4x.Humidity/1000;
+          pacchetto_1[4] = (int)((measure_scd4x.Humidity - (int)measure_scd4x.Humidity)/10);
           calcolo_parziale = measure_bme280.pressure;
           pacchetto_1[5] = calcolo_parziale >> 16; //Pressione  >> 16
           pacchetto_1[6] = calcolo_parziale >> 8; //Pressione  >> 8
@@ -600,12 +645,15 @@ printf("\nMisuro\n");
           
           pacchetto_3[0] = 192 + numero_pacchetto;
           pacchetto_3[1] = measure_lis3dh.Acc; //ACCELERATION   capire ogni quanto leggere il dato
-          pacchetto_3[2] = (int)(measure_sps30.mc_1p0); //PM1.0 intero
-          pacchetto_3[3] = (int)(measure_sps30.mc_1p0 * 100 - (int)(measure_sps30.mc_1p0 * 100)); //PM1.0  decimale
-          pacchetto_3[4] = (int)(measure_sps30.mc_2p5); //PM2.5  intero
-          pacchetto_3[5] = (int)(measure_sps30.mc_2p5 * 100 - (int)(measure_sps30.mc_2p5 * 100)); //PM2.5  decimale
-          pacchetto_3[6] = (int)(measure_sps30.mc_10p0); //PM10   intero
-          pacchetto_3[7] = (int)(measure_sps30.mc_10p0 * 100 - (int)(measure_sps30.mc_10p0 * 100)); //PM10   decimale
+          intero = measure_sps30.mc_1p0;
+          pacchetto_3[2] = intero; //PM1.0 intero
+          pacchetto_3[3] = ((measure_sps30.mc_1p0 - intero)*100); //PM1.0  decimale
+          intero = measure_sps30.mc_2p5;
+          pacchetto_3[4] = intero; //PM2.5  intero
+          pacchetto_3[5] = ((measure_sps30.mc_2p5 - intero)*100); //PM2.5  decimale
+          intero = measure_sps30.mc_10p0;
+          pacchetto_3[6] = intero; //PM10   intero
+          pacchetto_3[7] = ((measure_sps30.mc_10p0 - intero)* 100); //PM10   decimale
           
           flag_misurazioni = 2;
 flag_dati_pronti = 1;

@@ -798,11 +798,11 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             //acceleration
                                             acceleration = Integer.decode("0x" + messageContentString_split[1].substring(1));
                                             //PM1.0
-                                            PM1p0 = Integer.decode("0x" + messageContentString_split[2].substring(1)) + Integer.decode("0x" + messageContentString_split[3].substring(1)) / 100;
+                                            PM1p0 = Integer.decode("0x" + messageContentString_split[2].substring(1)) + (float)Integer.decode("0x" + messageContentString_split[3].substring(1)) / 100;
                                             //PM2.5
-                                            PM2p5 = Integer.decode("0x" + messageContentString_split[4].substring(1)) + Integer.decode("0x" + messageContentString_split[5].substring(1)) / 100;
+                                            PM2p5 = Integer.decode("0x" + messageContentString_split[4].substring(1)) + (float)Integer.decode("0x" + messageContentString_split[5].substring(1)) / 100;
                                             //PM10
-                                            PM10p0 = Integer.decode("0x" + messageContentString_split[6].substring(1)) + Integer.decode("0x" + messageContentString_split[7].substring(1)) / 100;
+                                            PM10p0 = Integer.decode("0x" + messageContentString_split[6].substring(1)) + (float)Integer.decode("0x" + messageContentString_split[7].substring(1)) / 100;
 
                                             //mostri dati a schermo
                                             runOnUiThread(new Runnable() {

@@ -1448,7 +1448,143 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 break;
 
             case R.id.show_values_on_maps_timer:
-                //metti qua quello che serve una volta che hai sistemato la parte show_values_on_maps_manual
+                //accedere ai file salvati
+                //path where the root of the txt file is located on the smartphone
+                extPath=getExternalFilesDir(null).getAbsolutePath();
+                File folderInt=new File(extPath + "/respirho/Patients/" + GlobalVariables.string_idpatient+"/" + GlobalVariables.string_idpatient );  //intPath
+                root = folderInt.getParentFile();
+                File[] acqs = root.listFiles();
+
+                if(acqs == null)
+                    Toast.makeText(this, "No acquisition found.", Toast.LENGTH_SHORT).show();
+                else {
+                    String[] names = new String[acqs.length];
+                    for (int i = 0; i < acqs.length; i++) {
+                        names[i] = acqs[i].getName();
+                    }
+                    //build dialog to choose acquisition from list          chiamato builders se no da errore
+                    AlertDialog.Builder builders = new AlertDialog.Builder(this);
+                    builders.setTitle("Choose acquisition");
+
+                    builders.setItems(names, (dialog, which) -> {
+
+                        List<Double> lats = new ArrayList<>();
+                        List<Double> lons = new ArrayList<>();
+                        List<Double> temps = new ArrayList<>();
+                        List<Double> humids = new ArrayList<>();
+                        List<Double> presss = new ArrayList<>();
+                        List<Integer> CO2s = new ArrayList<>();
+                        List<Integer> VOCs = new ArrayList<>();
+                        List<Double> COs = new ArrayList<>();
+                        List<Double> NO2s = new ArrayList<>();
+                        List<Double> PM1s = new ArrayList<>();
+                        List<Double> PM2p5s = new ArrayList<>();
+                        List<Double> PM10s = new ArrayList<>();
+                        List<String> orarios = new ArrayList<>();
+
+                        BufferedReader reader;
+                        final File file = new File(String.valueOf(acqs[which]));
+                        FileInputStream streamer = null;
+                        try {
+                            streamer = new FileInputStream(file);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+
+                        reader = new BufferedReader(new InputStreamReader(streamer));
+                        String line = null;
+                        boolean compatible = false; //check if file is compatible and not empty
+                        try {
+                            line = reader.readLine(); //read header
+
+                            if(line.equals("ID Patient: " + GlobalVariables.string_idpatient)) { //if header is correct
+                                Log.e(LOG_TAG, "ID patient:" +  line);  //GlobalVariables.string_idpatient
+                                line = reader.readLine(); //read first row
+                                if (line != null) { //if file is not empty
+                                    compatible = true;
+                                }
+                            }
+                            else
+                                line = null; //force to not enter the next while
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+//salto le prime righe che non contengono dati da mostrare
+                        for (int i = 0; i < 4; i++ ){
+                            try {
+                                line = reader.readLine(); //read first row
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+//prendere le linee dal file per mostrare i dati
+                        while (line != null ) { //split csv lines and obtain values
+                            try {
+                                //leggo le linee
+                                line = reader.readLine(); //read next row
+                                Log.e(LOG_TAG, "LINEA:" + line);
+                                String[] attributes;
+                                //String linea = line;
+                                if(line != null){
+                                    attributes = line.split(";");
+                                    //tolti perchè non li mostro a schermo
+                                    //temps.add(Double.parseDouble(attributes[2]));
+                                    //humids.add(Double.parseDouble(attributes[3]));
+                                    //presss.add(Double.parseDouble(attributes[4]));
+                                    VOCs.add(Integer.valueOf(attributes[5]));
+                                    CO2s.add(Integer.valueOf(attributes[6]));
+                                    //NO2s.add(Double.parseDouble(attributes[7]));
+                                    //COs.add(Double.parseDouble(attributes[8]));
+                                    //PM1s.add(Double.parseDouble(attributes[9]));
+                                    PM2p5s.add(Double.parseDouble(attributes[10]));
+                                    //PM10s.add(Double.parseDouble(attributes[11]));
+                                    lats.add(Double.parseDouble(attributes[17]));
+                                    lons.add(Double.parseDouble(attributes[18]));
+                                    orarios.add(attributes[16]);
+
+                                    /*for(int i = 0; i < attributes.length;i++) {
+                                      Log.e(LOG_TAG, i + "attribute:" + attributes[i]);
+                                    }*/
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if(!compatible) {
+                            Toast.makeText(this, "Incompatible or empty file.", Toast.LENGTH_SHORT).show();
+                            Log.e(LOG_TAG, "INCOMPATIBLE");
+                        }
+                        else
+                        {
+                            Log.e(LOG_TAG, "creazione Maps");
+                            //create map with as many markers as acquisition points
+                            mapFragment = SupportMapFragment.newInstance();
+                            getSupportFragmentManager().beginTransaction().add(R.id.map_fragment, mapFragment).commit();
+                            Log.e(LOG_TAG, "creazione Marker");
+
+                            //lagga qui
+                            mapFragment.getMapAsync(googleMap -> {
+                                for (int i = 1; i < lats.size(); i++) {        //temps o un altro non cambia niente
+                                    Log.e(LOG_TAG, "marker");
+                                    googleMap.addMarker(new MarkerOptions()
+                                            .position(new LatLng(lats.get(i), lons.get(i))) //latitudine, longitudine
+                                            .title(i + ") " + orarios.get(i))
+                                            //.snippet("T[°C]: "+ temps.get(i)+" RH[%]: "+ humids.get(i)+ " P[Pa]: "+ presss.get(i)+
+                                            //        " VOC[ppm]: "+ VOCs.get(i)+" CO2[ppm]: "+ CO2s.get(i) +" NO2[ppm]: "+ NO2s.get(i) + " CO[ppm]: "+ COs.get(i)+
+                                            //        " PM1.0[μg/m³]: "+ PM1s.get(i)+ " PM2.5[μg/m³]: "+ PM2p5s.get(i) + " PM10[μg/m³]: "+ PM10s.get(i)));
+                                            .snippet(" VOC[ppm]: "+ VOCs.get(i)+", CO2[ppm]: "+ CO2s.get(i) + ", PM2.5[μg/m³]: "+ PM2p5s.get(i) ));
+                                }
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(4), lons.get(4)), 12));
+                            });
+
+                        }
+
+                    });
+                    AlertDialog dialog = builders.create();
+                    dialog.show();
+                    show_maps_flag = true;
+                }
                 break;
 
             case R.id.manualrecordingbutton:
@@ -1634,9 +1770,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 //accedere ai file salvati
                 //path where the root of the txt file is located on the smartphone
                 extPath=getExternalFilesDir(null).getAbsolutePath();
-                File folderInt=new File(extPath + "/respirho/Patients/" + GlobalVariables.string_idpatient+"/" + GlobalVariables.string_idpatient );  //intPath
+                folderInt=new File(extPath + "/respirho/Patients/" + GlobalVariables.string_idpatient+"/" + GlobalVariables.string_idpatient );  //intPath
                 root = folderInt.getParentFile();
-                File[] acqs = root.listFiles();
+                acqs = root.listFiles();
 
                 if(acqs == null)
                     Toast.makeText(this, "No acquisition found.", Toast.LENGTH_SHORT).show();
@@ -1664,7 +1800,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         List<Double> PM2p5s = new ArrayList<>();
                         List<Double> PM10s = new ArrayList<>();
                         List<String> orarios = new ArrayList<>();
-
 
                         BufferedReader reader;
                         final File file = new File(String.valueOf(acqs[which]));
@@ -1762,14 +1897,11 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     }
                                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(4), lons.get(4)), 12));
                                 });
-
                             }
-
                     });
                     AlertDialog dialog = builders.create();
                     dialog.show();
                     show_maps_flag = true;
-
                 }
                 break;
 

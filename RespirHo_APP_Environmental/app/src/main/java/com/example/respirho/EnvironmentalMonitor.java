@@ -1356,12 +1356,12 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         countDownTimer.cancel();
                         timer.setVisibility(View.GONE);
                         progressBar_timer.setVisibility(View.GONE);
-                        downloadfile_timer.setVisibility(View.VISIBLE);
+
                         status_timer.setText("Duration: " + value_timer +" min");
                         stoprecording_timer.setVisibility(View.GONE);
 
                         gotonewrecording_timer.setVisibility(View.VISIBLE);
-
+                        downloadfile_timer.setVisibility(View.VISIBLE);
                         showvaluesonmaps_timer.setVisibility(View.VISIBLE);
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);

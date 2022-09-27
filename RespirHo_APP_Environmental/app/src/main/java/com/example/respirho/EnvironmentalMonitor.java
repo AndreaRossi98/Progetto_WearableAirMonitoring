@@ -588,7 +588,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             + messageContentString.substring(20, 24) + ","
                             + messageContentString.substring(24, 28) + ","
                             + messageContentString.substring(28, 32) + ",";
-
+                    Log.e(LOG_TAG, "Pacchetto arrivato: " + msg); //hex
 //toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
 
                     //split the bytes
@@ -772,12 +772,18 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             CO2 = Integer.decode("0x" + messageContentString_split[3].substring(1)) + (Integer.decode("0x" + messageContentString_split[4].substring(1)) << 8);
                                             //NO2 bisogna riportare la funzione di conversione da bit a valore dopo aver fatto la calibrazione
                                             NO2 = Integer.decode("0x" + messageContentString_split[5].substring(1));
-                                            //234
-                                            NO2 = (float) Math.pow(10,(Math.log10(NO2/234)-0.804)/1.026);   //hard coding 234 valore normale
+                                            Log.e(LOG_TAG, "NO2: " + NO2); //hex
+                                            //231
+                                            NO2 = (float) Math.pow(10,(Math.log10(NO2/231)-0.804)/1.026);   //hard coding 234 valore normale
+                                            NO2 = Math.round(NO2 *100);
+                                            NO2 = NO2 / 100;
                                             //CO
                                             CO = Integer.decode("0x" + messageContentString_split[6].substring(1));
-                                            //232
-                                            CO = (float) Math.pow(10, ((Math.log10(NO2/232)-0.55)/(-0.85)));
+                                            Log.e(LOG_TAG, "CO: " +CO); //hex
+                                            //229
+                                            CO = (float) Math.pow(10, (Math.log10(CO/229)-0.55)/(-0.85));
+                                            CO = Math.round(CO * 100);
+                                            CO = CO /100;
                                             //Batteria
                                             battery = Integer.decode("0x" + messageContentString_split[7].substring(1));
 

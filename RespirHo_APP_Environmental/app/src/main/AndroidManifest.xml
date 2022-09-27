@@ -24,6 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".DemoDownload" android:screenOrientation="portrait"/>
+        <activity android:name=".Imus_activity" android:screenOrientation="portrait"/>
         <activity android:name=".saturation" android:screenOrientation="portrait"/>
         <activity android:name=".EnvironmentalMonitor" android:screenOrientation="portrait"/>
         <activity android:name=".saturation_environmental" android:screenOrientation="portrait"/>

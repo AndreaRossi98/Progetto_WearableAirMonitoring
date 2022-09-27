@@ -824,8 +824,11 @@ public class saturation_environmental extends AppCompatActivity implements View.
                                             CO2 = Integer.decode("0x" + messageContentString_split[3].substring(1)) + (Integer.decode("0x" + messageContentString_split[4].substring(1)) <<8);
                                             //NO2 bisogna riportare la funzione di conversione da bit a valore dopo aver fatto la calibrazione
                                             NO2 = Integer.decode("0x" + messageContentString_split[5].substring(1));
+                                            NO2 = (float) Math.pow(10,(Math.log10(NO2/234)-0.804)/1.026);   //hard coding 234 valore normale
+
                                             //CO
                                             CO = Integer.decode("0x" + messageContentString_split[6].substring(1));
+                                            CO = (float) Math.pow(10, ((Math.log10(NO2/232)-0.55)/(-0.85)));
                                             //Batteria
                                             battery = Integer.decode("0x" + messageContentString_split[7].substring(1));
 

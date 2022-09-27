@@ -1710,6 +1710,18 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
                         inflated_displaydata.setVisibility(View.GONE);
+
+                        //azzerare variabili di mostra dati
+                        temperature_output.setText("");
+                        humidity_output.setText("");
+                        pressure_output.setText("");
+                        CO2_output.setText("");
+                        VOC_output.setText("");
+                        NO2_output.setText("");
+                        CO_output.setText("");
+                        PM1p0_output.setText("");
+                        PM2p5_output.setText("");
+                        PM10_output.setText("");
                     }
                 });
                 //negative no button
@@ -1890,6 +1902,18 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                         //hide update info layout
                         inflated_updateinfo.setVisibility(View.GONE);
                         inflated_displaydata.setVisibility(View.GONE);
+
+                        //azzerare variabili di mostra dati
+                        temperature_output.setText("");
+                        humidity_output.setText("");
+                        pressure_output.setText("");
+                        CO2_output.setText("");
+                        VOC_output.setText("");
+                        NO2_output.setText("");
+                        CO_output.setText("");
+                        PM1p0_output.setText("");
+                        PM2p5_output.setText("");
+                        PM10_output.setText("");
                     }
                 });
                 //negative no button

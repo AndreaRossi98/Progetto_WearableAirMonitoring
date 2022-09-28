@@ -275,7 +275,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
     byte[] payLoad12 = {0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 2 during acquisition
     byte[] payLoad13 = {0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 3 during acquisition
     byte[] payLoad14 = {0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call Pulse Ox during acquisition
-    byte[] payLoad16 = {0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call Environmental Monitor during acquisition
+    byte[] payLoad16 = {0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call Environmental Monitor during acquisition
 
     byte[] payLoad8 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0xFF}; // payload to calibrate and do movements, when sensors leds are off send payload 4 and go on
     byte[] payLoad9 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0x80}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
@@ -538,7 +538,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
             });
         }
 
-/*        //LOCATION PROVIDER
+        //LOCATION PROVIDER
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
             @Override
@@ -554,7 +554,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(1000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);*/
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
     }
 
@@ -626,14 +626,19 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                     //get the first byte to find the unit and remove the open square bracket
                     String messageContentString_unit=messageContentString_split[0].substring(1); //ex: 01
 
-                    //if the message is received, reset watchdog timer of the unit received
-                    String unitReceived_default=messageContentString_unit.substring(1); //ex: 1 (String)
-                    int unitReceived=Integer.decode("0x"+ unitReceived_default); //ex: 1 (int)
-                    resetWatchdogTimer(unitReceived-1); //we subtract 1 to match the array indexes
-
                     //if ALL the units are connected, the next messages will be the recording data
                     if(connected1 && connected2 && connected3 && connected4){
+
+
+
                         if(messageContentString_unit.equals("01") || messageContentString_unit.equals("02") || messageContentString_unit.equals("03") || messageContentString_unit.equals("04")) {
+
+                            //if the message is received, reset watchdog timer of the unit received
+                            String unitReceived_default=messageContentString_unit.substring(1); //ex: 1 (String)
+                            int unitReceived=Integer.decode("0x"+ unitReceived_default); //ex: 1 (int)
+                            resetWatchdogTimer(unitReceived-1); //we subtract 1 to match the array indexes
+
+
                             //TODO- dummy messages for data loss - IT WORKSSSSS - find a less cpu solution
                             //if recording started, look for data loss in each unit and eventually add a dummy message.
                             //we check the unit of the previous message.
@@ -858,7 +863,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                             //TODO- end warning for low battery
                         }
                         else{
-                            Log.e(LOG_TAG, "Pacchetto Environmental");
+                            Log.e(LOG_TAG, "Pacchetto Environmental" + msg);
 
                             //write the messages
                             //call the firebase class to upload data on firebase
@@ -876,7 +881,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
 
                         Log.e(LOG_TAG, "CHECK Rx: " + messageContentString); //hex
 
-                        if(messageContentString.contains(string1)){
+                        if(messageContentString.contains(string1)   && connected1 == false){
                             connected1 = true;
                             //GlobalVariables.flag_connected1=true;
                             Log.e(LOG_TAG,"1 is:" + connected1);
@@ -896,7 +901,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                             });
                         }
 
-                        if(messageContentString.contains(string2)){
+                        if(messageContentString.contains(string2) && connected1 == true){
                             connected2 = true;
                             Log.e(LOG_TAG,"2 is:" + connected2);
                             state=CONNECT3;
@@ -915,7 +920,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                             });
                         }
 
-                        if(messageContentString.contains(string3)){
+                        if(messageContentString.contains(string3)   && connected2 == true){
                             connected3 = true;
                             Log.e(LOG_TAG,"3 is:" + connected3);
                             state=CONNECT4;
@@ -934,9 +939,10 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                             });
                         }
 
-                        if(messageContentString.contains(string6)){
+                        if(messageContentString.contains(string4)   && connected3 == true){
                             connected4 = true;
-                            Log.e(LOG_TAG,"6 is:" + connected4);
+                            Log.e(LOG_TAG,"4 is:" + connected4);
+                            state=CONNECT6;
                             //to change the UI we have to put codes in the runOnUiThread
                             runOnUiThread(new Runnable() {
 
@@ -944,6 +950,23 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                                 public void run() {
                                     switchonsensor4_progressbar.setVisibility(View.GONE);
                                     switchonsensor4_checkmark.setVisibility(View.VISIBLE);
+
+                                    switchonsensor5.setVisibility(View.VISIBLE);
+                                    switchonsensor5_progressbar.setVisibility(View.VISIBLE);
+
+                                }
+                            });
+                        }
+                        if(messageContentString.contains(string6)   && connected4 == true){
+                            connected6 = true;
+                            Log.e(LOG_TAG,"6 is:" + connected6);
+                            //to change the UI we have to put codes in the runOnUiThread
+                            runOnUiThread(new Runnable() {
+
+                                @Override
+                                public void run() {
+                                    switchonsensor5_progressbar.setVisibility(View.GONE);
+                                    switchonsensor5_checkmark.setVisibility(View.VISIBLE);
 
                                     //show green checkmark
                                     checkmark_idpatient.setVisibility(View.VISIBLE);

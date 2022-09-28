@@ -272,7 +272,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
     byte[] payLoad11 = {0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 1 during acquisition
     byte[] payLoad12 = {0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 2 during acquisition
     byte[] payLoad13 = {0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call unit 3 during acquisition
-    byte[] payLoad16 = {0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call Environmental Monitor during acquisition
+    byte[] payLoad16 = {0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}; // payload to call Environmental Monitor during acquisition
 
     byte[] payLoad8 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0xFF}; // payload to calibrate and do movements, when sensors leds are off send payload 4 and go on
     byte[] payLoad9 = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, (byte) 0x80}; // payload to stop acquisition (resume) without close the channel (0x80=128) then send payload 4 and go on
@@ -319,7 +319,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
     private static final int QUIT_RECORDING = 12; //quit recording
 
     BroadcastDataMessage broadcastDataMessage;
-    public String current_default,current,day;
+    public String current_default,current,day,orario;
     //save the old message to see if there's data loss
     public String old_messageContentString_unit=null;
 
@@ -527,7 +527,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
             });
         }
 
-/*        //LOCATION PROVIDER
+        //LOCATION PROVIDER
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
             @Override
@@ -543,7 +543,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(10000);
         locationRequest.setFastestInterval(1000);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);*/
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
     }
 
@@ -551,7 +551,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
     int pacchetto_numero_ricevuto;   //numero incrementale del pacchetto che arriva
     int numero_pacchetto = 1;
     int pacchetto_P = 0;   //numero del pacchetto P arrivato
-    int flag_dati_scritti = 0;
+    int flag_dati_ricevuti = 0;
     int flag_location = 0;
     int count_P1 = 0;
     int count_P2 = 0;
@@ -614,15 +614,16 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                     //get the first byte to find the unit and remove the open square bracket
                     String messageContentString_unit=messageContentString_split[0].substring(1); //ex: 01
 
-                    //if the message is received, reset watchdog timer of the unit received
-                    String unitReceived_default=messageContentString_unit.substring(1); //ex: 1 (String)
-                    int unitReceived=Integer.decode("0x"+ unitReceived_default); //ex: 1 (int)
-                    resetWatchdogTimer(unitReceived-1); //we subtract 1 to match the array indexes
-
                     //if ALL the units are connected, the next messages will be the recording data
                     if(connected1 && connected2 && connected3 && connected4){
+
+
                         if (messageContentString_unit.equals("01") || messageContentString_unit.equals("02") || messageContentString_unit.equals("03")){
-                            Log.e(LOG_TAG, "Pacchetto IMUs ");
+                            //Log.e(LOG_TAG, "Pacchetto IMUs ");
+                            //if the message is received, reset watchdog timer of the unit received
+                            String unitReceived_default=messageContentString_unit.substring(1); //ex: 1 (String)
+                            int unitReceived=Integer.decode("0x"+ unitReceived_default); //ex: 1 (int)
+                            resetWatchdogTimer(unitReceived-1); //we subtract 1 to match the array indexes
 
                             //TODO- dummy messages for data loss - IT WORKSSSSS - find a less cpu solution
                             //if recording started, look for data loss in each unit and eventually add a dummy message.
@@ -788,7 +789,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
 
                             fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
 
-                            //TODO - every now and then save the file on firebase for backup, later savings will over write the previous one
+                        /*    //TODO - every now and then save the file on firebase for backup, later savings will over write the previous one
                             //save the file each 1 MB size (around 10 minutes)
                             long fileIntSizeBytes_backup=fileInt.length();
                             long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
@@ -799,7 +800,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                                 size_interval_backupfile=size_interval_backupfile+SIZE_INTERVAL_BACKUPFILE;
                                 //Log.e("backup","backup 1, size end: " + size_interval_backupfile);
                             }
-
+                        */
                             //TODO- warning for low battery
                             //get the second byte to find the battery hex value and remove the open square bracket
                             String messageContentString_battery=messageContentString_split[1].substring(1); //ex: 5C
@@ -863,8 +864,205 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
 
                         }
                         else {
-                            Log.e(LOG_TAG, "Pacchetto Environmental");
+                            Log.e(LOG_TAG, "Pacchetto Environmental: " + msg); //hex
+                            pacchetto_numero_ricevuto = Integer.decode("0x"+messageContentString_split[0].substring(1));
+                            pacchetto_P = pacchetto_numero_ricevuto >> 6;
+                            pacchetto_numero_ricevuto = pacchetto_numero_ricevuto - (pacchetto_P << 6);
+                            WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                            WritingDataToFile writingDataToFile = new WritingDataToFile();
+                            if (numero_pacchetto != pacchetto_numero_ricevuto){
+                                //Toast.makeText(getApplicationContext(), "Pacchetto Nuovo", Toast.LENGTH_LONG).show();
+                                if (flag_dati_ricevuti == 1){               //scrivo su file
+                                    //preparo messaggio da salvare
+                                    messaggio_salvato = 6 + ";" + numero_pacchetto +  ";" +//per indicare pacchetto di environmental monitor
+                                            temperature + ";" + humidity + ";" + pressure + ";" +
+                                            VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";" +
+                                            PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";" +
+                                            count_P1 + ";" + count_P2 + ";" + count_P3 + ";" +
+                                            orario + ";" + latitude + ";" + longitude + ";";    //valore batteria lo salvo?
 
+                                    //toast.makeText(getApplicationContext(), "scrivo su file" , Toast.LENGTH_SHORT).show();
+
+                                    //write the messages
+                                    //call the firebase class to upload data on firebase
+                                    //WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(messaggio_salvato,startrec_time);
+                                    //scrivo su file
+                                    //WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(messaggio_salvato, current, day, intPath,extPath);
+
+                                    fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+
+                                }
+                                else{
+                                    //salvo i valori su file e firebase
+                                    //gestire che alcuni dati sono persi
+                                    numero_pacchetto = pacchetto_numero_ricevuto;
+                                    //toast.makeText(getApplicationContext(),"pacchetti persi", Toast.LENGTH_SHORT).show();
+
+                                    //gestione ricezione parziale dei pacchetti
+                                    if (count_P1 == 0){ //non ho ricevuto il pacchetto P1
+                                        messaggio_salvato = 6 + ";" + numero_pacchetto + ";"  + //per indicare pacchetto di environmental monitor
+                                                "0" + ";" + "0" + ";" + "0" + ";";
+                                    }
+                                    else{
+                                        messaggio_salvato = 6 + ";" +  numero_pacchetto + ";"  + //per indicare pacchetto di environmental monitor
+                                                temperature + ";" + humidity + ";" + pressure + ";";
+                                    }
+                                    if(count_P2 == 0){
+                                        messaggio_salvato = messaggio_salvato +
+                                                "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";";
+                                    }
+                                    else{
+                                        messaggio_salvato = messaggio_salvato +
+                                                VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";";
+                                    }
+                                    if(count_P3 == 0){
+                                        messaggio_salvato = messaggio_salvato +
+                                                "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";";
+                                    }
+                                    else{
+                                        messaggio_salvato = messaggio_salvato +
+                                                PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";";
+                                    }
+
+                                    messaggio_salvato = messaggio_salvato + count_P1 + ";" + count_P2 + ";" + count_P3 + ";" + orario + ";" + latitude + ";" + longitude;
+                                    //do per scontato che almeno un pacchetto sia arrivato, e quindi ho latitudine longitudine e ora
+
+                                    //write the messages
+                                    //call the firebase class to upload data on firebase
+                                    //WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
+                                    writingDataToFirebase.mainFirebase(messaggio_salvato,startrec_time);
+                                    //scrivo su file
+                                    //WritingDataToFile writingDataToFile = new WritingDataToFile();
+                                    writingDataToFile.mainFile(messaggio_salvato, current, day, intPath,extPath);
+
+                                    fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+                                }
+
+                                numero_pacchetto = pacchetto_numero_ricevuto;
+                                flag_dati_ricevuti = 0;
+
+                                count_P1 = 0;
+                                count_P2 = 0;
+                                count_P3 = 0;
+                                flag_location = 0;
+                            }
+                            if (numero_pacchetto == pacchetto_numero_ricevuto ) {
+                                //la prima volta che entro in questo if, devo prendere latitudine e longitudine
+                                if (flag_location == 0) {
+                                    orario = format.format(new Date().getTime());
+                                    Task<Location> task = fusedLocationClient.getLastLocation();
+                                    while (!task.isComplete()) ;
+                                    location = task.getResult();
+
+                                    if (location == null)
+                                        toast.makeText(getApplicationContext(), "Unable to find last location.", Toast.LENGTH_SHORT).show();
+                                    else { //actually open the channel only if last location was found
+                                        latitude = location.getLatitude();
+                                        longitude = location.getLongitude();
+                                    }
+
+                                    flag_location = 1;  //solo la prima volta rilevo le coordinate
+                                }
+                                switch (pacchetto_P) {
+                                    case 1:
+                                        //toast.makeText(getApplicationContext(), "P1" , Toast.LENGTH_SHORT).show();
+                                        count_P1++;
+                                        if (count_P1 == 1) {
+                                            //ricostruisco i dati in variabili
+                                            //Temperature
+                                            partial_calculation = (Integer.decode("0x" + messageContentString_split[1].substring(1)) - 30);
+                                            if (partial_calculation > 0) {
+                                                temperature = partial_calculation + ((float) Integer.decode("0x" + messageContentString_split[2].substring(1)) / 100);
+                                            } else {
+                                                temperature = partial_calculation - ((float) Integer.decode("0x" + messageContentString_split[2].substring(1)) / 100);
+                                            }
+                                            //humidity
+                                            humidity = Integer.decode("0x" + messageContentString_split[3].substring(1)) + ((float) Integer.decode("0x" + messageContentString_split[4].substring(1)) / 100);
+                                            //pressure
+                                            pressure = (Integer.decode("0x" + messageContentString_split[5].substring(1)) << 16) + (Integer.decode("0x" + messageContentString_split[6].substring(1)) << 8) + Integer.decode("0x" + messageContentString_split[7].substring(1));
+
+                                            //mostri dati a schermo
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    temperature_output.setText(String.valueOf(temperature));
+                                                    humidity_output.setText(String.valueOf(humidity));
+                                                    pressure_output.setText(String.valueOf(pressure));
+                                                }
+                                            });
+
+                                        }
+                                        break;
+
+                                    case 2:
+                                        //toast.makeText(getApplicationContext(), "P2" , Toast.LENGTH_SHORT).show();
+                                        count_P2 ++;
+                                        if (count_P2 == 1) {
+                                            //ricostruisco i dati in variabili
+                                            //VOC
+                                            VOC = Integer.decode("0x" + messageContentString_split[1].substring(1)) + (Integer.decode("0x" + messageContentString_split[2].substring(1)) <<8);
+                                            //CO2
+                                            CO2 = Integer.decode("0x" + messageContentString_split[3].substring(1)) + (Integer.decode("0x" + messageContentString_split[4].substring(1)) <<8);
+                                            //NO2 bisogna riportare la funzione di conversione da bit a valore dopo aver fatto la calibrazione
+                                            NO2 = Integer.decode("0x" + messageContentString_split[5].substring(1));
+                                            NO2 = (float) Math.pow(10,(Math.log10(NO2/231)-0.804)/1.026);   //hard coding 234 valore normale
+                                            NO2 = Math.round(NO2 *100);
+                                            NO2 = NO2 / 100;
+                                            //CO
+                                            CO = Integer.decode("0x" + messageContentString_split[6].substring(1));
+                                            CO = (float) Math.pow(10, ((Math.log10(CO/229)-0.55)/(-0.85)));
+                                            CO = Math.round(CO * 100);
+                                            CO = CO /100;
+                                            //Batteria
+                                            battery = Integer.decode("0x" + messageContentString_split[7].substring(1));
+
+                                            //mostri dati a schermo
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    VOC_output.setText(String.valueOf(VOC));
+                                                    CO2_output.setText(String.valueOf(CO2));
+                                                    CO_output.setText(String.valueOf(CO));
+                                                    NO2_output.setText(String.valueOf(NO2));
+                                                }
+                                            });
+                                        }
+                                        break;
+
+                                    case 3:
+                                        //toast.makeText(getApplicationContext(), "P3" , Toast.LENGTH_SHORT).show();
+                                        count_P3 ++;
+                                        if (count_P3 == 1) {
+                                            //ricostruisco i dati in variabili
+                                            //acceleration
+                                            acceleration = Integer.decode("0x" + messageContentString_split[1].substring(1));
+                                            //PM1.0
+                                            PM1p0 = Integer.decode("0x" + messageContentString_split[2].substring(1)) + Integer.decode("0x" + messageContentString_split[3].substring(1))/100;
+                                            //PM2.5
+                                            PM2p5 = Integer.decode("0x" + messageContentString_split[4].substring(1)) + Integer.decode("0x" + messageContentString_split[5].substring(1))/100;
+                                            //PM10
+                                            PM10p0 = Integer.decode("0x" + messageContentString_split[6].substring(1)) + Integer.decode("0x" + messageContentString_split[7].substring(1))/100;
+
+                                            //mostri dati a schermo
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    PM1p0_output.setText(String.valueOf(PM1p0));
+                                                    PM2p5_output.setText(String.valueOf(PM2p5));
+                                                    PM10_output.setText(String.valueOf(PM10p0));
+                                                }
+                                            });
+                                        }
+                                        break;
+                                }
+                                if (count_P1 > 0 && count_P2 > 0 && count_P3 > 0 && flag_dati_ricevuti == 0){ //condizione: almeno un pacchetto P per ognuno è arrivato
+
+                                    flag_dati_ricevuti = 1;
+                                }
+                            }
+                            /*
                             //write the messages
                             //call the firebase class to upload data on firebase
                             WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
@@ -875,7 +1073,19 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                             writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
 
                             fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
+*/
+                        }
 
+                        //TODO - every now and then save the file on firebase for backup, later savings will over write the previous one
+                        //save the file each 1 MB size (around 10 minutes)
+                        long fileIntSizeBytes_backup=fileInt.length();
+                        long fileIntSizeKyloBytes_backup=fileIntSizeBytes_backup/1024;
+
+                        if(fileIntSizeKyloBytes_backup>size_interval_backupfile && fileIntSizeKyloBytes_backup<size_interval_backupfile+50){
+                            //Log.e("backup","backup 1, size start: " + size_interval_backupfile);
+                            saveFileOnFirebase(fileInt);
+                            size_interval_backupfile=size_interval_backupfile+SIZE_INTERVAL_BACKUPFILE;
+                            //Log.e("backup","backup 1, size end: " + size_interval_backupfile);
                         }
                     }
                     else { //if the four units are NOT connected, check each one in the "switch on sensors" layout
@@ -921,7 +1131,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                             });
                         }
 
-                        if(messageContentString.contains(string3)){
+                        if(messageContentString.contains(string3) && connected2 == true){
                             connected3 = true;
                             Log.e(LOG_TAG,"3 is:" + connected3);
                             state=CONNECT4;
@@ -940,7 +1150,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                             });
                         }
 
-                        if(messageContentString.contains(string6)){ //ENVIRONMENTAL MONITOR
+                        if(messageContentString.contains(string6) && connected3 == true){ //ENVIRONMENTAL MONITOR
                             connected4 = true;
                             Log.e(LOG_TAG,"6 is:" + connected4);
                             //to change the UI we have to put codes in the runOnUiThread
@@ -973,7 +1183,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
 
                 case CHANNEL_EVENT:
                     String MessageId = antMessageParcel.getMessageContentString();
-                    Log.e(LOG_TAG, "MessageId" + MessageId);
+                    //Log.e(LOG_TAG, "MessageId" + MessageId);
                     ChannelEventMessage eventMessage = new ChannelEventMessage(antMessageParcel);
 
                     switch (eventMessage.getEventCode()) {
@@ -987,7 +1197,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
                                 // Setting the data to be broadcast on the next channel period
 
                                 if( MessageId.equals("[00][01][03]")) {  //Canale IMUs
-                                    Log.e(LOG_TAG, "IMUs");
+                                    //Log.e(LOG_TAG, "IMUs");
                                     if(state == CONNECT1){
                                         payLoad_IMUs = payLoad1;
                                         Log.e(LOG_TAG, "CONNECT1");

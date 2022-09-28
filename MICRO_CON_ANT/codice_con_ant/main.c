@@ -518,19 +518,16 @@ printf("Sensori correttamente inizializzati\n\n");
 printf("\nMisuro\n");
             //SPS30 
             sps30_wake_up();
+            nrf_delay_ms(1000);
             sps30_start_measurement();
-            nrf_delay_ms(3000);
+            nrf_delay_ms(1100);
             sps30_read_measurement(&measure_sps30);
 intero = measure_sps30.mc_2p5;
 decimale = (measure_sps30.mc_2p5 - intero)*100;
 printf("PM 2.5: %d.%d [�g/m�]\n\r", intero, decimale);
-            nrf_delay_ms(3000);
-            sps30_read_measurement(&measure_sps30);
-intero = measure_sps30.mc_2p5;
-decimale = (measure_sps30.mc_2p5 - intero)*100;
-printf("PM 2.5: %d.%d [�g/m�]\n\r", intero, decimale);
-//            sps30_stop_measurement();
-//            sps30_sleep();
+
+            sps30_stop_measurement();
+            //sps30_sleep();
 
             //SCD41
             scd4x_wake_up();

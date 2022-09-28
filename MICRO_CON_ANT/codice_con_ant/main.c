@@ -114,6 +114,9 @@ uint8_t flag_inizializzazione = 0;  //flag che definisce inizializzazione dei se
 uint8_t flag_dati_pronti = 1; //flag che dice che non ci sono ancora dei dati da inviare
 uint8_t valore = 0;
 
+uint8_t intero;
+uint8_t decimale;
+
 //VARIABILI DEI SENSORI
 struct bme280_dev           dev_bme280;         //struct for BME280
 struct bme280_data          measure_bme280;     //struct for measured values by BME280
@@ -287,11 +290,7 @@ printf("\n");
                         sd_ant_pending_transmit_clear (BROADCAST_CHANNEL_NUMBER, NULL); //svuota il buffer, utile per una seconda acquisizione
                         connesso = 1;
                         //flag_misurazioni = 1;
-                        //rtc_count = 0;
-
-                           //aggiungi stampa del pacchetto inviato per vedere che funzioni correttamente
-                              
-                                  
+                                                      
                               if (pacchetto_P == 1)
                               {   //invio pacchetto 1
                                   err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, pacchetto_1_inviare);
@@ -414,16 +413,21 @@ int count_VOC = 0;
 static void repeated_timer_handler(void * p_context)  //app timer, faccio scattare ogni un secondo
 { 
     rtc_count ++;
-    nrf_gpio_pin_toggle(LED);
+    //durante inizializzazione LED sempre acceso
+    //quando non è connesso lampeggio a 1 sec
+    //quando è connesso lampeggio a 2 sec
+    if(flag_inizializzazione == 1 && connesso == 0)
+        nrf_gpio_pin_toggle(LED);
+        else if (flag_inizializzazione == 1 && connesso == 1 && rtc_count % 2 == 0)
+            nrf_gpio_pin_toggle(LED);
+
     //controllo della batteria, ogni quanto? come il campionamento, e come fare controllo? voltage divider?
     //err_code = nrf_drv_saadc_sample_convert(SAADC_BATTERY, &sample);   //lettura ADC
     //APP_ERROR_CHECK(err_code);
 
     //1 sec
     sgp30_measure_iaq_blocking_read(&measure_sgp30.tVOC, &measure_sgp30.CO2_eq);
-    //PROBLEMA CALCOLARE L'UMIDITA' ASSOLUTA
-    //uint32_t ah = _get_absolute_humidity(); // absolute humidity in mg/m^3
-    //sgp30_set_absolute_humidity(ah);
+
     if(connesso == 1)
     {
         VOC = VOC + measure_sgp30.tVOC;
@@ -435,19 +439,15 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
     if ((rtc_count % 18) == 0)  //_20_SEC
     {
         //campiono tutti i valori, flag e si fa nel main, confronto con umidità
-        //rtc_count = 0;  // se non mi serve intervallo più grande
-        flag_misurazioni = 1; //eseguire misurazioni ogni 20 sec nel main
+        flag_misurazioni = 1; //eseguire misurazioni ogni 18 sec nel main
     }
     
     if ((rtc_count % 180) == 0)
     {
-        //VOC = 0;
-        //count_VOC =0;
         rtc_count = 0;
         printf("Azzero trimer\n");
     }
-
-    //1 ora per sgp30 baseline iaq (capire se serve)                                                                                     
+                                                                                     
 }
 //=============================================================================================================================================================================
 
@@ -457,7 +457,7 @@ int main(void)
 printf("inizio\n"); 
 
     nrf_gpio_cfg_output(LED);
-    nrf_gpio_pin_set(LED);          
+    nrf_gpio_pin_set(LED);    //LED acceso      
  
     nrf_gpio_cfg_output(bjt);
     //nrf_gpio_pin_set(bjt);    //cosi funziona?
@@ -480,7 +480,6 @@ printf("Start\n");
                             repeated_timer_handler);
     APP_ERROR_CHECK(err_code);
 
-    nrf_gpio_pin_clear(LED);
     err_code = nrf_pwr_mgmt_init();
     APP_ERROR_CHECK(err_code);
 printf("Timer\n");    
@@ -507,50 +506,6 @@ printf("Timer\n");
 printf("Sensori correttamente inizializzati\n\n");
         flag_inizializzazione = 1;
     }
-
-    /*
-     * Pulizia ventola ad ogni accensione 
-     */
-     int intero;
-     int decimale;
-/////codice di prova da eliminare
-/*
-int intero = 99;
-            int decimale = 99;
-for (int i = 0; i<10; i++)
-{
-            sps30_wake_up();
-            sps30_start_measurement();
-            nrf_delay_ms(3000);
-            err_code = sps30_read_measurement(&measure_sps30);
-            if (err_code  <0)
-            printf("Errore\n"); 
-            else{
-            intero = measure_sps30.mc_2p5;
-            decimale = (measure_sps30.mc_2p5 - intero)*100;
-            printf("PM 2.5: %d.%d [ï¿½g/mï¿½]\n\r", intero, decimale);
-            }
-            
- /*           nrf_delay_ms(1000);
-            err_code = sps30_read_measurement(&measure_sps30);
-            if (err_code  <0)
-            printf("Errore\n"); 
-            else{
-            intero = measure_sps30.mc_2p5;
-            decimale = (measure_sps30.mc_2p5 - intero)*100;
-            printf("PM 2.5: %d.%d [ï¿½g/mï¿½]\n\r", intero, decimale);
-            }
-*/
-/*            sps30_stop_measurement();
-            printf("SLEEp\n");
-            sps30_sleep();
-            nrf_delay_ms(10000);
-}
-
-
-
-*/
-/////
 
     // Main loop.
     for (;;)
@@ -584,14 +539,11 @@ printf("PM 2.5: %d.%d [ï¿½g/mï¿½]\n\r", intero, decimale);
             scd4x_read_measurement(&measure_scd4x.CO2, &measure_scd4x.Temperature, &measure_scd4x.Humidity);
             scd4x_power_down();
 
-            //MICS6814
+            //MICS6814    campiono e basta, il calcolo avviene nell'applicazione
             nrfx_saadc_sample_convert(NO2_CHANNEL, &adc_val); //A1
-            //partial_calc = (5 - adc_to_volts(adc_val))/adc_to_volts(adc_val);
-            //measure_mics6814.NO2 = pow(10, (log10(partial_calc) -0.804)/(1.026))*1000;
             measure_mics6814.NO2 = adc_val;
+
             nrfx_saadc_sample_convert(CO_CHANNEL, &adc_val); //A3
-            //partial_calc = (5 - adc_to_volts(adc_val))/adc_to_volts(adc_val);
-            //measure_mics6814.CO = pow(10, (log10(partial_calc)-0.55)/(-0.85));
             measure_mics6814.CO = adc_val;
             
             //BME280
@@ -618,66 +570,58 @@ printf("PM 2.5: %d.%d [ï¿½g/mï¿½]\n\r", intero, decimale);
             else  printf("errore ACC\n");   
             printf("Acc %d\n",measure_lis3dh.Acc);
 
-          //letti tutti i valori, elaboro i dati in modo da poterli inviare come uint8 e li salvo nei pacchetti, poi metto flag_misurazione = 2 e la gestisco in ANT
+            //letti tutti i valori, elaboro i dati in modo da poterli inviare come uint8 e li salvo nei pacchetti, poi metto flag_misurazione = 2 e la gestisco in ANT
 
-          pacchetto_1[0] = 64 + numero_pacchetto;
-          //pacchetto_1[1] = (int) measure_bme280.temperature + 30;    //Parte intera della Temperatura incrementato di 30 (o più?)
-          pacchetto_1[1] = (int) (measure_scd4x.Temperature/1000) + 30;    //Parte intera della Temperatura incrementato di 30 (o più?)
-          pacchetto_1[2] = abs((int)((measure_scd4x.Temperature - (int)measure_scd4x.Temperature)/10));  //parte decimale della Temperatura
-          pacchetto_1[3] = (int)measure_scd4x.Humidity/1000;
-          pacchetto_1[4] = (int)((measure_scd4x.Humidity - (int)measure_scd4x.Humidity)/10);
-          calcolo_parziale = measure_bme280.pressure;
-          pacchetto_1[5] = calcolo_parziale >> 16; //Pressione  >> 16
-          pacchetto_1[6] = calcolo_parziale >> 8; //Pressione  >> 8
-          pacchetto_1[7] = calcolo_parziale; //Pressione
+            pacchetto_1[0] = 64 + numero_pacchetto;
+            //pacchetto_1[1] = (int) measure_bme280.temperature + 30;    //Parte intera della Temperatura incrementato di 30 (o più?)
+            pacchetto_1[1] = (int) (measure_scd4x.Temperature/1000) + 30;    //Parte intera della Temperatura incrementato di 30 (o più?)
+            pacchetto_1[2] = abs((int)((measure_scd4x.Temperature - (int)measure_scd4x.Temperature)/10));  //parte decimale della Temperatura
+            pacchetto_1[3] = (int)measure_scd4x.Humidity/1000;
+            pacchetto_1[4] = (int)((measure_scd4x.Humidity - (int)measure_scd4x.Humidity)/10);
+            calcolo_parziale = measure_bme280.pressure;
+            pacchetto_1[5] = calcolo_parziale >> 16; //Pressione  >> 16
+            pacchetto_1[6] = calcolo_parziale >> 8; //Pressione  >> 8
+            pacchetto_1[7] = calcolo_parziale; //Pressione
 
-          calcolo_parziale = (int)(VOC/count_VOC);
-          VOC = 0;
-          count_VOC = 0;
-          pacchetto_2[0] = 128 + numero_pacchetto;
-          pacchetto_2[1] = calcolo_parziale; //VOC  LSB (least significant Byte)      
-          pacchetto_2[2] = calcolo_parziale >> 8; //VOC  MSB (Most significant Byte)     
-          pacchetto_2[3] = measure_scd4x.CO2; //CO2  LSB (least significant Byte)   //dovrebbe bastare così
-          pacchetto_2[4] = measure_scd4x.CO2 >> 8; //CO2  MSB (Most significant Byte)
-          pacchetto_2[5] = measure_mics6814.NO2; //NO2
-          pacchetto_2[6] = measure_mics6814.CO; //CO
-          pacchetto_2[7] = 123; // BATTERY   capire ogni quanto campionare
+            calcolo_parziale = (int)(VOC/count_VOC);
+            VOC = 0;
+            count_VOC = 0;
+            pacchetto_2[0] = 128 + numero_pacchetto;
+            pacchetto_2[1] = calcolo_parziale; //VOC  LSB (least significant Byte)      
+            pacchetto_2[2] = calcolo_parziale >> 8; //VOC  MSB (Most significant Byte)     
+            pacchetto_2[3] = measure_scd4x.CO2; //CO2  LSB (least significant Byte)   //dovrebbe bastare così
+            pacchetto_2[4] = measure_scd4x.CO2 >> 8; //CO2  MSB (Most significant Byte)
+            pacchetto_2[5] = measure_mics6814.NO2; //NO2
+            pacchetto_2[6] = measure_mics6814.CO; //CO
+            pacchetto_2[7] = 123; // BATTERY   capire ogni quanto campionare
           
-          pacchetto_3[0] = 192 + numero_pacchetto;
-          pacchetto_3[1] = measure_lis3dh.Acc; //ACCELERATION   capire ogni quanto leggere il dato
-          intero = measure_sps30.mc_1p0;
-          pacchetto_3[2] = intero; //PM1.0 intero
-          pacchetto_3[3] = ((measure_sps30.mc_1p0 - intero)*100); //PM1.0  decimale
-          intero = measure_sps30.mc_2p5;
-          pacchetto_3[4] = intero; //PM2.5  intero
-          pacchetto_3[5] = ((measure_sps30.mc_2p5 - intero)*100); //PM2.5  decimale
-          intero = measure_sps30.mc_10p0;
-          pacchetto_3[6] = intero; //PM10   intero
-          pacchetto_3[7] = ((measure_sps30.mc_10p0 - intero)* 100); //PM10   decimale
+            pacchetto_3[0] = 192 + numero_pacchetto;
+            pacchetto_3[1] = measure_lis3dh.Acc; //ACCELERATION   capire ogni quanto leggere il dato
+            intero = measure_sps30.mc_1p0;
+            pacchetto_3[2] = intero; //PM1.0 intero
+            pacchetto_3[3] = ((measure_sps30.mc_1p0 - intero)*100); //PM1.0  decimale
+            intero = measure_sps30.mc_2p5;
+            pacchetto_3[4] = intero; //PM2.5  intero
+            pacchetto_3[5] = ((measure_sps30.mc_2p5 - intero)*100); //PM2.5  decimale
+            intero = measure_sps30.mc_10p0;
+            pacchetto_3[6] = intero; //PM10   intero
+            pacchetto_3[7] = ((measure_sps30.mc_10p0 - intero)* 100); //PM10   decimale
           
-          flag_misurazioni = 2;
+            flag_misurazioni = 2;
 flag_dati_pronti = 1;
+
 //finiti di mettere i valori negli array, incremento il valore di numero_pacchetto.
 // se supera 63 (6 bit), lo riporto a 1
 
-          numero_pacchetto++;
+            numero_pacchetto++;
 
-          if (numero_pacchetto == 64)
-          {
-            numero_pacchetto = 1;
-          }
+            if (numero_pacchetto == 64)
+              {
+                numero_pacchetto = 1;
+              }
 printf("Numero: %d\n", numero_pacchetto);
           
-              /*for (int i = 0; i < 8 ; i++)
-                  {
-                      pacchetto_1_inviare[i] = pacchetto_1[i];
-                      pacchetto_2_inviare[i] = pacchetto_2[i];
-                      pacchetto_3_inviare[i] = pacchetto_3[i];
-                  }  
-              flag_misurazioni = 0;
-              */
-
-          }
+        }
         nrf_pwr_mgmt_run();
         __WFI();//GO INTO LOW POWER MODE
     }

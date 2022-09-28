@@ -42,6 +42,7 @@
                 android:layout_row="0"
                 android:layout_column="0"
                 android:text="Temperature [°C]"
+                android:textColor="#25383C"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -54,6 +55,7 @@
                 android:layout_row="0"
                 android:layout_column="2"
                 android:text="Humidity [%]"
+                android:textColor="#25383C"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -69,6 +71,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text=""
+                android:textColor="#25383C"
                 android:textSize="22sp" />
 
             <!-- HUMIDITY VALUE -->
@@ -82,6 +85,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text=""
+                android:textColor="#25383C"
                 android:textSize="22sp" />
 
             <TextView
@@ -104,6 +108,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text="Pressure [Pa]"
+                android:textColor="#25383C"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -117,6 +122,7 @@
                 android:layout_column="2"
                 android:paddingTop="5dp"
                 android:text="VOC [ppm]"
+                android:textColor="#25383C"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -132,6 +138,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text=""
+                android:textColor="#25383C"
                 android:textSize="22sp" />
 
             <TextView
@@ -155,6 +162,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text=""
+                android:textColor="#25383C"
                 android:textSize="22sp" />
 
             <!-- CO2 -->
@@ -167,6 +175,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text="CO2 [ppm]"
+                android:textColor="#25383C"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -180,6 +189,7 @@
                 android:layout_column="2"
                 android:paddingTop="5dp"
                 android:text="CO [ppm]"
+                android:textColor="#25383C"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -195,6 +205,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text=""
+                android:textColor="#25383C"
                 android:textSize="22sp" />
 
             <TextView
@@ -218,6 +229,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text=""
+                android:textColor="#25383C"
                 android:textSize="22sp" />
 
             <!-- NO2 -->
@@ -230,6 +242,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text="NO2 [ppm]"
+                android:textColor="#25383C"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -243,6 +256,7 @@
                 android:layout_column="2"
                 android:paddingTop="5dp"
                 android:text="PM1.0 [μg/m³]"
+                android:textColor="#25383C"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -258,6 +272,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text=""
+                android:textColor="#25383C"
                 android:textSize="22sp" />
 
             <TextView
@@ -281,6 +296,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text=""
+                android:textColor="#25383C"
                 android:textSize="22sp" />
 
             <!-- PM2.5 -->
@@ -293,6 +309,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text="PM2.5 [μg/m³]"
+                android:textColor="#25383C"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -306,6 +323,7 @@
                 android:layout_column="2"
                 android:paddingTop="5dp"
                 android:text="PM10 [μg/m³]"
+                android:textColor="#25383C"
                 android:textAlignment="center"
                 android:textSize="21sp"
                 android:textStyle="bold" />
@@ -319,6 +337,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text=""
+                android:textColor="#25383C"
                 android:textAlignment="center"
                 android:textSize="22sp" />
 
@@ -343,6 +362,7 @@
                 android:layout_gravity="center"
                 android:paddingTop="5dp"
                 android:text=""
+                android:textColor="#25383C"
                 android:textSize="22sp" />
 
 

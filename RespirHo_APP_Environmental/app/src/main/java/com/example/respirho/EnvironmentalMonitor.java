@@ -793,6 +793,12 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                                 public void run() {
                                                     VOC_output.setText(String.valueOf(VOC));
                                                     CO2_output.setText(String.valueOf(CO2));
+                                                    if (CO2 > 1000){
+                                                        CO2_output.setTextColor(Color.RED);
+                                                    }
+                                                    else {
+                                                        CO2_output.setTextColor(Color.BLACK);
+                                                    }
                                                     CO_output.setText(String.valueOf(CO));
                                                     NO2_output.setText(String.valueOf(NO2));
                                                 }

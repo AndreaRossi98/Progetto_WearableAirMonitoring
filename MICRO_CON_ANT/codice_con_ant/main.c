@@ -522,9 +522,9 @@ printf("\nMisuro\n");
             sps30_start_measurement();
             nrf_delay_ms(1100);
             sps30_read_measurement(&measure_sps30);
-intero = measure_sps30.mc_2p5;
-decimale = (measure_sps30.mc_2p5 - intero)*100;
-printf("PM 2.5: %d.%d [�g/m�]\n\r", intero, decimale);
+//intero = measure_sps30.mc_2p5;
+//decimale = (measure_sps30.mc_2p5 - intero)*100;
+//printf("PM 2.5: %d.%d [�g/m�]\n\r", intero, decimale);
 
             sps30_stop_measurement();
             //sps30_sleep();

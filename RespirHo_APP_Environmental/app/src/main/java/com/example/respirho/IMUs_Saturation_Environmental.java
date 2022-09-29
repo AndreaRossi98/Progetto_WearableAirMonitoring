@@ -1755,7 +1755,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                 if(!flag_timer_rec){
 
                     viewStub = (ViewStub) findViewById(R.id.timer_recording_toinclude);
-                    viewStub.setLayoutResource(R.layout.timer_recording);
+                    viewStub.setLayoutResource(R.layout.timer_recording_general);
                     inflated_timer_rec = viewStub.inflate();
 
                     startrecording_timer=(Button) findViewById(R.id.startrecording_timer);
@@ -2008,7 +2008,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                 if(!flag_manual_rec){
 
                     viewStub = (ViewStub) findViewById(R.id.manual_recording_toinclude);
-                    viewStub.setLayoutResource(R.layout.manual_recording);
+                    viewStub.setLayoutResource(R.layout.manual_recording_general);
                     inflated_manual_rec = viewStub.inflate();
 
                     startrecording_manual=(Button) findViewById(R.id.startrecording_manual);

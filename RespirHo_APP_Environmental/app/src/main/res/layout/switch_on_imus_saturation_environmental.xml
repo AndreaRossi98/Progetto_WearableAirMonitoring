@@ -29,7 +29,7 @@
             android:layout_column="0"
             android:layout_margin="5dp"
             android:paddingTop="5dp"
-            android:text="Breathing and activity + \nEnvironmental Monitor"
+            android:text="Breathing and activity + \nSaturation +\nEnvironmental Monitor"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="20sp"
@@ -223,7 +223,7 @@
                 android:id="@+id/switchonsensor5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5. Switch on Environmental Monitor:"
+                android:text="5. Switch on \nEnvironmental Monitor:"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="20dp"
@@ -258,7 +258,7 @@
             android:text="Go to select recording"
             android:clickable="true"
             android:layout_margin="5dp"
-            android:layout_row="6"
+            android:layout_row="7"
             android:layout_column="0"
             android:visibility="gone"/>
 

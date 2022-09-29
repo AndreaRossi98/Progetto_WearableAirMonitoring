@@ -182,7 +182,7 @@
                 android:id="@+id/switchonsensor4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="4. Switch on Environmental Monitor:"
+                android:text="4. Switch on \nEnvironmental Monitor:"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="20dp"

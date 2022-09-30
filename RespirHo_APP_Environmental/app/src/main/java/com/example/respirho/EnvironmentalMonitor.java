@@ -814,19 +814,29 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             //acceleration
                                             acceleration = Integer.decode("0x" + messageContentString_split[1].substring(1));
                                             //PM1.0
-                                            PM1p0 = Integer.decode("0x" + messageContentString_split[2].substring(1)) + (float)Integer.decode("0x" + messageContentString_split[3].substring(1)) / 100;
+                                            PM1p0 = Integer.decode("0x" + messageContentString_split[2].substring(1)) + (float)Math.round(Integer.decode("0x" + messageContentString_split[3].substring(1))) / 100;
                                             //PM2.5
-                                            PM2p5 = Integer.decode("0x" + messageContentString_split[4].substring(1)) + (float)Integer.decode("0x" + messageContentString_split[5].substring(1)) / 100;
+                                            PM2p5 = Integer.decode("0x" + messageContentString_split[4].substring(1)) + (float)Math.round(Integer.decode("0x" + messageContentString_split[5].substring(1))) / 100;
                                             //PM10
-                                            PM10p0 = Integer.decode("0x" + messageContentString_split[6].substring(1)) + (float)Integer.decode("0x" + messageContentString_split[7].substring(1)) / 100;
+                                            PM10p0 = Integer.decode("0x" + messageContentString_split[6].substring(1)) + (float)Math.round(Integer.decode("0x" + messageContentString_split[7].substring(1))) / 100;
 
                                             //mostri dati a schermo
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
                                                     PM1p0_output.setText(String.valueOf(PM1p0));
-                                                    PM2p5_output.setText(String.valueOf(PM2p5));
-                                                    PM10_output.setText(String.valueOf(PM10p0));
+
+                                                    PM2p5_output.setText(String.valueOf(PM2p5));            //25
+                                                    if (PM2p5 >25)
+                                                        PM2p5_output.setTextColor(Color.RED);
+                                                    else
+                                                        PM2p5_output.setTextColor(Color.BLACK);
+
+                                                    PM10_output.setText(String.valueOf(PM10p0));            //40        limite annuale
+                                                    if (PM10p0 > 40)
+                                                        PM10_output.setTextColor(Color.RED);
+                                                    else
+                                                        PM10_output.setTextColor(Color.BLACK);
                                                 }
                                             });
                                         }

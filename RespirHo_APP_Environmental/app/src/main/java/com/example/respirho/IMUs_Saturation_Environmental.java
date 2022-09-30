@@ -213,7 +213,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
     private static String dead_battery_unit2 ="";
     private static String dead_battery_unit3 ="";
     private static String dead_battery_unit4 ="";
-    private static String dead_battery_unit5 ="";
+    private static String dead_battery_unit6 ="";
 
     //flag for download
     public boolean flag_filetoosmall = false;
@@ -1062,18 +1062,13 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
 
                                     flag_dati_ricevuti = 1;
                                 }
+
+                                //controllo batteria
+//TODO- controllare soglia batteria
+                                if (battery < 250)
+                                    dead_battery_unit6 = "6";
                             }
-                        /*//write the messages
-                            //call the firebase class to upload data on firebase
-                            WritingDataToFirebase writingDataToFirebase= new WritingDataToFirebase();
-                            writingDataToFirebase.mainFirebase(msg+current,startrec_time);
 
-                            //call the file class to save data in a txt file
-                            WritingDataToFile writingDataToFile = new WritingDataToFile();
-                            writingDataToFile.mainFile(msg+current, current, day, intPath,extPath);
-
-                            fileInt= writingDataToFile.fileInt; //get fileInt to use for storage function and save on firebase
-*/
                         }
 
                         //save the file each 1 MB size (around 10 minutes)
@@ -2668,7 +2663,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
     }
 
     private void changeBatteriesWarning(Activity activity) {
-        String text_dead_batteries=dead_battery_unit1 + " " + dead_battery_unit2 + " " + dead_battery_unit3 + " " + dead_battery_unit4;
+        String text_dead_batteries=dead_battery_unit1 + " " + dead_battery_unit2 + " " + dead_battery_unit3 + " " + dead_battery_unit4 + "" + dead_battery_unit6;
 
         //initialize alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -2820,6 +2815,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
         dead_battery_unit2="";
         dead_battery_unit3="";
         dead_battery_unit4="";
+        dead_battery_unit6="";
         //put the flag on to check the battery to display warning once
         flag_battery=true;
 
@@ -2887,6 +2883,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                 dead_battery_unit2="";
                 dead_battery_unit3="";
                 dead_battery_unit4="";
+                dead_battery_unit6="";
 
                 flag_sensors_disconnection=false;
                 flag_sensors_disconnection_header=false;
@@ -3106,6 +3103,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                 dead_battery_unit2="";
                 dead_battery_unit3="";
                 dead_battery_unit4="";
+                dead_battery_unit6="";
 
                 //display error warning
                 error_idpatient.setVisibility(View.VISIBLE);
@@ -3307,6 +3305,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                 dead_battery_unit2="";
                 dead_battery_unit3="";
                 dead_battery_unit4="";
+                dead_battery_unit6="";
                 //go to patient data layout
                 state=QUIT_RECORDING;
                 //call again the onBackPressed() and in this way it enters in the previous if condition

@@ -435,6 +435,13 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
         printf("VOC %d\n", VOC);
     }
 
+    //17 sec
+    if ((rtc_count % 16) == 0 && connesso == 1)
+    {
+        //accendo SPS30 un secondo prima delle misurazioni se no da valori sballati
+        sps30_wake_up();
+        printf("Accendo SPS30\n");
+    }
     //18 sec
     if ((rtc_count % 18) == 0)  //_20_SEC
     {
@@ -517,17 +524,14 @@ printf("Sensori correttamente inizializzati\n\n");
             int calcolo_parziale = 0;
 printf("\nMisuro\n");
             //SPS30 
-            sps30_wake_up();
-            nrf_delay_ms(1000);
+            //sps30_wake_up();
+            //nrf_delay_ms(1000);
             sps30_start_measurement();
-            nrf_delay_ms(1100);
+            nrf_delay_ms(2000);
             sps30_read_measurement(&measure_sps30);
-//intero = measure_sps30.mc_2p5;
-//decimale = (measure_sps30.mc_2p5 - intero)*100;
-//printf("PM 2.5: %d.%d [�g/m�]\n\r", intero, decimale);
-
             sps30_stop_measurement();
-            //sps30_sleep();
+            nrf_delay_ms(40);
+            sps30_sleep();
 
             //SCD41
             scd4x_wake_up();

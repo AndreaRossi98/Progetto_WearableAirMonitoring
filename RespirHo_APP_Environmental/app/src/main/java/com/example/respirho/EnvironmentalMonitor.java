@@ -716,6 +716,10 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             if (numero_pacchetto == pacchetto_numero_ricevuto) {
                                 //la prima volta che entro in questo if, devo prendere latitudine e longitudine
                                 if (flag_location == 0) {
+
+                                    if (ActivityCompat.checkSelfPermission(EnvironmentalMonitor.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+                                        ActivityCompat.requestPermissions(EnvironmentalMonitor.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                                    Log.e(LOG_TAG, "GEOLOCALIZZAZIONE "); //hex
                                     orario = format.format(new Date().getTime());
                                     Task<Location> task = fusedLocationClient.getLastLocation();
                                     while (!task.isComplete()) ;

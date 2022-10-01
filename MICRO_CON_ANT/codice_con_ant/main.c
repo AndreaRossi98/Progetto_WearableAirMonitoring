@@ -435,13 +435,6 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
         printf("VOC %d\n", VOC);
     }
 
-    //17 sec
-    if ((rtc_count % 16) == 0 && connesso == 1)
-    {
-        //accendo SPS30 un secondo prima delle misurazioni se no da valori sballati
-        sps30_wake_up();
-        printf("Accendo SPS30\n");
-    }
     //18 sec
     if ((rtc_count % 18) == 0)  //_20_SEC
     {
@@ -529,9 +522,10 @@ printf("\nMisuro\n");
             sps30_start_measurement();
             nrf_delay_ms(2000);
             sps30_read_measurement(&measure_sps30);
+            nrf_delay_ms(100);
             sps30_stop_measurement();
-            nrf_delay_ms(40);
-            sps30_sleep();
+            //nrf_delay_ms(40);
+            //sps30_sleep();
 
             //SCD41
             scd4x_wake_up();
@@ -542,9 +536,11 @@ printf("\nMisuro\n");
 
             //MICS6814    campiono e basta, il calcolo avviene nell'applicazione
             nrfx_saadc_sample_convert(NO2_CHANNEL, &adc_val); //A1
+            nrf_delay_ms(100);
             measure_mics6814.NO2 = adc_val;
 
             nrfx_saadc_sample_convert(CO_CHANNEL, &adc_val); //A3
+            nrf_delay_ms(100);
             measure_mics6814.CO = adc_val;
             
             //BME280

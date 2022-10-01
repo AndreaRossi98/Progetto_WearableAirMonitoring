@@ -1895,7 +1895,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 Log.e(LOG_TAG, "LINEA:" + line);
                                 String[] attributes;
                                 //String linea = line;
-                                if(line != null){
+
+                                if(line != null || line != "6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;"){
                                     attributes = line.split(";");
                                     //tolti perchè non li mostro a schermo
                                     //temps.add(Double.parseDouble(attributes[2]));

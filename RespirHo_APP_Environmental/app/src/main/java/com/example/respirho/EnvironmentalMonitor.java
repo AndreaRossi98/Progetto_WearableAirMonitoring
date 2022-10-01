@@ -496,7 +496,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
             });
         }
 
-        //LOCATION PROVIDER
+        // LOCATION PROVIDER
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         locationCallback = new LocationCallback() {
             @Override
@@ -635,6 +635,45 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         pacchetto_P = 3    --> è il pacchetto P3
                          */
 
+                            if (flag_location == 0) {
+
+                                fusedLocationClient = LocationServices.getFusedLocationProviderClient(EnvironmentalMonitor.this);
+                                locationCallback = new LocationCallback() {
+                                    @Override
+                                    public void onLocationResult(LocationResult locationResult) {
+                                        if (locationResult != null) {
+                                            location = locationResult.getLastLocation();
+                                            latitude = location.getLatitude();
+                                            longitude = location.getLongitude();
+                                        }
+                                    }
+                                };
+
+                                locationRequest = LocationRequest.create();
+                                locationRequest.setInterval(10000);
+                                locationRequest.setFastestInterval(1000);
+                                locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+                                if (ActivityCompat.checkSelfPermission(EnvironmentalMonitor.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+                                    ActivityCompat.requestPermissions(EnvironmentalMonitor.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                                Log.e(LOG_TAG, "GEOLOCALIZZAZIONE "); //hex
+                                orario = format.format(new Date().getTime());
+                                Task<Location> task = fusedLocationClient.getLastLocation();
+                                while (!task.isComplete()) ;
+                                location = task.getResult();
+
+                                if (location == null)
+                                    toast.makeText(getApplicationContext(), "Unable to find last location.", Toast.LENGTH_SHORT).show();
+                                else { //actually open the channel only if last location was found
+                                    latitude = location.getLatitude();
+                                    longitude = location.getLongitude();
+                                    toast.makeText(getApplicationContext(), "lat: " + latitude + "\nlong: " + longitude, Toast.LENGTH_SHORT).show();
+
+                                }
+
+                                flag_location = 1;  //solo la prima volta rilevo le coordinate
+                            }
+
                             pacchetto_numero_ricevuto = Integer.decode("0x" + messageContentString_split[0].substring(1));
                             pacchetto_P = pacchetto_numero_ricevuto >> 6;
                             pacchetto_numero_ricevuto = pacchetto_numero_ricevuto - (pacchetto_P << 6);
@@ -715,25 +754,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             }
                             if (numero_pacchetto == pacchetto_numero_ricevuto) {
                                 //la prima volta che entro in questo if, devo prendere latitudine e longitudine
-                                if (flag_location == 0) {
 
-                                    if (ActivityCompat.checkSelfPermission(EnvironmentalMonitor.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-                                        ActivityCompat.requestPermissions(EnvironmentalMonitor.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-                                    Log.e(LOG_TAG, "GEOLOCALIZZAZIONE "); //hex
-                                    orario = format.format(new Date().getTime());
-                                    Task<Location> task = fusedLocationClient.getLastLocation();
-                                    while (!task.isComplete()) ;
-                                    location = task.getResult();
-
-                                    if (location == null)
-                                        toast.makeText(getApplicationContext(), "Unable to find last location.", Toast.LENGTH_SHORT).show();
-                                    else { //actually open the channel only if last location was found
-                                        latitude = location.getLatitude();
-                                        longitude = location.getLongitude();
-                                    }
-
-                                    flag_location = 1;  //solo la prima volta rilevo le coordinate
-                                }
                                 switch (pacchetto_P) {
                                     case 1:
                                         count_P1++;
@@ -1900,7 +1921,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 String[] attributes;
                                 //String linea = line;
 
-                                if(line != null || line != "6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;"){
+                                if(line != null && line != "6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;"){
                                     attributes = line.split(";");
                                     //tolti perchè non li mostro a schermo
                                     //temps.add(Double.parseDouble(attributes[2]));

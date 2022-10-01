@@ -502,7 +502,7 @@ printf("Timer\n");
         err_code = lis3dh_init();    //tutto ok ritorna 0    
         printf("\nSPS30\n");      
         err_code = sps30_init();   //tutto ok ritorna 0   //SPENTA VENTOLA
-
+sps30_start_measurement();
 printf("Sensori correttamente inizializzati\n\n");
         flag_inizializzazione = 1;
     }
@@ -519,11 +519,11 @@ printf("\nMisuro\n");
             //SPS30 
             //sps30_wake_up();
             //nrf_delay_ms(1000);
-            sps30_start_measurement();
-            nrf_delay_ms(2000);
+            //sps30_start_measurement();
+            //nrf_delay_ms(3000);
             sps30_read_measurement(&measure_sps30);
-            nrf_delay_ms(100);
-            sps30_stop_measurement();
+            //nrf_delay_ms(100);
+            //sps30_stop_measurement();
             //nrf_delay_ms(40);
             //sps30_sleep();
 

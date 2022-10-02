@@ -1,5 +1,6 @@
 package com.example.respirho;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.NotificationChannel;
@@ -10,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -18,6 +20,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.Vibrator;
@@ -39,6 +42,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.GravityCompat;
@@ -553,7 +557,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
 
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(1000);
+        locationRequest.setFastestInterval(2500);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
     }
@@ -952,6 +956,9 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                             if (numero_pacchetto == pacchetto_numero_ricevuto ) {
                                 //la prima volta che entro in questo if, devo prendere latitudine e longitudine
                                 if (flag_location == 0) {
+                                    if (ActivityCompat.checkSelfPermission(IMUs_Saturation_Environmental.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+                                        ActivityCompat.requestPermissions(IMUs_Saturation_Environmental.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+                                    Log.e(LOG_TAG, "GEOLOCALIZZAZIONE "); //hex
                                     orario = format.format(new Date().getTime());
                                     Task<Location> task = fusedLocationClient.getLastLocation();
                                     while (!task.isComplete()) ;
@@ -1292,6 +1299,8 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                                         state = CALL1;
                                         startWatchdogTimer(UNIT1);
                                         checkWatchdogTimer();
+                                        //start geolocalization update service
+                                        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
                                     } else if (state == CALL1) {
                                         state = CALL2;
                                         startWatchdogTimer(UNIT2);
@@ -1377,6 +1386,8 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                                     if(state==STOP) {
                                         //stop the channel sending the payload9
                                         payLoad_ENVIRONMENTAL = payLoad9;
+                                        //stop geolocalization update service
+                                        fusedLocationClient.removeLocationUpdates(locationCallback);
                                     }
 
                                     //send the message through a specific payload

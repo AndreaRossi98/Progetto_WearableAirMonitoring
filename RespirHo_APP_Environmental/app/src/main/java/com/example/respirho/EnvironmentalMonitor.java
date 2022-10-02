@@ -33,6 +33,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.Vibrator;
@@ -105,6 +106,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
+
+import android.location.LocationManager;
 
 import android.location.Location;
 
@@ -315,7 +318,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public LocationCallback locationCallback;
     public LocationRequest locationRequest;
     public Location location;
-    public double latitude = 0.0, longitude = 0.0;
+    public double latitudes = 0.0, longitudes = 0.0;
 
     //File management       aggiunto dopo per implementare l'aggiunta dei punti su maps (richiede accesso ai file con tutti i dati salvati)
     public File root; //root path of the file
@@ -503,15 +506,15 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
             public void onLocationResult(LocationResult locationResult) {
                 if (locationResult != null) {
                     location = locationResult.getLastLocation();
-                    latitude = location.getLatitude();
-                    longitude = location.getLongitude();
+                    latitudes = location.getLatitude();
+                    longitudes = location.getLongitude();
                 }
             }
         };
 
         locationRequest = LocationRequest.create();
         locationRequest.setInterval(10000);
-        locationRequest.setFastestInterval(1000);
+        locationRequest.setFastestInterval(2500);
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
     }
@@ -538,6 +541,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     float PM1p0 = 0;
     float PM2p5 = 0;
     float PM10p0 = 0;
+    double latitude = 0;
+    double longitude = 0;
     float partial_calculation = 0; //variabile usata per fare calcoli parziali
     String messaggio_salvato;
 
@@ -636,8 +641,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                          */
 
                             if (flag_location == 0) {
-
-                                fusedLocationClient = LocationServices.getFusedLocationProviderClient(EnvironmentalMonitor.this);
+//capire se questo serve qua o meno
+/*                                fusedLocationClient = LocationServices.getFusedLocationProviderClient(EnvironmentalMonitor.this);
                                 locationCallback = new LocationCallback() {
                                     @Override
                                     public void onLocationResult(LocationResult locationResult) {
@@ -653,11 +658,12 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 locationRequest.setInterval(10000);
                                 locationRequest.setFastestInterval(1000);
                                 locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
+*/
                                 if (ActivityCompat.checkSelfPermission(EnvironmentalMonitor.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                                     ActivityCompat.requestPermissions(EnvironmentalMonitor.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
                                 Log.e(LOG_TAG, "GEOLOCALIZZAZIONE "); //hex
                                 orario = format.format(new Date().getTime());
+
                                 Task<Location> task = fusedLocationClient.getLastLocation();
                                 while (!task.isComplete()) ;
                                 location = task.getResult();
@@ -798,15 +804,15 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             //NO2 bisogna riportare la funzione di conversione da bit a valore dopo aver fatto la calibrazione
                                             NO2 = Integer.decode("0x" + messageContentString_split[5].substring(1));
                                             Log.e(LOG_TAG, "NO2: " + NO2); //hex
-                                            //231
-                                            NO2 = (float) Math.pow(10,(Math.log10(NO2/231)-0.804)/1.026);   //hard coding 234 valore normale
+                                            //12
+                                            NO2 = (float) Math.pow(10,(Math.log10(12/NO2)-0.804)/1.026);   //hard coding 234 valore normale
                                             NO2 = Math.round(NO2 *100);
                                             NO2 = NO2 / 100;
                                             //CO
                                             CO = Integer.decode("0x" + messageContentString_split[6].substring(1));
                                             Log.e(LOG_TAG, "CO: " +CO); //hex
-                                            //229
-                                            CO = (float) Math.pow(10, (Math.log10(CO/229)-0.55)/(-0.85));
+                                            //11
+                                            CO = (float) Math.pow(10, (Math.log10(11/CO)-0.55)/(-0.85));
                                             CO = Math.round(CO * 100);
                                             CO = CO /100;
                                             //Batteria
@@ -839,11 +845,11 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             //acceleration
                                             acceleration = Integer.decode("0x" + messageContentString_split[1].substring(1));
                                             //PM1.0
-                                            PM1p0 = Integer.decode("0x" + messageContentString_split[2].substring(1)) + (float)Math.round(Integer.decode("0x" + messageContentString_split[3].substring(1))) / 100;
+                                            PM1p0 = Integer.decode("0x" + messageContentString_split[2].substring(1)) + (float)(Math.round(Integer.decode("0x" + messageContentString_split[3].substring(1))) / 100);
                                             //PM2.5
-                                            PM2p5 = Integer.decode("0x" + messageContentString_split[4].substring(1)) + (float)Math.round(Integer.decode("0x" + messageContentString_split[5].substring(1))) / 100;
+                                            PM2p5 = Integer.decode("0x" + messageContentString_split[4].substring(1)) + (float)(Math.round(Integer.decode("0x" + messageContentString_split[5].substring(1))) / 100);
                                             //PM10
-                                            PM10p0 = Integer.decode("0x" + messageContentString_split[6].substring(1)) + (float)Math.round(Integer.decode("0x" + messageContentString_split[7].substring(1))) / 100;
+                                            PM10p0 = Integer.decode("0x" + messageContentString_split[6].substring(1)) + (float)(Math.round(Integer.decode("0x" + messageContentString_split[7].substring(1))) / 100);
 
                                             //mostri dati a schermo
                                             runOnUiThread(new Runnable() {
@@ -895,6 +901,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             //GlobalVariables.flag_connected6=true;
                             Log.e(LOG_TAG,"1 is:" + connected6);
                             state = CONNECT6;   //prova a togliere questa
+
+                            //start geolocalization update service
+//                            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
 
                             //to change the UI we have to put codes in the runOnUiThread
                             runOnUiThread(new Runnable() {
@@ -968,7 +977,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 if(state==STOP) {
                                     //stop the channel sending the payload9
                                     payLoad = payLoad9;
-                                    //azzero tutte le flag
+                                    //stop geolocalization update service
+                                    fusedLocationClient.removeLocationUpdates(locationCallback);
 
                                 }
 
@@ -984,6 +994,9 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 if(state==START || state==RECONNECTION)
                                 {
                                     state=CALL6;
+                                    //start geolocalization update service
+                                    fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
+                                    Log.e(LOG_TAG, "RECONNECTION"); //hex
                                 }
                                 else if(state == CALL6)
                                 {
@@ -1971,7 +1984,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                                 .snippet(" VOC[ppm]: "+ VOCs.get(i)+", CO2[ppm]: "+ CO2s.get(i) + ", PM2.5[μg/m³]: "+ PM2p5s.get(i) ));
 
                                     }
-                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(4), lons.get(4)), 12));
+                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(4), lons.get(4)), 16));
                                 });
                             }
                     });

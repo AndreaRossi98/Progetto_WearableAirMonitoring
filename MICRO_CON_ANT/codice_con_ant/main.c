@@ -107,7 +107,10 @@ uint8_t numero_pacchetto = 1;   //numero incrementale del pacchetto che si invia
 
 uint8_t pacchetto = 0;
 
-nrf_saadc_value_t adc_val;  //variabile per campionamento 
+nrf_saadc_value_t adc_val_CO;  //variabile per campionamento 
+nrf_saadc_value_t adc_val_NO2;  //variabile per campionamento 
+nrf_saadc_value_t adc_val_battery;  //variabile per campionamento
+
 ret_code_t err_code;        //variabile per valore di ritorno
 
 uint8_t flag_inizializzazione = 0;  //flag che definisce inizializzazione dei sensori in corso
@@ -460,8 +463,6 @@ printf("inizio\n");
     nrf_gpio_pin_set(LED);    //LED acceso      
  
     nrf_gpio_cfg_output(bjt);
-    //nrf_gpio_pin_set(bjt);    //cosi funziona?
-    nrf_gpio_pin_clear(bjt);
 
     //Inizializzazione di tutte le componenti
     log_init();
@@ -527,21 +528,14 @@ printf("\nMisuro\n");
             //nrf_delay_ms(40);
             //sps30_sleep();
 
+            nrf_gpio_pin_set(bjt);    //accendo BJT
+
             //SCD41
             scd4x_wake_up();
             scd4x_measure_single_shot();
             nrf_delay_ms(100);
             scd4x_read_measurement(&measure_scd4x.CO2, &measure_scd4x.Temperature, &measure_scd4x.Humidity);
             scd4x_power_down();
-
-            //MICS6814    campiono e basta, il calcolo avviene nell'applicazione
-            nrfx_saadc_sample_convert(NO2_CHANNEL, &adc_val); //A1
-            nrf_delay_ms(100);
-            measure_mics6814.NO2 = adc_val;
-
-            nrfx_saadc_sample_convert(CO_CHANNEL, &adc_val); //A3
-            nrf_delay_ms(100);
-            measure_mics6814.CO = adc_val;
             
             //BME280
             bme280_set_sensor_mode(BME280_FORCED_MODE, &dev_bme280);
@@ -554,6 +548,16 @@ printf("\nMisuro\n");
                 printf("Absolute humidity %d", absolute_humidity);
             }
 
+
+            //MICS6814    campiono e basta, il calcolo avviene nell'applicazione
+            nrfx_saadc_sample_convert(NO2_CHANNEL, &adc_val_NO2); //A1
+            nrf_delay_ms(100);
+            measure_mics6814.NO2 = adc_val_NO2;
+
+            nrfx_saadc_sample_convert(CO_CHANNEL, &adc_val_CO); //A3
+            nrf_delay_ms(100);
+            measure_mics6814.CO = adc_val_CO;
+            nrf_gpio_pin_clear(bjt);     //spengo BJT
 
             //LIS3DH
             //scegliere ogni quanto campionare

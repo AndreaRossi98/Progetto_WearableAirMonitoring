@@ -594,7 +594,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             + messageContentString.substring(24, 28) + ","
                             + messageContentString.substring(28, 32) + ",";
                     Log.e(LOG_TAG, "Pacchetto arrivato: " + msg); //hex
-//toast.makeText(getApplicationContext(), "stringa" + msg, Toast.LENGTH_SHORT).show();
 
                     //split the bytes
                     String[] messageContentString_split = messageContentString.split("]"); //ex: [01
@@ -641,24 +640,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                          */
 
                             if (flag_location == 0) {
-//capire se questo serve qua o meno
-/*                                fusedLocationClient = LocationServices.getFusedLocationProviderClient(EnvironmentalMonitor.this);
-                                locationCallback = new LocationCallback() {
-                                    @Override
-                                    public void onLocationResult(LocationResult locationResult) {
-                                        if (locationResult != null) {
-                                            location = locationResult.getLastLocation();
-                                            latitude = location.getLatitude();
-                                            longitude = location.getLongitude();
-                                        }
-                                    }
-                                };
 
-                                locationRequest = LocationRequest.create();
-                                locationRequest.setInterval(10000);
-                                locationRequest.setFastestInterval(1000);
-                                locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-*/
                                 if (ActivityCompat.checkSelfPermission(EnvironmentalMonitor.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                                     ActivityCompat.requestPermissions(EnvironmentalMonitor.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
                                 Log.e(LOG_TAG, "GEOLOCALIZZAZIONE "); //hex
@@ -673,8 +655,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 else { //actually open the channel only if last location was found
                                     latitude = location.getLatitude();
                                     longitude = location.getLongitude();
-                                    toast.makeText(getApplicationContext(), "lat: " + latitude + "\nlong: " + longitude, Toast.LENGTH_SHORT).show();
-
                                 }
 
                                 flag_location = 1;  //solo la prima volta rilevo le coordinate
@@ -685,7 +665,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             pacchetto_numero_ricevuto = pacchetto_numero_ricevuto - (pacchetto_P << 6);
 
                             if (numero_pacchetto != pacchetto_numero_ricevuto) {
-                                //Toast.makeText(getApplicationContext(), "Pacchetto Nuovo", Toast.LENGTH_LONG).show();
+
                                 if (flag_dati_ricevuti == 1) {               //scrivo su file
                                     //preparo messaggio da salvare
                                     messaggio_salvato = 6 + ";" + numero_pacchetto + ";" +//per indicare pacchetto di environmental monitor
@@ -694,8 +674,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";" +
                                             count_P1 + ";" + count_P2 + ";" + count_P3 + ";" +
                                             orario + ";" + latitude + ";" + longitude + ";";    //valore batteria lo salvo?
-
-                                    //toast.makeText(getApplicationContext(), "scrivo su file" , Toast.LENGTH_SHORT).show();
 
                                     //write the messages
                                     //call the firebase class to upload data on firebase
@@ -1601,27 +1579,28 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 line = reader.readLine(); //read next row
                                 Log.e(LOG_TAG, "LINEA:" + line);
                                 String[] attributes;
-                                //String linea = line;
-                                if(line != null){
+                                if(line != null) {
                                     attributes = line.split(";");
-                                    //tolti perchè non li mostro a schermo
-                                    //temps.add(Double.parseDouble(attributes[2]));
-                                    //humids.add(Double.parseDouble(attributes[3]));
-                                    //presss.add(Double.parseDouble(attributes[4]));
-                                    VOCs.add(Integer.valueOf(attributes[5]));
-                                    CO2s.add(Integer.valueOf(attributes[6]));
-                                    //NO2s.add(Double.parseDouble(attributes[7]));
-                                    //COs.add(Double.parseDouble(attributes[8]));
-                                    //PM1s.add(Double.parseDouble(attributes[9]));
-                                    PM2p5s.add(Double.parseDouble(attributes[10]));
-                                    //PM10s.add(Double.parseDouble(attributes[11]));
-                                    lats.add(Double.parseDouble(attributes[17]));
-                                    lons.add(Double.parseDouble(attributes[18]));
-                                    orarios.add(attributes[16]);
+                                    if (line != "6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;" && Double.parseDouble(attributes[3]) != 0) {
+                                        //tolti perchè non li mostro a schermo
+                                        //temps.add(Double.parseDouble(attributes[2]));
+                                        //humids.add(Double.parseDouble(attributes[3]));
+                                        //presss.add(Double.parseDouble(attributes[4]));
+                                        VOCs.add(Integer.valueOf(attributes[5]));
+                                        CO2s.add(Integer.valueOf(attributes[6]));
+                                        //NO2s.add(Double.parseDouble(attributes[7]));
+                                        //COs.add(Double.parseDouble(attributes[8]));
+                                        //PM1s.add(Double.parseDouble(attributes[9]));
+                                        PM2p5s.add(Double.parseDouble(attributes[10]));
+                                        //PM10s.add(Double.parseDouble(attributes[11]));
+                                        lats.add(Double.parseDouble(attributes[17]));
+                                        lons.add(Double.parseDouble(attributes[18]));
+                                        orarios.add(attributes[16]);
 
                                     /*for(int i = 0; i < attributes.length;i++) {
                                       Log.e(LOG_TAG, i + "attribute:" + attributes[i]);
                                     }*/
+                                    }
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -1641,7 +1620,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                             //lagga qui
                             mapFragment.getMapAsync(googleMap -> {
-                                for (int i = 1; i < lats.size(); i++) {        //temps o un altro non cambia niente
+                                for (int i = 0; i < lats.size(); i++) {        //temps o un altro non cambia niente
                                     Log.e(LOG_TAG, "marker");
                                     googleMap.addMarker(new MarkerOptions()
                                             .position(new LatLng(lats.get(i), lons.get(i))) //latitudine, longitudine
@@ -1651,7 +1630,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             //        " PM1.0[μg/m³]: "+ PM1s.get(i)+ " PM2.5[μg/m³]: "+ PM2p5s.get(i) + " PM10[μg/m³]: "+ PM10s.get(i)));
                                             .snippet(" VOC[ppm]: "+ VOCs.get(i)+", CO2[ppm]: "+ CO2s.get(i) + ", PM2.5[μg/m³]: "+ PM2p5s.get(i) ));
                                 }
-                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(4), lons.get(4)), 12));
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 16));
                             });
 
                         }
@@ -1933,27 +1912,28 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 Log.e(LOG_TAG, "LINEA:" + line);
                                 String[] attributes;
                                 //String linea = line;
-
-                                if(line != null && line != "6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;"){
+                                if(line != null) {
                                     attributes = line.split(";");
-                                    //tolti perchè non li mostro a schermo
-                                    //temps.add(Double.parseDouble(attributes[2]));
-                                    //humids.add(Double.parseDouble(attributes[3]));
-                                    //presss.add(Double.parseDouble(attributes[4]));
-                                    VOCs.add(Integer.valueOf(attributes[5]));
-                                    CO2s.add(Integer.valueOf(attributes[6]));
-                                    //NO2s.add(Double.parseDouble(attributes[7]));
-                                    //COs.add(Double.parseDouble(attributes[8]));
-                                    //PM1s.add(Double.parseDouble(attributes[9]));
-                                    PM2p5s.add(Double.parseDouble(attributes[10]));
-                                    //PM10s.add(Double.parseDouble(attributes[11]));
-                                    lats.add(Double.parseDouble(attributes[17]));
-                                    lons.add(Double.parseDouble(attributes[18]));
-                                    orarios.add(attributes[16]);
+                                    if (line != "6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;" && Double.parseDouble(attributes[3]) != 0) {
+                                        //tolti perchè non li mostro a schermo
+                                        //temps.add(Double.parseDouble(attributes[2]));
+                                        //humids.add(Double.parseDouble(attributes[3]));
+                                        //presss.add(Double.parseDouble(attributes[4]));
+                                        VOCs.add(Integer.valueOf(attributes[5]));
+                                        CO2s.add(Integer.valueOf(attributes[6]));
+                                        //NO2s.add(Double.parseDouble(attributes[7]));
+                                        //COs.add(Double.parseDouble(attributes[8]));
+                                        //PM1s.add(Double.parseDouble(attributes[9]));
+                                        PM2p5s.add(Double.parseDouble(attributes[10]));
+                                        //PM10s.add(Double.parseDouble(attributes[11]));
+                                        lats.add(Double.parseDouble(attributes[17]));
+                                        lons.add(Double.parseDouble(attributes[18]));
+                                        orarios.add(attributes[16]);
 
                                     /*for(int i = 0; i < attributes.length;i++) {
                                       Log.e(LOG_TAG, i + "attribute:" + attributes[i]);
                                     }*/
+                                    }
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -1973,7 +1953,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
 
                                 //lagga qui
                                 mapFragment.getMapAsync(googleMap -> {
-                                    for (int i = 1; i < lats.size(); i++) {        //temps o un altro non cambia niente
+                                    for (int i = 0; i < lats.size(); i++) {        //temps o un altro non cambia niente
                                         Log.e(LOG_TAG, "marker");
                                         googleMap.addMarker(new MarkerOptions()
                                                 .position(new LatLng(lats.get(i), lons.get(i))) //latitudine, longitudine
@@ -1984,7 +1964,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                                 .snippet(" VOC[ppm]: "+ VOCs.get(i)+", CO2[ppm]: "+ CO2s.get(i) + ", PM2.5[μg/m³]: "+ PM2p5s.get(i) ));
 
                                     }
-                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(4), lons.get(4)), 16));
+                                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 16));
                                 });
                             }
                     });

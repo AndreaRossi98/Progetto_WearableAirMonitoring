@@ -66,7 +66,6 @@ import com.dsi.ant.message.fromant.BroadcastDataMessage;
 import com.dsi.ant.message.fromant.ChannelEventMessage;
 import com.dsi.ant.message.fromant.MessageFromAntType;
 import com.dsi.ant.message.ipc.AntMessageParcel;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
@@ -88,31 +87,20 @@ import com.google.firebase.storage.UploadTask;
 
 //IMPORT FOR POSITION
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.util.ArrayUtils;
-import com.google.android.gms.location.ActivityRecognition;
-import com.google.android.gms.location.ActivityRecognitionResult;
-import com.google.android.gms.location.DetectedActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
 
-import android.location.LocationManager;
-
 import android.location.Location;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -125,11 +113,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+import java.util.*;
 
 public class EnvironmentalMonitor extends AppCompatActivity implements View.OnClickListener {
 
@@ -295,7 +285,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     private static final int QUIT_RECORDING = 12; //quit recording
 
     BroadcastDataMessage broadcastDataMessage;
-    public String current_default, current, day, orario;
+    public String current_default, current, day, time, date;
     //save the old message to see if there's data loss
     public String old_messageContentString_unit = null;
 
@@ -576,7 +566,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                     //save time to show
                     SimpleDateFormat format = new SimpleDateFormat("dd:MM:HH:mm:ss:SSS", Locale.getDefault());
                     current = format.format(new Date().getTime());
-
                     String messageContentString_default = antMessageParcel.getMessageContentString(); //9 bytes, first is always [00] (to erase)
 
                     //remove the first byte always equal to [00]
@@ -621,8 +610,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     "0" + ";" + "0" + ";" + "0" + ";" +
                                     "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";" +
                                     "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";" +
-                                    "0" + ";" + "0" + ";" + "0" + ";" +
-                                    "0" + ";" + "0" + ";" + "0" + ";";
+                                    "0" + ";" + "0" + ";" + "0" + ";" + "0" + ";" +
+                                    "0" + ";" + "0" + ";" + "0" + ";" ;
                             writingDataToFirebase.mainFirebase(messaggio_salvato, startrec_time);
                             //scrivo su file
                             WritingDataToFile writingDataToFile = new WritingDataToFile();
@@ -644,7 +633,20 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 if (ActivityCompat.checkSelfPermission(EnvironmentalMonitor.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                                     ActivityCompat.requestPermissions(EnvironmentalMonitor.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
                                 Log.e(LOG_TAG, "GEOLOCALIZZAZIONE "); //hex
-                                orario = format.format(new Date().getTime());
+                                Calendar calendar = null;
+                                calendar = calendar.getInstance();
+
+                                int year = calendar.get(Calendar.YEAR);
+                                int month = calendar.get(Calendar.MONTH) + 1;
+                                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                                int minute = calendar.get(Calendar.MINUTE);
+                                int second = calendar.get(Calendar.SECOND);
+
+                                date = day + "/" + month + "/" + year;
+                                time = hour + ":" + minute + ":" + second;
+                                Log.e(LOG_TAG, "data: " + day +"/"+ month +"/"+ year+"; "
+                                        + hour + ":" + minute + ":" + second); //hex
 
                                 Task<Location> task = fusedLocationClient.getLastLocation();
                                 while (!task.isComplete()) ;
@@ -673,7 +675,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";" +
                                             PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";" +
                                             count_P1 + ";" + count_P2 + ";" + count_P3 + ";" +
-                                            orario + ";" + latitude + ";" + longitude + ";";    //valore batteria lo salvo?
+                                            date + ";" + time + ";" + latitude + ";" + longitude + ";";    //valore batteria lo salvo?
 
                                     //write the messages
                                     //call the firebase class to upload data on firebase
@@ -714,7 +716,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                                 PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";";
                                     }
 
-                                    messaggio_salvato = messaggio_salvato + count_P1 + ";" + count_P2 + ";" + count_P3 + ";" + orario + ";" + latitude + ";" + longitude;
+                                    messaggio_salvato = messaggio_salvato + count_P1 + ";" + count_P2 + ";" + count_P3 + ";"
+                                                                        + date + ";" + time + ";" + latitude + ";" + longitude;
                                     //do per scontato che almeno un pacchetto sia arrivato, e quindi ho latitudine longitudine e ora
 
                                     //write the messages
@@ -1508,7 +1511,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 File folderInt=new File(extPath + "/respirho/Patients/" + GlobalVariables.string_idpatient+"/" + GlobalVariables.string_idpatient );  //intPath
                 root = folderInt.getParentFile();
                 File[] acqs = root.listFiles();
-
+                
                 if(acqs == null)
                     Toast.makeText(this, "No acquisition found.", Toast.LENGTH_SHORT).show();
                 else {
@@ -1535,6 +1538,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         List<Double> PM2p5s = new ArrayList<>();
                         List<Double> PM10s = new ArrayList<>();
                         List<String> orarios = new ArrayList<>();
+                        List<String> dates = new ArrayList<>();
+                        List<String> times = new ArrayList<>();
 
                         BufferedReader reader;
                         final File file = new File(String.valueOf(acqs[which]));
@@ -1579,9 +1584,10 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 line = reader.readLine(); //read next row
                                 Log.e(LOG_TAG, "LINEA:" + line);
                                 String[] attributes;
+                                //String linea = line;
                                 if(line != null) {
                                     attributes = line.split(";");
-                                    if (line != "6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;" && Double.parseDouble(attributes[3]) != 0) {
+                                    if (line != "6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;" && Double.parseDouble(attributes[3]) != 0) {
                                         //tolti perchè non li mostro a schermo
                                         //temps.add(Double.parseDouble(attributes[2]));
                                         //humids.add(Double.parseDouble(attributes[3]));
@@ -1593,9 +1599,10 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                         //PM1s.add(Double.parseDouble(attributes[9]));
                                         PM2p5s.add(Double.parseDouble(attributes[10]));
                                         //PM10s.add(Double.parseDouble(attributes[11]));
-                                        lats.add(Double.parseDouble(attributes[17]));
-                                        lons.add(Double.parseDouble(attributes[18]));
-                                        orarios.add(attributes[16]);
+                                        lats.add(Double.parseDouble(attributes[18]));
+                                        lons.add(Double.parseDouble(attributes[19]));
+                                        dates.add(attributes[16]);
+                                        times.add(attributes[17]);
 
                                     /*for(int i = 0; i < attributes.length;i++) {
                                       Log.e(LOG_TAG, i + "attribute:" + attributes[i]);
@@ -1624,17 +1631,16 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                     Log.e(LOG_TAG, "marker");
                                     googleMap.addMarker(new MarkerOptions()
                                             .position(new LatLng(lats.get(i), lons.get(i))) //latitudine, longitudine
-                                            .title(i + ") " + orarios.get(i))
+                                            .title( (i+1) + ") " + dates.get(i) + "    " + times.get(i))
                                             //.snippet("T[°C]: "+ temps.get(i)+" RH[%]: "+ humids.get(i)+ " P[Pa]: "+ presss.get(i)+
                                             //        " VOC[ppm]: "+ VOCs.get(i)+" CO2[ppm]: "+ CO2s.get(i) +" NO2[ppm]: "+ NO2s.get(i) + " CO[ppm]: "+ COs.get(i)+
                                             //        " PM1.0[μg/m³]: "+ PM1s.get(i)+ " PM2.5[μg/m³]: "+ PM2p5s.get(i) + " PM10[μg/m³]: "+ PM10s.get(i)));
                                             .snippet(" VOC[ppm]: "+ VOCs.get(i)+", CO2[ppm]: "+ CO2s.get(i) + ", PM2.5[μg/m³]: "+ PM2p5s.get(i) ));
+
                                 }
                                 googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(lats.get(0), lons.get(0)), 16));
                             });
-
                         }
-
                     });
                     AlertDialog dialog = builders.create();
                     dialog.show();
@@ -1867,6 +1873,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                         List<Double> PM2p5s = new ArrayList<>();
                         List<Double> PM10s = new ArrayList<>();
                         List<String> orarios = new ArrayList<>();
+                        List<String> dates = new ArrayList<>();
+                        List<String> times = new ArrayList<>();
 
                         BufferedReader reader;
                         final File file = new File(String.valueOf(acqs[which]));
@@ -1914,7 +1922,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 //String linea = line;
                                 if(line != null) {
                                     attributes = line.split(";");
-                                    if (line != "6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;" && Double.parseDouble(attributes[3]) != 0) {
+                                    if (line != "6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;" && Double.parseDouble(attributes[3]) != 0) {
                                         //tolti perchè non li mostro a schermo
                                         //temps.add(Double.parseDouble(attributes[2]));
                                         //humids.add(Double.parseDouble(attributes[3]));
@@ -1926,9 +1934,10 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                         //PM1s.add(Double.parseDouble(attributes[9]));
                                         PM2p5s.add(Double.parseDouble(attributes[10]));
                                         //PM10s.add(Double.parseDouble(attributes[11]));
-                                        lats.add(Double.parseDouble(attributes[17]));
-                                        lons.add(Double.parseDouble(attributes[18]));
-                                        orarios.add(attributes[16]);
+                                        lats.add(Double.parseDouble(attributes[18]));
+                                        lons.add(Double.parseDouble(attributes[19]));
+                                        dates.add(attributes[16]);
+                                        times.add(attributes[17]);
 
                                     /*for(int i = 0; i < attributes.length;i++) {
                                       Log.e(LOG_TAG, i + "attribute:" + attributes[i]);
@@ -1957,7 +1966,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                         Log.e(LOG_TAG, "marker");
                                         googleMap.addMarker(new MarkerOptions()
                                                 .position(new LatLng(lats.get(i), lons.get(i))) //latitudine, longitudine
-                                                .title(i + ") " + orarios.get(i))
+                                                .title( (i+1) + ") " + dates.get(i) + "    " + times.get(i))
                                                 //.snippet("T[°C]: "+ temps.get(i)+" RH[%]: "+ humids.get(i)+ " P[Pa]: "+ presss.get(i)+
                                                 //        " VOC[ppm]: "+ VOCs.get(i)+" CO2[ppm]: "+ CO2s.get(i) +" NO2[ppm]: "+ NO2s.get(i) + " CO[ppm]: "+ COs.get(i)+
                                                 //        " PM1.0[μg/m³]: "+ PM1s.get(i)+ " PM2.5[μg/m³]: "+ PM2p5s.get(i) + " PM10[μg/m³]: "+ PM10s.get(i)));

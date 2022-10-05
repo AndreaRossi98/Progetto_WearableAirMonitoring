@@ -287,7 +287,7 @@ printf("\n");
                         err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr); //invia messaggio di connessione
                         NRF_LOG_INFO("Ricevuto messaggio di connessione");
                         connesso = 1;
-                        //rtc_count = 9;
+                       
                     }
                     
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x06 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x07] == 0x00)

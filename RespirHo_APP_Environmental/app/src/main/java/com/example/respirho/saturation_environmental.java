@@ -247,7 +247,7 @@ public class saturation_environmental extends AppCompatActivity implements View.
 
     // GESTIONE ANT
     private static final int USER_PERIOD_SATURATION = 819; // 1092; 30 Hz --> change to 819
-    private static final int USER_PERIOD_ENVIRONMENTAL = 32768;
+    private static final int USER_PERIOD_ENVIRONMENTAL = 65535;
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound_SATURATION = false;
     public static boolean serviceIsBound_ENVIRONMENTAL = false;

@@ -236,7 +236,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
     public final String LOG_TAG = EnvironmentalMonitor.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_ENVIRONMENTAL = 32767;        //65535; //
+    private static final int USER_PERIOD_ENVIRONMENTAL = 65535;     //32767;        //65535; //
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound = false;
     private AntService mAntRadioService = null;
@@ -738,6 +738,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 count_P2 = 0;
                                 count_P3 = 0;
                                 flag_location = 0;
+                                Toast.makeText(getApplicationContext(), "Dati nuovi", Toast.LENGTH_LONG).show();
                             }
                             if (numero_pacchetto == pacchetto_numero_ricevuto) {
                                 //la prima volta che entro in questo if, devo prendere latitudine e longitudine

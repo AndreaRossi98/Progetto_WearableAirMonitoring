@@ -76,7 +76,7 @@
 
 // <o> CHAN_PERIOD - Channel Period (in 32 kHz counts). 
 #ifndef CHAN_PERIOD
-#define CHAN_PERIOD 32767 //65535    //
+#define CHAN_PERIOD 65535    // 32767 //
 #endif
 
 // <o> RF_FREQ - RF Frequency. 

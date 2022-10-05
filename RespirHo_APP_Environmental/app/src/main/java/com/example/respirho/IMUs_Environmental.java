@@ -247,7 +247,7 @@ public class IMUs_Environmental extends AppCompatActivity implements View.OnClic
 
     // GESTIONE ANT
     private static final int USER_PERIOD_SENSORS = 819; // 1092; 30 Hz --> change to 819
-    private static final int USER_PERIOD_ENVIRONMENTAL = 32768;
+    private static final int USER_PERIOD_ENVIRONMENTAL = 65535;
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound_IMUs = false;
     public static boolean serviceIsBound_ENVIRONMENTAL = false;

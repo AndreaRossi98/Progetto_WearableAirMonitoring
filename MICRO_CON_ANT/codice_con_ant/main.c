@@ -40,7 +40,7 @@
 */
 #define TWI_ADDRESSES   127         //Number of possible TWI addresses.
 #define APP_ANT_OBSERVER_PRIO   1   // Application's ANT observer priority. You shouldn't need to modify this value.
-#define SAADC_BATTERY   0           //Canale tensione della batteria
+
 #define TIMEOUT_VALUE   1000   //1000       //interrupt timer a 1 sec
 #define START_ADDR  0x00011200      //indirizzo di partenza per salvataggio dati in memoria non volatile
 #define LED             10  //07 breadboard
@@ -48,6 +48,7 @@
 
 #define NO2_CHANNEL     0           //NO2 channel for ADC
 #define CO_CHANNEL      2           //CO channel for ADC
+#define BATTERY_CHANNEL   7           //Canale tensione della batteria
 
 #define _2_SEC          2       //interval of 2 seconds
 #define _20_SEC         20      //interval of 20 seconds
@@ -185,7 +186,7 @@ void saadc_init(void)   //prova a mettere low power mode
     ret_code_t err_code;
     nrf_saadc_channel_config_t channel1_config = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN1);
     nrf_saadc_channel_config_t channel3_config = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN3);
-
+//manca batteria
     err_code = nrf_drv_saadc_init(NULL, saadc_callback);
     APP_ERROR_CHECK(err_code);
 
@@ -286,13 +287,13 @@ printf("\n");
                         err_code = sd_ant_broadcast_message_tx(BROADCAST_CHANNEL_NUMBER, ANT_STANDARD_DATA_PAYLOAD_SIZE, message_addr); //invia messaggio di connessione
                         NRF_LOG_INFO("Ricevuto messaggio di connessione");
                         connesso = 1;
+                        //rtc_count = 9;
                     }
                     
                     if (p_ant_evt->message.ANT_MESSAGE_aucPayload [0x00] == 0x06 && p_ant_evt->message.ANT_MESSAGE_aucPayload [0x07] == 0x00)
                     { //connesso a master, invia dati
                         sd_ant_pending_transmit_clear (BROADCAST_CHANNEL_NUMBER, NULL); //svuota il buffer, utile per una seconda acquisizione
                         connesso = 1;
-                        //flag_misurazioni = 1;
                                                       
                               if (pacchetto_P == 1)
                               {   //invio pacchetto 1
@@ -421,8 +422,13 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
     //quando è connesso lampeggio a 2 sec
     if(flag_inizializzazione == 1 && connesso == 0)
         nrf_gpio_pin_toggle(LED);
-        else if (flag_inizializzazione == 1 && connesso == 1 && rtc_count % 2 == 0)
-            nrf_gpio_pin_toggle(LED);
+    else 
+        {
+        if (flag_inizializzazione == 1 && connesso == 1 && (rtc_count % 1 == 0 || rtc_count % 2 == 0 || rtc_count % 3 == 0))
+                      nrf_gpio_pin_clear(LED);
+        if (flag_inizializzazione == 1 && connesso == 1 && rtc_count % 4 == 0)
+                  nrf_gpio_pin_set(LED);
+        }
 
     //controllo della batteria, ogni quanto? come il campionamento, e come fare controllo? voltage divider?
     //err_code = nrf_drv_saadc_sample_convert(SAADC_BATTERY, &sample);   //lettura ADC
@@ -437,19 +443,25 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
         count_VOC ++;
         printf("VOC %d\n", VOC);
     }
-
+    if ((rtc_count % 10) == 0 && connesso == 1)
+    {
+        //accendo SPS30
+        printf("Accendo SPS\n");
+        sps30_wake_up();
+    }
+    if ((rtc_count % 11) == 0 && connesso == 1)
+    {
+        //start SPS30
+        sps30_start_measurement();
+    }
     //18 sec
     if ((rtc_count % 18) == 0)  //_20_SEC
     {
         //campiono tutti i valori, flag e si fa nel main, confronto con umidità
         flag_misurazioni = 1; //eseguire misurazioni ogni 18 sec nel main
-    }
-    
-    if ((rtc_count % 180) == 0)
-    {
         rtc_count = 0;
-        printf("Azzero trimer\n");
     }
+   
                                                                                      
 }
 //=============================================================================================================================================================================
@@ -481,8 +493,6 @@ printf("Start\n");
                             repeated_timer_handler);
     APP_ERROR_CHECK(err_code);
 
-    err_code = nrf_pwr_mgmt_init();
-    APP_ERROR_CHECK(err_code);
 printf("Timer\n");    
     err_code = app_timer_start(m_repeated_timer_id, APP_TIMER_TICKS(TIMEOUT_VALUE), NULL);
     APP_ERROR_CHECK(err_code);	
@@ -546,6 +556,7 @@ printf("\nMisuro\n");
                 absolute_humidity =  216.7 * measure_bme280.humidity / 100 * 6.112 * exp((17.62 * measure_bme280.temperature)/(243.12 + measure_bme280.temperature))/(273.15 + measure_bme280.temperature);   //formula da datasheet SGP30 [g/m3]
                 sgp30_set_absolute_humidity(absolute_humidity);
                 printf("Absolute humidity %d", absolute_humidity);
+                humidity_prev = measure_bme280.humidity;
             }
 
 

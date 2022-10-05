@@ -63,10 +63,11 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="36" y="559" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="534" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="37" y="293" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="334" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="4" y="273" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../../../Sensor/sps30.c" selected="0" top="257" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="8" y="253" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../../../../../../ant/ant_broadcast/test_ANT/Sensor/sps30.h" selected="0" top="234" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="4" y="394" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../../../Sensor/sgp30.c" selected="0" top="378" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="11" y="130" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../../../../../../../components/libraries/pwr_mgmt/nrf_pwr_mgmt.h" selected="0" top="114" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="ant_broadcast_rx_pca10040_s212" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/Sensor" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

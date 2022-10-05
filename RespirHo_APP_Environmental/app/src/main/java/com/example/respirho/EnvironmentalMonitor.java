@@ -1511,7 +1511,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 File folderInt=new File(extPath + "/respirho/Patients/" + GlobalVariables.string_idpatient+"/" + GlobalVariables.string_idpatient );  //intPath
                 root = folderInt.getParentFile();
                 File[] acqs = root.listFiles();
-                
+
                 if(acqs == null)
                     Toast.makeText(this, "No acquisition found.", Toast.LENGTH_SHORT).show();
                 else {

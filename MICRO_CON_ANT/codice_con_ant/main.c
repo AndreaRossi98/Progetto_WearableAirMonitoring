@@ -585,7 +585,6 @@ printf("\nMisuro\n");
             //letti tutti i valori, elaboro i dati in modo da poterli inviare come uint8 e li salvo nei pacchetti, poi metto flag_misurazione = 2 e la gestisco in ANT
 
             pacchetto_1[0] = 64 + numero_pacchetto;
-            //pacchetto_1[1] = (int) measure_bme280.temperature + 30;    //Parte intera della Temperatura incrementato di 30 (o più?)
             pacchetto_1[1] = (int) (measure_scd4x.Temperature/1000) + 30;    //Parte intera della Temperatura incrementato di 30 (o più?)
             pacchetto_1[2] = abs((int)((measure_scd4x.Temperature - (int)measure_scd4x.Temperature)/10));  //parte decimale della Temperatura
             pacchetto_1[3] = (int)measure_scd4x.Humidity/1000;

@@ -9960,7 +9960,7 @@ LOAD linker stubs
  .comment       0x000000000000003f       0x40 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libvfprintf.o)
  .comment       0x000000000000003f       0x40 C:/Program Files/SEGGER/SEGGER Embedded Studio for ARM 5.70a/lib/libc_v7em_fpv4_sp_d16_hard_t_le_eabi.a(libc.o)
 
-.debug_line     0x0000000000000000    0x22276
+.debug_line     0x0000000000000000    0x22274
  .debug_line    0x0000000000000000      0x21f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/thumb_crt0.o
  .debug_line    0x000000000000021f      0x758 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_serial.o
  .debug_line    0x0000000000000977      0xa27 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_log_backend_uart.o
@@ -9997,22 +9997,22 @@ LOAD linker stubs
  .debug_line    0x0000000000015b8b     0x1874 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrfx_twim.o
  .debug_line    0x00000000000173ff      0x4c1 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ant_channel_config.o
  .debug_line    0x00000000000178c0      0xe5c Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bsp.o
- .debug_line    0x000000000001871c     0x19ed Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
- .debug_line    0x000000000001a109     0x134f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
- .debug_line    0x000000000001b458      0x484 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_Syscalls_SES.o
- .debug_line    0x000000000001b8dc       0x86 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ses_startup_nrf52.o
- .debug_line    0x000000000001b962       0xa8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ses_startup_nrf_common.o
- .debug_line    0x000000000001ba0a      0x762 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
- .debug_line    0x000000000001c16c      0xb0e Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
- .debug_line    0x000000000001cc7a      0x694 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
- .debug_line    0x000000000001d30e     0x15a5 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bme280.o
- .debug_line    0x000000000001e8b3      0xbcc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/lis3dh_acc_driver.o
- .debug_line    0x000000000001f47f      0x939 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/scd4x_i2c.o
- .debug_line    0x000000000001fdb8      0x31a Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_common.o
- .debug_line    0x00000000000200d2      0x86d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c.o
- .debug_line    0x000000000002093f      0x830 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c_hal.o
- .debug_line    0x000000000002116f      0xaca Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sps30.o
- .debug_line    0x0000000000021c39      0x63d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sgp30.o
+ .debug_line    0x000000000001871c     0x19eb Output/Release/Obj/ant_broadcast_rx_pca10040_s212/main.o
+ .debug_line    0x000000000001a107     0x134f Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT.o
+ .debug_line    0x000000000001b456      0x484 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/SEGGER_RTT_Syscalls_SES.o
+ .debug_line    0x000000000001b8da       0x86 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ses_startup_nrf52.o
+ .debug_line    0x000000000001b960       0xa8 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/ses_startup_nrf_common.o
+ .debug_line    0x000000000001ba08      0x762 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/system_nrf52.o
+ .debug_line    0x000000000001c16a      0xb0e Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh.o
+ .debug_line    0x000000000001cc78      0x694 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/nrf_sdh_ant.o
+ .debug_line    0x000000000001d30c     0x15a5 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/bme280.o
+ .debug_line    0x000000000001e8b1      0xbcc Output/Release/Obj/ant_broadcast_rx_pca10040_s212/lis3dh_acc_driver.o
+ .debug_line    0x000000000001f47d      0x939 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/scd4x_i2c.o
+ .debug_line    0x000000000001fdb6      0x31a Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_common.o
+ .debug_line    0x00000000000200d0      0x86d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c.o
+ .debug_line    0x000000000002093d      0x830 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sensirion_i2c_hal.o
+ .debug_line    0x000000000002116d      0xaca Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sps30.o
+ .debug_line    0x0000000000021c37      0x63d Output/Release/Obj/ant_broadcast_rx_pca10040_s212/sgp30.o
 
 .debug_info     0x0000000000000000    0x3432a
  .debug_info    0x0000000000000000       0x22 Output/Release/Obj/ant_broadcast_rx_pca10040_s212/thumb_crt0.o

@@ -96,6 +96,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -331,7 +332,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
     private static final int QUIT_RECORDING = 12; //quit recording
 
     BroadcastDataMessage broadcastDataMessage;
-    public String current_default,current,day, orario;
+    public String current_default,current,day, time, date;
     //save the old message to see if there's data loss
     public String old_messageContentString_unit=null;
 
@@ -884,7 +885,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                                             VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";" +
                                             PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";" +
                                             count_P1 + ";" + count_P2 + ";" + count_P3 + ";" +
-                                            orario + ";" + latitude + ";" + longitude + ";";    //valore batteria lo salvo?
+                                            date + ";" + time + ";" + latitude + ";" + longitude + ";";    //valore batteria lo salvo?
 
                                     //toast.makeText(getApplicationContext(), "scrivo su file" , Toast.LENGTH_SHORT).show();
 
@@ -931,7 +932,8 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                                                 PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";";
                                     }
 
-                                    messaggio_salvato = messaggio_salvato + count_P1 + ";" + count_P2 + ";" + count_P3 + ";" + orario + ";" + latitude + ";" + longitude;
+                                    messaggio_salvato = messaggio_salvato + count_P1 + ";" + count_P2 + ";" + count_P3 + ";"
+                                                            + date + ";" + time + ";" + latitude + ";" + longitude;
                                     //do per scontato che almeno un pacchetto sia arrivato, e quindi ho latitudine longitudine e ora
 
                                     //write the messages
@@ -959,7 +961,22 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                                     if (ActivityCompat.checkSelfPermission(IMUs_Saturation_Environmental.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
                                         ActivityCompat.requestPermissions(IMUs_Saturation_Environmental.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
                                     Log.e(LOG_TAG, "GEOLOCALIZZAZIONE "); //hex
-                                    orario = format.format(new Date().getTime());
+
+                                    Calendar calendar = null;
+                                    calendar = calendar.getInstance();
+
+                                    int year = calendar.get(Calendar.YEAR);
+                                    int month = calendar.get(Calendar.MONTH) + 1;
+                                    int day = calendar.get(Calendar.DAY_OF_MONTH);
+                                    int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                                    int minute = calendar.get(Calendar.MINUTE);
+                                    int second = calendar.get(Calendar.SECOND);
+
+                                    date = day + "/" + month + "/" + year;
+                                    time = hour + ":" + minute + ":" + second;
+                                    Log.e(LOG_TAG, "data: " + day +"/"+ month +"/"+ year+"; "
+                                            + hour + ":" + minute + ":" + second); //hex
+
                                     Task<Location> task = fusedLocationClient.getLastLocation();
                                     while (!task.isComplete()) ;
                                     location = task.getResult();
@@ -1032,6 +1049,12 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                                                 public void run() {
                                                     VOC_output.setText(String.valueOf(VOC));
                                                     CO2_output.setText(String.valueOf(CO2));
+                                                    if (CO2 > 1000){
+                                                        CO2_output.setTextColor(Color.MAGENTA);
+                                                    }
+                                                    else {
+                                                        CO2_output.setTextColor(Color.BLACK);
+                                                    }
                                                     CO_output.setText(String.valueOf(CO));
                                                     NO2_output.setText(String.valueOf(NO2));
                                                 }
@@ -1058,8 +1081,18 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                                                 @Override
                                                 public void run() {
                                                     PM1p0_output.setText(String.valueOf(PM1p0));
-                                                    PM2p5_output.setText(String.valueOf(PM2p5));
-                                                    PM10_output.setText(String.valueOf(PM10p0));
+
+                                                    PM2p5_output.setText(String.valueOf(PM2p5));            //15
+                                                    if (PM2p5 >15)
+                                                        PM2p5_output.setTextColor(Color.MAGENTA);
+                                                    else
+                                                        PM2p5_output.setTextColor(Color.BLACK);
+
+                                                    PM10_output.setText(String.valueOf(PM10p0));            //45        limite annuale
+                                                    if (PM10p0 > 45)
+                                                        PM10_output.setTextColor(Color.MAGENTA);
+                                                    else
+                                                        PM10_output.setTextColor(Color.BLACK);
                                                 }
                                             });
                                         }

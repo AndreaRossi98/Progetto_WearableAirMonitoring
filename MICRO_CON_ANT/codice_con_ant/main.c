@@ -443,13 +443,13 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
         count_VOC ++;
         printf("VOC %d\n", VOC);
     }
-    if ((rtc_count % 10) == 0 && connesso == 1)
+    if ((rtc_count % 11) == 0 && connesso == 1)
     {
         //accendo SPS30
         printf("Accendo SPS\n");
         sps30_wake_up();
     }
-    if ((rtc_count % 11) == 0 && connesso == 1)
+    if ((rtc_count % 12) == 0 && connesso == 1)
     {
         //start SPS30
         sps30_start_measurement();
@@ -538,15 +538,15 @@ printf("\nMisuro\n");
             nrf_delay_ms(40);
             sps30_sleep();
 
-            nrf_gpio_pin_set(bjt);    //accendo BJT
-
             //SCD41
             scd4x_wake_up();
             scd4x_measure_single_shot();
             nrf_delay_ms(100);
             scd4x_read_measurement(&measure_scd4x.CO2, &measure_scd4x.Temperature, &measure_scd4x.Humidity);
             scd4x_power_down();
-            
+
+            nrf_gpio_pin_set(bjt);    //accendo BJT
+
             //BME280
             bme280_set_sensor_mode(BME280_FORCED_MODE, &dev_bme280);
             bme280_get_sensor_data(BME280_ALL, &measure_bme280, &dev_bme280);

@@ -807,7 +807,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                                     VOC_output.setText(String.valueOf(VOC));
                                                     CO2_output.setText(String.valueOf(CO2));
                                                     if (CO2 > 1000){
-                                                        CO2_output.setTextColor(Color.RED);
+                                                        CO2_output.setTextColor(Color.MAGENTA);
                                                     }
                                                     else {
                                                         CO2_output.setTextColor(Color.BLACK);
@@ -839,15 +839,15 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                                 public void run() {
                                                     PM1p0_output.setText(String.valueOf(PM1p0));
 
-                                                    PM2p5_output.setText(String.valueOf(PM2p5));            //25
-                                                    if (PM2p5 >25)
-                                                        PM2p5_output.setTextColor(Color.RED);
+                                                    PM2p5_output.setText(String.valueOf(PM2p5));            //15
+                                                    if (PM2p5 >15)
+                                                        PM2p5_output.setTextColor(Color.MAGENTA);
                                                     else
                                                         PM2p5_output.setTextColor(Color.BLACK);
 
-                                                    PM10_output.setText(String.valueOf(PM10p0));            //40        limite annuale
-                                                    if (PM10p0 > 40)
-                                                        PM10_output.setTextColor(Color.RED);
+                                                    PM10_output.setText(String.valueOf(PM10p0));            //45        limite annuale
+                                                    if (PM10p0 > 45)
+                                                        PM10_output.setTextColor(Color.MAGENTA);
                                                     else
                                                         PM10_output.setTextColor(Color.BLACK);
                                                 }

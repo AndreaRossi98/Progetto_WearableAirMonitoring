@@ -51,7 +51,7 @@
 #define BATTERY_CHANNEL   7           //Canale tensione della batteria
 
 #define _2_SEC          2       //interval of 2 seconds
-#define _20_SEC         20      //interval of 20 seconds
+#define _24_SEC         24      //interval of 20 seconds
 
 #define ENVIR_MONITOR_DEVICE    6   
 //=============================================================================================================================================================================
@@ -186,7 +186,8 @@ void saadc_init(void)   //prova a mettere low power mode
     ret_code_t err_code;
     nrf_saadc_channel_config_t channel1_config = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN1);
     nrf_saadc_channel_config_t channel3_config = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN3);
-//manca batteria
+    nrf_saadc_channel_config_t channel7_config = NRF_DRV_SAADC_DEFAULT_CHANNEL_CONFIG_SE(NRF_SAADC_INPUT_AIN7);
+
     err_code = nrf_drv_saadc_init(NULL, saadc_callback);
     APP_ERROR_CHECK(err_code);
 
@@ -194,6 +195,9 @@ void saadc_init(void)   //prova a mettere low power mode
     APP_ERROR_CHECK(err_code);
 	
     err_code = nrf_drv_saadc_channel_init(CO_CHANNEL, &channel3_config);
+    APP_ERROR_CHECK(err_code); 
+
+    err_code = nrf_drv_saadc_channel_init(BATTERY_CHANNEL, &channel7_config);
     APP_ERROR_CHECK(err_code); 
 }
 //Transform the ADC value in bit in voltage value
@@ -443,25 +447,36 @@ static void repeated_timer_handler(void * p_context)  //app timer, faccio scatta
         count_VOC ++;
         printf("VOC %d\n", VOC);
     }
-    if ((rtc_count % 11) == 0 && connesso == 1)
+    if ((rtc_count % 17) == 0 && connesso == 1)
     {
         //accendo SPS30
         printf("Accendo SPS\n");
         sps30_wake_up();
     }
-    if ((rtc_count % 12) == 0 && connesso == 1)
+    if ((rtc_count % 18) == 0 && connesso == 1)
     {
         //start SPS30
         sps30_start_measurement();
     }
-    //18 sec
-    if ((rtc_count % 18) == 0)  //_20_SEC
+    if ((rtc_count % 19) == 0 && connesso == 1)
+    {
+        //start SPS30
+        sps30_read_measurement(&measure_sps30);
+    }
+
+    //24 sec
+    if ((rtc_count % 24) == 0)  //_24_SEC
     {
         //campiono tutti i valori, flag e si fa nel main, confronto con umidità
         flag_misurazioni = 1; //eseguire misurazioni ogni 18 sec nel main
-        rtc_count = 0;
     }
    
+    if((rtc_count % 300) == 0)  //5 minuti
+    {
+        //campiono valore batteria
+        nrfx_saadc_sample_convert(BATTERY_CHANNEL, &adc_val_battery);
+        rtc_count = 0;
+    }
                                                                                      
 }
 //=============================================================================================================================================================================
@@ -513,7 +528,8 @@ printf("Timer\n");
         err_code = lis3dh_init();    //tutto ok ritorna 0    
         printf("\nSPS30\n");      
         err_code = sps30_init();   //tutto ok ritorna 0   //SPENTA VENTOLA
-//sps30_start_measurement();
+
+        nrfx_saadc_sample_convert(BATTERY_CHANNEL, &adc_val_battery);
 printf("Sensori correttamente inizializzati\n\n");
         flag_inizializzazione = 1;
     }
@@ -577,8 +593,8 @@ printf("\nMisuro\n");
                 measure_lis3dh.AccX = (measure_lis3dh.AccX*16)/1000;
                 measure_lis3dh.AccY = (measure_lis3dh.AccY*16)/1000;
                 measure_lis3dh.AccZ = (measure_lis3dh.AccZ*16)/1000;
-                measure_lis3dh.Acc = (int)sqrt(pow(measure_lis3dh.AccX,2) + pow(measure_lis3dh.AccY,2)+ pow(measure_lis3dh.AccZ,2));
-            }   //ACC in [g]
+                measure_lis3dh.Acc = round(sqrt(pow(measure_lis3dh.AccX,2) + pow(measure_lis3dh.AccY,2)+ pow(measure_lis3dh.AccZ,2))/256);
+            }   //ACC in [g] non  ancora, bisogna dividere per 256
             else  printf("errore ACC\n");   
             printf("Acc %d\n",measure_lis3dh.Acc);
 
@@ -604,7 +620,7 @@ printf("\nMisuro\n");
             pacchetto_2[4] = measure_scd4x.CO2 >> 8; //CO2  MSB (Most significant Byte)
             pacchetto_2[5] = measure_mics6814.NO2; //NO2
             pacchetto_2[6] = measure_mics6814.CO; //CO
-            pacchetto_2[7] = 123; // BATTERY   capire ogni quanto campionare
+            pacchetto_2[7] = adc_val_battery; // BATTERY   
           
             pacchetto_3[0] = 192 + numero_pacchetto;
             pacchetto_3[1] = measure_lis3dh.Acc; //ACCELERATION   capire ogni quanto leggere il dato

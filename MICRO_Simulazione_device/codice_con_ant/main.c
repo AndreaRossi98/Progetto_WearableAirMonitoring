@@ -434,7 +434,7 @@ printf("Timer\n");
     for (;;)
     {
         nrf_pwr_mgmt_run();
-        __WFI();//GO INTO LOW POWER MODE
+        //__WFI();//GO INTO LOW POWER MODE
     }
 }
 

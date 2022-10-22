@@ -1,0 +1,5 @@
+Soggetto:
+Età:
+Altezza:
+Sesso:
+Razza: 

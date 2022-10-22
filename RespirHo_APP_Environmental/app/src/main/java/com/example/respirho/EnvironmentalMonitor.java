@@ -675,7 +675,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             VOC + ";" + CO2 + ";" + NO2 + ";" + CO + ";" +
                                             PM1p0 + ";" + PM2p5 + ";" + PM10p0 + ";" + acceleration + ";" +
                                             count_P1 + ";" + count_P2 + ";" + count_P3 + ";" +
-                                            date + ";" + time + ";" + latitude + ";" + longitude + ";";    //valore batteria lo salvo?
+                                            date + ";" + time + ";" + latitude + ";" + longitude;    //valore batteria lo salvo?
 
                                     //write the messages
                                     //call the firebase class to upload data on firebase
@@ -786,17 +786,21 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                             //NO2 bisogna riportare la funzione di conversione da bit a valore dopo aver fatto la calibrazione
                                             NO2 = Integer.decode("0x" + messageContentString_split[5].substring(1));
                                             Log.e(LOG_TAG, "NO2: " + NO2); //hex
-                                            //12
-                                            NO2 = (float) Math.pow(10,(Math.log10(12/NO2)-0.804)/1.026);   //hard coding 234 valore normale
+                                            //12.32
+                                            NO2 = (float) Math.pow(10,(Math.log10(12.32/NO2)-0.804)/1.026);   //hard coding 12.32
                                             NO2 = Math.round(NO2 *100);
                                             NO2 = NO2 / 100;
                                             //CO
                                             CO = Integer.decode("0x" + messageContentString_split[6].substring(1));
                                             Log.e(LOG_TAG, "CO: " +CO); //hex
                                             //11
-                                            CO = (float) Math.pow(10, (Math.log10(11/CO)-0.55)/(-0.85));
-                                            CO = Math.round(CO * 100);
-                                            CO = CO /100;
+                                            if (CO<= 26)
+                                                CO = 0;
+                                            else {
+                                                CO = (float) Math.pow(10, (Math.log10(11 / CO) - 0.55) / (-0.85));
+                                                CO = Math.round(CO * 100);
+                                                CO = CO / 100;
+                                            }
                                             //Batteria
                                             battery = Integer.decode("0x" + messageContentString_split[7].substring(1));
 
@@ -882,8 +886,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                             connected6 = true;
                             //GlobalVariables.flag_connected6=true;
                             Log.e(LOG_TAG,"1 is:" + connected6);
-                            state = CONNECT6;   //prova a togliere questa
-
+                            //state = CONNECT6;   //prova a togliere questa
+                            state = SYNCHRONIZATION_RESUME;     //per sincronizzare
                             //start geolocalization update service
 //                            fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
 
@@ -1361,7 +1365,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 inforecording.setText(null);
 
                 //show update info layout
-                inflated_updateinfo.setVisibility(View.GONE);
+                inflated_updateinfo.setVisibility(View.VISIBLE);
                 inflated_displaydata.setVisibility(View.VISIBLE);
 
                 //start recording ANT data
@@ -1737,7 +1741,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 inforecording.setText(null);
 
                 //not show update info layout
-                inflated_updateinfo.setVisibility(View.GONE);
+                inflated_updateinfo.setVisibility(View.VISIBLE);
                 inflated_displaydata.setVisibility(View.VISIBLE);
 
                 //start recording ANT data
@@ -1985,7 +1989,7 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                 break;
 
             case R.id.updateinfo:
-                posture=savePosture();
+                //posture=savePosture();
                 updateInfo();
                 break;
 

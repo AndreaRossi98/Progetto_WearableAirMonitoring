@@ -248,7 +248,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
     public final String LOG_TAG = IMUs_Saturation_Environmental.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_SENSORS = 819; // 1092; 30 Hz --> change to 819
+    private static final int USER_PERIOD_SENSORS = 1092; //30 Hz --> change to 819
     private static final int USER_PERIOD_ENVIRONMENTAL = 65535;
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound_IMUs = false;
@@ -1054,7 +1054,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                                                     VOC_output.setText(String.valueOf(VOC));
                                                     CO2_output.setText(String.valueOf(CO2));
                                                     if (CO2 > 1000){
-                                                        CO2_output.setTextColor(Color.MAGENTA);
+                                                        CO2_output.setTextColor(Color.RED);
                                                     }
                                                     else {
                                                         CO2_output.setTextColor(Color.BLACK);
@@ -1088,13 +1088,13 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
 
                                                     PM2p5_output.setText(String.valueOf(PM2p5));            //15
                                                     if (PM2p5 >15)
-                                                        PM2p5_output.setTextColor(Color.MAGENTA);
+                                                        PM2p5_output.setTextColor(Color.RED);
                                                     else
                                                         PM2p5_output.setTextColor(Color.BLACK);
 
                                                     PM10_output.setText(String.valueOf(PM10p0));            //45        limite annuale
                                                     if (PM10p0 > 45)
-                                                        PM10_output.setTextColor(Color.MAGENTA);
+                                                        PM10_output.setTextColor(Color.RED);
                                                     else
                                                         PM10_output.setTextColor(Color.BLACK);
                                                 }

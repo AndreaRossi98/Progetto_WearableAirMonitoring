@@ -201,7 +201,7 @@ public class Imus_activity extends AppCompatActivity implements View.OnClickList
     public final String LOG_TAG = Imus_activity.class.getSimpleName();
 
     // GESTIONE ANT
-    private static final int USER_PERIOD_IMUS = 1092; // 1092; 30 Hz
+    private static final int USER_PERIOD_IMUS = 1092;   //819; // 1092; 30 Hz
     private static final int USER_RADIOFREQUENCY = 66; //66, so 2466 MHz;
     public static boolean serviceIsBound = false;
     private AntService mAntRadioService = null;
@@ -474,6 +474,7 @@ public class Imus_activity extends AppCompatActivity implements View.OnClickList
                             + messageContentString.substring(24,28) + ","
                             + messageContentString.substring(28,32) + ",";
                     //TODO - end
+                    Log.e(LOG_TAG, "Pacchetto arrivato: " + msg); //hex
 
                     //split the bytes
                     String[] messageContentString_split = messageContentString.split("]"); //ex: [01
@@ -707,7 +708,7 @@ public class Imus_activity extends AppCompatActivity implements View.OnClickList
 
                                     //put the flag on to check the battery to display warning once
                                     flag_battery=true;
-
+                                    state = SYNCHRONIZATION_RESUME;
                                     gotorecordingbutton_imus.setVisibility(View.VISIBLE);
                                 }
                             });
@@ -747,6 +748,7 @@ public class Imus_activity extends AppCompatActivity implements View.OnClickList
                                 if(state==SYNCHRONIZATION_RESUME)
                                 {
                                     payLoad = payLoad4;
+                                    Log.e(LOG_TAG, "synchronization"); //hex
                                 }
 
                                 if(state==RECONNECTION)
@@ -765,14 +767,17 @@ public class Imus_activity extends AppCompatActivity implements View.OnClickList
 
                                 if(state==CALL1) {
                                     payLoad = payLoad5;
+                                    Log.e(LOG_TAG, "CALL 1");
                                 }
 
                                 if(state==CALL2) {
                                     payLoad = payLoad6;
+                                    Log.e(LOG_TAG, "CALL 2");
                                 }
 
                                 if(state==CALL3) {
                                     payLoad = payLoad7;
+                                    Log.e(LOG_TAG, "CALL 3");
                                 }
 
                                 if(state==CALIBRATION) {

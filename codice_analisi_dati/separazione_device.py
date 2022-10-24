@@ -1,10 +1,12 @@
 globals().clear()
 
 #ATTENZIONE, PREPARARE I FILE PRIMA SU EXCEL. MI DISPIACE PER QUESTO PASSAGGIO AGGIUNTIVO MA E' STATO NECESSARIO PER MANCANZA DI TEMPO
-
+import re
 # PARAMETERS SELECTION
 filename = 'E.txt'       #Inserire nome del file di Environmental Monitor
-numero_step = "E"
+step = str
+step = re.sub(".txt","",filename)
+print(step)
 soggetto_numero = 0           #Inserire numero del soggetto
 soggetto_numero = str(soggetto_numero)
 #A:sit.wo.su,Luca C - 23_03_15_45_04_841.txt B:sit, C:supine, D:prone, E:lyingL, F:lyingR, G:standing, I:stairs, L:walkS, M:walkF, N:run, O:cyclette
@@ -76,6 +78,7 @@ E_minuto = []
 E_secondo =[]
 E_lat = []
 E_long = []
+E_packet_persi = 0
 
 ## PULSEOXEMETER CONTENTS ##
 P_dev = []
@@ -130,8 +133,8 @@ print("Il dataset ha", length, "campioni")
 
 for i in range(0, length):
     #if (not data[19].get(i)):
-    if (data[0].get(i) == "6"):     #SELEZIONA DATI DA ENVIRONMENTAL MONITOR
-    
+    if (data[0].get(i) == "6" and data[1].get(i)!= "0"):     #SELEZIONA DATI DA ENVIRONMENTAL MONITOR ed esclude i pacchetti iniziali e finali senza valori
+                                                             #ATTENZIONE: somma finale di tutti i valori può non coincidere con il numero di tutti i valori
             #data[0] -> numero device               #data[10] -> PM2p5
             #data[1] -> numero pacchetto            #data[11] -> PM10
             #data[2] -> temperatura                 #data[12] -> Accelerazione
@@ -160,11 +163,21 @@ for i in range(0, length):
         E_P2.append([data[14].get(i)])
         E_P3.append([data[15].get(i)])
         E_data.append([data[16].get(i)])
-        E_ora.append([data[17].get(i)])
-        E_minuto.append([data[18].get(i)])
-        E_secondo.append([data[19].get(i)])
+        elaborazione = int(data[17].get(i))
+        E_ora.append(elaborazione)
+        elaborazione = int(data[18].get(i))
+        E_minuto.append(elaborazione)
+        elaborazione = int(data[19].get(i))
+        E_secondo.append(elaborazione)
         E_lat.append([data[20].get(i)])
         E_long.append([data[21].get(i)])
+
+        if(int(data[13].get(i))== 0):
+            E_packet_persi = E_packet_persi +1
+        if(int(data[14].get(i))== 0):
+            E_packet_persi = E_packet_persi +1
+        if(int(data[15].get(i))== 0):
+            E_packet_persi = E_packet_persi +1
         if(E_flag_primo == 0):
             E_inizio_ora = int(data[17].get(i))
             E_inizio_minuto = int(data[18].get(i))
@@ -326,7 +339,7 @@ Long = pd.DataFrame(E_long)
 
 risultatoE = pd.concat([Device,Number,Temperatura,Umidita,Pressione,VOC,CO2,NO2,CO,PM1,PM2P5,PM10,Accel,P1,P2,P3,Data,Ora,Minuto,Secondo,Lat,Long], axis=1)
 #SALVATAGGIO DATI SU TXT
-np.savetxt(numero_step+'_ENV_'+soggetto_numero+'.txt', risultatoE, fmt='%s')
+np.savetxt(step+'_ENV_'+soggetto_numero+'.txt', risultatoE, fmt='%s')
 
 #PULS = pd.DataFrame(PULSIOSSIMETRO)
 P_Device = pd.DataFrame(P_dev)
@@ -343,7 +356,7 @@ P_MILLISECONDO = pd.DataFrame(P_millisecondo)
 
 
 risultatoP = pd.concat([P_Device,P_Activity,P_HRs,P_SPO2,P_SCDSTATE,P_GIORNO,P_MESE,P_ORA,P_MINUTO,P_SECONDO,P_MILLISECONDO], axis = 1)
-np.savetxt(numero_step+'_PULSE'+soggetto_numero+'.txt', risultatoP, fmt='%s')
+np.savetxt(step+'_PULSE'+soggetto_numero+'.txt', risultatoP, fmt='%s')
 
 #IMUS = pd.DataFrame(IMU)
 I_DEV = pd.DataFrame(I_dev)
@@ -363,7 +376,7 @@ I_MILLISECONDO = pd.DataFrame(I_millisecondo)
 
 
 risultatoI = pd.concat([I_DEV,I_UNO,I_DUE,I_TRE,I_QUATTRO,I_CINQUE,I_SEI,I_SETTE,I_GIORNO,I_MESE,I_ORA,I_MINUTO,I_SECONDO,I_MILLISECONDO], axis = 1)
-np.savetxt(numero_step+'_IMU'+soggetto_numero+'.txt', risultatoI, fmt='%s')
+np.savetxt(step+'_IMU'+soggetto_numero+'.txt', risultatoI, fmt='%s')
 
 
 
@@ -386,6 +399,11 @@ print("IMU fine", I_fine_ora,":",I_fine_minuto,":",I_fine_secondo,":",I_fine_mil
 I_intervallo_tempo = (((I_fine_ora - I_inizio_ora)*60 +(I_fine_minuto-I_inizio_minuto))*60 +(I_fine_secondo-I_inizio_secondo))*1000 + (I_fine_millisecondo-I_inizio_millisecondo)
 print("IMU dura", I_intervallo_tempo,"millisecondi")
 
+if(count_environmental == 0):
+    informationloss_E = 0
+else:
+    informationloss_E = round(E_packet_persi/(count_environmental*3),2)
+
 if (count_pulsossimetro == 0):
     dataloss_P = 0
 else:
@@ -398,6 +416,10 @@ else:
 
 
 
+
+print("Informazione persa Environmental ", E_packet_persi)
+
+print("Information loss Environmental", informationloss_E)
 print("Data loss Pulse ", dataloss_P)
 print("Data loss IMU ", dataloss_I)
 

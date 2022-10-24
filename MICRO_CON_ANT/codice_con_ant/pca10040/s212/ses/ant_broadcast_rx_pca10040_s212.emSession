@@ -63,7 +63,7 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="16" y="314" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="277" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="16" y="314" useTextEdit="1" openedFrom="" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="627" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="4" y="281" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/ant/ant_broadcast/test_ANT/Sensor/sps30.h" useBinaryEdit="0" left="0" path="../../../Sensor/sps30.c" selected="0" top="263" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="15" y="253" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../../../../../../ant/ant_broadcast/test_ANT/Sensor/sps30.h" selected="0" top="234" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="48" y="71" useTextEdit="1" openedFrom="C:/nrf_sdk/nRF5_SDK_17.1.0_ddde560/examples/Progetto_WearableAirMonitoring/MICRO_CON_ANT/codice_con_ant/main.c" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="47" codecName="Default"/>

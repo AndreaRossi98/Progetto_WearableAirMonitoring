@@ -1037,7 +1037,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                                             NO2 = NO2 / 100;
                                             //CO
                                             CO = Integer.decode("0x" + messageContentString_split[6].substring(1));
-                                            if (CO <= 26)
+                                            if (CO <= 29)
                                                 CO = 0;
                                             else {
                                                 CO = (float) Math.pow(10, ((Math.log10(CO / 229) - 0.55) / (-0.85)));

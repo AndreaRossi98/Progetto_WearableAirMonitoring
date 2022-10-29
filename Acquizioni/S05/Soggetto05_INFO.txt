@@ -1,0 +1,24 @@
+Il dataset ha 173666 campioni:
+234 campioni di Environmental
+43357 campioni di Pulsiossimetro
+130073 campioni di IMU
+
+Information loss Environmental: 0.08
+Data loss Pulsiossimetro: 0.17
+Data loss IMU: 0.23
+
+Environmental inizio  15:8:11
+Environmental fine  16:46:58
+Environmental dura  5927 secondi
+
+PulseOxemeter inizio  15:8:9:41
+PulseOxemeter fine  16:47:26:441
+PulseOxemeter dura  5957400 millisecondi
+
+IMU inizio  15:8:8:808
+IMU fine  16:47:27:74
+IMU dura  5958266 millisecondi
+
+Perso IMU1 13332
+Perso IMU2 3357
+Perso IMU3 13231

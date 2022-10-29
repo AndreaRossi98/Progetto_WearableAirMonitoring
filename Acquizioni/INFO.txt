@@ -1,0 +1,5 @@
+Soggetto:
+Età: 
+Altezza:cm 
+Sesso: 
+Caucasico

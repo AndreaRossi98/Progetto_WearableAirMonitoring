@@ -8,7 +8,7 @@
 </settings>
 <grid distance="1" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.1" altunitdist="mm" altunit="mm"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
+<layer number="1" name="Top" color="4" fill="1" visible="no" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
@@ -18,8 +18,8 @@
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
@@ -165,6 +165,7 @@ WEARABLE
 MONITOR
 </text>
 <text x="11.4" y="47.4" size="1" layer="22" rot="MR90" align="center">LARES 2022</text>
+<text x="50" y="40" size="1" layer="22" rot="MR0">S1</text>
 </plain>
 <libraries>
 <library name="Battery_holder">
@@ -2096,22 +2097,22 @@ design rules under a new name.</description>
 <attribute name="PACKAGE" value="1005 AVX" x="31.6" y="44.8" size="1.778" layer="27" rot="R180" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/04025A120FAT2A/?ref=eda" x="31.6" y="44.8" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="R1" library="Res_10M_0402" package="RESC1005X40N" value="ERJ-2GEJ106X" x="32.5" y="45.7" smashed="yes" rot="MR90">
+<element name="R19" library="Res_10M_0402" package="RESC1005X40N" value="ERJ-2GEJ106X" x="32.5" y="45.7" smashed="yes" rot="MR90">
 <attribute name="DESCRIPTION" value=" Res Thick Film 0402 10M Ohm 5% 1/10W -400ppm/°C to 150ppm/°C Molded SMD Punched Carrier T/R " x="32.5" y="45.7" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="DIGI-KEY_PART_NUMBER" value="P10MJTR-ND" x="32.5" y="45.7" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="MF" value="Panasonic Electronic" x="32.5" y="45.7" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="MP" value="ERJ-2GEJ106X" x="32.5" y="45.7" size="1.778" layer="28" rot="MR90" display="off"/>
-<attribute name="NAME" x="33.13" y="44.75" size="0.5" layer="26" rot="MR90"/>
+<attribute name="NAME" x="33.13" y="44.75" size="1" layer="22" rot="MR90"/>
 <attribute name="PACKAGE" value="1005 Panasonic Electronic Components" x="32.5" y="45.7" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERJ-2GEJ106X/?ref=eda" x="32.5" y="45.7" size="1.778" layer="28" rot="MR90" display="off"/>
 <attribute name="VALUE" x="31.87" y="44.75" size="0.5" layer="28" rot="MR90" align="top-left"/>
 </element>
-<element name="R2" library="Res_10M_0402" package="RESC1005X40N" value="ERJ-2GEJ106X" x="33.4" y="43" smashed="yes" rot="MR270">
+<element name="R20" library="Res_10M_0402" package="RESC1005X40N" value="ERJ-2GEJ106X" x="33.4" y="43" smashed="yes" rot="MR270">
 <attribute name="DESCRIPTION" value=" Res Thick Film 0402 10M Ohm 5% 1/10W -400ppm/°C to 150ppm/°C Molded SMD Punched Carrier T/R " x="33.4" y="43" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="DIGI-KEY_PART_NUMBER" value="P10MJTR-ND" x="33.4" y="43" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="MF" value="Panasonic Electronic" x="33.4" y="43" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="MP" value="ERJ-2GEJ106X" x="33.4" y="43" size="1.778" layer="28" rot="MR270" display="off"/>
-<attribute name="NAME" x="32.77" y="43.95" size="0.5" layer="26" rot="MR270"/>
+<attribute name="NAME" x="34.87" y="44.55" size="1" layer="22" rot="MR270"/>
 <attribute name="PACKAGE" value="1005 Panasonic Electronic Components" x="33.4" y="43" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="PURCHASE-URL" value="https://pricing.snapeda.com/search/part/ERJ-2GEJ106X/?ref=eda" x="33.4" y="43" size="1.778" layer="28" rot="MR270" display="off"/>
 <attribute name="VALUE" x="34.03" y="43.95" size="0.5" layer="28" rot="MR270" align="top-left"/>
@@ -2398,7 +2399,7 @@ design rules under a new name.</description>
 <via x="46" y="47.9" extent="1-16" drill="0.35" diameter="0.3"/>
 <via x="40.6" y="48.6" extent="1-16" drill="0.35" diameter="0.3"/>
 <via x="29.4" y="37.9" extent="1-16" drill="0.35" diameter="0.3"/>
-<contactref element="R2" pad="2"/>
+<contactref element="R20" pad="2"/>
 </signal>
 <signal name="N$11">
 <contactref element="MICS6814" pad="G"/>
@@ -2578,7 +2579,7 @@ design rules under a new name.</description>
 <contactref element="VR_5" pad="2"/>
 <contactref element="VR_3.3" pad="1"/>
 <contactref element="VR_3.3" pad="2"/>
-<wire x1="47.25" y1="49.25" x2="46.9" y2="49.6" width="0.254" layer="16"/>
+<wire x1="47.4" y1="49.1" x2="46.9" y2="49.6" width="0.254" layer="16"/>
 <wire x1="46.9" y1="49.6" x2="39.1" y2="49.6" width="0.254" layer="16"/>
 <wire x1="39.1" y1="49.6" x2="33.4" y2="49.6" width="0.254" layer="16"/>
 <wire x1="38.178" y1="47.5251" x2="38.178" y2="48.1754" width="0.254" layer="16"/>
@@ -2595,8 +2596,7 @@ design rules under a new name.</description>
 <wire x1="38.178" y1="48.678" x2="39.1" y2="49.6" width="0.254" layer="16"/>
 <contactref element="S1" pad="3"/>
 <wire x1="48.7" y1="49.1" x2="47.4" y2="49.1" width="0.254" layer="16"/>
-<wire x1="47.4" y1="49.1" x2="47.25" y2="49.25" width="0.254" layer="16"/>
-<contactref element="R1" pad="2"/>
+<contactref element="R19" pad="2"/>
 </signal>
 <signal name="3.3V">
 <contactref element="MDBT42Q" pad="11"/>
@@ -2836,8 +2836,8 @@ design rules under a new name.</description>
 <wire x1="33.385" y1="43.43" x2="32.1" y2="43.43" width="0.254" layer="16"/>
 <wire x1="32.5" y1="45.255" x2="32.5" y2="43.83" width="0.254" layer="16"/>
 <wire x1="32.5" y1="43.83" x2="32.1" y2="43.43" width="0.254" layer="16"/>
-<contactref element="R2" pad="1"/>
-<contactref element="R1" pad="1"/>
+<contactref element="R20" pad="1"/>
+<contactref element="R19" pad="1"/>
 </signal>
 <signal name="BJT">
 <contactref element="MICS6814" pad="B"/>

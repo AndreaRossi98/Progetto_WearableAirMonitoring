@@ -1,0 +1,25 @@
+- mettere file SoggettoX nella cartella analisi
+- aprire file separazione_device_virgola.py, selelzionare il nome del file e righe da saltare.
+Restituisce tre file contenenti i valori delle IMU, pulse ox e monitor ambientale
+- importare i valori del monitor ambientale nel file modello di Excel nella cella A6
+- aprire valori_grafici_environmental, selezionare lo stesso file di prima e numero di righe.
+Restituisce tre file contenenti i valori di ambientale senza i valori nulli perchè pacchetti persi.
+Questi valori si usano nei grafici su Excel
+- Riportare in Excel orario di inizio delle varie acquisizioni statiche nelle celle con sfondo blu
+(le linee verticlai nei grafici si adattano in automatico)
+
+- copiare colonna "Colonna per Python" in un txt nominato env, eliminando eventuali righe vuote prima o dopo
+
+- importare i valori del saturimetro nel file modello pagina pulsiossimetro (Cella A4) tramite funzione incolla Usa importazione guidata
+
+- copiare colonna "Colonna per Python" in un txt nominato pulse, eliminando eventuali righe vuote prima o dopo
+
+- aprire _media_minuto_ENV_PULS.py, che utilizza i file env e pulse per calcolare i valori mediati al minuto, restituendoli in due file
+media_ENV e media_Pulse (l'ultimo valore non è affidabile non capisco come mai)
+
+- aprire _calcolo_e_media_IMUs.py e inserire il nome corretto del file (vuole il file dei soli valori delle IMUs)
+ Restituisce un file con la media al minuto della frequenza respiratoria
+
+- Nel file Excel foglio Dose inalata, riportare nella colonna A l'intervallo in minuti dall'inizio delle acquisizioni statiche
+poi per inquinanti, heart rate e respiratory rate riportare i valori mediati al minuto corrispondenti.
+- Inserire in fondo al foglio (colonna AL) dati riferiti alla persona. I dati e grafici si aggiornano in automatico.

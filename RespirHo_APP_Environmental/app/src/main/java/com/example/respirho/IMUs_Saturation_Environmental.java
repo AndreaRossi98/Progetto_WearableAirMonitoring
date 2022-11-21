@@ -1092,7 +1092,7 @@ public class IMUs_Saturation_Environmental extends AppCompatActivity implements 
                                                     else
                                                         PM2p5_output.setTextColor(Color.BLACK);
 
-                                                    PM10_output.setText(String.valueOf(PM10p0));            //45        limite annuale
+                                                    PM10_output.setText(String.valueOf(PM10p0));            //45        limite giornaliero
                                                     if (PM10p0 > 45)
                                                         PM10_output.setTextColor(Color.RED);
                                                     else

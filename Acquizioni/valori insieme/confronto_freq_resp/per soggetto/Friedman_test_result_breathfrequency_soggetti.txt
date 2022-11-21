@@ -1,0 +1,39 @@
+Confronto tra i dati aggregati della frequenza respiratoria dei diversi soggetti aggregati per punti di acquisizione statica
+
+
+Prima un test di Shapiro-Wilk per valutare eventuale distribuzione normale dei dati
+Risultati del test sono:
+Soggetto S1: ShapiroResult(statistic=0.7828981876373291, pvalue=1.2171692105766851e-05)
+Soggetto S2: ShapiroResult(statistic=0.6726863980293274, pvalue=1.924411066056564e-07)
+Soggetto S3: ShapiroResult(statistic=0.7861564755439758, pvalue=1.3991279956826475e-05)
+Soggetto S4: ShapiroResult(statistic=0.8536860346794128, pvalue=0.00033873895881697536)
+Soggetto S5: ShapiroResult(statistic=0.8236337900161743, pvalue=7.599542732350528e-05)
+Soggetto S6: ShapiroResult(statistic=0.8209097981452942, pvalue=6.679858051938936e-05)
+Soggetto S7: ShapiroResult(statistic=0.8012765049934387, pvalue=2.712825698836241e-05)
+Soggetto S8: ShapiroResult(statistic=0.8426944613456726, pvalue=0.0001930030557559803)
+Soggetto S9: ShapiroResult(statistic=0.8417096734046936, pvalue=0.00018368731252849102)
+Soggetto S10: ShapiroResult(statistic=0.6410430669784546, pvalue=6.874068247952891e-08)
+Soggetto S11: ShapiroResult(statistic=0.6429386138916016, pvalue=7.299389181980587e-08)
+Soggetto S12: ShapiroResult(statistic=0.8986948132514954, pvalue=0.004237752873450518)
+
+
+Test di Friedman:
+FriedmanchisquareResult(statistic=102.53132754342435, pvalue=5.623591412310478e-17)
+
+Analisi finita
+
+
+Calcolo mediana e IQR per ogni soggetto
+
+S0: Median: 16.0 IRQ: 4.86
+S1: Median: 8.45 IRQ: 4.54
+S2: Median: 16.44 IRQ: 3.02
+S3: Median: 15.38 IRQ: 4.61
+S4: Median: 19.68 IRQ: 22.76
+S5: Median: 18.9 IRQ: 2.34
+S6: Median: 12.0 IRQ: 8.49
+S7: Median: 17.86 IRQ: 16.14
+S8: Median: 20.0 IRQ: 18.34
+S9: Median: 10.17 IRQ: 3.82
+S10: Median: 10.71 IRQ: 5.75
+S11: Median: 19.35 IRQ: 12.83

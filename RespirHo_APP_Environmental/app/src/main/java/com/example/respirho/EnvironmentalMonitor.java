@@ -1604,8 +1604,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                         //PM1s.add(Double.parseDouble(attributes[9]));
                                         PM2p5s.add(Double.parseDouble(attributes[10]));
                                         //PM10s.add(Double.parseDouble(attributes[11]));
-                                        lats.add(Double.parseDouble(attributes[18]));
-                                        lons.add(Double.parseDouble(attributes[19]));
+                                        lats.add(Double.parseDouble(attributes[20]));//18
+                                        lons.add(Double.parseDouble(attributes[21]));//19
                                         dates.add(attributes[16]);
                                         times.add(attributes[17]);
 
@@ -1916,7 +1916,6 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 e.printStackTrace();
                             }
                         }
-
 //prendere le linee dal file per mostrare i dati
                         while (line != null ) { //split csv lines and obtain values
                             try {
@@ -1927,7 +1926,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                 //String linea = line;
                                 if(line != null) {
                                     attributes = line.split(";");
-                                    if (line != "6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;" && Double.parseDouble(attributes[3]) != 0) {
+                                    if (line != "6;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;" && Double.parseDouble(attributes[3]) != 0
+                                            && Double.parseDouble(attributes[0]) == 6) {
                                         //tolti perchè non li mostro a schermo
                                         //temps.add(Double.parseDouble(attributes[2]));
                                         //humids.add(Double.parseDouble(attributes[3]));
@@ -1939,8 +1939,8 @@ public class EnvironmentalMonitor extends AppCompatActivity implements View.OnCl
                                         //PM1s.add(Double.parseDouble(attributes[9]));
                                         PM2p5s.add(Double.parseDouble(attributes[10]));
                                         //PM10s.add(Double.parseDouble(attributes[11]));
-                                        lats.add(Double.parseDouble(attributes[18]));
-                                        lons.add(Double.parseDouble(attributes[19]));
+                                        lats.add(Double.parseDouble(attributes[20])); //18
+                                        lons.add(Double.parseDouble(attributes[21])); //19
                                         dates.add(attributes[16]);
                                         times.add(attributes[17]);
 

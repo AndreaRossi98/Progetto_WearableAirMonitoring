@@ -1,0 +1,26 @@
+Confronto tra i dati aggregati della frequenaz respiratoria nei diversi punti di acquisizione statica
+
+
+Prima un test di Shapiro-Wilk per valutare eventuale distribuzione normale dei dati
+Risultati del test sono:
+0: ShapiroResult(statistic=0.931808590888977, pvalue=0.0023716548457741737)
+1: ShapiroResult(statistic=0.8980488181114197, pvalue=0.0001117555657401681)
+2: ShapiroResult(statistic=0.8564751744270325, pvalue=4.754578640131513e-06)
+3: ShapiroResult(statistic=0.90904700756073, pvalue=0.00028574667521752417)
+4: ShapiroResult(statistic=0.8683018088340759, pvalue=1.1043121958209667e-05)
+5: ShapiroResult(statistic=0.7972666025161743, pvalue=1.1548763012569907e-07)
+6: ShapiroResult(statistic=0.8656420111656189, pvalue=9.104880518862046e-06)
+
+
+ Test di friedman su i campioni di frequenza respiratoria per i diversi inquinanti:
+
+results: FriedmanchisquareResult(statistic=41.055018137847675, pvalue=2.824293092896325e-07)
+Risultato posthoc Nemenyi test: 
+          0         1         2         3         4         5         6
+0  1.000000  0.900000  0.252551  0.001000  0.001000  0.001000  0.001069
+1  0.900000  1.000000  0.900000  0.043014  0.019560  0.006547  0.058335
+2  0.252551  0.900000  1.000000  0.506180  0.345182  0.185814  0.568301
+3  0.001000  0.043014  0.506180  1.000000  0.900000  0.900000  0.900000
+4  0.001000  0.019560  0.345182  0.900000  1.000000  0.900000  0.900000
+5  0.001000  0.006547  0.185814  0.900000  0.900000  1.000000  0.900000
+6  0.001069  0.058335  0.568301  0.900000  0.900000  0.900000  1.000000

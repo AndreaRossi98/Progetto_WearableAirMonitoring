@@ -4,7 +4,7 @@ Il dataset ha 181502 campioni:
 135943 campioni di IMU
 
 Information loss Environmental: 0.06
-Data loss Pulsiossimetro: 0.17
+Data loss Pulsiossimetro: 0.12
 Data loss IMU: 0.11
 
 Environmental inizio  14:39:19
@@ -22,3 +22,6 @@ IMU dura  6120711 millisecondi
 Perso IMU1 1666
 Perso IMU2 1833
 Perso IMU3 11520
+dataloss IMU1 0.03676540903172653
+dataloss IMU2 0.040450777163958423
+dataloss IMU3 0.2542241969060562

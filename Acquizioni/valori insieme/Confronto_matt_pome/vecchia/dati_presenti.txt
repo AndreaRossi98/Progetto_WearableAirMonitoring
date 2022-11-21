@@ -1,0 +1,7 @@
+sono contenuti i dati aggregati dei vari soggetti
+al 2 ci sono tVOC, CO2 e tempo
+al 3 ci sono PM1 PM2.5 e PM10 e tempo
+
+divisi in mattina e pomeriggio.
+problema perchè i dati presenti non sono uguali tra i gruppi.
+Prendere solo i 5 minuti di posizioni statiche? o tutto e prendo solo una parte?in base a cosa?

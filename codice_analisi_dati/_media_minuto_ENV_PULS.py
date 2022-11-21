@@ -203,29 +203,29 @@ for i in range(1, dataE['tempo_trascorso'].get(length-1)):
 
             z = z + 1
             minuti = minuti +1
-
-temperature = round(temperature / ( i - temperature_null ),2)
-humidity = round(humidity / ( i - humidity_null ),2)
-pressure = round(pressure /(i - pressure_null),2)
-VOC = round(VOC /(i - VOC_null),2)
-CO2 = round(CO2 /(i - CO2_null),2)
-CO = round(CO /(i - CO_null),2)
-NO2 = round(NO2 /(i - NO2_null),2)
-PM1 = round(PM1/(i - PM1_null),2)
-PM2p5 = round(PM2p5 /(i - PM2p5_null),2)
-PM10 = round(PM10/(i - PM10_null),2)
+if(i != 0):
+    temperature = round(temperature / ( i - temperature_null ),2)
+    humidity = round(humidity / ( i - humidity_null ),2)
+    pressure = round(pressure /(i - pressure_null),2)
+    VOC = round(VOC /(i - VOC_null),2)
+    CO2 = round(CO2 /(i - CO2_null),2)
+    CO = round(CO /(i - CO_null),2)
+    NO2 = round(NO2 /(i - NO2_null),2)
+    PM1 = round(PM1/(i - PM1_null),2)
+    PM2p5 = round(PM2p5 /(i - PM2p5_null),2)
+    PM10 = round(PM10/(i - PM10_null),2)
             
-temp.append([int(minuti)])
-mean_temperature.append([temperature])
-mean_humidity.append([humidity])
-mean_pressure.append([pressure])
-mean_VOC.append([VOC])
-mean_CO2.append([CO2])
-mean_CO.append([CO])
-mean_NO2.append([NO2])
-mean_PM1.append([PM1])
-mean_PM2p5.append([PM2p5])
-mean_PM10.append([PM10])
+    temp.append([int(minuti)])
+    mean_temperature.append([temperature])
+    mean_humidity.append([humidity])
+    mean_pressure.append([pressure])
+    mean_VOC.append([VOC])
+    mean_CO2.append([CO2])
+    mean_CO.append([CO])
+    mean_NO2.append([NO2])
+    mean_PM1.append([PM1])
+    mean_PM2p5.append([PM2p5])
+    mean_PM10.append([PM10])
 
 
 
@@ -246,6 +246,10 @@ risultatoE = pd.concat([Minutes,VOCs,CO2s,COs,NO2s,PM1s,PM2p5s,PM10s], axis=1)
 #SALVATAGGIO DATI SU TXT
 np.savetxt('media_ENV.txt', risultatoE, fmt='%.2f')
 print("Dati monitor ambientali correttamente mediati")
+
+
+risultatoA = pd.concat([Minutes,Temps,Hums,Press,VOCs,CO2s,COs,NO2s,PM1s,PM2p5s,PM10s], axis=1)
+np.savetxt('media_ENV_uHoo.txt', risultatoE, fmt='%.2f')
 
 
 ##########################
@@ -289,7 +293,10 @@ for i in range(1, dataP['tempo_trascorso'].get(length-1)):
            
             HR = 0
             minuti = minuti + 1
-
+if(i != 0):
+    HR = HR/i
+    mean_HR.append([HR])
+    tempP.append([int(minuti)])
 
 MinutePuls = pd.DataFrame(tempP, columns=["Minuti"])
 HRs = pd.DataFrame(mean_HR, columns=["HR"])        

@@ -11,7 +11,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.respirho"
+        applicationId "com.example.respirho1"
         minSdkVersion 24    //24    //DEFAULT: 29
         targetSdkVersion 29    //29 //DEFAULT: 30
         versionCode 1

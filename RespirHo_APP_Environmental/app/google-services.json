@@ -1,34 +1,63 @@
 {
   "project_info": {
-    "project_number": "336828609186",
-    "firebase_url": "https://respirho-environmental-default-rtdb.europe-west1.firebasedatabase.app",
-    "project_id": "respirho-environmental",
-    "storage_bucket": "respirho-environmental.appspot.com"
+    "project_number": "157590932795",
+    "firebase_url": "https://environmentalmonitor2022-4238a-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "environmentalmonitor2022-4238a",
+    "storage_bucket": "environmentalmonitor2022-4238a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:336828609186:android:9c0d1d1ee64b1679b9ddfb",
+        "mobilesdk_app_id": "1:157590932795:android:06452066adf2e86dd07b1e",
         "android_client_info": {
           "package_name": "com.example.respirho"
         }
       },
       "oauth_client": [
         {
-          "client_id": "336828609186-6psgo7p113thejk28451a393in1se5qn.apps.googleusercontent.com",
+          "client_id": "157590932795-fn3r1fhep9p9gnjsjfulehmp387sb3aj.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCOK8hKCob7bri2XipvVW0DvSlMAONDxtI"
+          "current_key": "AIzaSyCB8us0Cvynvkvo6OLz8LGqiK4BZYa7K2o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "336828609186-6psgo7p113thejk28451a393in1se5qn.apps.googleusercontent.com",
+              "client_id": "157590932795-fn3r1fhep9p9gnjsjfulehmp387sb3aj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157590932795:android:e1cddb370c8afe7cd07b1e",
+        "android_client_info": {
+          "package_name": "com.example.respirho1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157590932795-fn3r1fhep9p9gnjsjfulehmp387sb3aj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB8us0Cvynvkvo6OLz8LGqiK4BZYa7K2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157590932795-fn3r1fhep9p9gnjsjfulehmp387sb3aj.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
